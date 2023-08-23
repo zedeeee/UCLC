@@ -6,6 +6,7 @@ SetTitleMatchMode "RegEx"
 iclass := ""
 iDelay := 5000 ; ms
 
+GroupAdd("GroupCATIA", "ahk_class Afx:00007FF7E2A50000:8:0000000000010005:00000")
 
 k_ini := A_ScriptDir "\Lib\CATAlias.ini"
 k_txt := IniRead(k_ini, "HotKey_cn")
@@ -20,11 +21,9 @@ HotIfWinActive "ahk_group GroupCATIA"
   }
 }
 
-Loop {
-  addGroupCATIA()
-  Sleep iDelay
-}
-
+; 启动脚本后 执行为期 1分钟 的检测 CATIA 脚本程序
+; SetTimer detCATIA() 60000
+; addGroupCATIA()
 
 #HotIf WinActive
 {
@@ -78,7 +77,14 @@ Loop {
 
   ~Space::
   {
-    global FocuseHwnd
+    ; FocuseHwnd := ""
+    ; if FocuseHwnd == ""
+    ; {
+    ;   ; 测试是否因为重复声明造成的
+    ;   ; BUG依旧
+      global FocuseHwnd
+    ; }
+
     tempFocuseHwnd := ControlGetFocus("A")
     tempFocuseclassNN := ControlGetClassNN(tempFocuseHwnd)
 
@@ -123,7 +129,7 @@ Loop {
 k_ToolTip(i_Message, i_delay)
 {
   ToolTip i_Message
-  SetTimer ToolTip, -i_delay
+  SetTimer ToolTip, i_delay
 }
 
 addGroupCATIA()
@@ -131,7 +137,15 @@ addGroupCATIA()
   if WinActive("ahk_exe CNEXT.exe") and WinActive("CATIA")
   {
     tempClassNN := WinGetClass("A")
-    GroupAdd "GroupCATIA", "ahk_class" tempClassNN
+    GroupAdd "GroupCATIA", "ahk_class" SubStr(tempClassNN, 0, 30)
   }
   Return
+}
+
+detCATIA() {
+  i := 20
+  while i < 0 {
+    Sleep iDelay
+    i -= 1
+  }
 }

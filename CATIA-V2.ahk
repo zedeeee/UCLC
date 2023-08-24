@@ -6,7 +6,7 @@ SetTitleMatchMode "RegEx"
 iclass := ""
 iDelay := 5000 ; ms
 
-GroupAdd("GroupCATIA", "ahk_class Afx:00007FF7E2A50000:8:0000000000010005:00000")
+GroupAdd("GroupCATIA", "ahk_class Afx:00007FF7E2A50000:8:00000000000100")
 
 k_ini := A_ScriptDir "\Lib\CATAlias.ini"
 k_txt := IniRead(k_ini, "HotKey_cn")
@@ -87,6 +87,7 @@ HotIfWinActive "ahk_group GroupCATIA"
 
     tempFocuseHwnd := ControlGetFocus("A")
     tempFocuseclassNN := ControlGetClassNN(tempFocuseHwnd)
+    k_ToolTip("tempFocuseHwnd: " tempFocuseHwnd "`n" "tempFocuseclassNN: "  tempFocuseclassNN, 2000)
 
     if !InStr(tempFocuseclassNN, "edit")
     {

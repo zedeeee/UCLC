@@ -1,4 +1,5 @@
-﻿SetTitleMatchMode, RegEx
+﻿#Requires AutoHotKey v1.1
+SetTitleMatchMode, RegEx
 
 iClass :=
 iDelay := 1000 ; ms
@@ -57,100 +58,100 @@ Loop {
 
 #IfWinActive, 图标浏览器
   {
-  $x::
-    Loop
-    {
-      if not GetKeyState("x", "P")
-        break
-      Click
-    }
-  Return
-}
+    $x::
+      Loop
+      {
+        if not GetKeyState("x", "P")
+          break
+        Click
+      }
+    Return
+  }
 
 #IfWinActive, 编辑物料清单
   {
-  $x::
-    Loop
-    {
-      if not GetKeyState("x", "P")
-        break
-      Click
-    }
-  Return
-}
+    $x::
+      Loop
+      {
+        if not GetKeyState("x", "P")
+          break
+        Click
+      }
+    Return
+  }
 
 #IfWinActive ahk_group GroupCATIA
   {
-  Space::
-    ControlGetFocus, temp_ControlName, A
-    if InStr(temp_ControlName,"edit" ) 
-    {
-      CommandControlName := temp_ControlName
-      ControlGetText, CATIA_Command, %CommandControlName%
-      StringLower, CATIA_Command, CATIA_Command
-      ControlSetText, %CommandControlName%, c:%CATIA_Command%
-      ControlSend, %CommandControlName%, {Enter}
-    }
-    Else
-      SendInput, ^y
-  Return
-
-  Esc::
-    SendInput, {Escape}
-    ControlGetFocus tempEdit,A 
-    if CommandControlName != %tempEdit%
-      ControlFocus, %CommandControlName%
-    else
-      ControlSetText, %CommandControlName%, 
-  Return
-
-  ^!s::
-    SendInput, c:dbvs{Enter}
-  Return
-
-  ^!d::
-    SendInput, c:zdyst{Enter}
-  Return
-
-  ^!r::
-    SendInput, c:clvs{Enter}
-  Return
-
-  ^!w::
-    SendInput, c:nhr{Enter}
-  Return
-
-  !d::
-    SendInput, c:definewo{Enter}
-  Return
-
-  ^+!s::
-    SendInput, c:savem{Enter}
-  Return
-
-  F2::
-    SendInput, !{Enter}
-  Return
-
-  ;LAlt::RButton
-  ;Return
-  CapsLock::MButton
-}
-
-;-------------------------------
-
-RemoveToolTip:
-  {
-    ToolTip
+    Space::
+      ControlGetFocus, temp_ControlName, A
+      if InStr(temp_ControlName,"edit" )
+      {
+        CommandControlName := temp_ControlName
+        ControlGetText, CATIA_Command, %CommandControlName%
+        StringLower, CATIA_Command, CATIA_Command
+        ControlSetText, %CommandControlName%, c:%CATIA_Command%
+        ControlSend, %CommandControlName%, {Enter}
+      }
+      Else
+        SendInput, ^y
     Return
+
+    Esc::
+      SendInput, {Escape}
+      ControlGetFocus tempEdit,A
+      if CommandControlName != %tempEdit%
+        ControlFocus, %CommandControlName%
+      else
+        ControlSetText, %CommandControlName%,
+    Return
+
+    ^!s::
+      SendInput, c:dbvs{Enter}
+    Return
+
+    ^!d::
+      SendInput, c:zdyst{Enter}
+    Return
+
+    ^!r::
+      SendInput, c:clvs{Enter}
+    Return
+
+    ^!w::
+      SendInput, c:nhr{Enter}
+    Return
+
+    !d::
+      SendInput, c:definewo{Enter}
+    Return
+
+    ^+!s::
+      SendInput, c:savem{Enter}
+    Return
+
+    F2::
+      SendInput, !{Enter}
+    Return
+
+    ;LAlt::RButton
+    ;Return
+    CapsLock::MButton
   }
 
-addGroupCATIA:
-  {
-    if WinActive("ahk_exe CNEXT.exe") and WinActive("CATIA")
+  ;-------------------------------
+
+  RemoveToolTip:
     {
-      WinGetClass, iClass, A
-      GroupAdd, GroupCATIA, ahk_class ahk_class %iClass%
+      ToolTip
+      Return
     }
-    Return
-  }
+
+  addGroupCATIA:
+    {
+      if WinActive("ahk_exe CNEXT.exe") and WinActive("CATIA")
+      {
+        WinGetClass, iClass, A
+        GroupAdd, GroupCATIA, ahk_class ahk_class %iClass%
+      }
+      Return
+    }

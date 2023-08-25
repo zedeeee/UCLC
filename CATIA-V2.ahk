@@ -102,25 +102,25 @@ HotIfWinActive "ahk_group GroupCATIA"
 
   }
 
-  ~Esc::
-  {
-    tempFocuseHwnd := ControlGetFocus("A")
-    try {
-      if FocuseHwnd != tempFocuseHwnd
-      {
-        ControlFocus FocuseHwnd
-      }
-      else
-      {
-        ; MsgBox ("else " FocuseHwnd)
-        ControlSetText("", FocuseHwnd)
-      }
-    }
-    catch as e {
-      k_ToolTip("控件获取失败，请至少执行一次任意命令输入", 1000)
-      Exit
-    }
-  }
+  ; ~Esc::
+  ; {
+  ;   tempFocuseHwnd := ControlGetFocus("A")
+  ;   try {
+  ;     if FocuseHwnd != tempFocuseHwnd
+  ;     {
+  ;       ControlFocus FocuseHwnd
+  ;     }
+  ;     else
+  ;     {
+  ;       ; MsgBox ("else " FocuseHwnd)
+  ;       ControlSetText("", FocuseHwnd)
+  ;     }
+  ;   }
+  ;   catch as e {
+  ;     k_ToolTip("控件获取失败，请至少执行一次任意命令输入", 1000)
+  ;     Exit
+  ;   }
+  ; }
 
   ; CapsLock::MButton
 }

@@ -144,7 +144,7 @@ addGroupCATIA()
     k_ClassNN :=SubStr(WinGetClass("A"),1,40)
 
     ; 显示获取到的额ClassNN
-    k_ToolTip(k_ClassNN,2000)
+    ; k_ToolTip(k_ClassNN,2000)
 
     GroupAdd "GroupCATIA", "ahk_class " k_ClassNN
   }

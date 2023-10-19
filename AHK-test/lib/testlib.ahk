@@ -1,7 +1,2 @@
-#SingleInstance, Force
-SendMode Input
-SetWorkingDir, %A_ScriptDir%
-
-func1(a){
-    Return a*a
-}
+Sleep(1000)
+MsgBox  WinGetClass("A")

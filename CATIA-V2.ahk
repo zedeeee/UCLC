@@ -3,6 +3,8 @@ SetTitleMatchMode "RegEx"
 
 #Include <CATAlias>
 #Include "./Lib/stdio.ahk"
+#Include "./Lib/window.ahk"
+#Include "./Lib/string.ahk"
 
 iclass := ""
 iDelay := 5000 ; ms
@@ -11,6 +13,8 @@ iDelay := 5000 ; ms
 
 k_ini := A_ScriptDir "\Lib\CATAlias.ini"
 k_txt := IniRead(k_ini, "HotKey_cn")
+
+; GET_WORKBENCH_LIST()
 
 HotIfWinActive "ahk_group GroupCATIA"
 {
@@ -71,6 +75,11 @@ loop {
 
   }
   RWin::RButton
+
+  ^+t::
+  {
+    INIT_ADATP_WORKBENCH_LIST()
+  }
 }
 
 
@@ -80,19 +89,10 @@ loop {
 
   ~Space::
   {
-    ; FocuseHwnd := ""
-    ; if FocuseHwnd == ""
-    ; {
-    ;   ; 测试是否因为重复声明造成的
-    ;   ; BUG依旧
     global FocuseHwnd
-    ; }
 
     tempFocuseHwnd := ControlGetFocus("A")
     tempFocuseclassNN := ControlGetClassNN(tempFocuseHwnd)
-    
-    ; 显示获取到的Hwnd
-    ; k_ToolTip("tempFocuseHwnd: " tempFocuseHwnd "`n" "tempFocuseclassNN: " tempFocuseclassNN, 2000)
 
     if !InStr(tempFocuseclassNN, "edit")
     {
@@ -137,7 +137,7 @@ addGroupCATIA()
 {
   if WinActive("ahk_exe CNEXT.exe") and WinActive("CATIA")
   {
-    k_ClassNN :=SubStr(WinGetClass("A"),1,40)
+    k_ClassNN := SubStr(WinGetClass("A"), 1, 40)
 
     ; 显示获取到的额ClassNN
     ; k_ToolTip(k_ClassNN,2000)
@@ -153,4 +153,35 @@ detCATIA() {
     Sleep iDelay
     i -= 1
   }
+}
+
+; 检测当前 CATIA 工作台，并返回工作台对应名称
+CAT_CURRENT_WORKBENCH()
+{
+  WinExist("A")
+
+  workbench_name := ""
+  visible_text := WinGetTextFast_A(false)
+  workbench_list := ""
+
+  for value1 in WORKBENCH_LIST
+    for value2 in visible_text {
+      if (value1 != value2)
+      {
+        continue
+      }
+      k_ToolTip "value1: " value1 "`n" "value2: " value2 "`n" "A_index: " A_Index, 1000
+      return
+    }
+
+
+  return workbench_name
+
+}
+
+
+; 读取适配工作台列表，用于执行对应热键和快捷键？ 返回工作台名称的数组
+INIT_ADATP_WORKBENCH_LIST()
+{
+  INI_GET_ALL_VALUE_A("./config/config.ini", "workbench")
 }

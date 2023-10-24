@@ -2,6 +2,7 @@
 SetTitleMatchMode "RegEx"
 
 #Include <CATAlias>
+#Include "./Lib/stdio.ahk"
 
 iclass := ""
 iDelay := 5000 ; ms
@@ -131,11 +132,6 @@ loop {
 
 ; ;-------------------------------
 
-k_ToolTip(i_Message, i_delay)
-{
-  ToolTip i_Message
-  SetTimer ToolTip, i_delay
-}
 
 addGroupCATIA()
 {

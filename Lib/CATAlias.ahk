@@ -1,4 +1,5 @@
 #Requires AutoHotKey v2.0
+#include stdio.ahk
 
 ; 读取别名
 readAlias(k_Section, k_Key) {

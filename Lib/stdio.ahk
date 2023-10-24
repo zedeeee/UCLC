@@ -1,7 +1,8 @@
 #Requires AutoHotkey v2.0
 
-k_ToolTip(Message, delay)
+; ToolTip 的封装函数，简化函数调用
+k_ToolTip(Message, Delay_ms)
 {
   ToolTip Message
-  SetTimer ToolTip, delay
+  SetTimer ToolTip, Delay_ms
 }

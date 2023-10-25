@@ -5,16 +5,21 @@ SetTitleMatchMode "RegEx"
 #Include "./Lib/stdio.ahk"
 #Include "./Lib/window.ahk"
 #Include "./Lib/string.ahk"
+#Include "./Lib/AHK_LOG.ahk"
 
 iclass := ""
 iDelay := 5000 ; ms
+WORKBENCH_LIST_A := Array()
+CURRENT_WORKBENCH := ""
+DEBUG_I := true
 
 ; GroupAdd("GroupCATIA", "ahk_class Afx:00007FF7E2A50000:8:00000000000100")
 
 k_ini := A_ScriptDir "\Lib\CATAlias.ini"
 k_txt := IniRead(k_ini, "HotKey_cn")
 
-; GET_WORKBENCH_LIST()
+; 读取适配工作台列表，用于执行对应热键和快捷键？ 返回工作台名称的数组
+WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A("./config/config.ini", "workbench")
 
 HotIfWinActive "ahk_group GroupCATIA"
 {
@@ -78,7 +83,7 @@ loop {
 
   ^+t::
   {
-    INIT_ADATP_WORKBENCH_LIST()
+    CAT_CURRENT_WORKBENCH()
   }
 }
 
@@ -162,26 +167,27 @@ CAT_CURRENT_WORKBENCH()
 
   workbench_name := ""
   visible_text := WinGetTextFast_A(false)
-  workbench_list := ""
 
-  for value1 in WORKBENCH_LIST
+  ; 获取工作台列表
+  if WORKBENCH_LIST_A.Length = 0
+  {
+    INI_GET_ALL_VALUE_A("./config/config.ini", "workbench")
+  }
+
+  for value1 in WORKBENCH_LIST_A {
     for value2 in visible_text {
       if (value1 != value2)
       {
         continue
       }
-      k_ToolTip "value1: " value1 "`n" "value2: " value2 "`n" "A_index: " A_Index, 1000
+      AHK_LOGI("value1: " value1 "`n" "value2: " value2 "`n" "A_index: " A_Index, DEBUG_I)
       return
     }
-
+  }
+  if workbench_name == ""
+  {
+    workbench_name := "NULL"
+  }
 
   return workbench_name
-
-}
-
-
-; 读取适配工作台列表，用于执行对应热键和快捷键？ 返回工作台名称的数组
-INIT_ADATP_WORKBENCH_LIST()
-{
-  INI_GET_ALL_VALUE_A("./config/config.ini", "workbench")
 }

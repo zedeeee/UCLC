@@ -165,7 +165,7 @@ CAT_CURRENT_WORKBENCH()
 {
   WinExist("A")
 
-  workbench_name := ""
+  workbench_name := "NULL"
   visible_text := WinGetTextFast_A(false)
 
   ; 获取工作台列表
@@ -183,10 +183,6 @@ CAT_CURRENT_WORKBENCH()
       AHK_LOGI("value1: " value1 "`n" "value2: " value2 "`n" "A_index: " A_Index, DEBUG_I)
       return
     }
-  }
-  if workbench_name == ""
-  {
-    workbench_name := "NULL"
   }
 
   return workbench_name

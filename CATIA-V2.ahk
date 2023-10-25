@@ -8,7 +8,7 @@ SetTitleMatchMode "RegEx"
 #Include "./Lib/AHK_LOG.ahk"
 
 iclass := ""
-iDelay := 5000 ; ms
+iDelay := 500 ; ms
 WORKBENCH_LIST_A := Array()
 current_workbench := ""
 global DEBUG_I := IniRead("./config/config.ini","通用","DEBUG")

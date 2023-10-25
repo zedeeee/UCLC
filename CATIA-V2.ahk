@@ -10,8 +10,8 @@ SetTitleMatchMode "RegEx"
 iclass := ""
 iDelay := 5000 ; ms
 WORKBENCH_LIST_A := Array()
-CURRENT_WORKBENCH := ""
-DEBUG_I := true
+current_workbench := ""
+global DEBUG_I := IniRead("./config/config.ini","通用","DEBUG")
 
 ; GroupAdd("GroupCATIA", "ahk_class Afx:00007FF7E2A50000:8:00000000000100")
 
@@ -19,7 +19,7 @@ k_ini := A_ScriptDir "\Lib\CATAlias.ini"
 k_txt := IniRead(k_ini, "HotKey_cn")
 
 ; 读取适配工作台列表，用于执行对应热键和快捷键？ 返回工作台名称的数组
-WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A("./config/config.ini", "workbench")
+WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A("./config/config.ini", "工作台")
 
 HotIfWinActive "ahk_group GroupCATIA"
 {
@@ -83,7 +83,8 @@ loop {
 
   ^+t::
   {
-    CAT_CURRENT_WORKBENCH()
+    current_workbench := CAT_CURRENT_WORKBENCH()
+    MsgBox current_workbench
   }
 }
 
@@ -106,8 +107,8 @@ loop {
     }
 
     FocuseHwnd := tempFocuseHwnd
-    CATIA_Command := StrUpper(ControlGetText(FocuseHwnd))
-    ControlSetText "c:" readAlias("Alias_cn", CATIA_Command), FocuseHwnd
+    CATIA_Command := CAT_POWERINPUT_ALIAS(ControlGetText(FocuseHwnd))
+    ControlSetText "c:" CATIA_Command, FocuseHwnd
     ControlSend "{Enter}", FocuseHwnd
 
   }
@@ -160,7 +161,7 @@ detCATIA() {
   }
 }
 
-; 检测当前 CATIA 工作台，并返回工作台对应名称
+; 检测当前 CATIA 工作台，并返回字符串
 CAT_CURRENT_WORKBENCH()
 {
   WinExist("A")
@@ -181,9 +182,19 @@ CAT_CURRENT_WORKBENCH()
         continue
       }
       AHK_LOGI("value1: " value1 "`n" "value2: " value2 "`n" "A_index: " A_Index, DEBUG_I)
-      return
+      workbench_name := value1
+      return workbench_name
     }
   }
 
-  return workbench_name
+}
+
+; 根据输入的Alias值，在CATAlias.ini文件中查找对应工作台的别名，并返回字符串
+CAT_POWERINPUT_ALIAS(alias)
+{
+  current_workbench := CAT_CURRENT_WORKBENCH()
+
+  key := StrUpper(alias)
+  catia_alias := readAlias(CURRENT_WORKBENCH, key)
+  return catia_alias
 }

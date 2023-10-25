@@ -6,10 +6,18 @@
 INI_GET_ALL_VALUE_A(file_path, section_name)
 {
     values := Array()
-    loop parse IniRead(file_path, section_name), "`n" ; 通过换行符获取数组
-    {
-        arr := StrSplit(A_LoopField, "=")
-        values.Push(arr[2])
+    ; 这里需要添加判断，section_name 不存在的情况
+    try {
+        loop parse IniRead(file_path, section_name), "`n" ; 通过换行符获取数组
+        {
+            arr := StrSplit(A_LoopField, "=")
+            values.Push(arr[2])
+        }
     }
+    catch as e {
+        k_ToolTip("没有找到与" section_name "对应的section", 1000)
+        Exit
+    }
+
     return values
 }

@@ -1,15 +1,26 @@
 #Requires AutoHotKey v2.0
 #include stdio.ahk
+#Include AHK_LOG.ahk
 
-; 读取别名
+; 读取CATAlias.ini配置文件中的别名
 readAlias(k_Section, k_Key) {
     try {
         ; 返回 CATAlias.ini 内 Key 的对应值
+        AHK_LOGI("调用 " k_Section,DEBUG_I)
         return StrSplit(IniRead(A_ScriptDir "/Lib/CATAlias.ini", k_Section, k_Key), ";")[1]
     }
     catch as e {
-        k_ToolTip("没有找到与" k_Key "对应的命令", 1000)
-        Exit
+        if e
+        {
+            try {
+                AHK_LOGI("调用 通用", DEBUG_I)
+                return StrSplit(IniRead(A_ScriptDir "/Lib/CATAlias.ini", "通用", k_Key), ";")[1]
+            }
+            catch as e {
+                k_ToolTip("没有找到与" k_Key "对应的命令", 1000)
+                Exit
+            }
+        }
     }
 }
 

@@ -11,7 +11,7 @@ iclass := ""
 iDelay := 500 ; ms
 WORKBENCH_LIST_A := Array()
 current_workbench := ""
-global DEBUG_I := IniRead("./config/config.ini","通用","DEBUG")
+global DEBUG_I := IniRead("./config/config.ini", "通用", "DEBUG")
 
 ; GroupAdd("GroupCATIA", "ahk_class Afx:00007FF7E2A50000:8:00000000000100")
 
@@ -175,8 +175,9 @@ CAT_CURRENT_WORKBENCH()
     INI_GET_ALL_VALUE_A("./config/config.ini", "workbench")
   }
 
-  for value1 in WORKBENCH_LIST_A {
-    for value2 in visible_text {
+  for value1 in visible_text {
+    for value2 in WORKBENCH_LIST_A {
+      ; FileAppend "WORKBENCH_LIST_A: " value1 "    " "visible_text: " value2 "`n", ".\log.txt"
       if (value1 != value2)
       {
         continue
@@ -190,11 +191,11 @@ CAT_CURRENT_WORKBENCH()
 }
 
 ; 根据输入的Alias值，在CATAlias.ini文件中查找对应工作台的别名，并返回字符串
-CAT_POWERINPUT_ALIAS(alias)
+CAT_POWERINPUT_ALIAS(input_str)
 {
   current_workbench := CAT_CURRENT_WORKBENCH()
 
-  key := StrUpper(alias)
+  key := StrUpper(input_str)
   catia_alias := readAlias(CURRENT_WORKBENCH, key)
   return catia_alias
 }

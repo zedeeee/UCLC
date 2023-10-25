@@ -19,7 +19,8 @@ WinGetTextFast_A(detect_hidden) {
             continue
 
         name := StrGet(buf)
-        names.Push(name)
+        ; names.Push(name)
+        names.InsertAt(1,name)
     }
     return names
 }

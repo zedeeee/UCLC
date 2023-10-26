@@ -7,19 +7,17 @@ SetTitleMatchMode "RegEx"
 #Include "./Lib/string.ahk"
 #Include "./Lib/AHK_LOG.ahk"
 
-iclass := ""
-iDelay := 5000 ; ms
-WORKBENCH_LIST_A := Array()
-current_workbench := ""
-global DEBUG_I := IniRead("./config/config.ini", "通用", "DEBUG")
-
-; GroupAdd("GroupCATIA", "ahk_class Afx:00007FF7E2A50000:8:00000000000100")
+global config_ini_path := A_ScriptDir "/config/config.ini"
+global iDelay := IniRead(config_ini_path, "通用", "扫描间隔")
+global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
+global WORKBENCH_LIST_A := Array()
+global current_workbench := ""
 
 k_ini := A_ScriptDir "\Lib\CATAlias.ini"
 k_txt := IniRead(k_ini, "HotKey_cn")
 
 ; 读取适配工作台列表，用于执行对应热键和快捷键？ 返回工作台名称的数组
-WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A("./config/config.ini", "工作台")
+WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A(config_ini_path, "工作台")
 
 HotIfWinActive "ahk_group GroupCATIA"
 {

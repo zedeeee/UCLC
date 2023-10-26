@@ -8,7 +8,7 @@ SetTitleMatchMode "RegEx"
 #Include "./Lib/AHK_LOG.ahk"
 
 iclass := ""
-iDelay := 500 ; ms
+iDelay := 5000 ; ms
 WORKBENCH_LIST_A := Array()
 current_workbench := ""
 global DEBUG_I := IniRead("./config/config.ini", "通用", "DEBUG")
@@ -83,8 +83,7 @@ loop {
 
   ^+t::
   {
-    current_workbench := CAT_CURRENT_WORKBENCH()
-    MsgBox current_workbench
+    detCATIA
   }
 }
 
@@ -136,29 +135,38 @@ loop {
   ; CapsLock::MButton
 }
 
-; ;-------------------------------
-
-
+; -------------------------------
+; 将CATIA窗口对应的 ahk_class 值添加到 “GroupCATIA”
+; 以便 #Hotif WinActive 规则生效
 addGroupCATIA()
 {
-  if WinActive("ahk_exe CNEXT.exe") and WinActive("CATIA")
-  {
-    k_ClassNN := SubStr(WinGetClass("A"), 1, 40)
+  k_ClassNN := detCATIA()
 
-    ; 显示获取到的额ClassNN
-    ; k_ToolTip(k_ClassNN,2000)
-
-    GroupAdd "GroupCATIA", "ahk_class " k_ClassNN
+  if (k_ClassNN = "") {
+    return
   }
-  Return
+  GroupAdd "GroupCATIA", "ahk_class " k_ClassNN
+  k_ClassNN := ""
 }
 
+; 获取当前激活窗口，判断是否为CATIA主界面
 detCATIA() {
-  i := 20
-  while i < 0 {
-    Sleep iDelay
-    i -= 1
+  actWin := WinExist("A")
+
+  curWin := Object()
+  curWin.title := WinGetTitle()
+  curWin.class := WinGetClass()
+  curWin.exe := WinGetProcessName()
+
+  if (StrUpper(curWin.exe) != "CNEXT.EXE" or SubStr(curWin.title, 1, 8) != "CATIA V5" or SubStr(curWin.class, 1, 4) != "Afx:")
+    ; if (StrUpper(curWin.exe) = "CNEXT.EXE")
+  {
+    AHK_LOGI("未匹配 `n", DEBUG_I)
+    return
   }
+
+  AHK_LOGI("获取成功 `n", DEBUG_I)
+  return curWin.class
 }
 
 ; 检测当前 CATIA 工作台，并返回字符串

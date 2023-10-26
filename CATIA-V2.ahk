@@ -154,14 +154,20 @@ detCATIA() {
   actWin := WinExist("A")
 
   curWin := Object()
-  curWin.title := WinGetTitle()
-  curWin.class := WinGetClass()
-  curWin.exe := WinGetProcessName()
+  try {
+    curWin.title := WinGetTitle()
+    curWin.class := WinGetClass()
+    curWin.exe := WinGetProcessName()
+  }
+  catch Error as err {
+    AHK_LOGI("对象获取失败", DEBUG_I)
+    return
+  }
 
   if (StrUpper(curWin.exe) != "CNEXT.EXE" or SubStr(curWin.title, 1, 8) != "CATIA V5" or SubStr(curWin.class, 1, 4) != "Afx:")
     ; if (StrUpper(curWin.exe) = "CNEXT.EXE")
   {
-    AHK_LOGI("未匹配 `n", DEBUG_I)
+    AHK_LOGI("不匹配 `n", DEBUG_I)
     return
   }
 

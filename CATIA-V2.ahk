@@ -8,19 +8,21 @@ SetTitleMatchMode "RegEx"
 #Include "./Lib/AHK_LOG.ahk"
 
 global config_ini_path := A_ScriptDir "/config/config.ini"
+; global alias_ini_path := RTrim(config_ini_path, "config.ini") IniRead(config_ini_path, "配置文件", "alias_ini")
+global alias_ini_path := INI_GET_SUBCONFIG_PATH("用户别名")
 global iDelay := IniRead(config_ini_path, "通用", "扫描间隔")
 global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
 global WORKBENCH_LIST_A := Array()
 global current_workbench := ""
 
-k_ini := A_ScriptDir "\Lib\CATAlias.ini"
-k_txt := IniRead(k_ini, "HotKey_cn")
-
 ; 读取适配工作台列表，用于执行对应热键和快捷键？ 返回工作台名称的数组
 WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A(config_ini_path, "工作台")
 
+; k_ini := A_ScriptDir "\Lib\CATAlias.ini"
+
 HotIfWinActive "ahk_group GroupCATIA"
 {
+k_txt := IniRead(alias_ini_path, "HotKey_cn")
   For each, line in StrSplit(k_txt, "`n")
   {
     k_part := StrSplit(line, "=")
@@ -184,7 +186,7 @@ CAT_CURRENT_WORKBENCH()
   ; 获取工作台列表
   if WORKBENCH_LIST_A.Length = 0
   {
-    INI_GET_ALL_VALUE_A("./config/config.ini", "workbench")
+    INI_GET_ALL_VALUE_A(config_ini_path, "workbench")
   }
 
   for value1 in visible_text {

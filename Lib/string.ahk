@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 
-; 获取 ini 文件内指定 section 内所有 value, 将 value 以数组形式并返回
+; 获取 ini 文件内指定 section 内所有 value, 将 value 以数组形式返回
 ; - string: file_path
 ; - string: section_name
 INI_GET_ALL_VALUE_A(file_path, section_name)
@@ -20,4 +20,18 @@ INI_GET_ALL_VALUE_A(file_path, section_name)
     }
 
     return values
+}
+
+
+; 通过config.ini文件读取分项配置文件路径
+INI_GET_SUBCONFIG_PATH(k_key) 
+{
+    try {
+        sub_config_path := RTrim(config_ini_path, "config.ini") IniRead(config_ini_path, "SubConf", k_key)
+        return sub_config_path
+    }
+    catch as e {
+        MsgBox("获取" k_key "配置文件失败，请检查 config.ini 和" k_key "配置文件路径是否正确")
+    }
+
 }

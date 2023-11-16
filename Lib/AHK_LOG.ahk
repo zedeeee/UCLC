@@ -3,9 +3,9 @@
 #Include stdio.ahk
 
 ; 打印日志（information）
-AHK_LOGI(Message, active)
+AHK_LOGI(Message)
 {
-    if !active
+    if !DEBUG_I
         return
     k_ToolTip(Message, 1000)
 }

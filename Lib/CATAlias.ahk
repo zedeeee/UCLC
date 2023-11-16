@@ -7,14 +7,14 @@
 readAlias(k_Section, k_Key) {
     try {
         ; 返回 CATAlias.ini 内 Key 的对应值
-        AHK_LOGI("调用 " k_Section, DEBUG_I)
+        AHK_LOGI("调用 " k_Section)
         return StrSplit(IniRead(alias_ini_path, k_Section, k_Key), ";")[1]
     }
     catch as e {
         if e
         {
             try {
-                AHK_LOGI("调用 通用", DEBUG_I)
+                AHK_LOGI("调用 通用")
                 return StrSplit(IniRead(alias_ini_path, "通用", k_Key), ";")[1]
             }
             catch as e {

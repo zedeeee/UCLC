@@ -6,6 +6,7 @@ SetTitleMatchMode "RegEx"
 #Include "./Lib/window.ahk"
 #Include "./Lib/string.ahk"
 #Include "./Lib/AHK_LOG.ahk"
+#Include "./Lib/IME.ahk"
 
 global config_ini_path := A_ScriptDir "/config/config.ini"
 ; global alias_ini_path := RTrim(config_ini_path, "config.ini") IniRead(config_ini_path, "配置文件", "alias_ini")
@@ -22,7 +23,7 @@ WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A(config_ini_path, "工作台")
 
 HotIfWinActive "ahk_group GroupCATIA"
 {
-k_txt := IniRead(alias_ini_path, "HotKey_cn")
+  k_txt := IniRead(alias_ini_path, "HotKey_cn")
   For each, line in StrSplit(k_txt, "`n")
   {
     k_part := StrSplit(line, "=")
@@ -33,8 +34,27 @@ k_txt := IniRead(alias_ini_path, "HotKey_cn")
 
 ; 启动脚本后 循环检测 CATIA 脚本程序
 loop {
-  addGroupCATIA()
-  Sleep iDelay
+  try {
+    ; getCurrentWindow
+    activeID := WinGetID("A")
+
+    ; isCurrentWindowCATIA
+    if (isCurrentWindowCATIA() != "")
+    {
+      ADD_AHK_GROUP_CATIA()
+    }
+
+    ; 检测到匹配窗口后，自动切换为英文输入法
+    if (WinActive("ahk_group GroupCATIA")) {
+      switchIMEbyID(IMEmap["en"])
+    }
+
+    ; winWaitChange
+    WinWaitNotActive(activeID)
+  }
+  catch Error as err {
+    AHK_LOGI("循环获取当前窗口失败")
+  }
 }
 
 #HotIf WinActive
@@ -81,10 +101,10 @@ loop {
   }
   RWin::RButton
 
-  ^+t::
-  {
-    detCATIA
-  }
+  ; ^t::
+  ; {
+  ;   switchIMEbyID(IMEmap["en"])
+  ; }
 }
 
 
@@ -110,6 +130,12 @@ loop {
     ControlSetText "c:" CATIA_Command, FocuseHwnd
     ControlSend "{Enter}", FocuseHwnd
 
+  }
+
+  +Tab::
+  {
+    GroupActivate "GroupCATIA"
+    k_ToolTip(WinGetTitle("A"), 1000)
   }
 
   ; ~Esc::
@@ -138,9 +164,9 @@ loop {
 ; -------------------------------
 ; 将CATIA窗口对应的 ahk_class 值添加到 “GroupCATIA”
 ; 以便 #Hotif WinActive 规则生效
-addGroupCATIA()
+ADD_AHK_GROUP_CATIA()
 {
-  k_ClassNN := detCATIA()
+  k_ClassNN := isCurrentWindowCATIA()
 
   if (k_ClassNN = "") {
     return
@@ -149,9 +175,13 @@ addGroupCATIA()
   k_ClassNN := ""
 }
 
-; 获取当前激活窗口，判断是否为CATIA主界面
-detCATIA() {
-  actWin := WinExist("A")
+; ADD_AHK_GROUP()
+
+; 获取最新找到的窗口，判断是否为CATIA主界面
+; True 返回 CATIA 窗口的 ahk_class 值
+; 执行此函数前需要先获取窗口
+isCurrentWindowCATIA() {
+  ; actWin := WinExist("A")
 
   curWin := Object()
   try {
@@ -160,18 +190,18 @@ detCATIA() {
     curWin.exe := WinGetProcessName()
   }
   catch Error as err {
-    AHK_LOGI("对象获取失败", DEBUG_I)
+    AHK_LOGI("对象获取失败")
     return
   }
 
   if (StrUpper(curWin.exe) != "CNEXT.EXE" or SubStr(curWin.title, 1, 8) != "CATIA V5" or SubStr(curWin.class, 1, 4) != "Afx:")
     ; if (StrUpper(curWin.exe) = "CNEXT.EXE")
   {
-    AHK_LOGI("不匹配 `n", DEBUG_I)
+    AHK_LOGI("窗口不匹配 CATIA `n")
     return
   }
 
-  AHK_LOGI("获取成功 `n", DEBUG_I)
+  AHK_LOGI("CATIA窗口 获取成功 `n")
   return curWin.class
 }
 
@@ -196,7 +226,7 @@ CAT_CURRENT_WORKBENCH()
       {
         continue
       }
-      AHK_LOGI("value1: " value1 "`n" "value2: " value2 "`n" "A_index: " A_Index, DEBUG_I)
+      AHK_LOGI("value1: " value1 "`n" "value2: " value2 "`n" "A_index: " A_Index)
       workbench_name := value1
       return workbench_name
     }

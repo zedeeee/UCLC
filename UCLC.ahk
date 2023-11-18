@@ -8,6 +8,8 @@ SetTitleMatchMode "RegEx"
 #Include ./Lib/AHK_LOG.ahk
 #Include ./Lib/IME.ahk
 
+TraySetIcon("./icon/color-icon64.png")
+
 global config_ini_path := A_ScriptDir "/config/config.ini"
 ; global alias_ini_path := RTrim(config_ini_path, "config.ini") IniRead(config_ini_path, "配置文件", "alias_ini")
 global alias_ini_path := INI_GET_SUBCONFIG_PATH("用户别名")
@@ -23,7 +25,7 @@ WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A(config_ini_path, "工作台")
 
 HotIfWinActive "ahk_group GroupCATIA"
 {
-  k_txt := IniRead(alias_ini_path, "HotKey_cn")
+  k_txt := IniRead(alias_ini_path, "HotKey")
   For each, line in StrSplit(k_txt, "`n")
   {
     k_part := StrSplit(line, "=")

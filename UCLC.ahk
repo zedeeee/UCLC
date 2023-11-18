@@ -2,11 +2,11 @@
 SetTitleMatchMode "RegEx"
 
 #Include <CATAlias>
-#Include "./Lib/stdio.ahk"
-#Include "./Lib/window.ahk"
-#Include "./Lib/string.ahk"
-#Include "./Lib/AHK_LOG.ahk"
-#Include "./Lib/IME.ahk"
+#Include ./Lib/stdio.ahk
+#Include ./Lib/window.ahk
+#Include ./Lib/string.ahk
+#Include ./Lib/AHK_LOG.ahk
+#Include ./Lib/IME.ahk
 
 global config_ini_path := A_ScriptDir "/config/config.ini"
 ; global alias_ini_path := RTrim(config_ini_path, "config.ini") IniRead(config_ini_path, "配置文件", "alias_ini")

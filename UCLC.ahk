@@ -10,8 +10,8 @@ SetTitleMatchMode "RegEx"
 
 TraySetIcon("./icon/color-icon64.png")
 
-global config_ini_path := A_ScriptDir "/config/config.ini"
-global alias_ini_path := INI_GET_SUBCONFIG_PATH("用户别名")
+global config_ini_path := A_ScriptDir "/config.ini"
+global alias_ini_path := INI_GET_USERCONFIG_PATH("用户别名")
 global iDelay := IniRead(config_ini_path, "通用", "扫描间隔")
 global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
 global WORKBENCH_LIST_A := Array()

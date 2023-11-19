@@ -10,15 +10,15 @@ SetTitleMatchMode "RegEx"
 
 TraySetIcon("./icon/color-icon64.png")
 
-global config_ini_path := A_ScriptDir "/config/config.ini"
-global alias_ini_path := INI_GET_SUBCONFIG_PATH("用户别名")
+global config_ini_path := A_ScriptDir "/config.ini"
+global alias_ini_path := INI_GET_USERCONFIG_PATH("用户别名")
 global iDelay := IniRead(config_ini_path, "通用", "扫描间隔")
 global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
 global WORKBENCH_LIST_A := Array()
 global current_workbench := ""
 
 ; 读取适配工作台列表，用于执行对应热键和快捷键？ 返回工作台名称的数组
-WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A(config_ini_path, "工作台")
+WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A(alias_ini_path, "工作台")
 
 HotIfWinActive "ahk_group GroupCATIA"
 {
@@ -73,29 +73,22 @@ loop {
 
   ~RControl::
   {
+    if (A_PriorHotkey != "~RControl" or A_TimeSincePriorHotkey > 400)
+    {
+      KeyWait "Control"
+      return
+    }
     if (PID := ProcessExist("Everything.exe"))
     {
-      if (A_PriorHotkey != "~RControl" or A_TimeSincePriorHotkey > 400)
-      {
-        KeyWait "Control"
-      }
-      ; if (%ErrorLevel% != 0)
-      else
-      {
-        Send "#]"
-      }
+      AHK_LOGI("获取到Everything PID = " PID)
+      Send "#]"
     }
     else
     {
-      Run "%PROGRAMFILES%\Everything\Everything.exe"
+      AHK_LOGI("未找到 Everything 进程，现在启动……")
+      Run "Everything.exe", A_ProgramFiles "\Everything\"
     }
-
-    ;#+p::
-    ;  if
-    ;Return
-
   }
-  RWin::RButton
 
   ; ^t::
   ; {

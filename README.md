@@ -39,7 +39,10 @@ CATIA 配置： 工具 - 选项 - 常规 - 用户界面样式（P2）
 
 
 ## 用户自定义
+**从`v2.2.1`开始，用户配置文件示例转移到 [UCLC-config](https://github.com/zedeeee/UCLC-config.git)**
+
 用户自定义设置位于`./user-conifg/`目录下
+
 ```
 user-config/
     |-- CATAlias.ini

@@ -28,12 +28,14 @@
 ## 使用方法
 
 ### 1. 安装 AHK
-脚本支持 [Autohotkey V2](https://www.autohotkey.com/download/ahk-v2.exe)
+脚本支持 [Autohotkey V2](https://www.autohotkey.com/)。 [下载地址](https://www.autohotkey.com/download/ahk-v2.exe)
 
 ### 2. CATIA 设置 P2版本
 CATIA 配置： 工具 - 选项 - 常规 - 用户界面样式（P2）
 
 ### 3. 双击 UCLC.ahk 启动脚本
+
+下载[UCLC](https://github.com/zedeeee/UCLC/releases/latest)，解压后运行UCLC.ahk
 
 
 ## 用户自定义

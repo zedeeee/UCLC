@@ -1,7 +1,7 @@
 ﻿#Requires AutoHotKey v2.0
 SetTitleMatchMode "RegEx"
 
-#Include <CATAlias>
+#Include ./Lib/CATAlias.ahk
 #Include ./Lib/stdio.ahk
 #Include ./Lib/window.ahk
 #Include ./Lib/string.ahk
@@ -11,7 +11,6 @@ SetTitleMatchMode "RegEx"
 TraySetIcon("./icon/color-icon64.png")
 
 global config_ini_path := A_ScriptDir "/config/config.ini"
-; global alias_ini_path := RTrim(config_ini_path, "config.ini") IniRead(config_ini_path, "配置文件", "alias_ini")
 global alias_ini_path := INI_GET_SUBCONFIG_PATH("用户别名")
 global iDelay := IniRead(config_ini_path, "通用", "扫描间隔")
 global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
@@ -20,8 +19,6 @@ global current_workbench := ""
 
 ; 读取适配工作台列表，用于执行对应热键和快捷键？ 返回工作台名称的数组
 WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A(config_ini_path, "工作台")
-
-; k_ini := A_ScriptDir "\Lib\CATAlias.ini"
 
 HotIfWinActive "ahk_group GroupCATIA"
 {
@@ -51,11 +48,11 @@ loop {
       switchIMEbyID(IMEmap["en"])
     }
 
-    ; winWaitChange
     WinWaitNotActive(activeID)
   }
   catch Error as err {
     AHK_LOGI("循环获取当前窗口失败")
+    Sleep 100
   }
 }
 
@@ -91,9 +88,6 @@ loop {
     else
     {
       Run "%PROGRAMFILES%\Everything\Everything.exe"
-      ; Run, %PROGRAMFILES%\
-      ; Everything\
-      ; Everything.exe
     }
 
     ;#+p::
@@ -197,13 +191,12 @@ isCurrentWindowCATIA() {
   }
 
   if (StrUpper(curWin.exe) != "CNEXT.EXE" or SubStr(curWin.title, 1, 8) != "CATIA V5" or SubStr(curWin.class, 1, 4) != "Afx:")
-    ; if (StrUpper(curWin.exe) = "CNEXT.EXE")
   {
-    AHK_LOGI("窗口不匹配 CATIA `n")
+    AHK_LOGI("未获取到CATIA窗口")
     return
   }
 
-  AHK_LOGI("CATIA窗口 获取成功 `n")
+  AHK_LOGI("CATIA窗口 获取成功")
   return curWin.class
 }
 

@@ -24,10 +24,10 @@ INI_GET_ALL_VALUE_A(file_path, section_name)
 
 
 ; 通过config.ini文件读取分项配置文件路径
-INI_GET_SUBCONFIG_PATH(k_key) 
+INI_GET_USERCONFIG_PATH(k_key) 
 {
     try {
-        sub_config_path := RTrim(config_ini_path, "config.ini") IniRead(config_ini_path, "SubConf", k_key)
+        sub_config_path := A_ScriptDir "/user-config/" IniRead(config_ini_path, "UserConf", k_key)
         return sub_config_path
     }
     catch as e {

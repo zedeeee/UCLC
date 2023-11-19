@@ -30,7 +30,8 @@ readAlias(k_Section, k_Key) {
 SendAliasCommand(ThisHotkey) {
     try {
         ControlSetText("", FocuseHwnd)
-        SendInput("c:" readAlias("HotKey", ThisHotkey) "{Enter}")
+        SendInput("c:" readAlias("HotKey_cn", ThisHotkey) "{Enter}")
+        ; SendInput("c:" IniRead(A_ScriptDir "/Lib/CATAlias.ini", "HotKey_cn", ThisHotkey) "{Enter}")
     }
     catch as e {
         k_ToolTip("热键注册失败，请检查" alias_ini_path "目录是否正确", 3000)

@@ -17,6 +17,9 @@ global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
 global WORKBENCH_LIST_A := Array()
 global current_workbench := ""
 
+; 检查 USER-CONFIG文件
+user_config_exist_remind(alias_ini_path)
+
 ; 读取适配工作台列表，用于执行对应热键和快捷键？ 返回工作台名称的数组
 WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A(alias_ini_path, "工作台")
 
@@ -35,7 +38,7 @@ HotIfWinActive "ahk_group GroupCATIA"
 loop {
   try {
     ; getCurrentWindow
-    activeID := WinGetID("A")
+    activeID := WinExist("A")
 
     ; isCurrentWindowCATIA
     if (isCurrentWindowCATIA() != "")
@@ -230,4 +233,19 @@ CAT_POWERINPUT_ALIAS(input_str)
   key := StrUpper(input_str)
   catia_alias := readAlias(CURRENT_WORKBENCH, key)
   return catia_alias
+}
+
+user_config_exist_remind(file_path) {
+  if (FileExist(file_path) = "")
+  {
+    MsgBox("未找到以下路径的文件：`n"
+      file_path "`n"
+      "`n"
+      "user-config 文件下载地址`n"
+      "https://github.com/zedeeee/UCLC-config`n"
+      "`n"
+      "现在退出脚本"
+    , "user-config 配置错误")
+    ExitApp
+  }
 }

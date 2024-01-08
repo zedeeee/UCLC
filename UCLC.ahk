@@ -121,16 +121,16 @@ loop {
 
   Space::
   {
-    FocuseHwnd := ControlGetFocus("A")
+    power_input_edit_control_hwnd := GET_POWER_INPUT_EDIT_HWND()
+    edit_text := ControlGetText(power_input_edit_control_hwnd)
 
-    if (!InStr(ControlGetClassNN(FocuseHwnd), "edit"))
+    if (edit_text == "")
     {
       SendInput "^y"
       Exit
     }
 
-    CATIA_Command := CAT_POWERINPUT_ALIAS(ControlGetText(FocuseHwnd))
-    ControlSetText "c:" . CATIA_Command, FocuseHwnd
+    ControlSetText "c:" . CAT_POWERINPUT_ALIAS(edit_text), power_input_edit_control_hwnd
     SendInput "{Enter}"
   }
 

@@ -20,6 +20,10 @@ global current_workbench := ""
 ; 检查 USER-CONFIG文件
 user_config_exist_remind(alias_ini_path)
 
+; 创建 计算器 组
+GroupAdd "group_calc", "计算器"
+GroupAdd "group_calc", "Calculator"
+
 ; 读取适配工作台列表，用于执行对应热键和快捷键？ 返回工作台名称的数组
 WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A(alias_ini_path, "工作台")
 
@@ -69,9 +73,20 @@ loop {
     Reload		; 设定 Ctrl-Shift-R 热键来重启脚本.
   }
 
+  ; win + c 启动系统自带的计算器
+  ; 如果计算器已经打开，则激活它
   #c::
   {
-    Run "Calc"
+    try
+    {
+      WinActivate("ahk_group group_calc")
+    }
+    catch as e
+    {
+      Run "Calc"
+      WinWait("ahk_group group_calc")
+      WinActivate("ahk_group group_calc")
+    }
   }
 
   ~RControl::
@@ -93,9 +108,9 @@ loop {
     }
   }
 
-  ; ^t::
+  ; ^+t::
   ; {
-  ;   switchIMEbyID(IMEmap["en"])
+  ;   PostMessage(0x0111, 0, "CATCmdShow", , "A")
   ; }
 }
 
@@ -106,22 +121,17 @@ loop {
 
   ~Space::
   {
-    global FocuseHwnd
+    FocuseHwnd := ControlGetFocus("A")
 
-    tempFocuseHwnd := ControlGetFocus("A")
-    tempFocuseclassNN := ControlGetClassNN(tempFocuseHwnd)
-
-    if !InStr(tempFocuseclassNN, "edit")
+    if (!InStr(ControlGetClassNN(FocuseHwnd), "edit"))
     {
       SendInput "^y"
       Exit
     }
 
-    FocuseHwnd := tempFocuseHwnd
     CATIA_Command := CAT_POWERINPUT_ALIAS(ControlGetText(FocuseHwnd))
-    ControlSetText "c:" CATIA_Command, FocuseHwnd
-    ControlSend "{Enter}", FocuseHwnd
-
+    ControlSetText "c:" . CATIA_Command, FocuseHwnd
+    SendInput "{Enter}"
   }
 
   +Tab::
@@ -245,7 +255,7 @@ user_config_exist_remind(file_path) {
       "https://github.com/zedeeee/UCLC-config`n"
       "`n"
       "现在退出脚本"
-    , "user-config 配置错误")
+      , "user-config 配置错误")
     ExitApp
   }
 }

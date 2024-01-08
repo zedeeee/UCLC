@@ -29,7 +29,8 @@ readAlias(k_Section, k_Key) {
 ; 查找 ini 文件，匹配 [Hotkey] 的对应快捷键
 SendAliasCommand(ThisHotkey) {
     try {
-        ControlSetText("", FocuseHwnd)
+        SendInput(" ")
+        ControlSetText("", ControlGetFocus("A"))
         SendInput("c:" readAlias("HotKey", ThisHotkey) "{Enter}")
     }
     catch as e {

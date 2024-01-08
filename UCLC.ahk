@@ -119,7 +119,7 @@ loop {
 #HotIf WinActive("ahk_group GroupCATIA")
 {
 
-  ~Space::
+  Space::
   {
     FocuseHwnd := ControlGetFocus("A")
 
@@ -140,27 +140,12 @@ loop {
     k_ToolTip(WinGetTitle("A"), 1000)
   }
 
-  ; ~Esc::
-  ; {
-  ;   tempFocuseHwnd := ControlGetFocus("A")
-  ;   try {
-  ;     if FocuseHwnd != tempFocuseHwnd
-  ;     {
-  ;       ControlFocus FocuseHwnd
-  ;     }
-  ;     else
-  ;     {
-  ;       ; MsgBox ("else " FocuseHwnd)
-  ;       ControlSetText("", FocuseHwnd)
-  ;     }
-  ;   }
-  ;   catch as e {
-  ;     k_ToolTip("控件获取失败，请至少执行一次任意命令输入", 1000)
-  ;     Exit
-  ;   }
-  ; }
+  ; 清除 CATIA power-input 输入框里的所有内容
+  ~Esc::
+  {
+    ControlSetText("", GET_POWER_INPUT_EDIT_HWND())
+  }
 
-  ; CapsLock::MButton
 }
 
 ; -------------------------------
@@ -258,4 +243,14 @@ user_config_exist_remind(file_path) {
       , "user-config 配置错误")
     ExitApp
   }
+}
+
+; 获取 power-input 输入框的HWND值
+GET_POWER_INPUT_EDIT_HWND() {
+  SendInput "U"
+  SendInput "{BackSpace}"
+  Sleep 50
+  control_edit_hwnd := ControlGetFocus()
+  AHK_LOGI(ControlGetClassNN(control_edit_hwnd))
+  return control_edit_hwnd
 }

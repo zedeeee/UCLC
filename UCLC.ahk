@@ -16,9 +16,12 @@ global iDelay := IniRead(config_ini_path, "通用", "扫描间隔")
 global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
 global WORKBENCH_LIST_A := Array()
 global current_workbench := ""
+global ESC_CLEAN_FUNC_FLAG := ""
 
 ; 检查 USER-CONFIG文件
 user_config_exist_remind(alias_ini_path)
+
+ESC_CLEAN_FUNC_FLAG := init_dev_func_prompt(config_ini_path, "ESC_CLEAN", "ESC 键清除 POWER-INPUT (CATIA 有崩溃风险)")
 
 ; 创建 计算器 组
 GroupAdd "group_calc", "计算器"
@@ -140,13 +143,17 @@ loop {
     k_ToolTip(WinGetTitle("A"), 1000)
   }
 
-  ; 清除 CATIA power-input 输入框里的所有内容
+
+  ; 清除 CATIA power-input 输入框里的内容
   ~Esc::
   {
-    ControlSetText("", GET_POWER_INPUT_EDIT_HWND())
+    if ESC_CLEAN_FUNC_FLAG == 1 {
+      ControlSetText("", GET_POWER_INPUT_EDIT_HWND())
+    }
   }
 
 }
+
 
 ; -------------------------------
 ; 将CATIA窗口对应的 ahk_class 值添加到 “GroupCATIA”
@@ -250,7 +257,7 @@ GET_POWER_INPUT_EDIT_HWND() {
   SendInput "U"
   SendInput "{BackSpace}"
   Sleep 50
-  control_edit_hwnd := ControlGetFocus()
+  control_edit_hwnd := ControlGetFocus("A")
   AHK_LOGI(ControlGetClassNN(control_edit_hwnd))
   return control_edit_hwnd
 }

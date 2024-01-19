@@ -181,14 +181,14 @@ isCurrentWindowCATIA() {
     return
   }
 
-  if (StrUpper(curWin.exe) != "CNEXT.EXE" or SubStr(curWin.title, 1, 8) != "CATIA V5" or SubStr(curWin.class, 1, 4) != "Afx:")
+  if (StrUpper(curWin.exe) == "CNEXT.EXE" and SubStr(curWin.title, 1, 8) == "CATIA V5") and (SubStr(curWin.class, 1, 4) != "Afx:" or SubStr(curWin.class, 1, 14) != "CATDlgDocument")
   {
-    AHK_LOGI("未获取到CATIA窗口")
-    return
+    AHK_LOGI("CATIA窗口 获取成功")
+    return curWin.class
   }
+  AHK_LOGI("未获取到CATIA窗口")
+  return
 
-  AHK_LOGI("CATIA窗口 获取成功")
-  return curWin.class
 }
 
 ; 检测当前 CATIA 工作台，并返回字符串

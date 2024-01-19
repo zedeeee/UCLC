@@ -233,14 +233,14 @@ CAT_POWERINPUT_ALIAS(input_str)
 user_config_exist_remind(file_path) {
   if (FileExist(file_path) = "")
   {
-    MsgBox("未找到以下路径的文件：`n"
+    MsgBox("未找到配置文件, 请检查以下路径和文件：`n"
       file_path "`n"
       "`n"
-      "user-config 文件下载地址`n"
+      "示例配置文件下载地址:`n"
       "https://github.com/zedeeee/UCLC-config`n"
       "`n"
-      "现在退出脚本"
-      , "user-config 配置错误")
+      "点击确认按钮退出脚本"
+      , "配置文件错误")
     ExitApp
   }
 }

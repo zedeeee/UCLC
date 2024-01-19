@@ -1,5 +1,5 @@
 ﻿#Requires AutoHotKey v2.0
-SetTitleMatchMode "RegEx"
+SetTitleMatchMode 2
 
 #Include ./Lib/CATAlias.ahk
 #Include ./Lib/stdio.ahk

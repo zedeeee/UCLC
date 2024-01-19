@@ -250,7 +250,7 @@ GET_POWER_INPUT_EDIT_HWND() {
   SendInput "U"
   SendInput "{BackSpace}"
   Sleep 50
-  control_edit_hwnd := ControlGetFocus()
+  control_edit_hwnd := ControlGetFocus("A")
   AHK_LOGI(ControlGetClassNN(control_edit_hwnd))
   return control_edit_hwnd
 }

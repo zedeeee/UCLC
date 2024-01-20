@@ -3,10 +3,9 @@ SetTitleMatchMode "RegEx"
 
 #Include ./Lib/CATAlias.ahk
 #Include ./Lib/stdio.ahk
-#Include ./Lib/window.ahk
+#Include ./Lib/windows.ahk
 #Include ./Lib/string.ahk
 #Include ./Lib/AHK_LOG.ahk
-#Include ./Lib/IME.ahk
 
 TraySetIcon("./icon/color-icon64.png")
 

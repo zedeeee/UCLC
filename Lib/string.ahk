@@ -1,8 +1,9 @@
 #Requires AutoHotkey v2.0
 
-; 获取 ini 文件内指定 section 内所有 value, 将 value 以数组形式返回
-; - string: file_path
-; - string: section_name
+; **获取 ini 文件内指定 section 内所有 value, 将 value 以数组形式返回**
+; - file_path : (string) 目标 ini 文件的路径
+; - section_name : (string) 指定 section 的名称
+;
 INI_GET_ALL_VALUE_A(file_path, section_name)
 {
     values := Array()
@@ -23,15 +24,16 @@ INI_GET_ALL_VALUE_A(file_path, section_name)
 }
 
 
-; 通过config.ini文件读取分项配置文件路径
-INI_GET_USERCONFIG_PATH(k_key) 
+; 获取 config.ini 文件 [UserConf] 下的对应配置文件路径
+;
+GET_USER_CONFIG_INI_PATH(key)
 {
     try {
-        sub_config_path := A_ScriptDir "\user-config\" IniRead(config_ini_path, "UserConf", k_key)
-        return sub_config_path
+        path := A_ScriptDir "\user-config\" IniRead(".\config.ini", "UserConf", key)
+        return path
     }
     catch as e {
-        MsgBox("获取" k_key "配置文件失败，请检查 config.ini 和" k_key "配置文件路径是否正确")
+        MsgBox("获取 [" key "] 配置文件失败，请检查 config.ini 和 [" key "] 配置文件路径是否正确")
     }
 
 }

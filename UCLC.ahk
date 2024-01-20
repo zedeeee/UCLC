@@ -9,9 +9,8 @@ SetTitleMatchMode "RegEx"
 
 TraySetIcon("./icon/color-icon64.png")
 
-global config_ini_path := A_ScriptDir "/config.ini"
-global alias_ini_path := INI_GET_USERCONFIG_PATH("用户别名")
-global iDelay := IniRead(config_ini_path, "通用", "扫描间隔")
+global config_ini_path := ".\config.ini"
+global alias_ini_path := GET_USER_CONFIG_INI_PATH("用户别名")
 global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
 global WORKBENCH_LIST_A := Array()
 global current_workbench := ""
@@ -29,14 +28,15 @@ GroupAdd "group_calc", "Calculator"
 ; 读取适配工作台列表，用于执行对应热键和快捷键？ 返回工作台名称的数组
 WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A(alias_ini_path, "工作台")
 
+; 注册热键
 HotIfWinActive "ahk_group GroupCATIA"
 {
-  k_txt := IniRead(alias_ini_path, "HotKey")
-  For each, line in StrSplit(k_txt, "`n")
+  HotKeys_List := StrSplit(IniRead(alias_ini_path, "HotKey"), "`n")
+  For each, line in HotKeys_List
   {
-    k_part := StrSplit(line, "=")
-    k_key := k_part[1]
-    Hotkey k_key, SendAliasCommand
+    HotKey_Map := StrSplit(line, "=")
+    KeyName := HotKey_Map[1]
+    Hotkey KeyName, SEND_HOTKEY_COMMAND
   }
 }
 
@@ -153,7 +153,6 @@ loop {
 
 }
 
-
 ; -------------------------------
 ; 将CATIA窗口对应的 ahk_class 值添加到 “GroupCATIA”
 ; 以便 #Hotif WinActive 规则生效
@@ -173,14 +172,14 @@ ADD_AHK_GROUP_CATIA()
 ; 获取最新找到的窗口，判断是否为CATIA主界面
 ; True 返回 CATIA 窗口的 ahk_class 值
 ; 执行此函数前需要先获取窗口
+;
 isCurrentWindowCATIA() {
-  ; actWin := WinExist("A")
 
   curWin := Object()
   try {
-    curWin.title := WinGetTitle()
-    curWin.class := WinGetClass()
-    curWin.exe := WinGetProcessName()
+    curWin.title := WinGetTitle("A")
+    curWin.class := WinGetClass("A")
+    curWin.exe := WinGetProcessName("A")
   }
   catch Error as err {
     AHK_LOGI("对象获取失败")
@@ -232,7 +231,7 @@ CAT_POWERINPUT_ALIAS(input_str)
   current_workbench := CAT_CURRENT_WORKBENCH()
 
   key := StrUpper(input_str)
-  catia_alias := readAlias(CURRENT_WORKBENCH, key)
+  catia_alias := READ_USER_ALIAS(alias_ini_path, CURRENT_WORKBENCH, key)
   return catia_alias
 }
 

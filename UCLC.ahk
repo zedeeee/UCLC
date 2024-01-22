@@ -6,6 +6,7 @@ SetTitleMatchMode "RegEx"
 #Include ./Lib/windows.ahk
 #Include ./Lib/string.ahk
 #Include ./Lib/AHK_LOG.ahk
+#Include ./Lib/CAT_Automatic.ahk
 
 TraySetIcon("./icon/color-icon64.png")
 
@@ -110,10 +111,11 @@ loop {
     }
   }
 
-  ; ^+t::
-  ; {
-  ;   PostMessage(0x0111, 0, "CATCmdShow", , "A")
-  ; }
+  ^+t::
+  {
+    cat_auto_graph_tree_reorder()
+  }
+
 }
 
 

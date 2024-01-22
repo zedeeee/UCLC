@@ -20,17 +20,16 @@ WinGetTextFast_A(detect_hidden) {
 
         name := StrGet(buf)
         ; names.Push(name)
-        names.InsertAt(1,name)
+        names.InsertAt(1, name)
     }
     return names
 }
 
 
-
 ; 通过调用WinAPI切换输入法
 ; https://github.com/mudssky/myAHKScripts
 ;
-; 
+;
 IMEmap := map(
     "zh", 0x8040804,
     "en", 0x4090409
@@ -43,7 +42,8 @@ getCurrentIMEID() {
     return InputLocaleID
 }
 
-
 switchIMEbyID(IMEID) {
     PostMessage(0x0050, 0, IMEID, , "A")
 }
+
+

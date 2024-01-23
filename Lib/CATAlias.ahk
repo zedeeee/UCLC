@@ -33,7 +33,6 @@ read_user_alias(alias_list_ini_path, section, key) {
     catch as e {
         if e
         {
-            command_id_and_cb_array := ""
             try {
                 AHK_LOGI("调用 通用")
                 command_id_and_cb_str := StrSplit(StrReplace(IniRead(alias_list_ini_path, "通用", key), A_Space, ''), ";")[1]
@@ -41,8 +40,8 @@ read_user_alias(alias_list_ini_path, section, key) {
                 return command_id_and_cb_array
             }
             catch as e {
-                k_ToolTip("没有找到与" key "对应的命令", 1000)
-                return ""
+                k_ToolTip(Format("没有找到与 {1} 对应的命令",key), 1000)
+                return command_id_and_cb_array
                 ; Exit
             }
         }

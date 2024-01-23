@@ -7,7 +7,7 @@ AHK_LOGI(Message)
 {
     if !DEBUG_I
         return
-    k_ToolTip(Message, 1000)
+    k_ToolTip(Message, 3000)
 }
 
 ; 开发功能启用提示

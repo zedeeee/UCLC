@@ -37,7 +37,7 @@ HotIfWinActive "ahk_group GroupCATIA"
   {
     HotKey_Map := StrSplit(line, "=")
     KeyName := HotKey_Map[1]
-    Hotkey KeyName, SEND_HOTKEY_COMMAND
+    Hotkey KeyName, register_command
   }
 }
 
@@ -111,11 +111,28 @@ loop {
     }
   }
 
+  ; ^+t::
+  ; {
+  ;   cat_auto_graph_tree_reorder()
+  ; }
+
   ^+t::
   {
-    cat_auto_graph_tree_reorder()
+    arr := ["aaa", "test_func"]
+    MsgBox arr[1]
+    Sleep 2000
+
+    if arr.Length == 2
+    {
+      %arr[2]%()
+    }
   }
 
+}
+
+test_func()
+{
+  k_ToolTip("call back function test", 1000)
 }
 
 
@@ -134,8 +151,9 @@ loop {
       Exit
     }
 
-    ControlSetText "c:" . CAT_POWERINPUT_ALIAS(edit_text), power_input_edit_control_hwnd
-    SendInput "{Enter}"
+    cat_alias_exexcution(edit_text, power_input_edit_control_hwnd)
+    ; ControlSetText "c:" . cat_alias_exexcution(edit_text), power_input_edit_control_hwnd
+    ; SendInput "{Enter}"
   }
 
   +Tab::
@@ -196,45 +214,6 @@ isCurrentWindowCATIA() {
 
   AHK_LOGI("CATIA窗口 获取成功")
   return curWin.class
-}
-
-; 检测当前 CATIA 工作台，并返回字符串
-CAT_CURRENT_WORKBENCH()
-{
-  WinExist("A")
-
-  workbench_name := "NULL"
-  visible_text := WinGetTextFast_A(false)
-
-  ; 获取工作台列表
-  if WORKBENCH_LIST_A.Length = 0
-  {
-    INI_GET_ALL_VALUE_A(config_ini_path, "workbench")
-  }
-
-  for value1 in visible_text {
-    for value2 in WORKBENCH_LIST_A {
-      ; FileAppend "WORKBENCH_LIST_A: " value1 "    " "visible_text: " value2 "`n", ".\log.txt"
-      if (value1 != value2)
-      {
-        continue
-      }
-      AHK_LOGI("value1: " value1 "`n" "value2: " value2 "`n" "A_index: " A_Index)
-      workbench_name := value1
-      return workbench_name
-    }
-  }
-
-}
-
-; 根据输入的Alias值，在CATAlias.ini文件中查找对应工作台的别名，并返回字符串
-CAT_POWERINPUT_ALIAS(input_str)
-{
-  current_workbench := CAT_CURRENT_WORKBENCH()
-
-  key := StrUpper(input_str)
-  catia_alias := READ_USER_ALIAS(alias_ini_path, CURRENT_WORKBENCH, key)
-  return catia_alias
 }
 
 user_config_exist_remind(file_path) {

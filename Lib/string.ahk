@@ -1,9 +1,11 @@
 #Requires AutoHotkey v2.0
 
-; **获取 ini 文件内指定 section 内所有 value, 将 value 以数组形式返回**
-; - file_path : (string) 目标 ini 文件的路径
-; - section_name : (string) 指定 section 的名称
-;
+/**
+ * **获取 ini 文件内指定 section 内所有 value, 将 value 以数组形式返回**
+ * @param file_path(string)  目标 ini 文件的路径
+ * @param section_name(string)   指定 section 的名称
+ * @return Array 
+ */
 INI_GET_ALL_VALUE_A(file_path, section_name)
 {
     values := Array()

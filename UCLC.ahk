@@ -1,5 +1,5 @@
 ﻿#Requires AutoHotKey v2.0
-SetTitleMatchMode "RegEx"
+SetTitleMatchMode 2
 
 #Include ./Lib/CATAlias.ahk
 #Include ./Lib/stdio.ahk
@@ -206,14 +206,14 @@ isCurrentWindowCATIA() {
     return
   }
 
-  if (StrUpper(curWin.exe) != "CNEXT.EXE" or SubStr(curWin.title, 1, 8) != "CATIA V5" or SubStr(curWin.class, 1, 4) != "Afx:")
+  if (StrUpper(curWin.exe) == "CNEXT.EXE" and SubStr(curWin.title, 1, 8) == "CATIA V5") and (SubStr(curWin.class, 1, 4) != "Afx:" or SubStr(curWin.class, 1, 14) != "CATDlgDocument")
   {
-    AHK_LOGI("未获取到CATIA窗口")
-    return
+    AHK_LOGI("CATIA窗口 获取成功")
+    return curWin.class
   }
+  AHK_LOGI("未获取到CATIA窗口")
+  return
 
-  AHK_LOGI("CATIA窗口 获取成功")
-  return curWin.class
 }
 
 user_config_exist_remind(file_path) {

@@ -1,36 +1,43 @@
 ﻿#Requires AutoHotKey v2.0
-SetTitleMatchMode "RegEx"
+SetTitleMatchMode 2
 
 #Include ./Lib/CATAlias.ahk
 #Include ./Lib/stdio.ahk
-#Include ./Lib/window.ahk
+#Include ./Lib/windows.ahk
 #Include ./Lib/string.ahk
 #Include ./Lib/AHK_LOG.ahk
-#Include ./Lib/IME.ahk
+#Include ./Lib/CAT_Automatic.ahk
 
 TraySetIcon("./icon/color-icon64.png")
 
-global config_ini_path := A_ScriptDir "/config.ini"
-global alias_ini_path := INI_GET_USERCONFIG_PATH("用户别名")
-global iDelay := IniRead(config_ini_path, "通用", "扫描间隔")
+global config_ini_path := ".\config.ini"
+global alias_ini_path := GET_USER_CONFIG_INI_PATH("用户别名")
 global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
 global WORKBENCH_LIST_A := Array()
 global current_workbench := ""
+global ESC_CLEAN_FUNC_FLAG := ""
 
 ; 检查 USER-CONFIG文件
 user_config_exist_remind(alias_ini_path)
 
+ESC_CLEAN_FUNC_FLAG := init_dev_func_prompt(config_ini_path, "ESC_CLEAN", "ESC 键清除 POWER-INPUT (CATIA 有崩溃风险)")
+
+; 创建 计算器 组
+GroupAdd "group_calc", "计算器"
+GroupAdd "group_calc", "Calculator"
+
 ; 读取适配工作台列表，用于执行对应热键和快捷键？ 返回工作台名称的数组
 WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A(alias_ini_path, "工作台")
 
+; 注册热键
 HotIfWinActive "ahk_group GroupCATIA"
 {
-  k_txt := IniRead(alias_ini_path, "HotKey")
-  For each, line in StrSplit(k_txt, "`n")
+  HotKeys_List := StrSplit(IniRead(alias_ini_path, "HotKey"), "`n")
+  For each, line in HotKeys_List
   {
-    k_part := StrSplit(line, "=")
-    k_key := k_part[1]
-    Hotkey k_key, SendAliasCommand
+    HotKey_Map := StrSplit(line, "=")
+    KeyName := HotKey_Map[1]
+    Hotkey KeyName, register_command
   }
 }
 
@@ -69,9 +76,20 @@ loop {
     Reload		; 设定 Ctrl-Shift-R 热键来重启脚本.
   }
 
+  ; win + c 启动系统自带的计算器
+  ; 如果计算器已经打开，则激活它
   #c::
   {
-    Run "Calc"
+    try
+    {
+      WinActivate("ahk_group group_calc")
+    }
+    catch as e
+    {
+      Run "Calc"
+      WinWait("ahk_group group_calc")
+      WinActivate("ahk_group group_calc")
+    }
   }
 
   ~RControl::
@@ -93,10 +111,28 @@ loop {
     }
   }
 
-  ; ^t::
+  ; ^+t::
   ; {
-  ;   switchIMEbyID(IMEmap["en"])
+  ;   cat_auto_graph_tree_reorder()
   ; }
+
+  ^+t::
+  {
+    arr := ["aaa", "test_func"]
+    MsgBox arr[1]
+    Sleep 2000
+
+    if arr.Length == 2
+    {
+      %arr[2]%()
+    }
+  }
+
+}
+
+test_func()
+{
+  k_ToolTip("call back function test", 1000)
 }
 
 
@@ -104,24 +140,20 @@ loop {
 #HotIf WinActive("ahk_group GroupCATIA")
 {
 
-  ~Space::
+  Space::
   {
-    global FocuseHwnd
+    power_input_edit_control_hwnd := GET_POWER_INPUT_EDIT_HWND()
+    edit_text := ControlGetText(power_input_edit_control_hwnd)
 
-    tempFocuseHwnd := ControlGetFocus("A")
-    tempFocuseclassNN := ControlGetClassNN(tempFocuseHwnd)
-
-    if !InStr(tempFocuseclassNN, "edit")
+    if (edit_text == "")
     {
       SendInput "^y"
       Exit
     }
 
-    FocuseHwnd := tempFocuseHwnd
-    CATIA_Command := CAT_POWERINPUT_ALIAS(ControlGetText(FocuseHwnd))
-    ControlSetText "c:" CATIA_Command, FocuseHwnd
-    ControlSend "{Enter}", FocuseHwnd
-
+    cat_alias_exexcution(edit_text, power_input_edit_control_hwnd)
+    ; ControlSetText "c:" . cat_alias_exexcution(edit_text), power_input_edit_control_hwnd
+    ; SendInput "{Enter}"
   }
 
   +Tab::
@@ -130,27 +162,15 @@ loop {
     k_ToolTip(WinGetTitle("A"), 1000)
   }
 
-  ; ~Esc::
-  ; {
-  ;   tempFocuseHwnd := ControlGetFocus("A")
-  ;   try {
-  ;     if FocuseHwnd != tempFocuseHwnd
-  ;     {
-  ;       ControlFocus FocuseHwnd
-  ;     }
-  ;     else
-  ;     {
-  ;       ; MsgBox ("else " FocuseHwnd)
-  ;       ControlSetText("", FocuseHwnd)
-  ;     }
-  ;   }
-  ;   catch as e {
-  ;     k_ToolTip("控件获取失败，请至少执行一次任意命令输入", 1000)
-  ;     Exit
-  ;   }
-  ; }
 
-  ; CapsLock::MButton
+  ; 清除 CATIA power-input 输入框里的内容
+  ~Esc::
+  {
+    if ESC_CLEAN_FUNC_FLAG == 1 {
+      ControlSetText("", GET_POWER_INPUT_EDIT_HWND())
+    }
+  }
+
 }
 
 ; -------------------------------
@@ -172,80 +192,51 @@ ADD_AHK_GROUP_CATIA()
 ; 获取最新找到的窗口，判断是否为CATIA主界面
 ; True 返回 CATIA 窗口的 ahk_class 值
 ; 执行此函数前需要先获取窗口
+;
 isCurrentWindowCATIA() {
-  ; actWin := WinExist("A")
 
   curWin := Object()
   try {
-    curWin.title := WinGetTitle()
-    curWin.class := WinGetClass()
-    curWin.exe := WinGetProcessName()
+    curWin.title := WinGetTitle("A")
+    curWin.class := WinGetClass("A")
+    curWin.exe := WinGetProcessName("A")
   }
   catch Error as err {
     AHK_LOGI("对象获取失败")
     return
   }
 
-  if (StrUpper(curWin.exe) != "CNEXT.EXE" or SubStr(curWin.title, 1, 8) != "CATIA V5" or SubStr(curWin.class, 1, 4) != "Afx:")
+  if (StrUpper(curWin.exe) == "CNEXT.EXE" and SubStr(curWin.title, 1, 8) == "CATIA V5") and (SubStr(curWin.class, 1, 4) != "Afx:" or SubStr(curWin.class, 1, 14) != "CATDlgDocument")
   {
-    AHK_LOGI("未获取到CATIA窗口")
-    return
+    AHK_LOGI("CATIA窗口 获取成功")
+    return curWin.class
   }
+  AHK_LOGI("未获取到CATIA窗口")
+  return
 
-  AHK_LOGI("CATIA窗口 获取成功")
-  return curWin.class
-}
-
-; 检测当前 CATIA 工作台，并返回字符串
-CAT_CURRENT_WORKBENCH()
-{
-  WinExist("A")
-
-  workbench_name := "NULL"
-  visible_text := WinGetTextFast_A(false)
-
-  ; 获取工作台列表
-  if WORKBENCH_LIST_A.Length = 0
-  {
-    INI_GET_ALL_VALUE_A(config_ini_path, "workbench")
-  }
-
-  for value1 in visible_text {
-    for value2 in WORKBENCH_LIST_A {
-      ; FileAppend "WORKBENCH_LIST_A: " value1 "    " "visible_text: " value2 "`n", ".\log.txt"
-      if (value1 != value2)
-      {
-        continue
-      }
-      AHK_LOGI("value1: " value1 "`n" "value2: " value2 "`n" "A_index: " A_Index)
-      workbench_name := value1
-      return workbench_name
-    }
-  }
-
-}
-
-; 根据输入的Alias值，在CATAlias.ini文件中查找对应工作台的别名，并返回字符串
-CAT_POWERINPUT_ALIAS(input_str)
-{
-  current_workbench := CAT_CURRENT_WORKBENCH()
-
-  key := StrUpper(input_str)
-  catia_alias := readAlias(CURRENT_WORKBENCH, key)
-  return catia_alias
 }
 
 user_config_exist_remind(file_path) {
   if (FileExist(file_path) = "")
   {
-    MsgBox("未找到以下路径的文件：`n"
+    MsgBox("未找到配置文件, 请检查以下路径和文件：`n"
       file_path "`n"
       "`n"
-      "user-config 文件下载地址`n"
+      "示例配置文件下载地址:`n"
       "https://github.com/zedeeee/UCLC-config`n"
       "`n"
-      "现在退出脚本"
-    , "user-config 配置错误")
+      "点击确认按钮退出脚本"
+      , "配置文件错误")
     ExitApp
   }
+}
+
+; 获取 power-input 输入框的HWND值
+GET_POWER_INPUT_EDIT_HWND() {
+  SendInput "U"
+  SendInput "{BackSpace}"
+  Sleep 50
+  control_edit_hwnd := ControlGetFocus("A")
+  AHK_LOGI(ControlGetClassNN(control_edit_hwnd))
+  return control_edit_hwnd
 }

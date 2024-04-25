@@ -1,4 +1,4 @@
 [submodule "user-config"]
 	path = user-config
-	url = git@github.com:zedeeee/UCLC-config.git
+	url = https://github.com/zedeeee/UCLC-config
 	branch = master

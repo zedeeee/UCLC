@@ -126,13 +126,13 @@ loop {
   ;右ALT+鼠标滚轮上，音量增大
   RAlt & WheelUp::
   {
-    SoundSetVolume "+1"
+    SoundSetVolume "+2"
   }
 
   ;右ALT+鼠标滚轮下，音量减小
   RAlt & WheelDown::
   {
-    SoundSetVolume "-1"
+    SoundSetVolume "-2"
   }
 
   ;右ALT+鼠标中键，静音

@@ -111,22 +111,47 @@ loop {
     }
   }
 
+  ; Win + 鼠标滚轮上下 切换虚拟桌面
+  LWin & WheelDown::
+  {
+    Send "{Ctrl Down}{LWin Down}{Right}"
+  }
+
+  LWin & WheelUp::
+  {
+    Send "^{Ctrl Down}{LWin Down}{Left}"
+  }
+
+
+  ;右ALT+鼠标滚轮上，音量增大
+  RAlt & WheelUp::
+  {
+    SoundSetVolume "+2"
+  }
+
+  ;右ALT+鼠标滚轮下，音量减小
+  RAlt & WheelDown::
+  {
+    SoundSetVolume "-2"
+  }
+
+  ;右ALT+鼠标中键，静音
+  RAlt & MButton::
+  {
+    SoundSetMute -1
+  }
+
   ; ^+t::
   ; {
-  ;   cat_auto_graph_tree_reorder()
+  ;   arr := ["aaa", "test_func"]
+  ;   MsgBox arr[1]
+  ;   Sleep 2000
+
+  ;   if arr.Length == 2
+  ;   {
+  ;     %arr[2]%()
+  ;   }
   ; }
-
-  ^+t::
-  {
-    arr := ["aaa", "test_func"]
-    MsgBox arr[1]
-    Sleep 2000
-
-    if arr.Length == 2
-    {
-      %arr[2]%()
-    }
-  }
 
 }
 

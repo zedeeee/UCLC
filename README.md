@@ -38,6 +38,8 @@
 1. `Shift + Tab`在多个 CATIA 窗口循环切换
 1. 双击 `右Ctrl` 键呼出 Everything（Everything需要设置快捷键`win+]`）
 5. `ESC` 清除 Power-input 输入框的内容（测试功能）
+6. `Win+鼠标滚轮`：切换虚拟桌面（Windows 11）
+7. `RAlt+鼠标滚轮`：调节音量，`RAlt+鼠标中键`：静音切换
 
 ## 使用方法
 

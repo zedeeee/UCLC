@@ -15,12 +15,12 @@ global alias_ini_path := GET_USER_CONFIG_INI_PATH("用户别名")
 global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
 global WORKBENCH_LIST_A := Array()
 global current_workbench := ""
-global ESC_CLEAN_FUNC_FLAG := ""
+global ESC_CLEAN_FUNC_ENABLE_FLAG := ""
 
 ; 检查 USER-CONFIG文件
 user_config_exist_remind(alias_ini_path)
 
-ESC_CLEAN_FUNC_FLAG := init_dev_func_prompt(config_ini_path, "ESC_CLEAN", "ESC 键清除 POWER-INPUT (CATIA 有崩溃风险)")
+ESC_CLEAN_FUNC_ENABLE_FLAG := init_dev_func_prompt(config_ini_path, "ESC_CLEAN", "ESC 键清除 POWER-INPUT (CATIA 有崩溃风险)")
 
 ; 创建 计算器 组
 GroupAdd "group_calc", "计算器"
@@ -44,13 +44,12 @@ HotIfWinActive "ahk_group GroupCATIA"
 ; 启动脚本后 循环检测 CATIA 脚本程序
 loop {
   try {
-    ; getCurrentWindow
-    activeID := WinExist("A")
+    last_found_window_hwnd := WinExist("A")
+    catia_window_hwnd := identify_catia_window()
 
-    ; isCurrentWindowCATIA
-    if (isCurrentWindowCATIA() != "")
+    if catia_window_hwnd
     {
-      ADD_AHK_GROUP_CATIA()
+      GroupAdd "GroupCATIA", "ahk_class " catia_window_hwnd
     }
 
     ; 检测到匹配窗口后，自动切换为英文输入法
@@ -58,7 +57,7 @@ loop {
       switchIMEbyID(IMEmap["en"])
     }
 
-    WinWaitNotActive(activeID)
+    WinWaitNotActive(last_found_window_hwnd)
   }
   catch Error as err {
     AHK_LOGI("循环获取当前窗口失败")
@@ -167,7 +166,7 @@ test_func()
 
   Space::
   {
-    power_input_edit_control_hwnd := GET_POWER_INPUT_EDIT_HWND()
+    power_input_edit_control_hwnd := get_power_input_edit_hwnd()
     edit_text := ControlGetText(power_input_edit_control_hwnd)
 
     if (edit_text == "")
@@ -177,8 +176,6 @@ test_func()
     }
 
     cat_alias_exexcution(edit_text, power_input_edit_control_hwnd)
-    ; ControlSetText "c:" . cat_alias_exexcution(edit_text), power_input_edit_control_hwnd
-    ; SendInput "{Enter}"
   }
 
   +Tab::
@@ -191,55 +188,13 @@ test_func()
   ; 清除 CATIA power-input 输入框里的内容
   ~Esc::
   {
-    if ESC_CLEAN_FUNC_FLAG == 1 {
-      ControlSetText("", GET_POWER_INPUT_EDIT_HWND())
+    if ESC_CLEAN_FUNC_ENABLE_FLAG == 1 {
+      ControlSetText("", get_power_input_edit_hwnd())
     }
   }
 
 }
 
-; -------------------------------
-; 将CATIA窗口对应的 ahk_class 值添加到 “GroupCATIA”
-; 以便 #Hotif WinActive 规则生效
-ADD_AHK_GROUP_CATIA()
-{
-  k_ClassNN := isCurrentWindowCATIA()
-
-  if (k_ClassNN = "") {
-    return
-  }
-  GroupAdd "GroupCATIA", "ahk_class " k_ClassNN
-  k_ClassNN := ""
-}
-
-; ADD_AHK_GROUP()
-
-; 获取最新找到的窗口，判断是否为CATIA主界面
-; True 返回 CATIA 窗口的 ahk_class 值
-; 执行此函数前需要先获取窗口
-;
-isCurrentWindowCATIA() {
-
-  curWin := Object()
-  try {
-    curWin.title := WinGetTitle("A")
-    curWin.class := WinGetClass("A")
-    curWin.exe := WinGetProcessName("A")
-  }
-  catch Error as err {
-    AHK_LOGI("对象获取失败")
-    return
-  }
-
-  if (StrUpper(curWin.exe) == "CNEXT.EXE" and SubStr(curWin.title, 1, 8) == "CATIA V5") and (SubStr(curWin.class, 1, 4) != "Afx:" or SubStr(curWin.class, 1, 14) != "CATDlgDocument")
-  {
-    AHK_LOGI("CATIA窗口 获取成功")
-    return curWin.class
-  }
-  AHK_LOGI("未获取到CATIA窗口")
-  return
-
-}
 
 user_config_exist_remind(file_path) {
   if (FileExist(file_path) = "")
@@ -254,20 +209,4 @@ user_config_exist_remind(file_path) {
       , "配置文件错误")
     ExitApp
   }
-}
-
-; 获取 power-input 输入框的HWND值
-GET_POWER_INPUT_EDIT_HWND() {
-  status_bar_hwnd := ControlGetHwnd("msctls_statusbar321")
-
-  for ctrl in WinGetControls(status_bar_hwnd)
-  {
-    if InStr(StrLower(ctrl), "edit")
-    {
-      edit_hwnd := ControlGetHwnd(ctrl, status_bar_hwnd)
-    }
-  }
-
-  AHK_LOGI(ControlGetClassNN(edit_hwnd))
-  return edit_hwnd
 }

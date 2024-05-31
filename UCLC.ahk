@@ -113,12 +113,18 @@ loop {
   ; Win + 鼠标滚轮上下 切换虚拟桌面
   LWin & WheelDown::
   {
-    Send "{Ctrl Down}{LWin Down}{Right}"
+    try {
+      if (A_TimeSincePriorHotkey > 100)
+        Send "{Ctrl Down}{LWin Down}{Right}"
+    }
   }
 
   LWin & WheelUp::
   {
-    Send "^{Ctrl Down}{LWin Down}{Left}"
+    try {
+      if (A_TimeSincePriorHotkey > 100)
+        Send "^{Ctrl Down}{LWin Down}{Left}"
+    }
   }
 
 

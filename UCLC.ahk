@@ -258,10 +258,16 @@ user_config_exist_remind(file_path) {
 
 ; 获取 power-input 输入框的HWND值
 GET_POWER_INPUT_EDIT_HWND() {
-  SendInput "U"
-  SendInput "{BackSpace}"
-  Sleep 50
-  control_edit_hwnd := ControlGetFocus("A")
-  AHK_LOGI(ControlGetClassNN(control_edit_hwnd))
-  return control_edit_hwnd
+  status_bar_hwnd := ControlGetHwnd("msctls_statusbar321")
+
+  for ctrl in WinGetControls(status_bar_hwnd)
+  {
+    if InStr(StrLower(ctrl), "edit")
+    {
+      edit_hwnd := ControlGetHwnd(ctrl, status_bar_hwnd)
+    }
+  }
+
+  AHK_LOGI(ControlGetClassNN(edit_hwnd))
+  return edit_hwnd
 }

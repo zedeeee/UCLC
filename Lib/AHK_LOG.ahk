@@ -17,8 +17,11 @@ AHK_LOGI(Message)
 ; 4. 重载
 init_dev_func_prompt(ini_path, key, describe) {
     dev_func_section := "DevFunc"
+    dev_func_flag := IniRead(ini_path, dev_func_section, key)
 
-    if IniRead(ini_path, dev_func_section, key) == -1
+    AHK_LOGI("开发功能（" . key . "）启用状态：" . dev_func_flag)
+
+    if dev_func_flag == -1
     {
         user_chooise := MsgBox("是否需要启用开发功能 : `n" . describe, "UCLC 开发功能启用", 0x233)
         switch user_chooise
@@ -28,8 +31,6 @@ init_dev_func_prompt(ini_path, key, describe) {
             default: MsgBox("未启用 " . describe . "`n下次启动脚本会再次询问", "UCLC 开发功能启用", 0x30)
         }
     }
-
-    k_ToolTip(ESC_CLEAN_FUNC_FLAG, 1000)
 
     return IniRead(ini_path, dev_func_section, key)
 }

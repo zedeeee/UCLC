@@ -13,7 +13,7 @@
  */
 cat_command_execution(input_string, command_ini, power_input_hwnd)
 {
-  current_workbench := get_current_workbench()
+  current_workbench := match_current_workbench(workbench_list)
 
   command_id_and_cb_array := read_user_alias(command_ini, current_workbench, StrUpper(input_string))
 
@@ -33,7 +33,10 @@ cat_command_execution(input_string, command_ini, power_input_hwnd)
 
 }
 
-; 获取装配设计下的 "图形树重新排序" 窗口, 自动执行排序操作
+/**
+ * 获取装配设计下的 "图形树重新排序" 窗口, 自动执行排序操作
+ * 
+ */
 cat_auto_graph_tree_reorder()
 {
   GroupAdd "ReorderTree", "Graph tree reordering"
@@ -108,42 +111,41 @@ cat_auto_graph_tree_reorder()
   k_ToolTip("结构树排序完成", 2000)
 }
 
-; 检测当前 CATIA 工作台，并返回字符串
-get_current_workbench()
+/**
+ * 通过比对工作台控件和工作台列表，返回当前生效工作台
+ * 
+ * @param workbench_map  工作台列表
+ * @returns {string}  工作台名称
+ */
+match_current_workbench(workbench_map)
 {
-  WinExist("A")
+  workbench_control_hwnd := ControlGetHwnd("WebBrowser", "A")
+  ; workbench_buttons :=
 
-  workbench_name := "NULL"
-  visible_text := WinGetTextFast_A(false)
-
-  ; 获取工作台列表
-  if WORKBENCH_LIST_A.Length = 0
+  for button in WinGetControls(workbench_control_hwnd)
   {
-    INI_GET_ALL_VALUE_A(config_ini_path, "workbench")
-  }
-
-  for value1 in visible_text {
-    for value2 in WORKBENCH_LIST_A {
-      ; FileAppend "WORKBENCH_LIST_A: " value1 "    " "visible_text: " value2 "`n", ".\log.txt"
-      if (value1 != value2)
-      {
-        continue
-      }
-      AHK_LOGI("value1: " value1 "`n" "value2: " value2 "`n" "A_index: " A_Index)
-      workbench_name := value1
-      return workbench_name
+    button_name := ControlGetText(button, workbench_control_hwnd)
+    for key in workbench_map
+    {
+      if button_name == key
+        return button_name
     }
   }
-
 }
 
 ; CATIA 窗口 ClassNN 特征
 catia_window_classnn_map := Map(
-  "R21&R27", "Afx:",
+  "R21", "Afx:",
+  "R27", "Afx:",
   "R30", "CATDlgDocument")
 
 
-; 判断窗口的进程特征
+/**
+ * 判断窗口的进程特征
+ * 
+ * @param obj 自定义封装
+ * @returns {bool} 
+ */
 is_catia_exe_and_title(obj)
 {
   if (StrLower(obj.exe) == "cnext.exe" and StrUpper(SubStr(obj.title, 1, 8)) == "CATIA V5")
@@ -154,7 +156,12 @@ is_catia_exe_and_title(obj)
   return false
 }
 
-; 判断窗口的classnn特征
+/**
+ * 判断窗口的classnn特征
+ * 
+ * @param obj 自定义封装
+ * @returns {bool} 
+ */
 is_included_catia_class(obj)
 {
 
@@ -171,10 +178,12 @@ is_included_catia_class(obj)
   return false
 }
 
-; 判断当前窗口是否为CATIA主界面
-; True 返回 CATIA 窗口的 ahk_class 值
-; 执行此函数前需要先获取窗口
-;
+/**
+ * 判断当前窗口是否为CATIA主界面
+ * 执行此函数前需要先获取窗口
+ * 
+ * @returns {void|number} ahk_class
+ */
 identify_catia_window() {
   current_window := Object()
 
@@ -198,7 +207,10 @@ identify_catia_window() {
   return
 }
 
-; 获取 power-input 输入框的HWND值
+/**
+ * 获取 power-input 输入框的HWND值
+ * @returns {number} HWND
+ */
 get_power_input_edit_hwnd() {
   status_bar_hwnd := ControlGetHwnd("msctls_statusbar321")
 
@@ -207,9 +219,28 @@ get_power_input_edit_hwnd() {
     if InStr(StrLower(ctrl), "edit")
     {
       edit_hwnd := ControlGetHwnd(ctrl, status_bar_hwnd)
+      break
     }
   }
 
   AHK_LOGI(ControlGetClassNN(edit_hwnd))
   return edit_hwnd
+}
+
+/**
+ * 从ini文件获取所有section的名称，写入指定的Map对象（模仿字典）
+ * @param ini_path    ini文件路径
+ * @param dict        指定字典对象
+ */
+read_all_section_from_ini(ini_path, dict)
+{
+  section_array := StrSplit(IniRead(ini_path), "`n")
+
+  for section in section_array
+  {
+    if !dict.Has(section)
+    {
+      dict.Set(section, "")
+    }
+  }
 }

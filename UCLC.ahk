@@ -14,7 +14,7 @@ global config_ini_path := ".\config.ini"
 global alias_ini_path := GET_USER_CONFIG_INI_PATH("用户别名")
 global hotkey_ini_path := GET_USER_CONFIG_INI_PATH("快捷键")
 global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
-global WORKBENCH_LIST_A := Array()
+global workbench_list := Map()
 global current_workbench := ""
 global ESC_CLEAN_FUNC_ENABLE_FLAG := ""
 
@@ -27,8 +27,8 @@ ESC_CLEAN_FUNC_ENABLE_FLAG := init_dev_func_prompt(config_ini_path, "ESC_CLEAN",
 GroupAdd "group_calc", "计算器"
 GroupAdd "group_calc", "Calculator"
 
-; 读取适配工作台列表，用于执行对应热键和快捷键？ 返回工作台名称的数组
-WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A(alias_ini_path, "工作台")
+read_all_section_from_ini(alias_ini_path, workbench_list)
+read_all_section_from_ini(hotkey_ini_path, workbench_list)
 
 ; 注册热键
 HotIfWinActive "ahk_group GroupCATIA"
@@ -39,7 +39,7 @@ HotIfWinActive "ahk_group GroupCATIA"
   ; 将配置文件内所有热键写入字典
   for workbench in available_workbench_list
   {
-    key_value_pair_array := StrSplit(IniRead(hotkey_ini_path, workbench,), "`n")
+    key_value_pair_array := StrSplit(IniRead(hotkey_ini_path, workbench), "`n")
 
     for each_pair in key_value_pair_array
     {
@@ -176,10 +176,10 @@ loop {
 
 }
 
-test_func()
-{
-  k_ToolTip("call back function test", 1000)
-}
+; test_func()
+; {
+;   k_ToolTip("call back function test", 1000)
+; }
 
 
 ; 仅 CATIA 窗口生效的 热键/热字串

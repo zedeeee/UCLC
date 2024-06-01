@@ -7,25 +7,24 @@
 /**
  * 根据输入的用户别名, 执行配置文件中的 COMMAND_ID 以及 函数调用
  * @param alias_strings    用户别名字符串, 不区分大小写
+ * @param command_ini      命令配置文件路径
  * @param power_input_hwnd    超级输入框的 hwnd 值
  * 
  */
-cat_alias_exexcution(alias_string, power_input_hwnd)
+cat_command_execution(input_string, command_ini, power_input_hwnd)
 {
-  current_workbench := CAT_CURRENT_WORKBENCH()
+  current_workbench := get_current_workbench()
 
-  command_id_and_cb_array := read_user_alias(alias_ini_path, current_workbench, StrUpper(alias_string))
+  command_id_and_cb_array := read_user_alias(command_ini, current_workbench, StrUpper(input_string))
 
   if command_id_and_cb_array.Length == 0
   {
-    k_ToolTip(Format("没有找到与 '{1}' 对应的命令", alias_string), 1000)
+    k_ToolTip(Format("没有找到与 '{1}' 对应的命令", input_string), 1000)
     return
   }
 
-  ; hwnd_current := ControlGetHwnd("A")
   ControlSetText("c:" . command_id_and_cb_array[1], power_input_hwnd)
-  ; ControlSetText("c:" . "ViewAlignment", power_input_hwnd)
-  SendInput "{Enter}"
+  SendMessage(0x0100, 0xD, 0, power_input_hwnd)
 
   if command_id_and_cb_array.Length == 2
   {
@@ -110,7 +109,7 @@ cat_auto_graph_tree_reorder()
 }
 
 ; 检测当前 CATIA 工作台，并返回字符串
-CAT_CURRENT_WORKBENCH()
+get_current_workbench()
 {
   WinExist("A")
 

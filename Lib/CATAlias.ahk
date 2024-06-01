@@ -40,7 +40,7 @@ read_user_alias(alias_list_ini_path, section, key) {
                 return command_id_and_cb_array
             }
             catch as e {
-                k_ToolTip(Format("没有找到与 {1} 对应的命令",key), 1000)
+                k_ToolTip(Format("没有找到与 {1} 对应的命令", key), 1000)
                 return command_id_and_cb_array
                 ; Exit
             }
@@ -48,14 +48,8 @@ read_user_alias(alias_list_ini_path, section, key) {
     }
 }
 
-; 查找 ini 文件，匹配 [Hotkey] 的对应快捷键
+; 查找 CAT_Hotkey.ini 文件，注册对应快捷键/*  */
 register_command(ThisHotkey) {
-    try {
-        SendInput(" ")
-        ControlSetText("", ControlGetFocus("A"))
-        SendInput("c:" read_user_alias(alias_ini_path, "HotKey", ThisHotkey)[1] "{Enter}")
-    }
-    catch as e {
-        k_ToolTip("热键注册失败，请检查" alias_ini_path "目录是否正确", 3000)
-    }
+    edit_hwnd := get_power_input_edit_hwnd()
+    cat_command_execution(ThisHotkey, hotkey_ini_path, edit_hwnd)
 }

@@ -12,6 +12,7 @@ TraySetIcon("./icon/color-icon64.png")
 
 global config_ini_path := ".\config.ini"
 global alias_ini_path := GET_USER_CONFIG_INI_PATH("用户别名")
+global hotkey_ini_path := GET_USER_CONFIG_INI_PATH("快捷键")
 global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
 global WORKBENCH_LIST_A := Array()
 global current_workbench := ""
@@ -32,12 +33,27 @@ WORKBENCH_LIST_A := INI_GET_ALL_VALUE_A(alias_ini_path, "工作台")
 ; 注册热键
 HotIfWinActive "ahk_group GroupCATIA"
 {
-  HotKeys_List := StrSplit(IniRead(alias_ini_path, "HotKey"), "`n")
-  For each, line in HotKeys_List
+  available_workbench_list := StrSplit(IniRead(hotkey_ini_path), "`n")
+  customize_hotkey_list_dict := Map()
+
+  ; 将配置文件内所有热键写入字典
+  for workbench in available_workbench_list
   {
-    HotKey_Map := StrSplit(line, "=")
-    KeyName := HotKey_Map[1]
-    Hotkey KeyName, register_command
+    key_value_pair_array := StrSplit(IniRead(hotkey_ini_path, workbench,), "`n")
+
+    for each_pair in key_value_pair_array
+    {
+      key := StrSplit(each_pair, "=")[1]
+      if !customize_hotkey_list_dict.Has(key)
+      {
+        customize_hotkey_list_dict.Set(key, "")
+      }
+    }
+  }
+
+  for each_hotkey in customize_hotkey_list_dict
+  {
+    Hotkey each_hotkey, register_command
   }
 }
 
@@ -181,7 +197,7 @@ test_func()
       Exit
     }
 
-    cat_alias_exexcution(edit_text, power_input_edit_control_hwnd)
+    cat_command_execution(edit_text, alias_ini_path, power_input_edit_control_hwnd)
   }
 
   +Tab::

@@ -70,6 +70,12 @@ NoAction_cb(*) {
     k_ToolTip("功能未开放", 2000)
 }
 
+run_spy_cb(*)
+{
+    win_spy_path := RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey", "InstallDir") . "\UX\WindowSpy.ahk"
+    Run(win_spy_path)
+}
+
 disable_botton_cb(ItemName, ItemPos, MyMenu) {
     MyMenu.Disable(ItemName)
 }
@@ -100,6 +106,7 @@ menu_items := [
     ["开发功能", NoAction_cb, dev_sub_menu],
     ["", NoAction_cb, ""],
     ; ["配置", disable_botton_cb, ""],
+    ["Windows Spy", run_spy_cb, ""],
     ["重新载入", reload_cb, ""],
     ["禁用脚本", disable_script_cb, ""],
     ["退出", exit_cb, ""]

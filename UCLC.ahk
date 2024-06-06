@@ -7,8 +7,9 @@ SetTitleMatchMode 2
 #Include ./Lib/string.ahk
 #Include ./Lib/AHK_LOG.ahk
 #Include ./Lib/CAT_Automatic.ahk
+#Include ./Lib/tray_menu.ahk
 
-TraySetIcon("./icon/color-icon64.png")
+add_coustom_tray_menu()
 
 global config_ini_path := ".\config.ini"
 global alias_ini_path := GET_USER_CONFIG_INI_PATH("用户别名")
@@ -16,12 +17,12 @@ global hotkey_ini_path := GET_USER_CONFIG_INI_PATH("快捷键")
 global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
 global workbench_list := Map()
 global current_workbench := ""
-global ESC_CLEAN_FUNC_ENABLE_FLAG := ""
+; global ESC_CLEAN_FUNC_ENABLE_FLAG := ""
 
 ; 检查 USER-CONFIG文件
 user_config_exist_remind(alias_ini_path)
 
-ESC_CLEAN_FUNC_ENABLE_FLAG := init_dev_func_prompt(config_ini_path, "ESC_CLEAN", "ESC 键清除 POWER-INPUT (CATIA 有崩溃风险)")
+; ESC_CLEAN_FUNC_ENABLE_FLAG := init_dev_func_prompt(config_ini_path, "ESC_CLEAN", "ESC 键清除 POWER-INPUT (CATIA 有崩溃风险)")
 
 ; 创建 计算器 组
 GroupAdd "group_calc", "计算器"

@@ -24,7 +24,14 @@ cat_command_execution(input_string, command_ini, power_input_hwnd)
   }
 
   ControlSetText("c:" . command_id_and_cb_array[1], power_input_hwnd)
-  SendMessage(0x0100, 0xD, 0, power_input_hwnd)
+
+  ; timeout handling
+  try
+    SendMessage(0x0100, 0xD, 0, power_input_hwnd, , , , , 60000)
+  catch Error as e
+  {
+    k_ToolTip("错误：" . e.What e.Message, 2000)
+  }
 
   if command_id_and_cb_array.Length == 2
   {

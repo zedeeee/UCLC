@@ -46,4 +46,38 @@ switchIMEbyID(IMEID) {
     PostMessage(0x0050, 0, IMEID, , "A")
 }
 
+download_file(url, save_path)
+{
+  temp := A_Temp . "\uclc-download.temp"
+  try {
+    Download(url, temp)
+    FileMove(temp, save_path)
+    ; MsgBox Format("临时文件：{1}`n 目标文件：{2}", temp, save_path)
+    return true
+  }
+  catch Error as e
+  {
+    ; MsgBox(e.What)
+    return false
+  }
+}
 
+download_configurations(file_name, save_path)
+{
+  github_url := Format("https://github.com/zedeeee/UCLC-config/raw/master/{1}", file_name)
+  gitee_url := Format("https://gitee.com/zedeeee/UCLC-config/raw/master/{1}", file_name)
+
+  k_ToolTip(Format("尝试从Github下载{1}", file_name), 3000)
+  Sleep(3000)
+  if download_file(github_url, save_path)
+  {
+    return true
+  }
+  else
+  {
+    k_ToolTip(Format("从Github下载失败，尝试从Gitee获取{1}", file_name), 3000)
+    Sleep(3000)
+    return download_file(gitee_url, save_path)
+  }
+
+}

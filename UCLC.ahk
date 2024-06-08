@@ -20,7 +20,7 @@ global current_workbench := ""
 ; global ESC_CLEAN_FUNC_ENABLE_FLAG := ""
 
 ; 检查 USER-CONFIG文件
-user_config_exist_remind(alias_ini_path)
+check_user_config()
 
 ; ESC_CLEAN_FUNC_ENABLE_FLAG := init_dev_func_prompt(config_ini_path, "ESC_CLEAN", "ESC 键清除 POWER-INPUT (CATIA 有崩溃风险)")
 
@@ -57,6 +57,47 @@ HotIfWinActive "ahk_group GroupCATIA"
     Hotkey each_hotkey, register_command
   }
 }
+
+check_user_config() {
+  if (FileExist(alias_ini_path) = "" or FileExist(hotkey_ini_path) = "")
+  {
+    result := MsgBox(
+      "未找到配置文件`n"
+      "是否从 Github/Gitee 下载示例文件？`n"
+      , "配置文件缺失"
+      , 51
+    )
+
+    switch result {
+      case "No":
+        MsgBox "
+        (
+          示例配置文件下载地址：
+          https://github.com/zedeeee/UCLC-config
+        )"
+        ExitApp
+
+      case "Yes":
+        config_and_path := [
+          ["CAT_Alias.ini", alias_ini_path],
+          ["CAT_Hotkey.ini", hotkey_ini_path]
+        ]
+
+        flag := 1
+        for config_info in config_and_path
+        {
+          if not download_configurations(config_info[1], config_info[2])
+            flag := 0
+        }
+
+        MsgBox("获取配置文件成功，请重新载入脚本")
+
+
+      default: ExitApp
+    }
+  }
+}
+
 
 ; 启动脚本后 循环检测 CATIA 脚本程序
 loop {
@@ -165,22 +206,9 @@ loop {
 
   ; ^+t::
   ; {
-  ;   arr := ["aaa", "test_func"]
-  ;   MsgBox arr[1]
-  ;   Sleep 2000
 
-  ;   if arr.Length == 2
-  ;   {
-  ;     %arr[2]%()
-  ;   }
   ; }
-
 }
-
-; test_func()
-; {
-;   k_ToolTip("call back function test", 1000)
-; }
 
 
 ; 仅 CATIA 窗口生效的 热键/热字串
@@ -216,20 +244,4 @@ loop {
     }
   }
 
-}
-
-
-user_config_exist_remind(file_path) {
-  if (FileExist(file_path) = "")
-  {
-    MsgBox("未找到配置文件, 请检查以下路径和文件：`n"
-      file_path "`n"
-      "`n"
-      "示例配置文件下载地址:`n"
-      "https://github.com/zedeeee/UCLC-config`n"
-      "`n"
-      "点击确认按钮退出脚本"
-      , "配置文件错误")
-    ExitApp
-  }
 }

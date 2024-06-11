@@ -99,6 +99,8 @@ check_user_config() {
 }
 
 
+add_group_by_exe("group_autoime", "AutoIME", config_ini_path)
+
 ; 启动脚本后 循环检测 CATIA 脚本程序
 loop {
   try {
@@ -111,7 +113,7 @@ loop {
     }
 
     ; 检测到匹配窗口后，自动切换为英文输入法
-    if (WinActive("ahk_group GroupCATIA")) {
+    if (WinActive("ahk_group group_autoime")) {
       switchIMEbyID(IMEmap["en"])
     }
 

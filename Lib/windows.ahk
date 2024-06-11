@@ -1,5 +1,7 @@
 #Requires AutoHotkey v2.0
 
+#Include "string.ahk"
+
 ; 获取最近找到窗口的所有控件名称 并返回数组
 WinGetTextFast_A(detect_hidden) {
     controls := WinGetControlsHwnd()
@@ -26,10 +28,6 @@ WinGetTextFast_A(detect_hidden) {
 }
 
 
-; 通过调用WinAPI切换输入法
-; https://github.com/mudssky/myAHKScripts
-;
-;
 IMEmap := map(
     "zh", 0x8040804,
     "en", 0x4090409
@@ -42,6 +40,12 @@ getCurrentIMEID() {
     return InputLocaleID
 }
 
+/**
+ * 通过调用WinAPI切换输入法
+ * https://github.com/mudssky/myAHKScripts
+ * 
+ * @param IMEID 
+ */
 switchIMEbyID(IMEID) {
     PostMessage(0x0050, 0, IMEID, , "A")
 }
@@ -80,4 +84,20 @@ download_configurations(file_name, save_path)
     return download_file(gitee_url, save_path)
   }
 
+}
+
+/**
+ * 将匹配名称的进程添加到指定组
+ * 
+ * @param group_name 
+ * @param section 
+ * @param ini_path 配置文件路径
+ */
+add_group_by_exe(group_name, section, ini_path)
+{
+  exe_arr := INI_GET_ALL_VALUE_A(ini_path, section)
+  for exe in exe_arr
+  {
+    GroupAdd group_name, "ahk_exe" . exe
+  }
 }

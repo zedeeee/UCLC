@@ -1,4 +1,5 @@
 ﻿#Requires AutoHotKey v2.0
+#SingleInstance force
 SetTitleMatchMode 2
 
 #Include ./Lib/CATAlias.ahk

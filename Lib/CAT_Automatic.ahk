@@ -127,6 +127,19 @@ cat_auto_graph_tree_reorder()
   k_ToolTip("结构树排序完成", 2000)
 }
 
+quick_manipulation(diraction) {
+  GroupAdd "Manipulation", "操作参数"
+
+  manipulation_hwnd := WinWait("ahk_group Manipulation", , 5)
+  if manipulation_hwnd == 0
+    Exit
+
+  diract_button := ControlGetHwnd(diraction, manipulation_hwnd)
+
+  SendMessage(0xF5, 0, 0, diract_button, manipulation_hwnd)
+}
+
+
 /**
  * 通过比对工作台控件和工作台列表，返回当前生效工作台
  * 

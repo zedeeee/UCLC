@@ -13,16 +13,19 @@
  */
 cat_command_execution(input_string, command_ini, power_input_hwnd)
 {
+  ; 获取当前工作台
   current_workbench := match_current_workbench(workbench_list)
 
+  ; 获取对应的Command-id 和 回调函数
   command_id_and_cb_array := read_user_alias(command_ini, current_workbench, StrUpper(input_string))
 
-  if command_id_and_cb_array.Length == 0
+  if !command_id_and_cb_array
   {
     k_ToolTip(Format("没有找到与 '{1}' 对应的命令", input_string), 1000)
     return
   }
 
+  ; command-id 输出到power-input
   ControlSetText("c:" . command_id_and_cb_array[1], power_input_hwnd)
 
   ; timeout handling
@@ -33,9 +36,15 @@ cat_command_execution(input_string, command_ini, power_input_hwnd)
     k_ToolTip("错误：" . e.What e.Message, 2000)
   }
 
-  if command_id_and_cb_array.Length == 2
-  {
-    %command_id_and_cb_array[2]%()
+  ; 执行回调函数，如有
+  if command_id_and_cb_array.Length >= 2 {
+    params := []
+    loop command_id_and_cb_array.Length - 2
+    {
+      params.Push(command_id_and_cb_array[A_Index + 2])
+    }
+
+    %command_id_and_cb_array[2]%(params*)
   }
 
 }
@@ -118,14 +127,26 @@ cat_auto_graph_tree_reorder()
   k_ToolTip("结构树排序完成", 2000)
 }
 
+quick_manipulation(diraction) {
+  GroupAdd "Manipulation", "操作参数"
+
+  manipulation_hwnd := WinWait("ahk_group Manipulation", , 5)
+  if manipulation_hwnd == 0
+    Exit
+
+  diract_button := ControlGetHwnd(diraction, manipulation_hwnd)
+
+  SendMessage(0xF5, 0, 0, diract_button, manipulation_hwnd)
+}
+
+
 /**
  * 通过比对工作台控件和工作台列表，返回当前生效工作台
  * 
  * @param workbench_map  工作台列表
  * @returns {string}  工作台名称
  */
-match_current_workbench(workbench_map)
-{
+match_current_workbench(workbench_map) {
   workbench_control_hwnd := ControlGetHwnd("WebBrowser", "A")
   ; workbench_buttons :=
 
@@ -153,8 +174,7 @@ catia_window_classnn_map := Map(
  * @param obj 自定义封装
  * @returns {bool} 
  */
-is_catia_exe_and_title(obj)
-{
+is_catia_exe_and_title(obj) {
   if (StrLower(obj.exe) == "cnext.exe" and StrUpper(SubStr(obj.title, 1, 8)) == "CATIA V5")
   {
     return true
@@ -169,9 +189,7 @@ is_catia_exe_and_title(obj)
  * @param obj 自定义封装
  * @returns {bool} 
  */
-is_included_catia_class(obj)
-{
-
+is_included_catia_class(obj) {
   test_class := obj.class
 
   for , value in catia_window_classnn_map
@@ -239,8 +257,7 @@ get_power_input_edit_hwnd() {
  * @param ini_path    ini文件路径
  * @param dict        指定字典对象
  */
-read_all_section_from_ini(ini_path, dict)
-{
+read_all_section_from_ini(ini_path, dict) {
   section_array := StrSplit(IniRead(ini_path), "`n")
 
   for section in section_array

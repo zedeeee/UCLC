@@ -34,12 +34,13 @@
 
 ## 附加功能
 1. 产品结构树自动排序
-2. 自动切换输入法为英文
-1. `Shift + Tab`在多个 CATIA 窗口循环切换
+2. 快速操作零部件以指定方向 移动/平移（响应速度优于罗盘操作）
+3. 自动切换输入法为英文
+4. `Shift + Tab`在多个 CATIA 窗口循环切换
 5. `ESC` 清除 Power-input 输入框的内容（测试功能）
-1. 双击 `右Ctrl` 键呼出 Everything（Everything需要设置快捷键`win+]`）
-6. `Win+鼠标滚轮`：切换虚拟桌面（Windows 11）
-7. `RAlt+鼠标滚轮`：调节音量，`RAlt+鼠标中键`：静音切换
+6. 双击 `右Ctrl` 键呼出 Everything（Everything需要设置快捷键`win+]`）
+7. `Win+鼠标滚轮`：切换虚拟桌面（Windows 11）
+8. `RAlt+鼠标滚轮`：调节音量，`RAlt+鼠标中键`：静音切换
 
 ## 使用方法
 

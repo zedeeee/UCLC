@@ -37,7 +37,7 @@ getCurrentIMEID() {
     winID := WinGetID("A")
     ThreadID := DllCall("GetWindowThreadProcessId", "UInt", WinID, "UInt", 0)
     InputLocaleID := DllCall("GetKeyboardLayout", "Uint", ThreadID, "Uint")
-    return InputLocaleID
+    return Format("{1:#x}",InputLocaleID)
 }
 
 /**

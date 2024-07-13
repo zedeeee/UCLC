@@ -93,12 +93,10 @@ check_user_config() {
 
         MsgBox("获取配置文件成功，请重新载入脚本")
 
-
       default: ExitApp
     }
   }
 }
-
 
 add_group_by_exe("group_autoime", "AutoIME", config_ini_path)
 
@@ -116,6 +114,10 @@ loop {
     ; 检测到匹配窗口后，自动切换为英文输入法
     if (WinActive("ahk_group group_autoime")) {
       switchIMEbyID(IMEmap["en"])
+
+      IME_id := getCurrentIMEID()
+      if IME_id != IMEmap["en"]
+        k_ToolTip("输入法自动切换失败，请检查系统设置", 2000)
     }
 
     WinWaitNotActive(last_found_window_hwnd)
@@ -188,7 +190,6 @@ loop {
     }
   }
 
-
   ;右ALT+鼠标滚轮上，音量增大
   RAlt & WheelUp::
   {
@@ -213,7 +214,6 @@ loop {
   ; }
 }
 
-
 ; 仅 CATIA 窗口生效的 热键/热字串
 #HotIf WinActive("ahk_group GroupCATIA")
 {
@@ -237,7 +237,6 @@ loop {
     GroupActivate "GroupCATIA"
     k_ToolTip(WinGetTitle("A"), 1000)
   }
-
 
   ; 清除 CATIA power-input 输入框里的内容
   ~Esc::

@@ -1,53 +1,52 @@
 #Requires AutoHotkey v2.0
 
 #Include "string.ahk"
+#Include "AHK_LOG.ahk"
 
 ; 获取最近找到窗口的所有控件名称 并返回数组
 WinGetTextFast_A(detect_hidden) {
-    controls := WinGetControlsHwnd()
+  controls := WinGetControlsHwnd()
 
-    static WINDOW_TEXT_SIZE := 32767 ; Defined in AutoHotkey source.
+  static WINDOW_TEXT_SIZE := 32767 ; Defined in AutoHotkey source.
 
-    buf := Buffer(WINDOW_TEXT_SIZE * 2, 0)
+  buf := Buffer(WINDOW_TEXT_SIZE * 2, 0)
 
-    names := Array()
+  names := Array()
 
+  Loop controls.Length {
+    hCtl := controls[A_Index]
+    if !detect_hidden && !DllCall("IsWindowVisible", "ptr", hCtl)
+      continue
+    if !DllCall("GetWindowText", "ptr", hCtl, "Ptr", buf.ptr, "int", WINDOW_TEXT_SIZE)
+      continue
 
-    Loop controls.Length {
-        hCtl := controls[A_Index]
-        if !detect_hidden && !DllCall("IsWindowVisible", "ptr", hCtl)
-            continue
-        if !DllCall("GetWindowText", "ptr", hCtl, "Ptr", buf.ptr, "int", WINDOW_TEXT_SIZE)
-            continue
-
-        name := StrGet(buf)
-        ; names.Push(name)
-        names.InsertAt(1, name)
-    }
-    return names
+    name := StrGet(buf)
+    ; names.Push(name)
+    names.InsertAt(1, name)
+  }
+  return names
 }
 
-
 IMEmap := map(
-    "zh", 0x8040804,
-    "en", 0x4090409
+"zh", 0x8040804,
+"en", 0x4090409
 )
 
 getCurrentIMEID() {
-    winID := WinGetID("A")
-    ThreadID := DllCall("GetWindowThreadProcessId", "UInt", WinID, "UInt", 0)
-    InputLocaleID := DllCall("GetKeyboardLayout", "Uint", ThreadID, "Uint")
-    return InputLocaleID
+  winID := WinGetID("A")
+  ThreadID := DllCall("GetWindowThreadProcessId", "UInt", WinID, "UInt", 0)
+  InputLocaleID := DllCall("GetKeyboardLayout", "Uint", ThreadID, "Uint")
+  return InputLocaleID
 }
 
 /**
  * 通过调用WinAPI切换输入法
  * https://github.com/mudssky/myAHKScripts
- * 
- * @param IMEID 
+ *
+ * @param IMEID
  */
 switchIMEbyID(IMEID) {
-    PostMessage(0x0050, 0, IMEID, , "A")
+  PostMessage(0x0050, 0, IMEID, , "A")
 }
 
 download_file(url, save_path)
@@ -88,9 +87,9 @@ download_configurations(file_name, save_path)
 
 /**
  * 将匹配名称的进程添加到指定组
- * 
- * @param group_name 
- * @param section 
+ *
+ * @param group_name
+ * @param section
  * @param ini_path 配置文件路径
  */
 add_group_by_exe(group_name, section, ini_path)
@@ -99,5 +98,58 @@ add_group_by_exe(group_name, section, ini_path)
   for exe in exe_arr
   {
     GroupAdd group_name, "ahk_exe" . exe
+  }
+}
+
+/**
+ * 显示音量状态的
+ */
+Show_volume_status() {
+  currentVolume := Integer(SoundGetVolume())
+  muteStatus := SoundGetMute() ? "(静音)" : ""
+  k_ToolTip(Format("当前音量：{} {}", currentVolume, muteStatus), 1000)
+}
+
+; 音量控制类
+class VolumeController {
+  __New() {
+    this.last_tick := A_TickCount
+    this.base_increment := 1
+    this.min_interval := 10
+    this.max_interval := 20
+    this.min_multiplier := 1
+    this.max_multiplier := 7
+    this.k := 1.5 ; 控制曲线的陡峭度
+  }
+
+  get_volume_increment() {
+    current_tick := A_TickCount
+    interval := current_tick - this.last_tick
+    this.last_tick := current_tick
+
+    ; 计算动态倍率
+    if (interval > 0) {
+      if (interval < this.min_interval) {
+        multiplier := this.max_multiplier
+      } else if (interval > this.max_interval) {
+        multiplier := this.min_multiplier
+      } else {
+        scaled_interval := (interval - this.min_interval) / (this.max_interval - this.min_interval)
+        sigmoid_input := (scaled_interval - 0.5) * this.k
+        sigmoid_output := 1 / (1 + Exp(-sigmoid_input))
+        multiplier := this.min_multiplier + (this.max_multiplier - this.min_multiplier) * sigmoid_output
+      }
+    } else {
+      multiplier := this.min_multiplier
+    }
+
+    ; 根据倍率调整增量
+    return Round(this.base_increment * multiplier, 2) ; 保留两位小数
+  }
+
+  show_volume_status() {
+    current_volume := SoundGetVolume()
+    mute_status := SoundGetMute() ? "(静音)" : ""
+    k_ToolTip(Format("当前音量：{} {}", Integer(current_volume), mute_status), 1000)
   }
 }

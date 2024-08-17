@@ -102,6 +102,8 @@ check_user_config() {
 
 add_group_by_exe("group_autoime", "AutoIME", config_ini_path)
 
+volume_control := VolumeController.Call()
+
 ; 启动脚本后 循环检测 CATIA 脚本程序
 loop {
   try {
@@ -188,23 +190,30 @@ loop {
     }
   }
 
-
-  ;右ALT+鼠标滚轮上，音量增大
+  ; 右ALT+鼠标滚轮上，音量增大
   RAlt & WheelUp::
   {
-    SoundSetVolume "+2"
+    increment := volume_control.get_volume_increment()
+    SoundSetVolume "+" . increment
+    volume_control.show_volume_status()
+    Sleep 5
   }
 
-  ;右ALT+鼠标滚轮下，音量减小
+  ; 右ALT+鼠标滚轮下，音量减小
   RAlt & WheelDown::
   {
-    SoundSetVolume "-2"
+    increment := volume_control.get_volume_increment()
+    SoundSetVolume "-" . increment
+    volume_control.show_volume_status()
+    Sleep 5
   }
 
-  ;右ALT+鼠标中键，静音
+  ; 右ALT+鼠标中键，静音
   RAlt & MButton::
   {
     SoundSetMute -1
+    muteStatus := SoundGetMute() ? "静音" : "解除静音：" . Integer(SoundGetVolume())
+    k_ToolTip(muteStatus, 1000)
   }
 
   ; ^+t::

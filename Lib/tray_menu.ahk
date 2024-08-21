@@ -25,7 +25,7 @@ modify_shortcut_cb(*)
 
 about_cb(*)
 {
-    arr := StrSplit(menu_items[1][1], "v")
+    arr := StrSplit(menu_items[1][1], " ")
     version := arr[arr.Length]
     MsgBox Format("一个CATIA快捷键脚本`n使CATIA的操作体验更接近AutoCAD`n版本：{1}", version), "UCLC", 0x40
 
@@ -64,6 +64,9 @@ menu_toggleCheck_cb(ItemName, ItemPos, MyMenu)
     MyMenu.ToggleCheck(ItemName)
 }
 
+Nothing_cb(*) {
+    ; Do Nothing
+}
 
 NoAction_cb(*) {
     ; Do Nothing
@@ -88,18 +91,19 @@ about_and_updates_menu := [
     ["关于", about_cb, ""],
     ["项目主页", showProjectHomepage_cb, ""],
     ["自定义帮助", help_Homepage_cb, ""],
-    ; ["检查更新", NoAction_cb, ""]
+    ["检查更新", NoAction_cb, ""]
 ]
 
 dev_sub_menu := [
-    ["ESC增强", esc_enhanced_cb, ""],
+    ; ["ESC增强", esc_enhanced_cb, ""],
+    ["None", Nothing_cb, ""],
 ]
 
 /**
  * ["按钮名称", 回调函数, 子菜单数组]
  */
 menu_items := [
-    ["UCLC v2.4.0", NoAction_cb, about_and_updates_menu],
+    ["UCLC v2.4.2-dev", NoAction_cb, about_and_updates_menu],
     ["", NoAction_cb, ""],
     ["自定义别名", modify_alias_cb, ""],
     ["自定义快捷键", modify_shortcut_cb, ""],
@@ -154,5 +158,5 @@ add_coustom_tray_menu()
         A_TrayMenu.Add(button_name, callback_function)
 
     }
-    A_TrayMenu.Rename(menu_items[1][1], "UCLC")
+    ; A_TrayMenu.Rename(menu_items[1][1], "UCLC")
 }

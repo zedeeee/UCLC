@@ -179,16 +179,16 @@ loop {
   LWin & WheelDown::
   {
     try {
-      if (A_TimeSincePriorHotkey > 100)
-        Send "{Ctrl Down}{LWin Down}{Right}"
+      if (A_TimeSincePriorHotkey > 200)
+        Send "{Ctrl Down}{LWin Down}{Right}{Ctrl Up}{LWin Up}"
     }
   }
 
   LWin & WheelUp::
   {
     try {
-      if (A_TimeSincePriorHotkey > 100)
-        Send "^{Ctrl Down}{LWin Down}{Left}"
+      if (A_TimeSincePriorHotkey > 200)
+        Send "{Ctrl Down}{LWin Down}{Left}{Ctrl Up}{LWin Up}"
     }
   }
 

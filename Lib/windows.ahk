@@ -33,10 +33,10 @@ IMEmap := map(
 )
 
 getCurrentIMEID() {
-  winID := WinGetID("A")
-  ThreadID := DllCall("GetWindowThreadProcessId", "UInt", WinID, "UInt", 0)
-  InputLocaleID := DllCall("GetKeyboardLayout", "Uint", ThreadID, "Uint")
-  return InputLocaleID
+    winID := WinGetID("A")
+    ThreadID := DllCall("GetWindowThreadProcessId", "UInt", WinID, "UInt", 0)
+    InputLocaleID := DllCall("GetKeyboardLayout", "Uint", ThreadID, "Uint")
+    return Format("{1:#x}",InputLocaleID)
 }
 
 /**

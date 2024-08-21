@@ -101,15 +101,6 @@ add_group_by_exe(group_name, section, ini_path)
   }
 }
 
-/**
- * 显示音量状态的
- */
-Show_volume_status() {
-  currentVolume := Integer(SoundGetVolume())
-  muteStatus := SoundGetMute() ? "(静音)" : ""
-  k_ToolTip(Format("当前音量：{} {}", currentVolume, muteStatus), 1000)
-}
-
 ; 音量控制类
 class VolumeController {
   __New() {

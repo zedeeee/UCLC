@@ -113,10 +113,7 @@ loop {
     ; 检测到匹配窗口后，自动切换为英文输入法
     if (WinActive("ahk_group group_autoime")) {
       switchIMEbyID(IMEmap["en"])
-
-      IME_id := getCurrentIMEID()
-      if IME_id != IMEmap["en"]
-        k_ToolTip("输入法自动切换失败，请检查系统设置", 2000)
+      SetTimer(confirmIME,-5000)
     }
 
     WinWaitNotActive(last_found_window_hwnd)

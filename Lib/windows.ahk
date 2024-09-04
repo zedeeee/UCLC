@@ -33,10 +33,12 @@ IMEmap := map(
 )
 
 getCurrentIMEID() {
-    winID := WinGetID("A")
-    ThreadID := DllCall("GetWindowThreadProcessId", "UInt", WinID, "UInt", 0)
-    InputLocaleID := DllCall("GetKeyboardLayout", "Uint", ThreadID, "Uint")
-    return Format("{1:#x}",InputLocaleID)
+  if WinWaitActive("A"){
+    active_hwnd := WinGetID("A")
+    thread_id := DllCall("GetWindowThreadProcessId", "UInt", active_hwnd, "UInt", 0)
+    ime_locale_id := DllCall("GetKeyboardLayout", "Uint", thread_id, "Uint")
+    return Format("{1:#x}",ime_locale_id)
+  }
 }
 
 /**
@@ -47,6 +49,15 @@ getCurrentIMEID() {
  */
 switchIMEbyID(IMEID) {
   PostMessage(0x0050, 0, IMEID, , "A")
+}
+
+/**
+ * 确认输入法已切换到en
+ */
+confirmIME(*) {
+  IME_id := getCurrentIMEID()
+  if IME_id != IMEmap["en"]
+    k_ToolTip("输入法自动切换失败，请检查系统设置", 2000)
 }
 
 download_file(url, save_path)

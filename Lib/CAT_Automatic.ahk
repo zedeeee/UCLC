@@ -2,6 +2,8 @@
 
 #Include CATAlias.ahk
 #Include AHK_LOG.ahk
+#Include windows.ahk
+#Include stdio.ahk
 
 
 /**
@@ -28,12 +30,19 @@ cat_command_execution(input_string, command_ini, power_input_hwnd)
   ; command-id 输出到power-input
   ControlSetText("c:" . command_id_and_cb_array[1], power_input_hwnd)
 
-  ; timeout handling
+  ; 增加一个多线程任务用于处理GSD模块命令 "Hdr" 的问题
+  ; 每调用一次 cat_command_execution 函数就会创建一个新的线程
+  ; 线程的总数受 #MaxThreads 的限制, 默认为 10
+  ; 如果短时间内连续输入命令导致热键失效，尝试调高线程的限制
+  SetTimer(process_unknown_command.Bind(power_input_hwnd))
+
+  ; 输入Enter键
   try
-    SendMessage(0x0100, 0xD, 0, power_input_hwnd, , , , , 60000)
+  ; SendMessage(0x0100, 0xD, 0, power_input_hwnd, , , , , 60000)
+    PostMessage(0x0100, 0xD, 0, power_input_hwnd)
   catch Error as e
   {
-    k_ToolTip("错误：" . e.What e.Message, 2000)
+    k_ToolTip("错误：" . e.What e.Message e.Line, 2000)
   }
 
   ; 执行回调函数，如有
@@ -47,6 +56,57 @@ cat_command_execution(input_string, command_ini, power_input_hwnd)
     %command_id_and_cb_array[2]%(params*)
   }
 
+}
+
+process_unknown_command(_power_input_hwnd) {
+  SetTimer , 0
+  command := false
+  
+  if WinWaitActive("超级输入消息", , 1) {
+    ; SetTimer(check_unknown_command_error.Bind(power_input_handle), 0)
+    pop_window_hwnd := WinGetID()
+    str := WinGetTextFast(false)
+
+    ; 按行解析文本
+    Loop parse, str, "`n", "`r"  ; 支持 Unix 和 Windows 格式的换行
+    {
+      ; 查找包含 "未知命令" 的行, 获取冒号后的命令
+      if InStr(A_LoopField, "未知命令")
+      {
+        WinClose(pop_window_hwnd)
+        WinWaitClose(pop_window_hwnd, , 5)
+
+        pos := InStr(A_LoopField, "：")
+
+        if (pos) {
+          command := Trim(SubStr(A_LoopField, pos + 1))
+        } else {
+          command := false
+        }
+        break
+      }
+    }
+
+    if command {
+      ; 去掉末尾的 "hdr" 或加上 "hdr"
+      if (SubStr(command, -3) = "hdr") {
+        command := SubStr(command, 1, StrLen(command) - 3)
+      } else {
+        command .= "hdr"
+      }
+
+      ; 更新命令到输入框
+      ControlSetText("c:" . command, _power_input_hwnd)
+
+      ; 重新发送回车键
+      try
+        PostMessage(0x0100, 0xD, 0, _power_input_hwnd)
+      catch Error as e
+      {
+        k_ToolTip("错误：" . e.What e.Message e.Line, 2000)
+      }
+    }
+  }
 }
 
 /**

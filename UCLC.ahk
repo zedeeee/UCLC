@@ -1,5 +1,6 @@
 ﻿#Requires AutoHotKey v2.0
 #SingleInstance Force
+#MaxThreads 20
 SetTitleMatchMode 2
 
 #Include ./Lib/CATAlias.ahk

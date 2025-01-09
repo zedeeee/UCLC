@@ -165,3 +165,30 @@ class VolumeController {
     k_ToolTip(Format("当前音量：{} {}", Integer(current_volume), mute_status), 1000)
   }
 }
+
+; forked from WindowSpy.ahk
+; ===========================================================================================
+; WinGetText ALWAYS uses the "slow" mode - TitleMatchMode only affects
+; WinText/ExcludeText parameters. In "fast" mode, GetWindowText() is used
+; to retrieve the text of each control.
+; ===========================================================================================
+WinGetTextFast(detect_hidden) {
+    controls := WinGetControlsHwnd()
+
+    static WINDOW_TEXT_SIZE := 32767 ; Defined in AutoHotkey source.
+
+    buf := Buffer(WINDOW_TEXT_SIZE * 2, 0)
+
+    text := ""
+
+    Loop controls.Length {
+        hCtl := controls[A_Index]
+        if !detect_hidden && !DllCall("IsWindowVisible", "ptr", hCtl)
+            continue
+        if !DllCall("GetWindowText", "ptr", hCtl, "Ptr", buf.ptr, "int", WINDOW_TEXT_SIZE)
+            continue
+
+        text .= StrGet(buf) "`r`n" ; text .= buf "`r`n"
+    }
+    return text
+}

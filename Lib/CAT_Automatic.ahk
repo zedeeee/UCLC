@@ -88,12 +88,14 @@ process_unknown_command(_power_input_hwnd) {
     }
 
     if command {
-      ; 去掉末尾的 "hdr" 或加上 "hdr"
-      if (SubStr(command, -3) = "hdr") {
+      ; 去掉末尾的 "hdr" 或加上 "Hdr"
+      if (SubStr(command, -3) = "Hdr") {
         command := SubStr(command, 1, StrLen(command) - 3)
       } else {
-        command .= "hdr"
+        command .= "Hdr"
+  SetTimer , 0
       }
+  SetTimer , 0
 
       ; 更新命令到输入框
       ControlSetText("c:" . command, _power_input_hwnd)

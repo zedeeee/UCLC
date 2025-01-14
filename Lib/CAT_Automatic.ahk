@@ -27,6 +27,7 @@ cat_command_execution(input_string, command_ini, power_input_hwnd)
     return
   }
 
+
   ; command-id 输出到power-input
   ControlSetText("c:" . command_id_and_cb_array[1], power_input_hwnd)
 
@@ -37,9 +38,12 @@ cat_command_execution(input_string, command_ini, power_input_hwnd)
   SetTimer(process_unknown_command.Bind(power_input_hwnd))
 
   ; 输入Enter键
-  try
-  ; SendMessage(0x0100, 0xD, 0, power_input_hwnd, , , , , 60000)
-    PostMessage(0x0100, 0xD, 0, power_input_hwnd)
+  try {
+    BlockInput true
+    Sleep 100
+    ControlSend "{Enter}", power_input_hwnd
+    BlockInput false
+  }
   catch Error as e
   {
     k_ToolTip("错误：" . e.What e.Message e.Line, 2000)
@@ -61,14 +65,13 @@ cat_command_execution(input_string, command_ini, power_input_hwnd)
 process_unknown_command(_power_input_hwnd) {
   SetTimer , 0
   command := false
-  
-  if WinWaitActive("超级输入消息", , 1) {
-    ; SetTimer(check_unknown_command_error.Bind(power_input_handle), 0)
+
+  if WinWaitActive("超级输入消息", , 2) {
     pop_window_hwnd := WinGetID()
     str := WinGetTextFast(false)
 
-    ; 按行解析文本
-    Loop parse, str, "`n", "`r"  ; 支持 Unix 和 Windows 格式的换行
+    ; 从弹出窗口的文本中解析出命令
+    Loop parse, str, "`n", "`r"
     {
       ; 查找包含 "未知命令" 的行, 获取冒号后的命令
       if InStr(A_LoopField, "未知命令")
@@ -87,22 +90,25 @@ process_unknown_command(_power_input_hwnd) {
       }
     }
 
+    ; 检查命令末尾是否是 "Hdr"，若是则删除，若不是则添加 "Hdr"
     if command {
-      ; 去掉末尾的 "hdr" 或加上 "Hdr"
       if (SubStr(command, -3) = "Hdr") {
         command := SubStr(command, 1, StrLen(command) - 3)
       } else {
         command .= "Hdr"
-  SetTimer , 0
       }
-  SetTimer , 0
 
       ; 更新命令到输入框
       ControlSetText("c:" . command, _power_input_hwnd)
 
       ; 重新发送回车键
-      try
-        PostMessage(0x0100, 0xD, 0, _power_input_hwnd)
+      try {
+        ; PostMessage(0x0100, 0xD, 0, _power_input_hwnd)
+        BlockInput true
+        ; Sleep 100
+        ControlSend "{Enter}", _power_input_hwnd
+        BlockInput false
+      }
       catch Error as e
       {
         k_ToolTip("错误：" . e.What e.Message e.Line, 2000)

@@ -35,7 +35,10 @@ cat_command_execution(input_string, command_ini, power_input_hwnd)
   ; 每调用一次 cat_command_execution 函数就会创建一个新的线程
   ; 线程的总数受 #MaxThreads 的限制, 默认为 10
   ; 如果短时间内连续输入命令导致热键失效，尝试调高线程的限制
-  SetTimer(process_unknown_command.Bind(power_input_hwnd))
+  if current_workbench == "创成式外形设计" {
+    SetTimer(process_unknown_command.Bind(power_input_hwnd))
+    AHK_LOGI("启动多线程处理 GSD 命令")
+  }
 
   ; 输入Enter键
   try {
@@ -59,63 +62,55 @@ cat_command_execution(input_string, command_ini, power_input_hwnd)
 
     %command_id_and_cb_array[2]%(params*)
   }
-
 }
 
 process_unknown_command(_power_input_hwnd) {
   SetTimer , 0
-  command := false
+  command := ""
 
-  if WinWaitActive("超级输入消息", , 2) {
-    pop_window_hwnd := WinGetID()
-    str := WinGetTextFast(false)
-
-    ; 从弹出窗口的文本中解析出命令
-    Loop parse, str, "`n", "`r"
-    {
-      ; 查找包含 "未知命令" 的行, 获取冒号后的命令
-      if InStr(A_LoopField, "未知命令")
-      {
-        WinClose(pop_window_hwnd)
-        WinWaitClose(pop_window_hwnd, , 5)
-
-        pos := InStr(A_LoopField, "：")
-
-        if (pos) {
-          command := Trim(SubStr(A_LoopField, pos + 1))
-        } else {
-          command := false
-        }
-        break
+  ; 检查窗口是否激活并等待目标窗口弹出
+  if WinWaitNotActive(, , 1) {
+      if !WinWaitActive("超级输入消息", , 1){
+        return
       }
-    }
+      
+      pop_window_hwnd := WinGetID()
 
-    ; 检查命令末尾是否是 "Hdr"，若是则删除，若不是则添加 "Hdr"
-    if command {
-      if (SubStr(command, -3) = "Hdr") {
-        command := SubStr(command, 1, StrLen(command) - 3)
-      } else {
-        command .= "Hdr"
+      ; 获取弹窗文本
+      str := WinGetTextFast(false)
+
+      ; 从弹窗文本中解析命令
+      Loop parse, str, "`n", "`r" {
+          if InStr(A_LoopField, "未知命令") {
+              ; 关闭弹窗
+              WinClose(pop_window_hwnd)
+              WinWaitClose(pop_window_hwnd, , 5)
+              AHK_LOGI("关闭窗口")
+
+              ; 提取命令
+              command := Trim(SubStr(A_LoopField, InStr(A_LoopField, "：") + 1, StrLen(A_LoopField)))
+              break
+          }
       }
+  }
 
-      ; 更新命令到输入框
-      ControlSetText("c:" . command, _power_input_hwnd)
+  ; 检查并调整命令格式
+  if command {
+      command := RegExReplace(command, "Hdr$", "") . (SubStr(command, -3) = "Hdr" ? "" : "Hdr")
 
-      ; 重新发送回车键
+      ; 更新输入框并发送回车键
       try {
-        ; PostMessage(0x0100, 0xD, 0, _power_input_hwnd)
-        BlockInput true
-        ; Sleep 100
-        ControlSend "{Enter}", _power_input_hwnd
-        BlockInput false
+          BlockInput(true)
+          ControlSetText("c:" . command, _power_input_hwnd)
+          ControlSend("{Enter}", _power_input_hwnd)
+      } catch Error as e {
+          k_ToolTip("错误：" . e.What . " " . e.Message . " (行号：" . e.Line . ")", 2000)
+      } finally {
+          BlockInput(false)
       }
-      catch Error as e
-      {
-        k_ToolTip("错误：" . e.What e.Message e.Line, 2000)
-      }
-    }
   }
 }
+
 
 /**
  * 获取装配设计下的 "图形树重新排序" 窗口, 自动执行排序操作

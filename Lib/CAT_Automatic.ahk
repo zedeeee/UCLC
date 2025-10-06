@@ -16,7 +16,7 @@
 cat_command_execution(input_string, command_ini, power_input_hwnd)
 {
   ; 获取当前工作台
-  current_workbench := match_current_workbench(workbench_list)
+  current_workbench := match_current_workbench(AppSettings.workbench_list)
 
   ; 获取对应的Command-id 和 回调函数
   command_id_and_cb_array := read_user_alias(command_ini, current_workbench, StrUpper(input_string))

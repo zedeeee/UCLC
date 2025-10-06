@@ -3,6 +3,7 @@
 #MaxThreads 20
 SetTitleMatchMode 2
 
+#Include ./Lib/AppSettings.ahk
 #Include ./Lib/CATAlias.ahk
 #Include ./Lib/stdio.ahk
 #Include ./Lib/windows.ahk
@@ -11,14 +12,8 @@ SetTitleMatchMode 2
 #Include ./Lib/CAT_Automatic.ahk
 #Include ./Lib/tray_menu.ahk
 
+AppSettings.Init()
 add_coustom_tray_menu()
-
-global config_ini_path := ".\config.ini"
-global alias_ini_path := GET_USER_CONFIG_INI_PATH("用户别名")
-global hotkey_ini_path := GET_USER_CONFIG_INI_PATH("快捷键")
-global DEBUG_I := IniRead(config_ini_path, "通用", "DEBUG")
-global workbench_list := Map()
-global current_workbench := ""
 
 ; 检查 USER-CONFIG文件
 check_user_config()
@@ -27,19 +22,19 @@ check_user_config()
 GroupAdd "group_calc", "计算器"
 GroupAdd "group_calc", "Calculator"
 
-read_all_section_from_ini(alias_ini_path, workbench_list)
-read_all_section_from_ini(hotkey_ini_path, workbench_list)
+read_all_section_from_ini(AppSettings.alias_ini_path, AppSettings.workbench_list)
+read_all_section_from_ini(AppSettings.hotkey_ini_path, AppSettings.workbench_list)
 
 ; 注册热键
 HotIfWinActive "ahk_group GroupCATIA"
 {
-  available_workbench_list := StrSplit(IniRead(hotkey_ini_path), "`n")
+  available_workbench_list := StrSplit(IniRead(AppSettings.hotkey_ini_path), "`n")
   customize_hotkey_list_dict := Map()
 
   ; 将配置文件内所有热键写入字典
   for workbench in available_workbench_list
   {
-    key_value_pair_array := StrSplit(IniRead(hotkey_ini_path, workbench), "`n")
+    key_value_pair_array := StrSplit(IniRead(AppSettings.hotkey_ini_path, workbench), "`n")
 
     for each_pair in key_value_pair_array
     {
@@ -58,7 +53,7 @@ HotIfWinActive "ahk_group GroupCATIA"
 }
 
 check_user_config() {
-  if (FileExist(alias_ini_path) = "" or FileExist(hotkey_ini_path) = "")
+  if (FileExist(AppSettings.alias_ini_path) = "" or FileExist(AppSettings.hotkey_ini_path) = "")
   {
     result := MsgBox(
       "未找到配置文件`n"
@@ -78,8 +73,8 @@ check_user_config() {
 
       case "Yes":
         config_and_path := [
-          ["CAT_Alias.ini", alias_ini_path],
-          ["CAT_Hotkey.ini", hotkey_ini_path]
+          ["CAT_Alias.ini", AppSettings.alias_ini_path],
+          ["CAT_Hotkey.ini", AppSettings.hotkey_ini_path]
         ]
 
         flag := 1
@@ -96,7 +91,7 @@ check_user_config() {
   }
 }
 
-add_group_by_exe("group_autoime", "AutoIME", config_ini_path)
+add_group_by_exe("group_autoime", "AutoIME", AppSettings.config_ini_path)
 
 volume_control := VolumeController.Call()
 
@@ -234,7 +229,7 @@ loop {
       Exit
     }
 
-    cat_command_execution(edit_text, alias_ini_path, power_input_edit_control_hwnd)
+    cat_command_execution(edit_text, AppSettings.alias_ini_path, power_input_edit_control_hwnd)
   }
 
   +Tab::

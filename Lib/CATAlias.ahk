@@ -69,5 +69,5 @@ process_config(config) {
 ; 查找 CAT_Hotkey.ini 文件，注册对应快捷键/*  */
 register_command(ThisHotkey) {
     edit_hwnd := get_power_input_edit_hwnd()
-    cat_command_execution(ThisHotkey, hotkey_ini_path, edit_hwnd)
+    cat_command_execution(ThisHotkey, AppSettings.hotkey_ini_path, edit_hwnd)
 }

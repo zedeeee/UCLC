@@ -5,7 +5,7 @@
 ; 打印日志（information）
 AHK_LOGI(Message)
 {
-    if !DEBUG_I
+    if !AppSettings.DEBUG_I
         return
     k_ToolTip(Message, 3000)
 }

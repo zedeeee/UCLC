@@ -112,6 +112,7 @@ menu_items := [
     ["Windows Spy", run_spy_cb, ""],
     ["重新载入", reload_cb, ""],
     ["禁用脚本", disable_script_cb, ""],
+    ["设置...", ShowSettingsGUI, ""],
     ["退出", exit_cb, ""]
 ]
 

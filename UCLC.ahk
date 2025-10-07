@@ -11,6 +11,7 @@ SetTitleMatchMode 2
 #Include ./Lib/AHK_LOG.ahk
 #Include ./Lib/CAT_Automatic.ahk
 #Include ./Lib/tray_menu.ahk
+#Include ./Lib/SettingsGUI.ahk
 
 AppSettings.Init()
 add_coustom_tray_menu()
@@ -148,38 +149,45 @@ loop {
 
   ~RControl::
   {
-    ; 1. 首先检查功能是否已在 config.ini 中启用
+    ; 检查功能是否启用
     if !AppSettings.Everything_Enabled
     {
         return
     }
 
-    ; 2. 双击判断逻辑保持不变
+    ; 双击判断逻辑不变
     if (A_PriorHotkey != "~RControl" or A_TimeSincePriorHotkey > 400)
     {
         KeyWait "Control"
         return
     }
 
-    ; 3. 检查进程是否存在
-    if (PID := ProcessExist("Everything.exe"))
+    ; 如果 Everything 正在运行，直接激活
+    if ProcessExist("Everything.exe")
     {
-        ; 如果已运行，则发送激活快捷键 (这里仍然依赖用户设置，但更健壮)
-        AHK_LOGI("获取到Everything PID = " PID)
-        Send "#]"
+        Send "#]" ; 仍然依赖用户在 Everything 中设置的快捷键
+        return
+    }
+
+    ; 如果未运行，检查路径是否有效
+    if (AppSettings.Everything_Path and FileExist(AppSettings.Everything_Path))
+    {
+        Run AppSettings.Everything_Path
     }
     else
     {
-        ; 4. 如果未运行，检查路径配置是否有效
-        if (AppSettings.Everything_Path and FileExist(AppSettings.Everything_Path))
+        ; --- 核心改进：弹出交互式对话框 ---
+        result := MsgBox(
+            "“Everything 快速启动”功能已启用，但未找到 Everything.exe。`n`n"
+            "请检查 config.ini 中的路径配置是否正确。`n`n"
+            "要现在打开设置窗口进行配置吗？"
+            , "配置缺失"
+            , "4|32" ; Yes/No buttons + Question icon
+        )
+
+        if (result == "Yes")
         {
-            ; 如果路径有效，则从该路径运行
-            Run AppSettings.Everything_Path
-        }
-        else
-        {
-            ; 5. 如果路径无效或未配置，给用户明确提示
-            k_ToolTip("Everything 路径未配置或无效，请检查 config.ini", 2000)
+            ShowSettingsGUI() ; 直接调用显示设置窗口的函数
         }
     }
   }

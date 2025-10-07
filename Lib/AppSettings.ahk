@@ -6,6 +6,8 @@ class AppSettings {
     static workbench_list := ""
     static current_workbench := ""
     static ESC_CLEAN_FUNC_ENABLE_FLAG := 0
+    static Everything_Enabled := 0
+    static Everything_Path := ""
 
     static Init() {
         this.config_ini_path := ".\config.ini"
@@ -14,5 +16,7 @@ class AppSettings {
         this.DEBUG_I := IniRead(this.config_ini_path, "通用", "DEBUG")
         this.workbench_list := Map()
         this.current_workbench := ""
+        this.Everything_Enabled := IniRead(this.config_ini_path, "Everything", "Enabled", 0)
+        this.Everything_Path := IniRead(this.config_ini_path, "Everything", "Path", "")
     }
 }

@@ -148,20 +148,39 @@ loop {
 
   ~RControl::
   {
+    ; 1. 首先检查功能是否已在 config.ini 中启用
+    if !AppSettings.Everything_Enabled
+    {
+        return
+    }
+
+    ; 2. 双击判断逻辑保持不变
     if (A_PriorHotkey != "~RControl" or A_TimeSincePriorHotkey > 400)
     {
-      KeyWait "Control"
-      return
+        KeyWait "Control"
+        return
     }
+
+    ; 3. 检查进程是否存在
     if (PID := ProcessExist("Everything.exe"))
     {
-      AHK_LOGI("获取到Everything PID = " PID)
-      Send "#]"
+        ; 如果已运行，则发送激活快捷键 (这里仍然依赖用户设置，但更健壮)
+        AHK_LOGI("获取到Everything PID = " PID)
+        Send "#]"
     }
     else
     {
-      AHK_LOGI("未找到 Everything 进程，现在启动……")
-      Run "Everything.exe", A_ProgramFiles "\Everything\"
+        ; 4. 如果未运行，检查路径配置是否有效
+        if (AppSettings.Everything_Path and FileExist(AppSettings.Everything_Path))
+        {
+            ; 如果路径有效，则从该路径运行
+            Run AppSettings.Everything_Path
+        }
+        else
+        {
+            ; 5. 如果路径无效或未配置，给用户明确提示
+            k_ToolTip("Everything 路径未配置或无效，请检查 config.ini", 2000)
+        }
     }
   }
 

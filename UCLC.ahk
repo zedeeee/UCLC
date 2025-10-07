@@ -182,7 +182,7 @@ loop {
             "请检查 config.ini 中的路径配置是否正确。`n`n"
             "要现在打开设置窗口进行配置吗？"
             , "配置缺失"
-            , "4|32" ; Yes/No buttons + Question icon
+            , 36 ; Yes/No buttons + Question icon
         )
 
         if (result == "Yes")

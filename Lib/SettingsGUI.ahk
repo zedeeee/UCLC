@@ -31,7 +31,9 @@ ShowSettingsGUI(*) {
 
     ; --- GUI 事件处理 ---
     BrowseForEverything(*) {
-        path := FileSelect("A",, "请选择 Everything.exe", "程序 (Everything.exe)")
+        SettingsGui.Opt("+Disabled -AlwaysOnTop")
+        path := FileSelect(,, "请选择 Everything.exe", "程序 (*.exe)")
+        SettingsGui.Opt("-Disabled +AlwaysOnTop")
         if path {
             SettingsGui["EverythingPath"].Value := path
         }

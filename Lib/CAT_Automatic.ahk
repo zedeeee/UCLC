@@ -210,17 +210,25 @@ quick_manipulation(diraction) {
  * @returns {string}  工作台名称
  */
 match_current_workbench(workbench_map) {
-  workbench_control_hwnd := ControlGetHwnd("WebBrowser", "A")
-  ; workbench_buttons :=
-
-  for button in WinGetControls(workbench_control_hwnd)
+  try
   {
-    button_name := ControlGetText(button, workbench_control_hwnd)
-    for key in workbench_map
+    workbench_control_hwnd := ControlGetHwnd("WebBrowser", "A")
+    ; workbench_buttons :=
+
+    for button in WinGetControls(workbench_control_hwnd)
     {
-      if button_name == key
-        return button_name
+      button_name := ControlGetText(button, workbench_control_hwnd)
+      for key in workbench_map
+      {
+        if button_name == key
+          return button_name
+      }
     }
+  }
+  catch
+  {
+    MsgBox "无法识别当前工作台，请确保【工作台】工具栏是吸附状态"
+    return
   }
 }
 

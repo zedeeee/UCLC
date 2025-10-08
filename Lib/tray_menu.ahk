@@ -24,10 +24,7 @@ modify_shortcut_cb(*)
 
 about_cb(*)
 {
-    arr := StrSplit(menu_items[1][1], " ")
-    version := arr[arr.Length]
-    MsgBox Format("一个CATIA快捷键脚本`n使CATIA的操作体验更接近AutoCAD`n版本：{1}", version), "UCLC", 0x40
-
+    MsgBox Format("一个CATIA快捷键脚本`n使CATIA的操作体验更接近AutoCAD`n版本：{1}", AppSettings.Version), "UCLC", 0x40
 }
 
 update_check_cb(*)
@@ -102,7 +99,7 @@ dev_sub_menu := [
  * ["按钮名称", 回调函数, 子菜单数组]
  */
 menu_items := [
-    ["UCLC v2.4.2-dev", NoAction_cb, about_and_updates_menu],
+    ["UCLC " AppSettings.Version, NoAction_cb, about_and_updates_menu],
     ["", NoAction_cb, ""],
     ["自定义别名", modify_alias_cb, ""],
     ["自定义快捷键", modify_shortcut_cb, ""],

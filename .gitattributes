@@ -1,1 +1,1 @@
-*.ini text eol=crlf
+*.ini diff=autohotkey-ini

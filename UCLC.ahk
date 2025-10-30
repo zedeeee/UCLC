@@ -13,6 +13,7 @@ SetTitleMatchMode 2
 #Include ./Lib/tray_menu.ahk
 #Include ./Lib/SettingsGUI.ahk
 
+ensure_main_config_exists()
 AppSettings.Init()
 add_coustom_tray_menu()
 
@@ -89,6 +90,42 @@ check_user_config() {
 
       default: ExitApp
     }
+  }
+}
+
+ensure_main_config_exists() {
+  config_path := A_ScriptDir . "\config.ini"
+  template_path := A_ScriptDir . "\config.template.ini"
+
+  if FileExist(config_path)
+    return
+
+  if !FileExist(template_path)
+  {
+    MsgBox "致命错误：配置文件模板 config.template.ini 丢失，无法创建 config.ini。请重新下载程序。", "错误", 16
+    ExitApp
+  }
+
+  try
+  {
+    ; FileRecycle(config_path)
+    FileCopy template_path, config_path, 0
+  }
+  catch
+  {
+    MsgBox("
+    ( LTrim
+      创建配置文件失败！
+
+      这通常是因为 UCLC 程序被放置在了需要管理员权限的系统目录中（例如 "Program Files"）。
+
+      建议解决方案：
+      1. 将整个 UCLC 文件夹移动到您的个人文件夹（例如“文档”或“桌面”）。
+      2. 然后重新启动程序。
+
+      如果您确实需要在此位置运行，请手动右键点击 `UCLC.ahk` 文件，并选择“以管理员身份运行”。
+    )", "错误", 16)
+    ExitApp
   }
 }
 

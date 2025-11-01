@@ -12,6 +12,7 @@ SetTitleMatchMode 2
 #Include ./Lib/CAT_Automatic.ahk
 #Include ./Lib/tray_menu.ahk
 #Include ./Lib/SettingsGUI.ahk
+#Include ./Lib/ConfigDownloaderGUI.ahk
 
 ensure_main_config_exists()
 AppSettings.Init()
@@ -57,39 +58,8 @@ HotIfWinActive "ahk_group GroupCATIA"
 check_user_config() {
   if (FileExist(AppSettings.alias_ini_path) = "" or FileExist(AppSettings.hotkey_ini_path) = "")
   {
-    result := MsgBox(
-      "未找到配置文件`n"
-      "是否从 Github/Gitee 下载示例文件？`n"
-      , "配置文件缺失"
-      , 51
-    )
-
-    switch result {
-      case "No":
-        MsgBox "
-        (
-          示例配置文件下载地址：
-          https://github.com/zedeeee/UCLC-config
-        )"
-        ExitApp
-
-      case "Yes":
-        config_and_path := [
-          ["CAT_Alias.ini", AppSettings.alias_ini_path],
-          ["CAT_Hotkey.ini", AppSettings.hotkey_ini_path]
-        ]
-
-        flag := 1
-        for config_info in config_and_path
-        {
-          if not download_configurations(config_info[1], config_info[2])
-            flag := 0
-        }
-
-        MsgBox("获取配置文件成功，请重新载入脚本")
-
-      default: ExitApp
-    }
+    downloaderGUI := ConfigDownloaderGUI()
+    downloaderGUI.Show()
   }
 }
 

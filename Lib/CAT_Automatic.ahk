@@ -36,19 +36,12 @@ cat_command_execution(input_string, command_ini, power_input_hwnd) {
         AHK_LOGI("启动多线程处理 GSD 命令")
     }
 
-    ; 等待用户物理释放修饰键，防止 Alt+Enter 等误触发
-    if GetKeyState("Alt", "P")
-        KeyWait "Alt"
-    if GetKeyState("Ctrl", "P")
-        KeyWait "Ctrl"
-    if GetKeyState("Shift", "P")
-        KeyWait "Shift"
-
     ; 输入Enter键
+    ; BlockInput 冻结物理输入后，SendInput 清理修饰键逻辑状态
+    ; 防止 Alt/Ctrl/Shift 残留导致 Alt+Enter 等误触发
     try {
         BlockInput true
         Sleep 100
-        ; 物理松开后，清理系统逻辑按键状态（RAlt 作为自定义前缀键时可能残留）
         SendInput "{Alt Up}{Ctrl Up}{Shift Up}"
         ControlSend "{Enter}", power_input_hwnd
         BlockInput false

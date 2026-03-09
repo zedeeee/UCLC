@@ -7,6 +7,25 @@
 #Include CATIAInstance.ahk
 
 /**
+ * 安全发送回车键（统一收口）
+ * 所有向 CATIA power-input 发送 Enter 的操作必须经过此函数
+ * 三层防护：KeyWait(物理释放) → BlockInput(冻结输入) → SendInput(逻辑清理)
+ * @param hwnd  目标控件句柄
+ * 
+ * NOTE: 三个 KeyWait 各 150ms 超时，极端情况叠加 ~450ms
+ *       待用户实测跟手感受，如不可接受再调低超时或改用微轮询
+ */
+safe_send_enter(hwnd) {
+    KeyWait("Alt", "T0.15")
+    KeyWait("Ctrl", "T0.15")
+    KeyWait("Shift", "T0.15")
+    BlockInput true
+    SendInput "{Alt Up}{Ctrl Up}{Shift Up}"
+    ControlSend "{Enter}", hwnd
+    BlockInput false
+}
+
+/**
  * 根据输入的用户别名, 执行配置文件中的 COMMAND_ID 以及 函数调用
  * @param alias_strings    用户别名字符串, 不区分大小写
  * @param command_ini      命令配置文件路径

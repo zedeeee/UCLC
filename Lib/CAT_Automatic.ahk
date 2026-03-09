@@ -81,6 +81,31 @@ cat_command_execution(input_string, command_ini, power_input_hwnd) {
     }
 }
 
+/**
+ * 从"超级输入消息"报错弹窗中解析未知命令，修正 Hdr 后缀并返回
+ * @returns {string} 修正后的命令ID，解析失败返回空字符串
+ */
+handle_hdr_error() {
+    pop_hwnd := WinGetID()
+    str := WinGetTextFast(false)
+
+    WinClose(pop_hwnd)
+    WinWaitClose(pop_hwnd, , 2)
+
+    loop parse, str, "`n", "`r" {
+        if InStr(A_LoopField, "未知命令") {
+            command := Trim(SubStr(A_LoopField, InStr(A_LoopField, "：") + 1))
+            ; 有 Hdr 后缀则删除，无则添加
+            corrected := (SubStr(command, -3) = "Hdr")
+                ? SubStr(command, 1, StrLen(command) - 3)
+                : command . "Hdr"
+            AHK_LOGI("Hdr 修正: " . command . " → " . corrected)
+            return corrected
+        }
+    }
+    return ""
+}
+
 process_unknown_command(_power_input_hwnd) {
     SetTimer , 0
     command := ""

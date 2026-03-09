@@ -4,6 +4,7 @@
 #Include AHK_LOG.ahk
 #Include windows.ahk
 #Include stdio.ahk
+#Include CATIAInstance.ahk
 
 /**
  * 根据输入的用户别名, 执行配置文件中的 COMMAND_ID 以及 函数调用

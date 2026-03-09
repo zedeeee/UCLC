@@ -36,7 +36,7 @@ cat_command_execution(input_string, command_ini, power_input_hwnd) {
     ; 获取当前工作台
     current_workbench := match_current_workbench(AppSettings.workbench_list)
 
-    ; 获取对应的Command-id 和 回调函数
+    ; 获取对应的 Command-id 和 回调函数
     command_id_and_cb_array := read_user_alias(command_ini, current_workbench, StrUpper(input_string))
 
     if !command_id_and_cb_array {
@@ -44,30 +44,31 @@ cat_command_execution(input_string, command_ini, power_input_hwnd) {
         return
     }
 
-    ; command-id 输出到power-input
-    ControlSetText("c:" . command_id_and_cb_array[1], power_input_hwnd)
+    ; 获取当前 CATIA 实例（按 PID 隔离）
+    instance := get_catia_instance(power_input_hwnd)
 
-    ; 增加一个多线程任务用于处理GSD模块命令 "Hdr" 的问题
-    ; 每调用一次 cat_command_execution 函数就会创建一个新的线程
-    ; 线程的总数受 #MaxThreads 的限制, 默认为 10
-    ; 如果短时间内连续输入命令导致热键失效，尝试调高线程的限制
-    if current_workbench == "创成式外形设计" {
-        SetTimer(process_unknown_command.Bind(power_input_hwnd))
-        AHK_LOGI("启动多线程处理 GSD 命令")
-    }
+    ; 查实例级 Hdr 缓存
+    original_id := command_id_and_cb_array[1]
+    command_id := instance.hdr_cache.Has(original_id)
+        ? instance.hdr_cache[original_id] : original_id
 
-    ; 输入Enter键
-    ; BlockInput 冻结物理输入后，SendInput 清理修饰键逻辑状态
-    ; 防止 Alt/Ctrl/Shift 残留导致 Alt+Enter 等误触发
-    try {
-        BlockInput true
-        Sleep 100
-        SendInput "{Alt Up}{Ctrl Up}{Shift Up}"
-        ControlSend "{Enter}", power_input_hwnd
-        BlockInput false
-    }
-    catch Error as e {
-        k_ToolTip("错误：" . e.What e.Message e.Line, 2000)
+    ; command-id 输出到 power-input
+    ControlSetText("c:" . command_id, power_input_hwnd)
+
+    ; 安全发送第一次回车
+    safe_send_enter(power_input_hwnd)
+
+    ; [仅 GSD 且未缓存] 同步侦测“超级输入消息”报错弹窗
+    ; 通过 ahk_pid 限定到同一 CATIA 进程，避免误捕其他实例的弹窗
+    if (current_workbench == "创成式外形设计" && !instance.hdr_cache.Has(original_id)) {
+        if WinWait("超级输入消息 ahk_pid " . instance.pid, , 0.5) {
+            corrected_id := handle_hdr_error()
+            if corrected_id {
+                instance.hdr_cache[original_id] := corrected_id
+                ControlSetText("c:" . corrected_id, power_input_hwnd)
+                safe_send_enter(power_input_hwnd)
+            }
+        }
     }
 
     ; 执行回调函数，如有
@@ -104,53 +105,6 @@ handle_hdr_error() {
         }
     }
     return ""
-}
-
-process_unknown_command(_power_input_hwnd) {
-    SetTimer , 0
-    command := ""
-
-    ; 检查窗口是否激活并等待目标窗口弹出
-    if WinWaitNotActive(, , 1) {
-        if !WinWaitActive("超级输入消息", , 1) {
-            return
-        }
-
-        pop_window_hwnd := WinGetID()
-
-        ; 获取弹窗文本
-        str := WinGetTextFast(false)
-
-        ; 从弹窗文本中解析命令
-        loop parse, str, "`n", "`r" {
-            if InStr(A_LoopField, "未知命令") {
-                ; 关闭弹窗
-                WinClose(pop_window_hwnd)
-                WinWaitClose(pop_window_hwnd, , 5)
-                AHK_LOGI("关闭窗口")
-
-                ; 提取命令
-                command := Trim(SubStr(A_LoopField, InStr(A_LoopField, "：") + 1, StrLen(A_LoopField)))
-                break
-            }
-        }
-    }
-
-    ; 检查并调整命令格式
-    if command {
-        command := RegExReplace(command, "Hdr$", "") . (SubStr(command, -3) = "Hdr" ? "" : "Hdr")
-
-        ; 更新输入框并发送回车键
-        try {
-            BlockInput(true)
-            ControlSetText("c:" . command, _power_input_hwnd)
-            ControlSend("{Enter}", _power_input_hwnd)
-        } catch Error as e {
-            k_ToolTip("错误：" . e.What . " " . e.Message . " (行号：" . e.Line . ")", 2000)
-        } finally {
-            BlockInput(false)
-        }
-    }
 }
 
 /**

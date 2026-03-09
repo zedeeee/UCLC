@@ -19,10 +19,25 @@ safe_send_enter(hwnd) {
     KeyWait("Alt", "T0.15")
     KeyWait("Ctrl", "T0.15")
     KeyWait("Shift", "T0.15")
+
+    ; 记录进入 BlockInput 前的物理按键状态
+    alt_held := GetKeyState("Alt", "P")
+    ctrl_held := GetKeyState("Ctrl", "P")
+    shift_held := GetKeyState("Shift", "P")
+
     BlockInput true
     SendInput "{Alt Up}{Ctrl Up}{Shift Up}"
     ControlSend "{Enter}", hwnd
     BlockInput false
+
+    ; 回写：恢复仍被物理按住的修饰键的逻辑状态
+    ; 防止 BlockInput 期间的虚拟 KeyUp 导致物理/逻辑状态失步（Ctrl 粘滞）
+    if ctrl_held
+        SendInput "{Ctrl Down}"
+    if shift_held
+        SendInput "{Shift Down}"
+    if alt_held
+        SendInput "{Alt Down}"
 }
 
 /**

@@ -26,6 +26,20 @@ safe_send_enter(hwnd) {
 }
 
 /**
+ * 根据实例级 Hdr 模式自动调整命令 ID
+ * @param command_id  原始命令 ID
+ * @param mode        "append" | "strip" | ""
+ * @returns {string}  调整后的命令 ID
+ */
+apply_hdr_mode(command_id, mode) {
+    if mode == "append" && SubStr(command_id, -3) != "Hdr"
+        return command_id . "Hdr"
+    if mode == "strip" && SubStr(command_id, -3) == "Hdr"
+        return SubStr(command_id, 1, StrLen(command_id) - 3)
+    return command_id
+}
+
+/**
  * 根据输入的用户别名, 执行配置文件中的 COMMAND_ID 以及 函数调用
  * @param alias_strings    用户别名字符串, 不区分大小写
  * @param command_ini      命令配置文件路径
@@ -47,10 +61,9 @@ cat_command_execution(input_string, command_ini, power_input_hwnd) {
     ; 获取当前 CATIA 实例（按 PID 隔离）
     instance := get_catia_instance(power_input_hwnd)
 
-    ; 查实例级 Hdr 缓存
+    ; 根据实例级 Hdr 模式自动调整命令 ID
     original_id := command_id_and_cb_array[1]
-    command_id := instance.hdr_cache.Has(original_id)
-        ? instance.hdr_cache[original_id] : original_id
+    command_id := apply_hdr_mode(original_id, instance.hdr_mode)
 
     ; command-id 输出到 power-input
     ControlSetText("c:" . command_id, power_input_hwnd)
@@ -58,13 +71,15 @@ cat_command_execution(input_string, command_ini, power_input_hwnd) {
     ; 安全发送第一次回车
     safe_send_enter(power_input_hwnd)
 
-    ; [仅 GSD 且未缓存] 同步侦测“超级输入消息”报错弹窗
+    ; [仅 GSD 且 Hdr 模式未确定] 同步侦测"超级输入消息"报错弹窗
     ; 通过 ahk_pid 限定到同一 CATIA 进程，避免误捕其他实例的弹窗
-    if (current_workbench == "创成式外形设计" && !instance.hdr_cache.Has(original_id)) {
+    if (current_workbench == "创成式外形设计" && instance.hdr_mode == "") {
         if WinWait("超级输入消息 ahk_pid " . instance.pid, , 0.5) {
             corrected_id := handle_hdr_error()
             if corrected_id {
-                instance.hdr_cache[original_id] := corrected_id
+                ; 设置实例级全局 Hdr 模式
+                instance.hdr_mode := (SubStr(corrected_id, -3) = "Hdr") ? "append" : "strip"
+                AHK_LOGI("Hdr 模式已设定: " . instance.hdr_mode . " (PID: " . instance.pid . ")")
                 ControlSetText("c:" . corrected_id, power_input_hwnd)
                 safe_send_enter(power_input_hwnd)
             }

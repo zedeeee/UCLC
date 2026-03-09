@@ -8,7 +8,7 @@
 class CATIAInstance {
     __New(pid) {
         this.pid := pid
-        this.hdr_cache := Map()  ; key=原始命令ID, value=修正后的正确命令ID
+        this.hdr_mode := ""  ; "append"=需加Hdr | "strip"=需去Hdr | ""=未知(需探测)
     }
 }
 

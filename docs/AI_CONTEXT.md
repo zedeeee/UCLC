@@ -22,6 +22,7 @@ master (稳定发布) ← v2.5.0 (集成测试) ← feat/* (功能开发)
 | `v2.5.0` | 功能集成分支 | 🟡 从 master 新建，待合入功能 |
 | `feat/v2.5-core-overhaul` | 核心重构功能分支 | 🟡 原 `v2.4.2-RC4`，含输入法增强/别名重构/配置GUI/热键引擎重写 |
 | `v2.4.2-RC4` | 修复版发布候选 | 🟢 已合并 `fix/alt-synchronous-core` + `fix/unhandled-workbench-return` |
+| `feat/auto-version-stamp` | 版本号自动化 | 🟡 基于 `v2.4.2-RC4`，pre-commit hook 自动注入版本号 |
 | `fix/alt-synchronous-core` | Alt 键同步修复 | ✅ 已合并到 `v2.4.2-RC4` |
 | `fix/unhandled-workbench-return` | 工作台保护逻辑 | ✅ 已合并到 `v2.4.2-RC4` |
 | `hotfix/v2.4.2-RC3.10081` | RC3 热修复 | 📦 `fix/alt-synchronous-core` 的前身/base |
@@ -49,4 +50,12 @@ v2.4.1 (master)
 
 ## 关键标签
 
-`v2.4.0` → `v2.4.1` → `v2.4.2-RC1` → `v2.4.2-RC2` → `v2.4.2-RC2-BUGFIX` → `v2.4.2-RC3.10081` → `v2.4.2-RC3.10081.hotfix1`
+`v2.4.0` → `v2.4.1` → `v2.4.2-RC1` → `v2.4.2-RC2` → `v2.4.2-RC2-BUGFIX` → `v2.4.2-RC3.10081` → `v2.4.2-RC3.10081.hotfix1` → `v2.4.2-RC4`
+
+## 版本号自动化机制
+
+- **唯一版本源**：Git tag（通过 `git describe --tags --always`）
+- **自动注入**：`scripts/stamp_version.sh` 在每次 `git commit` 前通过 pre-commit hook 自动将版本号写入 `config.ini`
+- **hook 安装**：新 clone 后需运行 `bash scripts/install_hooks.sh` 安装 hook
+- **编码注意**：`config.ini` 为 UTF-16LE 编码，脚本通过 `iconv` 转码处理
+- **计划中**：`.agent/workflows/release.md` 发布 workflow（待 `.agent` 独立为 submodule 后提交）

@@ -4,6 +4,8 @@
 # 使用 `git describe --tags --always` 获取版本描述，写入 config.ini 的 [Version] 段。
 # 在 tag 上时输出精确版本号（如 v2.4.2），否则输出带提交距离的描述（如 v2.4.2-3-g1a2b3c4）。
 #
+# 注意：config.ini 为 UTF-16LE 编码（Windows INI 默认），脚本通过 iconv 转码处理。
+#
 # 用法：
 #   直接运行：bash scripts/stamp_version.sh
 #   由 pre-commit hook 自动调用
@@ -24,8 +26,8 @@ if [[ ! -f "${CONFIG_FILE}" ]]; then
     exit 1
 fi
 
-# 读取当前版本号
-current_version=$(grep -E "^Version\s*=" "${CONFIG_FILE}" | sed 's/^Version\s*=\s*//' | tr -d '\r')
+# 将 UTF-16LE 转为 UTF-8 后读取当前版本号
+current_version=$(iconv -f UTF-16 -t UTF-8 "${CONFIG_FILE}" | grep -E "^Version\s*=" | sed 's/^Version\s*=\s*//' | tr -d '\r')
 
 # 如果版本号没有变化，跳过写入
 if [[ "${current_version}" == "${version}" ]]; then
@@ -33,7 +35,12 @@ if [[ "${current_version}" == "${version}" ]]; then
     exit 0
 fi
 
-# 替换 config.ini 中的版本号（兼容 Windows 换行符）
-sed -i "s/^Version = .*/Version = ${version}/" "${CONFIG_FILE}"
+# UTF-16LE → UTF-8 → sed 替换 → UTF-8 → UTF-16LE 写回
+iconv -f UTF-16 -t UTF-8 "${CONFIG_FILE}" \
+    | sed "s/^Version = .*/Version = ${version}/" \
+    | iconv -f UTF-8 -t UTF-16 \
+    > "${CONFIG_FILE}.tmp"
+
+mv "${CONFIG_FILE}.tmp" "${CONFIG_FILE}"
 
 echo "[stamp_version] 版本号已更新: ${current_version} → ${version}"

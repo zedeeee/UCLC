@@ -35,10 +35,11 @@ if [[ "${current_version}" == "${version}" ]]; then
     exit 0
 fi
 
-# UTF-16LE → UTF-8 → sed 替换 → UTF-8 → UTF-16LE 写回
-iconv -f UTF-16 -t UTF-8 "${CONFIG_FILE}" \
+# UTF-16LE → UTF-8 → sed 替换 → UTF-8 → UTF-16LE (带 BOM) 写回
+# 注意：iconv -t UTF-16 可能输出 BE，必须显式指定 UTF-16LE 并手动补 BOM (FF FE)
+(printf '\xff\xfe' && iconv -f UTF-16 -t UTF-8 "${CONFIG_FILE}" \
     | sed "s/^Version = .*/Version = ${version}/" \
-    | iconv -f UTF-8 -t UTF-16 \
+    | iconv -f UTF-8 -t UTF-16LE) \
     > "${CONFIG_FILE}.tmp"
 
 mv "${CONFIG_FILE}.tmp" "${CONFIG_FILE}"

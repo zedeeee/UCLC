@@ -1,8 +1,9 @@
 #!/bin/bash
-# stamp_version.sh - 从 Git tag 自动注入版本号到 config.ini
+# stamp_version.sh - pre-commit 自动处理 config.ini
 #
-# 使用 `git describe --tags --always` 获取版本描述，写入 config.ini 的 [Version] 段。
-# 在 tag 上时输出精确版本号（如 v2.4.2），否则输出带提交距离的描述（如 v2.4.2-3-g1a2b3c4）。
+# 功能：
+#   1. 从 Git tag 注入版本号到 [Version] 段
+#   2. 强制将 DEBUG 设为 0，防止调试配置被提交
 #
 # 注意：config.ini 为 UTF-16LE 编码（Windows INI 默认），脚本通过 iconv 转码处理。
 #
@@ -26,22 +27,36 @@ if [[ ! -f "${CONFIG_FILE}" ]]; then
     exit 1
 fi
 
-# 将 UTF-16LE 转为 UTF-8 后读取当前版本号
-current_version=$(iconv -f UTF-16 -t UTF-8 "${CONFIG_FILE}" | grep -E "^Version\s*=" | sed 's/^Version\s*=\s*//' | tr -d '\r')
+# 将 UTF-16LE 转为 UTF-8 后读取当前值
+config_utf8=$(iconv -f UTF-16 -t UTF-8 "${CONFIG_FILE}")
+current_version=$(echo "${config_utf8}" | grep -E "^Version\s*=" | sed 's/^Version\s*=\s*//' | tr -d '\r')
+current_debug=$(echo "${config_utf8}" | grep -E "^DEBUG\s*=" | sed 's/^DEBUG\s*=\s*//' | tr -d '\r')
 
-# 如果版本号没有变化，跳过写入
-if [[ "${current_version}" == "${version}" ]]; then
-    echo "[stamp_version] 版本号未变化: ${version}"
+changed=false
+
+# 检查是否需要更新版本号
+if [[ "${current_version}" != "${version}" ]]; then
+    config_utf8=$(echo "${config_utf8}" | sed "s/^Version = .*/Version = ${version}/")
+    echo "[stamp_version] 版本号已更新: ${current_version} → ${version}"
+    changed=true
+fi
+
+# 强制 DEBUG = 0，防止调试配置被提交
+if [[ "${current_debug}" != "0" ]]; then
+    config_utf8=$(echo "${config_utf8}" | sed "s/^DEBUG = .*/DEBUG = 0/")
+    echo "[stamp_version] DEBUG 已重置: ${current_debug} → 0"
+    changed=true
+fi
+
+# 如果没有任何变化，跳过写入
+if [[ "${changed}" != "true" ]]; then
+    echo "[stamp_version] config.ini 无需更新"
     exit 0
 fi
 
-# UTF-16LE → UTF-8 → sed 替换 → UTF-8 → UTF-16LE (带 BOM) 写回
+# UTF-8 → UTF-16LE (带 BOM) 写回
 # 注意：iconv -t UTF-16 可能输出 BE，必须显式指定 UTF-16LE 并手动补 BOM (FF FE)
-(printf '\xff\xfe' && iconv -f UTF-16 -t UTF-8 "${CONFIG_FILE}" \
-    | sed "s/^Version = .*/Version = ${version}/" \
-    | iconv -f UTF-8 -t UTF-16LE) \
+(printf '\xff\xfe' && echo "${config_utf8}" | iconv -f UTF-8 -t UTF-16LE) \
     > "${CONFIG_FILE}.tmp"
 
 mv "${CONFIG_FILE}.tmp" "${CONFIG_FILE}"
-
-echo "[stamp_version] 版本号已更新: ${current_version} → ${version}"

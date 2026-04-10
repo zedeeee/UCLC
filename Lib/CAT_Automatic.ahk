@@ -26,18 +26,29 @@ safe_send_enter(hwnd) {
     shift_held := GetKeyState("Shift", "P")
 
     BlockInput true
-    SendInput "{Alt Up}{Ctrl Up}{Shift Up}"
-    ControlSend "{Enter}", hwnd
+    ; 逻辑松开修饰键（加上 {Blind} 防止自身受意外干扰）
+    SendInput "{Blind}{Alt Up}{Ctrl Up}{Shift Up}"
+    
+    ; 确保修饰键的 Up 事件已被系统处理，防止与 Enter 混叠
+    Sleep 10
+
+    ; ！！核心修复点：使用 {Blind} 强制阻止 ControlSend 自作聪明！！
+    ; ControlSend 默认会根据物理实体按键的情况，自动补偿发出 Alt Up 和 Alt Down。
+    ; 加上 {Blind} 让它绝对只发 Enter，不发任何多余的修饰键跳变。
+    ControlSend "{Blind}{Enter}", hwnd
+    
+    ; 给 CATIA 留出一点消化 Enter 消息的时间，防止后续的 Alt Down 插队
+    Sleep 30
+
     BlockInput false
 
     ; 回写：恢复仍被物理按住的修饰键的逻辑状态
-    ; 防止 BlockInput 期间的虚拟 KeyUp 导致物理/逻辑状态失步（Ctrl 粘滞）
     if ctrl_held
-        SendInput "{Ctrl Down}"
+        SendInput "{Blind}{Ctrl Down}"
     if shift_held
-        SendInput "{Shift Down}"
+        SendInput "{Blind}{Shift Down}"
     if alt_held
-        SendInput "{Alt Down}"
+        SendInput "{Blind}{Alt Down}"
 }
 
 

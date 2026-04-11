@@ -145,64 +145,70 @@ handle_hdr_error() {
 cat_auto_graph_tree_reorder() {
     GroupAdd "ReorderTree", "Graph tree reordering"
     GroupAdd "ReorderTree", "图形树重新排序"
-    raw_lists_string := ""
 
     dialogbox_hwnd := WinWait("ahk_group ReorderTree", , 5)
-    if dialogbox_hwnd == 0 {
-        Exit
+    if !dialogbox_hwnd {
+        return
     }
-
-    Listbox_items := ControlGetItems("ListBox1", dialogbox_hwnd)
-
-    for item in Listbox_items {
-        raw_lists_string .= item ","
-    }
-
-    sorted_lists_string := Sort(raw_lists_string, "D,")
-    refrence_lists_array := StrSplit(SubStr(sorted_lists_string, 1, StrLen(sorted_lists_string) - 1), ',')
 
     listbox_classnn := "ListBox1"
+    raw_list_items := ControlGetItems(listbox_classnn, dialogbox_hwnd)
+    
+    ; 1. 数组转字符串，使用换行符代替逗号规避命名冲突Bug
+    raw_lists_string := ""
+    for item in raw_list_items {
+        raw_lists_string .= item "`n"
+    }
+    raw_lists_string := Trim(raw_lists_string, "`n")
+
+    ; 2. 排序并转为有序标准数组 (Sort 默认为 `n 分隔)
+    sorted_lists_string := Sort(raw_lists_string)
+    reference_lists_array := StrSplit(sorted_lists_string, "`n")
+
     free_move_button := ControlGetHwnd("自由移动", dialogbox_hwnd)
 
-    listbox_items := ControlGetItems(listbox_classnn, dialogbox_hwnd)
-
-    ; 检查当前的排序状态
-    loop listbox_items.Length {
-        if (listbox_items[A_Index] == refrence_lists_array[A_Index]) {
-            if (A_Index == listbox_items.Length) {
-                k_ToolTip("已排序完成, 不用继续排序", 3000)
-                Sleep 1000
-                PostMessage(0x10, 0, , , dialogbox_hwnd)
-                Exit
-            }
-            continue
-        }
-        else {
+    ; 3. 拦截检查: 过滤是否已排序的状态
+    is_sorted := true
+    for idx, item in raw_list_items {
+        if (item != reference_lists_array[idx]) {
+            is_sorted := false
             break
         }
     }
 
-    try {
-        ; 执行排序
-        refrence_item_index := 0
+    if is_sorted {
+        k_ToolTip("已排序完成, 不用继续排序", 3000)
+        Sleep 1000
+        PostMessage(0x10, 0, , , dialogbox_hwnd)
+        return
+    }
 
-        for item in refrence_lists_array {
-            refrence_item_index += 1
-            ControlChooseString(refrence_lists_array[A_Index], listbox_classnn, dialogbox_hwnd)
-            if (ControlGetIndex(listbox_classnn, dialogbox_hwnd) == A_Index) {
+    try {
+        ; 4. 执行重组排序
+        for idx, item in reference_lists_array {
+            ; 选中该项，检查是否已在当前应该在的位置
+            ControlChooseString(item, listbox_classnn, dialogbox_hwnd)
+            if (ControlGetIndex(listbox_classnn, dialogbox_hwnd) == idx) {
                 continue
             }
+            
+            ; 激活自由移动按钮并选择目标位置 (idx)
             SendMessage(0xF5, 0, 0, free_move_button, dialogbox_hwnd)
-            ControlChooseIndex(A_Index, listbox_classnn, dialogbox_hwnd)
+            ControlChooseIndex(idx, listbox_classnn, dialogbox_hwnd)
 
-            while ControlChooseString(item, listbox_classnn, dialogbox_hwnd) != refrence_item_index {
-                Sleep 1
+            ; 轮询验证是否已移动成功 (超时限制5s，防止死循环)
+            loop 100 {
+                try ControlChooseString(item, listbox_classnn, dialogbox_hwnd)
+                if (ControlGetIndex(listbox_classnn, dialogbox_hwnd) == idx) {
+                    break
+                }
+                Sleep 50
             }
         }
     }
     catch Error as e {
         AHK_LOGI(Format("函数: {1} 执行失败`n错误信息: {2} on Line {3} `n 文件: {4}", e.What, e.Message, e.Line, e.File))
-        Exit
+        return
     }
 
     k_ToolTip("结构树排序完成", 2000)

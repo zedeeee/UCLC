@@ -14,6 +14,11 @@ INI_GET_ALL_VALUE_A(file_path, section_name)
         loop parse IniRead(file_path, section_name), "`n" ; 通过换行符获取数组
         {
             arr := StrSplit(A_LoopField, "=")
+            key := Trim(arr[1])
+            ; 跳过 [AutoIME] 节下的布尔控制键，避免其值被误注册为进程名
+            if (key == "Enable" or key == "RestoreChinese") {
+                continue
+            }
             values.Push(arr[2])
         }
     }

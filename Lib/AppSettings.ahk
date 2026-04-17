@@ -9,6 +9,8 @@ class AppSettings {
     static Everything_Enabled := 0
     static Version := ""
     static Everything_Path := ""
+    static AutoIME_Enable := 1
+    static AutoIME_RestoreChinese := 0
 
     static Init() {
         this.config_ini_path := ".\config.ini"
@@ -20,5 +22,13 @@ class AppSettings {
         this.Everything_Enabled := IniRead(this.config_ini_path, "Everything", "Enabled", 0)
         this.Everything_Path := IniRead(this.config_ini_path, "Everything", "Path", "")
         this.Version := IniRead(this.config_ini_path, "Version", "Version", "Unknown")
+
+        ; AutoIME 配置一次性载入内存
+        this.AutoIME_Enable := IniRead(this.config_ini_path, "AutoIME", "Enable", 1)
+        if (this.AutoIME_Enable == 0) {
+            this.AutoIME_RestoreChinese := 0
+        } else {
+            this.AutoIME_RestoreChinese := IniRead(this.config_ini_path, "AutoIME", "RestoreChinese", 0)
+        }
     }
 }

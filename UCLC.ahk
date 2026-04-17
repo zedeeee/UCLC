@@ -1,4 +1,4 @@
-﻿#Requires AutoHotKey v2.0
+#Requires AutoHotKey v2.0
 #SingleInstance Force
 ; #MaxThreads 20 ; 已废弃异步轮询，不再需要高并发线程
 SetTitleMatchMode 2
@@ -87,6 +87,7 @@ check_user_config() {
 }
 
 add_group_by_exe("group_autoime", "AutoIME", AppSettings.config_ini_path)
+IMEController.Init()
 
 volume_control := VolumeController.Call()
 
@@ -98,12 +99,6 @@ loop {
 
         if catia_window_hwnd {
             GroupAdd "GroupCATIA", "ahk_class " catia_window_hwnd
-        }
-
-        ; 检测到匹配窗口后，自动切换为英文输入法
-        if (WinActive("ahk_group group_autoime")) {
-            switchIMEbyID(IMEmap["en"])
-            SetTimer(confirmIME, -5000)
         }
 
         WinWaitNotActive(last_found_window_hwnd)

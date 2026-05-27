@@ -243,7 +243,8 @@ match_current_workbench(workbench_map) {
     }
     catch {
         ; WebBrowser 控件未找到，工具栏未吸附 (情况 1)
-        MsgBox "无法识别当前工作台，请确保【工作台】工具栏是吸附状态"
+        active_hwnd := WinExist("A")
+        MsgBox("无法识别当前工作台，请确保【工作台】工具栏是吸附状态", "UCLC 警告", "Icon! Owner" . active_hwnd)
         return "ERROR_NOT_DOCKED"
     }
 }

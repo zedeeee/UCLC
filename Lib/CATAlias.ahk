@@ -31,7 +31,7 @@ read_user_alias(alias_list_ini_path, section, key) {
         command_id_and_cb_array := process_config(config_str)
     }
     catch as e {
-        if e && section != "通用"
+        if e
         {
             try {
                 AHK_LOGI("调用 通用")
@@ -42,10 +42,6 @@ read_user_alias(alias_list_ini_path, section, key) {
                 k_ToolTip(Format("没有找到与 {1} 对应的命令", key), 1000)
                 return 0
             }
-        }
-        else {
-            k_ToolTip(Format("没有找到与 {1} 对应的命令", key), 1000)
-            return 0
         }
     }
 

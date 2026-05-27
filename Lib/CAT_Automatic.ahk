@@ -63,8 +63,8 @@ cat_command_execution(input_string, command_ini, power_input_hwnd) {
     ; 获取当前工作台
     current_workbench := match_current_workbench(AppSettings.workbench_list)
 
-    if current_workbench == "ERROR_NOT_DOCKED" {
-        return  ; 工具栏未吸附，终止后续操作（已通过 MsgBox 警告）
+    if !current_workbench {
+        return  ; 如果没有识别到工作台，则终止后续操作
     }
 
     ; 获取对应的 Command-id 和 回调函数
@@ -238,13 +238,10 @@ match_current_workbench(workbench_map) {
                     return button_name
             }
         }
-        ; WebBrowser 控件存在，但工作台名称未收录在配置中 (情况 2)
-        return "通用"
     }
     catch {
-        ; WebBrowser 控件未找到，工具栏未吸附 (情况 1)
         MsgBox "无法识别当前工作台，请确保【工作台】工具栏是吸附状态"
-        return "ERROR_NOT_DOCKED"
+        return
     }
 }
 

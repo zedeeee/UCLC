@@ -18,7 +18,7 @@ mkdir -p "${HOOKS_DIR}"
 # 创建 pre-commit hook
 cat > "${HOOKS_DIR}/pre-commit" << 'HOOK_EOF'
 #!/bin/bash
-# pre-commit hook - 自动更新 config.ini 中的版本号
+# pre-commit hook - 自动更新 Lib/Version.ahk
 #
 # 由 scripts/install_hooks.sh 安装，请勿手动编辑。
 # 如需修改逻辑，请编辑 scripts/stamp_version.sh 后重新运行安装脚本。
@@ -28,10 +28,10 @@ REPO_ROOT="$(git rev-parse --show-toplevel)"
 # 运行版本号注入脚本
 bash "${REPO_ROOT}/scripts/stamp_version.sh"
 
-# 如果 config.ini 被修改，将其加入暂存区
-if git diff --name-only -- config.ini | grep -q "config.ini"; then
-    git add config.ini
-    echo "[pre-commit] config.ini 版本号已自动暂存"
+# 如果 Lib/Version.ahk 被修改，将其加入暂存区
+if git diff --name-only -- Lib/Version.ahk | grep -q "Lib/Version.ahk"; then
+    git add Lib/Version.ahk
+    echo "[pre-commit] Lib/Version.ahk 版本号已自动暂存"
 fi
 HOOK_EOF
 

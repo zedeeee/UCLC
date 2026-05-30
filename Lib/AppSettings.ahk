@@ -1,3 +1,5 @@
+#Include "%A_LineFile%\..\Version.ahk"
+
 class AppSettings {
     static config_ini_path := ""
     static alias_ini_path := ""
@@ -7,7 +9,7 @@ class AppSettings {
     static current_workbench := ""
     static ESC_CLEAN_FUNC_ENABLE_FLAG := 0
     static Everything_Enabled := 0
-    static Version := ""
+    static Version := UCLC_VERSION
     static Everything_Path := ""
 
     static Init() {
@@ -19,6 +21,5 @@ class AppSettings {
         this.current_workbench := ""
         this.Everything_Enabled := IniRead(this.config_ini_path, "Everything", "Enabled", 0)
         this.Everything_Path := IniRead(this.config_ini_path, "Everything", "Path", "")
-        this.Version := IniRead(this.config_ini_path, "Version", "Version", "Unknown")
     }
 }

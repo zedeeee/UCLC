@@ -29,17 +29,27 @@
 ## 主要功能
 1. 自定义用户别名
 1. 自定义快捷键（Ctrl/Shift/Alt/F1~12）
-1. 用户别名自适应。一种功能，一种命令，不用考虑工作台。
+1. 用户别名、快捷键自适应。同一类功能，同一个命令
 1. 空格键 执行上次的命令
 
-## 附加功能
-1. 产品结构树自动排序，使用须知
-2. 在 CATIA 自动切换输入法为英文
-1. `Shift + Tab`在多个 CATIA 窗口循环切换
-1. 双击 `右Ctrl` 键呼出 Everything（Everything需要设置快捷键`win+]`）
-5. `ESC` 清除 Power-input 输入框的内容（测试功能）
-6. `Win+鼠标滚轮`：切换虚拟桌面（Windows 11）
-7. `RAlt+鼠标滚轮`：调节音量，`RAlt+鼠标中键`：静音切换
+## 功能特性
+
+经过不断的演进，UCLC 已从单纯的按键映射，成长为一个兼具 CATIA 专业辅助与通用效率提升的伴生工具。
+
+### 针对 CATIA 专属特性
+1. **自定义用户别名**：基于 “类似 AutoCAD 的空格确认” 发送命令，无缝对接 CATIA P2 界面超级输入框。
+2. **命令缓存及 Hdr 自动修正**：记录已知命令的状态并能从误判的报警窗口中自我修复后缀。
+3. **工作台、实例环境防呆兼容**：在多进程和未知工作台之间也能保证安全不乱码。
+4. **自定义组合热键响应**：打破传统 26 个字母的桎梏，利用组合修饰键安全响应。
+5. **产品结构树自动排序**：针对特定繁琐对话框提供一键自动排序辅助。
+6. **快速操作零部件以指定方向 移动/平移**：响应速度远快于鼠标通过罗盘操作。
+7. **`Shift + Tab` 窗口切换**：在多个独立的 CATIA 打开的子窗口中进行针对性循环遍历。
+
+### 普遍适用的功能
+1. **Everything 全局快速唤出**：双击 `右Ctrl` 键，随时唤醒文件检索。（若未配置将唤出 **交互式 GUI** 指导路径配置）
+2. **虚拟桌面平滑流转**：按住 `Win+鼠标滚轮` 动态切换虚拟桌面（Windows 11 友好体验）。
+3. **音量多媒体统一管理**：按住 `右Alt` 并滚动鼠标滚轮调节全局音量，点击鼠标中键（亦或 `^ + F5/F10`）实现静默。
+4. **自动切换英文输入法**：通过系统钩群防呆切换输入法为纯英，避免输入法卡顿乱码。
 
 ## 使用方法
 
@@ -60,78 +70,24 @@ CATIA 配置：
 下载 [UCLC最新版本](https://github.com/zedeeee/UCLC/releases/latest)，解压后运行UCLC.ahk
 
 
-## 用户自定义
-***从`v2.2.1`开始，用户配置文件示例迁移到 [UCLC-config](https://github.com/zedeeee/UCLC-config.git)，欢迎大家分享的快捷键自定义方案***
+## 别名和热键自定义
+***从`v2.2.1`开始，用户配置文件示例迁移到 [UCLC-config](https://github.com/zedeeee/UCLC-config)，欢迎分享自定义方案***
 
+自定义方法查看[UCLC-config](https://github.com/zedeeee/UCLC-config)  
 用户自定义设置位于`./user-conifg/`目录下，文件结构如下
 
 ```
 user-config/
-    |-- CATAlias.ini			（实例文件，包含几个简单的命令）
+    |-- CAT_Alias.ini			（实例文件，包含几个简单的用户别名）
+    |-- CAT_Hotkey.ini			（实例文件，包含几个简单的快捷键）
 ```
-
-
-
-### CATAlias.ini
-
-`CATAlias.ini`用于映射自定义用户别名和Command ID
-
-```ini
-[工作台]
-2001=零件设计
-2002=装配设计
-2003=草图编辑器
-3006=创成式外形设计
-2009=工程制图
-2019=Generative Sheetmetal Design
-
-[通用]
-; 注释
-A = ViewAlignment                      ; 对齐视点
-
-[装配设计]
-S = CATAifSnapHdr                      ; 捕捉
-
-[零件设计]
-S = CATMmrSketchHeaderHdr              ; 草图
-
-[草图编辑器]
-REC = CAT2DRectangleHdr                ; 矩形
-
-[创成式外形设计]
-X = CATShapeDesignExtrude			   ; 拉伸
-
-[工程制图]
-CC = CAT2DCircleRadiusHdr			       ; 圆
-L = CAT2DLineHdr						   ; 直线
-
-[Generative Sheetmetal Design]
-S = CATMmrSketchHeaderHdr              ; 草图
-
-[HotKey]
-; ^ ： Ctrl
-; + ： Shift
-; ! ： Alt
-F2 = CATAfrOpenPropertyHdr				; 属性
-```
-**[工作台]**	定义启用专有用户别名的工作台名称
-
-**[通用]** 	存放各工作台通用的命令
-
-**[装配设计] [零件设计] [草图编辑器]**……	每个 Section 下是对应工作台的专有用户别名
-
-**[HotKey]** 	存放快捷键映射（需要脚本重启 ）
-
-
 
 ## 兼容性
-- 系统：windows11
+- 系统：windows10及以后的版本
 
-- CATIA: V5 R2017
+- CATIA: V5R2017/V5R21
 
 - 语言：简体中文
-
-
 
 ## 联系方式
 有任何兼容性问题、疑问和建议欢迎在 issues 提交

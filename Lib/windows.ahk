@@ -192,3 +192,75 @@ WinGetTextFast(detect_hidden) {
     }
     return text
 }
+
+/**
+ * 查找当前 CATIA 实例的 #32770 弹窗并点击确认按钮
+ * @returns {bool} 是否成功点击了确认按钮
+ */
+click_dialog_confirm_button() {
+    ; 获取当前窗口的 PID（无论焦点在主窗口还是弹窗，PID 都指向同一 CATIA 实例）
+    catia_pid := WinGetPID("A")
+
+    ; 在同 PID 下精确查找 #32770 对话框
+    dialog_hwnd := WinExist("ahk_class #32770 ahk_pid " . catia_pid)
+
+    if !dialog_hwnd
+        return false
+
+    ; 遍历 Button 控件，按优先级匹配确认按钮文本
+    try {
+        for ctrl in WinGetControls(dialog_hwnd) {
+            ; 忽略不可见的控件，防止误点击到隐藏的后台按钮
+            if !ControlGetVisible(ctrl, dialog_hwnd)
+                continue
+
+            btn_text := ControlGetText(ctrl, dialog_hwnd)
+            
+            ; 净化按钮文本：去除快捷键标记 '&' (如 &OK) 和括号包围的字母 (如 确定(&O) -> 确定)
+            clean_text := StrReplace(btn_text, "&", "")
+            clean_text := RegExReplace(clean_text, "\([a-zA-Z]\)", "")
+            clean_text := Trim(clean_text)
+
+            if (clean_text == "确定" || clean_text == "OK"
+                || clean_text == "是" || clean_text == "Yes") {
+                
+                ; 使用 SendMessage 发送 BM_CLICK (0xF5)，这比 ControlClick 稳定得多
+                SendMessage(0xF5, 0, 0, ctrl, dialog_hwnd)
+                return true
+            }
+        }
+    }
+    return false
+}
+
+/**
+ * 查找当前 CATIA 实例的 #32770 弹窗并点击"预览"按钮
+ * @returns {bool} 是否成功点击了预览按钮
+ */
+click_dialog_preview_button() {
+    catia_pid := WinGetPID("A")
+    dialog_hwnd := WinExist("ahk_class #32770 ahk_pid " . catia_pid)
+
+    if !dialog_hwnd
+        return false
+
+    try {
+        for ctrl in WinGetControls(dialog_hwnd) {
+            ; 忽略不可见的控件
+            if !ControlGetVisible(ctrl, dialog_hwnd)
+                continue
+
+            btn_text := ControlGetText(ctrl, dialog_hwnd)
+            
+            clean_text := StrReplace(btn_text, "&", "")
+            clean_text := RegExReplace(clean_text, "\([a-zA-Z]\)", "")
+            clean_text := Trim(clean_text)
+
+            if (clean_text == "预览" || clean_text == "Preview") {
+                SendMessage(0xF5, 0, 0, ctrl, dialog_hwnd)
+                return true
+            }
+        }
+    }
+    return false
+}

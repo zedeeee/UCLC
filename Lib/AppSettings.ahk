@@ -11,6 +11,7 @@ class AppSettings {
     static Everything_Enabled := 0
     static Version := UCLC_VERSION
     static Everything_Path := ""
+    static MButton_Dialog_Shortcuts := 0
 
     static Init() {
         this.config_ini_path := ".\config.ini"
@@ -21,5 +22,6 @@ class AppSettings {
         this.current_workbench := ""
         this.Everything_Enabled := IniRead(this.config_ini_path, "Everything", "Enabled", 0)
         this.Everything_Path := IniRead(this.config_ini_path, "Everything", "Path", "")
+        this.MButton_Dialog_Shortcuts := IniRead(this.config_ini_path, "DevFunc", "MBUTTON_DIALOG_SHORTCUTS", 0)
     }
 }

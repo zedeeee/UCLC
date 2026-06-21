@@ -1,4 +1,4 @@
-﻿#Requires AutoHotKey v2.0
+#Requires AutoHotKey v2.0
 #SingleInstance Force
 ; #MaxThreads 20 ; 已废弃异步轮询，不再需要高并发线程
 SetTitleMatchMode 2
@@ -256,4 +256,22 @@ loop {
         ControlSetText("", get_power_input_edit_hwnd())
     }
 
+}
+
+; 涵盖 CATIA 主窗口和特定弹窗的上下文
+#HotIf is_catia_bindable_context()
+{
+    !MButton::
+    {
+        if AppSettings.MButton_Dialog_Shortcuts {
+            click_dialog_confirm_button()
+        }
+    }
+
+    +MButton::
+    {
+        if AppSettings.MButton_Dialog_Shortcuts {
+            click_dialog_preview_button()
+        }
+    }
 }

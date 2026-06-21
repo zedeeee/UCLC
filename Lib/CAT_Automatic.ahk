@@ -172,7 +172,7 @@ cat_auto_graph_tree_reorder() {
             if (A_Index == listbox_items.Length) {
                 k_ToolTip("已排序完成, 不用继续排序", 3000)
                 Sleep 1000
-                PostMessage(0x10, 0, , , dialogbox_hwnd)
+                try PostMessage(0x10, 0, , , dialogbox_hwnd)
                 Exit
             }
             continue

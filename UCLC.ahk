@@ -263,8 +263,15 @@ loop {
 {
     !MButton::
     {
-        if AppSettings.MButton_Confirm {
+        if AppSettings.MButton_Dialog_Shortcuts {
             click_dialog_confirm_button()
+        }
+    }
+
+    +MButton::
+    {
+        if AppSettings.MButton_Dialog_Shortcuts {
+            click_dialog_preview_button()
         }
     }
 }

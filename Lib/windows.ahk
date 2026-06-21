@@ -232,3 +232,35 @@ click_dialog_confirm_button() {
     }
     return false
 }
+
+/**
+ * 查找当前 CATIA 实例的 #32770 弹窗并点击"预览"按钮
+ * @returns {bool} 是否成功点击了预览按钮
+ */
+click_dialog_preview_button() {
+    catia_pid := WinGetPID("A")
+    dialog_hwnd := WinExist("ahk_class #32770 ahk_pid " . catia_pid)
+
+    if !dialog_hwnd
+        return false
+
+    try {
+        for ctrl in WinGetControls(dialog_hwnd) {
+            ; 忽略不可见的控件
+            if !ControlGetVisible(ctrl, dialog_hwnd)
+                continue
+
+            btn_text := ControlGetText(ctrl, dialog_hwnd)
+            
+            clean_text := StrReplace(btn_text, "&", "")
+            clean_text := RegExReplace(clean_text, "\([a-zA-Z]\)", "")
+            clean_text := Trim(clean_text)
+
+            if (clean_text == "预览" || clean_text == "Preview") {
+                SendMessage(0xF5, 0, 0, ctrl, dialog_hwnd)
+                return true
+            }
+        }
+    }
+    return false
+}

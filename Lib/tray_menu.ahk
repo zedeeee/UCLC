@@ -41,6 +41,16 @@ esc_enhanced_cb(ItemName, ItemPos, MyMenu)
     }
 }
 
+toggle_mbutton_shortcuts_cb(ItemName, ItemPos, MyMenu)
+{
+    AppSettings.MButton_Dialog_Shortcuts := Mod(AppSettings.MButton_Dialog_Shortcuts + 1, 2)
+    MyMenu.ToggleCheck(ItemName)
+    IniWrite(AppSettings.MButton_Dialog_Shortcuts, AppSettings.config_ini_path, "DevFunc", "MBUTTON_DIALOG_SHORTCUTS")
+    
+    status := AppSettings.MButton_Dialog_Shortcuts ? "已开启" : "已关闭"
+    k_ToolTip("鼠标中键弹窗快捷键 " status, 2000)
+}
+
 reload_cb(*) {
     Reload
 }
@@ -92,7 +102,7 @@ about_and_updates_menu := [
 
 dev_sub_menu := [
     ; ["ESC增强", esc_enhanced_cb, ""],
-    ["None", Nothing_cb, ""],
+    ["中键弹窗快捷键", toggle_mbutton_shortcuts_cb, ""],
 ]
 
 /**
@@ -148,6 +158,10 @@ add_coustom_tray_menu()
                 sub_button_name := sub_menu_item[1]
                 sub_callback_function := sub_menu_item[2]
                 sub_menu_name[1].Add(sub_button_name, sub_callback_function)
+
+                if (sub_button_name == "中键弹窗快捷键" && AppSettings.MButton_Dialog_Shortcuts) {
+                    sub_menu_name[1].Check(sub_button_name)
+                }
             }
             A_TrayMenu.Add(parent_button_name, sub_menu_name[1])
             continue

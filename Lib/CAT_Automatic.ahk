@@ -345,3 +345,17 @@ read_all_section_from_ini(ini_path, dict) {
         }
     }
 }
+
+/**
+ * 判断当前是否处于 CATIA 上下文（主窗口 或 弹窗）
+ * 用于 MButton 热键的 #HotIf 条件
+ */
+is_catia_bindable_context() {
+    ; 场景 1: 焦点在 CATIA 主窗口（3D 视图）
+    if WinActive("ahk_group GroupCATIA")
+        return true
+    ; 场景 2: 焦点在 CATIA 的 #32770 弹窗上
+    if WinActive("ahk_class #32770 ahk_exe CNEXT.exe")
+        return true
+    return false
+}

@@ -16,41 +16,26 @@
  *       待用户实测跟手感受，如不可接受再调低超时或改用微轮询
  */
 safe_send_enter(hwnd) {
-    KeyWait("Alt", "T0.15")
-    KeyWait("Ctrl", "T0.15")
-    KeyWait("Shift", "T0.15")
+    ; 全局级别强制抬起修饰键，骗过 GetAsyncKeyState
+    ; 注入 {vk07}（未分配的虚拟键码）作为掩码，打断 Windows 对“单独敲击 Alt 键”的判定，彻底防止激活窗口左上角的系统控制菜单
+    SendInput "{Blind}{vk07}{Alt Up}{Ctrl Up}{Shift Up}"
 
-    ; 记录进入 BlockInput 前的物理按键状态
-    alt_held := GetKeyState("Alt", "P")
-    ctrl_held := GetKeyState("Ctrl", "P")
-    shift_held := GetKeyState("Shift", "P")
-
-    BlockInput true
-    ; 逻辑松开修饰键（加上 {Blind} 防止自身受意外干扰）
-    SendInput "{Blind}{Alt Up}{Ctrl Up}{Shift Up}"
-    
-    ; 确保修饰键的 Up 事件已被系统处理，防止与 Enter 混叠
+    ; 必须给 Windows 系统 10ms 来更新硬件状态寄存器，绝不能省
     Sleep 10
 
-    ; ！！核心修复点：使用 {Blind} 强制阻止 ControlSend 自作聪明！！
-    ; ControlSend 默认会根据物理实体按键的情况，自动补偿发出 Alt Up 和 Alt Down。
-    ; 加上 {Blind} 让它绝对只发 Enter，不发任何多余的修饰键跳变。
-    ControlSend "{Blind}{Enter}", hwnd
-    
-    ; 给 CATIA 留出一点消化 Enter 消息的时间，防止后续的 Alt Down 插队
+    ControlSend "{Blind}{Enter}", , "ahk_id " . hwnd
+
+    ; 必须给 CATIA 留出时间处理这个 Enter 消息，否则下方的修饰键恢复如果插队过快，CATIA 会认为是 Alt+Enter
     Sleep 30
 
-    BlockInput false
-
-    ; 回写：恢复仍被物理按住的修饰键的逻辑状态
-    if ctrl_held
+    ; 回写：此时绝对不能有 BlockInput，且只查询此刻手指真实的物理状态。
+    if GetKeyState("Ctrl", "P")
         SendInput "{Blind}{Ctrl Down}"
-    if shift_held
+    if GetKeyState("Shift", "P")
         SendInput "{Blind}{Shift Down}"
-    if alt_held
+    if GetKeyState("Alt", "P")
         SendInput "{Blind}{Alt Down}"
 }
-
 
 /**
  * 根据输入的用户别名, 执行配置文件中的 COMMAND_ID 以及 函数调用
@@ -75,31 +60,47 @@ cat_command_execution(input_string, command_ini, power_input_hwnd) {
         return
     }
 
-    ; 获取当前 CATIA 实例（按 PID 隔离）
-    instance := get_catia_instance(power_input_hwnd)
-
-    ; 查实例级 Hdr 缓存
     original_id := command_id_and_cb_array[1]
-    command_id := instance.hdr_cache.Has(original_id)
-        ? instance.hdr_cache[original_id] : original_id
 
-    ; command-id 输出到 power-input
-    ControlSetText("c:" . command_id, power_input_hwnd)
+    if (current_workbench == "创成式外形设计") {
+        ; === GSD 专属路径：处理 Hdr 后缀问题 ===
+        ; 获取当前 CATIA 实例（按 PID 隔离）
+        instance := get_catia_instance(power_input_hwnd)
 
-    ; 安全发送第一次回车
-    safe_send_enter(power_input_hwnd)
+        ; 查实例级 Hdr 缓存及 ToolTip 反馈
+        if instance.hdr_cache.Has(original_id) {
+            command_id := instance.hdr_cache[original_id]
+            AHK_LOGI("GSD分支: 命中缓存 -> " . command_id)
+        } else {
+            command_id := original_id
+            AHK_LOGI("GSD分支: 首发命令, 开启弹窗侦测")
+        }
 
-    ; [仅 GSD 且未缓存] 同步侦测"超级输入消息"报错弹窗
-    ; 通过 ahk_pid 限定到同一 CATIA 进程，避免误捕其他实例的弹窗
-    if (current_workbench == "创成式外形设计" && !instance.hdr_cache.Has(original_id)) {
-        if WinWait("超级输入消息 ahk_pid " . instance.pid, , 0.5) {
-            corrected_id := handle_hdr_error()
-            if corrected_id {
-                instance.hdr_cache[original_id] := corrected_id
-                ControlSetText("c:" . corrected_id, power_input_hwnd)
-                safe_send_enter(power_input_hwnd)
+        ; command-id 输出到 power-input
+        ControlSetText("c:" . command_id, power_input_hwnd)
+
+        ; 安全发送第一次回车
+        safe_send_enter(power_input_hwnd)
+
+        ; [仅 GSD 且未缓存] 同步侦测"超级输入消息"报错弹窗
+        ; 通过 ahk_pid 限定到同一 CATIA 进程，避免误捕其他实例的弹窗
+        if (!instance.hdr_cache.Has(original_id)) {
+            if WinWait("超级输入消息 ahk_pid " . instance.pid, , 0.5) {
+                corrected_id := handle_hdr_error()
+                if corrected_id {
+                    instance.hdr_cache[original_id] := corrected_id
+                    AHK_LOGI("GSD分支: Hdr 修正成功 -> " . corrected_id)
+                    ControlSetText("c:" . corrected_id, power_input_hwnd)
+                    safe_send_enter(power_input_hwnd)
+                }
             }
         }
+    } else {
+        ; === 通用路径（零开销）：非 GSD 工作台不会出现 Hdr 后缀动态变化 ===
+        ; 直接使用原始 command-id，不查缓存、不获取实例、不等弹窗
+        AHK_LOGI("通用分支: 零开销执行 -> " . original_id)
+        ControlSetText("c:" . original_id, power_input_hwnd)
+        safe_send_enter(power_input_hwnd)
     }
 
     ; 执行回调函数，如有

@@ -75,31 +75,47 @@ cat_command_execution(input_string, command_ini, power_input_hwnd) {
         return
     }
 
-    ; 获取当前 CATIA 实例（按 PID 隔离）
-    instance := get_catia_instance(power_input_hwnd)
-
-    ; 查实例级 Hdr 缓存
     original_id := command_id_and_cb_array[1]
-    command_id := instance.hdr_cache.Has(original_id)
-        ? instance.hdr_cache[original_id] : original_id
 
-    ; command-id 输出到 power-input
-    ControlSetText("c:" . command_id, power_input_hwnd)
+    if (current_workbench == "创成式外形设计") {
+        ; === GSD 专属路径：处理 Hdr 后缀问题 ===
+        ; 获取当前 CATIA 实例（按 PID 隔离）
+        instance := get_catia_instance(power_input_hwnd)
 
-    ; 安全发送第一次回车
-    safe_send_enter(power_input_hwnd)
+        ; 查实例级 Hdr 缓存及 ToolTip 反馈
+        if instance.hdr_cache.Has(original_id) {
+            command_id := instance.hdr_cache[original_id]
+            k_ToolTip("GSD分支: 命中缓存 -> " . command_id, 800)
+        } else {
+            command_id := original_id
+            k_ToolTip("GSD分支: 首发命令, 开启弹窗侦测", 800)
+        }
 
-    ; [仅 GSD 且未缓存] 同步侦测"超级输入消息"报错弹窗
-    ; 通过 ahk_pid 限定到同一 CATIA 进程，避免误捕其他实例的弹窗
-    if (current_workbench == "创成式外形设计" && !instance.hdr_cache.Has(original_id)) {
-        if WinWait("超级输入消息 ahk_pid " . instance.pid, , 0.5) {
-            corrected_id := handle_hdr_error()
-            if corrected_id {
-                instance.hdr_cache[original_id] := corrected_id
-                ControlSetText("c:" . corrected_id, power_input_hwnd)
-                safe_send_enter(power_input_hwnd)
+        ; command-id 输出到 power-input
+        ControlSetText("c:" . command_id, power_input_hwnd)
+
+        ; 安全发送第一次回车
+        safe_send_enter(power_input_hwnd)
+
+        ; [仅 GSD 且未缓存] 同步侦测"超级输入消息"报错弹窗
+        ; 通过 ahk_pid 限定到同一 CATIA 进程，避免误捕其他实例的弹窗
+        if (!instance.hdr_cache.Has(original_id)) {
+            if WinWait("超级输入消息 ahk_pid " . instance.pid, , 0.5) {
+                corrected_id := handle_hdr_error()
+                if corrected_id {
+                    instance.hdr_cache[original_id] := corrected_id
+                    k_ToolTip("GSD分支: Hdr 修正成功 -> " . corrected_id, 1000)
+                    ControlSetText("c:" . corrected_id, power_input_hwnd)
+                    safe_send_enter(power_input_hwnd)
+                }
             }
         }
+    } else {
+        ; === 通用路径（零开销）：非 GSD 工作台不会出现 Hdr 后缀动态变化 ===
+        ; 直接使用原始 command-id，不查缓存、不获取实例、不等弹窗
+        k_ToolTip("通用分支: 零开销执行 -> " . original_id, 800)
+        ControlSetText("c:" . original_id, power_input_hwnd)
+        safe_send_enter(power_input_hwnd)
     }
 
     ; 执行回调函数，如有

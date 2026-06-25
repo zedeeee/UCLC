@@ -18,7 +18,7 @@
 safe_send_enter(hwnd) {
     ; 全局级别强制抬起修饰键，骗过 GetAsyncKeyState
     ; 注入 {vk07}（未分配的虚拟键码）作为掩码，打断 Windows 对“单独敲击 Alt 键”的判定，彻底防止激活窗口左上角的系统控制菜单
-    SendInput "{Blind}{vk07}{Alt Up}{Ctrl Up}{Shift Up}"
+    SendInput "{Blind}{vk07}{LAlt Up}{RAlt Up}{LCtrl Up}{RCtrl Up}{LShift Up}{RShift Up}"
 
     ; 必须给 Windows 系统 10ms 来更新硬件状态寄存器，绝不能省
     Sleep 10
@@ -30,11 +30,11 @@ safe_send_enter(hwnd) {
 
     ; 回写：此时绝对不能有 BlockInput，且只查询此刻手指真实的物理状态。
     if GetKeyState("Ctrl", "P")
-        SendInput "{Blind}{Ctrl Down}"
+        SendInput "{Blind}{" (GetKeyState("RCtrl", "P") ? "RCtrl" : "LCtrl") " Down}"
     if GetKeyState("Shift", "P")
-        SendInput "{Blind}{Shift Down}"
+        SendInput "{Blind}{" (GetKeyState("RShift", "P") ? "RShift" : "LShift") " Down}"
     if GetKeyState("Alt", "P")
-        SendInput "{Blind}{Alt Down}"
+        SendInput "{Blind}{" (GetKeyState("RAlt", "P") ? "RAlt" : "LAlt") " Down}"
 }
 
 /**

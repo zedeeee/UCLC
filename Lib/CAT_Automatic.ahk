@@ -110,14 +110,27 @@ cat_command_execution(input_string, dict_type, power_input_hwnd) {
         }
     }
 
-    ; 执行回调函数，如有
+    ; 执行回调函数/动作脚本，如有
     if command_id_and_cb_array.Length >= 2 {
         params := []
         loop command_id_and_cb_array.Length - 2 {
             params.Push(command_id_and_cb_array[A_Index + 2])
         }
 
-        %command_id_and_cb_array[2]%(params*)
+        cb := command_id_and_cb_array[2]
+        if (SubStr(cb, -4) == ".ahk") {
+            ; 外部动作脚本调用
+            cmd_args := ""
+            for p in params {
+                cmd_args .= ' "' p '"'
+            }
+            script_path := A_ScriptDir "\" cb
+            Run("AutoHotkey.exe `"" script_path "`"" cmd_args)
+            AHK_LOGI("执行外部 Action: " script_path " 参数: " cmd_args)
+        } else {
+            ; 内部函数调用 (为向下兼容)
+            %cb%(params*)
+        }
     }
 }
 
@@ -146,87 +159,7 @@ handle_hdr_error() {
     return ""
 }
 
-/**
- * 获取装配设计下的 "图形树重新排序" 窗口, 自动执行排序操作
- * 
- */
-cat_auto_graph_tree_reorder() {
-    GroupAdd "ReorderTree", "Graph tree reordering"
-    GroupAdd "ReorderTree", "图形树重新排序"
-    raw_lists_string := ""
 
-    dialogbox_hwnd := WinWait("ahk_group ReorderTree", , 5)
-    if dialogbox_hwnd == 0 {
-        Exit
-    }
-
-    Listbox_items := ControlGetItems("ListBox1", dialogbox_hwnd)
-
-    for item in Listbox_items {
-        raw_lists_string .= item ","
-    }
-
-    sorted_lists_string := Sort(raw_lists_string, "D,")
-    refrence_lists_array := StrSplit(SubStr(sorted_lists_string, 1, StrLen(sorted_lists_string) - 1), ',')
-
-    listbox_classnn := "ListBox1"
-    free_move_button := ControlGetHwnd("自由移动", dialogbox_hwnd)
-
-    listbox_items := ControlGetItems(listbox_classnn, dialogbox_hwnd)
-
-    ; 检查当前的排序状态
-    loop listbox_items.Length {
-        if (listbox_items[A_Index] == refrence_lists_array[A_Index]) {
-            if (A_Index == listbox_items.Length) {
-                k_ToolTip("已排序完成, 不用继续排序", 3000)
-                Sleep 1000
-                PostMessage(0x10, 0, , , dialogbox_hwnd)
-                Exit
-            }
-            continue
-        }
-        else {
-            break
-        }
-    }
-
-    try {
-        ; 执行排序
-        refrence_item_index := 0
-
-        for item in refrence_lists_array {
-            refrence_item_index += 1
-            ControlChooseString(refrence_lists_array[A_Index], listbox_classnn, dialogbox_hwnd)
-            if (ControlGetIndex(listbox_classnn, dialogbox_hwnd) == A_Index) {
-                continue
-            }
-            SendMessage(0xF5, 0, 0, free_move_button, dialogbox_hwnd)
-            ControlChooseIndex(A_Index, listbox_classnn, dialogbox_hwnd)
-
-            while ControlChooseString(item, listbox_classnn, dialogbox_hwnd) != refrence_item_index {
-                Sleep 1
-            }
-        }
-    }
-    catch Error as e {
-        AHK_LOGI(Format("函数: {1} 执行失败`n错误信息: {2} on Line {3} `n 文件: {4}", e.What, e.Message, e.Line, e.File))
-        Exit
-    }
-
-    k_ToolTip("结构树排序完成", 2000)
-}
-
-quick_manipulation(diraction) {
-    GroupAdd "Manipulation", "操作参数"
-
-    manipulation_hwnd := WinWait("ahk_group Manipulation", , 5)
-    if manipulation_hwnd == 0
-        Exit
-
-    diract_button := ControlGetHwnd(diraction, manipulation_hwnd)
-
-    SendMessage(0xF5, 0, 0, diract_button, manipulation_hwnd)
-}
 
 /**
  * 通过比对工作台控件和工作台列表，返回当前生效工作台

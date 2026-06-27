@@ -90,15 +90,23 @@ cat_command_execution(input_string, dict_type, power_input_hwnd) {
     safe_send_enter(power_input_hwnd)
 
     ; [仅 GSD 且未缓存] 同步侦测"超级输入消息"报错弹窗
-    ; 通过 ahk_pid 限定到同一 CATIA 进程，避免误捕其他实例的弹窗
+    ; 通过并发检测文本框清空或弹窗出现，彻底消除原有的 0.5 秒硬编码延时
     if (current_workbench == "创成式外形设计" && !instance.hdr_cache.Has(original_id)) {
-        if WinWait("超级输入消息 ahk_pid " . instance.pid, , 0.5) {
-            corrected_id := handle_hdr_error()
-            if corrected_id {
-                instance.hdr_cache[original_id] := corrected_id
-                ControlSetText("c:" . corrected_id, power_input_hwnd)
-                safe_send_enter(power_input_hwnd)
+        loop 50 { ; 最多等待 500ms
+            if (ControlGetText(power_input_hwnd) == "") {
+                ; 文本框已清空，说明命令被成功识别并执行
+                break
             }
+            if WinExist("超级输入消息 ahk_pid " . instance.pid) {
+                corrected_id := handle_hdr_error()
+                if corrected_id {
+                    instance.hdr_cache[original_id] := corrected_id
+                    ControlSetText("c:" . corrected_id, power_input_hwnd)
+                    safe_send_enter(power_input_hwnd)
+                }
+                break
+            }
+            Sleep 10
         }
     }
 
@@ -289,15 +297,16 @@ is_included_catia_class(obj) {
  * 判断当前窗口是否为CATIA主界面
  * 执行此函数前需要先获取窗口
  * 
+ * @param hwnd 窗口句柄，默认 "A"（当前活动窗口）
  * @returns {void|number} ahk_class
  */
-identify_catia_window() {
+identify_catia_window(hwnd := "A") {
     current_window := Object()
 
     try {
-        current_window.title := WinGetTitle("A")
-        current_window.class := WinGetClass("A")
-        current_window.exe := WinGetProcessName("A")
+        current_window.title := WinGetTitle(hwnd)
+        current_window.class := WinGetClass(hwnd)
+        current_window.exe := WinGetProcessName(hwnd)
     }
     catch Error as err {
         AHK_LOGI("对象获取失败")

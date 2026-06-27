@@ -3,6 +3,8 @@
 ; #MaxThreads 20 ; 已废弃异步轮询，不再需要高并发线程
 SetTitleMatchMode 2
 
+#Include Lib\ConfigMigrator.ahk
+#Include Lib\WinEventHook.ahk
 #Include ./Lib/AppSettings.ahk
 #Include ./Lib/CATAlias.ahk
 #Include ./Lib/stdio.ahk
@@ -91,29 +93,8 @@ add_group_by_exe("group_autoime", "AutoIME")
 
 volume_control := VolumeController.Call()
 
-; 启动脚本后 循环检测 CATIA 脚本程序
-loop {
-    try {
-        last_found_window_hwnd := WinExist("A")
-        catia_window_hwnd := identify_catia_window()
-
-        if catia_window_hwnd {
-            GroupAdd "GroupCATIA", "ahk_class " catia_window_hwnd
-        }
-
-        ; 检测到匹配窗口后，自动切换为英文输入法
-        if (WinActive("ahk_group group_autoime")) {
-            switchIMEbyID(IMEmap["en"])
-            SetTimer(confirmIME, -5000)
-        }
-
-        WinWaitNotActive(last_found_window_hwnd)
-    }
-    catch Error as err {
-        AHK_LOGI("循环获取当前窗口失败")
-        Sleep 100
-    }
-}
+; 启动脚本后通过事件钩子监听窗口激活，彻底摒弃无限轮询
+WinEventHook.Start()
 
 #HotIf WinActive
 {

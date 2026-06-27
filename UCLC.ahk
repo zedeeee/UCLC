@@ -1,4 +1,4 @@
-﻿#Requires AutoHotKey v2.0
+#Requires AutoHotKey v2.0
 #SingleInstance Force
 ; #MaxThreads 20 ; 已废弃异步轮询，不再需要高并发线程
 SetTitleMatchMode 2
@@ -86,7 +86,7 @@ check_user_config() {
     }
 }
 
-add_group_by_exe("group_autoime", "AutoIME", AppSettings.config_ini_path)
+add_group_by_exe("group_autoime", "AutoIME")
 
 volume_control := VolumeController.Call()
 
@@ -241,7 +241,7 @@ loop {
             Exit
         }
 
-        cat_command_execution(edit_text, AppSettings.alias_ini_path, power_input_edit_control_hwnd)
+        cat_command_execution(edit_text, "alias", power_input_edit_control_hwnd)
     }
 
     +Tab::

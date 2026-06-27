@@ -111,14 +111,15 @@ download_configurations(file_name, save_path)
  *
  * @param group_name
  * @param section
- * @param ini_path 配置文件路径
  */
-add_group_by_exe(group_name, section, ini_path)
+add_group_by_exe(group_name, section)
 {
-  exe_arr := INI_GET_ALL_VALUE_A(ini_path, section)
-  for exe in exe_arr
-  {
-    GroupAdd group_name, "ahk_exe" . exe
+  if (AppSettings.config_obj.Has(section)) {
+    for _, exe in AppSettings.config_obj[section] {
+      if (SubStr(_, 1, 9) != "_comment_") {
+        GroupAdd group_name, "ahk_exe" . exe
+      }
+    }
   }
 }
 

@@ -1,0 +1,49 @@
+' UCLC VBA Bridge Template
+' 此脚本应注册为 CATIA 宏，并分配命令 ID（如 "my_vba_macro"）
+
+Sub CATMain()
+    Dim fso
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    ' 获取临时文件夹路径
+    Dim tempFolder
+    tempFolder = fso.GetSpecialFolder(2)
+    Dim ipcFilePath
+    ipcFilePath = tempFolder & "\uclc_vba_ipc.json"
+    
+    ' 检查 IPC 文件是否存在
+    If Not fso.FileExists(ipcFilePath) Then
+        Exit Sub
+    End If
+    
+    ' 读取 IPC 文件内容 (UTF-8 建议使用 ADODB.Stream，此处为简写)
+    Dim stream
+    Set stream = CreateObject("ADODB.Stream")
+    stream.CharSet = "utf-8"
+    stream.Open
+    stream.LoadFromFile ipcFilePath
+    Dim jsonString
+    jsonString = stream.ReadText
+    stream.Close
+    
+    ' TODO: 解析 jsonString，获取 payload 参数
+    ' (建议引入 VBA-JSON 库进行解析)
+    
+    ' ----------------------------------------------------
+    ' 在这里编写您的核心 CATIA 业务逻辑
+    ' 比如: 获取选中的零件、修改属性、获取坐标等
+    ' ----------------------------------------------------
+    
+    ' 将处理结果组装为 JSON 字符串
+    Dim resultJson
+    resultJson = "{""status"":""done"",""result"":{""message"":""Success"",""value"":42}}"
+    
+    ' 写回 IPC 文件
+    stream.Open
+    stream.WriteText resultJson
+    stream.SaveToFile ipcFilePath, 2 ' adSaveCreateOverWrite
+    stream.Close
+    
+    Set stream = Nothing
+    Set fso = Nothing
+End Sub

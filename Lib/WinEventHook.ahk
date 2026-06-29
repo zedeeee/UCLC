@@ -10,7 +10,7 @@ class WinEventHook {
             return
 
         ; Callback 参数：hHook, event, hwnd, idObject, idChild, dwEventThread, dwmsEventTime
-        this.cb_ptr := CallbackCreate(ObjBindMethod(this, "OnWinEvent"), "F")
+        this.cb_ptr := CallbackCreate(ObjBindMethod(this, "OnWinEvent"), "F", 7)
         ; 0x0003 = EVENT_SYSTEM_FOREGROUND
         this.hook_ptr := DllCall("SetWinEventHook"
             , "UInt", 0x0003

@@ -6,9 +6,10 @@ class ConfigMigrator {
      * 将指定的 INI 文件静默转换为 JSON 文件，并将旧文件备份
      * @param ini_path 原始 ini 路径
      * @param json_path 新的 json 路径
+     * @param is_alias_format 是否启用深度解构（针对 alias/hotkey）
      * @returns {Integer} 1 表示成功迁移，0 表示未进行迁移或失败
      */
-    static MigrateIniToJson(ini_path, json_path) {
+    static MigrateIniToJson(ini_path, json_path, is_alias_format := false) {
         if (!FileExist(ini_path))
             return 0
         
@@ -39,11 +40,46 @@ class ConfigMigrator {
                             val := Trim(SubStr(val, 1, semicolon_pos - 1))
                         }
                         
-                        json_obj[section][key] := val
-                        if (comment != "") {
-                            json_obj[section]["_comment_" . key] := comment
+                        if (is_alias_format) {
+                            item_map := Map()
+                            
+                            ; 替换旧的 '&' 为 ',' 统一处理
+                            clean_val := StrReplace(Trim(val), "&", ",")
+                            params := StrSplit(clean_val, ",")
+                            
+                            item_map["command"] := Trim(params[1], " `t")
+                            
+                            if (params.Length > 1) {
+                                item_map["callback"] := Trim(params[2], " `t")
+                            }
+                            
+                            if (params.Length > 2) {
+                                args_arr := []
+                                Loop params.Length - 2 {
+                                    args_arr.Push(Trim(params[A_Index + 2], " `t"))
+                                }
+                                item_map["args"] := args_arr
+                            }
+                            
+                            if (comment != "") {
+                                item_map["desc"] := comment
+                            }
+                            
+                            json_obj[section][key] := item_map
+                        } else {
+                            json_obj[section][key] := val
                         }
                     }
+                }
+            }
+            
+            ; 针对 config.ini 转换出的 config.json，将其中的 UserConf 后缀修正为 .json
+            if (!is_alias_format && json_obj.Has("UserConf")) {
+                if (json_obj["UserConf"].Has("快捷键")) {
+                    json_obj["UserConf"]["快捷键"] := StrReplace(json_obj["UserConf"]["快捷键"], ".ini", ".json")
+                }
+                if (json_obj["UserConf"].Has("用户别名")) {
+                    json_obj["UserConf"]["用户别名"] := StrReplace(json_obj["UserConf"]["用户别名"], ".ini", ".json")
                 }
             }
             
@@ -62,6 +98,9 @@ class ConfigMigrator {
             return 1
         }
         catch as e {
+            try {
+                AHK_LOGI("ConfigMigrator 迁移失败: " . e.Message)
+            }
             return 0
         }
     }

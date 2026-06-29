@@ -24,7 +24,7 @@ class AppSettings {
         
         ; 检查并迁移 config.ini
         if (!FileExist(this.config_json_path) && FileExist(".\config.ini")) {
-            ConfigMigrator.MigrateIniToJson(".\config.ini", this.config_json_path)
+            ConfigMigrator.MigrateIniToJson(".\config.ini", this.config_json_path, false)
         }
         
         ; 读取全局配置
@@ -39,15 +39,15 @@ class AppSettings {
             )
         }
         
-        ; 获取用户配置路径，强制转换 .ini 为 .json (如果用户还在用老的路径配置)
+        ; 获取用户配置路径 (在 Migrator 中已经保证存入的是 .json 后缀)
         alias_file := "alias.json"
         hotkey_file := "hotkey.json"
         
         if (this.config_obj.Has("UserConf")) {
             if (this.config_obj["UserConf"].Has("用户别名"))
-                alias_file := StrReplace(this.config_obj["UserConf"]["用户别名"], ".ini", ".json")
+                alias_file := this.config_obj["UserConf"]["用户别名"]
             if (this.config_obj["UserConf"].Has("快捷键"))
-                hotkey_file := StrReplace(this.config_obj["UserConf"]["快捷键"], ".ini", ".json")
+                hotkey_file := this.config_obj["UserConf"]["快捷键"]
         }
         
         this.alias_json_path := A_ScriptDir "\user-config\" alias_file
@@ -56,12 +56,12 @@ class AppSettings {
         ; 检查并迁移 alias/hotkey
         alias_ini := StrReplace(this.alias_json_path, ".json", ".ini")
         if (!FileExist(this.alias_json_path) && FileExist(alias_ini)) {
-            ConfigMigrator.MigrateIniToJson(alias_ini, this.alias_json_path)
+            ConfigMigrator.MigrateIniToJson(alias_ini, this.alias_json_path, true)
         }
         
         hotkey_ini := StrReplace(this.hotkey_json_path, ".json", ".ini")
         if (!FileExist(this.hotkey_json_path) && FileExist(hotkey_ini)) {
-            ConfigMigrator.MigrateIniToJson(hotkey_ini, this.hotkey_json_path)
+            ConfigMigrator.MigrateIniToJson(hotkey_ini, this.hotkey_json_path, true)
         }
         
         ; 载入 JSON 到内存树

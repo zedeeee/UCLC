@@ -14,12 +14,12 @@ help_Homepage_cb(*) {
 
 modify_alias_cb(*)
 {
-    Run "notepad " AppSettings.alias_ini_path
+    Run "notepad " AppSettings.alias_json_path
 }
 
 modify_shortcut_cb(*)
 {
-    Run "notepad " AppSettings.hotkey_ini_path
+    Run "notepad " AppSettings.hotkey_json_path
 }
 
 about_cb(*)

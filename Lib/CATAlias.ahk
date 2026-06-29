@@ -18,43 +18,62 @@ read_user_alias(dict_type, section, key) {
 
     try {
         AHK_LOGI("调用 " section)
-        if (target_obj.Has(section) && target_obj[section].Has(key)) {
-            config_str := target_obj[section][key]
-            command_id_and_cb_array := process_config(config_str)
-            return command_id_and_cb_array
+        if get_map_value_case_insensitive(target_obj, section, &section_map) {
+            if get_map_value_case_insensitive(section_map, key, &config_val) {
+                return process_config(config_val)
+            }
         }
         
         AHK_LOGI("调用 通用")
-        if (target_obj.Has("通用") && target_obj["通用"].Has(key)) {
-            config_str := target_obj["通用"][key]
-            command_id_and_cb_array := process_config(config_str)
-            return command_id_and_cb_array
+        if get_map_value_case_insensitive(target_obj, "通用", &general_map) {
+            if get_map_value_case_insensitive(general_map, key, &config_val) {
+                return process_config(config_val)
+            }
         }
         
-        k_ToolTip(Format("没有找到与 {1} 对应的命令", key), 1000)
+        k_ToolTip(Format("没有找到与 '{1}' 对应的命令", key), 1000)
         return 0
     }
     catch as e {
-        k_ToolTip(Format("查找 {1} 出错: {2}", key, e.Message), 1000)
+        k_ToolTip(Format("查找 '{1}' 出错: {2}", key, e.Message), 1000)
         return 0
     }
 }
 
-process_config(config) {
-    result := []
-
-    ; 这里 JSON 里已经把整行注释分离出去了
-    ; 但如果配置里还有带有 '&' 的旧格式（函数带参数），或者 ',' 格式
-    config := StrReplace(Trim(config), "&", ",")
-    params := StrSplit(config, ",")
-
-    result.Push(Trim(params[1], " `t"))
-
-    Loop params.length - 1
-    {
-        result.Push(Trim(params[A_Index + 1]))
+get_map_value_case_insensitive(m, key, &val) {
+    if (Type(m) != "Map")
+        return false
+    if m.Has(key) {
+        val := m[key]
+        return true
     }
+    for k, v in m {
+        if StrCompare(k, key, false) == 0 {
+            val := v
+            return true
+        }
+    }
+    return false
+}
 
+process_config(config) {
+    if (Type(config) != "Map")
+        return []
+
+    cmd := config.Get("command", "")
+    if (cmd == "")
+        return []
+
+    result := [ cmd ]
+    
+    if (cb := config.Get("callback", "")) {
+        result.Push(cb)
+        
+        if (Type(args := config.Get("args", "")) == "Array") {
+            result.Push(args*)
+        }
+    }
+    
     return result
 }
 

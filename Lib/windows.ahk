@@ -116,9 +116,7 @@ add_group_by_exe(group_name, section)
 {
   if (AppSettings.config_obj.Has(section)) {
     for _, exe in AppSettings.config_obj[section] {
-      if (SubStr(_, 1, 9) != "_comment_") {
-        GroupAdd group_name, "ahk_exe" . exe
-      }
+      GroupAdd group_name, "ahk_exe" . exe
     }
   }
 }

@@ -93,6 +93,7 @@ class UCLC_CUI {
             
             btn_add.OnEvent("Click", ObjBindMethod(this, "OnAddAlias", A_Index))
             btn_del.OnEvent("Click", ObjBindMethod(this, "OnDelAlias", A_Index))
+            e.OnEvent("Change", ObjBindMethod(this, "OnAliasChange", A_Index))
             
             this.alias_pool.Push({e: e, add: btn_add, del: btn_del})
         }
@@ -107,6 +108,7 @@ class UCLC_CUI {
             
             btn_add.OnEvent("Click", ObjBindMethod(this, "OnAddHotkey", A_Index))
             btn_del.OnEvent("Click", ObjBindMethod(this, "OnDelHotkey", A_Index))
+            e.OnEvent("Change", ObjBindMethod(this, "OnHotkeyChange", A_Index))
             
             this.hotkey_pool.Push({e: e, add: btn_add, del: btn_del})
         }
@@ -354,6 +356,16 @@ class UCLC_CUI {
             p.add.Opt("-Hidden")
             p.del.Opt("-Hidden")
             
+            if (Trim(al) != "")
+                p.add.Opt("-Disabled")
+            else
+                p.add.Opt("+Disabled")
+                
+            if (aliases.Length > 1)
+                p.del.Opt("-Disabled")
+            else
+                p.del.Opt("+Disabled")
+            
             this.alias_edits.Push(p.e)
             cur_y += 30
         }
@@ -380,6 +392,16 @@ class UCLC_CUI {
             p.e.Opt("-Hidden")
             p.add.Opt("-Hidden")
             p.del.Opt("-Hidden")
+            
+            if (Trim(hk) != "")
+                p.add.Opt("-Disabled")
+            else
+                p.add.Opt("+Disabled")
+                
+            if (hotkeys.Length > 1)
+                p.del.Opt("-Disabled")
+            else
+                p.del.Opt("+Disabled")
             
             this.hotkey_edits.Push(p.e)
             cur_y += 30
@@ -453,6 +475,22 @@ class UCLC_CUI {
         this.OnCommandTreeSelect(this.TV_Alias, itemId)
     }
 
+    static OnAliasChange(idx, GuiCtrlObj, *) {
+        p := this.alias_pool[idx]
+        if (Trim(GuiCtrlObj.Value) != "")
+            p.add.Opt("-Disabled")
+        else
+            p.add.Opt("+Disabled")
+    }
+
+    static OnHotkeyChange(idx, GuiCtrlObj, *) {
+        p := this.hotkey_pool[idx]
+        if (Trim(GuiCtrlObj.Value) != "")
+            p.add.Opt("-Disabled")
+        else
+            p.add.Opt("+Disabled")
+    }
+    
     static SaveCurrentItem(*) {
         this.SaveInputsToCurrentCmd()
         

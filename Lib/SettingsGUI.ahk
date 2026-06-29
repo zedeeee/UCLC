@@ -7,12 +7,20 @@ ShowSettingsGUI(*) {
 
 class UCLC_CUI {
     static GuiObj := ""
+    static Tabs := ""
     static TV_Alias := ""
     static TV_Map := Map()
-    static Edit_AliasKey := ""
-    static Edit_AliasVal := ""
-    static Edit_AliasDesc := ""
-    static Text_Category := ""
+    
+    static right_controls := []
+    static alias_edits := []
+    static hotkey_edits := []
+    
+    static Edit_Cmd := ""
+    static Edit_Desc := ""
+    static Edit_Search := ""
+    
+    static Chk_Everything := ""
+    static Edit_EverythingPath := ""
 
     static Show() {
         if (this.GuiObj) {
@@ -21,47 +29,32 @@ class UCLC_CUI {
         }
 
         this.GuiObj := Gui("+Resize", "UCLC 配置管理控制台 (CUI)")
-        this.GuiObj.OnEvent("Close", (*) => this.GuiObj := "")
+        this.GuiObj.OnEvent("Close", ObjBindMethod(this, "OnClose"))
 
-        Tabs := this.GuiObj.Add("Tab3", "x10 y10 w780 h580", ["别名与快捷键 (Aliases & Hotkeys)", "通用设置 (General)"])
+        this.Tabs := this.GuiObj.Add("Tab3", "x10 y10 w780 h580", ["命令映射 (Commands)", "通用设置 (General)"])
 
-        ; =============== 第一页: 别名与快捷键 ===============
-        Tabs.UseTab(1)
-        this.GuiObj.Add("Text", "x30 y50 w200", "命令列表树 (类别 -> 别名):")
-        this.TV_Alias := this.GuiObj.Add("TreeView", "x30 y70 w250 h480")
-        this.TV_Alias.OnEvent("ItemSelect", ObjBindMethod(this, "OnAliasTreeSelect"))
+        ; =============== 第一页: 命令映射 ===============
+        this.Tabs.UseTab(1)
+        this.GuiObj.Add("Text", "x30 y50 w200", "命令列表树 (类别 -> 功能):")
+        
+        ; 增加一个搜索框
+        this.GuiObj.Add("Text", "x30 y70 w40", "搜索:")
+        search_edit := this.GuiObj.Add("Edit", "x70 y66 w210")
+        search_edit.OnEvent("Change", ObjBindMethod(this, "OnSearchFilter"))
+        this.Edit_Search := search_edit
 
-        ; 右侧详情编辑区
-        this.GuiObj.Add("GroupBox", "x300 y60 w460 h490", "详细属性与编辑")
+        this.TV_Alias := this.GuiObj.Add("TreeView", "x30 y95 w250 h455")
+        this.TV_Alias.OnEvent("ItemSelect", ObjBindMethod(this, "OnCommandTreeSelect"))
 
-        this.GuiObj.Add("Text", "x320 y90 w80", "所属类别:")
-        this.Text_Category := this.GuiObj.Add("Text", "x400 y90 w340 cBlue", "-")
-
-        this.GuiObj.Add("Text", "x320 y140 w80", "触发别名:")
-        this.Edit_AliasKey := this.GuiObj.Add("Edit", "x400 y136 w340")
-
-        this.GuiObj.Add("Text", "x320 y190 w80", "映射命令:")
-        this.Edit_AliasVal := this.GuiObj.Add("Edit", "x400 y186 w340", "")
-        this.GuiObj.Add("Text", "x400 y215 w340 cGray", "例如: CATAifTranslationRotationHdr (原生命令) 或 Action_Rotate (外部动作)")
-
-        this.GuiObj.Add("Text", "x320 y240 w80", "功能描述:")
-        this.Edit_AliasDesc := this.GuiObj.Add("Edit", "x400 y236 w340", "")
-
-        ; 保存当前项按钮
-        btn_save := this.GuiObj.Add("Button", "x400 y280 w100", "✔ 保存修改")
-        btn_save.OnEvent("Click", ObjBindMethod(this, "SaveCurrentItem"))
-
-        ; 删除当前项按钮
-        btn_del := this.GuiObj.Add("Button", "x520 y280 w100", "✖ 删除选定项")
-        btn_del.OnEvent("Click", ObjBindMethod(this, "DeleteCurrentItem"))
-
-        ; 新增按钮 (可以在当前选中的分类下新增)
-        btn_add := this.GuiObj.Add("Button", "x640 y280 w100", "➕ 新增别名")
+        ; 右侧详情编辑区框
+        this.GuiObj.Add("GroupBox", "x300 y60 w460 h490", "详细属性与动态编辑")
+        
+        ; 新增命令按钮放在树下面
+        btn_add := this.GuiObj.Add("Button", "x30 y555 w250 h30", "➕ 在所选分类下新增命令")
         btn_add.OnEvent("Click", ObjBindMethod(this, "AddNewItem"))
 
-
         ; =============== 第二页: 通用设置 ===============
-        Tabs.UseTab(2)
+        this.Tabs.UseTab(2)
         this.GuiObj.Add("GroupBox", "x30 y50 w740 h150", "Everything 快速启动集成")
         
         this.Chk_Everything := this.GuiObj.Add("Checkbox", "x50 y80", "启用“双击右Ctrl”呼出 Everything")
@@ -75,10 +68,13 @@ class UCLC_CUI {
 
         btn_saveGen := this.GuiObj.Add("Button", "x600 y160 w150 Default", "保存通用设置")
         btn_saveGen.OnEvent("Click", ObjBindMethod(this, "SaveGeneralSettings"))
+        
+        btn_reload := this.GuiObj.Add("Button", "x30 y550 w150", "🔄 保存并热重载脚本")
+        btn_reload.OnEvent("Click", (*) => Reload())
 
         ; =============== 初始化数据加载 ===============
-        Tabs.UseTab()
-        this.LoadAliasTree()
+        this.Tabs.UseTab()
+        this.LoadCommandTree()
         this.GuiObj.Show("w800 h600")
     }
 
@@ -93,14 +89,12 @@ class UCLC_CUI {
 
     static SaveGeneralSettings(*) {
         try {
-            ; 检查 JSON 对象中是否有 Everything
             if !AppSettings.config_obj.Has("Everything") {
                 AppSettings.config_obj["Everything"] := Map("Enabled", "0", "Path", "")
             }
             AppSettings.config_obj["Everything"]["Enabled"] := String(this.Chk_Everything.Value)
             AppSettings.config_obj["Everything"]["Path"] := this.Edit_EverythingPath.Value
 
-            ; 更新 AppSettings 内存并保存到文件
             AppSettings.Everything_Enabled := this.Chk_Everything.Value
             AppSettings.Everything_Path := this.Edit_EverythingPath.Value
             
@@ -113,94 +107,247 @@ class UCLC_CUI {
         }
     }
 
-    static LoadAliasTree() {
+    static LoadCommandTree(filter := "") {
+        this.ClearRightPane()
         this.TV_Alias.Delete()
         this.TV_Map.Clear()
         
-        for category, items in AppSettings.alias_obj {
+        for category, cmdArray in AppSettings.commands_obj {
             if (category == "_comment")
                 continue
-
-            catId := this.TV_Alias.Add(category)
-            this.TV_Map[catId] := {type: "Category", name: category}
+                
+            catId := 0
             
-            if (items is Map) {
-                for key, val in items {
-                    if (key == "_comment")
+            for index, cmd in cmdArray {
+                display_name := (cmd.Has("desc") && cmd["desc"] != "") ? cmd["desc"] : (cmd.Has("command") ? cmd["command"] : "未知")
+                
+                if (filter != "") {
+                    ; 搜索匹配
+                    matched := false
+                    if InStr(display_name, filter) || (cmd.Has("command") && InStr(cmd["command"], filter))
+                        matched := true
+                    if (!matched && cmd.Has("aliases")) {
+                        for al in cmd["aliases"] {
+                            if InStr(al, filter) {
+                                matched := true
+                                break
+                            }
+                        }
+                    }
+                    if (!matched && cmd.Has("hotkeys")) {
+                        for hk in cmd["hotkeys"] {
+                            if InStr(hk, filter) {
+                                matched := true
+                                break
+                            }
+                        }
+                    }
+                    if (!matched)
                         continue
-                    itemId := this.TV_Alias.Add(key, catId)
-                    this.TV_Map[itemId] := {type: "Item", category: category, key: key, val: val}
+                }
+                
+                if (catId == 0) {
+                    catId := this.TV_Alias.Add(category)
+                    this.TV_Map[catId] := {type: "Category", name: category}
+                }
+                
+                itemId := this.TV_Alias.Add(display_name, catId)
+                this.TV_Map[itemId] := {type: "Item", category: category, index: index, cmd: cmd}
+            }
+            
+            if (catId != 0)
+                this.TV_Alias.Modify(catId, "Expand")
+        }
+    }
+    
+    static OnSearchFilter(CtrlObj, *) {
+        val := CtrlObj.Value
+        this.LoadCommandTree(val)
+    }
+
+    static OnClose(*) {
+        this.right_controls := []
+        this.alias_edits := []
+        this.hotkey_edits := []
+        this.GuiObj := ""
+    }
+
+    static ClearRightPane() {
+        for ctrl in this.right_controls {
+            if IsObject(ctrl) {
+                try {
+                    DllCall("DestroyWindow", "Ptr", ctrl.Hwnd)
                 }
             }
         }
+        this.right_controls := []
+        this.alias_edits := []
+        this.hotkey_edits := []
     }
 
-    static OnAliasTreeSelect(GuiCtrlObj, Item) {
+    static OnCommandTreeSelect(GuiCtrlObj, Item) {
+        this.ClearRightPane()
         if (!this.TV_Map.Has(Item))
             return
             
         info := this.TV_Map[Item]
-        if (info.type == "Item") {
-            this.Text_Category.Text := info.category
-            this.Edit_AliasKey.Value := info.key
+        if (info.type != "Item")
+            return
             
-            if (info.val is Map) {
-                this.Edit_AliasVal.Value := info.val.Has("command") ? info.val["command"] : ""
-                this.Edit_AliasDesc.Value := info.val.Has("desc") ? info.val["desc"] : ""
-            } else {
-                this.Edit_AliasVal.Value := String(info.val)
-                this.Edit_AliasDesc.Value := ""
-            }
-        } else {
-            this.Text_Category.Text := info.name
-            this.Edit_AliasKey.Value := ""
-            this.Edit_AliasVal.Value := ""
-            this.Edit_AliasDesc.Value := ""
+        this.Tabs.UseTab(1)
+        cmd := info.cmd
+        
+        c := this.GuiObj.Add("Text", "x320 y80 w80", "所属类别:")
+        this.right_controls.Push(c)
+        c := this.GuiObj.Add("Text", "x400 y80 w340 cBlue", info.category)
+        this.right_controls.Push(c)
+        
+        c := this.GuiObj.Add("Text", "x320 y110 w80", "功能描述:")
+        this.right_controls.Push(c)
+        this.Edit_Desc := this.GuiObj.Add("Edit", "x400 y106 w340", cmd.Has("desc") ? cmd["desc"] : "")
+        this.right_controls.Push(this.Edit_Desc)
+        
+        c := this.GuiObj.Add("Text", "x320 y140 w80", "执行命令:")
+        this.right_controls.Push(c)
+        this.Edit_Cmd := this.GuiObj.Add("Edit", "x400 y136 w340", cmd.Has("command") ? cmd["command"] : "")
+        this.right_controls.Push(this.Edit_Cmd)
+        
+        cur_y := 180
+        
+        ; 别名区
+        c := this.GuiObj.Add("Text", "x320 y" cur_y " w80", "触发别名:")
+        this.right_controls.Push(c)
+        
+        aliases := cmd.Has("aliases") ? cmd["aliases"] : []
+        if (aliases.Length == 0)
+            aliases := [""]
+            
+        for idx, al in aliases {
+            e := this.GuiObj.Add("Edit", "x400 y" (cur_y - 4) " w120", al)
+            this.right_controls.Push(e)
+            this.alias_edits.Push(e)
+            
+            btn_add := this.GuiObj.Add("Button", "x530 y" (cur_y - 5) " w30 h24", "➕")
+            btn_add.OnEvent("Click", ObjBindMethod(this, "OnAddAlias", idx))
+            this.right_controls.Push(btn_add)
+            
+            btn_del := this.GuiObj.Add("Button", "x565 y" (cur_y - 5) " w30 h24", "➖")
+            btn_del.OnEvent("Click", ObjBindMethod(this, "OnDelAlias", idx))
+            this.right_controls.Push(btn_del)
+            
+            cur_y += 30
         }
+        
+        cur_y += 10
+        
+        ; 快捷键区
+        c := this.GuiObj.Add("Text", "x320 y" cur_y " w80", "触发快捷键:")
+        this.right_controls.Push(c)
+        
+        hotkeys := cmd.Has("hotkeys") ? cmd["hotkeys"] : []
+        if (hotkeys.Length == 0)
+            hotkeys := [""]
+            
+        for idx, hk in hotkeys {
+            e := this.GuiObj.Add("Edit", "x400 y" (cur_y - 4) " w120", hk)
+            this.right_controls.Push(e)
+            this.hotkey_edits.Push(e)
+            
+            btn_add := this.GuiObj.Add("Button", "x530 y" (cur_y - 5) " w30 h24", "➕")
+            btn_add.OnEvent("Click", ObjBindMethod(this, "OnAddHotkey", idx))
+            this.right_controls.Push(btn_add)
+            
+            btn_del := this.GuiObj.Add("Button", "x565 y" (cur_y - 5) " w30 h24", "➖")
+            btn_del.OnEvent("Click", ObjBindMethod(this, "OnDelHotkey", idx))
+            this.right_controls.Push(btn_del)
+            
+            cur_y += 30
+        }
+        
+        cur_y += 30
+        btn_save := this.GuiObj.Add("Button", "x400 y" cur_y " w120 h35", "✔ 保存映射修改")
+        btn_save.OnEvent("Click", ObjBindMethod(this, "SaveCurrentItem"))
+        this.right_controls.Push(btn_save)
+        
+        btn_del_item := this.GuiObj.Add("Button", "x530 y" cur_y " w120 h35", "✖ 删除此命令")
+        btn_del_item.OnEvent("Click", ObjBindMethod(this, "DeleteCurrentItem"))
+        this.right_controls.Push(btn_del_item)
+        
+        this.Tabs.UseTab()
+    }
+    
+    static SaveInputsToCurrentCmd() {
+        itemId := this.TV_Alias.GetSelection()
+        if (!itemId || !this.TV_Map.Has(itemId) || this.TV_Map[itemId].type != "Item")
+            return
+            
+        cmd := this.TV_Map[itemId].cmd
+        cmd["command"] := Trim(this.Edit_Cmd.Value)
+        cmd["desc"] := Trim(this.Edit_Desc.Value)
+        
+        cmd["aliases"] := []
+        for e in this.alias_edits {
+            v := Trim(e.Value)
+            if (v != "")
+                cmd["aliases"].Push(v)
+        }
+        
+        cmd["hotkeys"] := []
+        for e in this.hotkey_edits {
+            v := Trim(e.Value)
+            if (v != "")
+                cmd["hotkeys"].Push(v)
+        }
+    }
+    
+    static OnAddAlias(idx, *) {
+        this.SaveInputsToCurrentCmd()
+        itemId := this.TV_Alias.GetSelection()
+        cmd := this.TV_Map[itemId].cmd
+        if (!cmd.Has("aliases"))
+            cmd["aliases"] := []
+        cmd["aliases"].InsertAt(idx + 1, "")
+        this.OnCommandTreeSelect(this.TV_Alias, itemId)
+    }
+    
+    static OnDelAlias(idx, *) {
+        this.SaveInputsToCurrentCmd()
+        itemId := this.TV_Alias.GetSelection()
+        cmd := this.TV_Map[itemId].cmd
+        if (cmd.Has("aliases") && cmd["aliases"].Length >= idx)
+            cmd["aliases"].RemoveAt(idx)
+        this.OnCommandTreeSelect(this.TV_Alias, itemId)
+    }
+    
+    static OnAddHotkey(idx, *) {
+        this.SaveInputsToCurrentCmd()
+        itemId := this.TV_Alias.GetSelection()
+        cmd := this.TV_Map[itemId].cmd
+        if (!cmd.Has("hotkeys"))
+            cmd["hotkeys"] := []
+        cmd["hotkeys"].InsertAt(idx + 1, "")
+        this.OnCommandTreeSelect(this.TV_Alias, itemId)
+    }
+    
+    static OnDelHotkey(idx, *) {
+        this.SaveInputsToCurrentCmd()
+        itemId := this.TV_Alias.GetSelection()
+        cmd := this.TV_Map[itemId].cmd
+        if (cmd.Has("hotkeys") && cmd["hotkeys"].Length >= idx)
+            cmd["hotkeys"].RemoveAt(idx)
+        this.OnCommandTreeSelect(this.TV_Alias, itemId)
     }
 
     static SaveCurrentItem(*) {
-        itemId := this.TV_Alias.GetSelection()
-        if (!itemId || !this.TV_Map.Has(itemId)) {
-            MsgBox("请先在左侧选择要保存的项。", "提示", "Icon!")
-            return
-        }
-
-        info := this.TV_Map[itemId]
-        newKey := Trim(this.Edit_AliasKey.Value)
-        newVal := Trim(this.Edit_AliasVal.Value)
-        newDesc := Trim(this.Edit_AliasDesc.Value)
-
-        if (info.type == "Item") {
-            if (newKey == "" || newVal == "") {
-                MsgBox("别名和命令映射均不能为空！", "提示", "Iconx")
-                return
-            }
-            
-            category := info.category
-            oldKey := info.key
-
-            ; 更新 AppSettings 内存树
-            if (oldKey != newKey) {
-                AppSettings.alias_obj[category].Delete(oldKey)
-            }
-            
-            newMap := Map("command", newVal)
-            if (newDesc != "")
-                newMap["desc"] := newDesc
-                
-            AppSettings.alias_obj[category][newKey] := newMap
-            info.key := newKey
-            info.val := newMap
-
-            this.FlushAliasJson()
-
-            ; 刷新界面
-            this.LoadAliasTree()
-            MsgBox("保存并热重载成功！", "UCLC", "Iconi T2")
-        } else {
-            MsgBox("请选择一个具体的别名子项进行修改。", "提示", "Icon!")
-        }
+        this.SaveInputsToCurrentCmd()
+        this.FlushCommandsJson()
+        
+        ; 触发内存重建
+        AppSettings.Init()
+        
+        ; 刷新界面
+        this.LoadCommandTree(this.Edit_Search.Value)
+        MsgBox("保存成功！别名与快捷键已热更新生效。", "UCLC", "Iconi T2")
     }
 
     static AddNewItem(*) {
@@ -211,8 +358,7 @@ class UCLC_CUI {
             info := this.TV_Map[itemId]
             category := (info.type == "Category") ? info.name : info.category
         } else {
-            ; 默认加到第一个分类下
-            for k, v in AppSettings.alias_obj {
+            for k, v in AppSettings.commands_obj {
                 if k != "_comment" {
                     category := k
                     break
@@ -225,15 +371,14 @@ class UCLC_CUI {
             return
         }
 
-        newKey := "新别名"
-        newVal := Map("command", "未知命令", "desc", "功能描述")
+        newCmd := Map("command", "NEW_COMMAND_HDR", "desc", "新功能", "aliases", [], "hotkeys", [])
 
-        if (!AppSettings.alias_obj.Has(category))
-            AppSettings.alias_obj[category] := Map()
+        if (!AppSettings.commands_obj.Has(category))
+            AppSettings.commands_obj[category] := []
             
-        AppSettings.alias_obj[category][newKey] := newVal
-        this.FlushAliasJson()
-        this.LoadAliasTree()
+        AppSettings.commands_obj[category].Push(newCmd)
+        this.FlushCommandsJson()
+        this.LoadCommandTree(this.Edit_Search.Value)
     }
 
     static DeleteCurrentItem(*) {
@@ -243,18 +388,19 @@ class UCLC_CUI {
 
         info := this.TV_Map[itemId]
         if (info.type == "Item") {
-            if (MsgBox("确定要删除别名 [" info.key "] 吗？", "确认删除", "YesNo Icon?") == "Yes") {
-                AppSettings.alias_obj[info.category].Delete(info.key)
-                this.FlushAliasJson()
-                this.LoadAliasTree()
+            if (MsgBox("确定要删除整个命令动作（包含所有绑定的别名与快捷键）吗？", "确认删除", "YesNo Icon?") == "Yes") {
+                AppSettings.commands_obj[info.category].RemoveAt(info.index)
+                this.FlushCommandsJson()
+                this.LoadCommandTree(this.Edit_Search.Value)
+                this.ClearRightPane()
             }
         }
     }
 
-    static FlushAliasJson() {
+    static FlushCommandsJson() {
         try {
-            FileDelete(AppSettings.alias_json_path)
-            FileAppend(JSON.stringify(AppSettings.alias_obj), AppSettings.alias_json_path, "UTF-8")
+            FileDelete(AppSettings.commands_json_path)
+            FileAppend(JSON.stringify(AppSettings.commands_obj), AppSettings.commands_json_path, "UTF-8")
         } catch as e {
             MsgBox("写入 JSON 文件失败: " e.Message, "错误", 16)
         }

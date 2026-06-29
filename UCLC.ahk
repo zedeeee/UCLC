@@ -51,7 +51,10 @@ HotIfWinActive "ahk_group GroupCATIA"
 }
 
 check_user_config() {
-    if (FileExist(AppSettings.alias_json_path) = "" or FileExist(AppSettings.hotkey_json_path) = "") {
+    alias_ini := AppSettings.alias_ini_path
+    hotkey_ini := AppSettings.hotkey_ini_path
+    
+    if (FileExist(AppSettings.commands_json_path) = "" && FileExist(alias_ini) = "" && FileExist(hotkey_ini) = "") {
         result := MsgBox(
             "未找到配置文件`n"
             "是否从 Github/Gitee 下载示例文件？`n"
@@ -69,8 +72,6 @@ check_user_config() {
                 ExitApp
 
             case "Yes":
-                alias_ini := StrReplace(AppSettings.alias_json_path, ".json", ".ini")
-                hotkey_ini := StrReplace(AppSettings.hotkey_json_path, ".json", ".ini")
                 config_and_path := [
                     ["CAT_Alias.ini", alias_ini],
                     ["CAT_Hotkey.ini", hotkey_ini]
@@ -83,6 +84,7 @@ check_user_config() {
                 }
 
                 MsgBox("获取配置文件成功，请重新载入脚本")
+                Reload()
 
             default: ExitApp
         }

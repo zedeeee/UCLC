@@ -12,6 +12,17 @@
 
 set -euo pipefail
 
+# 环境变量跳过检查
+if [[ "${SKIP_STAMP_VERSION:-0}" == "1" ]]; then
+    exit 0
+fi
+
+# Rebase 检测跳过逻辑 (防止 rebase 期间的自动 amend 失败)
+if [ -d "$(git rev-parse --git-dir 2>/dev/null)/rebase-merge" ] || [ -d "$(git rev-parse --git-dir 2>/dev/null)/rebase-apply" ]; then
+    echo "[stamp_version] 当前处于 rebase 状态，跳过版本号注入"
+    exit 0
+fi
+
 # 定位项目根目录（脚本可能从任意目录被调用）
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"

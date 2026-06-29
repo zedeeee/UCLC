@@ -31,15 +31,6 @@ update_check_cb(*)
 {
 }
 
-esc_enhanced_cb(ItemName, ItemPos, MyMenu)
-{
-    AppSettings.ESC_CLEAN_FUNC_ENABLE_FLAG := Mod(AppSettings.ESC_CLEAN_FUNC_ENABLE_FLAG + 1, 2)
-    MyMenu.ToggleCheck(ItemName)
-    if AppSettings.ESC_CLEAN_FUNC_ENABLE_FLAG
-    {
-        MsgBox("已开启 ESC 清除命令输入框功能`n开发阶段功能请酌情使用", "UCLC - ESC增强", 0x40)
-    }
-}
 
 reload_cb(*) {
     Reload
@@ -91,7 +82,6 @@ about_and_updates_menu := [
 ]
 
 dev_sub_menu := [
-    ; ["ESC增强", esc_enhanced_cb, ""],
     ["None", Nothing_cb, ""],
 ]
 

@@ -4,3 +4,4 @@
 /.claude/
 /.agent/
 *.bak
+/config.json

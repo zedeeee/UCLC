@@ -11,7 +11,18 @@ class UCLC_CUI {
     static TV_Alias := ""
     static TV_Map := Map()
     
-    static right_controls := []
+    static alias_pool := []
+    static hotkey_pool := []
+    
+    static Txt_Cat := ""
+    static Txt_CatVal := ""
+    static Txt_Desc := ""
+    static Txt_Cmd := ""
+    static Txt_Alias := ""
+    static Txt_Hotkey := ""
+    static Btn_Save := ""
+    static Btn_DelItem := ""
+    
     static alias_edits := []
     static hotkey_edits := []
     
@@ -28,6 +39,9 @@ class UCLC_CUI {
             return
         }
 
+        ; 每次打开设置面板前强制从硬盘重载，丢弃一切未保存的内存脏数据
+        AppSettings.Init()
+
         this.GuiObj := Gui("+Resize", "UCLC 配置管理控制台 (CUI)")
         this.GuiObj.OnEvent("Close", ObjBindMethod(this, "OnClose"))
 
@@ -35,22 +49,77 @@ class UCLC_CUI {
 
         ; =============== 第一页: 命令映射 ===============
         this.Tabs.UseTab(1)
-        this.GuiObj.Add("Text", "x30 y50 w200", "命令列表树 (类别 -> 功能):")
+        this.GuiObj.Add("Text", "x30 y40 w200", "命令列表树 (工作台 -> 功能):")
+        
+        this.GuiObj.Add("Text", "x30 y65 w45", "工作台:")
+        wb_list := ["全部工作台"]
+        for k, v in AppSettings.commands_obj {
+            if (k != "_comment")
+                wb_list.Push(k)
+        }
+        this.DDL_Workbench := this.GuiObj.Add("DropDownList", "x75 y61 w205 Choose1", wb_list)
+        this.DDL_Workbench.OnEvent("Change", ObjBindMethod(this, "OnWorkbenchFilter"))
         
         ; 增加一个搜索框
-        this.GuiObj.Add("Text", "x30 y70 w40", "搜索:")
-        search_edit := this.GuiObj.Add("Edit", "x70 y66 w210")
+        this.GuiObj.Add("Text", "x30 y90 w40", "搜索:")
+        search_edit := this.GuiObj.Add("Edit", "x70 y86 w210")
         search_edit.OnEvent("Change", ObjBindMethod(this, "OnSearchFilter"))
         this.Edit_Search := search_edit
 
-        this.TV_Alias := this.GuiObj.Add("TreeView", "x30 y95 w250 h455")
+        this.TV_Alias := this.GuiObj.Add("TreeView", "x30 y115 w250 h430")
         this.TV_Alias.OnEvent("ItemSelect", ObjBindMethod(this, "OnCommandTreeSelect"))
 
         ; 右侧详情编辑区框
         this.GuiObj.Add("GroupBox", "x300 y60 w460 h490", "详细属性与动态编辑")
         
+        ; 预分配右侧控件（池化技术防泄露，解决 Tab3 渲染覆盖问题）
+        this.Tabs.UseTab(1)
+        this.Txt_Cat := this.GuiObj.Add("Text", "x320 y80 w80 Hidden", "所属工作台:")
+        this.Txt_CatVal := this.GuiObj.Add("Text", "x400 y80 w340 cBlue Hidden", "")
+        
+        this.Txt_Desc := this.GuiObj.Add("Text", "x320 y110 w80 Hidden", "功能描述:")
+        this.Edit_Desc := this.GuiObj.Add("Edit", "x400 y106 w340 Hidden", "")
+        
+        this.Txt_Cmd := this.GuiObj.Add("Text", "x320 y140 w80 Hidden", "执行命令:")
+        this.Edit_Cmd := this.GuiObj.Add("Edit", "x400 y136 w340 Hidden", "")
+        
+        this.Txt_Alias := this.GuiObj.Add("Text", "x320 y180 w80 Hidden", "触发别名:")
+        
+        this.alias_pool := []
+        loop 10 {
+            e := this.GuiObj.Add("Edit", "x400 y0 w120 Hidden", "")
+            btn_add := this.GuiObj.Add("Button", "x530 y0 w30 h24 Hidden", "➕")
+            btn_del := this.GuiObj.Add("Button", "x565 y0 w30 h24 Hidden", "➖")
+            
+            btn_add.OnEvent("Click", ObjBindMethod(this, "OnAddAlias", A_Index))
+            btn_del.OnEvent("Click", ObjBindMethod(this, "OnDelAlias", A_Index))
+            
+            this.alias_pool.Push({e: e, add: btn_add, del: btn_del})
+        }
+        
+        this.Txt_Hotkey := this.GuiObj.Add("Text", "x320 y0 w80 Hidden", "触发快捷键:")
+        
+        this.hotkey_pool := []
+        loop 10 {
+            e := this.GuiObj.Add("Edit", "x400 y0 w120 Hidden", "")
+            btn_add := this.GuiObj.Add("Button", "x530 y0 w30 h24 Hidden", "➕")
+            btn_del := this.GuiObj.Add("Button", "x565 y0 w30 h24 Hidden", "➖")
+            
+            btn_add.OnEvent("Click", ObjBindMethod(this, "OnAddHotkey", A_Index))
+            btn_del.OnEvent("Click", ObjBindMethod(this, "OnDelHotkey", A_Index))
+            
+            this.hotkey_pool.Push({e: e, add: btn_add, del: btn_del})
+        }
+        
+        this.Btn_Save := this.GuiObj.Add("Button", "x400 y0 w120 h35 Hidden", "✔ 保存映射修改")
+        this.Btn_Save.OnEvent("Click", ObjBindMethod(this, "SaveCurrentItem"))
+        
+        this.Btn_DelItem := this.GuiObj.Add("Button", "x530 y0 w120 h35 Hidden", "✖ 删除此命令")
+        this.Btn_DelItem.OnEvent("Click", ObjBindMethod(this, "DeleteCurrentItem"))
+        this.Tabs.UseTab()
+        
         ; 新增命令按钮放在树下面
-        btn_add := this.GuiObj.Add("Button", "x30 y555 w250 h30", "➕ 在所选分类下新增命令")
+        btn_add := this.GuiObj.Add("Button", "x30 y550 w250 h30", "➕ 在所选工作台下新增命令")
         btn_add.OnEvent("Click", ObjBindMethod(this, "AddNewItem"))
 
         ; =============== 第二页: 通用设置 ===============
@@ -112,8 +181,16 @@ class UCLC_CUI {
         this.TV_Alias.Delete()
         this.TV_Map.Clear()
         
+        wb_filter := ""
+        if (this.HasProp("DDL_Workbench") && IsObject(this.DDL_Workbench)) {
+            wb_filter := this.DDL_Workbench.Text
+        }
+        
         for category, cmdArray in AppSettings.commands_obj {
             if (category == "_comment")
+                continue
+                
+            if (wb_filter != "" && wb_filter != "全部工作台" && category != wb_filter)
                 continue
                 
             catId := 0
@@ -160,27 +237,76 @@ class UCLC_CUI {
         }
     }
     
+    static OnWorkbenchFilter(CtrlObj, *) {
+        this.LoadCommandTree(this.Edit_Search.Value)
+    }
+    
     static OnSearchFilter(CtrlObj, *) {
         val := CtrlObj.Value
         this.LoadCommandTree(val)
     }
 
     static OnClose(*) {
-        this.right_controls := []
         this.alias_edits := []
         this.hotkey_edits := []
+        this.alias_pool := []
+        this.hotkey_pool := []
+        
+        this.TV_Map.Clear()
+        
+        if (this.GuiObj) {
+            this.GuiObj.Destroy()
+        }
+        
         this.GuiObj := ""
+        this.Tabs := ""
+        this.TV_Alias := ""
+        this.DDL_Workbench := ""
+        this.Edit_Search := ""
+        this.Chk_Everything := ""
+        this.Edit_EverythingPath := ""
+        this.Edit_Cmd := ""
+        this.Edit_Desc := ""
+        
+        this.Txt_Cat := ""
+        this.Txt_CatVal := ""
+        this.Txt_Desc := ""
+        this.Txt_Cmd := ""
+        this.Txt_Alias := ""
+        this.Txt_Hotkey := ""
+        this.Btn_Save := ""
+        this.Btn_DelItem := ""
     }
 
     static ClearRightPane() {
-        for ctrl in this.right_controls {
-            if IsObject(ctrl) {
-                try {
-                    DllCall("DestroyWindow", "Ptr", ctrl.Hwnd)
-                }
-            }
+        if (!this.GuiObj || !this.HasProp("Txt_Cat"))
+            return
+            
+        this.Txt_Cat.Opt("Hidden")
+        this.Txt_CatVal.Opt("Hidden")
+        this.Txt_Desc.Opt("Hidden")
+        this.Edit_Desc.Opt("Hidden")
+        this.Txt_Cmd.Opt("Hidden")
+        this.Edit_Cmd.Opt("Hidden")
+        this.Txt_Alias.Opt("Hidden")
+        
+        for p in this.alias_pool {
+            p.e.Opt("Hidden")
+            p.add.Opt("Hidden")
+            p.del.Opt("Hidden")
         }
-        this.right_controls := []
+        
+        this.Txt_Hotkey.Opt("Hidden")
+        
+        for p in this.hotkey_pool {
+            p.e.Opt("Hidden")
+            p.add.Opt("Hidden")
+            p.del.Opt("Hidden")
+        }
+        
+        this.Btn_Save.Opt("Hidden")
+        this.Btn_DelItem.Opt("Hidden")
+        
         this.alias_edits := []
         this.hotkey_edits := []
     }
@@ -194,86 +320,77 @@ class UCLC_CUI {
         if (info.type != "Item")
             return
             
-        this.Tabs.UseTab(1)
         cmd := info.cmd
         
-        c := this.GuiObj.Add("Text", "x320 y80 w80", "所属类别:")
-        this.right_controls.Push(c)
-        c := this.GuiObj.Add("Text", "x400 y80 w340 cBlue", info.category)
-        this.right_controls.Push(c)
+        this.Txt_CatVal.Value := info.category
+        this.Edit_Desc.Value := cmd.Has("desc") ? cmd["desc"] : ""
+        this.Edit_Cmd.Value := cmd.Has("command") ? cmd["command"] : ""
         
-        c := this.GuiObj.Add("Text", "x320 y110 w80", "功能描述:")
-        this.right_controls.Push(c)
-        this.Edit_Desc := this.GuiObj.Add("Edit", "x400 y106 w340", cmd.Has("desc") ? cmd["desc"] : "")
-        this.right_controls.Push(this.Edit_Desc)
-        
-        c := this.GuiObj.Add("Text", "x320 y140 w80", "执行命令:")
-        this.right_controls.Push(c)
-        this.Edit_Cmd := this.GuiObj.Add("Edit", "x400 y136 w340", cmd.Has("command") ? cmd["command"] : "")
-        this.right_controls.Push(this.Edit_Cmd)
+        this.Txt_Cat.Opt("-Hidden")
+        this.Txt_CatVal.Opt("-Hidden")
+        this.Txt_Desc.Opt("-Hidden")
+        this.Edit_Desc.Opt("-Hidden")
+        this.Txt_Cmd.Opt("-Hidden")
+        this.Edit_Cmd.Opt("-Hidden")
+        this.Txt_Alias.Opt("-Hidden")
         
         cur_y := 180
         
         ; 别名区
-        c := this.GuiObj.Add("Text", "x320 y" cur_y " w80", "触发别名:")
-        this.right_controls.Push(c)
-        
         aliases := cmd.Has("aliases") ? cmd["aliases"] : []
         if (aliases.Length == 0)
             aliases := [""]
             
         for idx, al in aliases {
-            e := this.GuiObj.Add("Edit", "x400 y" (cur_y - 4) " w120", al)
-            this.right_controls.Push(e)
-            this.alias_edits.Push(e)
+            if (idx > 10)
+                break
+            p := this.alias_pool[idx]
+            p.e.Value := al
+            p.e.Move(, cur_y - 4)
+            p.add.Move(, cur_y - 5)
+            p.del.Move(, cur_y - 5)
             
-            btn_add := this.GuiObj.Add("Button", "x530 y" (cur_y - 5) " w30 h24", "➕")
-            btn_add.OnEvent("Click", ObjBindMethod(this, "OnAddAlias", idx))
-            this.right_controls.Push(btn_add)
+            p.e.Opt("-Hidden")
+            p.add.Opt("-Hidden")
+            p.del.Opt("-Hidden")
             
-            btn_del := this.GuiObj.Add("Button", "x565 y" (cur_y - 5) " w30 h24", "➖")
-            btn_del.OnEvent("Click", ObjBindMethod(this, "OnDelAlias", idx))
-            this.right_controls.Push(btn_del)
-            
+            this.alias_edits.Push(p.e)
             cur_y += 30
         }
         
         cur_y += 10
         
         ; 快捷键区
-        c := this.GuiObj.Add("Text", "x320 y" cur_y " w80", "触发快捷键:")
-        this.right_controls.Push(c)
+        this.Txt_Hotkey.Move(, cur_y)
+        this.Txt_Hotkey.Opt("-Hidden")
         
         hotkeys := cmd.Has("hotkeys") ? cmd["hotkeys"] : []
         if (hotkeys.Length == 0)
             hotkeys := [""]
             
         for idx, hk in hotkeys {
-            e := this.GuiObj.Add("Edit", "x400 y" (cur_y - 4) " w120", hk)
-            this.right_controls.Push(e)
-            this.hotkey_edits.Push(e)
+            if (idx > 10)
+                break
+            p := this.hotkey_pool[idx]
+            p.e.Value := hk
+            p.e.Move(, cur_y - 4)
+            p.add.Move(, cur_y - 5)
+            p.del.Move(, cur_y - 5)
             
-            btn_add := this.GuiObj.Add("Button", "x530 y" (cur_y - 5) " w30 h24", "➕")
-            btn_add.OnEvent("Click", ObjBindMethod(this, "OnAddHotkey", idx))
-            this.right_controls.Push(btn_add)
+            p.e.Opt("-Hidden")
+            p.add.Opt("-Hidden")
+            p.del.Opt("-Hidden")
             
-            btn_del := this.GuiObj.Add("Button", "x565 y" (cur_y - 5) " w30 h24", "➖")
-            btn_del.OnEvent("Click", ObjBindMethod(this, "OnDelHotkey", idx))
-            this.right_controls.Push(btn_del)
-            
+            this.hotkey_edits.Push(p.e)
             cur_y += 30
         }
         
         cur_y += 30
-        btn_save := this.GuiObj.Add("Button", "x400 y" cur_y " w120 h35", "✔ 保存映射修改")
-        btn_save.OnEvent("Click", ObjBindMethod(this, "SaveCurrentItem"))
-        this.right_controls.Push(btn_save)
+        this.Btn_Save.Move(, cur_y)
+        this.Btn_Save.Opt("-Hidden")
         
-        btn_del_item := this.GuiObj.Add("Button", "x530 y" cur_y " w120 h35", "✖ 删除此命令")
-        btn_del_item.OnEvent("Click", ObjBindMethod(this, "DeleteCurrentItem"))
-        this.right_controls.Push(btn_del_item)
-        
-        this.Tabs.UseTab()
+        this.Btn_DelItem.Move(, cur_y)
+        this.Btn_DelItem.Opt("-Hidden")
     }
     
     static SaveInputsToCurrentCmd() {
@@ -288,15 +405,13 @@ class UCLC_CUI {
         cmd["aliases"] := []
         for e in this.alias_edits {
             v := Trim(e.Value)
-            if (v != "")
-                cmd["aliases"].Push(v)
+            cmd["aliases"].Push(v)
         }
         
         cmd["hotkeys"] := []
         for e in this.hotkey_edits {
             v := Trim(e.Value)
-            if (v != "")
-                cmd["hotkeys"].Push(v)
+            cmd["hotkeys"].Push(v)
         }
     }
     
@@ -340,6 +455,25 @@ class UCLC_CUI {
 
     static SaveCurrentItem(*) {
         this.SaveInputsToCurrentCmd()
+        
+        ; 仅在最终保存时过滤掉空字符串，防止写入 JSON
+        itemId := this.TV_Alias.GetSelection()
+        if (itemId && this.TV_Map.Has(itemId) && this.TV_Map[itemId].type == "Item") {
+            cmd := this.TV_Map[itemId].cmd
+            
+            clean_aliases := []
+            for v in cmd["aliases"]
+                if (v != "")
+                    clean_aliases.Push(v)
+            cmd["aliases"] := clean_aliases
+            
+            clean_hotkeys := []
+            for v in cmd["hotkeys"]
+                if (v != "")
+                    clean_hotkeys.Push(v)
+            cmd["hotkeys"] := clean_hotkeys
+        }
+        
         this.FlushCommandsJson()
         
         ; 触发内存重建

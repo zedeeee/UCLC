@@ -42,7 +42,7 @@ class UCLC_CUI {
         ; 每次打开设置面板前强制从硬盘重载，丢弃一切未保存的内存脏数据
         AppSettings.Init()
 
-        this.GuiObj := Gui("+Resize", "UCLC 配置管理控制台 (CUI)")
+        this.GuiObj := Gui("-Resize -MaximizeBox", "UCLC 配置管理控制台 (CUI)")
         this.GuiObj.OnEvent("Close", ObjBindMethod(this, "OnClose"))
 
         this.Tabs := this.GuiObj.Add("Tab3", "x10 y10 w780 h580", ["命令映射 (Commands)", "通用设置 (General)"])

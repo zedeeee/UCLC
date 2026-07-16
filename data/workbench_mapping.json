@@ -1,0 +1,1038 @@
+{
+    "CATAifAssemblyWkb": {
+        "English": "Assembly Design",
+        "French": "Assembly Design",
+        "German": "Assembly Design",
+        "Italian": "Assembly Design",
+        "Japanese": "ｱｾﾝﾌﾞﾘｰ･ﾃﾞｻﾞｲﾝ",
+        "Korean": "어셈블리 디자인",
+        "Russian": "Assembly Design",
+        "Simplified_Chinese": "装配设计"
+    },
+    "CATCuiCATALOGWks": {
+        "English": "Catalog Editor",
+        "French": "Catalog Editor",
+        "German": "Catalog Editor",
+        "Italian": "Catalog Editor",
+        "Japanese": "ｶﾀﾛｸﾞ･ｴﾃﾞｨﾀｰ",
+        "Korean": "카탈로그 편집기",
+        "Russian": "Редактор каталога",
+        "Simplified_Chinese": "目录编辑器"
+    },
+    "CATLmuAMGProgramWkb": {
+        "English": "Advanced Machining",
+        "French": "Advanced Machining",
+        "German": "Advanced Machining",
+        "Italian": "Advanced Machining",
+        "Japanese": "ｱﾄﾞﾊﾞﾝｽﾄﾞ･ﾏｼﾆﾝｸﾞ"
+    },
+    "CATClaCreationWbenchWkb": {
+        "English": "Automotive Class A",
+        "French": "Automotive Class A",
+        "German": "Automotive Class A",
+        "Italian": "Automotive Class A",
+        "Japanese": "ｵｰﾄﾓｰﾃｨﾌﾞ･ｸﾗｽ A",
+        "Simplified_Chinese": "自动 A 类"
+    },
+    "CATCewCloudEditorWorkbenchWkb": {
+        "English": "Digitized Shape Editor",
+        "French": "Digitized Shape Editor",
+        "German": "Digitized Shape Editor",
+        "Japanese": "ﾃﾞｼﾞﾀｲｽﾞ･ｼｪｲﾌﾟ･ｴﾃﾞｨﾀｰ"
+    },
+    "CATEdlPrdWorkbenchWkb": {
+        "English": "Electrical Assembly Design",
+        "French": "Electrical Assembly Design",
+        "Japanese": "ｴﾚｸﾄﾘｶﾙ･ｱｾﾝﾌﾞﾘｰ･ﾃﾞｻﾞｲﾝ"
+    },
+    "CATEdlPrtWorkbenchWkb": {
+        "English": "Electrical Part Design",
+        "French": "Electrical Part Design",
+        "Japanese": "ｴﾚｸﾄﾘｶﾙ･ﾊﾟｰﾄ･ﾃﾞｻﾞｲﾝ"
+    },
+    "CATEluWkbConfigWkb": {
+        "English": "Electrical Connectivity Diagrams",
+        "Japanese": "ｴﾚｸﾄﾘｶﾙ接続性ﾀﾞｲｱｸﾞﾗﾑ"
+    },
+    "CATEhiWorkshopWkb": {
+        "English": "Electrical Harness Assembly",
+        "French": "Electrical Harness Assembly",
+        "Japanese": "ｴﾚｸﾄﾘｶﾙ･ﾊｰﾈｽ･ｱｾﾝﾌﾞﾘｰ"
+    },
+    "CATEhiWorkshopPartWkb": {
+        "English": "Electrical Harness Installation",
+        "French": "Electrical Harness Installation",
+        "Japanese": "ｴﾚｸﾄﾘｶﾙ･ﾊｰﾈｽ･ｲﾝｽﾄﾚｰｼｮﾝ"
+    },
+    "CATHvuWkbConfigWkb": {
+        "English": "HVAC Diagrams",
+        "Japanese": "HVACﾀﾞｲｱｸﾞﾗﾑ"
+    },
+    "CATPiuWkbConfigWkb": {
+        "English": "Piping and Instrumentation Diagrams",
+        "Japanese": "ﾊﾟｲﾋﾟﾝｸﾞ&ｲﾝｽﾂﾙﾒﾝﾃｰｼｮﾝ・ﾀﾞｲｱｸﾞﾗﾑ"
+    },
+    "CATKweExpertKnowWorkshopWks": {
+        "English": "Knowledge Expert",
+        "French": "Knowledge Expert",
+        "German": "Knowledge Expert",
+        "Italian": "Knowledge Expert",
+        "Japanese": "ﾅﾚｯｼﾞ･ｴｷｽﾊﾟｰﾄ",
+        "Russian": "Эксперт базы знаний",
+        "Simplified_Chinese": "知识工程专家"
+    },
+    "CATFsuFcaWks": {
+        "English": "Functional System"
+    },
+    "CATFdyDictionaryWks": {
+        "English": "Feature Dictionary Editor",
+        "French": "Feature Dictionary Editor",
+        "German": "Feature Dictionary Editor",
+        "Italian": "Feature Dictionary Editor",
+        "Japanese": "ﾌｨｰﾁｬｰ辞書ｴﾃﾞｨﾀｰ",
+        "Korean": "피처 딕셔너리 편집기",
+        "Russian": "Редактор словаря примитива",
+        "Simplified_Chinese": "特征词典编辑器"
+    },
+    "CATFsuFsyWkb": {
+        "English": "Product Functional Definition"
+    },
+    "CATGkuGeneKnowWks": {
+        "English": "Product Knowledge Template",
+        "French": "Product Knowledge Template",
+        "German": "Produktwissensvorlage",
+        "Italian": "Product Knowledge Template",
+        "Japanese": "ﾌﾟﾛﾀﾞｸﾄ ﾅﾚｯｼﾞ ﾃﾝﾌﾟﾚｰﾄ"
+    },
+    "CATHybridPartWorkbenchWkb": {
+        "English": "Wireframe and Surface Design",
+        "French": "Wireframe and Surface Design",
+        "German": "Drahtmodell und Flächenkonstruktion",
+        "Italian": "Wireframe & Surface Design",
+        "Japanese": "ﾜｲﾔｰﾌﾚｰﾑ&ｻｰﾌｪｽ･ﾃﾞｻﾞｲﾝ",
+        "Russian": "Проектирование элементов каркаса и поверхности",
+        "Simplified_Chinese": "线框和曲面设计"
+    },
+    "CATCmeCATIALibraryWks": {
+        "English": "CATIA V4,V3,V2",
+        "French": "CATIA V4, V3, V2",
+        "German": "CATIA V4, V3, V2",
+        "Italian": "CATIA V4,V3,V2",
+        "Japanese": "CATIA V4",
+        "Korean": "CATIA V4,V3,V2",
+        "Russian": "CATIA V4,V3,V2",
+        "Simplified_Chinese": "CATIA V4、V3、V2"
+    },
+    "CATCmeCATIAModelEditorWks": {
+        "English": "CATIA V4,V3,V2",
+        "French": "CATIA V4, V3, V2",
+        "German": "CATIA V4, V3, V2",
+        "Italian": "CATIA V4,V3,V2",
+        "Japanese": "CATIA V4",
+        "Korean": "CATIA V4,V3,V2",
+        "Russian": "CATIA V4,V3,V2",
+        "Simplified_Chinese": "CATIA V4、V3、V2"
+    },
+    "CATShapeDesignWorkbenchWkb": {
+        "English": "Generative Shape Design",
+        "French": "Generative Shape Design",
+        "German": "Generative Shape Design",
+        "Italian": "Generative Shape Design",
+        "Japanese": "ｼﾞｪﾈﾚｰﾃｨﾌﾞ･ｼｪｲﾌﾟ･ﾃﾞｻﾞｲﾝ",
+        "Russian": "Поверхностное моделирование машиностроительных деталей",
+        "Simplified_Chinese": "创成式外形设计"
+    },
+    "CATMldMoldCfgWkb": {
+        "English": "Mold Tooling Design",
+        "French": "Mold Tooling Design",
+        "German": "Mold Tooling Design",
+        "Italian": "Mold Tooling Design",
+        "Japanese": "ﾓｰﾙﾄﾞ･ﾂｰﾘﾝｸﾞ･ﾃﾞｻﾞｲﾝ"
+    },
+    "CATFscStCLAWkb": {
+        "English": "FreeStyle",
+        "French": "FreeStyle",
+        "German": "Freiformflächen",
+        "Italian": "FreeStyle",
+        "Japanese": "ﾌﾘｰｽﾀｲﾙ",
+        "Simplified_Chinese": "自由样式"
+    },
+    "CATCafCGRWks": {
+        "English": "Empty",
+        "French": "Vide",
+        "German": "Leer",
+        "Italian": "Vuoto",
+        "Japanese": "空",
+        "Korean": "비어 있음",
+        "Russian": "Пусто",
+        "Simplified_Chinese": "空"
+    },
+    "CATSKUCS0WKSWks": {
+        "English": "Sketcher",
+        "French": "Sketcher",
+        "German": "Sketcher",
+        "Italian": "Sketcher",
+        "Japanese": "ｽｹｯﾁｬｰ",
+        "Korean": "Sketcher",
+        "Russian": "Создание эскизов",
+        "Simplified_Chinese": "草图编辑器"
+    },
+    "CATFecDeskWorkshopWks": {
+        "English": "Desk",
+        "French": "Bureau",
+        "German": "Schreibtisch ",
+        "Italian": "Desktop",
+        "Japanese": "ﾃﾞｽｸ",
+        "Korean": "데스크",
+        "Russian": "Диаграмма связей",
+        "Simplified_Chinese": "桌面"
+    },
+    "CATSilDMUCheckWkb": {
+        "English": "DMU Space Analysis",
+        "French": "DMU Space Analysis",
+        "German": "DMU Space Analysis",
+        "Italian": "DMU Space Analysis",
+        "Japanese": "DMUｽﾍﾟｰｽ･ｱﾅﾘｼｽ",
+        "Korean": "DMU 공간 분석",
+        "Russian": "Пространственный анализ цифрового макета",
+        "Simplified_Chinese": "DMU 空间分析"
+    },
+    "CATFisDMUFittingWkb": {
+        "English": "DMU Fitting",
+        "French": "DMU Fitting",
+        "German": "DMU Fitting ",
+        "Italian": "DMU Fitting",
+        "Japanese": "DMUﾌｨｯﾃｨﾝｸﾞ",
+        "Korean": "DMU 맞춤",
+        "Russian": "Подгонка цифровых макетов",
+        "Simplified_Chinese": "DMU 配件"
+    },
+    "CATMecDMUKinematicsWkb": {
+        "English": "DMU Kinematics",
+        "French": "DMU Kinematics",
+        "German": "DMU Kinematics",
+        "Italian": "DMU Kinematics",
+        "Japanese": "DMUｷﾈﾏﾃｨｸｽ",
+        "Korean": "DMU 키네매틱스(K)",
+        "Simplified_Chinese": "DMU 运动机构"
+    },
+    "CATNauDMUNavigatorWkb": {
+        "English": "DMU Navigator",
+        "French": "DMU Navigator",
+        "German": "DMU Navigator",
+        "Italian": "DMU Navigator",
+        "Japanese": "DMUﾅﾋﾞｹﾞｰﾀｰ",
+        "Korean": "DMU Navigator",
+        "Russian": "DMU Navigator",
+        "Simplified_Chinese": "DMU Navigator"
+    },
+    "CATSmaDMUOptimizerWkb": {
+        "English": "DMU Optimizer",
+        "French": "DMU Optimizer",
+        "German": "DMU Optimizer",
+        "Italian": "DMU Optimizer",
+        "Japanese": "DMUｵﾌﾟﾃｨﾏｲｻﾞｰ",
+        "Korean": "DMU 최적화 프로그램",
+        "Russian": "Оптимизатор цифрового макета",
+        "Simplified_Chinese": "DMU 优化器"
+    },
+    "CATTbuDMUTolerancingWkb": {
+        "English": "DMU Tolerancing Review",
+        "French": "DMU Tolerancing Review",
+        "German": "DMU Tolerancing Review",
+        "Italian": "DMU Tolerancing Review",
+        "Japanese": "DMUﾄﾚﾗﾝｼﾝｸﾞ･ﾚﾋﾞｭｰ",
+        "Korean": "DMU 공차 리뷰",
+        "Russian": "Обзор назначения допусков цифровых макетов",
+        "Simplified_Chinese": "DMU 公差审查"
+    },
+    "CATDrwDrwWkb": {
+        "English": "Drafting",
+        "French": "Drafting",
+        "German": "Drafting",
+        "Italian": "Drafting",
+        "Japanese": "ﾄﾞﾗﾌﾃｨﾝｸﾞ",
+        "Korean": "도면",
+        "Russian": "Черчение",
+        "Simplified_Chinese": "工程制图"
+    },
+    "CATDrwBGWkb": {
+        "English": "Drafting",
+        "French": "Drafting",
+        "German": "Zeichnungserstellung",
+        "Italian": "Drafting",
+        "Japanese": "ﾄﾞﾗﾌﾃｨﾝｸﾞ",
+        "Korean": "도면",
+        "Russian": "Черчение",
+        "Simplified_Chinese": "工程制图"
+    },
+    "CATDrwDRWBGFRAMEWks": {
+        "English": "Drafting Background",
+        "French": "Drafting - Fond",
+        "German": "Zeichnungshintergrund",
+        "Italian": "Sfondo di Drafting",
+        "Japanese": "ﾄﾞﾗﾌﾃｨﾝｸﾞ背景",
+        "Korean": "도면 배경",
+        "Russian": "Фон чертежа",
+        "Simplified_Chinese": "工程制图背景"
+    },
+    "CATDrwCalloutWBWkb": {
+        "English": "Drafting",
+        "French": "Dessin",
+        "German": "Drafting",
+        "Italian": "Drafting",
+        "Japanese": "ﾄﾞﾗﾌﾃｨﾝｸﾞ",
+        "Korean": "도면",
+        "Russian": "Черчение",
+        "Simplified_Chinese": "工程制图"
+    },
+    "CATDrwDRWFRAMEWks": {
+        "English": "Drafting",
+        "French": "Dessin",
+        "German": "Zeichnungserstellung",
+        "Italian": "Drafting",
+        "Japanese": "ﾄﾞﾗﾌﾃｨﾝｸﾞ",
+        "Korean": "도면",
+        "Russian": "Черчение",
+        "Simplified_Chinese": "工程制图"
+    },
+    "CATEwdWorkshopWkb": {
+        "English": "Electrical Wire Routing",
+        "French": "Electrical Wire Routing",
+        "Japanese": "ｴﾚｸﾄﾘｶﾙ･ﾜｲﾔｰ･ﾗｳﾃｨﾝｸﾞ"
+    },
+    "CATFsdFsDWorkbenchWkb": {
+        "English": "Sketch Tracer",
+        "French": "Sketch Tracer",
+        "Japanese": "ｽｹｯﾁ･ﾄﾚｰｻｰ"
+    },
+    "CATKwaKnowledgeAdvisorWks": {
+        "English": "Knowledge Advisor",
+        "French": "Knowledge Advisor",
+        "German": "Knowledge Advisor",
+        "Italian": "Knowledge Advisor",
+        "Japanese": "ﾅﾚｯｼﾞ･ｱﾄﾞﾊﾞｲｻﾞｰ"
+    },
+    "CATKwoOptimizerWks": {
+        "English": "Product Engineering Optimizer",
+        "French": "Product Engineering Optimizer",
+        "German": "Product Engineering Optimizer",
+        "Italian": "Product Engineering Optimizer",
+        "Japanese": "ﾌﾟﾛﾀﾞｸﾄ･ｴﾝｼﾞﾆｱﾘﾝｸﾞ･ｵﾌﾟﾃｨﾏｲｻﾞｰ"
+    },
+    "CATLmuLatheProgramWkb": {
+        "English": "Lathe Machining",
+        "French": "Lathe Machining",
+        "German": "Lathe Machining",
+        "Italian": "Lathe Machining",
+        "Japanese": "ﾚｰｽ･ﾏｼﾆﾝｸﾞ"
+    },
+    "CATLatheOperations": {
+        "English": "Turning Operations",
+        "French": "Opérations de tournage",
+        "German": "Drehoperationen",
+        "Italian": "Operazioni di tornitura",
+        "Japanese": "旋削ｵﾍﾟﾚｰｼｮﾝ"
+    },
+    "CATCldLndConfigurationWkb": {
+        "English": "Systems Routing",
+        "Japanese": "ｼｽﾃﾑ･ﾗｳﾃｨﾝｸﾞ"
+    },
+    "CATMaoM3xProgramWorkbenchWkb": {
+        "English": "Surface Machining",
+        "French": "Surface Machining",
+        "German": "Flächenbearbeitung",
+        "Italian": "Surface Machining",
+        "Japanese": "ｻｰﾌｪｽ･ﾏｼﾆﾝｸﾞ"
+    },
+    "CATLmuManufacturingNCReviewWkb": {
+        "English": "NC Manufacturing Review",
+        "French": "NC Manufacturing Review",
+        "German": "NC Manufacturing Review",
+        "Italian": "NC Manufacturing Review",
+        "Japanese": "NCﾏﾆｭﾌｧｸﾁｬﾘﾝｸﾞ･ﾚﾋﾞｭｰ"
+    },
+    "CATMfgManufacturingProgramWkb": {
+        "English": "Prismatic Machining",
+        "French": "Prismatic Machining",
+        "German": "Prismatic Machining",
+        "Italian": "Prismatic Machining",
+        "Japanese": "ﾌﾟﾘｽﾞﾏﾃｨｯｸ･ﾏｼﾆﾝｸﾞ"
+    },
+    "CATMaterialWorkshopWks": {
+        "English": "Material Library",
+        "French": "Material Library",
+        "German": "Material Library",
+        "Italian": "Material Library",
+        "Japanese": "ﾏﾃﾘｱﾙ･ﾗｲﾌﾞﾗﾘｰ",
+        "Korean": "Material Library",
+        "Russian": "Библиотека материалов",
+        "Simplified_Chinese": "材料库"
+    },
+    "CATMfgMultiAxisOperationsTlb": {
+        "English": "Multi-Axis Operations",
+        "French": "Usinage Multi-Axes",
+        "German": "Mehrfachachsoperationen",
+        "Italian": "Operazioni a più assi",
+        "Japanese": "多軸ｵﾍﾟﾚｰｼｮﾝ"
+    },
+    "CATPbbPCBoardWkb": {
+        "English": "Circuit Board Design",
+        "Japanese": "ｻｰｷｯﾄ･ﾎﾞｰﾄﾞ･ﾃﾞｻﾞｲﾝ"
+    },
+    "CATPstProductWks": {
+        "English": "Product",
+        "French": "Produit",
+        "German": "Produkt",
+        "Italian": "Prodotto",
+        "Japanese": "ﾌﾟﾛﾀﾞｸﾄ",
+        "Korean": "프로덕트",
+        "Russian": "Изделие",
+        "Simplified_Chinese": "产品"
+    },
+    "CATPstProductWkb": {
+        "English": "Product Structure",
+        "French": "Product Structure",
+        "German": "Product Structure",
+        "Italian": "Product Structure",
+        "Japanese": "ﾌﾟﾛﾀﾞｸﾄ･ｽﾄﾗｸﾁｬｰ",
+        "Korean": "프로덕트 구조",
+        "Russian": "Product Structure",
+        "Simplified_Chinese": "产品结构"
+    },
+    "CATPcfPartWkb": {
+        "English": "Part Design",
+        "French": "Part Design",
+        "German": "Part Design",
+        "Italian": "Part Design",
+        "Japanese": "ﾊﾟｰﾄ･ﾃﾞｻﾞｲﾝ",
+        "Russian": "Проектирование деталей",
+        "Simplified_Chinese": "零件设计"
+    },
+    "CATMmrPartWks": {
+        "English": "Part",
+        "French": "Pièce",
+        "German": "Teil",
+        "Italian": "Parte",
+        "Japanese": "ﾊﾟｰﾂ",
+        "Korean": "파트",
+        "Russian": "Деталь",
+        "Simplified_Chinese": "零件"
+    },
+    "CATCpaPslConfigurationWkb": {
+        "English": "Plant Layout",
+        "Japanese": "ﾌﾟﾗﾝﾄ･ﾚｲｱｳﾄ"
+    },
+    "CATCamSAMWorkshopWks": {
+        "English": "Analysis",
+        "French": "Analyse",
+        "German": "Analyse",
+        "Italian": "Analisi",
+        "Japanese": "解析"
+    },
+    "CATRscSceneWorkbenchWkb": {
+        "English": "Real Time Rendering",
+        "French": "Real Time Rendering",
+        "German": "Real Time Rendering",
+        "Italian": "Real Time Rendering",
+        "Japanese": "ﾘｱﾙﾀｲﾑ･ﾚﾝﾀﾞﾘﾝｸﾞ",
+        "Russian": "Тонирование в реальном времени",
+        "Simplified_Chinese": "实时渲染"
+    },
+    "CATScuWks": {
+        "English": "CATDiagram workshop",
+        "French": "Atelier CATDiagram",
+        "German": "CATDiagram-Workshop",
+        "Japanese": "CATDiagram ワークショップ",
+        "Korean": "CATDiagram 워크샵",
+        "Simplified_Chinese": "CATDiagram 工作间"
+    },
+    "CATCsdSheetmetalDesignWkb": {
+        "English": "Sheet Metal Design",
+        "French": "Sheet Metal Design",
+        "German": "Sheet Metal Design",
+        "Italian": "Sheet Metal Design",
+        "Japanese": "ｼｰﾄﾒﾀﾙ･ﾃﾞｻﾞｲﾝ"
+    },
+    "CATSpwSheetmetalProductionWkb": {
+        "English": "Sheet Metal Production"
+    },
+    "CATCsdSheetmetalAeroDesignWkb": {
+        "English": "Aerospace Sheet Metal  Design"
+    },
+    "CATCssSsrConfigurationWkb": {
+        "English": "Systems Space Reservation",
+        "French": "Systems Space 'Reservation",
+        "German": "Systems Space Reservation",
+        "Japanese": "システム・スペース・リザベーション",
+        "Korean": "시스템 공간 예약",
+        "Simplified_Chinese": "系统空间预留"
+    },
+    "CATSuiStructureCfgWkb": {
+        "English": "PreR11 Structure Design",
+        "Japanese": "PreR11ｽﾄﾗｸﾁｬｰ･ﾃﾞｻﾞｲﾝ"
+    },
+    "CATTeuTPSCfgWkb": {
+        "English": "Functional Tolerancing & Annotation",
+        "Japanese": "ﾌｧﾝｸｼｮﾅﾙ･ﾄﾚﾗﾝｼﾝｸﾞ&ｱﾉﾃｰｼｮﾝ"
+    },
+    "CATTeuTPSCfgForProductWorkshopWkb": {
+        "English": "Product Functional Tolerancing & Annotation",
+        "Japanese": "ﾌﾟﾛﾀﾞｸﾄ･ﾌｧﾝｸｼｮﾅﾙ･ﾄﾚﾗﾝｼﾝｸﾞ&ｱﾉﾃｰｼｮﾝ"
+    },
+    "CATPpvProcessWks": {
+        "English": "Process",
+        "French": "Procédé",
+        "German": "Prozess",
+        "Italian": "Processo",
+        "Japanese": "ﾌﾟﾛｾｽ"
+    },
+    "CAT2DLAnnotSktWkb": {
+        "English": "2D Layout for 3D Design",
+        "French": "2D Layout for 3D Design",
+        "German": "2D Layout for 3D Design",
+        "Japanese": "2D ﾚｲｱｳﾄ for 3D ﾃﾞｻﾞｲﾝ"
+    },
+    "CAT2DLBackWks": {
+        "English": "2D Layout for 3D Design",
+        "French": "2D Layout for 3D Design",
+        "German": "2D Layout for 3D Design",
+        "Japanese": "2Dﾚｲｱｳﾄfor3Dﾃﾞｻﾞｲﾝ"
+    },
+    "CAT2DLMainWkb": {
+        "English": "2D Layout for 3D Design",
+        "French": "2D Layout for 3D Design",
+        "German": "2D Layout for 3D Design",
+        "Japanese": "2D ﾚｲｱｳﾄ for 3D ﾃﾞｻﾞｲﾝ"
+    },
+    "CAT2DLMainWks": {
+        "English": "2D Layout for 3D Design",
+        "French": "2D Layout for 3D Design",
+        "German": "2D Layout for 3D Design",
+        "Japanese": "2Dﾚｲｱｳﾄfor3Dﾃﾞｻﾞｲﾝ"
+    },
+    "CATABTWorkbench": {
+        "English": "Automotive Body In White Design",
+        "French": "Automotive Body In White Design",
+        "German": "Konstruktion der Rohkarosserie",
+        "Italian": "Automotive Body In White Design",
+        "Japanese": "白ﾃﾞｻﾞｲﾝの車体",
+        "Russian": "Тело Automotive в моделировании в белом",
+        "Simplified_Chinese": "白色设计中的汽车几何体"
+    },
+    "CATAF1Wkb": {
+        "English": "DMU Fastening Review",
+        "Japanese": "DMU ﾌｧｽﾆﾝｸﾞ･ﾚﾋﾞｭｰ"
+    },
+    "CATALOGWorkshop": {
+        "English": "Catalog Editor",
+        "French": "Catalog Editor",
+        "German": "Catalog Editor",
+        "Italian": "Catalog Editor",
+        "Japanese": "ｶﾀﾛｸﾞ･ｴﾃﾞｨﾀｰ",
+        "Korean": "카탈로그 편집기",
+        "Russian": "Редактор каталога",
+        "Simplified_Chinese": "目录编辑器"
+    },
+    "CATAMGProgramWorkbench": {
+        "English": "Advanced Machining",
+        "French": "Advanced Machining",
+        "German": "Advanced Machining",
+        "Italian": "Advanced Machining",
+        "Japanese": "ｱﾄﾞﾊﾞﾝｽﾄﾞ･ﾏｼﾆﾝｸﾞ"
+    },
+    "CATAmtBasicSurfaceWkb": {
+        "English": "Surface Mesher",
+        "French": "Maillage surfacique",
+        "German": "Flächennetzerzeugung",
+        "Italian": "Mesh da superficie",
+        "Japanese": "ｻｰﾌｪｽ ﾒｯｼｬｰ"
+    },
+    "CATAmtGeneralWkb": {
+        "English": "Advanced Meshing Tools",
+        "French": "Advanced Meshing Tools",
+        "German": "Advanced Meshing Tools",
+        "Italian": "Advanced Meshing Tools",
+        "Japanese": "ｱﾄﾞﾊﾞﾝｽﾄﾞ･ﾒｯｼﾝｸﾞ･ﾂｰﾙ"
+    },
+    "CATAmtSizeMapSurfaceWkb": {
+        "English": "Surface Mesher With Size Map",
+        "French": "Carte de remaillage de surface",
+        "German": "Flächennetzerzeugung mit Zuordnung der Größe",
+        "Italian": "Mesh da superficie con mappa dimensione",
+        "Japanese": "ｻｲｽﾞ ﾏｯﾌﾟによるｻｰﾌｪｽ ﾒｯｼｬｰ"
+    },
+    "CATAmtSurfaceWkb": {
+        "English": "Advanced Surface Mesher",
+        "French": "Maillage Surfacique avancé",
+        "German": "Erweiterte Flächennetzerzeugung",
+        "Italian": "Mesh da superficie avanzata",
+        "Japanese": "拡張ｻｰﾌｪｽ ﾒｯｼｬｰ"
+    },
+    "CATAmtSurfaceWks": {
+        "English": "Surface Meshing",
+        "French": "Maillage de surface",
+        "German": "Surface Meshing",
+        "Italian": "Mesh su superficie",
+        "Japanese": "ｻｰﾌｪｽ ﾒｯｼｭ"
+    },
+    "CATBfwFasteningWkb": {
+        "English": "Automotive BiW Fastening",
+        "French": "Automotive BiW Fastening",
+        "Japanese": "ｵｰﾄﾓｰﾃｨﾌﾞ･ﾎﾞﾃﾞｨ･ｲﾝ･ﾎﾜｲﾄ･ﾌｧｽﾆﾝｸﾞ"
+    },
+    "CATCauCompAccessWkb": {
+        "English": "Compartment and Access"
+    },
+    "CATCloudEditorWorkbench": {
+        "English": "Digitized Shape Editor",
+        "French": "Digitized Shape Editor",
+        "German": "Digitized Shape Editor",
+        "Japanese": "ﾃﾞｼﾞﾀｲｽﾞ･ｼｪｲﾌﾟ･ｴﾃﾞｨﾀｰ"
+    },
+    "CATDL1Workbench": {
+        "English": "Generative Shape Develop",
+        "French": "Generative Shape Design",
+        "German": "Generative Formentwicklung",
+        "Italian": "Generative Shape Develop",
+        "Japanese": "ｼﾞｪﾈﾚｰﾃｨﾌﾞ ｼｪｲﾌﾟ ﾃﾞｨﾍﾞﾛｯﾌﾟ",
+        "Russian": "Моделирование машиностроительных деталей",
+        "Simplified_Chinese": "创成式外形开发"
+    },
+    "CATDNBD5IntegrationWkb": {
+        "English": "DELMIA D5 Integration",
+        "French": "DELMIA D5 Integration",
+        "German": "DELMIA D5 Integration",
+        "Italian": "DELMIA D5 Integration",
+        "Japanese": "DELMIA D5ｲﾝﾃｸﾞﾚｰｼｮﾝ",
+        "Korean": "DELMIA D5 통합",
+        "Simplified_Chinese": "DELMIA D5 集成"
+    },
+    "CATEAsdWeldWorkbench": {
+        "English": "Weld Design",
+        "Japanese": "ｳｪﾙﾄﾞ･ﾃﾞｻﾞｲﾝ"
+    },
+    "CATEcwWkb": {
+        "English": "Electrical Cableway Routing",
+        "French": "Electrical Cableway Routing",
+        "German": "Electrical Cableway Routing",
+        "Japanese": "エレクトリカル・ケーブルウェイ・ラウティング",
+        "Korean": "전기 공중 케이블 라우팅",
+        "Simplified_Chinese": "电气缆道传递"
+    },
+    "CATEdlPrdWorkbench": {
+        "English": "Electrical Assembly Design",
+        "French": "Electrical Assembly Design",
+        "Japanese": "ｴﾚｸﾄﾘｶﾙ･ｱｾﾝﾌﾞﾘｰ･ﾃﾞｻﾞｲﾝ"
+    },
+    "CATEdlPrtWorkbench": {
+        "English": "Electrical Part Design",
+        "French": "Electrical Part Design",
+        "Japanese": "ｴﾚｸﾄﾘｶﾙ･ﾊﾟｰﾄ･ﾃﾞｻﾞｲﾝ"
+    },
+    "CATEgfPrdWorkbench": {
+        "English": "Electrical Harness Flattening",
+        "French": "Electrical Harness Flattening",
+        "Japanese": "ｴﾚｸﾄﾘｶﾙ･ﾊｰﾈｽ･ﾌﾗｯﾄﾆﾝｸﾞ"
+    },
+    "CATEhiWorkshop": {
+        "English": "Electrical Harness Assembly",
+        "French": "Electrical Harness Assembly",
+        "Japanese": "ｴﾚｸﾄﾘｶﾙ･ﾊｰﾈｽ･ｱｾﾝﾌﾞﾘｰ"
+    },
+    "CATEhiWorkshopPart": {
+        "English": "Electrical Harness Installation",
+        "French": "Electrical Harness Installation",
+        "Japanese": "ｴﾚｸﾄﾘｶﾙ･ﾊｰﾈｽ･ｲﾝｽﾄﾚｰｼｮﾝ"
+    },
+    "CATEHvuWkbConfig": {
+        "English": "HVAC Diagrams",
+        "Japanese": "HVACﾀﾞｲｱｸﾞﾗﾑ"
+    },
+    "CATElecWorkbenchP1": {
+        "English": "Electrical 3D Design Assembly",
+        "French": "Electrical 3D Assembly Design"
+    },
+    "CATElecWorkbenchPrtP1": {
+        "English": "Electrical 3D Design Part",
+        "French": "Electrical 3D Part Design"
+    },
+    "CATEluElectricalWkb": {
+        "English": "Electrical Connectivity Diagrams",
+        "Japanese": "ｴﾚｸﾄﾘｶﾙ接続性ﾀﾞｲｱｸﾞﾗﾑ"
+    },
+    "CATEPiuWkbConfig": {
+        "English": "Piping and Instrumentation Diagrams",
+        "Japanese": "ﾊﾟｲﾋﾟﾝｸﾞ&ｲﾝｽﾂﾙﾒﾝﾃｰｼｮﾝ・ﾀﾞｲｱｸﾞﾗﾑ"
+    },
+    "CATExpertKnowWorkshop": {
+        "English": "Knowledge Expert",
+        "French": "Knowledge Expert",
+        "German": "Knowledge Expert",
+        "Italian": "Knowledge Expert",
+        "Japanese": "ﾅﾚｯｼﾞ･ｴｷｽﾊﾟｰﾄ",
+        "Russian": "Эксперт базы знаний",
+        "Simplified_Chinese": "知识工程专家"
+    },
+    "CATFcaWorkshop": {
+        "English": "Functional System"
+    },
+    "CATFdeWorkbench": {
+        "English": "Feature Dictionary Editor",
+        "French": "Feature Dictionary Editor",
+        "German": "Feature Dictionary Editor",
+        "Italian": "Feature Dictionary Editor",
+        "Japanese": "ﾌｨｰﾁｬｰ辞書ｴﾃﾞｨﾀｰ",
+        "Korean": "피처 딕셔너리 편집기",
+        "Russian": "Редактор словаря примитива",
+        "Simplified_Chinese": "特征词典编辑器"
+    },
+    "CATFdeWorkshop": {
+        "English": "Feature Dictionary Editor",
+        "French": "Feature Dictionary Editor",
+        "German": "Feature Dictionary Editor",
+        "Italian": "Feature Dictionary Editor",
+        "Japanese": "ﾌｨｰﾁｬｰ辞書ｴﾃﾞｨﾀｰ",
+        "Korean": "피처 딕셔너리 편집기",
+        "Russian": "Редактор словаря примитива",
+        "Simplified_Chinese": "特征词典编辑器"
+    },
+    "CATFmtServantWorkbench": {
+        "English": "Rule Based Surface Mesh",
+        "Japanese": "ﾙｰﾙ ﾍﾞｰｽのｻｰﾌｪｽ ﾒｯｼｭ"
+    },
+    "CATFmtServantWorkshop": {
+        "English": "Surface Rules Meshing",
+        "Japanese": "ｻｰﾌｪｽ ﾙｰﾙのﾒｯｼｭ分割"
+    },
+    "CATGeneKnowWorkshop": {
+        "English": "Product Knowledge Template",
+        "French": "Product Knowledge Template",
+        "German": "Produktwissensvorlage",
+        "Italian": "Product Knowledge Template",
+        "Japanese": "ﾌﾟﾛﾀﾞｸﾄ ﾅﾚｯｼﾞ ﾃﾝﾌﾟﾚｰﾄ"
+    },
+    "CATGS1Workbench": {
+        "English": "Generative Wireframe and Surface Design",
+        "French": "Generative Wireframe and Surface Design",
+        "German": "Generative Wireframe and Surface Design",
+        "Italian": "Generative Wireframe and Surface Design",
+        "Japanese": "ｼﾞｪﾈﾚｰﾃｨﾌﾞ ﾜｲﾔｰﾌﾚｰﾑ&ｻｰﾌｪｽ ﾃﾞｻﾞｲﾝ",
+        "Russian": "Generative Wireframe and Surface Design",
+        "Simplified_Chinese": "创成式线框和曲面设计"
+    },
+    "CATGSOWorkbench": {
+        "English": "Generative Shape Morphing",
+        "French": "Generative Shape Morphing",
+        "German": "Generative Gestaltveränderung",
+        "Italian": "Generative Shape Morphing",
+        "Japanese": "ｼﾞｪﾈﾚｰﾃｨﾌﾞ ｼｪｲﾌﾟ ﾓｰﾌｨﾝｸﾞ",
+        "Russian": "Generative Shape Morphing",
+        "Simplified_Chinese": "创成式外形渐变"
+    },
+    "CATHybridPartWorkbench": {
+        "English": "Wireframe and Surface Design",
+        "French": "Wireframe and Surface Design",
+        "German": "Drahtmodell und Flächenkonstruktion",
+        "Italian": "Wireframe & Surface Design",
+        "Japanese": "ﾜｲﾔｰﾌﾚｰﾑ&ｻｰﾌｪｽ･ﾃﾞｻﾞｲﾝ",
+        "Russian": "Проектирование элементов каркаса и поверхности",
+        "Simplified_Chinese": "线框和曲面设计"
+    },
+    "CATKweWorkshop": {
+        "English": "Knowledge",
+        "French": "Knowledge",
+        "German": "Knowledge",
+        "Italian": "Knowledge",
+        "Japanese": "ﾅﾚｯｼﾞ",
+        "Korean": "지식",
+        "Russian": "База знаний",
+        "Simplified_Chinese": "知识工程"
+    },
+    "CATLogicalShapeDesignWorkbench": {
+        "English": "Generative Shape Design For Systems",
+        "French": "Generative Shape Design For Systems",
+        "German": "Generative Shape Design For Systems",
+        "Italian": "Generative Shape Design per Systems",
+        "Japanese": "ｼｽﾃﾑに関するｼﾞｪﾈﾚｰﾃｨﾌﾞ ｼｪｲﾌﾟ ﾃﾞｻﾞｲﾝ",
+        "Russian": "Моделирование машиностроительных деталей систем",
+        "Simplified_Chinese": "系统的创成式外形设计"
+    },
+    "CATPartWks": {
+        "English": "Part (light)",
+        "French": "Pièce (simplifié)",
+        "German": "Teil (Helligkeit)",
+        "Italian": "Part (light)",
+        "Japanese": "ﾊﾟｰﾂ (ﾗｲﾄ)",
+        "Korean": "파트 (밝음)",
+        "Russian": "Деталь (легкая)",
+        "Simplified_Chinese": "零件（轻型）"
+    },
+    "CATShapeDesignWorkbench": {
+        "English": "Generative Shape Design",
+        "French": "Generative Shape Design",
+        "German": "Generative Shape Design",
+        "Italian": "Generative Shape Design",
+        "Japanese": "ｼﾞｪﾈﾚｰﾃｨﾌﾞ･ｼｪｲﾌﾟ･ﾃﾞｻﾞｲﾝ",
+        "Russian": "Поверхностное моделирование машиностроительных деталей",
+        "Simplified_Chinese": "创成式外形设计"
+    },
+    "CATSpdFunctionalPartWkb": {
+        "Japanese": "ﾌｧﾝｸｼｮﾅﾙ ﾊﾟｰﾄ ﾃﾞｻﾞｲﾝ"
+    },
+    "CATSpdMoldedPartLgcl3DShpWkb": {
+        "Japanese": "ｼｽﾃﾑ用ﾌｧﾝｸｼｮﾅﾙ ﾊﾟｰﾄ ﾃﾞｻﾞｲﾝ"
+    },
+    "CATSpdMoldedPartWkb": {
+        "Japanese": "ﾌｧﾝｸｼｮﾅﾙ ﾓｰﾙﾄﾞ ﾊﾟｰﾄ"
+    },
+    "CATStylingWorkbench": {
+        "English": "Shape Sculptor",
+        "French": "Shape Sculptor",
+        "German": "Formgestalter",
+        "Japanese": "ｼｪｲﾌﾟ･ｽｶﾙﾌﾟﾀｰ"
+    },
+    "CATTbuTubDiagramWkb": {
+        "English": "Tubing Diagrams",
+        "Japanese": "ﾁｭｰﾋﾞﾝｸﾞ ﾀﾞｲｱｸﾞﾗﾑ"
+    },
+    "CATVrcWorkbench": {
+        "English": "Immersive System Assistant",
+        "French": "Immersive System Assistant",
+        "German": "Immersive System Assistant",
+        "Italian": "Immersive System Assistant",
+        "Japanese": "ｲﾏｰｼﾌﾞ･ｼｽﾃﾑ･ｱｼｽﾀﾝﾄ",
+        "Russian": "Помощник системы погружения",
+        "Simplified_Chinese": "融入性系统助手"
+    },
+    "CATWguWaveguideWkb": {
+        "English": "Waveguide Diagrams",
+        "French": "Diagrammes de guide d'ondes",
+        "German": "Waveguide Diagrams",
+        "Japanese": "ｳｪｰﾌﾞ･ｶﾞｲﾄﾞ･ﾀﾞｲｱｸﾞﾗﾑ",
+        "Korean": "도파관 다이어그램"
+    },
+    "CompositesBrdWorkbench": {
+        "English": "Composites Braiding"
+    },
+    "CompositesGridWorkbench": {
+        "English": "Composites Grid Design"
+    },
+    "CompositesPPRWkbnch": {
+        "English": "Composites PPR"
+    },
+    "CompositesProductWorkbench": {
+        "English": "DMU Composites Review"
+    },
+    "CompositesWorkbench": {
+        "English": "Composites Design"
+    },
+    "DesignerWorkshop": {
+        "English": "Imagine & Shape",
+        "Japanese": "ｲﾏｼﾞﾝ&ｼｪｲﾌﾟ"
+    },
+    "DeskWorkshop": {
+        "English": "Desk",
+        "French": "Bureau",
+        "German": "Schreibtisch ",
+        "Italian": "Desktop",
+        "Japanese": "ﾃﾞｽｸ",
+        "Korean": "데스크",
+        "Russian": "Диаграмма связей",
+        "Simplified_Chinese": "桌面"
+    },
+    "DNBNCBuildWks": {
+        "English": "NC Machine Tool Builder"
+    },
+    "EwdWorkshop": {
+        "English": "Electrical Wire Routing",
+        "French": "Electrical Wire Routing",
+        "Japanese": "ｴﾚｸﾄﾘｶﾙ･ﾜｲﾔｰ･ﾗｳﾃｨﾝｸﾞ"
+    },
+    "FsDWorkbench": {
+        "English": "Sketch Tracer",
+        "French": "Sketch Tracer",
+        "Japanese": "ｽｹｯﾁ･ﾄﾚｰｻｰ"
+    },
+    "ImmersiveVpdmWkb": {
+        "English": "VPDM access",
+        "French": "Accès VPDM ",
+        "German": "VPDM-Zugriff",
+        "Japanese": "VPDM アクセス",
+        "Korean": "VPDM 액세스",
+        "Simplified_Chinese": "访问 VPDM"
+    },
+    "KwoWorkshop": {
+        "English": "Product Engineering Optimizer",
+        "French": "Product Engineering Optimizer",
+        "German": "Product Engineering Optimizer",
+        "Italian": "Product Engineering Optimizer",
+        "Japanese": "ﾌﾟﾛﾀﾞｸﾄ･ｴﾝｼﾞﾆｱﾘﾝｸﾞ･ｵﾌﾟﾃｨﾏｲｻﾞｰ"
+    },
+    "LatheProgramWorkbench": {
+        "English": "Lathe Machining",
+        "French": "Lathe Machining",
+        "German": "Lathe Machining",
+        "Italian": "Lathe Machining",
+        "Japanese": "ﾚｰｽ･ﾏｼﾆﾝｸﾞ"
+    },
+    "LibraryWorkbench": {
+        "English": "Process Library",
+        "French": "Bibliothèque de Processus",
+        "German": "Process Library",
+        "Italian": "Process Library",
+        "Japanese": "処理ﾗｲﾌﾞﾗﾘｰ"
+    },
+    "M3xProgramWorkbench": {
+        "English": "Surface Machining",
+        "French": "Surface Machining",
+        "German": "Flächenbearbeitung",
+        "Italian": "Surface Machining",
+        "Japanese": "ｻｰﾌｪｽ･ﾏｼﾆﾝｸﾞ"
+    },
+    "ManufacturingNCReviewWorkbench": {
+        "English": "NC Manufacturing Review",
+        "French": "NC Manufacturing Review",
+        "German": "NC Manufacturing Review",
+        "Italian": "NC Manufacturing Review",
+        "Japanese": "NCﾏﾆｭﾌｧｸﾁｬﾘﾝｸﾞ･ﾚﾋﾞｭｰ"
+    },
+    "ManufacturingNCWorkshop": {
+        "English": "NC Manufacturing",
+        "French": "Fabrication par CN",
+        "German": "NC Manufacturing",
+        "Italian": "NC Manufacturing",
+        "Japanese": "NCﾏﾆｭﾌｧｸﾁｬﾘﾝｸﾞ"
+    },
+    "ManufacturingProgramWorkbench": {
+        "English": "Prismatic Machining",
+        "French": "Prismatic Machining",
+        "German": "Prismatic Machining",
+        "Italian": "Prismatic Machining",
+        "Japanese": "ﾌﾟﾘｽﾞﾏﾃｨｯｸ･ﾏｼﾆﾝｸﾞ"
+    },
+    "MaterialWorkshop": {
+        "English": "Material Library",
+        "French": "Material Library",
+        "German": "Material Library",
+        "Italian": "Material Library",
+        "Japanese": "ﾏﾃﾘｱﾙ･ﾗｲﾌﾞﾗﾘｰ",
+        "Korean": "Material Library",
+        "Russian": "Библиотека материалов",
+        "Simplified_Chinese": "材料库"
+    },
+    "PCBoardWorkshop2": {
+        "English": "Circuit Board Design",
+        "Japanese": "ｻｰｷｯﾄ･ﾎﾞｰﾄﾞ･ﾃﾞｻﾞｲﾝ"
+    },
+    "PKTWorkbench": {
+        "English": "Product Knowledge Template",
+        "French": "Product Knowledge Template",
+        "German": "Product Knowledge Template",
+        "Italian": "Product Knowledge Template",
+        "Japanese": "ﾌﾟﾛﾀﾞｸﾄ･ﾅﾚｯｼﾞ･ﾃﾝﾌﾟﾚｰﾄ"
+    },
+    "PRDWorkshop": {
+        "English": "Product",
+        "French": "Produit",
+        "German": "Produkt",
+        "Italian": "Prodotto",
+        "Japanese": "ﾌﾟﾛﾀﾞｸﾄ",
+        "Korean": "프로덕트",
+        "Russian": "Изделие",
+        "Simplified_Chinese": "产品"
+    },
+    "PrtWks": {
+        "English": "Part",
+        "French": "Pièce",
+        "German": "Teil",
+        "Italian": "Parte",
+        "Japanese": "ﾊﾟｰﾂ",
+        "Korean": "파트",
+        "Russian": "Деталь",
+        "Simplified_Chinese": "零件"
+    },
+    "RenderingWorkbench": {
+        "English": "Photo Studio",
+        "French": "Photo Studio",
+        "German": "Photo Studio",
+        "Italian": "Photo Studio",
+        "Japanese": "ﾌｫﾄ･ｽﾀｼﾞｵ",
+        "Russian": "Фото студия",
+        "Simplified_Chinese": "图片工作室"
+    },
+    "SAMWorkshop": {
+        "English": "Analysis",
+        "French": "Analyse",
+        "German": "Analyse",
+        "Italian": "Analisi",
+        "Japanese": "解析"
+    },
+    "SceneWorkbench": {
+        "English": "Real Time Rendering",
+        "French": "Real Time Rendering",
+        "German": "Real Time Rendering",
+        "Italian": "Real Time Rendering",
+        "Japanese": "ﾘｱﾙﾀｲﾑ･ﾚﾝﾀﾞﾘﾝｸﾞ",
+        "Russian": "Тонирование в реальном времени",
+        "Simplified_Chinese": "实时渲染"
+    },
+    "ScuWks": {
+        "English": "CATDiagram workshop",
+        "French": "Atelier CATDiagram",
+        "German": "CATDiagram-Workshop",
+        "Japanese": "CATDiagram ワークショップ",
+        "Korean": "CATDiagram 워크샵",
+        "Simplified_Chinese": "CATDiagram 工作间"
+    },
+    "SheWorkshop": {
+        "English": "Sheet Metal Design",
+        "French": "Sheet Metal Design",
+        "German": "Sheet Metal Design",
+        "Italian": "Sheet Metal Design",
+        "Japanese": "ｼｰﾄﾒﾀﾙ･ﾃﾞｻﾞｲﾝ"
+    },
+    "ShpWorkbench": {
+        "English": "Sheet Metal Production"
+    },
+    "SmaDWorkbench": {
+        "English": "Aerospace Sheet Metal  Design"
+    },
+    "SmdNewDesignWorkbench": {
+        "English": "Generative Sheetmetal Design",
+        "French": "Generative Sheetmetal Design",
+        "German": "Generative Sheetmetal Design",
+        "Italian": "Generative Sheetmetal Design",
+        "Japanese": "ｼﾞｪﾈﾚｰﾃｨﾌﾞ･ｼｰﾄﾒﾀﾙ･ﾃﾞｻﾞｲﾝ"
+    },
+    "SWKAnthroWks": {
+        "English": "Human Measurements Editor",
+        "French": "Human Measurements Editor",
+        "German": "Human Measurements Editor",
+        "Japanese": "ﾋｭｰﾏﾝ･ﾒｼﾞｬﾒﾝﾄ･ｴﾃﾞｨﾀｰ"
+    },
+    "SWKBodyElementsWks": {
+        "English": "Human Posture Analysis",
+        "French": "Human Posture Analysis",
+        "German": "Human Posture Analysis",
+        "Japanese": "ﾋｭｰﾏﾝ･ﾎﾟｽﾁｬｰ･ｱﾅﾘｼｽ"
+    },
+    "SWKErgoAnalysisWkb": {
+        "English": "Human Activity Analysis",
+        "Japanese": "ﾋｭｰﾏﾝ･ｱｸﾃｨﾋﾞﾃｨ･ｱﾅﾘｼｽ"
+    },
+    "SWKManikinWkb": {
+        "English": "Human Builder",
+        "French": "Human Builder",
+        "German": "Human Builder",
+        "Japanese": "ﾋｭｰﾏﾝ･ﾋﾞﾙﾀﾞｰ"
+    },
+    "TPSCfgForProcessWorkshop": {
+        "English": "Process Tolerancing & Annotation",
+        "Japanese": "ﾌﾟﾛｾｽ･ﾄﾚﾗﾝｼﾝｸﾞ&ｱﾉﾃｰｼｮﾝ"
+    },
+    "TPSCfgForProductWorkshop": {
+        "English": "Product Functional Tolerancing & Annotation",
+        "Japanese": "ﾌﾟﾛﾀﾞｸﾄ･ﾌｧﾝｸｼｮﾅﾙ･ﾄﾚﾗﾝｼﾝｸﾞ&ｱﾉﾃｰｼｮﾝ"
+    }
+}

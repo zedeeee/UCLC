@@ -160,6 +160,7 @@ class UCLC_CUI {
         }
         this.DDL_ImportWb := this.GuiObj.Add("DropDownList", "x100 y64 w250 Choose1", wb_list3)
         this.DDL_ImportWb.ToolTip := "选择要将命令导入到的目标工作台"
+        this.DDL_ImportWb.OnEvent("Change", ObjBindMethod(this, "OnTargetWorkbenchChanged"))
 
         btn_addWb := this.GuiObj.Add("Button", "x355 y64 w24 h22", "+")
         btn_addWb.ToolTip := "新增自定义目标工作台名称"
@@ -668,13 +669,9 @@ class UCLC_CUI {
     }
 
     ; --- 第三页 (工作台命令库) 回调预留 ---
-
-    static OnGetCommandsFromCatia(*) {
-        MsgBox("Stage 3 功能预留: 将向 CATIA 发送 c:Workshop Exposition 命令", "UCLC", "Iconi")
-    }
-
-    static OnReadExportedTxt(*) {
-        MsgBox("Stage 3 功能预留: 将弹出 FileSelect 并解析文件", "UCLC", "Iconi")
+    static RefreshIfDataExists() {
+        if (this.HasOwnProp("parsed_import_data") && this.parsed_import_data.Count > 0)
+            this.RenderImportLV()
     }
 
     static OnFilterAll(ctrl, *) {
@@ -685,11 +682,11 @@ class UCLC_CUI {
         this.chk_filterSame.Value := state
         this.chk_filterDelete.Value := state
         this.chk_filterIgnore.Value := state
+        this.RefreshIfDataExists()
     }
 
     static UpdateFilterAllState() {
-        if (this.chk_filterNew.Value && this.chk_filterUpdate.Value && this.chk_filterOverwrite.Value && this.chk_filterSame
-            .Value && this.chk_filterDelete.Value && this.chk_filterIgnore.Value)
+        if (this.chk_filterNew.Value && this.chk_filterUpdate.Value && this.chk_filterOverwrite.Value && this.chk_filterSame.Value && this.chk_filterDelete.Value && this.chk_filterIgnore.Value)
             this.chk_filterAll.Value := 1
         else
             this.chk_filterAll.Value := 0
@@ -697,21 +694,184 @@ class UCLC_CUI {
 
     static OnFilterNew(*) {
         this.UpdateFilterAllState()
+        this.RefreshIfDataExists()
     }
     static OnFilterUpdate(*) {
         this.UpdateFilterAllState()
+        this.RefreshIfDataExists()
     }
     static OnFilterOverwrite(*) {
         this.UpdateFilterAllState()
+        this.RefreshIfDataExists()
     }
     static OnFilterSame(*) {
         this.UpdateFilterAllState()
+        this.RefreshIfDataExists()
     }
     static OnFilterDelete(*) {
         this.UpdateFilterAllState()
+        this.RefreshIfDataExists()
     }
     static OnFilterIgnore(*) {
         this.UpdateFilterAllState()
+        this.RefreshIfDataExists()
+    }
+
+    static OnGetCommandsFromCatia(ctrl, *) {
+        if !export_workshop_exposition() {
+            return
+        }
+        MsgBox("已向 CATIA 发送获取命令，请在弹出的【Workshop Exposition】窗口中点击【Export】，然后使用【从 TXT 导入】读取导出的文件。", "操作提示", "Iconi")
+    }
+
+    static OnReadExportedTxt(ctrl, *) {
+        target_wb := this.DDL_ImportWb.Text
+
+        selectedFile := FileSelect(3, , "选择 CATIA 导出的 Workshop Exposition 文件", "Text Documents (*.txt)")
+        if (selectedFile = "")
+            return
+        
+        ; 智能探测文件编码：优先用 UTF-8 读取
+        content := FileRead(selectedFile, "UTF-8")
+        ; 如果内容不含特征词，或者包含 UTF-8 解析失败时的替换符()，则降级为系统默认 ANSI(CP0)
+        if (!InStr(content, "Workshop Exposition") || InStr(content, Chr(0xFFFD))) {
+            content := FileRead(selectedFile, "CP0")
+            if !InStr(content, "Workshop Exposition") {
+                MsgBox("所选文件非有效的 Workshop Exposition 导出文件！", "解析错误", "Iconx")
+                return
+            }
+        }
+
+        parsed_commands := Map()
+        wb_id := ""
+        current_title := ""
+        
+        loop parse content, "`n", "`r" {
+            line := Trim(A_LoopField)
+            if RegExMatch(line, "^Workshop Exposition of\s+(.+)$", &match) {
+                if (wb_id == "")
+                    wb_id := Trim(match[1])
+            } else if RegExMatch(line, "^Title=\s*(.+)$", &match) {
+                current_title := Trim(match[1])
+            } else if RegExMatch(line, "^Id\s*=\s*(.+)$", &match) {
+                if (current_title != "") {
+                    parsed_commands[Trim(match[1])] := current_title
+                    current_title := ""
+                }
+            }
+        }
+
+        if (target_wb != "通过导入文件确定" && wb_id != "" && target_wb != wb_id) {
+            result := MsgBox("文件中解析的工作台 ID (" wb_id ") 与当前选择的目标工作台 (" target_wb ") 不一致。是否继续导入到 " target_wb "？", "警告", "YesNo Icon!")
+            if (result == "No") {
+                return
+            }
+        }
+
+        this.parsed_import_data := parsed_commands
+        this.parsed_import_wb_id := wb_id
+
+        this.RefreshImportDiff(target_wb)
+    }
+
+    static OnTargetWorkbenchChanged(ctrl, *) {
+        if (!this.HasOwnProp("parsed_import_data") || this.parsed_import_data.Count == 0)
+            return
+        this.RefreshImportDiff(ctrl.Text)
+    }
+
+    static RefreshImportDiff(target_wb) {
+        parsed_commands := this.parsed_import_data
+        wb_id := this.parsed_import_wb_id
+
+        if (target_wb == "通过导入文件确定") {
+            if (wb_id != "") {
+                target_wb := wb_id
+                items := ControlGetItems(this.DDL_ImportWb.Hwnd)
+                found := false
+                for i, item in items {
+                    if (item == target_wb) {
+                        this.DDL_ImportWb.Choose(i)
+                        found := true
+                        break
+                    }
+                }
+                if (!found) {
+                    this.DDL_ImportWb.Add([target_wb])
+                    this.DDL_ImportWb.Choose(target_wb)
+                    AppSettings.commands_obj[target_wb] := []
+                }
+            } else {
+                this.Txt_EmptyLV.Value := "无法从文件中解析出工作台 ID，请手动选择目标工作台"
+                return
+            }
+        }
+
+        local_array := AppSettings.commands_obj.Has(target_wb) ? AppSettings.commands_obj[target_wb] : []
+        local_by_id := Map()
+        local_by_title := Map()
+        for cmd in local_array {
+            local_by_id[cmd["command"]] := cmd
+            desc := cmd.Has("desc") ? cmd["desc"] : ""
+            if desc != ""
+                local_by_title[desc] := cmd
+        }
+
+        this.import_items := []
+        matched_local_ids := Map()
+        
+        for id, title in parsed_commands {
+            if local_by_id.Has(id) {
+                if local_by_id[id]["desc"] == title {
+                    this.import_items.Push({title: title, local_id: id, action: "=", imported_id: id})
+                } else {
+                    this.import_items.Push({title: title, local_id: local_by_id[id]["command"], action: "T", imported_id: id})
+                }
+                matched_local_ids[id] := true
+            } else if local_by_title.Has(title) {
+                old_id := local_by_title[title]["command"]
+                this.import_items.Push({title: title, local_id: old_id, action: "C", imported_id: id})
+                matched_local_ids[old_id] := true
+            } else {
+                this.import_items.Push({title: title, local_id: "", action: "+", imported_id: id})
+            }
+        }
+
+        for cmd in local_array {
+            id := cmd["command"]
+            if !matched_local_ids.Has(id) {
+                desc := cmd.Has("desc") ? cmd["desc"] : ""
+                this.import_items.Push({title: desc, local_id: id, action: "D", imported_id: ""})
+            }
+        }
+
+        this.RenderImportLV()
+    }
+
+    static RenderImportLV() {
+        if !this.HasOwnProp("import_items")
+            return
+
+        showNew := this.chk_filterNew.Value
+        showUpdate := this.chk_filterUpdate.Value
+        showOverwrite := this.chk_filterOverwrite.Value
+        showSame := this.chk_filterSame.Value
+        showDelete := this.chk_filterDelete.Value
+        showIgnore := this.chk_filterIgnore.Value
+
+        this.LV_Import.Opt("-Redraw")
+        this.LV_Import.Delete()
+        this.Txt_EmptyLV.Visible := false
+
+        for item in this.import_items {
+            a := item.action
+            if ((a == "+" && showNew) || (a == "T" && showUpdate) || (a == "C" && showOverwrite)
+                || (a == "=" && showSame) || (a == "D" && showDelete) || (a == "i" && showIgnore)) {
+                this.LV_Import.Add("", item.title, item.local_id, a, item.imported_id)
+            }
+        }
+        
+        this.LV_Import.Opt("+Redraw")
     }
 
     static OnImportListViewClick(ctrl, item, *) {
@@ -722,18 +882,116 @@ class UCLC_CUI {
     }
 
     static OnResetImportView(*) {
+        if this.HasOwnProp("parsed_import_data") {
+            this.RefreshImportDiff(this.DDL_ImportWb.Text)
+        }
     }
 
     static OnAddTargetWorkbench(ctrl, *) {
     }
 
     static OnMarkItemsToDelete(*) {
+        selected := []
+        row := 0
+        while (row := this.LV_Import.GetNext(row)) {
+            selected.Push(row)
+        }
+        if (selected.Length == 0)
+            return
+        
+        for r in selected {
+            this.LV_Import.Modify(r, "Col3", "D")
+            title := this.LV_Import.GetText(r, 1)
+            old_id := this.LV_Import.GetText(r, 2)
+            for item in this.import_items {
+                if (item.title == title && item.local_id == old_id) {
+                    item.action := "D"
+                    break
+                }
+            }
+        }
     }
 
     static OnMarkItemsToIgnore(*) {
+        selected := []
+        row := 0
+        while (row := this.LV_Import.GetNext(row)) {
+            selected.Push(row)
+        }
+        if (selected.Length == 0)
+            return
+        
+        for r in selected {
+            this.LV_Import.Modify(r, "Col3", "i")
+            title := this.LV_Import.GetText(r, 1)
+            old_id := this.LV_Import.GetText(r, 2)
+            for item in this.import_items {
+                if (item.title == title && item.local_id == old_id) {
+                    item.action := "i"
+                    break
+                }
+            }
+        }
     }
 
     static OnApplyImportAll(*) {
+        target_wb := this.DDL_ImportWb.Text
+        if (target_wb == "通过导入文件确定" || target_wb == "") {
+            MsgBox("请先选择目标工作台或导入文件", "提示", "Iconi")
+            return
+        }
+
+        if !AppSettings.commands_obj.Has(target_wb) {
+            AppSettings.commands_obj[target_wb] := []
+        }
+        local_array := AppSettings.commands_obj[target_wb]
+        
+        local_by_id := Map()
+        for cmd in local_array {
+            local_by_id[cmd["command"]] := cmd
+        }
+
+        if (!this.HasOwnProp("import_items")) {
+            MsgBox("没有可应用的数据", "提示", "Iconi")
+            return
+        }
+
+        new_array := []
+        
+        for item in this.import_items {
+            title := item.title
+            old_id := item.local_id
+            action := item.action
+            new_id := item.imported_id
+
+            if (action == "i" || action == "=") {
+                if (old_id != "" && local_by_id.Has(old_id)) {
+                    new_array.Push(local_by_id[old_id])
+                }
+            } else if (action == "+") {
+                new_array.Push(Map("desc", title, "command", new_id, "aliases", [], "hotkeys", []))
+            } else if (action == "T") {
+                if local_by_id.Has(old_id) {
+                    cmd := local_by_id[old_id].Clone()
+                    cmd["desc"] := title
+                    new_array.Push(cmd)
+                }
+            } else if (action == "C") {
+                if local_by_id.Has(old_id) {
+                    cmd := local_by_id[old_id].Clone()
+                    cmd["command"] := new_id
+                    new_array.Push(cmd)
+                }
+            } else if (action == "D") {
+                ; Do nothing to delete
+            }
+        }
+
+        AppSettings.commands_obj[target_wb] := new_array
+        this.FlushCommandsJson()
+        
+        MsgBox("已应用所有更改并保存！重启生效。", "成功", "Iconi")
+        Reload()
     }
 
     static OnAddCmdFromOther(*) {

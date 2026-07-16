@@ -105,8 +105,9 @@ class ConfigMigrator {
                     
                 loop parse sections_str, "`n", "`r" {
                     section := A_LoopField
-                    if !commands_obj.Has(section)
-                        commands_obj[section] := []
+                    section_id := AppSettings.GetWbIdByUI(section)
+                    if !commands_obj.Has(section_id)
+                        commands_obj[section_id] := []
                         
                     keys_str := IniRead(ini_path, section)
                     loop parse keys_str, "`n", "`r" {
@@ -136,7 +137,7 @@ class ConfigMigrator {
                             
                             ; 查找同类动作是否已存在
                             found_idx := 0
-                            for idx, item in commands_obj[section] {
+                            for idx, item in commands_obj[section_id] {
                                 if (item.Has("command") && item["command"] == cmd) {
                                     item_cb := item.Has("callback") ? item["callback"] : ""
                                     if (item_cb != cb)
@@ -161,14 +162,14 @@ class ConfigMigrator {
                             }
                             
                             if (found_idx > 0) {
-                                target := commands_obj[section][found_idx]
+                                target := commands_obj[section_id][found_idx]
                             } else {
                                 target := Map("command", cmd, "aliases", [], "hotkeys", [])
                                 if (cb != "")
                                     target["callback"] := cb
                                 if (args_arr.Length > 0)
                                     target["args"] := args_arr
-                                commands_obj[section].Push(target)
+                                commands_obj[section_id].Push(target)
                             }
                             
                             if (comment != "" && !target.Has("desc"))

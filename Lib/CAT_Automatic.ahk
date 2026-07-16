@@ -237,13 +237,12 @@ quick_manipulation(diraction) {
 match_current_workbench(workbench_map) {
     try {
         workbench_control_hwnd := ControlGetHwnd("WebBrowser", "A")
-        ; workbench_buttons :=
 
         for button in WinGetControls(workbench_control_hwnd) {
             button_name := ControlGetText(button, workbench_control_hwnd)
-            for key in workbench_map {
-                if button_name == key
-                    return button_name
+            id := AppSettings.GetWbIdByUI(button_name)
+            if workbench_map.Has(id) {
+                return id
             }
         }
     }

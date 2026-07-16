@@ -162,8 +162,18 @@ if __name__ == "__main__":
         os.makedirs(target_dir)
         
     out_file = os.path.join(target_dir, "workbench_mapping.json")
+    version = "Unknown"
+    match = re.search(r"\\(B\d+)\\", msg_path, re.IGNORECASE)
+    if match:
+        version = match.group(1).upper()
+        
+    out_data = {
+        "_version": version,
+        "mapping": mapping
+    }
+    
     with open(out_file, "w", encoding="utf-8") as f:
-        json.dump(mapping, f, ensure_ascii=False, indent=4)
+        json.dump(out_data, f, ensure_ascii=False, indent=4)
         
     print(T(f"\n[+] 成功生成了 {len(mapping)} 个工作台的全语种映射字典。", f"\n[+] Successfully generated multi-language mapping dictionary for {len(mapping)} workbenches."))
     print(T(f"[+] 字典已保存至:\n    {out_file}", f"[+] Dictionary saved to:\n    {out_file}"))

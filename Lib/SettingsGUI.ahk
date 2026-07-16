@@ -63,9 +63,12 @@ class UCLC_CUI {
 
         this.GuiObj.Add("Text", "x30 y65 w45", "工作台:")
         wb_list := ["全部工作台"]
+        this.workbench_ids := [""] ; 第一个为空，代表全选
         for k, v in AppSettings.commands_obj {
-            if (k != "_comment")
-                wb_list.Push(k)
+            if (k != "_comment") {
+                wb_list.Push(AppSettings.GetWbName(k))
+                this.workbench_ids.Push(k)
+            }
         }
         this.DDL_Workbench := this.GuiObj.Add("DropDownList", "x75 y61 w205 Choose1", wb_list)
         this.DDL_Workbench.OnEvent("Change", ObjBindMethod(this, "OnWorkbenchFilter"))
@@ -154,9 +157,12 @@ class UCLC_CUI {
 
         this.GuiObj.Add("Text", "x30 y68 w70", "目标工作台:")
         wb_list3 := ["通过导入文件确定"]
+        this.import_wb_ids := [""]
         for k, v in AppSettings.commands_obj {
-            if (k != "_comment")
-                wb_list3.Push(k)
+            if (k != "_comment") {
+                wb_list3.Push(AppSettings.GetWbName(k))
+                this.import_wb_ids.Push(k)
+            }
         }
         this.DDL_ImportWb := this.GuiObj.Add("DropDownList", "x100 y64 w250 Choose1", wb_list3)
         this.DDL_ImportWb.ToolTip := "选择要将命令导入到的目标工作台"
@@ -312,16 +318,16 @@ class UCLC_CUI {
         this.TV_Alias.Delete()
         this.TV_Map.Clear()
 
-        wb_filter := ""
-        if (this.HasProp("DDL_Workbench") && IsObject(this.DDL_Workbench)) {
-            wb_filter := this.DDL_Workbench.Text
+        wb_filter_id := ""
+        if (this.HasProp("DDL_Workbench") && IsObject(this.DDL_Workbench) && this.DDL_Workbench.Value > 1) {
+            wb_filter_id := this.workbench_ids[this.DDL_Workbench.Value]
         }
 
         for category, cmdArray in AppSettings.commands_obj {
             if (category == "_comment")
                 continue
 
-            if (wb_filter != "" && wb_filter != "全部工作台" && category != wb_filter)
+            if (wb_filter_id != "" && category != wb_filter_id)
                 continue
 
             catId := 0
@@ -356,7 +362,7 @@ class UCLC_CUI {
                 }
 
                 if (catId == 0) {
-                    catId := this.TV_Alias.Add(category)
+                    catId := this.TV_Alias.Add(AppSettings.GetWbName(category))
                     this.TV_Map[catId] := { type: "Category", name: category }
                 }
 
@@ -725,7 +731,12 @@ class UCLC_CUI {
     }
 
     static OnReadExportedTxt(ctrl, *) {
-        target_wb := this.DDL_ImportWb.Text
+        target_wb := ""
+        if (this.DDL_ImportWb.Value > 1) {
+            target_wb := this.import_wb_ids[this.DDL_ImportWb.Value]
+        } else {
+            target_wb := this.DDL_ImportWb.Text
+        }
 
         selectedFile := FileSelect(3, , "选择 CATIA 导出的 Workshop Exposition 文件", "Text Documents (*.txt)")
         if (selectedFile = "")
@@ -762,7 +773,7 @@ class UCLC_CUI {
         }
 
         if (target_wb != "通过导入文件确定" && wb_id != "" && target_wb != wb_id) {
-            result := MsgBox("文件中解析的工作台 ID (" wb_id ") 与当前选择的目标工作台 (" target_wb ") 不一致。是否继续导入到 " target_wb "？", "警告", "YesNo Icon!")
+            result := MsgBox("文件中解析的工作台 ID (" wb_id ") 与当前选择的目标工作台 (" AppSettings.GetWbName(target_wb) ") 不一致。是否继续导入到 " AppSettings.GetWbName(target_wb) "？", "警告", "YesNo Icon!")
             if (result == "No") {
                 return
             }
@@ -777,7 +788,13 @@ class UCLC_CUI {
     static OnTargetWorkbenchChanged(ctrl, *) {
         if (!this.HasOwnProp("parsed_import_data") || this.parsed_import_data.Count == 0)
             return
-        this.RefreshImportDiff(ctrl.Text)
+        target_wb := ""
+        if (ctrl.Value > 1) {
+            target_wb := this.import_wb_ids[ctrl.Value]
+        } else {
+            target_wb := ctrl.Text
+        }
+        this.RefreshImportDiff(target_wb)
     }
 
     static RefreshImportDiff(target_wb) {
@@ -787,18 +804,20 @@ class UCLC_CUI {
         if (target_wb == "通过导入文件确定") {
             if (wb_id != "") {
                 target_wb := wb_id
-                items := ControlGetItems(this.DDL_ImportWb.Hwnd)
-                found := false
-                for i, item in items {
-                    if (item == target_wb) {
-                        this.DDL_ImportWb.Choose(i)
-                        found := true
+                found_idx := 0
+                for i, id in this.import_wb_ids {
+                    if (id == target_wb) {
+                        found_idx := i
                         break
                     }
                 }
-                if (!found) {
-                    this.DDL_ImportWb.Add([target_wb])
-                    this.DDL_ImportWb.Choose(target_wb)
+                if (found_idx > 0) {
+                    this.DDL_ImportWb.Choose(found_idx)
+                } else {
+                    wb_name := AppSettings.GetWbName(target_wb)
+                    this.DDL_ImportWb.Add([wb_name])
+                    this.import_wb_ids.Push(target_wb)
+                    this.DDL_ImportWb.Choose(this.import_wb_ids.Length)
                     AppSettings.commands_obj[target_wb] := []
                 }
             } else {
@@ -812,7 +831,7 @@ class UCLC_CUI {
         local_by_title := Map()
         for cmd in local_array {
             local_by_id[cmd["command"]] := cmd
-            desc := cmd.Has("desc") ? cmd["desc"] : ""
+            desc := (cmd.Has("desc") && cmd["desc"] != "") ? cmd["desc"] : cmd["command"]
             if desc != ""
                 local_by_title[desc] := cmd
         }
@@ -840,7 +859,7 @@ class UCLC_CUI {
         for cmd in local_array {
             id := cmd["command"]
             if !matched_local_ids.Has(id) {
-                desc := cmd.Has("desc") ? cmd["desc"] : ""
+                desc := (cmd.Has("desc") && cmd["desc"] != "") ? cmd["desc"] : cmd["command"]
                 this.import_items.Push({title: desc, local_id: id, action: "D", imported_id: ""})
             }
         }

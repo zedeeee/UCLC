@@ -20,6 +20,57 @@ class AppSettings {
     static Everything_Enabled := 0
     static Version := UCLC_VERSION
     static Everything_Path := ""
+    
+    static workbench_mapping := Map()
+
+    static LoadWorkbenchMapping() {
+        mapping_file := A_ScriptDir "\data\workbench_mapping.json"
+        if FileExist(mapping_file) {
+            try {
+                text := FileRead(mapping_file, "UTF-8")
+                parsed := JSON.parse(text)
+                this.workbench_mapping := parsed.Has("mapping") ? parsed["mapping"] : parsed
+            } catch {
+                this.workbench_mapping := Map()
+            }
+        } else {
+            this.workbench_mapping := Map()
+        }
+    }
+
+    static GetWbName(id, lang := "Simplified_Chinese") {
+        if this.workbench_mapping.Has(id) {
+            if this.workbench_mapping[id].Has(lang) {
+                return this.workbench_mapping[id][lang]
+            }
+            if this.workbench_mapping[id].Has("English") {
+                return this.workbench_mapping[id]["English"]
+            }
+        }
+        return id
+    }
+
+    static GetWbIdByUI(name) {
+        ; 解决 CATIA 多工作台同名（如 Drafting 背景和主工作台都叫“工程制图”）导致反查 ID 不准的问题
+        static canonical_map := Map(
+            "工程制图", "CATDrwDrwWkb",
+            "Drafting", "CATDrwDrwWkb",
+            "零件设计", "CATPcfPartWkb",
+            "Part Design", "CATPcfPartWkb"
+        )
+        if canonical_map.Has(name) {
+            return canonical_map[name]
+        }
+
+        for id, langs in this.workbench_mapping {
+            for lang, val in langs {
+                if (val == name) {
+                    return id
+                }
+            }
+        }
+        return name
+    }
 
     static Init() {
         this.config_json_path := A_ScriptDir "\config.json"
@@ -77,6 +128,8 @@ class AppSettings {
         this.alias_ini_path := A_ScriptDir "\user-config\" alias_name
         this.hotkey_ini_path := A_ScriptDir "\user-config\" hotkey_name
         
+        this.LoadWorkbenchMapping()
+        
         if (!FileExist(this.commands_json_path) && (FileExist(this.alias_ini_path) || FileExist(this.hotkey_ini_path))) {
             ConfigMigrator.MigrateV2IniToCommandsJson(this.alias_ini_path, this.hotkey_ini_path, this.commands_json_path)
         }
@@ -86,6 +139,30 @@ class AppSettings {
             this.commands_obj := JSON.parse(FileRead(this.commands_json_path, "UTF-8"))
         } else {
             this.commands_obj := Map()
+        }
+        
+        ; 自动升维（迁移）：将旧版中文名的 Key 替换为 Internal ID
+        migrated := false
+        new_commands_obj := Map()
+        for k, v in this.commands_obj {
+            if (k == "_comment") {
+                new_commands_obj[k] := v
+                continue
+            }
+            id := this.GetWbIdByUI(k)
+            if (id != k) {
+                migrated := true
+            }
+            new_commands_obj[id] := v
+        }
+
+        if (migrated) {
+            this.commands_obj := new_commands_obj
+            try {
+                if FileExist(this.commands_json_path)
+                    FileDelete(this.commands_json_path)
+                FileAppend(JSON.stringify(this.commands_obj), this.commands_json_path, "UTF-8")
+            }
         }
 
         ; 内存反向映射，向下兼容核心执行引擎
@@ -98,6 +175,7 @@ class AppSettings {
             
             for cmd in cmdArray {
                 if (cmd.Has("aliases")) {
+
                     for alias in cmd["aliases"] {
                         this.alias_obj[wb][alias] := cmd
                     }

@@ -22,6 +22,13 @@ class UCLC_CUI {
     static Txt_Hotkey := ""
     static Btn_Save := ""
     static Btn_DelItem := ""
+    static Btn_AddCmdFromOther := ""
+    static dlg_ddl_src := ""
+    static dlg_edit_filter := ""
+    static dlg_lv := ""
+    static dlg_btn_add := ""
+    static dlg_btn_cancel := ""
+    static dlg_target_wb := ""
 
     static alias_edits := []
     static hotkey_edits := []
@@ -46,6 +53,7 @@ class UCLC_CUI {
 
         this.GuiObj := Gui("-Resize -MaximizeBox", "UCLC 配置管理控制台 (CUI)")
         this.GuiObj.OnEvent("Close", ObjBindMethod(this, "OnClose"))
+        this.GuiObj.OnEvent("Escape", ObjBindMethod(this, "OnClose"))
         OnMessage(0x0200, ObjBindMethod(this, "OnMouseMove"))
         this.Tabs := this.GuiObj.Add("Tab3", "x10 y10 w780 h580", ["命令映射", "通用设置", "工作台命令库"])
 
@@ -70,6 +78,9 @@ class UCLC_CUI {
 
         this.TV_Alias := this.GuiObj.Add("TreeView", "x30 y115 w250 h430")
         this.TV_Alias.OnEvent("ItemSelect", ObjBindMethod(this, "OnCommandTreeSelect"))
+
+        this.Btn_AddCmdFromOther := this.GuiObj.Add("Button", "x30 y550 w250 h24 Disabled", "从指定工作台添加命令")
+        this.Btn_AddCmdFromOther.OnEvent("Click", ObjBindMethod(this, "OnAddCmdFromOther"))
 
         ; 右侧详情编辑区框
         this.GuiObj.Add("GroupBox", "x300 y60 w460 h490", "详细属性与动态编辑")
@@ -134,10 +145,6 @@ class UCLC_CUI {
 
         btn_saveGen := this.GuiObj.Add("Button", "x600 y160 w150 Default", "保存通用设置")
         btn_saveGen.OnEvent("Click", ObjBindMethod(this, "SaveGeneralSettings"))
-
-        btn_reload := this.GuiObj.Add("Button", "x30 y550 w150", "🔄 保存并热重载脚本")
-        btn_reload.ToolTip := "保存当前设置并重新加载 UCLC 脚本"
-        btn_reload.OnEvent("Click", (*) => Reload())
 
         ; =============== 第三页: 工作台命令库 ===============
         this.Tabs.UseTab(3)
@@ -259,10 +266,15 @@ class UCLC_CUI {
         btn_applyAll.ToolTip := "将所有勾选的新增/更新/删除操作保存到配置"
         btn_applyAll.OnEvent("Click", ObjBindMethod(this, "OnApplyImportAll"))
 
-        ; =============== 初始化数据加载 ===============
+        ; =============== 全局页脚 ===============
         this.Tabs.UseTab()
+        btn_reload := this.GuiObj.Add("Button", "x30 y600 w150 h30", "🔄 保存并热重载脚本")
+        btn_reload.ToolTip := "保存当前设置并重新加载 UCLC 脚本"
+        btn_reload.OnEvent("Click", (*) => Reload())
+
+        ; =============== 初始化数据加载 ===============
         this.LoadCommandTree()
-        this.GuiObj.Show("w800 h600")
+        this.GuiObj.Show("w800 h645")
     }
 
     static BrowseEverything(*) {
@@ -357,6 +369,11 @@ class UCLC_CUI {
     }
 
     static OnWorkbenchFilter(CtrlObj, *) {
+        if (this.DDL_Workbench.Text != "全部工作台") {
+            this.Btn_AddCmdFromOther.Opt("-Disabled")
+        } else {
+            this.Btn_AddCmdFromOther.Opt("+Disabled")
+        }
         this.LoadCommandTree(this.Edit_Search.Value)
     }
 
@@ -395,6 +412,13 @@ class UCLC_CUI {
         this.Txt_Hotkey := ""
         this.Btn_Save := ""
         this.Btn_DelItem := ""
+        this.Btn_AddCmdFromOther := ""
+        this.dlg_ddl_src := ""
+        this.dlg_edit_filter := ""
+        this.dlg_lv := ""
+        this.dlg_btn_add := ""
+        this.dlg_btn_cancel := ""
+        this.dlg_target_wb := ""
     }
 
     static ClearRightPane() {
@@ -710,6 +734,195 @@ class UCLC_CUI {
     }
 
     static OnApplyImportAll(*) {
+    }
+
+    static OnAddCmdFromOther(*) {
+        target_wb := this.DDL_Workbench.Text
+        if (target_wb == "全部工作台" || target_wb == "")
+            return
+
+        ; 创建模态自适应弹窗
+        dlg := Gui("+Resize +Owner" this.GuiObj.Hwnd " +MinSize350x300", "从指定工作台添加命令 - 目标: " target_wb)
+        dlg.OnEvent("Size", ObjBindMethod(this, "OnDlgSize"))
+        dlg.OnEvent("Close", (*) => dlg.Destroy())
+        dlg.OnEvent("Escape", (*) => dlg.Destroy())
+
+        dlg.Add("Text", "x20 y20 w80 h20", "源工作台:")
+
+        ; 搜集除目标工作台之外的所有工作台
+        src_wbs := []
+        for k, v in AppSettings.commands_obj {
+            if (k != "_comment" && k != target_wb)
+                src_wbs.Push(k)
+        }
+        if (src_wbs.Length == 0) {
+            MsgBox("没有其他工作台可供选择！", "提示", "Iconi")
+            dlg.Destroy()
+            return
+        }
+
+        this.dlg_ddl_src := dlg.Add("DropDownList", "x100 y16 w330 Choose1", src_wbs)
+        dlg.Add("Text", "x20 y52 w80 h20", "快速过滤:")
+        this.dlg_edit_filter := dlg.Add("Edit", "x100 y48 w330 h22")
+        this.dlg_lv := dlg.Add("ListView", "x20 y85 w410 h360", ["功能描述", "命令 ID"])
+        this.dlg_lv.ModifyCol(1, 140)
+        this.dlg_lv.ModifyCol(2, 200)
+        this.dlg_btn_add := dlg.Add("Button", "x20 y455 w195 h30 Default", "添加")
+        this.dlg_btn_cancel := dlg.Add("Button", "x235 y455 w195 h30", "取消")
+
+        ; 事件绑定
+        this.dlg_ddl_src.OnEvent("Change", ObjBindMethod(this, "OnDlgWbChange"))
+        this.dlg_edit_filter.OnEvent("Change", ObjBindMethod(this, "OnDlgFilterChange"))
+        this.dlg_btn_add.OnEvent("Click", ObjBindMethod(this, "OnDlgAdd", target_wb, dlg))
+        this.dlg_btn_cancel.OnEvent("Click", (*) => dlg.Destroy())
+
+        ; 记录当前选中工作台的命令池，方便搜索过滤
+        this.dlg_target_wb := target_wb
+        this.LoadDlgCommands()
+
+        dlg.Show("w450 h500")
+    }
+
+    static OnDlgSize(GuiObj, MinMax, Width, Height) {
+        if (MinMax == -1)
+            return
+
+        try {
+            this.dlg_ddl_src.Move(, , Width - 120)
+            this.dlg_edit_filter.Move(, , Width - 120)
+            this.dlg_lv.Move(, , Width - 40, Height - 140)
+
+            btn_w := (Width - 60) // 2
+            this.dlg_btn_add.Move(20, Height - 45, btn_w)
+            this.dlg_btn_cancel.Move(20 + btn_w + 20, Height - 45, btn_w)
+        }
+    }
+
+    static LoadDlgCommands() {
+        this.dlg_lv.Delete()
+        src_wb := this.dlg_ddl_src.Text
+        if (src_wb == "")
+            return
+
+        filter := Trim(this.dlg_edit_filter.Value)
+
+        target_cmds := Map()
+        if AppSettings.commands_obj.Has(this.dlg_target_wb) {
+            for cmd in AppSettings.commands_obj[this.dlg_target_wb] {
+                if cmd.Has("command")
+                    target_cmds[cmd["command"]] := 1
+            }
+        }
+
+        if AppSettings.commands_obj.Has(src_wb) {
+            this.dlg_lv.Opt("-Redraw")
+            for cmd in AppSettings.commands_obj[src_wb] {
+                desc := cmd.Has("desc") ? cmd["desc"] : ""
+                command := cmd.Has("command") ? cmd["command"] : ""
+
+                if (filter != "") {
+                    if (!InStr(desc, filter) && !InStr(command, filter))
+                        continue
+                }
+
+                is_dup := target_cmds.Has(command)
+                display_desc := is_dup ? desc " (已存在)" : desc
+
+                this.dlg_lv.Add("", display_desc, command)
+            }
+            this.dlg_lv.Opt("+Redraw")
+        }
+    }
+
+    static OnDlgWbChange(*) {
+        this.LoadDlgCommands()
+    }
+
+    static OnDlgFilterChange(*) {
+        this.LoadDlgCommands()
+    }
+
+    static OnDlgAdd(target_wb, dlg, *) {
+        row_count := this.dlg_lv.GetCount()
+        selected_indices := []
+        row := 0
+        loop {
+            row := this.dlg_lv.GetNext(row)
+            if (!row)
+                break
+            selected_indices.Push(row)
+        }
+
+        if (selected_indices.Length == 0) {
+            MsgBox("请先选择要添加的命令！", "提示", "Iconi")
+            return
+        }
+
+        if !AppSettings.commands_obj.Has(target_wb)
+            AppSettings.commands_obj[target_wb] := []
+
+        target_cmd_list := AppSettings.commands_obj[target_wb]
+
+        existing_cmds := Map()
+        for c in target_cmd_list {
+            if c.Has("command")
+                existing_cmds[c["command"]] := 1
+        }
+
+        src_wb := this.dlg_ddl_src.Text
+        src_cmd_list := AppSettings.commands_obj[src_wb]
+
+        added_count := 0
+        skipped_count := 0
+
+        for idx in selected_indices {
+            cmd_id := this.dlg_lv.GetText(idx, 2)
+
+            src_cmd := ""
+            for c in src_cmd_list {
+                if (c.Has("command") && c["command"] == cmd_id) {
+                    src_cmd := c
+                    break
+                }
+            }
+
+            if (!src_cmd)
+                continue
+
+            if (existing_cmds.Has(cmd_id)) {
+                skipped_count++
+                continue
+            }
+
+            new_cmd := Map()
+            for k, v in src_cmd {
+                if (k == "aliases" || k == "hotkeys") {
+                    arr_copy := []
+                    for item in v
+                        arr_copy.Push(item)
+                    new_cmd[k] := arr_copy
+                } else {
+                    new_cmd[k] := v
+                }
+            }
+
+            target_cmd_list.Push(new_cmd)
+            added_count++
+        }
+
+        if (added_count > 0) {
+            this.FlushCommandsJson()
+            AppSettings.Init()
+            this.LoadCommandTree(this.Edit_Search.Value)
+
+            msg := "成功添加 " added_count " 个命令到 [" target_wb "]"
+            if (skipped_count > 0)
+                msg .= "`n已自动忽略 " skipped_count " 个重复命令"
+            MsgBox(msg, "成功", "Iconi T2")
+            dlg.Destroy()
+        } else {
+            MsgBox("未添加任何命令（所选命令在目标工作台均已存在）。", "提示", "Iconi")
+        }
     }
 
     static OnMouseMove(wParam, lParam, msg, hwnd) {

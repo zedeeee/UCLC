@@ -139,5 +139,6 @@ add_coustom_tray_menu()
         A_TrayMenu.Add(button_name, callback_function)
 
     }
+    A_TrayMenu.Default := "设置..."
     ; A_TrayMenu.Rename(menu_items[1][1], "UCLC")
 }

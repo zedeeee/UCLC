@@ -245,6 +245,7 @@ match_current_workbench(workbench_map) {
                 return id
             }
         }
+        return "通用"
     }
     catch {
         ; WebBrowser 控件未找到，工具栏未吸附 (情况 1)

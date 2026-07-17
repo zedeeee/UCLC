@@ -20,6 +20,7 @@ class UCLC_CUI {
     static Txt_Cmd := ""
     static Txt_Alias := ""
     static Txt_Hotkey := ""
+    static Btn_Revert := ""
     static Btn_Save := ""
     static Btn_DelItem := ""
     static Btn_AddCmdFromOther := ""
@@ -31,6 +32,7 @@ class UCLC_CUI {
     static dlg_target_wb := ""
     static btn_markDelete := ""
     static btn_markIgnore := ""
+    static Txt_SelCount := ""
 
     static alias_edits := []
     static hotkey_edits := []
@@ -43,6 +45,7 @@ class UCLC_CUI {
     static Edit_EverythingPath := ""
     static Txt_EmptyLV := ""
     static DDL_ImportWb := ""
+    static original_json_str := ""
 
     static Show() {
         if (this.GuiObj) {
@@ -52,6 +55,7 @@ class UCLC_CUI {
 
         ; 每次打开设置面板前强制从硬盘重载，丢弃一切未保存的内存脏数据
         AppSettings.Init()
+        this.original_json_str := JSON.stringify(AppSettings.commands_obj)
 
         this.GuiObj := Gui("-Resize -MaximizeBox", "UCLC 配置管理控制台 (CUI)")
         this.GuiObj.OnEvent("Close", ObjBindMethod(this, "OnClose"))
@@ -64,13 +68,23 @@ class UCLC_CUI {
         this.GuiObj.Add("Text", "x30 y40 w200", "命令列表树 (工作台 -> 功能):")
 
         this.GuiObj.Add("Text", "x30 y65 w45", "工作台:")
-        wb_list := ["全部工作台"]
-        this.workbench_ids := [""] ; 第一个为空，代表全选
+
+        sort_str := ""
         for k, v in AppSettings.commands_obj {
             if (k != "_comment") {
-                wb_list.Push(AppSettings.GetWbName(k))
-                this.workbench_ids.Push(k)
+                sort_str .= AppSettings.GetWbName(k) "|||" k "`n"
             }
+        }
+        sort_str := Sort(Trim(sort_str, "`n"))
+
+        wb_list := ["全部工作台"]
+        this.workbench_ids := [""] ; 第一个为空，代表全选
+        loop parse sort_str, "`n", "`r" {
+            if (A_LoopField == "")
+                continue
+            parts := StrSplit(A_LoopField, "|||")
+            wb_list.Push(parts[1])
+            this.workbench_ids.Push(parts[2])
         }
         this.DDL_Workbench := this.GuiObj.Add("DropDownList", "x75 y61 w205 Choose1", wb_list)
         this.DDL_Workbench.OnEvent("Change", ObjBindMethod(this, "OnWorkbenchFilter"))
@@ -97,15 +111,17 @@ class UCLC_CUI {
 
         this.Txt_Desc := this.GuiObj.Add("Text", "x320 y110 w80 Hidden", "功能描述:")
         this.Edit_Desc := this.GuiObj.Add("Edit", "x400 y106 w340 Hidden", "")
+        this.Edit_Desc.OnEvent("Change", ObjBindMethod(this, "OnDetailChange"))
 
         this.Txt_Cmd := this.GuiObj.Add("Text", "x320 y140 w80 Hidden", "执行命令:")
         this.Edit_Cmd := this.GuiObj.Add("Edit", "x400 y136 w340 Hidden", "")
+        this.Edit_Cmd.OnEvent("Change", ObjBindMethod(this, "OnDetailChange"))
 
         this.Txt_Alias := this.GuiObj.Add("Text", "x320 y180 w80 Hidden", "触发别名:")
 
         this.alias_pool := []
         loop 10 {
-            e := this.GuiObj.Add("Edit", "x400 y0 w120 Hidden", "")
+            e := this.GuiObj.Add("Edit", "x400 y0 w120 Hidden Uppercase", "")
             btn_add := this.GuiObj.Add("Button", "x530 y0 w30 h24 Hidden", "➕")
             btn_del := this.GuiObj.Add("Button", "x565 y0 w30 h24 Hidden", "➖")
 
@@ -131,8 +147,13 @@ class UCLC_CUI {
             this.hotkey_pool.Push({ e: e, add: btn_add, del: btn_del })
         }
 
-        this.Btn_Save := this.GuiObj.Add("Button", "x400 y0 w120 h35 Hidden", "✔ 保存映射修改")
+        this.Btn_Revert := this.GuiObj.Add("Button", "x400 y0 w120 h35 Hidden Disabled", "撤销当前修改")
+        this.Btn_Revert.OnEvent("Click", ObjBindMethod(this, "OnRevertChanges"))
+
+        this.Btn_Save := this.GuiObj.Add("Button", "x620 y550 w140 h26 Disabled", "应用修改")
         this.Btn_Save.OnEvent("Click", ObjBindMethod(this, "SaveCurrentItem"))
+
+        this.SB := this.GuiObj.Add("StatusBar")
 
         ; 新增与删除功能移至第三页工作台命令库管理，此处仅保留右侧详情面板
         ; =============== 第二页: 通用设置 ===============
@@ -160,11 +181,12 @@ class UCLC_CUI {
         this.GuiObj.Add("Text", "x30 y68 w70", "目标工作台:")
         wb_list3 := ["通过导入文件确定"]
         this.import_wb_ids := [""]
-        for k, v in AppSettings.commands_obj {
-            if (k != "_comment") {
-                wb_list3.Push(AppSettings.GetWbName(k))
-                this.import_wb_ids.Push(k)
-            }
+        loop parse sort_str, "`n", "`r" {
+            if (A_LoopField == "")
+                continue
+            parts := StrSplit(A_LoopField, "|||")
+            wb_list3.Push(parts[1])
+            this.import_wb_ids.Push(parts[2])
         }
         this.DDL_ImportWb := this.GuiObj.Add("DropDownList", "x100 y64 w250 Choose1", wb_list3)
         this.DDL_ImportWb.ToolTip := "选择要将命令导入到的目标工作台"
@@ -266,6 +288,8 @@ class UCLC_CUI {
         this.btn_markIgnore.ToolTip := "将选中的命令标记为忽略"
         this.btn_markIgnore.OnEvent("Click", ObjBindMethod(this, "OnMarkItemsToIgnore"))
 
+        this.Txt_SelCount := this.GuiObj.Add("Text", "x220 y489 w150 h20", "已选中: 0 项")
+
         ; --- 底部区块：执行操作 ---
 
         btn_resetView := this.GuiObj.Add("Button", "x30 y550 w150", "重置视图")
@@ -276,15 +300,9 @@ class UCLC_CUI {
         btn_applyAll.ToolTip := "将列表中高亮选中的新增/更新/删除操作保存到配置"
         btn_applyAll.OnEvent("Click", ObjBindMethod(this, "OnApplyImportAll"))
 
-        ; =============== 全局页脚 ===============
-        this.Tabs.UseTab()
-        btn_reload := this.GuiObj.Add("Button", "x30 y600 w150 h30", "🔄 保存并热重载脚本")
-        btn_reload.ToolTip := "保存当前设置并重新加载 UCLC 脚本"
-        btn_reload.OnEvent("Click", (*) => Reload())
-
         ; =============== 初始化数据加载 ===============
         this.LoadCommandTree()
-        this.GuiObj.Show("w800 h645")
+        this.GuiObj.Show("w800 h600")
     }
 
     static BrowseEverything(*) {
@@ -310,7 +328,7 @@ class UCLC_CUI {
             FileDelete(AppSettings.config_json_path)
             FileAppend(JSON.stringify(AppSettings.config_obj), AppSettings.config_json_path, "UTF-8")
 
-            MsgBox("通用设置保存成功！", "UCLC", "Iconi T2")
+            this.SB.SetText("通用设置保存成功！请手动重新载入 UCLC 脚本以使其生效。")
         } catch as e {
             MsgBox("保存失败: " e.Message, "错误", 16)
         }
@@ -431,6 +449,7 @@ class UCLC_CUI {
         this.dlg_target_wb := ""
         this.btn_markDelete := ""
         this.btn_markIgnore := ""
+        this.Txt_SelCount := ""
     }
 
     static ClearRightPane() {
@@ -459,7 +478,7 @@ class UCLC_CUI {
             p.del.Opt("Hidden")
         }
 
-        this.Btn_Save.Opt("Hidden")
+        this.Btn_Revert.Opt("Hidden")
 
         this.alias_edits := []
         this.hotkey_edits := []
@@ -560,8 +579,11 @@ class UCLC_CUI {
         }
 
         cur_y += 30
-        this.Btn_Save.Move(, cur_y)
-        this.Btn_Save.Opt("-Hidden")
+        this.Btn_Revert.Move(, cur_y)
+        this.Btn_Revert.Opt("-Hidden")
+
+        this.CheckGlobalDirty()
+        this.SB.SetText("")
     }
 
     static SaveInputsToCurrentCmd() {
@@ -576,13 +598,15 @@ class UCLC_CUI {
         cmd["aliases"] := []
         for e in this.alias_edits {
             v := Trim(e.Value)
-            cmd["aliases"].Push(v)
+            if (v != "")
+                cmd["aliases"].Push(v)
         }
 
         cmd["hotkeys"] := []
         for e in this.hotkey_edits {
             v := Trim(e.Value)
-            cmd["hotkeys"].Push(v)
+            if (v != "")
+                cmd["hotkeys"].Push(v)
         }
     }
 
@@ -624,12 +648,72 @@ class UCLC_CUI {
         this.OnCommandTreeSelect(this.TV_Alias, itemId)
     }
 
+    static CheckGlobalDirty() {
+        if (!this.HasOwnProp("original_json_str") || this.original_json_str == "")
+            return
+
+        current_json := JSON.stringify(AppSettings.commands_obj)
+        if (current_json !== this.original_json_str) {
+            this.Btn_Save.Opt("-Disabled")
+        } else {
+            this.Btn_Save.Opt("+Disabled")
+        }
+
+        if !this.HasOwnProp("original_commands_obj") {
+            this.original_commands_obj := JSON.parse(this.original_json_str)
+        }
+
+        for id, info in this.TV_Map {
+            if (info.type == "Item") {
+                orig_cmd := ""
+                wb := info.category
+                if (this.original_commands_obj.Has(wb)) {
+                    for c in this.original_commands_obj[wb] {
+                        if (c["command"] == info.cmd["command"]) {
+                            orig_cmd := c
+                            break
+                        }
+                    }
+                }
+
+                is_dirty := false
+                if (orig_cmd == "") {
+                    is_dirty := true
+                } else {
+                    is_dirty := (info.cmd["command"] != orig_cmd["command"])
+                    || (info.cmd.Has("desc") ? info.cmd["desc"] : "") != (orig_cmd.Has("desc") ? orig_cmd["desc"] : "")
+                    || JSON.stringify(info.cmd.Has("aliases") ? info.cmd["aliases"] : []) != JSON.stringify(orig_cmd.Has(
+                        "aliases") ? orig_cmd["aliases"] : [])
+                    || JSON.stringify(info.cmd.Has("hotkeys") ? info.cmd["hotkeys"] : []) != JSON.stringify(orig_cmd.Has(
+                        "hotkeys") ? orig_cmd["hotkeys"] : [])
+                }
+
+                if (is_dirty) {
+                    this.TV_Alias.Modify(id, "Bold")
+                    if (id == this.TV_Alias.GetSelection())
+                        this.Btn_Revert.Opt("-Disabled")
+                } else {
+                    this.TV_Alias.Modify(id, "-Bold")
+                    if (id == this.TV_Alias.GetSelection())
+                        this.Btn_Revert.Opt("+Disabled")
+                }
+            }
+        }
+    }
+
+    static OnDetailChange(*) {
+        this.SaveInputsToCurrentCmd()
+        this.CheckGlobalDirty()
+    }
+
     static OnAliasChange(idx, GuiCtrlObj, *) {
         p := this.alias_pool[idx]
         if (Trim(GuiCtrlObj.Value) != "")
             p.add.Opt("-Disabled")
         else
             p.add.Opt("+Disabled")
+        this.SaveInputsToCurrentCmd()
+        this.CheckGlobalDirty()
     }
 
     static OnHotkeyChange(idx, GuiCtrlObj, *) {
@@ -638,37 +722,119 @@ class UCLC_CUI {
             p.add.Opt("-Disabled")
         else
             p.add.Opt("+Disabled")
+        this.SaveInputsToCurrentCmd()
+        this.CheckGlobalDirty()
+    }
+
+    static OnRevertChanges(*) {
+        if (!this.HasOwnProp("original_commands_obj"))
+            return
+
+        itemId := this.TV_Alias.GetSelection()
+        if (!itemId || !this.TV_Map.Has(itemId) || this.TV_Map[itemId].type != "Item")
+            return
+
+        wb := this.TV_Map[itemId].category
+        cmd_id := this.TV_Map[itemId].cmd["command"]
+
+        orig_cmd := ""
+        if (this.original_commands_obj.Has(wb)) {
+            for c in this.original_commands_obj[wb] {
+                if (c["command"] == cmd_id) {
+                    orig_cmd := c
+                    break
+                }
+            }
+        }
+
+        if (orig_cmd != "") {
+            restored_cmd := JSON.parse(JSON.stringify(orig_cmd))
+            this.TV_Map[itemId].cmd := restored_cmd
+
+            if (AppSettings.commands_obj.Has(wb)) {
+                for i, c in AppSettings.commands_obj[wb] {
+                    if (c["command"] == cmd_id) {
+                        AppSettings.commands_obj[wb][i] := restored_cmd
+                        break
+                    }
+                }
+            }
+
+            this.OnCommandTreeSelect(this.TV_Alias, itemId)
+            this.CheckGlobalDirty()
+            this.SB.SetText("当前命令已恢复到初始状态。")
+        }
     }
 
     static SaveCurrentItem(*) {
         this.SaveInputsToCurrentCmd()
 
-        ; 仅在最终保存时过滤掉空字符串，防止写入 JSON
         itemId := this.TV_Alias.GetSelection()
+        saved_cmd_id := ""
+        saved_cat := ""
         if (itemId && this.TV_Map.Has(itemId) && this.TV_Map[itemId].type == "Item") {
             cmd := this.TV_Map[itemId].cmd
+            saved_cmd_id := cmd["command"]
+            saved_cat := this.TV_Map[itemId].category
+        }
 
-            clean_aliases := []
-            for v in cmd["aliases"]
-                if (v != "")
-                    clean_aliases.Push(v)
-            cmd["aliases"] := clean_aliases
-
-            clean_hotkeys := []
-            for v in cmd["hotkeys"]
-                if (v != "")
-                    clean_hotkeys.Push(v)
-            cmd["hotkeys"] := clean_hotkeys
+        hotkey_changed := false
+        if (this.HasOwnProp("original_commands_obj")) {
+            for id, info in this.TV_Map {
+                if (info.type == "Item") {
+                    orig_cmd := ""
+                    wb := info.category
+                    if (this.original_commands_obj.Has(wb)) {
+                        for c in this.original_commands_obj[wb] {
+                            if (c["command"] == info.cmd["command"]) {
+                                orig_cmd := c
+                                break
+                            }
+                        }
+                    }
+                    if (orig_cmd == "") {
+                        hotkey_changed := true
+                        break
+                    } else {
+                        h1 := JSON.stringify(info.cmd.Has("hotkeys") ? info.cmd["hotkeys"] : [])
+                        h2 := JSON.stringify(orig_cmd.Has("hotkeys") ? orig_cmd["hotkeys"] : [])
+                        if (h1 != h2) {
+                            hotkey_changed := true
+                            break
+                        }
+                    }
+                }
+            }
         }
 
         this.FlushCommandsJson()
 
         ; 触发内存重建
         AppSettings.Init()
+        this.original_json_str := JSON.stringify(AppSettings.commands_obj)
+        if this.HasOwnProp("original_commands_obj") {
+            this.DeleteProp("original_commands_obj")
+        }
 
         ; 刷新界面
         this.LoadCommandTree(this.Edit_Search.Value)
-        MsgBox("保存成功！别名与快捷键已热更新生效。", "UCLC", "Iconi T2")
+
+        if (saved_cmd_id != "") {
+            for id, info in this.TV_Map {
+                if (info.type == "Item" && info.cmd["command"] == saved_cmd_id && info.category == saved_cat) {
+                    this.TV_Alias.Modify(id, "Select Vis")
+                    this.OnCommandTreeSelect(this.TV_Alias, id)
+                    break
+                }
+            }
+        }
+
+        this.CheckGlobalDirty()
+        if (hotkey_changed) {
+            this.SB.SetText("修改成功！请手动重新载入 UCLC 以应用最新配置。")
+        } else {
+            this.SB.SetText("修改成功。")
+        }
     }
     static FlushCommandsJson() {
         try {
@@ -697,35 +863,43 @@ class UCLC_CUI {
     }
 
     static UpdateFilterAllState() {
-        if (this.chk_filterNew.Value && this.chk_filterUpdate.Value && this.chk_filterOverwrite.Value && this.chk_filterSame.Value && this.chk_filterDelete.Value && this.chk_filterIgnore.Value)
+        if (this.chk_filterNew.Value && this.chk_filterUpdate.Value && this.chk_filterOverwrite.Value && this.chk_filterSame
+            .Value && this.chk_filterDelete.Value && this.chk_filterIgnore.Value)
             this.chk_filterAll.Value := 1
         else
             this.chk_filterAll.Value := 0
     }
 
-    static OnFilterNew(*) {
+    static HandleFilterClick(ctrl) {
+        if GetKeyState("Alt", "P") {
+            this.chk_filterNew.Value := (ctrl == this.chk_filterNew)
+            this.chk_filterUpdate.Value := (ctrl == this.chk_filterUpdate)
+            this.chk_filterOverwrite.Value := (ctrl == this.chk_filterOverwrite)
+            this.chk_filterSame.Value := (ctrl == this.chk_filterSame)
+            this.chk_filterDelete.Value := (ctrl == this.chk_filterDelete)
+            this.chk_filterIgnore.Value := (ctrl == this.chk_filterIgnore)
+        }
         this.UpdateFilterAllState()
         this.RefreshIfDataExists()
     }
-    static OnFilterUpdate(*) {
-        this.UpdateFilterAllState()
-        this.RefreshIfDataExists()
+
+    static OnFilterNew(ctrl, *) {
+        this.HandleFilterClick(ctrl)
     }
-    static OnFilterOverwrite(*) {
-        this.UpdateFilterAllState()
-        this.RefreshIfDataExists()
+    static OnFilterUpdate(ctrl, *) {
+        this.HandleFilterClick(ctrl)
     }
-    static OnFilterSame(*) {
-        this.UpdateFilterAllState()
-        this.RefreshIfDataExists()
+    static OnFilterOverwrite(ctrl, *) {
+        this.HandleFilterClick(ctrl)
     }
-    static OnFilterDelete(*) {
-        this.UpdateFilterAllState()
-        this.RefreshIfDataExists()
+    static OnFilterSame(ctrl, *) {
+        this.HandleFilterClick(ctrl)
     }
-    static OnFilterIgnore(*) {
-        this.UpdateFilterAllState()
-        this.RefreshIfDataExists()
+    static OnFilterDelete(ctrl, *) {
+        this.HandleFilterClick(ctrl)
+    }
+    static OnFilterIgnore(ctrl, *) {
+        this.HandleFilterClick(ctrl)
     }
 
     static OnGetCommandsFromCatia(ctrl, *) {
@@ -736,17 +910,14 @@ class UCLC_CUI {
     }
 
     static OnReadExportedTxt(ctrl, *) {
-        target_wb := ""
-        if (this.DDL_ImportWb.Value > 1) {
-            target_wb := this.import_wb_ids[this.DDL_ImportWb.Value]
-        } else {
-            target_wb := this.DDL_ImportWb.Text
-        }
-
         selectedFile := FileSelect(3, , "选择 CATIA 导出的 Workshop Exposition 文件", "Text Documents (*.txt)")
         if (selectedFile = "")
             return
-        
+
+        ; 每次选择新文件都作为全新导入，重置目标工作台选项
+        this.DDL_ImportWb.Choose(1)
+        target_wb := "通过导入文件确定"
+
         ; 智能探测文件编码：优先用 UTF-8 读取
         content := FileRead(selectedFile, "UTF-8")
         ; 如果内容不含特征词，或者包含 UTF-8 解析失败时的替换符()，则降级为系统默认 ANSI(CP0)
@@ -761,7 +932,7 @@ class UCLC_CUI {
         parsed_commands := Map()
         wb_id := ""
         current_title := ""
-        
+
         loop parse content, "`n", "`r" {
             line := Trim(A_LoopField)
             if RegExMatch(line, "^Workshop Exposition of\s+(.+)$", &match) {
@@ -778,7 +949,8 @@ class UCLC_CUI {
         }
 
         if (target_wb != "通过导入文件确定" && wb_id != "" && target_wb != wb_id) {
-            result := MsgBox("文件中解析的工作台 ID (" wb_id ") 与当前选择的目标工作台 (" AppSettings.GetWbName(target_wb) ") 不一致。是否继续导入到 " AppSettings.GetWbName(target_wb) "？", "警告", "YesNo Icon!")
+            result := MsgBox("文件中解析的工作台 ID (" wb_id ") 与当前选择的目标工作台 (" AppSettings.GetWbName(target_wb) ") 不一致。是否继续导入到 " AppSettings
+            .GetWbName(target_wb) "？", "警告", "YesNo Icon!")
             if (result == "No") {
                 return
             }
@@ -843,21 +1015,22 @@ class UCLC_CUI {
 
         this.import_items := []
         matched_local_ids := Map()
-        
+
         for id, title in parsed_commands {
             if local_by_id.Has(id) {
                 if local_by_id[id]["desc"] == title {
-                    this.import_items.Push({title: title, local_id: id, action: "=", imported_id: id})
+                    this.import_items.Push({ title: title, local_id: id, action: "=", imported_id: id })
                 } else {
-                    this.import_items.Push({title: title, local_id: local_by_id[id]["command"], action: "T", imported_id: id})
+                    this.import_items.Push({ title: title, local_id: local_by_id[id]["command"], action: "T",
+                        imported_id: id })
                 }
                 matched_local_ids[id] := true
             } else if local_by_title.Has(title) {
                 old_id := local_by_title[title]["command"]
-                this.import_items.Push({title: title, local_id: old_id, action: "C", imported_id: id})
+                this.import_items.Push({ title: title, local_id: old_id, action: "C", imported_id: id })
                 matched_local_ids[old_id] := true
             } else {
-                this.import_items.Push({title: title, local_id: "", action: "+", imported_id: id})
+                this.import_items.Push({ title: title, local_id: "", action: "+", imported_id: id })
             }
         }
 
@@ -865,16 +1038,48 @@ class UCLC_CUI {
             id := cmd["command"]
             if !matched_local_ids.Has(id) {
                 desc := (cmd.Has("desc") && cmd["desc"] != "") ? cmd["desc"] : cmd["command"]
-                this.import_items.Push({title: desc, local_id: id, action: "D", imported_id: ""})
+                this.import_items.Push({ title: desc, local_id: id, action: "D", imported_id: "" })
             }
         }
 
         this.RenderImportLV()
     }
 
+    static UpdateCounts() {
+        if !this.HasOwnProp("import_items")
+            return
+
+        cNew := 0, cUpd := 0, cOvr := 0, cSam := 0, cDel := 0, cIgn := 0
+        for item in this.import_items {
+            a := item.action
+            if (a == "+")
+                cNew++
+            else if (a == "T")
+                cUpd++
+            else if (a == "C")
+                cOvr++
+            else if (a == "=")
+                cSam++
+            else if (a == "D")
+                cDel++
+            else if (a == "i")
+                cIgn++
+        }
+        cAll := cNew + cUpd + cOvr + cSam + cDel + cIgn
+        this.chk_filterAll.Text := "全部`n(" cAll ")"
+        this.chk_filterNew.Text := "新增`n(" cNew ")"
+        this.chk_filterUpdate.Text := "更新标题`n(" cUpd ")"
+        this.chk_filterOverwrite.Text := "更新命令`n(" cOvr ")"
+        this.chk_filterSame.Text := "一致`n(" cSam ")"
+        this.chk_filterDelete.Text := "待删除`n(" cDel ")"
+        this.chk_filterIgnore.Text := "忽略`n(" cIgn ")"
+    }
+
     static RenderImportLV() {
         if !this.HasOwnProp("import_items")
             return
+
+        this.UpdateCounts()
 
         showNew := this.chk_filterNew.Value
         showUpdate := this.chk_filterUpdate.Value
@@ -890,20 +1095,23 @@ class UCLC_CUI {
         for item in this.import_items {
             a := item.action
             if ((a == "+" && showNew) || (a == "T" && showUpdate) || (a == "C" && showOverwrite)
-                || (a == "=" && showSame) || (a == "D" && showDelete) || (a == "i" && showIgnore)) {
+            || (a == "=" && showSame) || (a == "D" && showDelete) || (a == "i" && showIgnore)) {
                 this.LV_Import.Add("", item.title, item.local_id, a, item.imported_id)
             }
         }
-        
+
         this.LV_Import.Opt("+Redraw")
+        this.LV_Import.ModifyCol(1, "Sort")
+        this.Txt_SelCount.Value := "已选中: 0 项"
     }
 
     static OnImportListViewClick(ctrl, item, *) {
     }
     static OnImportListViewItemSelect(ctrl, item, selected) {
-        has_sel := this.LV_Import.GetNext(0) > 0
-        this.btn_markDelete.Opt(has_sel ? "-Disabled" : "+Disabled")
-        this.btn_markIgnore.Opt(has_sel ? "-Disabled" : "+Disabled")
+        sel_count := this.LV_Import.GetCount("S")
+        this.btn_markDelete.Opt(sel_count > 0 ? "-Disabled" : "+Disabled")
+        this.btn_markIgnore.Opt(sel_count > 0 ? "-Disabled" : "+Disabled")
+        this.Txt_SelCount.Value := "已选中: " sel_count " 项"
     }
     static OnImportListViewDoubleClick(ctrl, item, *) {
     }
@@ -912,7 +1120,13 @@ class UCLC_CUI {
 
     static OnResetImportView(*) {
         if this.HasOwnProp("parsed_import_data") {
-            this.RefreshImportDiff(this.DDL_ImportWb.Text)
+            target_wb := ""
+            if (this.DDL_ImportWb.Value > 1) {
+                target_wb := this.import_wb_ids[this.DDL_ImportWb.Value]
+            } else {
+                target_wb := this.DDL_ImportWb.Text
+            }
+            this.RefreshImportDiff(target_wb)
         }
     }
 
@@ -927,18 +1141,20 @@ class UCLC_CUI {
         }
         if (selected.Length == 0)
             return
-        
+
         for r in selected {
             this.LV_Import.Modify(r, "Col3", "D")
             title := this.LV_Import.GetText(r, 1)
             old_id := this.LV_Import.GetText(r, 2)
+            new_id := this.LV_Import.GetText(r, 4)
             for item in this.import_items {
-                if (item.title == title && item.local_id == old_id) {
+                if (item.title == title && item.local_id == old_id && item.imported_id == new_id) {
                     item.action := "D"
                     break
                 }
             }
         }
+        this.UpdateCounts()
     }
 
     static OnMarkItemsToIgnore(*) {
@@ -949,18 +1165,20 @@ class UCLC_CUI {
         }
         if (selected.Length == 0)
             return
-        
+
         for r in selected {
             this.LV_Import.Modify(r, "Col3", "i")
             title := this.LV_Import.GetText(r, 1)
             old_id := this.LV_Import.GetText(r, 2)
+            new_id := this.LV_Import.GetText(r, 4)
             for item in this.import_items {
-                if (item.title == title && item.local_id == old_id) {
+                if (item.title == title && item.local_id == old_id && item.imported_id == new_id) {
                     item.action := "i"
                     break
                 }
             }
         }
+        this.UpdateCounts()
     }
 
     static OnApplyImportAll(*) {
@@ -978,7 +1196,7 @@ class UCLC_CUI {
             AppSettings.commands_obj[target_wb] := []
         }
         local_array := AppSettings.commands_obj[target_wb]
-        
+
         local_by_id := Map()
         for cmd in local_array {
             local_by_id[cmd["command"]] := cmd
@@ -998,8 +1216,76 @@ class UCLC_CUI {
             selected_keys[title "_" old_id "_" new_id] := true
         }
 
+        cNew := 0, cUpd := 0, cOvr := 0, cDel := 0
+        strNew := "", strUpd := "", strOvr := "", strDel := ""
+
+        for item in this.import_items {
+            if !selected_keys.Has(item.title "_" item.local_id "_" item.imported_id)
+                continue
+
+            a := item.action
+            if (a == "+") {
+                cNew++
+                strNew .= "- " item.title " (" item.imported_id ")`r`n"
+            } else if (a == "T") {
+                cUpd++
+                strUpd .= "- " item.title " (" item.imported_id ")`r`n"
+            } else if (a == "C") {
+                cOvr++
+                strOvr .= "- " item.title " (" item.imported_id ")`r`n"
+            } else if (a == "D") {
+                cDel++
+                strDel .= "- " item.title " (" item.local_id ")`r`n"
+            }
+        }
+
+        if (cNew == 0 && cUpd == 0 && cOvr == 0 && cDel == 0) {
+            MsgBox("没有实质性的修改需要应用。", "提示", "Iconi")
+            return
+        }
+
+        full_msg := ""
+
+        if cNew > 0
+            full_msg .= "【新增】(数量: " cNew ")`r`n" strNew "`r`n"
+        if cUpd > 0
+            full_msg .= "【更新标题】(数量: " cUpd ")`r`n" strUpd "`r`n"
+        if cOvr > 0
+            full_msg .= "【更新命令】(数量: " cOvr ")`r`n" strOvr "`r`n"
+        if cDel > 0
+            full_msg .= "【待删除】(数量: " cDel ")`r`n" strDel "`r`n"
+
+        confirm_gui := Gui("+Owner" this.GuiObj.Hwnd " +ToolWindow -MinimizeBox -MaximizeBox", "确认执行以下操作")
+        confirm_gui.Add("Text", "x15 y15 w450 h20", "应用到 [" AppSettings.GetWbName(target_wb) "] 工作台:")
+        confirm_gui.Add("Edit", "x15 y40 w450 h300 ReadOnly Multi VScroll", full_msg)
+
+        user_confirmed := false
+
+        close_dialog := (confirmed, *) => (
+            user_confirmed := confirmed,
+            this.GuiObj.Opt("-Disabled"),
+            confirm_gui.Destroy()
+        )
+
+        btn_ok := confirm_gui.Add("Button", "x250 y350 w100 h30 Default", "确认")
+        btn_ok.OnEvent("Click", close_dialog.Bind(true))
+
+        btn_cancel := confirm_gui.Add("Button", "x365 y350 w100 h30", "取消")
+        btn_cancel.OnEvent("Click", close_dialog.Bind(false))
+
+        confirm_gui.OnEvent("Close", close_dialog.Bind(false))
+        confirm_gui.OnEvent("Escape", close_dialog.Bind(false))
+
+        this.GuiObj.Opt("+Disabled")
+        confirm_gui.Show("AutoSize Center")
+        btn_cancel.Focus()
+
+        WinWaitClose(confirm_gui.Hwnd)
+
+        if (!user_confirmed)
+            return
+
         new_array := []
-        
         for item in this.import_items {
             title := item.title
             old_id := item.local_id
@@ -1035,9 +1321,9 @@ class UCLC_CUI {
 
         AppSettings.commands_obj[target_wb] := new_array
         this.FlushCommandsJson()
-        
-        MsgBox("已应用所有更改并保存！重启生效。", "成功", "Iconi")
-        Reload()
+
+        MsgBox("成功！请重新载入UCLC使修改生效。", "成功", "Iconi")
+        this.OnResetImportView()
     }
 
     static OnAddCmdFromOther(*) {

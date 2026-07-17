@@ -796,7 +796,9 @@
             "Japanese": "ｼｽﾃﾑ用ﾌｧﾝｸｼｮﾅﾙ ﾊﾟｰﾄ ﾃﾞｻﾞｲﾝ"
         },
         "CATSpdMoldedPartWkb": {
-            "Japanese": "ﾌｧﾝｸｼｮﾅﾙ ﾓｰﾙﾄﾞ ﾊﾟｰﾄ"
+            "Japanese": "ﾌｧﾝｸｼｮﾅﾙ ﾓｰﾙﾄﾞ ﾊﾟｰﾄ",
+            "English": "Functional Modeling Part",
+            "Simplified_Chinese": "Functional Modeling Part"
         },
         "CATStylingWorkbench": {
             "English": "Shape Sculptor",
@@ -1046,6 +1048,94 @@
         "TPSCfgForProductWorkshop": {
             "English": "Product Functional Tolerancing & Annotation",
             "Japanese": "ﾌﾟﾛﾀﾞｸﾄ･ﾌｧﾝｸｼｮﾅﾙ･ﾄﾚﾗﾝｼﾝｸﾞ&ｱﾉﾃｰｼｮﾝ"
+        },
+        "CATCCSCfg": {
+            "English": "Core & Cavity Design",
+            "Simplified_Chinese": "Core & Cavity Design"
+        },
+        "CATCloudStlWorkbench": {
+            "English": "STL Rapid Prototyping",
+            "Simplified_Chinese": "STL Rapid Prototyping"
+        },
+        "CATCndConfiguration": {
+            "English": "Conduit Design",
+            "Simplified_Chinese": "Conduit Design"
+        },
+        "CATDECCfg": {
+            "English": "Product Data Filtering",
+            "Simplified_Chinese": "过滤产品数据"
+        },
+        "CATEqtConfiguration": {
+            "English": "Equipment Arrangement",
+            "Simplified_Chinese": "Equipment Arrangement"
+        },
+        "CATHASCfg": {
+            "English": "Healing Assistant",
+            "Simplified_Chinese": "Healing Assistant"
+        },
+        "CATHgrConfiguration": {
+            "English": "Hanger Design",
+            "Simplified_Chinese": "Hanger Design"
+        },
+        "CATHvaConfiguration": {
+            "English": "HVAC Design",
+            "Simplified_Chinese": "HVAC Design"
+        },
+        "CATPCEWbench": {
+            "English": "Business Process Knowledge Template",
+            "Simplified_Chinese": "Business Process Knowledge Template"
+        },
+        "CATPipConfiguration": {
+            "English": "Piping Design",
+            "Simplified_Chinese": "Piping Design"
+        },
+        "CATRwyConfiguration": {
+            "English": "Raceway Design",
+            "Simplified_Chinese": "Raceway Design"
+        },
+        "CATSpsConfig": {
+            "English": "Structure Design",
+            "Simplified_Chinese": "Structure Design"
+        },
+        "CATStrPartConfig": {
+            "English": "Structure Functional Object Design",
+            "Simplified_Chinese": "Structure Functional Object Design"
+        },
+        "CATStrProdConfig": {
+            "English": "Structure Functional System Design",
+            "Simplified_Chinese": "Structure Functional System Design"
+        },
+        "CATTubConfiguration": {
+            "English": "Tubing Design",
+            "Simplified_Chinese": "Tubing Design"
+        },
+        "CATWavConfiguration": {
+            "English": "Waveguide Design",
+            "Simplified_Chinese": "Waveguide Design"
+        },
+        "DMU2DConfiguration": {
+            "English": "DMU 2D Viewer",
+            "Simplified_Chinese": "DMU 2D 查看器"
+        },
+        "DNBVNCSimulation": {
+            "English": "NC Machine Tool Simulation",
+            "Simplified_Chinese": "NC Machine Tool Simulation"
+        },
+        "GPSCfg": {
+            "English": "Generative Structural Analysis",
+            "Simplified_Chinese": "Generative Structural Analysis"
+        },
+        "ICMAECfgAddin": {
+            "English": "ICEM Shape Design AeroExpert",
+            "Simplified_Chinese": "ICEM Shape Design AeroExpert"
+        },
+        "ICMCLACfgAddin": {
+            "English": "ICEM Shape Design",
+            "Simplified_Chinese": "ICEM 外形设计"
+        },
+        "ICMSRFCfgAddin": {
+            "English": "Mechanical Surface Refinement",
+            "Simplified_Chinese": "Mechanical Surface Refinement"
         }
     }
 }

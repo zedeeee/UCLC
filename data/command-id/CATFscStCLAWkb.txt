@@ -1,0 +1,832 @@
+Workshop Exposition of CATFscStCLAWkb 
+
+1- Header List 
+
+Title= 自由式分析集...
+   Id 	= InsertDynAnalysisNodeHead
+   DLL 	= CATFauDynAnalysis
+   Cmd 	= CATStCmdInsertDynAnalysisRootNode
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 样式圆角...
+   Id 	= CATFscCurveFilletHeadHdr
+   DLL 	= CATFsuCurveFillet
+   Cmd 	= CATStCmdCrvFillet
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 应用辅助...
+   Id 	= CATFscFSVisuShowHeadHdr
+   DLL 	= CATFsuCtrlPtDisplay
+   Cmd 	= CATStCmdCtrlPointsDisplay
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 距离分析...
+   Id 	= NewDynDistanceHead
+   DLL 	= CATFauDynDistance
+   Cmd 	= CATStCmdDynDistanceAnalysis
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 匹配曲面...
+   Id 	= CATFscSurfaceMatchHeadHdr
+   DLL 	= CATFsuMatchSurf
+   Cmd 	= CATStCmdSurfaceMatching
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 匹配约束...
+   Id 	= CATFscConstraintMatchHeadHdr
+   DLL 	= CATFsuCstMatch
+   Cmd 	= CATStCmdCstMatch
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 修饰...
+   Id 	= FSVisuDressUpHdr
+   DLL 	= CATCauDressUpUI
+   Cmd 	= CATCauDressUpCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 镜像分析...
+   Id 	= MirrorHead
+   DLL 	= CATFauMirror
+   Cmd 	= CATStCmdMirrorAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 缩放和平移
+   Id 	= CATFscZoomAndTranslateHeadHdr
+   DLL 	= CATFsuViewManipulation
+   Cmd 	= CATStCmdViewManipulation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 围 Y 屏幕轴旋转
+   Id 	= CATFscRollRotateViewHeadHdr
+   DLL 	= CATFsuViewManipulation
+   Cmd 	= CATStCmdViewManipulation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扩展...
+   Id 	= ParamXtendHead
+   DLL 	= CATFsuPXtend
+   Cmd 	= CATStCmdPXtend
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 全局变形...
+   Id 	= CATFscGlobalDeformHeadHdr
+   DLL 	= CATFsuGlobDef
+   Cmd 	= CATStCmdGlobDef
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 统一修补
+   Id 	= UnifiedPatchHead
+   DLL 	= CATFsuUnifiedPatch
+   Cmd 	= CATStCmdUnifiedPatch
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 衍射线...
+   Id 	= CATFscInflectLinesHeadHdr
+   DLL 	= CATFauInflectionLines
+   Cmd 	= CATStCmdInflectionLinesAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 环境映射...
+   Id 	= EnvMappingAnalysisHead
+   DLL 	= CATFauEnvironmentMapping
+   Cmd 	= CATStCmdEnvironmentMappingAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 应用约束
+   Id 	= FSSApplyConstraintHead
+   DLL 	= CATFsuCstMatch
+   Cmd 	= CATStCmdConstraintUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 下一个视图
+   Id 	= CATFscNextViewHeadHdr
+   DLL 	= CATFsuViewManipulation
+   Cmd 	= CATStCmdViewManipulation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 样式外插延伸...
+   Id 	= CATFscExtendGeomHeadHdr
+   DLL 	= CATFsuExtend
+   Cmd 	= CATStCmdExtend
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 插入约束集
+   Id 	= InsertCstNodeHead
+   DLL 	= CATFsuCstNetworkManager
+   Cmd 	= CATStCmdInsertCstRootNode
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 样式扫掠...
+   Id 	= CATFscSweepHeadHdr
+   DLL 	= CATFsuSweep
+   Cmd 	= CATStCmdFSSweep
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 更新图形属性
+   Id 	= MirrorUpdatePropertyHead
+   DLL 	= CATFauMirror
+   Cmd 	= CATStCmdUpdateMirrorProperties
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 网状曲面...
+   Id 	= CATFscGenLoftHeadHdr
+   DLL 	= CATFsuFSLoft
+   Cmd 	= CATStCmdFreeStyleLoft
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 曲面上的曲线...
+   Id 	= CATFscCurveOnSurfaceHeadHdr
+   DLL 	= CATFsuCrvOnSurf
+   Cmd 	= CATStCmdCrvOnSurf
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 围 Z 屏幕轴旋转
+   Id 	= CATFscLacetRotateViewHeadHdr
+   DLL 	= CATFsuViewManipulation
+   Cmd 	= CATStCmdViewManipulation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 填充...
+   Id 	= CATFscOpenFillHeadHdr
+   DLL 	= CATFsuFillPlus
+   Cmd 	= CATStCmdAdvFill
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 平面...
+   Id 	= FromGSDPlane
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 取消修剪...
+   Id 	= CATFscAffixGeomHeadHdr
+   DLL 	= CATFsuFeatUntrim
+   Cmd 	= CATStCmdFeatUntrim
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 拟合几何图形...
+   Id 	= CATFscFitToGeometryHeadHdr
+   DLL 	= CATFsuFitToGeo
+   Cmd 	= CATStCmdFitToGeometry
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 等参数曲线...
+   Id 	= CATFscIsoparamCrvHeadHdr
+   DLL 	= CATFsuIsoparamCurve
+   Cmd 	= CATStCmdIsoparametricCurve
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= FSS 样式圆角...
+   Id 	= CATFscFSSFilletHeadHdr
+   DLL 	= CATFsuTopoFillet
+   Cmd 	= CATStCmdTopoFillet
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= StCustomFilterHead
+   Id 	= StCustomFilterHead
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 隐秘显示变体
+   Id 	= FurtiveDisplayVariantsHead
+   DLL 	= CATFsuQuickAccess
+   Cmd 	= CATStCmdFurtiveDisplayVariants
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 投影曲线...
+   Id 	= CATFscProjectCurveHeadHdr
+   DLL 	= CATFsuCrvProject
+   Cmd 	= CATStCmdProjection
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 直线...
+   Id 	= FromGSDLine
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 曲面曲率分析...
+   Id 	= SpecSurfCurvatHead
+   DLL 	= CATFauSurfCurv
+   Cmd 	= CATStCmdSurfCurv
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 视图选择器
+   Id 	= FSViewSelector
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATCafCmdViewSelector
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 切除面...
+   Id 	= CuttingPlnHead
+   DLL 	= CATFauCuttingPlane
+   Cmd 	= CATStCmdCuttingPln
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 软镜像，隐藏原点...
+   Id 	= SoftHideOriginalMirrorHead
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 拉伸视图
+   Id 	= CATFscStretchViewHeadHdr
+   DLL 	= CATFsuStretchViewer
+   Cmd 	= CATStCmdStretchViewer
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 上一个视图
+   Id 	= CATFscPreviousViewHeadHdr
+   DLL 	= CATFsuViewManipulation
+   Cmd 	= CATStCmdViewManipulation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 匹配曲线
+   Id 	= CATFscCurveMatchHeadHdr
+   DLL 	= CATFsuCrvMatch
+   Cmd 	= CATStCmdCrvMatch
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 反射线...
+   Id 	= CATFscReflectLinesHeadHdr
+   DLL 	= CATFauReflectionLines
+   Cmd 	= CATStCmdReflectAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 拆解...
+   Id 	= CATFscBodyDisassembleHeadHdr
+   DLL 	= CATFsuDisassemble
+   Cmd 	= CATStCmdDisassemble
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 多边匹配曲面...
+   Id 	= CATFscNSideMatchHeadHdr
+   DLL 	= CATFsuNSideMatch
+   Cmd 	= CATStCmdNSideMatch
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 断开...
+   Id 	= CATFscBreakGeomHeadHdr
+   DLL 	= CATFsuBreak
+   Cmd 	= CATStCmdBreak
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移...
+   Id 	= CATFscOffsetGeomHeadHdr
+   DLL 	= CATFsuOffset
+   Cmd 	= CATStCmdOffset
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 定义视点
+   Id 	= CATFscCompassViewHeadHdr
+   DLL 	= CATFsuCommuteView
+   Cmd 	= CATStCmdCommuteView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 旋转...
+   Id 	= FromGSDRevol
+   DLL 	= CATGuiRevol
+   Cmd 	= CATGSMUIRevol
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 提取几何图形
+   Id 	= CATFscPatchOnPatchHeadHdr
+   DLL 	= CATFsuSurfOnSurf
+   Cmd 	= CATStCmdSurfOnSurf
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 3D 曲线...
+   Id 	= CATFsc3DCurveHeadHdr
+   DLL 	= CATFsu3DCurve
+   Cmd 	= CATStCmd3DCurve
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 切除面分析...
+   Id 	= CATFscCuttingPlaneAnalysisHeadHdr
+   DLL 	= CATFauCuttingPlaneAnalysis
+   Cmd 	= CATStCmdCuttingPlaneAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 自由样式填充...
+   Id 	= FillSpecHead
+   DLL 	= CATFsuFillSpec
+   Cmd 	= CATStCmdFillSpec
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 从罗盘创建轴系...
+   Id 	= CreateAxisSystemFromRobotHead
+   DLL 	= CATFsuQuickAccess
+   Cmd 	= CATStCmdAxisSystemCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 桥接曲线
+   Id 	= CATFscCurveConnectHeadHdr
+   DLL 	= CATFsuBlendCrv
+   Cmd 	= CATStCmdCBlend
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 插入自由形式分析集...
+   Id 	= InsertDynAnalysisNodeCtxSubMenuHead
+   DLL 	= CATFauDynAnalysis
+   Cmd 	= CATStCmdInsertDynAnalysisRootNode
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 桥接曲面...
+   Id 	= CATFscSurfaceBlendHeadHdr
+   DLL 	= CATFsuBlendSurf
+   Cmd 	= CATStCmdBlend
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 非修剪元素过滤器
+   Id 	= UntrimFilterHead
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 几何信息
+   Id 	= CATFscGeomInfoHeadHdr
+   DLL 	= CATFsuGeomInfo
+   Cmd 	= CATStCmdGeomInfo
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 可视对称...
+   Id 	= VisuSymHead
+   DLL 	= CATFsuVisualSym
+   Cmd 	= CATStCmdVisualSymmetry
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 标准视图操作
+   Id 	= CATFscDefaultViewManipHeadHdr
+   DLL 	= CATFsuViewManipulation
+   Cmd 	= CATStCmdViewManipulation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 处理 3D 支持面
+   Id 	= FromGSD3DGrid
+   DLL 	= CATGuiOnSupport
+   Cmd 	= CATGSMUI3DOnSupport
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 视图角度
+   Id 	= FSViewAngle
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATFsCmdViewAngleManip
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 移除修饰
+   Id 	= CATFscFSVisuHideHeadHdr
+   DLL 	= CATFsuCtrlPtDisplay
+   Cmd 	= CATStCmdCtrlPointsDisplay
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 分段...
+   Id 	= CATFscBodyExplodeHeadHdr
+   DLL 	= CATFsuExplode
+   Cmd 	= CATStCmdExplode
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 翻转罗盘基体
+   Id 	= FlipCompassHead
+   DLL 	= CATFsuQuickAccess
+   Cmd 	= CATStCmdQuickCompass
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 连接检查器分析...
+   Id 	= CATFscNewCCKAnalysisHeadHdr
+   DLL 	= CATFauConnectChecker
+   Cmd 	= CATStCmdConnectCheckerAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 修剪元素过滤器
+   Id 	= TrimFilterHead
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 设置罗盘方向
+   Id 	= CATFscSetCompassHeadHdr
+   DLL 	= CATFsuQuickAccess
+   Cmd 	= CATStCmdQuickCompass
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 反转视点
+   Id 	= CATFscInverseSightHeadHdr
+   DLL 	= CATFsuCommuteView
+   Cmd 	= CATStCmdCommuteView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 遮罩...
+   Id 	= FromGSDMask
+   DLL 	= CATGuiMask
+   Cmd 	= CATGuiMask
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 仪表板命令
+   Id 	= DBViewHead
+   DLL 	= CATFsuQuickAccess
+   Cmd 	= CATStCmdDashboardOnOff
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 全局切割平面分析...
+   Id 	= GlobalCuttingPlaneAnalysisHead
+   DLL 	= CATFauCuttingPlaneAnalysis
+   Cmd 	= CATStCmdGlobalCuttingPlane
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 控制点...
+   Id 	= CATFscFSControlPointsHeadHdr
+   DLL 	= CATFsuCP
+   Cmd 	= CATStCmdCP
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 对称...
+   Id 	= FromGSDSymmetry
+   DLL 	= CATGuiSymmetry
+   Cmd 	= CATGSMUISymmetry
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 转换器向导...
+   Id 	= CATFscSegmentationHeadHdr
+   DLL 	= CATFsuSegment
+   Cmd 	= CATStCmdSegment
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 更新网络
+   Id 	= FSSUpdateNetworkHead
+   DLL 	= CATFsuCstMatch
+   Cmd 	= CATStCmdConstraintUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 将罗盘设置为轨迹基准面
+   Id 	= TracePlaneHead
+   DLL 	= CATFsuQuickAccess
+   Cmd 	= CATStCmdQuickCompass
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 圆...
+   Id 	= FromGSDCircle
+   DLL 	= CATGuiCircle
+   Cmd 	= CATGSMUICircle
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 拉伸曲面...
+   Id 	= CATFscExtrudeSurfaceHeadHdr
+   DLL 	= CATFsuExtrude
+   Cmd 	= CATStCmdExtrudeSurface
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 点...
+   Id 	= FromGSDPoint
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= StCmdSnapHead
+   Id 	= StCmdSnapHead
+   DLL 	= CATFsuSnap
+   Cmd 	= CATStCmdSnap
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 强调线...
+   Id 	= HighlightLinesHead
+   DLL 	= CATFauHighlightLines
+   Cmd 	= CATStCmdHighlightLinesAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 复制几何参数...
+   Id 	= GeomParamCopyHead
+   DLL 	= CATFsuGeomCopy
+   Cmd 	= CATStCmdGeomCopy
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 自由式约束集...
+   Id 	= InsertCstNodeHeadInsertMenu
+   DLL 	= CATFsuCstNetworkManager
+   Cmd 	= CATStCmdInsertCstRootNodeInsertMenu
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 将罗盘设置为平均基准面
+   Id 	= MeanPlaneHead
+   DLL 	= CATFsuQuickAccess
+   Cmd 	= CATStCmdQuickCompass
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 围 X 屏幕轴旋转
+   Id 	= CATFscPetchRotateViewHeadHdr
+   DLL 	= CATFsuViewManipulation
+   Cmd 	= CATStCmdViewManipulation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 指南针管理
+   Id 	= CompassHead
+   DLL 	= CATFsuQuickAccess
+   Cmd 	= CATStCmdQuickCompass
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 连接...
+   Id 	= CATFscConcatenHeadHdr
+   DLL 	= CATFsuConcatenate
+   Cmd 	= CATStCmdConcatenate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 将罗盘重置为 XYZ
+   Id 	= CATFscResetCompassHeadHdr
+   DLL 	= CATFsuQuickAccess
+   Cmd 	= CATStCmdQuickCompass
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 光源操作...
+   Id 	= StLightSourceManipulationHead
+   DLL 	= CATFauLightSourceManip
+   Cmd 	= CATStCmdLightSources
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATFscSmartShaperMenuMbr 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Separator Name=CATAfrEditNew001Sep
+      Starter Name=CATUpdate
+      Separator Name=CATFscPropertySeparatorSep
+      Starter Name=CATActiveObject
+   Title=视图 	 Name=CATAfrView 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=CATBody
+      Starter Name=InsertGS
+      Starter Name=InsertOGS
+      Starter Name=InsertRootNode
+      Starter Name=InsertCstNodeInInsertMenu
+      Separator Name=CATFscCmdSeparator8Sep
+      Starter Name=CATLocalAxis
+      Title=修改形状 	 Name=CATFscSmartModificationSnu 
+         Starter Name=FromGSDSymmetry
+         Starter Name=FSControlPoints
+         Starter Name=CATSurfaceMatch
+         Starter Name=CATNSideMatch
+         Starter Name=CATFitToGeometry
+         Starter Name=CATGlobalDeform
+         Starter Name=PXExtendGeom
+      Separator Name=CATFscCmdSeparator11Sep
+      Title=创建曲面 	 Name=CATFscSmartSurfacesSnu 
+         Starter Name=UnifiedPatch
+         Starter Name=CATPatchOnPatch
+         Separator Name=CATFscCmdSeparator13Sep
+         Starter Name=CATExtrudeSurface
+         Starter Name=FromGSDRevol
+         Starter Name=CATFscOffsetGeomStr
+         Starter Name=CATExtendGeom
+         Separator Name=CATFscCmdSeparator14Sep
+         Starter Name=CATSurfaceBlend
+         Starter Name=FSSFilletHead
+         Starter Name=CATFill
+         Starter Name=FillSpec
+         Separator Name=CATFscCmdSeparator100Sep
+         Starter Name=CATLoft
+         Starter Name=CATSweep
+      Title=创建曲线 	 Name=CATFscSmartCurvesSnu 
+         Starter Name=CATCurve3D
+         Starter Name=CATCurveOnSurface
+         Starter Name=IsoparamCrv
+         Starter Name=CATProjectCurve
+         Separator Name=CATFscCmdSeparator15Sep
+         Starter Name=CATCurveConnect
+         Starter Name=CATCurveFillet
+         Starter Name=CATCurveMatch
+      Separator Name=CATFscCmdSeparator16Sep
+      Title=运算 	 Name=CATFscSmartToolsSnu 
+         Starter Name=CATBreakGeom
+         Starter Name=CATAffixGeom
+         Separator Name=CATFscCmdSeparatorBrSep
+         Starter Name=CATConcatenGeom
+         Starter Name=CATBodyExplode
+         Starter Name=CATBodyDisassemble
+         Separator Name=CATFscCmdSeparatorSegSep
+         Starter Name=CATSegmentation
+         Starter Name=CopyGeomParam
+      Separator Name=CATFscCmdSeparator12Sep
+      Title=形状分析 	 Name=CATFscSmartAnalysisSnu 
+         Starter Name=NewCCKAnalysis
+         Starter Name=CATDynDistance
+         Starter Name=CATCurvaAnalysis
+         Starter Name=CuttingPlaneAnalysis
+         Starter Name=CATReflectLines
+         Starter Name=CATInflectLines
+         Starter Name=HighlightLines
+         Starter Name=CATDraftCurvature
+         Starter Name=CATGaussCurvature
+         Starter Name=CATEnvMapping
+         Starter Name=IsophotesMapping
+         Starter Name=LightSrcCom
+      Separator Name=CATCmdSeparator23
+      Title=自由样式约束 	 Name=SmartConstraint 
+         Starter Name=ConstraintMatch
+      Separator Name=CATCmdSeparator24
+      Title=视图 	 Name=SmartView 
+         Starter Name=ViewAngleMenu
+         Starter Name=ViewSelectorMenu
+         Starter Name=StretchViewMenu
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Starter Name=FromGSDMask
+      Starter Name=FromGSD3DGrid
+      Separator Name=CATFscCmdSeparator22Sep
+      Title=可视化选项 	 Name=CATFscSmartVisuSnu 
+         Starter Name=FSVisuDressUp
+         Starter Name=CATFSVisuShow
+         Starter Name=CATFSVisuHide
+         Starter Name=CATGeomInfo
+         Starter Name=VisualSym
+         Starter Name=NewVisuMirror
+      Title=指南针方向 	 Name=CATFscSmartCompassSnu 
+         Starter Name=CATFscSmartCompassFlipStr
+         Starter Name=CATFscSmartCompassSetStr
+         Starter Name=CATFscSmartCompassResetStr
+         Starter Name=CATFscSmartCompassDropStr
+      Title=视图操作 	 Name=CATFscSmartViewManipulationSnu 
+         Starter Name=CATStretchView
+         Separator Name=CATFscCmdSeparator19Sep
+         Starter Name=CATDefaultViewManip
+         Starter Name=CATFscRollRotateStr
+         Starter Name=CATFscPetchRotateStr
+         Starter Name=CATFscLacetRotateStr
+         Starter Name=CATFscZoomAndTranslateHeadStr
+         Separator Name=CATFscCmdSeparator20Sep
+         Starter Name=CATCompassView
+         Starter Name=CATInverseSight
+         Separator Name=CATFscCmdSeparator21Sep
+         Starter Name=CATRscPreviousViewStr
+         Starter Name=CATRscNextViewStr
+      Separator Name=CATFscCmdSeparator17Sep
+   Title=窗口 	 Name=CATAfrWindowMnu 
+
+ Title of the toolbar=选择 and is Name=CATFscGeneralSelectTlb
+   Starter Name=CATSelect
+
+ Title of the toolbar=修改形状 and is Name=CATFscShapeModificationTlb
+   Starter Name=FromGSDSymmetry
+   Starter Name=FSControlPoints
+   Title of the Icon Box=匹配 	 Name=CATFscMatchIcb 
+      Starter Name=CATSurfaceMatch
+      Starter Name=CATNSideMatch
+   Starter Name=CATFitToGeometry
+   Starter Name=CATGlobalDeform
+   Starter Name=PXExtendGeom
+
+ Title of the toolbar=创建曲面 and is Name=CATFscShapeSurfacesTlb
+   Title of the Icon Box=补面 	 Name=CATFscPatchesIcb 
+      Starter Name=UnifiedPatch
+      Starter Name=CATPatchOnPatch
+   Starter Name=CATExtrudeSurface
+   Starter Name=FromGSDRevol
+   Starter Name=CATFscOffsetGeomStr
+   Starter Name=CATExtendGeom
+Separator Name=CATFscCmdSeparator5Sep
+   Starter Name=CATSurfaceBlend
+   Starter Name=FSSFilletHead
+   Title of the Icon Box=填充 	 Name=FillPalette 
+      Starter Name=CATFill
+      Starter Name=FillSpec
+Separator Name=CATFscCmdSeparator4Sep
+   Starter Name=CATLoft
+   Starter Name=CATSweep
+
+ Title of the toolbar=创建曲线 and is Name=CATFscShapeCurvesTlb
+   Starter Name=CATCurve3D
+   Starter Name=CATCurveOnSurface
+   Starter Name=IsoparamCrv
+   Starter Name=CATProjectCurve
+Separator Name=CATFscCurveSeparatorSep
+   Starter Name=CATCurveConnect
+   Starter Name=CATCurveFillet
+   Starter Name=CATCurveMatch
+
+ Title of the toolbar=运算 and is Name=CATFscShapeToolsTlb
+   Starter Name=CATBreakGeom
+   Starter Name=CATAffixGeom
+Separator Name=CATFscBreakSeparatorSep
+   Starter Name=CATConcatenGeom
+   Starter Name=CATBodyExplode
+   Starter Name=CATBodyDisassemble
+Separator Name=CATFscSegmentSeparatorSep
+   Starter Name=CATSegmentation
+   Starter Name=CopyGeomParam
+
+ Title of the toolbar=线框 and is Name=CATFscWireFrameTlb
+   Starter Name=FromGSDPoint
+   Starter Name=FromGSDLine
+   Starter Name=FromGSDPlane
+   Starter Name=FromGSDCircle
+
+ Title of the toolbar=通用工具 and is Name=CATFscShapeGenericTlb
+   Starter Name=FSVisuDressUp
+   Starter Name=CATFSVisuShow
+   Starter Name=CATFSVisuHide
+   Title of the Icon Box=MirrorSymetry 	 Name=MirrorSymetry 
+      Starter Name=VisualSym
+      Starter Name=NewVisuMirror
+   Starter Name=CATGeomInfo
+Separator Name=CATFscCmdSeparator6Sep
+   Starter Name=FSNewDashboard
+   Starter Name=CATFscShapeCompassStr
+   Starter Name=CATUpdate
+   Starter Name=ManualUpdateMode
+   Starter Name=FastMirror
+   Starter Name=SoftMirrorOriginalHide
+   Starter Name=GlobalCuttingPlaneAnalysis
+   Starter Name=CATLocalAxis
+   Starter Name=FromGSDMask
+   Starter Name=FromGSD3DGrid
+
+ Title of the toolbar=形状分析 and is Name=CATFscShapeAnalysisTlb
+   Starter Name=NewCCKAnalysis
+   Starter Name=CATDynDistance
+   Starter Name=CATCurvaAnalysis
+   Starter Name=CuttingPlaneAnalysis
+   Starter Name=CATReflectLines
+   Starter Name=CATInflectLines
+   Starter Name=HighlightLines
+   Title of the Icon Box=拔模 	 Name=CATFscNormSurfAnalysisIcb 
+      Starter Name=CATGaussCurvature
+      Starter Name=CATDraftCurvature
+   Title of the Icon Box=图像映射 	 Name=CATFscRenderingIcb 
+      Starter Name=CATEnvMapping
+      Starter Name=IsophotesMapping
+   Starter Name=LightSourceManipulation
+
+ Title of the toolbar=自由样式约束 and is Name=ShapeConstraint
+   Starter Name=ConstraintMatch
+
+ Title of the toolbar=自定义选择过滤器 and is Name=CustomFilterSelection
+   Starter Name=CATCmdStarterTrimCustomFilter
+   Starter Name=CATCmdStarterUntrimCustomFilter
+
+ Title of the toolbar=视图操作 and is Name=CATFscViewManipulationTlb
+   Starter Name=CATStretchView
+Separator Name=CATFscViewManipSeparatorSep
+   Title of the Icon Box=操作模式 	 Name=CATFscViewManipulationModeIcb 
+      Starter Name=CATDefaultViewManip
+      Starter Name=CATFscLacetRotateViewStr
+      Starter Name=CATFscPetchRotateViewStr
+      Starter Name=CATFscRollRotateViewStr
+      Starter Name=CATFscZoomAndTranslateStr
+   Starter Name=CATCompassView
+   Starter Name=CATInverseSight
+Separator Name=CATFscPreviousViewSeparatorSep
+   Starter Name=CATRscPreviousViewStr
+   Starter Name=CATRscNextViewStr

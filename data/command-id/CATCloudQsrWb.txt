@@ -1,0 +1,474 @@
+Workshop Exposition of CATCloudQsrWb 
+
+1- Header List 
+
+Title= Split Clean Contour...
+   Id 	= CATQsrSplitCleanCtHdr
+   DLL 	= CATCloudQsrUI
+   Cmd 	= CATQsrSplitCleanCtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Split...
+   Id 	= CATQsrSplitHdr
+   DLL 	= CATGuiSplit
+   Cmd 	= CATGSMUISplit
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Circle...
+   Id 	= CATQsrGSDCircleHdr
+   DLL 	= CATGuiCircle
+   Cmd 	= CATGSMUICircle
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Line...
+   Id 	= CATQsrGSDLineHdr
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= XYZ Automatic Planar Sections...
+   Id 	= CATQsrXYZPlanarSectionsHdr
+   DLL 	= CATCldUIXYZPlanarSections
+   Cmd 	= CATCldXYZPlanarSectionsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Multi-sections Surface...
+   Id 	= CATQsrLoftHdr
+   DLL 	= CATGuiLoft
+   Cmd 	= CATGSMUILoft
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Adjust Nodes...
+   Id 	= CATQsrAdjustNodeHdr
+   DLL 	= CATCloudQsrUI
+   Cmd 	= CATQsrAdjustNodeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Symmetry...
+   Id 	= CATQsrSymmetryHdr
+   DLL 	= CATGuiSymmetry
+   Cmd 	= CATGSMUISymmetry
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Deviation Report
+   Id 	= CATQsrReportHdr
+   DLL 	= CATCldUIReport
+   Cmd 	= CATCldUIReportCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Automatic Surface...
+   Id 	= CATQsrCreateQuickSurfHdr
+   DLL 	= CATCloudQsrUI
+   Cmd 	= CATQsrQuickSurfaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Information...
+   Id 	= CATQsrInformationsHdr
+   DLL 	= CATCldUIInformations
+   Cmd 	= CATCldInformationsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= View Modification
+   Id 	= CATQsrFocalAdjusmentHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATFsCmdViewAngleManip
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Sketch from Scan...
+   Id 	= CATQsrScan2DHdr
+   DLL 	= CATCloudQsrUI
+   Cmd 	= CATQsrScan2DCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Scaling...
+   Id 	= CATQsrScaleHdr
+   DLL 	= CATGuiScaling
+   Cmd 	= CATGSMUIScaling
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Point...
+   Id 	= CATQsrGSDPointHdr
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Clean Contour...
+   Id 	= CATQsrCreateCleanCtHdr
+   DLL 	= CATCloudQsrUI
+   Cmd 	= CATQsrCleanCtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Annotation
+   Id 	= CATQsrNoteHdr
+   DLL 	= CATCldUIInspect
+   Cmd 	= CATCldUINoteCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Trim...
+   Id 	= CATQsrTrimHdr
+   DLL 	= CATGuiTrim
+   Cmd 	= CATGSMUITrim
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Activate...
+   Id 	= CATQsrActivateHdr
+   DLL 	= CATCldUISelect
+   Cmd 	= CATCloudActivateCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Translate...
+   Id 	= CATQsrTranslateHdr
+   DLL 	= CATGuiTranslate
+   Cmd 	= CATGSMUITranslate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Power Fit...
+   Id 	= CATQsrPowerFitHdr
+   DLL 	= CATCloudQsrUI
+   Cmd 	= CATQsrUIPowerFitCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Axis To Axis...
+   Id 	= CATQsrAxisToAxisHdr
+   DLL 	= CATGuiAxisToAxis
+   Cmd 	= CATGSMUIAxisToAxis
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Free Edges...
+   Id 	= CATQsrFreeEdgesHdr
+   DLL 	= CATCldUIFreeEdges
+   Cmd 	= CATCldFreeEdgesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edge Fillet...
+   Id 	= CATQsrFilletEdgeHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Projection...
+   Id 	= CATQsrProjectHdr
+   DLL 	= CATGuiProject
+   Cmd 	= CATGSMUIProject
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Plane...
+   Id 	= CATQsrGSDPlaneHdr
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Deviation Analysis...
+   Id 	= CATQsrDistAnalysisHdr
+   DLL 	= CATCldUIDistAnalysis
+   Cmd 	= CATCldDistAnalysisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= View Selection
+   Id 	= CATQsrViewSelectorHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATCafCmdViewSelector
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 3D Curve...
+   Id 	= CATQsrCurveOnGeometryHdr
+   DLL 	= CATFsu3DCurve
+   Cmd 	= CATStCmd3DCurve
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Intersection...
+   Id 	= CATQsrIntersectHdr
+   DLL 	= CATGuiIntersect
+   Cmd 	= CATGSMUIIntersect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Extrapolate...
+   Id 	= CATQsrExtendHdr
+   DLL 	= CATGuiExtrapol
+   Cmd 	= CATGSMUIExtrapol
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Curves Network...
+   Id 	= CATQsrCreateCurveNetworkHdr
+   DLL 	= CATCloudQsrUI
+   Cmd 	= CATQsrCurveNetworkCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Curve Projection...
+   Id 	= CATQsrProjectCurveHdr
+   DLL 	= CATCldUIProjCrvOnCld
+   Cmd 	= CATCloudProjCurveCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Segmentation by Curvature...
+   Id 	= CATQsrCurvatureHdr
+   DLL 	= CATCloudQsrUI
+   Cmd 	= CATQsrCurvatureCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rotate...
+   Id 	= CATQsrRotateHdr
+   DLL 	= CATGuiRotate
+   Cmd 	= CATGSMUIRotate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Curve on Mesh...
+   Id 	= CATQsrCurveHdr
+   DLL 	= CATCldUICurve
+   Cmd 	= CATCldUICurveCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Annotation Set
+   Id 	= CATQsrNoteSetHdr
+   DLL 	= CATCldUIInspect
+   Cmd 	= CATCldUINoteSetCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Curves Slice...
+   Id 	= CATQsrSliceEdgesHdr
+   DLL 	= CATCloudQsrUI
+   Cmd 	= CATQsrSliceEdgesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Connect Checker Analysis...
+   Id 	= CATQsrConnectCheckerHdr
+   DLL 	= CATFauConnectChecker
+   Cmd 	= CATStCmdConnectCheckerAnalysis
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Curve from Scan...
+   Id 	= CATQsrScanToCurveHdr
+   DLL 	= CATCldUIScanToCurve
+   Cmd 	= CATCloudScanToCurveCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Curvature Mapping...
+   Id 	= CATQsrCurvMapHdr
+   DLL 	= CATCldUICurvature
+   Cmd 	= CATCldCurvatureCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Basic Surface Recognition...
+   Id 	= CATQsrCanonicHdr
+   DLL 	= CATCloudQsrUI
+   Cmd 	= CATQsrCanonicCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Planar Sections...
+   Id 	= CATQsrPlanarSectionHdr
+   DLL 	= CATCldUIPlanarSection
+   Cmd 	= CATCldPlanarSectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Segmentation by Slope...
+   Id 	= CATQsrSlopeHdr
+   DLL 	= CATCloudQsrUI
+   Cmd 	= CATQsrSlopeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Join...
+   Id 	= CATQsrJoinHdr
+   DLL 	= CATGuiAssemble
+   Cmd 	= CATGSMUIAssemble
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Surfaces Network...
+   Id 	= CATQsrCreateSurfaceNetworkHdr
+   DLL 	= CATCloudQsrUI
+   Cmd 	= CATQsrSurfaceNetworkCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Geometric Tolerances Checker
+   Id 	= CATQsrFTAInspectionHdr
+   DLL 	= CATCldUIInspect
+   Cmd 	= CATCldFTAInspectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Porcupine Analysis...
+   Id 	= CATQsrDynCurvatureHdr
+   DLL 	= CATFauCurvature
+   Cmd 	= CATStCmdCurvature
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Affinity...
+   Id 	= CATQsrAffinityHdr
+   DLL 	= CATGuiAffinity
+   Cmd 	= CATGSMUIAffinity
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATQsrMenusMbr 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=CATBody
+      Starter Name=InsertGS
+      Starter Name=InsertOGS
+      Separator Name=CATQsrInsert1SepSeparator
+      Title=Cloud Edition 	 Name=CATQsrEditionSnu 
+         Starter Name=CATQsrActivateStr
+      Title=Scan Creation 	 Name=CATQsrScansSnu 
+         Starter Name=CATQsrProjectCurveStr
+         Starter Name=CATQsrPlanarSectionStr
+         Starter Name=CATQsrXYZPlanarSectionsStr
+         Starter Name=CATQsrFreeEdgesStr
+      Title=Curve Creation 	 Name=CATQsrCurvesSnu 
+         Starter Name=CATQsrCurveOnGeometryStr
+         Starter Name=CATQsrCurveStr
+         Starter Name=CATQsrScanToCurveStr
+         Starter Name=CATQsrScan2DStr
+         Starter Name=CATQsrIntersectStr
+         Starter Name=CATQsrProjectStr
+      Title=Domain Creation 	 Name=CATQsrWiresSnu 
+         Starter Name=CATQsrCreateCleanCtStr
+         Starter Name=CATQsrCurveNetworkStr
+      Title=Surface Creation 	 Name=CATQsrSurfacesSnu 
+         Starter Name=CATQsrCanonicStr
+         Starter Name=CATQsrPowerFitStr
+         Starter Name=CATQsrLoftStr
+         Starter Name=CATQsrSurfaceNetworkStr
+         Starter Name=CATQsrQuickSurfStr
+      Title=Operations 	 Name=CATQsrOperationsSnu 
+         Starter Name=CATQsrJoinStr
+         Starter Name=CATQsrExtendStr
+         Starter Name=CATQsrSplitStr
+         Starter Name=CATQsrTrimStr
+         Starter Name=CATQsrSliceEdgesStr
+         Starter Name=CATQsrAdjustNodeStr
+         Starter Name=CATQsrSplitCleanCtStr
+         Starter Name=CATQsrFilletEdgeStr
+      Title=Transformations 	 Name=CATQsrTransformationsSnu 
+         Starter Name=CATQsrTranslateStr
+         Starter Name=CATQsrRotateStr
+         Starter Name=CATQsrSymmetryStr
+         Starter Name=CATQsrScaleStr
+         Starter Name=CATQsrAffinityStr
+         Starter Name=CATQsrAxisToAxisStr
+      Title=Segmentation 	 Name=CATQsrSegmentationSnu 
+         Starter Name=CATQsrCurvatureStr
+         Starter Name=CATQsrSlopeStr
+      Title=Analysis 	 Name=CATQsrAnalysisSnu 
+         Starter Name=CATQsrInformationsStr
+         Starter Name=CATCldDistAnalysisStr
+         Starter Name=CATQsrCurvMapStr
+         Starter Name=CATQsrDynCurvatureStr
+         Starter Name=CATQsrConnectCheckerStr
+      Title=Deviation Check 	 Name=CATQsrInspectSnu 
+         Starter Name=CATQsrNoteSetStr
+         Starter Name=CATQsrNoteStr
+         Starter Name=CATQsrFTAInspectionStr
+         Starter Name=CATQsrUIReportStr
+      Title=WireFrame 	 Name=CATQsrWireFrameSnu 
+         Starter Name=CATQsrGSDPointStr
+         Starter Name=CATQsrGSDLineStr
+         Starter Name=CATQsrGSDPlaneStr
+         Starter Name=CATCQsrGSDCircleStr
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=CATQsrTools1SepSeparator
+      Starter Name=CATGraph
+
+ Title of the toolbar=Tools and is Name=CATQsrToolsTlb
+   Starter Name=CATUpdate
+   Starter Name=CATGraph
+   Starter Name=CATDatumMode
+   Starter Name=CATCurrentTool
+
+ Title of the toolbar=Selection and is Name=CATQsrSelectTlb
+   Starter Name=CATQsrSelectStr
+
+ Title of the toolbar=Cloud Edition and is Name=CATQsrEditionTlb
+   Starter Name=CATQsrActivateStr
+
+ Title of the toolbar=Scan Creation and is Name=CATQsrScansTlb
+   Starter Name=CATQsrProjectCurveStr
+   Title of the Icon Box=CATQsrPlanarSectionCnt 	 Name=CATQsrPlanarSectionCnt 
+      Starter Name=CATQsrPlanarSectionStr
+      Starter Name=CATQsrXYZPlanarSectionsStr
+   Starter Name=CATQsrFreeEdgesStr
+
+ Title of the toolbar=Curve Creation and is Name=CATQsrCurvesTlb
+   Starter Name=CATQsrCurveOnGeometryStr
+   Starter Name=CATQsrCurveStr
+   Starter Name=CATQsrScanToCurveStr
+   Starter Name=CATQsrScan2DStr
+   Starter Name=CATQsrIntersectStr
+   Starter Name=CATQsrProjectStr
+
+ Title of the toolbar=Domain Creation and is Name=CATQsrWiresTlb
+   Starter Name=CATQsrCreateCleanCtStr
+   Starter Name=CATQsrCurveNetworkStr
+
+ Title of the toolbar=Surface Creation and is Name=CATQsrSurfacesTlb
+   Starter Name=CATQsrCanonicStr
+   Starter Name=CATQsrPowerFitStr
+   Starter Name=CATQsrLoftStr
+   Starter Name=CATQsrSurfaceNetworkStr
+   Starter Name=CATQsrQuickSurfStr
+
+ Title of the toolbar=Operations and is Name=CATQsrOperationsTlb
+   Starter Name=CATQsrJoinStr
+   Title of the Icon Box=Split/Trim 	 Name=CATQsrSplitTrimCnt 
+      Starter Name=CATQsrSplitStr
+      Starter Name=CATQsrTrimStr
+   Starter Name=CATQsrExtendStr
+   Starter Name=CATQsrSliceEdgesStr
+   Starter Name=CATQsrAdjustNodeStr
+   Starter Name=CATQsrSplitCleanCtStr
+   Starter Name=CATQsrFilletEdgeStr
+
+ Title of the toolbar=Transformations and is Name=CATQsrTransformationsTlb
+   Title of the Icon Box=Transformations 	 Name=CATQsrTransformationsCnt 
+      Starter Name=CATQsrTranslateStr
+      Starter Name=CATQsrRotateStr
+      Starter Name=CATQsrSymmetryStr
+      Starter Name=CATQsrScaleStr
+      Starter Name=CATQsrAffinityStr
+      Starter Name=CATQsrAxisToAxisStr
+
+ Title of the toolbar=Segmentation of Clouds and is Name=CATQsrSegmentationTlb
+   Title of the Icon Box=Segmentation 	 Name=CATQsrSegmentation 
+      Starter Name=CATQsrCurvatureStr
+      Starter Name=CATQsrSlopeStr
+
+ Title of the toolbar=Cloud Analysis and is Name=CATQsrAnalysisTlb
+   Starter Name=CATQsrInformationsStr
+   Starter Name=CATCldDistAnalysisStr
+   Starter Name=CATQsrCurvMapStr
+   Starter Name=CATQsrDynCurvatureStr
+   Starter Name=CATQsrConnectCheckerHdr
+
+ Title of the toolbar=Cloud Deviation Check and is Name=CATQsrInspectTlb
+   Starter Name=CATQsrNoteSetStr
+   Starter Name=CATQsrNoteStr
+   Starter Name=CATQsrFTAInspectionStr
+   Starter Name=CATQsrUIReportStr
+
+ Title of the toolbar=WireFrame and is Name=CATQsrWireFrameTlb
+   Starter Name=CATQsrGSDPointStr
+   Starter Name=CATQsrGSDLineStr
+   Starter Name=CATQsrGSDPlaneStr
+   Starter Name=CATQsrGSDCircleStr
+
+ Title of the toolbar=View Management and is Name=CATQsrViewManagementTlb
+   Starter Name=CATQsrViewSelectorStr
+   Starter Name=CATQsrFocalAdjusmentStr

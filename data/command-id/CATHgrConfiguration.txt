@@ -1,0 +1,443 @@
+Workshop Exposition of CATHgrConfiguration 
+
+1- Header List 
+
+Title= Attach Support...
+   Id 	= CATHgrConnectPartsHdr
+   DLL 	= CATCloManageCnx
+   Cmd 	= CATCloConnectPartsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Connect parts...
+   Id 	= CATHgrGenConnectPartsHdr
+   DLL 	= CATCloManageCnx
+   Cmd 	= CATCloConnectionMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Build Hanger Part
+   Id 	= CATHgrCreatePartHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloCreatePartCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Inertia...
+   Id 	= CATHgrMeasureInertiaHdr
+   DLL 	= CATSpaInertia
+   Cmd 	= CATSiLaMeasureInertiaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Item
+   Id 	= CATHgrMeasureEdgeHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Params...
+   Id 	= CATHgrEditPartParamsHdr
+   DLL 	= CATCloOverrideParm
+   Cmd 	= CATCloManageParmCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CATHgrFixDeadPartBuilderHdr
+   Id 	= CATHgrFixDeadPartBuilderHdr
+   DLL 	= CATCloPartPlaceUI
+   Cmd 	= CATCloFixPartBuilderCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Place Object from Catalog...
+   Id 	= HgrCatalogBrowserHdr
+   DLL 	= CATArrCatalogPlace
+   Cmd 	= CATArrCatalogPlaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Lock Compartment Membership
+   Id 	= CATHgrSetLockCptMembershipHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuSetLockCptMembershipCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Expressions
+   Id 	= CATHgrReportExpHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExpressionsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rename ID
+   Id 	= CATHgrRenameIDHdr
+   DLL 	= CATPspRename
+   Cmd 	= CATPspRenameRouteCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Snap Center of Polygon
+   Id 	= CATHgrSnapCenterPolygonHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapCenterPolygonCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Copy/Paste 3D Systems...
+   Id 	= CATHgrCopyPaste3DSysHdr
+   DLL 	= CATArrCCP3DSystems
+   Cmd 	= CATArrCopyPaste3DSysCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Measure Between
+   Id 	= CATHgrMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Align Two Planes
+   Id 	= CATHgrSnapTwoPlanesHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapTwoPlanesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Distribute
+   Id 	= CATHgrDistributeHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrDistributeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Related Objects
+   Id 	= CATHgrRelatedObjectsHdr
+   DLL 	= CATPspObjectNavigator
+   Cmd 	= CATPspCurrentSelection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place Hanger part...
+   Id 	= CATHgrCatalogBrowserHdr
+   DLL 	= CATHgrPlaceUI
+   Cmd 	= CATHgrPlaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Build Connector
+   Id 	= CATHgrConnectorHdr
+   DLL 	= CATCloManageCntr
+   Cmd 	= CATCloManageCntrCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Loose Parts Management
+   Id 	= CATHgrLoosePartHdr
+   DLL 	= CATCloLooseParts
+   Cmd 	= CATCloLoosePartsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Copy Attributes
+   Id 	= CATHgrCopyAttributesHdr
+   DLL 	= CATPspChangeUserType
+   Cmd 	= CATPspCopyAttributesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rotate To Align
+   Id 	= CATHgrRotateSideHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrRotateSideCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Validation...
+   Id 	= CATHgrPRMCheckerHdr
+   DLL 	= CATPspPRMChecker
+   Cmd 	= CATPspPRMCheckerCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Snap Three Points
+   Id 	= CATHgrSnapThreePointsHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapThreePointsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select/Query Compartment
+   Id 	= CATHgrSelQueryCptHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuSelQueryCptCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generate
+   Id 	= CATHgrReportGenHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportGenCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select/Browse...
+   Id 	= CATHgrPrjMngtHdr
+   DLL 	= PrjMngtUI
+   Cmd 	= CATPrjMngtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Cable visualization...
+   Id 	= CATHgrCableVisuHdr
+   DLL 	= CATHgrCableDistribution
+   Cmd 	= CATHgrCableVisuCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Disconnect parts...
+   Id 	= CATHgrGenDisconnectPartsHdr
+   DLL 	= CATCloManageCnx
+   Cmd 	= CATCloDisconnectMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define
+   Id 	= CATHgrReportDefHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportDefCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Detach Support...
+   Id 	= CATHgrDisconnectPartsHdr
+   DLL 	= CATCloManageCnx
+   Cmd 	= CATCloDisconnectPartsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flip...
+   Id 	= CATHgrFlipHdr
+   DLL 	= CATLndPartPlace
+   Cmd 	= CATLndFlipCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Snap
+   Id 	= CATHgrSnapResourcesHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapResourcesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select to measure distance/angle between runs and/or connectors
+   Id 	= CATHgrMeasurementHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrMeasurementCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Hanger Connection Analysis
+   Id 	= CATHgrConnectionHdr
+   DLL 	= CATHgrConnection
+   Cmd 	= CATHgrConnectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Set Object Type
+   Id 	= CATHgrModifySubTypeHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloModifySubTypeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Manage Graphics Representation
+   Id 	= CATHgrActivateRepHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloActivateRepCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Snap Surface
+   Id 	= CATHgrSnapSurfaceHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapSurfaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select to Activate Grids
+   Id 	= CATHgrActivateGridHdr
+   DLL 	= CATArrGrid
+   Cmd 	= CATArrActivateGridCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align Side
+   Id 	= CATHgrSnapSideHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapSideCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update Compartment Membership
+   Id 	= CATHgrUpdateCptMembershipHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuUpdateCptMembershipCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Apply Material...
+   Id 	= CATHgrApplyMaterialHdr
+   DLL 	= CATMatController
+   Cmd 	= CATMatApplyMaterialCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align Center
+   Id 	= CATHgrSnapPointHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapPointCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=HgrMenu 
+   Title=EDIT 	 Name=CATAfrEditMnu 
+      Separator Name=HgrEditSepar0
+      Starter Name=HgrDefinitionId
+      Starter Name=HgrResetColor
+      Separator Name=HgrEditSepar1
+      Title=Connections 	 Name=HgrConnections 
+         Starter Name=HgrConnectPartsIcon
+         Starter Name=HgrDisconnectPartsIcon
+   Title=INSERT 	 Name=CATAfrInsertMnu 
+      Separator Name=HgrSepar0
+      Starter Name=HgrPlaceFromCatalogIcon
+      Starter Name=HgrBuildComponentIcon
+      Starter Name=HgrBuildConnectorIcon
+      Starter Name=HgrCatalogPlaceButton
+   Title=TOOLS 	 Name=CATAfrToolsMnu 
+      Separator Name=HgrToolsSepar0
+      Title=Report  	 Name=HgrReportTools 
+         Starter Name=HgrReportDefIcon
+         Starter Name=HgrReportGenIcon
+         Starter Name=HgrReportExpIcon
+         Starter Name=HgrCatalogReportIcon
+      Title=Design Tools 	 Name=HgrDesignTools 
+         Starter Name=P3AlignToSideIcon
+         Starter Name=HgrAlignToPointIcon
+         Starter Name=HgrRotateSideIcon
+         Starter Name=HgrDistributeIcon
+         Starter Name=HgrAlignTwoPlanesIcon
+         Starter Name=CATHgrQuickTranslateIcon
+         Separator Name=CATSeparLink1
+         Starter Name=HgrSnapIcon
+         Starter Name=HgrSnap3PointsIcon
+         Starter Name=HgrSnapCenterPolygonIcon
+         Starter Name=HgrSnapSurfaceIcon
+      Title=Environmental Tools 	 Name=HgrEnvironmentalTools 
+         Starter Name=HgrLocalAxisIcon
+         Starter Name=HgrLocalAxisCompassIcon
+         Starter Name=PreviousLocalAxisIcon
+         Separator Name=CATSeparLink2
+         Starter Name=HgrPlaneIcon
+         Starter Name=HgrAdvancePlaneIcon
+      Title=Queries  	 Name=HgrQueriesTools 
+         Starter Name=ExportQueriesStr
+         Starter Name=ImportQueriesStr
+      Title=Project Management 	 Name=HgrPRMTools 
+         Starter Name=HgrPrjMngtStr
+         Starter Name=HgrPRMCheckerStr
+      Starter Name=HgrBldNewRefStr
+      Starter Name=PspMangePubIcon
+   Title=Analyze 	 Name=CATANALYZE 
+      Starter Name=HgrAnalyzeNetworkMenu
+      Starter Name=CATXDocCnxMenu
+      Starter Name=HgrConnectionIcon
+      Separator Name=HgrAnalyzeSepar0
+      Starter Name=HgrRelatedObjectsMenu
+      Starter Name=HgrMeasureBetweenIcon
+      Starter Name=HgrMeasureEdgeIcon
+      Starter Name=HgrMeasureInertiaIcon
+      Separator Name=HgrAnalyzeSepar1
+      Starter Name=HgrDesignValidation
+
+ Title of the toolbar=Select Assembly and is Name=HgrSelAsm
+   Starter Name=HgrSelectAssemblyIcon
+
+ Title of the toolbar=Build Create and is Name=HgrSetup
+   Starter Name=HgrBuildComponentIcon
+   Starter Name=HgrBuildConnectorIcon
+   Starter Name=HgrModifySubTypeIcon
+
+ Title of the toolbar=Design Modify and is Name=HgrParts
+   Starter Name=HgrPlaceFromCatalogIcon
+   Starter Name=HgrLoosePartIcon
+
+ Title of the toolbar=Connections and is Name=HgrConnections
+   Starter Name=HgrFlipPartsIcon
+   Starter Name=HgrMoveRotateIcon
+   Starter Name=HgrEditPartParmsIcon
+   Starter Name=HgrAnalyzeCableIcon
+   Starter Name=HgrCableVisuIcon
+   Title of the Icon Box=Connect/Disconnect Tools 	 Name=HgrConnectTools 
+      Starter Name=HgrGenConnectPartsIcon
+      Starter Name=HgrGenDisconnectPartsIcon
+   Title of the Icon Box=Connect/Disconnect Tools 	 Name=HgrDisconnectTools 
+      Starter Name=HgrConnectPartsIcon
+      Starter Name=HgrDisconnectPartsIcon
+      Starter Name=HgrConnectionIcon
+   Starter Name=HgrActivateRepIcon
+   Title of the Icon Box=EqtCCPTools 	 Name=EqtCCPTools 
+      Starter Name=CloTransferElementsIcon
+      Starter Name=CloCopyPasteElementsIcon
+   Title of the Icon Box=HgrCptMembership 	 Name=HgrCptMembership 
+      Starter Name=HgrUpdateCptMembershipIcon
+      Starter Name=HgrSelQueryCptIcon
+      Starter Name=HgrSetLockCptMembershipIcon
+
+ Title of the toolbar=General Design Tools and is Name=HgrDesignTools
+   Title of the Icon Box=Align 	 Name=HgrAlign 
+      Starter Name=P3AlignToSideIcon
+      Starter Name=HgrAlignToPointIcon
+      Starter Name=HgrRotateSideIcon
+      Starter Name=HgrDistributeIcon
+      Starter Name=HgrAlignTwoPlanesIcon
+      Starter Name=HgrQuickTranslateIcon
+   Title of the Icon Box=HgrSnap 	 Name=HgrSnap 
+      Starter Name=HgrSnapIcon
+      Starter Name=HgrSnap3PointsIcon
+      Starter Name=HgrSnapCenterPolygonIcon
+      Starter Name=HgrSnapSurfaceIcon
+
+ Title of the toolbar=Update and is Name=HgrUpdateTools
+   Starter Name=HgrUpdateIcon
+
+ Title of the toolbar=General Environment Tools and is Name=HgrGenEnvTools
+   Title of the Icon Box=HgrDetailInfo 	 Name=HgrDetailInfo 
+      Starter Name=HgrDetailInfoIcon
+      Starter Name=HgrLocalAxisIcon
+      Starter Name=HgrLocalAxisCompassIcon
+      Starter Name=PreviousLocalAxisIcon
+      Starter Name=HgrHideShowCntrVisuIcon
+      Starter Name=HgrConvertObjToDesignModeIcon
+   Title of the Icon Box=Define Plane 	 Name=HgrDefinePlane 
+      Starter Name=HgrPlaneIcon
+      Starter Name=HgrAdvancePlaneIcon
+   Title of the Icon Box=HgrToggle 	 Name=HgrToggle 
+      Starter Name=HgrManipulationIcon
+      Starter Name=HgrDimIcon
+   Starter Name=HgrSnapModeIcon
+   Starter Name=HgrGridStepIcon
+   Title of the Icon Box=HgrUIActive 	 Name=HgrUIActive 
+      Starter Name=HgrPlaceUnderUIActiveIcon
+      Starter Name=HgrActivateParentIcon
+      Starter Name=CATHgrActivateGridIcon
+   Title of the Icon Box=DMUDynClashIconBox 	 Name=DMUDynClashIconBox 
+      Starter Name=DynClashOff
+      Starter Name=DynClashOn
+      Starter Name=DynClashStop
+
+ Title of the toolbar=Measure and is Name=HgrMeasureTools
+   Starter Name=HgrMeasureBetweenIcon
+   Starter Name=HgrMeasureEdgeIcon
+   Starter Name=HgrMeasureInertiaIcon
+   Starter Name=HgrMeasurementIcon
+
+ Title of the toolbar=Rename and is Name=HgrRenameID
+   Starter Name=HgrRenameIDIcon
+   Starter Name=HgrCopyAttributesIcon
+
+ Title of the toolbar=Apply Material  and is Name=HgrApplyMaterial
+   Starter Name=HgrMaterialIcon

@@ -1,0 +1,266 @@
+Workshop Exposition of CompositesWorkbench 
+
+1- Header List 
+
+
+2- Access List 
+
+ Name of the menubar=MenuBarId 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Separator Name=CATAfrEditNew001Sep
+      Starter Name=CATUpdate
+      Separator Name=CATFscPropertySeparatorSep
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=GeomSetId
+      Separator Name=CATCmdSeparator1
+      Starter Name=AxisId
+      Separator Name=CATCmdSeparator2
+      Title=Parameters 	 Name=ParametersToolBar 
+         Starter Name=ParametersId_MenuName
+      Title=Contour 	 Name=ContourToolBar 
+         Starter Name=CATCoStdContourId_MenuName
+      Title=Preliminary Design 	 Name=CoZonesToolbar 
+         Starter Name=CATCwbCreateZonesGroupHdr_MenuName
+         Starter Name=CATCwbCreateZoneCreationHdr_MenuName
+         Starter Name=CATCwbCreateTransitionZoneHdr_MenuName
+         Starter Name=ImportLaminateId_MenuName
+         Starter Name=CreateITPId_MenuName
+         Starter Name=ITPHeightId_MenuName
+         Starter Name=ConnGeneratorId_MenuName
+         Starter Name=ZonesAnalyzerId_MenuName
+         Starter Name=CreateStkUpFileFromZonesId_MenuName
+         Starter Name=CreateStkUpFileFromCSInfoId_MenuName
+         Starter Name=SolidCreationId_MenuName
+         Starter Name=ZonesSolidId_MenuName
+         Starter Name=DropOffId_MenuName
+         Starter Name=SlicingGroupId_MenuName
+      Title=Plies 	 Name=PliesToolBar 
+         Starter Name=CreatePlyGroupId_MenuName
+         Starter Name=CreatePlyCreFromZonesId_MenuName
+         Starter Name=PliesFromSlicingId_MenuName
+         Starter Name=CreatePlyActId_MenuName
+         Starter Name=CreateCoreId_MenuName
+         Starter Name=CreateStkUpFileAtPlyLvlId_MenuName
+         Starter Name=PliesCreFromStkUpFileId_MenuName
+         Starter Name=PlyLimitContourId_MenuName
+         Starter Name=AutoLimitContourId_MenuName
+         Starter Name=CATCoPlySymmetryId_MenuName
+         Starter Name=CATCoPliesSymmetryId_MenuName
+         Starter Name=CATCoGridMergePliesId_MenuName
+         Starter Name=CATCoNoDropOffAreaId_MenuName
+         Starter Name=DartId_MenuName
+         Starter Name=CATCoManufMaterialAdditionId_MenuName
+         Starter Name=CATCoManufMaterialAdditionGlobalId_MenuName
+         Starter Name=CATCwbMergeStackingId_MenuName
+         Starter Name=CornerManagementId_MenuName
+      Title=Top Surface & Solid 	 Name=SurfaceandSolidTBar 
+         Starter Name=CATCoIsoAreaGroupId_MenuName
+         Starter Name=CATCoJunctionIsoAreaWizardId_MenuName
+         Starter Name=CATCoJunctionIsoAreaId_MenuName
+         Starter Name=CATCoIsoAreaSolidId_MenuName
+         Starter Name=CATCwbCreateSolidFromPliesCmdHdr_MenuName
+         Starter Name=CATCusAddVariableCoreCommandId_MenuName
+      Title=Data Export 	 Name=ExportTBar 
+         Starter Name=PlyExport3Id_MenuName
+         Starter Name=CATCoXMLExportCmdId_MenuName
+         Starter Name=CATSLTCompositesLinkZoneImportId_MenuName
+         Starter Name=CATSLTCompositesLinkExportId_MenuName
+         Starter Name=CATSLTCompositesLinkImportPliesId_MenuName
+      Separator Name=Separator2
+      Title=Analysis 	 Name=AnalysisTBar 
+         Starter Name=CATCoSelectionId_MenuName
+         Starter Name=SelectPliesGroup_MenuName
+         Starter Name=SelectSequeence_MenuName
+         Starter Name=SelectPlies_MenuName
+         Starter Name=SelectCutPiece_MenuName
+         Starter Name=SelectLimitContour_MenuName
+         Starter Name=SelectLimitContourGroup_MenuName
+         Starter Name=SelectFlattenCurve_MenuName
+         Starter Name=SelectProducibility_MenuName
+         Starter Name=SelectMaterialExcess_MenuName
+         Starter Name=SelectSkinSwap_MenuName
+         Separator Name=FlyinfoToolBarSeparatorEnd
+         Starter Name=ContourValidationId_MenuName
+         Starter Name=NumAnalysisId_MenuName
+         Starter Name=CATCusSectionId_MenuName
+         Starter Name=CATCoPh3PlyMapSectionCmdId_MenuName
+         Starter Name=ExplodeId_MenuName
+         Starter Name=MultipleCoreSampleAdvId_MenuName
+         Starter Name=CATCoRealStackingMngtCmdId_MenuName
+         Starter Name=CATCoExtendedRosettePreviewCmdId_MenuName
+         Starter Name=CATCoExtendedRosetteCurveTransferCmdId_MenuName
+      Title=Splicing 	 Name=SpliceZoneTBar 
+         Starter Name=CreateButtSpliceId_MenuName
+         Starter Name=CreateNoSpliceId_MenuName
+         Starter Name=CreateGapOffsetId_MenuName
+         Starter Name=MultiSpliceId_MenuName
+      Separator Name=Separator6
+      Title=Manufacturing 	 Name=MfToolBar 
+         Starter Name=CreateCollobIDs_MenuName
+         Starter Name=CreateManuDocGenId_MenuName
+         Starter Name=CATCwbSynchronizationId_MenuName
+         Starter Name=CATCoSkinSwappingId_MenuName
+         Starter Name=CATCoEOPId_MenuName
+         Starter Name=CATCoMaterialExcessId_MenuName
+         Starter Name=CATCoStaggerOriginId_MenuName
+      Title=Flattening 	 Name=FlattenToolBar 
+         Starter Name=CreateNewProducibilityHandId_MenuName
+         Starter Name=CreateNewProducibilityAFPId_MenuName
+         Separator Name=CreateNewProducibilityIdSubSeparatorEnd
+         Starter Name=EditProducibilityTableId_MenuName
+         Starter Name=CreateFlatteningId_MenuName
+         Starter Name=CreateGeometryTransferId_MenuName
+         Starter Name=CreateProduceInspectionId_MenuName
+         Starter Name=CreateFiberDirectionId_MenuName
+         Starter Name=CreateUnfoldEntityId_MenuName
+      Separator Name=Separator7
+      Title=Mirror 	 Name=MirrorToolbar 
+         Starter Name=CATCoMirrorPartCmdId_MenuName
+         Starter Name=CATCoSynchroMirrorPartCmdId_MenuName
+      Separator Name=Separator8
+      Title=Wireframe 	 Name=COVWireFrame 
+         Starter Name=FromGSDPointID_MenuName
+         Starter Name=FromGSDLineID_MenuName
+         Starter Name=FromGSDPlaneID_MenuName
+         Starter Name=FromGSDCircleID_MenuName
+      Title=Unfold Surface 	 Name=COVUnfoldSurfaceFrame 
+         Starter Name=FromGSDUnfoldID_MenuName
+         Starter Name=FromGSDTransferID_MenuName
+      Title=Surface Tools 	 Name=SurfTools 
+         Starter Name=CATShapeDesignCurveSmooth_MenuName
+         Starter Name=CATShapeDesignAssemble_MenuName
+         Starter Name=CATShapeDesignHealing_MenuName
+         Starter Name=CATSdwSurfaceSimplificationHdr_MenuName
+
+ Title of the toolbar=GeneralSelect and is Name=CATFscGeneralSelectTlb
+   Starter Name=CATSelect
+
+ Title of the toolbar=Generic Shape and is Name=COVShapeGeneric
+   Starter Name=CATUpdate
+   Starter Name=CATLocalAxis
+
+ Title of the toolbar=Parameters and is Name=ParametersToolBar
+   Starter Name=ParametersId_Name
+
+ Title of the toolbar=Contour and is Name=ContourToolBar
+   Starter Name=CATCoStdContourId_Name
+
+ Title of the toolbar=Preliminary Design and is Name=CoZonesToolbar
+   Starter Name=CATCwbCreateZonesGroupHdr_Name
+   Starter Name=CATCwbCreateZoneCreationHdr_Name
+   Starter Name=CATCwbCreateTransitionZoneHdr_Name
+   Starter Name=ImportLaminateId_Name
+   Starter Name=CreateITPId_Name
+   Starter Name=ITPHeightId_Name
+   Starter Name=ConnGeneratorId_Name
+   Starter Name=ZonesAnalyzerId_Name
+   Starter Name=CreateStkUpFileFromZonesId_Name
+   Starter Name=CreateStkUpFileFromCSInfoId_Name
+   Starter Name=SolidCreationId_Name
+   Starter Name=ZonesSolidId_Name
+   Starter Name=DropOffId_Name
+   Starter Name=SlicingGroupId_Name
+
+ Title of the toolbar=Plies and is Name=PliesToolBar
+   Starter Name=CreatePlyGroupId_Name
+   Starter Name=CreatePlyCreFromZonesId_Name
+   Starter Name=PliesFromSlicingId_Name
+   Starter Name=CreatePlyActId_Name
+   Starter Name=CreateCoreId_Name
+   Starter Name=CreateStkUpFileAtPlyLvlId_Name
+   Starter Name=PliesCreFromStkUpFileId_Name
+   Starter Name=PlyLimitContourId_Name
+   Starter Name=AutoLimitContourId_Name
+   Starter Name=CATCoPlySymmetryId_Name
+   Starter Name=CATCoPliesSymmetryId_Name
+   Starter Name=CATCoGridMergePliesId_Name
+   Starter Name=CATCoNoDropOffAreaId_Name
+   Starter Name=DartId_Name
+   Starter Name=CATCoManufMaterialAdditionId_Name
+   Starter Name=CATCoManufMaterialAdditionGlobalId_Name
+   Starter Name=CATCwbMergeStackingId_Name
+   Starter Name=CornerManagementId_Name
+
+ Title of the toolbar=Top Surface & Solid and is Name=SurfaceandSolidTBar
+   Starter Name=CATCoIsoAreaGroupId_Name
+   Starter Name=CATCoJunctionIsoAreaWizardId_Name
+   Starter Name=CATCoJunctionIsoAreaId_Name
+   Starter Name=CATCoIsoAreaSolidId_Name
+   Starter Name=CATCwbCreateSolidFromPliesCmdHdr_Name
+   Starter Name=CATCusAddVariableCoreCommandId_Name
+
+ Title of the toolbar=Data Export and is Name=ExportTBar
+   Starter Name=PlyExport3Id_Name
+   Starter Name=CATCoXMLExportCmdId_Name
+   Starter Name=CATSLTCompositesLinkZoneImportId_Name
+   Starter Name=CATSLTCompositesLinkExportId_Name
+   Starter Name=CATSLTCompositesLinkImportPliesId_Name
+
+ Title of the toolbar=Analysis and is Name=AnalysisTBar
+   Title of the Icon Box=On the Fly Information 	 Name=FlyinfoToolBar 
+      Starter Name=CATCoSelectionId_Name
+      Starter Name=SelectPliesGroup_Name
+      Starter Name=SelectSequeence_Name
+      Starter Name=SelectPlies_Name
+      Starter Name=SelectCutPiece_Name
+      Starter Name=SelectLimitContour_Name
+      Starter Name=SelectLimitContourGroup_Name
+      Starter Name=SelectFlattenCurve_Name
+      Starter Name=SelectProducibility_Name
+      Starter Name=SelectMaterialExcess_Name
+      Starter Name=SelectSkinSwap_Name
+   Starter Name=ContourValidationId_Name
+   Starter Name=NumAnalysisId_Name
+   Starter Name=CATCusSectionId_Name
+   Starter Name=CATCoPh3PlyMapSectionCmdId_Name
+   Starter Name=ExplodeId_Name
+   Starter Name=MultipleCoreSampleAdvId_Name
+   Starter Name=CATCoRealStackingMngtCmdId_Name
+   Starter Name=CATCoExtendedRosettePreviewCmdId_Name
+   Starter Name=CATCoExtendedRosetteCurveTransferCmdId_Name
+
+ Title of the toolbar=Splicing and is Name=SpliceZoneTBar
+   Starter Name=CreateButtSpliceId_Name
+   Starter Name=CreateNoSpliceId_Name
+   Starter Name=CreateGapOffsetId_Name
+   Starter Name=MultiSpliceId_Name
+
+ Title of the toolbar=Manufacturing and is Name=MfToolBar
+   Starter Name=CreateCollobIDs_Name
+   Starter Name=CreateManuDocGenId_Name
+   Starter Name=CATCwbSynchronizationId_Name
+   Starter Name=CATCoSkinSwappingId_Name
+   Starter Name=CATCoEOPId_Name
+   Starter Name=CATCoMaterialExcessId_Name
+   Starter Name=CATCoStaggerOriginId_Name
+
+ Title of the toolbar=Flattening and is Name=FlattenToolBar
+   Title of the Icon Box=CreateNewProducibilityIdSub 	 Name=CreateNewProducibilityIdSub 
+      Starter Name=CreateNewProducibilityHandId_Name
+      Starter Name=CreateNewProducibilityAFPId_Name
+   Starter Name=EditProducibilityTableId_Name
+   Starter Name=CreateFlatteningId_Name
+   Starter Name=CreateGeometryTransferId_Name
+   Starter Name=CreateProduceInspectionId_Name
+   Starter Name=CreateFiberDirectionId_Name
+   Starter Name=CreateUnfoldEntityId_Name
+
+ Title of the toolbar=Mirror and is Name=MirrorToolbar
+   Starter Name=CATCoMirrorPartCmdId_Name
+   Starter Name=CATCoSynchroMirrorPartCmdId_Name
+
+ Title of the toolbar=Wireframe and is Name=COVWireFrame
+   Starter Name=FromGSDPointID_Name
+   Starter Name=FromGSDLineID_Name
+   Starter Name=FromGSDPlaneID_Name
+   Starter Name=FromGSDCircleID_Name
+
+ Title of the toolbar=Unfold Surface and is Name=COVUnfoldSurfaceFrame
+   Starter Name=FromGSDUnfoldID_Name
+   Starter Name=FromGSDTransferID_Name
+
+ Title of the toolbar=Surface Tools and is Name=SurfTools
+   Starter Name=CATShapeDesignCurveSmooth_Name
+   Starter Name=CATShapeDesignAssemble_Name
+   Starter Name=CATShapeDesignHealing_Name
+   Starter Name=CATSdwSurfaceSimplificationHdr_Name

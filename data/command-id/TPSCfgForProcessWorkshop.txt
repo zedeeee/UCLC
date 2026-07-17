@@ -1,0 +1,1948 @@
+Workshop Exposition of TPSCfgForProcessWorkshop 
+
+1- Header List 
+
+Title= 直线...
+   Id 	= CATHybridPartLine
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 直线...
+   Id 	= CATHybridPartLine
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 带引出线的文本
+   Id 	= TPSCreateText
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 带引出线的文本
+   Id 	= TPSCreateText
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转换为半径
+   Id 	= CATDrwDimSwapToRadHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转换为半径
+   Id 	= CATDrwDimSwapToRadHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 编辑标识注解标注
+   Id 	= TPSEditFlagNotelabel
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdEditFlagNotelabel
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 编辑标识注解标注
+   Id 	= TPSEditFlagNotelabel
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdEditFlagNotelabel
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 几何图形连接管理
+   Id 	= TPSConnectionMgtCmd
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSConnectionMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 几何图形连接管理
+   Id 	= TPSConnectionMgtCmd
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSConnectionMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 排列
+   Id 	= DrwLineUp
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcLineUpCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 排列
+   Id 	= DrwLineUp
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcLineUpCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Copy Object Format
+   Id 	= TPSPainter
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwPainterCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Copy Object Format
+   Id 	= TPSPainter
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwPainterCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 水平位置
+   Id 	= CATDrwXPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 水平位置
+   Id 	= CATDrwXPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Clipping Plane
+   Id 	= TPSClippingPlane
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Clipping Plane
+   Id 	= TPSClippingPlane
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Clipping Plane
+   Id 	= TPSClippingPlane
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 全部显示
+   Id 	= CATFTAShowAllAnnotHdr
+   DLL 	= CATTPSBrowserUI
+   Cmd 	= CATDfuHideShowAllAnnotationsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 全部显示
+   Id 	= CATFTAShowAllAnnotHdr
+   DLL 	= CATTPSBrowserUI
+   Cmd 	= CATDfuHideShowAllAnnotationsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 强制在视图中垂直标注尺寸
+   Id 	= CATDrwDimCheckVertHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 强制在视图中垂直标注尺寸
+   Id 	= CATDrwDimCheckVertHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平面...
+   Id 	= CATHybridPartPlane
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 平面...
+   Id 	= CATHybridPartPlane
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 分析显示模式
+   Id 	= DrwDimDesignMode
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 分析显示模式
+   Id 	= DrwDimDesignMode
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除位置链接
+   Id 	= TPSPosLinkDelete
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdPosLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除位置链接
+   Id 	= TPSPosLinkDelete
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdPosLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 阵列
+   Id 	= DrwPattern
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 阵列
+   Id 	= DrwPattern
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 4
+   Id 	= CATDrwDimCheckSector4Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 4
+   Id 	= CATDrwDimCheckSector4Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 1
+   Id 	= CATDrwDimCheckSector1Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 1
+   Id 	= CATDrwDimCheckSector1Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 2
+   Id 	= CATDrwDimCheckSector2Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 2
+   Id 	= CATDrwDimCheckSector2Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 3
+   Id 	= CATDrwDimCheckSector3Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 3
+   Id 	= CATDrwDimCheckSector3Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Geometrical Tolerance
+   Id 	= CATTPSCreateNonSemanticGDTHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdNonSemanticGDTCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Geometrical Tolerance
+   Id 	= CATTPSCreateNonSemanticGDTHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdNonSemanticGDTCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 查询对象链接...
+   Id 	= TPSTextQryLink
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextQryLink
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 查询对象链接...
+   Id 	= TPSTextQryLink
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextQryLink
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 标识注解
+   Id 	= TPSCreateFlagNoteWithoutLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdFlagNoteCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 标识注解
+   Id 	= TPSCreateFlagNoteWithoutLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdFlagNoteCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对齐剖视图/截面分割
+   Id 	= CATTPSCreateExtrAlignedViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateExtractionView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对齐剖视图/截面分割
+   Id 	= CATTPSCreateExtrAlignedViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateExtractionView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除线
+   Id 	= CATDrwStrikeThruHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除线
+   Id 	= CATDrwStrikeThruHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 全选
+   Id 	= TPSSelectViewAnnot
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdSelectViewAnnot
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 全选
+   Id 	= TPSSelectViewAnnot
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdSelectViewAnnot
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 删除结果特征
+   Id 	= CATTPSDeleteResultFeatureHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdDeleteResultFeature
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 删除结果特征
+   Id 	= CATTPSDeleteResultFeatureHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdDeleteResultFeature
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 删除结果特征
+   Id 	= CATTPSDeleteResultFeatureHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdDeleteResultFeature
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 打开/关闭 3D 标注查询
+   Id 	= TPSCSOCommand
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 打开/关闭 3D 标注查询
+   Id 	= TPSCSOCommand
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 文本
+   Id 	= TPSCreateTextWithoutLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 文本
+   Id 	= TPSCreateTextWithoutLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除中断
+   Id 	= CATDrwInterruptDimRemHdr
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除中断
+   Id 	= CATDrwInterruptDimRemHdr
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 方向
+   Id 	= CATDrwOrientationHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 方向
+   Id 	= CATDrwOrientationHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移剖视图/截面分割
+   Id 	= CATTPSCreateExtrOffsetViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateExtractionView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移剖视图/截面分割
+   Id 	= CATTPSCreateExtrOffsetViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateExtractionView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 几何体规范查询和重新定义
+   Id 	= TPSCanonicityRespecificationCmd
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdCanonicityRespec
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 几何体规范查询和重新定义
+   Id 	= TPSCanonicityRespecificationCmd
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdCanonicityRespec
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 新的技术包
+   Id 	= CATAfrTechnologicalPackageHdr
+   DLL 	= CATTPUI
+   Cmd 	= CATTPUICreationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 手动
+   Id 	= TPSAddManuGroup
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdAddManuGroupTPS
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 手动
+   Id 	= TPSAddManuGroup
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdAddManuGroupTPS
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 上标/下标
+   Id 	= CATDrwXScriptHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 上标/下标
+   Id 	= CATDrwXScriptHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 尺寸线
+   Id 	= DrwDimLine
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 尺寸线
+   Id 	= DrwDimLine
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 粗体
+   Id 	= CATDrwBoldHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 粗体
+   Id 	= CATDrwBoldHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Datum Feature
+   Id 	= CATTPSCreateDatumHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdDatumCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Datum Feature
+   Id 	= CATTPSCreateDatumHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdDatumCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Principal Views
+   Id 	= CATFTAPrincipalViewHdr
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcPrincipalViewsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Principal Views
+   Id 	= CATFTAPrincipalViewHdr
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcPrincipalViewsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 加下划线/加上划线
+   Id 	= CATDrwXLineHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 加下划线/加上划线
+   Id 	= CATDrwXLineHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Coordinate Dimensions
+   Id 	= TPSDimCoord
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCoordDim
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Coordinate Dimensions
+   Id 	= TPSDimCoord
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCoordDim
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 镜像标注
+   Id 	= TPSEditorMirror
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdMirror
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 镜像标注
+   Id 	= TPSEditorMirror
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdMirror
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 等轴测视图
+   Id 	= CATTPSCreateAxonometricViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 等轴测视图
+   Id 	= CATTPSCreateAxonometricViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 实长尺寸
+   Id 	= CATDrwDimCheckTrueDimHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 实长尺寸
+   Id 	= CATDrwDimCheckTrueDimHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 线性
+   Id 	= CATDrwDimCheckLinearHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 线性
+   Id 	= CATDrwDimCheckLinearHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Apply once
+   Id 	= CATTPSDefAnnotRmv
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdDefAnnotRmv
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Apply once
+   Id 	= CATTPSDefAnnotRmv
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdDefAnnotRmv
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示视图
+   Id 	= CATFTADisplayViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATDfcDisplayViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示视图
+   Id 	= CATFTADisplayViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATDfcDisplayViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 参考角度视图
+   Id 	= CATFTAViewCreationHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSProjectionViewCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 参考角度视图
+   Id 	= CATFTAViewCreationHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSProjectionViewCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Constructed Geometry Management
+   Id 	= CATTPSConstructedGeometryHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdConstructedGeometry
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Constructed Geometry Management
+   Id 	= CATTPSConstructedGeometryHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdConstructedGeometry
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示视图
+   Id 	= CATTPSDisplayLightViewHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdLightViewDisplay
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示视图
+   Id 	= CATTPSDisplayLightViewHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdLightViewDisplay
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示视图
+   Id 	= CATTPSDisplayLightViewHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdLightViewDisplay
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 隔离文本
+   Id 	= TPSTextIsolAttrLink
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextIsolAttrLinkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 隔离文本
+   Id 	= TPSTextIsolAttrLink
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextIsolAttrLinkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 偏移
+   Id 	= CATDrwDimCheckOffsetHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移
+   Id 	= CATDrwDimCheckOffsetHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 数字显示说明
+   Id 	= DrwNumDisp
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 数字显示说明
+   Id 	= DrwNumDisp
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Report
+   Id 	= TPSReport
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdReport
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Report
+   Id 	= TPSReport
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdReport
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Note Object Attribute
+   Id 	= CATTPSCreateNoa
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdNoaCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Note Object Attribute
+   Id 	= CATTPSCreateNoa
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdNoaCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 点...
+   Id 	= CATHybridPartPoint
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 点...
+   Id 	= CATHybridPartPoint
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 剖视图/标注平面
+   Id 	= TPSCreateSectionView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 剖视图/标注平面
+   Id 	= TPSCreateSectionView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Framed (Basic) Dimensions
+   Id 	= CATTPSBasicDimHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdBasicDim
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Framed (Basic) Dimensions
+   Id 	= CATTPSBasicDimHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdBasicDim
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 打开/关闭标注集
+   Id 	= CATTPSSetVisuHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdTPSSetVisu
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 打开/关闭标注集
+   Id 	= CATTPSSetVisuHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdTPSSetVisu
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 打开/关闭标注集
+   Id 	= CATTPSSetVisuHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdTPSSetVisu
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Datum Target
+   Id 	= CATTPSCreateTargetHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTargetCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Datum Target
+   Id 	= CATTPSCreateTargetHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTargetCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 插入符号
+   Id 	= CATDrwDimSymbolHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 插入符号
+   Id 	= CATDrwDimSymbolHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建方向链接
+   Id 	= TPSOriLinkCreate
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdOriLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建方向链接
+   Id 	= TPSOriLinkCreate
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdOriLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 升级
+   Id 	= TPSUpgradeSet
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdUpgradeSet
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 升级
+   Id 	= TPSUpgradeSet
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdUpgradeSet
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Tolerancing Advisor
+   Id 	= CATTPSAdvisor
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdAdvisor
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Tolerancing Advisor
+   Id 	= CATTPSAdvisor
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdAdvisor
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 全部隐藏
+   Id 	= CATFTAHideAllAnnotHdr
+   DLL 	= CATTPSBrowserUI
+   Cmd 	= CATDfuHideShowAllAnnotationsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 全部隐藏
+   Id 	= CATFTAHideAllAnnotHdr
+   DLL 	= CATTPSBrowserUI
+   Cmd 	= CATDfuHideShowAllAnnotationsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Distance Between Two Points...
+   Id 	= CATTPSDistancePtPtHdr
+   DLL 	= CATTPSCmdTasFeatures
+   Cmd 	= CATTPSCmdDistancePtPt
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 1
+Title= Distance Between Two Points...
+   Id 	= CATTPSDistancePtPtHdr
+   DLL 	= CATTPSCmdTasFeatures
+   Cmd 	= CATTPSCmdDistancePtPt
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 1
+Title= Roughness
+   Id 	= TPSCreateRoughness
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdRoughnessCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Roughness
+   Id 	= TPSCreateRoughness
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdRoughnessCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 字体名称
+   Id 	= CATDrwFontNameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 字体名称
+   Id 	= CATDrwFontNameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 选择视图/标注平面
+   Id 	= CATTPSSelectViews
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdSelectViews
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 选择视图/标注平面
+   Id 	= CATTPSSelectViews
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdSelectViews
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Constructed Geometry Creation
+   Id 	= CATTPSCGCreationHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdCGCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Constructed Geometry Creation
+   Id 	= CATTPSCGCreationHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdCGCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Replace Datum Reference Frame
+   Id 	= TPSReplaceDRF
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdReplaceDRF
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Replace Datum Reference Frame
+   Id 	= TPSReplaceDRF
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdReplaceDRF
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 垂直位置
+   Id 	= CATDrwYPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 垂直位置
+   Id 	= CATDrwYPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除截取平面
+   Id 	= TPSRemoveClipPlane
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdRemoveClipPlane
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 移除截取平面
+   Id 	= TPSRemoveClipPlane
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdRemoveClipPlane
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 移除截取平面
+   Id 	= TPSRemoveClipPlane
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdRemoveClipPlane
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 截面分割/标注平面
+   Id 	= TPSCreateSectionCut
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 截面分割/标注平面
+   Id 	= TPSCreateSectionCut
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Curvilinear Dimensions
+   Id 	= TPSCurvDim
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCurvDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Curvilinear Dimensions
+   Id 	= TPSCurvDim
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCurvDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 正视图
+   Id 	= TPSCreateFrontView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 正视图
+   Id 	= TPSCreateFrontView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 强制标注元素尺寸
+   Id 	= CATDrwDimCheckAutoHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 强制标注元素尺寸
+   Id 	= CATDrwDimCheckAutoHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 公差
+   Id 	= DrwTolerance
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 公差
+   Id 	= DrwTolerance
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 字体大小
+   Id 	= CATDrwFontSizeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 字体大小
+   Id 	= CATDrwFontSizeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 诊断报告
+   Id 	= TPSDiagnostic
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdDiagnosticReport
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 诊断报告
+   Id 	= TPSDiagnostic
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdDiagnosticReport
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Apply separately several times
+   Id 	= CATTPSDefAnnotHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdDefAnnot
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Apply separately several times
+   Id 	= CATTPSDefAnnotHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdDefAnnot
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 平行
+   Id 	= CATDrwDimCheckParallelHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平行
+   Id 	= CATDrwDimCheckParallelHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 强制在视图中水平标注尺寸
+   Id 	= CATDrwDimCheckHorizHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 强制在视图中水平标注尺寸
+   Id 	= CATDrwDimCheckHorizHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 斜体
+   Id 	= CATDrwItalicHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 斜体
+   Id 	= CATDrwItalicHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 激活视图
+   Id 	= TPSActivateView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdActivateView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 激活视图
+   Id 	= TPSActivateView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdActivateView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Dimensions
+   Id 	= TPSDim
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSQuickDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Dimensions
+   Id 	= TPSDim
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSQuickDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Create Assembly Set
+   Id 	= CATTPSNewPrdFTAHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdCreationSet
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create Assembly Set
+   Id 	= CATTPSNewPrdFTAHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdCreationSet
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Thread Representation Creation
+   Id 	= CATTPSCmdThreadGeometryHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdThreadGeometry
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Thread Representation Creation
+   Id 	= CATTPSCmdThreadGeometryHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdThreadGeometry
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Cumulated Dimensions
+   Id 	= TPSDimCumul
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSQuickDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Cumulated Dimensions
+   Id 	= TPSDimCumul
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSQuickDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 焊接特征
+   Id 	= CATTPSCreateWeldHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 焊接特征
+   Id 	= CATTPSCreateWeldHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 重新排序
+   Id 	= TPSReorderObjects
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcReorderObjectCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 重新排序
+   Id 	= TPSReorderObjects
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcReorderObjectCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 对齐
+   Id 	= CATDrwJustificationHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对齐
+   Id 	= CATDrwJustificationHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reference Frame
+   Id 	= CATTPSRefFrameHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdRefenceFrameCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 设置为默认
+   Id 	= CATDrwSetAsDefaultHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 设置为默认
+   Id 	= CATDrwSetAsDefaultHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reference Frame
+   Id 	= CATTPSRefFrameHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdRefenceFrameCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 删除方向链接
+   Id 	= TPSOriLinkDelete
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdOriLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除方向链接
+   Id 	= TPSOriLinkDelete
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdOriLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平行于屏幕的文本
+   Id 	= TPSCreateTextParallelOnScreen
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平行于屏幕的文本
+   Id 	= TPSCreateTextParallelOnScreen
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 添加引出线
+   Id 	= TPSAddLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATDfcAddLeaderCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 添加引出线
+   Id 	= TPSAddLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATDfcAddLeaderCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 带引出线的标识注解
+   Id 	= TPSCreateFlagNote
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdFlagNoteCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 带引出线的标识注解
+   Id 	= TPSCreateFlagNote
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdFlagNoteCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 编辑创成式参数...
+   Id 	= TPSEditMfParameters
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSEditMfParametersCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 编辑创成式参数...
+   Id 	= TPSEditMfParameters
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSEditMfParametersCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Stacked Dimensions
+   Id 	= TPSDimStack
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSQuickDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Stacked Dimensions
+   Id 	= TPSDimStack
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSQuickDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 反转法线
+   Id 	= TPSInvertNormal
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdInvertNormal
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 反转法线
+   Id 	= TPSInvertNormal
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdInvertNormal
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 定位点
+   Id 	= CATDrwTextAnchorHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 定位点
+   Id 	= CATDrwTextAnchorHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 在系统中对齐
+   Id 	= DrwAlignIntoSystem
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcAlignIntoSystemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 在系统中对齐
+   Id 	= DrwAlignIntoSystem
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcAlignIntoSystemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Deviation...
+   Id 	= CATTPSDeviationHdr
+   DLL 	= CATTPSCmdTasFeatures
+   Cmd 	= CATTPSDeviationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Deviation...
+   Id 	= CATTPSDeviationHdr
+   DLL 	= CATTPSCmdTasFeatures
+   Cmd 	= CATTPSDeviationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Restricted Area
+   Id 	= CATTPSRestrictedAreaHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdRestrictedArea
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Restricted Area
+   Id 	= CATTPSRestrictedAreaHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdRestrictedArea
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= TPSParallelOnScreen
+   Id 	= TPSParallelOnScreen
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= TPSParallelOnScreen
+   Id 	= TPSParallelOnScreen
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 目录浏览器...
+   Id 	= CatalogBrowser
+   DLL 	= CATCuiBrowser
+   Cmd 	= CATCuiSelectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 目录浏览器...
+   Id 	= CatalogBrowser
+   DLL 	= CATCuiBrowser
+   Cmd 	= CATCuiSelectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 过滤
+   Id 	= CATTPSFilterHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdFilter
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 过滤
+   Id 	= CATTPSFilterHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdFilter
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 打开/关闭列表标注集
+   Id 	= CATTPSWndSetVisuHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdTPSSetVisuByList
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 打开/关闭列表标注集
+   Id 	= CATTPSWndSetVisuHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdTPSSetVisuByList
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Generative Dimension
+   Id 	= TPSCreateGenDimHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdGenDimension
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Generative Dimension
+   Id 	= TPSCreateGenDimHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdGenDimension
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 
+   Id 	= CATDrwTextFrameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 
+   Id 	= CATDrwTextFrameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 更改视图支持面...
+   Id 	= TPSSetViewAssociativity
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSViewAssocCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 更改视图支持面...
+   Id 	= TPSSetViewAssociativity
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSViewAssocCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 公差说明
+   Id 	= DrwTolDescrip
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 公差说明
+   Id 	= DrwTolDescrip
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 样式
+   Id 	= CATDrwStyleHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 样式
+   Id 	= CATDrwStyleHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Correlated Deviations...
+   Id 	= CATTPSCorrelatedHdr
+   DLL 	= CATTPSCmdTasFeatures
+   Cmd 	= CATTPSDeviationCorrelatedCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Correlated Deviations...
+   Id 	= CATTPSCorrelatedHdr
+   DLL 	= CATTPSCmdTasFeatures
+   Cmd 	= CATTPSDeviationCorrelatedCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 补充
+   Id 	= CATDrwDimCheckComplementaryHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 补充
+   Id 	= CATDrwDimCheckComplementaryHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Snap to Point
+   Id 	= TPSSnapGrid
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Snap to Point
+   Id 	= TPSSnapGrid
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 自动
+   Id 	= TPSAddAutoGroup
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdAddAutoGroupTPS
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 自动
+   Id 	= TPSAddAutoGroup
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdAddAutoGroupTPS
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Display 3D Grid
+   Id 	= TPSDisplayGrid
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Display 3D Grid
+   Id 	= TPSDisplayGrid
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 标注消隐
+   Id 	= CATTPSAnnotationBlankingHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 标注消隐
+   Id 	= CATTPSAnnotationBlankingHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建中断
+   Id 	= CATDrwInterruptDimAddHdr
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建中断
+   Id 	= CATDrwInterruptDimAddHdr
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Insert Product
+   Id 	= DELMPrcImportProductHdr
+   DLL 	= SP0VVPPR
+   Cmd 	= CATImportCtxtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Insert Product
+   Id 	= DELMPrcImportProductHdr
+   DLL 	= SP0VVPPR
+   Cmd 	= CATImportCtxtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Extended Cylinder Construction Geometry
+   Id 	= CATTPSExtendedCylinderCGHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdExtCylinderCGCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Extended Cylinder Construction Geometry
+   Id 	= CATTPSExtendedCylinderCGHdr
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdExtCylinderCGCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 创建位置链接
+   Id 	= TPSPosLinkCreate
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdPosLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建位置链接
+   Id 	= TPSPosLinkCreate
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdPosLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 显示捕获
+   Id 	= CATTPSDisplayCaptureHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdCaptureDisplay
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示捕获
+   Id 	= CATTPSDisplayCaptureHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdCaptureDisplay
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示捕获
+   Id 	= CATTPSDisplayCaptureHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdCaptureDisplay
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Report Customisation
+   Id 	= TPSReportSettings
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdReportSettings
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Report Customisation
+   Id 	= TPSReportSettings
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdReportSettings
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转移至视图/标注平面
+   Id 	= TPSTransferToView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTransferToView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转移至视图/标注平面
+   Id 	= TPSTransferToView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTransferToView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Position along Normal Axis
+   Id 	= CATTeuTPSZPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Position along Normal Axis
+   Id 	= CATTeuTPSZPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 本地更新
+   Id 	= CATMmrUpdateCSOHeaderHdr
+   DLL 	= CATMechanicalModelerUI
+   Cmd 	= CATPrtUpdateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 精度
+   Id 	= DrwPrecision
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 精度
+   Id 	= DrwPrecision
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Insert Resource
+   Id 	= DELMPrcImportResourceHdr
+   DLL 	= SP0VVPPR
+   Cmd 	= CATImportCtxtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Insert Resource
+   Id 	= DELMPrcImportResourceHdr
+   DLL 	= SP0VVPPR
+   Cmd 	= CATImportCtxtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 转换为直径
+   Id 	= CATDrwDimSwapToDiaHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转换为直径
+   Id 	= CATDrwDimSwapToDiaHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATCmdCont3DFDTMenu 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=SeparatorMenuInsert00
+      Starter Name=CATAfrTechnologicalPackage
+      Separator Name=SeparatorMenuInsert01
+      Title=Views/Annotation Planes 	 Name=CATcontMenuViews 
+         Starter Name=CATFTAPrincipalViewStr
+         Starter Name=CATFTAViewCreationStr
+         Starter Name=CATTPSMenuCreateExtrOffsetView
+         Starter Name=CATTPSMenuCreateExtrAlignedView
+         Starter Name=CATTPSMenuActivateView
+         Starter Name=CATTPSMenuRemoveClipPlane
+      Title=Annotations 	 Name=CATcontMenuAnnotations 
+         Starter Name=TPSAdvisorMenu
+         Separator Name=SeparatorMenuInsert02
+         Title=Text 	 Name=contMenuText 
+            Starter Name=CATDrwTextLeaderMenu
+            Starter Name=DrwTextWithoutLeaderMenu
+            Starter Name=DrwTextParallelMenu
+         Title=Flag Note 	 Name=contMenuFlagNote 
+            Starter Name=CATDrwTextLeaderMenu
+            Starter Name=DrwTextWithoutLeaderMenu
+         Title=Datum Referencing 	 Name=contMenuDatum 
+            Starter Name=CATDrwDatumMenu
+            Starter Name=CATDrwTargetMenu
+            Starter Name=RefFrameMenu
+         Title=Tolerancing 	 Name=CATcontMenuTolerancing 
+            Starter Name=CATDrwGeoTolMenu
+            Starter Name=DrwRoughMenu
+         Title=Dimension 	 Name=contMenuDimension 
+            Starter Name=BasicDim
+            Starter Name=CATDrwDimMenu
+            Starter Name=CATDrwDimCumulMenu
+            Starter Name=CATDrwDimStackMenu
+            Starter Name=CATDrwDimCoordMenu
+            Starter Name=TPSCurvMenu
+            Starter Name=GenDim
+         Separator Name=SeparatorMenuInsert02
+         Title=Deviations 	 Name=contMenuDeviation 
+            Starter Name=DeviationMenu
+            Starter Name=CorrelatedMenu
+            Starter Name=DistancePtPtMenu
+         Separator Name=SeparatorMenuInsert02b
+         Title=Annotation Application Mode 	 Name=contMenuDefault 
+            Starter Name=DrwDefAnnotAddMenu
+            Starter Name=RmvDefAnnotAddMenu
+         Separator Name=SeparatorMenuInsert02a
+         Starter Name=CATDrwLeaderAddMenu
+      Title=Capture 	 Name=contMenuCapture 
+         Starter Name=CaptureMenu
+         Starter Name=CATTPSMenuCapMgt
+      Separator Name=SeparatorMenuInsert03
+      Title=Geometry for 3D Annotations 	 Name=contMenuGeometry 
+         Starter Name=RestrictedAreaMenu
+         Starter Name=CGCreationMenu
+         Starter Name=ConstructedGeometryMenu
+         Starter Name=ThreadGeometryMenu
+      Separator Name=SeparatorMenuInsert04
+      Title=Visualization 	 Name=contMenuVisualization 
+         Starter Name=WndSetVisuMenu
+         Starter Name=CSOMenu
+         Starter Name=FilterMenu
+         Starter Name=EditorMenu
+         Starter Name=ClippingMenu
+         Separator Name=CATDrwAnalysisDisplayModeSep
+         Starter Name=CATTPSAnalysisDisplayModeStr
+      Separator Name=SeparatorMenuInsert05
+      Title=3D Grid/Grouping 	 Name=contMenuGridGroup 
+         Title=3D Grid 	 Name=contMenuGrid 
+            Starter Name=DisplayGridMenu
+            Starter Name=SnapGridMenu
+         Title=Grouping 	 Name=contMenuGroup 
+            Starter Name=AutoGroupMenu
+            Starter Name=ManuGroupMenu
+      Separator Name=SeparatorMenuInsert06
+      Title=Reporting 	 Name=contMenuReporting 
+         Starter Name=ReportMenu
+         Starter Name=ReportSettingsMenu
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=CATTPSTools1Sep
+      Title=Positioning 	 Name=CATTPSPositioningSnu 
+         Starter Name=CATTPSLineUpStr
+         Starter Name=CATTPSAlignIntoSystemStr
+
+ Title of the toolbar=Selection and is Name=ProNewToolBarTPS1
+   Starter Name=CATSelectHeader
+   Starter Name=CATSelectRotate
+
+ Title of the toolbar=Views/Annotation Planes and is Name=ProNewToolBarTPSView
+   Title of the Icon Box=Views 	 Name=ProNewIconBoxTPSView 
+      Starter Name=CATFTAPrincipalViewStr
+      Starter Name=CATFTAViewCreationStr
+      Starter Name=CATTPSExtrOffsetViewCreation
+      Starter Name=CATTPSExtrAlignedViewCreation
+
+ Title of the toolbar=Annotations and is Name=ProNewToolBarTPS2
+   Starter Name=TPSAdvisor
+   Title of the Icon Box=Text 	 Name=ProNewIconBoxTPS2 
+      Starter Name=CATTPSTextCreation
+      Starter Name=TPSTextWithoutLeaderCreation
+      Starter Name=TPSTextParallelOnScreenCreation
+   Title of the Icon Box=Flag Note 	 Name=ProNewIconBoxFlagNote 
+      Starter Name=CATTPSFlagNoteCreation
+      Starter Name=TPSFlagNoteCreationWithoutLeader
+   Starter Name=CATTPSDatumCreation
+   Starter Name=CATTPSTargetCreation
+   Starter Name=CATTPSGDTCreation
+   Starter Name=TPSRoughnessCreation
+   Starter Name=TPSBasicDim
+   Title of the Icon Box=Dimensions 	 Name=ProNewIconBoxTPSDim 
+      Starter Name=TPSDimensionCreation
+      Starter Name=TPSCumulatedDimensionCreation
+      Starter Name=TPSStackedDimensionCreation
+      Starter Name=TPSCoordDimensionCreation
+      Starter Name=TPSCurvDimensionCreation
+   Starter Name=TPSCreateGenDim
+
+ Title of the toolbar=Geometry for 3D Annotations and is Name=ProNewToolBarTPSGeometry
+   Starter Name=TPSRestrictedArea
+   Title of the Icon Box=Geometry for 3D Annotations 	 Name=ProNewIconBoxTPSGeometry 
+      Starter Name=TPSCGCreation
+      Starter Name=TPSConstructedGeometry
+      Starter Name=TPSThreadGeometry
+   Starter Name=TPSConnectionMgtCmdMenu
+
+ Title of the toolbar=Noa and is Name=ProNewToolBarTPSNoa
+   Starter Name=TPSNoaCreation
+
+ Title of the toolbar=Reporting and is Name=ProNewToolBarTPSReport
+   Title of the Icon Box=Reporting 	 Name=ProNewIconBoxTPSReport 
+      Starter Name=TPSReport
+      Starter Name=TPSReportSettings
+
+ Title of the toolbar=Visualization and is Name=ProNewToolBarTPSCheck
+   Starter Name=CATTPSWndSetVisuHdr
+   Starter Name=TPSCSOCommand
+   Starter Name=CATTPSFilter
+   Starter Name=TPSEditorMirror
+   Starter Name=TPSClippingPlane
+Separator Name=CATDrwAnalysisDisplayModeSep
+   Starter Name=CATTPSAnalysisDisplayModeStr
+   Starter Name=CATTPSAnnotBlankStr
+
+ Title of the toolbar=Deviations and is Name=ProNewToolBarTPSDeviation
+   Title of the Icon Box=Deviations 	 Name=ContTPSDevsIcb 
+      Starter Name=CATTPSDeviationStr
+      Starter Name=CATTPSCorrelatedStr
+      Starter Name=CATTPSDistancePtPtStr
+
+ Title of the toolbar=Style and is Name=ProNewToolBarTPS3
+   Starter Name=CATNewButtonTPS6
+   Starter Name=CATNewButtonTPS30
+
+ Title of the toolbar=Text Properties and is Name=ProNewToolBarTPS4
+   Starter Name=CATNewButtonTPS7
+   Starter Name=CATNewButtonTPS8
+Separator Name=CATseparatorTextProp1Separator
+   Starter Name=CATNewButtonTPS9
+   Starter Name=CATNewButtonTPS10
+   Starter Name=CATNewButtonTPS11
+   Starter Name=CATNewButtonTPS12
+   Starter Name=CATNewButtonTPS13
+Separator Name=CATSeparatorTextProp2Separator
+   Starter Name=CATNewButtonTPS16
+   Starter Name=CATNewButtonTPS19
+   Starter Name=CATNewButtonTPS20
+Separator Name=CATSeparatorTextProp3Separator
+   Starter Name=CATNewButtonTPS21
+
+ Title of the toolbar=Dimension Properties and is Name=ProNewToolBarTPS5
+   Starter Name=NewButtonTPS22
+Separator Name=SeparatorDimProp1Separator
+   Starter Name=NewButtonTPS23
+   Starter Name=NewButtonTPS24
+
+ Title of the toolbar=Numerical Properties and is Name=CATPSProNumPropTlb
+   Starter Name=NewButtonTPS25
+   Starter Name=NewButtonTPS26
+
+ Title of the toolbar=Position And Orientation and is Name=ProNewToolBarTPS7
+   Starter Name=CATNewButtonTPS27
+   Starter Name=CATNewButtonTPS28
+   Starter Name=CATNewButtonTPS29
+   Starter Name=CATNewButtonTPS30
+
+ Title of the toolbar=Pattern and is Name=ProNewToolBarTPS8
+   Starter Name=NewButtonTPS31
+
+ Title of the toolbar=3D Grid and is Name=ProNewToolBarGrid
+   Starter Name=TPSDisplayGrid
+   Starter Name=TPSSnapGrid
+
+ Title of the toolbar=Grouping and is Name=ProNewToolBarGroup
+   Starter Name=TPSAddAutoGroup
+   Starter Name=TPSAddManuGroup
+
+ Title of the toolbar=Positioning and is Name=ProNewToolBarPos
+   Starter Name=CATDrwLineUp
+   Starter Name=DrwAlignIntoSystem
+
+ Title of the toolbar=Process and is Name=ProNewToolBarProcess
+   Starter Name=ImportProduct
+   Starter Name=ImportResource

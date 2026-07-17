@@ -1,0 +1,492 @@
+Workshop Exposition of CATEqtConfiguration 
+
+1- Header List 
+
+Title= Snap Center of Polygon
+   Id 	= CATEqtSnapCenterPolygonHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapCenterPolygonCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select/Query Compartment
+   Id 	= CATEqtSelQueryCptHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuSelQueryCptCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manage Document Links...
+   Id 	= CATEqtManageDocLinksHdr
+   DLL 	= CATPspPublication
+   Cmd 	= CATPspManageDocLinksCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Measure Between
+   Id 	= CATEqtMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Align Center
+   Id 	= CATEqtSnapPointHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapPointCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= CATEqtPlacementHdr
+   Id 	= CATEqtPlacementHdr
+   DLL 	= CATCloPartPlaceUI
+   Cmd 	= CATCloPartPlaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generate
+   Id 	= CATEqtReportGenHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportGenCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Distribute
+   Id 	= CATEqtDistributeHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrDistributeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select to measure distance/angle between runs and/or connectors
+   Id 	= CATEqtMeasurementHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrMeasurementCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place Object from Catalog...
+   Id 	= CATEqtSpatialPlacementHdr
+   DLL 	= CATArrCatalogPlace
+   Cmd 	= CATArrCatalogPlaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define
+   Id 	= CATEqtReportDefHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportDefCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Expressions
+   Id 	= CATEqtReportExpHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExpressionsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Build Connectors
+   Id 	= CATEqtConnectorHdr
+   DLL 	= CATCloManageCntr
+   Cmd 	= CATCloManageCntrCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Validation...
+   Id 	= CATEqtPRMCheckerHdr
+   DLL 	= CATPspPRMChecker
+   Cmd 	= CATPspPRMCheckerCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Item
+   Id 	= CATEqtMeasureEdgeHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Inertia...
+   Id 	= CATEqtMeasureInertiaHdr
+   DLL 	= CATSpaInertia
+   Cmd 	= CATSiLaMeasureInertiaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Hide Attachment
+   Id 	= CATEqtAttachHideHdr
+   DLL 	= ArrIgpAttach
+   Cmd 	= CATArrShowAttachCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update Compartment Membership
+   Id 	= CATEqtUpdateCptMembershipHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuUpdateCptMembershipCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select/Browse...
+   Id 	= CATEqtPrjMngtHdr
+   DLL 	= PrjMngtUI
+   Cmd 	= CATPrjMngtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Lock Compartment Membership
+   Id 	= CATEqtSetLockCptMembershipHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuSetLockCptMembershipCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Apply Material...
+   Id 	= CATEqtApplyMaterialHdr
+   DLL 	= CATMatController
+   Cmd 	= CATMatApplyMaterialCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align Side
+   Id 	= CATEqtSnapSideHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapSideCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Params...
+   Id 	= CATEqtEditPartParamsPanelHdr
+   DLL 	= CATArrCatalogPlace
+   Cmd 	= CATArrEditPartParametersPanelCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rename ID
+   Id 	= CATEqtRenameIDHdr
+   DLL 	= CATPspRename
+   Cmd 	= CATPspRenameRouteCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Attach
+   Id 	= CATEqtAttachmentHdr
+   DLL 	= ArrIgpAttach
+   Cmd 	= CATArrAttachCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Change Reference...
+   Id 	= CATEqtChangeReferenceHdr
+   DLL 	= CATArrCatalogPlace
+   Cmd 	= CATArrChangeReferenceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Connect parts...
+   Id 	= CATEqtConnectPartsHdr
+   DLL 	= CATCloManageCnx
+   Cmd 	= CATCloConnectionMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Snap Three Points
+   Id 	= CATEqtSnapThreePointsHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapThreePointsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Align Two Planes
+   Id 	= CATEqtSnapTwoPlanesHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapTwoPlanesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Set Object Type
+   Id 	= CATEqtModifySubTypeHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloModifySubTypeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Snap Surface
+   Id 	= CATEqtSnapSurfaceHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapSurfaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Copy Attributes
+   Id 	= CATEqtCopyAttributesHdr
+   DLL 	= CATPspChangeUserType
+   Cmd 	= CATPspCopyAttributesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Create Part
+   Id 	= CATEqtCreatePartHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloCreatePartCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Manage Graphics Representation
+   Id 	= CATEqtActivateRepHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloActivateRepCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select to Activate Grids
+   Id 	= EqtActivateGridHdr
+   DLL 	= CATArrGrid
+   Cmd 	= CATArrActivateGridCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manage Exceptions
+   Id 	= CATEqtManageExceptionsHdr
+   DLL 	= CATPspFuncPhysIntegrator
+   Cmd 	= CATPspManageExceptionsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Show Attachment
+   Id 	= CATEqtAttachShowHdr
+   DLL 	= ArrIgpAttach
+   Cmd 	= CATArrShowAttachCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Disconnect parts...
+   Id 	= CATEqtDisconnectPartsHdr
+   DLL 	= CATCloManageCnx
+   Cmd 	= CATCloDisconnectMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Copy/Paste 3D Systems...
+   Id 	= CATEqtCopyPaste3DSysHdr
+   DLL 	= CATArrCCP3DSystems
+   Cmd 	= CATArrCopyPaste3DSysCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Insulation Management-Eqt
+   Id 	= CATEqtInsulationHdr
+   DLL 	= CATCloLooseParts
+   Cmd 	= CATCloInsulationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Snap
+   Id 	= CATEqtSnapResourcesHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapResourcesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rotate To Align
+   Id 	= CATEqtRotateSideHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrRotateSideCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Loose Parts Management
+   Id 	= CATEqtLoosePartHdr
+   DLL 	= CATCloLooseParts
+   Cmd 	= CATCloLoosePartsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Related Objects
+   Id 	= CATEqtRelatedObjectsHdr
+   DLL 	= CATPspObjectNavigator
+   Cmd 	= CATPspCurrentSelection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place Equipment...
+   Id 	= CATEqtCatalogBrowserHdr
+   DLL 	= CATEqtUI
+   Cmd 	= CATEqtPlaceDriver
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= CATEqtFixDeadPartBuilderHdr
+   Id 	= CATEqtFixDeadPartBuilderHdr
+   DLL 	= CATCloPartPlaceUI
+   Cmd 	= CATCloFixPartBuilderCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Params...
+   Id 	= CATEqtEditPartParamsHdr
+   DLL 	= CATCloOverrideParm
+   Cmd 	= CATCloManageParmCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Create segment to segment offset connection
+   Id 	= CATEqtOffsetSegmentHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrOffsetSegmentCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CATEqtNFPlacementHdr
+   Id 	= CATEqtNFPlacementHdr
+   DLL 	= CATCloPartPlaceUI
+   Cmd 	= CATCloNFPlaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Analyze Functional-Physical Integration Status
+   Id 	= CATEqtAnalyzeFuncPhysStatusHdr
+   DLL 	= CATPspFuncPhysIntegrator
+   Cmd 	= CATPspAnalyzeFuncPhysStatusCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=EqtMenu 
+   Title=Edit 	 Name=CATAfrEditMnu 
+      Separator Name=EqtEditSepar0
+      Starter Name=EqtDefinitionId
+      Starter Name=EqtResetColor
+      Separator Name=EqtEditSepar1
+      Title=Edit Connections 	 Name=EqtConnections 
+         Starter Name=EqtDisconnectPartsIcon
+         Starter Name=EqtConnectPartsIcon
+   Title=Insert Menu 	 Name=CATAfrInsertMnu 
+      Separator Name=EqtSepar0
+      Starter Name=EqtPlaceFromCatalogIcon
+      Starter Name=EqtBuildComponentIcon
+      Starter Name=EqtBuildConnectorIcon
+      Starter Name=EqtSpatialPlacementIcon
+   Title=TOOLS 	 Name=CATAfrToolsMnu 
+      Separator Name=EqtToolsSepar0
+      Title=Report  	 Name=EqtReportTools 
+         Starter Name=EqtReportDefIcon
+         Starter Name=EqtReportGenIcon
+         Starter Name=EqtReportExpIcon
+         Starter Name=EqtCatalogReportIcon
+      Title=Design Tools  	 Name=EqtDesignTools 
+         Starter Name=P3AlignToSideIcon
+         Starter Name=EqtAlignToPointIcon
+         Starter Name=EqtRotateSideIcon
+         Starter Name=EqtDistributeIcon
+         Starter Name=EqtAlignTwoPlanesIcon
+         Starter Name=EqtQuickTranslateIcon
+         Separator Name=CATSeparLink1
+         Starter Name=EqtSnapIcon
+         Starter Name=EqtSnap3PointsIcon
+         Starter Name=EqtSnapCenterPolygonIcon
+         Starter Name=EqtSnapSurfaceIcon
+         Starter Name=CATArrIgpAttachmentButton
+      Title=Environmental Tools 	 Name=EqtEnvironmentalTools 
+         Starter Name=EqtLocalAxisIcon
+         Starter Name=EqtLocalAxisCompassIcon
+         Starter Name=PreviousLocalAxisIcon
+         Separator Name=CATSeparLink2
+         Starter Name=EqtPlaneIcon
+         Starter Name=EqtAdvancePlaneIcon
+      Title=Queries  	 Name=EqtQueriesTools 
+         Starter Name=ExportQueriesStr
+         Starter Name=ImportQueriesStr
+      Title=Project Management 	 Name=EqtPRMTools 
+         Starter Name=EqtPrjMngtStr
+         Starter Name=EqtPRMCheckerStr
+      Starter Name=EqtBldNewRefStr
+      Starter Name=PspMangePubIcon
+      Starter Name=CATEqtMenuManageDocLinksStr
+   Title=Analyze  	 Name=CATANALYZE 
+      Starter Name=EqtAnalyzeNetworkMenu
+      Starter Name=CATXDocCnxMenu
+      Separator Name=EqtAnalyzeSepar0
+      Starter Name=EqtRelatedObjectsMenu
+      Starter Name=EqtMeasureBetweenIcon
+      Starter Name=EqtMeasureEdgeIcon
+      Starter Name=EqtMeasureInertiaIcon
+      Separator Name=EqtAnalyzeSepar1
+      Title=Functional-Physical Integration 	 Name=EqtFuncPhysIntegration 
+         Starter Name=EqtAnalyzeFuncPhysStatusMenu
+         Starter Name=EqtFuncPhysReportMenu
+         Starter Name=EqtManageExceptionMenu
+      Starter Name=EqtDesignValidation
+
+ Title of the toolbar=Select Assembly and is Name=EqtSelAsm
+   Starter Name=EqtSelectAssemblyIcon
+
+ Title of the toolbar=Build Create  and is Name=EqtSetup
+   Starter Name=EqtBuildComponentIcon
+   Starter Name=EqtBuildConnectorIcon
+   Starter Name=EqtModifySubTypeIcon
+
+ Title of the toolbar=Design Create and is Name=EqtParts
+   Starter Name=EqtPlaceFromCatalogIcon
+   Starter Name=EqtInsulationIcon
+   Starter Name=EqtLoosePartIcon
+
+ Title of the toolbar=Design Modify and is Name=EqtConnections
+   Starter Name=EqtEditPartParmsIcon
+   Starter Name=EqtMoveRotateIcon
+   Title of the Icon Box=EqtDisconnectTools 	 Name=EqtDisconnectTools 
+      Starter Name=EqtConnectPartsIcon
+      Starter Name=EqtDisconnectPartsIcon
+   Starter Name=EqtActivateRepIcon
+   Title of the Icon Box=EqtCCPTools 	 Name=EqtCCPTools 
+      Starter Name=CloTransferElementsIcon
+      Starter Name=CloCopyPasteElementsIcon
+   Title of the Icon Box=EqtCptMembership 	 Name=EqtCptMembership 
+      Starter Name=EqtUpdateCptMembershipIcon
+      Starter Name=EqtSelQueryCptIcon
+      Starter Name=EqtSetLockCptMembershipIcon
+
+ Title of the toolbar=General Design Tools and is Name=EqtDesignTools
+   Title of the Icon Box=Align 	 Name=EqtAlign 
+      Starter Name=P3AlignToSideIcon
+      Starter Name=EqtAlignToPointIcon
+      Starter Name=EqtRotateSideIcon
+      Starter Name=EqtDistributeIcon
+      Starter Name=EqtAlignTwoPlanesIcon
+      Starter Name=EqtQuickTranslateIcon
+   Title of the Icon Box=EqtSnap 	 Name=EqtSnap 
+      Starter Name=EqtSnapIcon
+      Starter Name=EqtSnap3PointsIcon
+      Starter Name=EqtSnapCenterPolygonIcon
+      Starter Name=EqtSnapSurfaceIcon
+      Starter Name=CATArrIgpAttachmentButton
+   Title of the Icon Box=ShowHide 	 Name=ShowHide 
+      Starter Name=ArrIgpAttachHideButton
+      Starter Name=ArrIgpAttachShowButton
+
+ Title of the toolbar=Update and is Name=EqtUpdateTools
+   Starter Name=EqtUpdateIcon
+
+ Title of the toolbar=General Environment and is Name=EqtGenEnvTools
+   Title of the Icon Box=EqtDetailInfo 	 Name=EqtDetailInfo 
+      Starter Name=EqtDetailInfoIcon
+      Starter Name=ArrQueryAutoPartsButton
+      Starter Name=EqtLocalAxisIcon
+      Starter Name=EqtAxisCompassIcon
+      Starter Name=PreviousLocalAxisIcon
+      Starter Name=EqtHideShowCntrVisuIcon
+      Starter Name=EqtConvertObjToDesignModeIcon
+   Title of the Icon Box=Define Plane 	 Name=EqtDefinePlane 
+      Starter Name=EqtPlaneIcon
+      Starter Name=EqtAdvancePlaneIcon
+   Title of the Icon Box=EqtToggle 	 Name=EqtToggle 
+      Starter Name=EqtManipulationIcon
+      Starter Name=EqtDimIcon
+   Starter Name=EqtSnapModeIcon
+   Starter Name=EqtGridStepIcon
+   Title of the Icon Box=EqtUIActive 	 Name=EqtUIActive 
+      Starter Name=EqtPlaceUnderUIActiveIcon
+      Starter Name=EqtActivateParentIcon
+      Starter Name=EqtActivateGridIcon
+   Title of the Icon Box=DMUDynClashIconBox 	 Name=DMUDynClashIconBox 
+      Starter Name=DynClashOff
+      Starter Name=DynClashOn
+      Starter Name=DynClashStop
+
+ Title of the toolbar=Measure and is Name=EqtMeasureTools
+   Starter Name=EqtMeasureBetweenIcon
+   Starter Name=EqtMeasureEdgeIcon
+   Starter Name=EqtMeasureInertiaIcon
+   Starter Name=EqtMeasurementIcon
+
+ Title of the toolbar=Rename and is Name=EqtRenameID
+   Starter Name=EqtRenameIDIcon
+   Starter Name=EqtCopyAttributesIcon
+
+ Title of the toolbar=Apply Material  and is Name=EqtApplyMaterial
+   Starter Name=EqtMaterialIcon

@@ -1,0 +1,36 @@
+Workshop Exposition of CATPstProductWkb 
+
+1- Header List 
+
+Title= 平移或旋转...
+   Id 	= PrdTranslationRotation
+   DLL 	= CATMuiMove
+   Cmd 	= CATMvCmdTransfo
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATPstPrsMenuMbr 
+   Title=分析 	 Name=CATANALYZE 
+      Starter Name=CATASMBOM
+
+ Title of the toolbar=产品结构 and is Name=CATPstProductStructureTlb
+   Starter Name=CATPstNavigationNewComponentStr
+   Starter Name=CATPstNavigationNewProductStr
+   Starter Name=CATPstNavigationNewPartStr
+   Starter Name=CATPstNavigationInsertExistingComponentStr
+   Starter Name=CATPstNavigationReplaceComponentStr
+   Starter Name=CATPstNavigationReorderStr
+   Starter Name=CATPstNavigationLoadComponentStr
+   Starter Name=CATPstNavigationUnloadComponentStr
+   Starter Name=CATNavigationGenerateNumbering
+   Starter Name=NavigationProductInit
+
+ Title of the toolbar=展示 and is Name=CATPstRepresentationTlb
+   Starter Name=CATPstNavigationManageRepresentationsStr
+   Starter Name=CATPstDesignStr
+   Starter Name=CATPstVisuStr
+   Starter Name=CATPstActStr
+   Starter Name=CATPstDesactStr

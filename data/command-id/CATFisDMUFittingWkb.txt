@@ -1,0 +1,127 @@
+Workshop Exposition of CATFisDMUFittingWkb 
+
+1- Header List 
+
+Title= 路径查找器
+   Id 	= CATFisPathFinderHdr
+   DLL 	= CATFittingSimulation
+   Cmd 	= CATSiFiPathFinderCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 生成追踪
+   Id 	= TrackEdge
+   DLL 	= CATFittingSimulation
+   Cmd 	= CATSiFiCreateTrackFromEdgeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 导入追踪文件
+   Id 	= CATFisTrackFileImportHdr
+   DLL 	= CATFittingSimulation
+   Cmd 	= CATSiFiXMLCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 光顺
+   Id 	= CATFisSmoothHdr
+   DLL 	= CATFittingSimulation
+   Cmd 	= CATSiFiSmoothCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 分解
+   Id 	= CATFisExplodeHdr
+   DLL 	= CATFitExplode
+   Cmd 	= CATSiFiExplodeCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 扫掠包络体
+   Id 	= CATFisSweptVolumeHdr
+   DLL 	= SpaceManagement
+   Cmd 	= CATDMOSweptVolumeCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 导出追踪文件
+   Id 	= CATFisTrackFileExportHdr
+   DLL 	= CATFittingSimulation
+   Cmd 	= CATSiFiXMLCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DynamicTarget
+   Id 	= DynamicTarget
+   DLL 	= CATDMUSnap
+   Cmd 	= CATDMUDynamicSnapCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATNavMenu 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=CATSeparLink1
+      Title=序列和工作指令 	 Name=DMUFitInsertNewSim 
+         Starter Name=ADDTRACK
+         Starter Name=ADDCOLOR
+         Starter Name=ADDVISIBILITY
+         Starter Name=ADDSEQUENCE
+      Starter Name=CATFisADDMOVEStr
+      Starter Name=CATADDEXPERIMENT
+      Starter Name=CATADDCLASH
+      Starter Name=CATADDDISTANCE
+      Starter Name=CATADDGROUP
+      Separator Name=CATSeparLink3
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=CATSeparPublish
+      Title=发布 	 Name=CATFisDMUFitPublishSnu 
+         Starter Name=CATToolsStartPublish
+         Starter Name=CATToolsStopPublish
+      Title=模拟 	 Name=DMUFitSimulation 
+         Starter Name=ToolsFITConvert
+         Starter Name=ToolsFITCompile
+         Starter Name=ToolsFITFilmCompile
+         Starter Name=ToolsFITReplay
+         Starter Name=ToolsFITPlay
+         Starter Name=CATFisFileExportStr
+         Starter Name=CATFisFileImportStr
+   Title=分析 	 Name=CATANALYZE 
+      Starter Name=CATMESSAGE
+      Starter Name=CATDMUNavigatorSelection
+   Title=窗口 	 Name=CATAfrWindowMnu 
+      Starter Name=CATFisGanttStr
+      Separator Name=CATSeparWindow1
+      Starter Name=CATFisWindowCameraSnu
+
+ Title of the toolbar=DMU 查看 and is Name=CATDMUViewingToolBar
+   Starter Name=CATDMUNavigatorLookAt
+   Starter Name=CATDMUNavigatorPreviewStep
+   Starter Name=CATDMUNavigatorNextStep
+   Starter Name=CATDMUNavigatorMagnifier
+   Starter Name=CATDMUNavigatorDepthEffect
+   Starter Name=CATDMUNavigatorGround
+   Starter Name=CATDMUNavigatorLighting
+
+ Title of the toolbar=DMU 测量 and is Name=CATDMUMeasureToolBar
+   Starter Name=CATDMUFittingMeasureBetween
+   Starter Name=CATDMUFittingMeasureItem
+
+ Title of the toolbar=DMU 模拟 and is Name=CATFisDMUFittingTlb
+   Starter Name=CATFisTrackStr
+   Starter Name=CATTrackEdge
+   Title of the Icon Box=其他工作指令 	 Name=CATFisActionCnt 
+      Starter Name=CATFisColor2Str
+      Starter Name=CATFisVisibility2Str
+   Starter Name=CATFisSequenceStr
+   Starter Name=CATFisNewExperimentStr
+   Starter Name=CATFisPlayerStr
+   Starter Name=CATFisSweptVolumeStr
+   Starter Name=CATFisExplodeStr
+   Starter Name=Navigation4DMove
+   Starter Name=CATFisResetStr
+
+ Title of the toolbar=DMU 检查 and is Name=CATFisDMUCheckForFittingTlb
+   Starter Name=CATFisPathFinderStr
+   Starter Name=CATFisSmoothStr
+   Starter Name=CATNavigation4DClash
+   Starter Name=CATNavigation4DMeasure
+   Starter Name=DMUClashMode

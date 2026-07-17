@@ -1,0 +1,1331 @@
+Workshop Exposition of CATCewCloudEditorWorkbenchWkb 
+
+1- Header List 
+
+Title= Cloud Primitives...
+   Id 	= CATCewCloudPrimCreateHeadHdr
+   DLL 	= CATCldUIPrimitives
+   Cmd 	= CATCloudPrimitivesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Cloud Primitives...
+   Id 	= CATCewCloudPrimCreateHeadHdr
+   DLL 	= CATCldUIPrimitives
+   Cmd 	= CATCloudPrimitivesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flip Edge...
+   Id 	= CATCldUIMeshEditFlipEdgeHdr
+   DLL 	= CATCldUIMeshEdition
+   Cmd 	= CATCldMeshEditFlipEdgeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flip Edge...
+   Id 	= CATCldUIMeshEditFlipEdgeHdr
+   DLL 	= CATCldUIMeshEdition
+   Cmd 	= CATCldMeshEditFlipEdgeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 更改视图支持面...
+   Id 	= TPSSetViewAssociativity
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSViewAssocCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Affinity...
+   Id 	= CATCldAffinityHdr
+   DLL 	= CATGuiAffinity
+   Cmd 	= CATGSMUIAffinity
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Affinity...
+   Id 	= CATCldAffinityHdr
+   DLL 	= CATGuiAffinity
+   Cmd 	= CATGSMUIAffinity
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Curve on Mesh...
+   Id 	= CATCldUICurveHdr
+   DLL 	= CATCldUICurve
+   Cmd 	= CATCldUICurveCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Curve on Mesh...
+   Id 	= CATCldUICurveHdr
+   DLL 	= CATCldUICurve
+   Cmd 	= CATCldUICurveCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 偏移
+   Id 	= CATDrwDimCheckOffsetHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 强制在视图中水平标注尺寸
+   Id 	= CATDrwDimCheckHorizHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 4
+   Id 	= CATDrwDimCheckSector4Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 1
+   Id 	= CATDrwDimCheckSector1Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 2
+   Id 	= CATDrwDimCheckSector2Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 3
+   Id 	= CATDrwDimCheckSector3Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 全部隐藏
+   Id 	= CATFTAHideAllAnnotHdr
+   DLL 	= CATTPSBrowserUI
+   Cmd 	= CATDfuHideShowAllAnnotationsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Align with RPS...
+   Id 	= CATCldRepositRPSHdr
+   DLL 	= CATCldUIReposit
+   Cmd 	= CATCldUIRepositCtrRPSCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align with RPS...
+   Id 	= CATCldRepositRPSHdr
+   DLL 	= CATCldUIReposit
+   Cmd 	= CATCldUIRepositCtrRPSCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 带引出线的文本
+   Id 	= TPSCreateText
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Align using Spheres...
+   Id 	= CATCldRepositSphereHdr
+   DLL 	= CATCldUIReposit
+   Cmd 	= CATCldUIRepositSphereCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align using Spheres...
+   Id 	= CATCldRepositSphereHdr
+   DLL 	= CATCldUIReposit
+   Cmd 	= CATCldUIRepositSphereCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 剖视图/标注平面
+   Id 	= TPSCreateSectionView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 强制在视图中垂直标注尺寸
+   Id 	= CATDrwDimCheckVertHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mesh Offset...
+   Id 	= CATCewCloudOffsetPolygonHeadHdr
+   DLL 	= CATCldUIOffsetPolygon
+   Cmd 	= CATCloudOffsetCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mesh Offset...
+   Id 	= CATCewCloudOffsetPolygonHeadHdr
+   DLL 	= CATCldUIOffsetPolygon
+   Cmd 	= CATCloudOffsetCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 查询对象链接...
+   Id 	= TPSTextQryLink
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextQryLink
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Mesh Smoothing...
+   Id 	= CloudSmoothingHead
+   DLL 	= CATCldUISmoothing
+   Cmd 	= CATCldSmoothingCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mesh Smoothing...
+   Id 	= CloudSmoothingHead
+   DLL 	= CATCldUISmoothing
+   Cmd 	= CATCldSmoothingCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align by Best Fit...
+   Id 	= CATCldRepositBestFitHdr
+   DLL 	= CATCldUIReposit
+   Cmd 	= CATCldUIRepositBestFitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align by Best Fit...
+   Id 	= CATCldRepositBestFitHdr
+   DLL 	= CATCldUIReposit
+   Cmd 	= CATCldUIRepositBestFitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Scaling...
+   Id 	= CATCldScalingHdr
+   DLL 	= CATGuiScaling
+   Cmd 	= CATGSMUIScaling
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Scaling...
+   Id 	= CATCldScalingHdr
+   DLL 	= CATGuiScaling
+   Cmd 	= CATGSMUIScaling
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flip Edges...
+   Id 	= CloudReshaperHead
+   DLL 	= CATCldUIReshaper
+   Cmd 	= CATCldReshaperCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flip Edges...
+   Id 	= CloudReshaperHead
+   DLL 	= CATCldUIReshaper
+   Cmd 	= CATCldReshaperCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 添加位置...
+   Id 	= PrtPositionImportCom
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtPositionImportCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 添加位置...
+   Id 	= PrtPositionImportCom
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtPositionImportCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Projection on Plane...
+   Id 	= CATCldProjMeshOnPlaneHdr
+   DLL 	= CATCldUIProjMeshOnPlane
+   Cmd 	= CATCldProjMeshOnPlaneCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Projection on Plane...
+   Id 	= CATCldProjMeshOnPlaneHdr
+   DLL 	= CATCldUIProjMeshOnPlane
+   Cmd 	= CATCldProjMeshOnPlaneCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Line...
+   Id 	= CATCldGSDLineHdr
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Line...
+   Id 	= CATCldGSDLineHdr
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= View Modification
+   Id 	= CATCldFocalAdjusmentHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATFsCmdViewAngleManip
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= View Modification
+   Id 	= CATCldFocalAdjusmentHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATFsCmdViewAngleManip
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Merge Meshes...
+   Id 	= CATCewCloudMeshMergeHeadHdr
+   DLL 	= CATCldUIMeshMerge
+   Cmd 	= CATCloudMeshMergeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Merge Meshes...
+   Id 	= CATCewCloudMeshMergeHeadHdr
+   DLL 	= CATCldUIMeshMerge
+   Cmd 	= CATCloudMeshMergeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Disassemble Data
+   Id 	= CATCldDisassembleHead
+   DLL 	= CATCldUIExtract
+   Cmd 	= CATCldDisassembleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Disassemble Data
+   Id 	= CATCldDisassembleHead
+   DLL 	= CATCldUIExtract
+   Cmd 	= CATCldDisassembleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Trim/Split...
+   Id 	= CATCldTrimSplitHdr
+   DLL 	= CATStylingUI
+   Cmd 	= CATStySplitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Trim/Split...
+   Id 	= CATCldTrimSplitHdr
+   DLL 	= CATStylingUI
+   Cmd 	= CATStySplitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 添加引出线
+   Id 	= TPSAddLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATDfcAddLeaderCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Add Point...
+   Id 	= CATCldUIMeshEditAddPtHdr
+   DLL 	= CATCldUIMeshEdition
+   Cmd 	= CATCldMeshEditAddPtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add Point...
+   Id 	= CATCldUIMeshEditAddPtHdr
+   DLL 	= CATCldUIMeshEdition
+   Cmd 	= CATCldMeshEditAddPtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Point...
+   Id 	= CATCldGSDPointHdr
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Point...
+   Id 	= CATCldGSDPointHdr
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Activate...
+   Id 	= CATCewCloudActivateHeadHdr
+   DLL 	= CATCldUISelect
+   Cmd 	= CATCloudActivateCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Activate...
+   Id 	= CATCewCloudActivateHeadHdr
+   DLL 	= CATCldUISelect
+   Cmd 	= CATCloudActivateCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 几何图形连接管理
+   Id 	= TPSConnectionMgtCmd
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSConnectionMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Curve Projection...
+   Id 	= CATCewCloudProjectCurveHeadHdr
+   DLL 	= CATCldUIProjCrvOnCld
+   Cmd 	= CATCloudProjCurveCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Curve Projection...
+   Id 	= CATCewCloudProjectCurveHeadHdr
+   DLL 	= CATCldUIProjCrvOnCld
+   Cmd 	= CATCloudProjCurveCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= XYZ Automatic Planar Sections...
+   Id 	= CloudXYZPlanarSectionsHead
+   DLL 	= CATCldUIXYZPlanarSections
+   Cmd 	= CATCldXYZPlanarSectionsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= XYZ Automatic Planar Sections...
+   Id 	= CloudXYZPlanarSectionsHead
+   DLL 	= CATCldUIXYZPlanarSections
+   Cmd 	= CATCldXYZPlanarSectionsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 全选
+   Id 	= TPSSelectViewAnnot
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdSelectViewAnnot
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Move Point...
+   Id 	= CATCldUIMeshEditMovePtHdr
+   DLL 	= CATCldUIMeshEdition
+   Cmd 	= CATCldMeshEditMovePtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Move Point...
+   Id 	= CATCldUIMeshEditMovePtHdr
+   DLL 	= CATCldUIMeshEdition
+   Cmd 	= CATCldMeshEditMovePtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= View Selection
+   Id 	= CATCldViewSelectorHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATCafCmdViewSelector
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= View Selection
+   Id 	= CATCldViewSelectorHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATCafCmdViewSelector
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Scan on Cloud...
+   Id 	= CATCewCloudScanCreateHeadHdr
+   DLL 	= CATCldUIScanOnCloud
+   Cmd 	= CATCloudScanOnCloudCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Scan on Cloud...
+   Id 	= CATCewCloudScanCreateHeadHdr
+   DLL 	= CATCldUIScanOnCloud
+   Cmd 	= CATCloudScanOnCloudCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Optimize...
+   Id 	= CATCldMeshOptimizeHdr
+   DLL 	= CATStylingUI
+   Cmd 	= CATStyOptimizeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Optimize...
+   Id 	= CATCldMeshOptimizeHdr
+   DLL 	= CATStylingUI
+   Cmd 	= CATStyOptimizeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Import...
+   Id 	= CATCewCloudImportHeadHdr
+   DLL 	= CATCldUIImport
+   Cmd 	= CATCloudImportCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import...
+   Id 	= CATCewCloudImportHeadHdr
+   DLL 	= CATCldUIImport
+   Cmd 	= CATCloudImportCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Symmetry...
+   Id 	= CATCldSymmetryHdr
+   DLL 	= CATGuiSymmetry
+   Cmd 	= CATGSMUISymmetry
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Symmetry...
+   Id 	= CATCldSymmetryHdr
+   DLL 	= CATGuiSymmetry
+   Cmd 	= CATGSMUISymmetry
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 激活视图
+   Id 	= TPSActivateView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdActivateView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 截面分割/标注平面
+   Id 	= TPSCreateSectionCut
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 自动
+   Id 	= TPSAddAutoGroup
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdAddAutoGroupTPS
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 实长尺寸
+   Id 	= CATDrwDimCheckTrueDimHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除结果特征
+   Id 	= CATTPSDeleteResultFeatureHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdDeleteResultFeature
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 诊断报告
+   Id 	= TPSDiagnostic
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdDiagnosticReport
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Planar Sections...
+   Id 	= CATCewCloudPlanarSectionHeadHdr
+   DLL 	= CATCldUIPlanarSection
+   Cmd 	= CATCldPlanarSectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Planar Sections...
+   Id 	= CATCewCloudPlanarSectionHeadHdr
+   DLL 	= CATCldUIPlanarSection
+   Cmd 	= CATCldPlanarSectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除位置链接
+   Id 	= TPSPosLinkDelete
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdPosLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建中断
+   Id 	= CATDrwInterruptDimAddHdr
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 打开/关闭标注集
+   Id 	= CATTPSSetVisuHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdTPSSetVisu
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rotate...
+   Id 	= CATCldRotateHdr
+   DLL 	= CATGuiRotate
+   Cmd 	= CATGSMUIRotate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rotate...
+   Id 	= CATCldRotateHdr
+   DLL 	= CATGuiRotate
+   Cmd 	= CATGSMUIRotate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Export...
+   Id 	= CATCewCloudExportHeadHdr
+   DLL 	= CATCldUIExport
+   Cmd 	= CATCldExportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Export...
+   Id 	= CATCewCloudExportHeadHdr
+   DLL 	= CATCldUIExport
+   Cmd 	= CATCldExportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 编辑标识注解标注
+   Id 	= TPSEditFlagNotelabel
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdEditFlagNotelabel
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 手动
+   Id 	= TPSAddManuGroup
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdAddManuGroupTPS
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 带引出线的标识注解
+   Id 	= TPSCreateFlagNote
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdFlagNoteCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Cloud / Points...
+   Id 	= CATCldCloudPointsHdr
+   DLL 	= CATCldUICloudPoints
+   Cmd 	= CATCldCloudPointsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Cloud / Points...
+   Id 	= CATCldCloudPointsHdr
+   DLL 	= CATCldUICloudPoints
+   Cmd 	= CATCldCloudPointsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 编辑创成式参数...
+   Id 	= TPSEditMfParameters
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSEditMfParametersCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Information...
+   Id 	= CATCldInformationsHdr
+   DLL 	= CATCldUIInformations
+   Cmd 	= CATCldInformationsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Information...
+   Id 	= CATCldInformationsHdr
+   DLL 	= CATCldUIInformations
+   Cmd 	= CATCldInformationsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mesh Creation...
+   Id 	= CATCewCloudPolygonizationHeadHdr
+   DLL 	= CATCldUIPolygonize
+   Cmd 	= CATStCmdCloudPolygonize
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mesh Creation...
+   Id 	= CATCewCloudPolygonizationHeadHdr
+   DLL 	= CATCldUIPolygonize
+   Cmd 	= CATStCmdCloudPolygonize
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建位置链接
+   Id 	= TPSPosLinkCreate
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdPosLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 转移至视图/标注平面
+   Id 	= TPSTransferToView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTransferToView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Filter...
+   Id 	= CATCewCloudFilterHeadHdr
+   DLL 	= CATCldUIFilter
+   Cmd 	= CATCloudFilterCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Filter...
+   Id 	= CATCewCloudFilterHeadHdr
+   DLL 	= CATCldUIFilter
+   Cmd 	= CATCloudFilterCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 线性
+   Id 	= CATDrwDimCheckLinearHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建方向链接
+   Id 	= TPSOriLinkCreate
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdOriLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 文本
+   Id 	= TPSCreateTextWithoutLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Translate...
+   Id 	= CATCldTranslateHdr
+   DLL 	= CATGuiTranslate
+   Cmd 	= CATGSMUITranslate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Translate...
+   Id 	= CATCldTranslateHdr
+   DLL 	= CATGuiTranslate
+   Cmd 	= CATGSMUITranslate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Decimate...
+   Id 	= CATCldDecimationHdr
+   DLL 	= CATStylingUI
+   Cmd 	= CATStyDecimateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Decimate...
+   Id 	= CATCldDecimationHdr
+   DLL 	= CATStylingUI
+   Cmd 	= CATStyDecimateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 打开/关闭 3D 标注查询
+   Id 	= TPSCSOCommand
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Collapse Element...
+   Id 	= CATCldUIMeshEditCollapseHdr
+   DLL 	= CATCldUIMeshEdition
+   Cmd 	= CATCldMeshEditCollapseCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Collapse Element...
+   Id 	= CATCldUIMeshEditCollapseHdr
+   DLL 	= CATCldUIMeshEdition
+   Cmd 	= CATCldMeshEditCollapseCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移剖视图/截面分割
+   Id 	= CATTPSCreateExtrOffsetViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateExtractionView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 等轴测视图
+   Id 	= CATTPSCreateAxonometricViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Interactive Triangle Creation...
+   Id 	= CATCldManualMeshHdr
+   DLL 	= CATCldUIManualMesh
+   Cmd 	= CATCldManualMeshCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Interactive Triangle Creation...
+   Id 	= CATCldManualMeshHdr
+   DLL 	= CATCldUIManualMesh
+   Cmd 	= CATCldManualMeshCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Circle...
+   Id 	= CATCldGSDCircleHdr
+   DLL 	= CATGuiCircle
+   Cmd 	= CATGSMUICircle
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Circle...
+   Id 	= CATCldGSDCircleHdr
+   DLL 	= CATGuiCircle
+   Cmd 	= CATGSMUICircle
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 焊接特征
+   Id 	= CATTPSCreateWeldHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Protect...
+   Id 	= CloudProtectHead
+   DLL 	= CATCldUIProtect
+   Cmd 	= CATCldProtectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Protect...
+   Id 	= CloudProtectHead
+   DLL 	= CATCldUIProtect
+   Cmd 	= CATCldProtectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align with Previous Transformation...
+   Id 	= CATCldRepositTrsfHdr
+   DLL 	= CATCldUIReposit
+   Cmd 	= CATCldUIRepositTrsfCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align with Previous Transformation...
+   Id 	= CATCldRepositTrsfHdr
+   DLL 	= CATCldUIReposit
+   Cmd 	= CATCldUIRepositTrsfCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Free Edges...
+   Id 	= CATCewCloudFreeEdgesHeadHdr
+   DLL 	= CATCldUIFreeEdges
+   Cmd 	= CATCldFreeEdgesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Free Edges...
+   Id 	= CATCewCloudFreeEdgesHeadHdr
+   DLL 	= CATCldUIFreeEdges
+   Cmd 	= CATCldFreeEdgesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对齐剖视图/截面分割
+   Id 	= CATTPSCreateExtrAlignedViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateExtractionView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除截取平面
+   Id 	= TPSRemoveClipPlane
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdRemoveClipPlane
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 参考角度视图
+   Id 	= CATFTAViewCreationHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSProjectionViewCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Mesh Cleaner...
+   Id 	= CATCldMeshCleanerHdr
+   DLL 	= CATCldUIMeshCleaner
+   Cmd 	= CATCldMeshCleanerCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mesh Cleaner...
+   Id 	= CATCldMeshCleanerHdr
+   DLL 	= CATCldUIMeshCleaner
+   Cmd 	= CATCldMeshCleanerCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 标识注解
+   Id 	= TPSCreateFlagNoteWithoutLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdFlagNoteCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 显示捕获
+   Id 	= CATTPSDisplayCaptureHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdCaptureDisplay
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 升级
+   Id 	= TPSUpgradeSet
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdUpgradeSet
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Scan Edition...
+   Id 	= CATCldUIScanEditionHdr
+   DLL 	= CATCldUIScanEdition
+   Cmd 	= CATCldScanEditionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Scan Edition...
+   Id 	= CATCldUIScanEditionHdr
+   DLL 	= CATCldUIScanEdition
+   Cmd 	= CATCldScanEditionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 几何体规范查询和重新定义
+   Id 	= TPSCanonicityRespecificationCmd
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdCanonicityRespec
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Curve from Scan...
+   Id 	= CATCewCloudScanToCurveHeadHdr
+   DLL 	= CATCldUIScanToCurve
+   Cmd 	= CATCloudScanToCurveCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Curve from Scan...
+   Id 	= CATCewCloudScanToCurveHeadHdr
+   DLL 	= CATCldUIScanToCurve
+   Cmd 	= CATCloudScanToCurveCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 3D Curve...
+   Id 	= CATCldCurveOnGeometryHdr
+   DLL 	= CATFsu3DCurve
+   Cmd 	= CATStCmd3DCurve
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 3D Curve...
+   Id 	= CATCldCurveOnGeometryHdr
+   DLL 	= CATFsu3DCurve
+   Cmd 	= CATStCmd3DCurve
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Merge Clouds...
+   Id 	= CATCewCloudUnionHeadHdr
+   DLL 	= CATCldUIUnion
+   Cmd 	= CATCloudUnionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Merge Clouds...
+   Id 	= CATCewCloudUnionHeadHdr
+   DLL 	= CATCldUIUnion
+   Cmd 	= CATCloudUnionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除中断
+   Id 	= CATDrwInterruptDimRemHdr
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除方向链接
+   Id 	= TPSOriLinkDelete
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdOriLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 选择视图/标注平面
+   Id 	= CATTPSSelectViews
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdSelectViews
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Deviation Analysis...
+   Id 	= CATCldDistAnalysisHdr
+   DLL 	= CATCldUIDistAnalysis
+   Cmd 	= CATCldDistAnalysisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Deviation Analysis...
+   Id 	= CATCldDistAnalysisHdr
+   DLL 	= CATCldUIDistAnalysis
+   Cmd 	= CATCldDistAnalysisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Axis To Axis...
+   Id 	= CATCldAxisToAxisHdr
+   DLL 	= CATGuiAxisToAxis
+   Cmd 	= CATGSMUIAxisToAxis
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Axis To Axis...
+   Id 	= CATCldAxisToAxisHdr
+   DLL 	= CATGuiAxisToAxis
+   Cmd 	= CATGSMUIAxisToAxis
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 反转法线
+   Id 	= TPSInvertNormal
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdInvertNormal
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 平行于屏幕的文本
+   Id 	= TPSCreateTextParallelOnScreen
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 转换为直径
+   Id 	= CATDrwDimSwapToDiaHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Plane...
+   Id 	= CATCldGSDPlaneHdr
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Plane...
+   Id 	= CATCldGSDPlaneHdr
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 隔离文本
+   Id 	= TPSTextIsolAttrLink
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextIsolAttrLinkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Remove...
+   Id 	= CATCewCloudRemoveHeadHdr
+   DLL 	= CATCldUISelect
+   Cmd 	= CATCloudRemoveCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Remove...
+   Id 	= CATCewCloudRemoveHeadHdr
+   DLL 	= CATCldUISelect
+   Cmd 	= CATCloudRemoveCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Discretize Curves...
+   Id 	= CATCldUIDiscrCurveHdr
+   DLL 	= CATCldUIDiscrCurve
+   Cmd 	= CATCldDiscrCurveCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Discretize Curves...
+   Id 	= CATCldUIDiscrCurveHdr
+   DLL 	= CATCldUIDiscrCurve
+   Cmd 	= CATCldDiscrCurveCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 全部显示
+   Id 	= CATFTAShowAllAnnotHdr
+   DLL 	= CATTPSBrowserUI
+   Cmd 	= CATDfuHideShowAllAnnotationsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平行
+   Id 	= CATDrwDimCheckParallelHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rough Offset...
+   Id 	= CATCldFuzzyOffsetHdr
+   DLL 	= CATStylingUI
+   Cmd 	= CATStyFuzzyOffsetCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rough Offset...
+   Id 	= CATCldFuzzyOffsetHdr
+   DLL 	= CATStylingUI
+   Cmd 	= CATStyFuzzyOffsetCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示视图
+   Id 	= CATFTADisplayViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATDfcDisplayViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Split...
+   Id 	= CATCewCloudSplitHeadHdr
+   DLL 	= CATCldUISplit
+   Cmd 	= CATCloudSplitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Split...
+   Id 	= CATCewCloudSplitHeadHdr
+   DLL 	= CATCldUISplit
+   Cmd 	= CATCloudSplitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 补充
+   Id 	= CATDrwDimCheckComplementaryHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align with Constraints...
+   Id 	= CATCldRepositCtrHdr
+   DLL 	= CATCldUIReposit
+   Cmd 	= CATCldUIRepositCtrCtrCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align with Constraints...
+   Id 	= CATCldRepositCtrHdr
+   DLL 	= CATCldUIReposit
+   Cmd 	= CATCldUIRepositCtrCtrCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 正视图
+   Id 	= TPSCreateFrontView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Fill Holes...
+   Id 	= CATCewCloudStopGapHeadHdr
+   DLL 	= CATCldUIStopGap
+   Cmd 	= CATCloudStopGapCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Fill Holes...
+   Id 	= CATCewCloudStopGapHeadHdr
+   DLL 	= CATCldUIStopGap
+   Cmd 	= CATCloudStopGapCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 重新排序
+   Id 	= TPSReorderObjects
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcReorderObjectCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转换为半径
+   Id 	= CATDrwDimSwapToRadHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Remove Element...
+   Id 	= CATCldUIMeshEditRemoveHdr
+   DLL 	= CATCldUIMeshEdition
+   Cmd 	= CATCldMeshEditRemoveCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Remove Element...
+   Id 	= CATCldUIMeshEditRemoveHdr
+   DLL 	= CATCldUIMeshEdition
+   Cmd 	= CATCldMeshEditRemoveCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align using the Compass...
+   Id 	= CATCldRepositCompassHdr
+   DLL 	= CATCldUIReposit
+   Cmd 	= CATCldUIRepositCompassCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align using the Compass...
+   Id 	= CATCldRepositCompassHdr
+   DLL 	= CATCldUIReposit
+   Cmd 	= CATCldUIRepositCompassCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 显示视图
+   Id 	= CATTPSDisplayLightViewHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdLightViewDisplay
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Clipping Plane
+   Id 	= TPSClippingPlane
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Extract Data
+   Id 	= CATCldExtractHead
+   DLL 	= CATCldUIExtract
+   Cmd 	= CATCldExtractCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Extract Data
+   Id 	= CATCldExtractHead
+   DLL 	= CATCldUIExtract
+   Cmd 	= CATCldExtractCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 强制标注元素尺寸
+   Id 	= CATDrwDimCheckAutoHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATCewCloudEditorMenuMbr 
+   Title=编辑 	 Name=CATAfrEditMnu 
+   Title=视图 	 Name=CATAfrView 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=CATBody
+      Starter Name=InsertGS
+      Starter Name=InsertOGS
+      Separator Name=SprInsert1Separator
+      Starter Name=CATCldLocalAxisStr
+      Separator Name=SprInsert2Separator
+      Starter Name=CATCloudImport
+      Starter Name=CATCloudExport
+      Separator Name=SprInsert3Separator
+      Title=Cloud Edition 	 Name=CATCewCloudEditionMnuSnu 
+         Starter Name=CATCloudActivate
+         Starter Name=CATCloudFilter
+         Starter Name=CATCloudRemove
+         Starter Name=CloudProtect
+      Title=Cloud Reposit 	 Name=CATCldRepositSnu 
+         Starter Name=CATCldRepositCompassStr
+         Starter Name=CATCldRepositBestFitStr
+         Starter Name=CATCtrRepositCtrStr
+         Starter Name=CATCldRepositRPSStr
+         Starter Name=CATCldRepositSphereStr
+         Starter Name=CATCldRepositTrsfStr
+      Title=Mesh 	 Name=CATCewCloudPolygonalizationMnuSnu 
+         Starter Name=CATCloudPolygonization
+         Starter Name=CATCloudOffsetPolygon
+         Starter Name=CATCldFuzzyOffsetStr
+         Starter Name=CloudReshaper
+         Starter Name=CloudSmoothing
+         Starter Name=CATCldMeshCleanerStr
+         Starter Name=CATCloudStopGap
+         Starter Name=CATCldManualMeshStr
+         Starter Name=CATCldDecimationStr
+         Starter Name=CATCldMeshOptimizeStr
+      Title=Operations 	 Name=CATCewCloudOperationMnuSnu 
+         Starter Name=CATCloudUnion
+         Starter Name=CATCloudMeshMerge
+         Starter Name=CATCldExtractStr
+         Starter Name=CATCldDisassembleStr
+         Starter Name=CATCloudSplit
+         Starter Name=CATCldTrimSplitStr
+         Starter Name=CATCldProjMeshOnPlaneStr
+         Starter Name=CATCldCloudPointsStr
+      Title=Scan Creation 	 Name=CATCewCloudScanMnuSnu 
+         Starter Name=CATCloudProjectCurve
+         Starter Name=CATCloudPlanarSection
+         Starter Name=CloudXYZPlanarSections
+         Starter Name=CATCloudScanOnCloud
+         Starter Name=CATCloudFreeEdges
+         Starter Name=CATCldUIDiscrCurveStr
+         Starter Name=CATCldUIScanEditionStr
+      Title=Mesh Edition 	 Name=CloudMeshEditMnu 
+         Starter Name=CATCldUIMeshEditAddPtStr
+         Starter Name=CATCldUIMeshEditMovePtStr
+         Starter Name=CATCldUIMeshEditRemoveStr
+         Starter Name=CATCldUIMeshEditCollapseStr
+         Starter Name=CATCldUIMeshEditFlipEdgeStr
+      Title=Curve Creation 	 Name=CATCewCloudCurveMnuSnu 
+         Starter Name=CATCldCurveOnGeometryStr
+         Starter Name=CATCldUICurveStr
+         Starter Name=CATCloudScanToCurve
+      Title=Analysis 	 Name=CATCewCloudAnalysisMnuSnu 
+         Starter Name=CATCldInformationsStr
+         Starter Name=CATCldDistAnalysisStr
+      Title=Transformations 	 Name=CATCldTransformationsSnu 
+         Starter Name=CATCldTranslateStr
+         Starter Name=CATCldRotateStr
+         Starter Name=CATCldSymmetryStr
+         Starter Name=CATCldScalingStr
+         Starter Name=CATCldAffinityStr
+         Starter Name=CATCldAxisToAxisStr
+      Title=WireFrame 	 Name=CATCldWireFrameSnu 
+         Starter Name=CATCldGSDPointStr
+         Starter Name=CATCldGSDLineStr
+         Starter Name=CATCldGSDPlaneStr
+         Starter Name=CATCldGSDCircleStr
+   Title=工具 	 Name=CATAfrToolsMnu 
+   Title=窗口 	 Name=CATAfrWindowMnu 
+
+ Title of the toolbar=Tools and is Name=CATCldToolsTlb
+   Starter Name=CATUpdate
+   Starter Name=CATGraph
+   Starter Name=CATDatumMode
+   Starter Name=CATCurrentTool
+
+ Title of the toolbar=Selection and is Name=CATCldSelectTlb
+   Starter Name=CATCewCloudSelectStr
+
+ Title of the toolbar=Cloud Import and is Name=CATCewCloudImportBarTlb
+   Starter Name=CATCloudImport
+   Starter Name=CATCloudExport
+
+ Title of the toolbar=Cloud Edition and is Name=CATCewCloudEditionBarTlb
+   Starter Name=CATCloudActivate
+   Starter Name=CATCloudFilter
+   Starter Name=CATCloudRemove
+   Starter Name=CloudProtect
+
+ Title of the toolbar=Cloud Reposit and is Name=CATCldRepositTlb
+   Title of the Icon Box=Cloud Reposit 	 Name=CATCldRepositCnt 
+      Starter Name=CATCldRepositCompassStr
+      Starter Name=CATCldRepositBestFitStr
+      Starter Name=CATCldRepositCtrStr
+      Starter Name=CATCldRepositRPSStr
+      Starter Name=CATCldRepositSphereStr
+      Starter Name=CATCldRepositTrsfStr
+
+ Title of the toolbar=Mesh and is Name=CATCewCloudPolygonizationBarTlb
+   Starter Name=CATCloudPolygonization
+   Starter Name=CATCloudOffsetPolygon
+   Starter Name=CATCldFuzzyOffsetStr
+   Starter Name=CloudReshaper
+   Starter Name=CloudSmoothing
+   Starter Name=CATCldMeshCleanerStr
+   Starter Name=CATCloudStopGap
+   Starter Name=CATCldManualMeshStr
+   Starter Name=CATCldDecimationStr
+   Starter Name=CATCldMeshOptimizeStr
+
+ Title of the toolbar=Cloud Operations and is Name=CATCewCloudOperationBarTlb
+   Starter Name=CATCloudUnion
+   Starter Name=CATCloudMeshMerge
+   Starter Name=CATCldExtractStr
+   Starter Name=CATCldDisassembleStr
+   Starter Name=CATCloudSplit
+   Starter Name=CATCldTrimSplitStr
+   Starter Name=CATCldProjMeshOnPlaneStr
+   Starter Name=CATCldCloudPointsStr
+
+ Title of the toolbar=Scan Creation and is Name=CATCewCloudScanBarTlb
+   Starter Name=CATCloudProjectCurve
+   Title of the Icon Box=CATCldPlanarSectionCnt 	 Name=CATCldPlanarSectionCnt 
+      Starter Name=CATCloudPlanarSection
+      Starter Name=CloudXYZPlanarSections
+   Starter Name=CATCloudScanOnCloud
+   Starter Name=CATCloudFreeEdges
+   Starter Name=CATCldUIDiscrCurveStr
+   Starter Name=CATCldUIScanEditionStr
+
+ Title of the toolbar=Mesh Edition and is Name=CloudMeshEditBar
+   Starter Name=CATCldUIMeshEditAddPtStr
+   Starter Name=CATCldUIMeshEditMovePtStr
+   Starter Name=CATCldUIMeshEditRemoveStr
+   Starter Name=CATCldUIMeshEditCollapseStr
+   Starter Name=CATCldUIMeshEditFlipEdgeStr
+
+ Title of the toolbar=Curve Creation and is Name=CATCewCloudCurveBarTlb
+   Starter Name=CATCldCurveOnGeometryStr
+   Starter Name=CATCldUICurveStr
+   Starter Name=CATCloudScanToCurve
+
+ Title of the toolbar=Cloud Analysis and is Name=CATCewCloudAnalysisBarTlb
+   Starter Name=CATCldInformationsStr
+   Starter Name=CATCldDistAnalysisStr
+
+ Title of the toolbar=Cloud Transformations and is Name=CATCldTransformationsTlb
+   Title of the Icon Box=Cloud Transformations 	 Name=CATCldTransformationsCnt 
+      Starter Name=CATCldTranslateStr
+      Starter Name=CATCldRotateStr
+      Starter Name=CATCldSymmetryStr
+      Starter Name=CATCldScalingStr
+      Starter Name=CATCldAffinityStr
+      Starter Name=CATCldAxisToAxisStr
+
+ Title of the toolbar=WireFrame and is Name=CATCldWireFrameTlb
+   Starter Name=CATCldGSDPointStr
+   Starter Name=CATCldGSDLineStr
+   Starter Name=CATCldGSDPlaneStr
+   Starter Name=CATCldGSDCircleStr
+
+ Title of the toolbar=View Management and is Name=CATCldViewManagementTlb
+   Starter Name=CATCldViewSelectorStr
+   Starter Name=CATCldFocalAdjusmentStr
+
+ Title of the toolbar=Cloud Primitives and is Name=CATCewCloudPrimitiveBarTlb
+   Starter Name=CATCewCloudPrimCreateStr

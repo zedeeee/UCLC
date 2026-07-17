@@ -1,0 +1,410 @@
+Workshop Exposition of CATHASCfg 
+
+1- Header List 
+
+Title= Disassemble...
+   Id 	= HASDisassemble
+   DLL 	= CATFsuDisassemble
+   Cmd 	= CATStCmdDisassemble
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Extract...
+   Id 	= HASExtractSolide
+   DLL 	= CATGuiExtractSolide
+   Cmd 	= CATGuiExtractSolide
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Remove Boundary Options...
+   Id 	= HASGeoBoundaryUndo
+   DLL 	= CATHealingAssistantUI
+   Cmd 	= CATHASGeoBoundaryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Fill...
+   Id 	= HASFill
+   DLL 	= CATGuiFill
+   Cmd 	= CATGSMUIFill
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Split...
+   Id 	= HASSplit
+   DLL 	= CATGuiSplit
+   Cmd 	= CATGSMUISplit
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Compare & Review...
+   Id 	= GVCReviewPartCompare
+   DLL 	= CATDataExchControlCompare
+   Cmd 	= CATGVCPartComparisonCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Porcupine Curvature Analysis...
+   Id 	= HASPCurvatureAnalysis
+   DLL 	= CATFauCurvature
+   Cmd 	= CATStCmdCurvature
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Compare Parts...
+   Id 	= HASPartCompare
+   DLL 	= CATDataExchControlCompare
+   Cmd 	= CATGVCPartComparisonCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Local Join...
+   Id 	= HASLocalJoin
+   DLL 	= CATHealingAssistantUI
+   Cmd 	= CATHASLocalJoinCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Intersection...
+   Id 	= HASIntersect
+   DLL 	= CATGuiIntersect
+   Cmd 	= CATGSMUIIntersect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Create a new Modification...
+   Id 	= GVCReviewNewArea
+   DLL 	= CATDataExchControlCompare
+   Cmd 	= CATGVCRevNewAreaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Converter Wizard...
+   Id 	= HASApproxManager
+   DLL 	= CATFsuSegment
+   Cmd 	= CATStCmdSegment
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Boundary...
+   Id 	= HASBoundary
+   DLL 	= CATGuiBoundary
+   Cmd 	= CATGuiBoundary
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Trim...
+   Id 	= HASTrim
+   DLL 	= CATGuiTrim
+   Cmd 	= CATGSMUITrim
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Geometric Information...
+   Id 	= HASGeomInfo
+   DLL 	= CATFsuGeomInfo
+   Cmd 	= CATStCmdGeomInfo
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Surface Boundaries...
+   Id 	= HASBorderEdgesMode
+   DLL 	= CATHealingAssistantUI
+   Cmd 	= CATHASBorderEdgesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Face Orientation...
+   Id 	= HASOrientedFaces
+   DLL 	= CATHealingAssistantUI
+   Cmd 	= CATHASOrientedFacesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Connect Checker Analysis...
+   Id 	= HASCurveConnectChecker
+   DLL 	= CATFauConnectChecker
+   Cmd 	= CATStCmdConnectCheckerAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Near...
+   Id 	= HASNear
+   DLL 	= CATGuiNearest
+   Cmd 	= CATGSMUINear
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Curve Smooth...
+   Id 	= HASCurveSmooth
+   DLL 	= CATGuiCurveSmooth
+   Cmd 	= CATGuiCurveSmooth
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Face Smooth...
+   Id 	= HASImprovedFaces
+   DLL 	= CATHealingAssistantUI
+   Cmd 	= CATHASImprovedFacesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Local Healing...
+   Id 	= HASLocalHealing
+   DLL 	= CATHealingAssistantUI
+   Cmd 	= CATHASLocalHealingCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Text annotation...
+   Id 	= GVCReviewAnnotText
+   DLL 	= CATDataExchControlCompare
+   Cmd 	= CATGVCRevAnnotTextCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= UnTrim...
+   Id 	= HASUnTrim
+   DLL 	= CATFsuFeatUntrim
+   Cmd 	= CATStCmdFeatUntrim
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Points and Planes Repetition...
+   Id 	= HASMultiplePoint
+   DLL 	= CATGuiMultiple
+   Cmd 	= CATGSMUIMultiplePoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Projection...
+   Id 	= HASProject
+   DLL 	= CATGuiProject
+   Cmd 	= CATGSMUIProject
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Join...
+   Id 	= HASGlobalJoin
+   DLL 	= CATGuiAssemble
+   Cmd 	= CATGSMUIAssemble
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Distance annotation...
+   Id 	= GVCReviewAnnotDistance
+   DLL 	= CATDataExchControlCompare
+   Cmd 	= CATGVCRevAnnotDistanceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Apply Dress-up...
+   Id 	= HASDressUp
+   DLL 	= CATFsuCtrlPtDisplay
+   Cmd 	= CATStCmdCtrlPointsDisplay
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Invert Orientation...
+   Id 	= HASInvert
+   DLL 	= CATGuiInverse
+   Cmd 	= CATGuiInverse
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Surface Connection Checker...
+   Id 	= HASConnectChecker
+   DLL 	= CATHealingAssistantUI
+   Cmd 	= CATHASConnectCheckerCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Remove Dress-up...
+   Id 	= HASDressUpUndo
+   DLL 	= CATFsuCtrlPtDisplay
+   Cmd 	= CATStCmdCtrlPointsDisplay
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Healing...
+   Id 	= HASGlobalHealing
+   DLL 	= CATGuiHealing
+   Cmd 	= CATGSMUIHealing
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Face Checker...
+   Id 	= HASCheckTopo
+   DLL 	= CATHealingAssistantUI
+   Cmd 	= CATHASCheckTopoCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Point...
+   Id 	= HASPoint
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Connect Curve...
+   Id 	= HASConnect
+   DLL 	= CATGuiConnect
+   Cmd 	= CATGSMUIConnect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Deviation annotation...
+   Id 	= GVCReviewAnnotDeviation
+   DLL 	= CATDataExchControlCompare
+   Cmd 	= CATGVCRevAnnotDeviationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Line...
+   Id 	= HASLine
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Apply Boundary Options...
+   Id 	= HASGeoBoundary
+   DLL 	= CATHealingAssistantUI
+   Cmd 	= CATHASGeoBoundaryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Plane...
+   Id 	= HASPlane
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Extrapolate...
+   Id 	= HASExtrapol
+   DLL 	= CATGuiExtrapol
+   Cmd 	= CATGSMUIExtrapol
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=HasMenu 
+   Title=编辑 	 Name=CATAfrEditMnu 
+   Title=视图 	 Name=CATAfrView 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=NewSeparator000
+      Starter Name=HASMenuGSMBody
+      Starter Name=HASInsertShapeBody
+      Separator Name=NewSeparator010
+      Title=Check Topology 	 Name=HASMenuCheckTopo 
+         Starter Name=HASMenuCheckTopologic
+         Starter Name=HASMenuOrientedFaces
+      Separator Name=CATAfrEditNew001Sep
+      Title=Check Geometry 	 Name=HASMenuCheckGeo 
+         Starter Name=HASMenuConnectChecker
+         Starter Name=HASMenuPartCompare
+         Starter Name=HASMenuPartCompareReview
+         Starter Name=HASMenuCurveConnectChecker
+      Separator Name=CATAfrEditNew002Sep
+      Title=Repair Topology 	 Name=HASMenuRepairTopo 
+         Starter Name=HASMenuGlobalJoin
+         Starter Name=HASMenuLocalJoin
+      Separator Name=CATNewSeparator003
+      Title=Repair Geometry 	 Name=HASMenuRepairGeo 
+         Starter Name=HASMenuGlobalHealing
+         Starter Name=HASMenuLocalHealing
+         Starter Name=HASMenuImprovedFaces
+         Starter Name=HASMenuCurveSmooth
+      Separator Name=CATPbbNewSeparator004Sep
+      Starter Name=CATSketch
+      Separator Name=CATNewSeparator005
+      Title=WireFrame 	 Name=HASMenuWire 
+         Starter Name=HASMenuPoint
+         Starter Name=HASMenuDroite
+         Starter Name=HASMenuPlan
+         Separator Name=CATCmdSeparatorWire001
+         Starter Name=HASMenuProj
+         Starter Name=HASMenuIntersect
+         Separator Name=CATCmdSeparatorWire002
+         Starter Name=HASMenuConnect
+      Title=Surfaces 	 Name=HASMenuSurf 
+         Starter Name=HASMenuFill
+      Title=Operations 	 Name=HASMenuOper 
+         Starter Name=HASMenuUnTrim
+         Starter Name=HASMenuDisassemble
+         Separator Name=CATCmdSeparatorOpe004
+         Starter Name=HASMenuSplit
+         Starter Name=HASMenuTrim
+         Separator Name=CATCmdSeparatorOpe005
+         Starter Name=HASMenuBoundary
+         Starter Name=HASMenuExtract
+         Separator Name=CATCmdSeparatorOpe006
+         Starter Name=HASMenuExtrapol
+         Starter Name=HASMenuInvert
+         Starter Name=HASMenuNearl
+      Separator Name=NewSeparator006
+      Title=Shape Analysis 	 Name=HASMenuShapeAnalysis 
+         Starter Name=HASMenuApproxManager
+         Starter Name=HASMenuPCurvatureAnalysis
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=CATNewSeparator007
+      Title=Visualization Options 	 Name=HASMenuGenericTools 
+         Starter Name=HASMenuDressUp
+         Starter Name=HASMenuDressUpUndo
+         Starter Name=HASMenuBorderEdgesMode
+         Starter Name=HASMenuGeoBoundary
+         Starter Name=HASMenuGeoBoundaryUndo
+         Starter Name=HASMenuGeomInfo
+   Title=窗口 	 Name=CATAfrWindowMnu 
+
+ Title of the toolbar=Tools and is Name=HASToolBarTools
+   Starter Name=CATUpdate
+   Starter Name=CATCmdDatumMode
+   Starter Name=CATCmdCurrentTool
+
+ Title of the toolbar=Generic Tools and is Name=HASToolBarGenericTools
+   Starter Name=DressUp
+   Starter Name=DressUpUndo
+   Starter Name=BorderEdgesMode
+   Starter Name=GeoBoundary
+   Starter Name=GeoBoundaryUndo
+   Starter Name=CATGeomInfo
+
+ Title of the toolbar=Select and is Name=HASToolBarSelect
+   Starter Name=CATSelect
+
+ Title of the toolbar=Check Topology and is Name=HASToolBarCheckTopo
+   Starter Name=CheckTopo
+   Starter Name=OrientedFaces
+
+ Title of the toolbar=Check Geometry and is Name=HASToolBarCheckGeo
+   Starter Name=CATConnectChecker
+   Starter Name=PartCompare
+   Starter Name=PartCompareReview
+   Starter Name=CurveConnectChecker
+
+ Title of the toolbar=Repair Topology and is Name=HASToolBarRepairTopo
+   Starter Name=GlobalJoin
+   Starter Name=LocalJoin
+
+ Title of the toolbar=Repair Geometry and is Name=HASToolBarRepairGeo
+   Starter Name=GlobalHeal
+   Starter Name=LocalHeal
+   Starter Name=ImprovedFaces
+   Starter Name=CATCurveSmooth
+
+ Title of the toolbar=Sketcher and is Name=HASToolBarSketch
+   Starter Name=CATSketch
+
+ Title of the toolbar=WireFrame and is Name=HASToolBarWireFrame
+   Title of the Icon Box=ContainerPoint 	 Name=CATContainerPoint 
+      Starter Name=CATPoint
+      Starter Name=CATMultiplePoint
+   Starter Name=CATLine
+   Starter Name=CATPlane
+Separator Name=CATCmdSeparatorWire4
+   Starter Name=HASProjection
+   Starter Name=HASIntersect
+Separator Name=CATCmdSeparatorWire5
+   Starter Name=HASConnect
+
+ Title of the toolbar=Surfaces and is Name=HASToolBarSurf
+   Starter Name=HASFill
+
+ Title of the toolbar=Operations and is Name=HASToolBarOperations
+   Starter Name=UnTrim
+   Starter Name=CATDisassemble
+Separator Name=CATCmdSeparatorOpe1
+   Title of the Icon Box=TrimSplit 	 Name=CATTrimSplit 
+      Starter Name=CATSplit
+      Starter Name=CATTrim
+Separator Name=CATCmdSeparatorOpe2
+   Starter Name=CATBoundary
+   Starter Name=CATExtract
+Separator Name=CATCmdSeparatorOpe3
+   Starter Name=CATExtrapol
+   Starter Name=Invert
+   Starter Name=CATNear
+
+ Title of the toolbar=Shape Analysis and is Name=HASToolBarShapeAnalysis
+   Starter Name=ApproxManager
+   Starter Name=PCurvatureAnalysis

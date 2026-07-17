@@ -1,0 +1,114 @@
+Workshop Exposition of CompositesBrdWorkbench 
+
+1- Header List 
+
+Title= Producibility for Braiding
+   Id 	= CreateNewProducibilityBraidingId
+   DLL 	= CATCoBrdProducibility
+   Cmd 	= CATCoBrdProdCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Generate Braiding Surface
+   Id 	= GenerateBraidingSurfaceId
+   DLL 	= CATCoBrdProducibility
+   Cmd 	= CATCoBrdGenerateSurfaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+
+2- Access List 
+
+ Name of the menubar=MenuBarId 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Separator Name=CATAfrEditNew001Sep
+      Starter Name=CATUpdate
+      Separator Name=CATFscPropertySeparatorSep
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=GeomSetId
+      Separator Name=CATCmdSeparator1
+      Starter Name=AxisId
+      Separator Name=CATCmdSeparator2
+      Title=Parameters 	 Name=ParametersToolBar 
+         Starter Name=ParametersId_MenuName
+      Title=Contour 	 Name=ContourToolBar 
+         Starter Name=CATCoStdContourId_MenuName
+      Title=Plies Design 	 Name=PliesToolBar 
+         Starter Name=CreatePlyGroupId_MenuName
+         Starter Name=CreatePlyActId_MenuName
+      Title=Producibility 	 Name=FlattenToolBar 
+         Starter Name=CreateNewProducibilityBraidingId_MenuName
+         Starter Name=CreateProduceInspectionId_MenuName
+      Title=Solid and Top Surfaces from Plies 	 Name=SurfaceandSolidTBar 
+         Starter Name=GenerateBraidingSurfaceId_MenuName
+      Separator Name=Separator1
+      Title=Review 	 Name=AnalysisTBar 
+         Starter Name=CATCoSelectionId_MenuName
+         Starter Name=SelectPliesGroup_MenuName
+         Starter Name=SelectSequeence_MenuName
+         Starter Name=SelectPlies_MenuName
+         Separator Name=FlyinfoToolBarSeparatorEnd
+         Starter Name=CATCoRealStackingMngtCmdId_MenuName
+         Starter Name=ContourValidationId_MenuName
+         Starter Name=MultipleCoreSampleAdvId_MenuName
+         Starter Name=CATCoExtendedRosettePreviewCmdId_MenuName
+         Starter Name=CreateFiberDirectionId_MenuName
+      Separator Name=Separator3
+      Title=Wireframe 	 Name=COVWireFrame 
+         Starter Name=FromGSDPointID_MenuName
+         Starter Name=FromGSDLineID_MenuName
+         Starter Name=FromGSDPlaneID_MenuName
+         Starter Name=FromGSDCircleID_MenuName
+      Title=Surface Tools 	 Name=SurfTools 
+         Starter Name=CATShapeDesignCurveSmooth_MenuName
+         Starter Name=CATShapeDesignAssemble_MenuName
+         Starter Name=CATShapeDesignHealing_MenuName
+         Starter Name=CATSdwSurfaceSimplificationHdr_MenuName
+
+ Title of the toolbar=GeneralSelect and is Name=CATFscGeneralSelectTlb
+   Starter Name=CATSelect
+
+ Title of the toolbar=Generic Shape and is Name=COVShapeGeneric
+   Starter Name=CATUpdate
+   Starter Name=CATLocalAxis
+
+ Title of the toolbar=Parameters and is Name=ParametersToolBar
+   Starter Name=ParametersId_Name
+
+ Title of the toolbar=Contour and is Name=ContourToolBar
+   Starter Name=CATCoStdContourId_Name
+
+ Title of the toolbar=Plies Design and is Name=PliesToolBar
+   Starter Name=CreatePlyGroupId_Name
+   Starter Name=CreatePlyActId_Name
+
+ Title of the toolbar=Producibility and is Name=FlattenToolBar
+   Starter Name=CreateNewProducibilityBraidingId_Name
+   Starter Name=CreateProduceInspectionId_Name
+
+ Title of the toolbar=Solid and Top Surfaces from Plies and is Name=SurfaceandSolidTBar
+   Starter Name=GenerateBraidingSurfaceId_Name
+
+ Title of the toolbar=Review and is Name=AnalysisTBar
+   Title of the Icon Box=On the Fly Information 	 Name=FlyinfoToolBar 
+      Starter Name=CATCoSelectionId_Name
+      Starter Name=SelectPliesGroup_Name
+      Starter Name=SelectSequeence_Name
+      Starter Name=SelectPlies_Name
+   Starter Name=CATCoRealStackingMngtCmdId_Name
+   Starter Name=ContourValidationId_Name
+   Starter Name=MultipleCoreSampleAdvId_Name
+   Starter Name=CATCoExtendedRosettePreviewCmdId_Name
+   Starter Name=CreateFiberDirectionId_Name
+
+ Title of the toolbar=Wireframe and is Name=COVWireFrame
+   Starter Name=FromGSDPointID_Name
+   Starter Name=FromGSDLineID_Name
+   Starter Name=FromGSDPlaneID_Name
+   Starter Name=FromGSDCircleID_Name
+
+ Title of the toolbar=Surface Tools and is Name=SurfTools
+   Starter Name=CATShapeDesignCurveSmooth_Name
+   Starter Name=CATShapeDesignAssemble_Name
+   Starter Name=CATShapeDesignHealing_Name
+   Starter Name=CATSdwSurfaceSimplificationHdr_Name

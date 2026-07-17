@@ -1,0 +1,94 @@
+Workshop Exposition of CATMaterialWorkshopWks 
+
+1- Header List 
+
+Title= 新材料
+   Id 	= CATMatNewMaterialHdr
+   DLL 	= CATMatController
+   Cmd 	= CATMatMaterialCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除材料
+   Id 	= CATMatRemoveMaterialHdr
+   DLL 	= CATMatController
+   Cmd 	= CATMatMaterialCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 复制渲染数据...
+   Id 	= CopyParametersFrom
+   DLL 	= CATRmaView
+   Cmd 	= CATRmaCopyCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 重命名材料
+   Id 	= CATMatRenameMaterialHdr
+   DLL 	= CATMatController
+   Cmd 	= CATMatMaterialCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 重命名系列
+   Id 	= CATMatRenameFamilyHdr
+   DLL 	= CATMatController
+   Cmd 	= CATMatFamilyCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除系列
+   Id 	= CATMatRemoveFamilyHdr
+   DLL 	= CATMatController
+   Cmd 	= CATMatFamilyCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 材料排序 (A->Z)
+   Id 	= CATMatSortFamilyHdr
+   DLL 	= CATMatController
+   Cmd 	= CATMatFamilyCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 材料排序 (Z->A)
+   Id 	= CATMatSortReverseFamilyHdr
+   DLL 	= CATMatController
+   Cmd 	= CATMatFamilyCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 新系列
+   Id 	= CATMatNewFamilyHdr
+   DLL 	= CATMatController
+   Cmd 	= CATMatFamilyCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 自动对齐图标
+   Id 	= CATMatAutoAlignIconsHdr
+   DLL 	= CATMatController
+   Cmd 	= CATMatFamilyCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 替换材料链接...
+   Id 	= ReplaceMaterialData
+   DLL 	= CATRmaView
+   Cmd 	= CATRmaReplaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+
+2- Access List 
+
+ Name of the menubar=CATMaterialsMenuMbr 
+   Title=View 	 Name=CATAfrView 
+   Title=Window 	 Name=CATAfrWindowMnu 
+
+ Title of the toolbar=材料库 and is Name=CATMaterialToolbarTlb
+   Starter Name=CATSelect
+Separator Name=CATAfrEditNew001Sep
+   Starter Name=CATMatNewFamilyStr
+   Starter Name=CATMatRenameFamilyStr
+   Starter Name=CATMatRemoveFamilyStr
+Separator Name=CATNewSeparator003
+   Starter Name=CATMatNewMaterialStr
+   Starter Name=CATMatRenameMaterialStr
+   Starter Name=CATMatRemoveMaterialStr
+   Starter Name=CATMatOpenPropertyStr
+Separator Name=CATAfrEditNew002Sep
+   Starter Name=CATMatAutoAlignIconsStr
+   Title of the Icon Box=材料排序 	 Name=CATMatSortIcb 
+      Starter Name=CATMatSortFamilyStr
+      Starter Name=CATMatSortReverseFamilyStr

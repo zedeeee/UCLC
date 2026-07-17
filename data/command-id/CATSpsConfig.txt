@@ -1,0 +1,323 @@
+Workshop Exposition of CATSpsConfig 
+
+1- Header List 
+
+Title= Name Section Characteristics
+   Id 	= CATSpsNameSectionChar
+   DLL 	= CATStructureSectionUI
+   Cmd 	= CATStrModifyUserSection
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Convert Profile
+   Id 	= CATSPSConvertProfile
+   DLL 	= CATStrConvertProfileUI
+   Cmd 	= CATStrConvertProfileCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Manual  Connection
+   Id 	= CreateSDDCnx
+   DLL 	= CATStructureConnectionUI
+   Cmd 	= CATStrCreateFunCnx
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Definition
+   Id 	= StrEditNonTypedPlate
+   DLL 	= CATSpsDsaPiecePart
+   Cmd 	= CATSpsCreatePlateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Modify/Delete Coping
+   Id 	= EditSPSCoping
+   DLL 	= CATSpsNibblingUI
+   Cmd 	= CATSpsNibblingCreationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= SDNF Export...
+   Id 	= CATSDNFExportHdr
+   DLL 	= CATTrsCommands
+   Cmd 	= CATTrsSDNFExportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Modify/Delete Slot
+   Id 	= EditSPSSlot
+   DLL 	= CATSpsSlotCommand
+   Cmd 	= CATSpsSlotMainCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Grid
+   Id 	= CATSpsCreateGrid
+   DLL 	= CATStrModelerUI
+   Cmd 	= CATStrCreateGrid
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= SDNF Import...
+   Id 	= CATSDNFImportHdr
+   DLL 	= CATTrsCommands
+   Cmd 	= CATTrsSDNFImportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Coping Plates and Shapes
+   Id 	= CATSpsNibblePlateShape
+   DLL 	= CATSpsNibblingUI
+   Cmd 	= CATSpsNibblingCreationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Merge
+   Id 	= CATSPSMerge
+   DLL 	= CATStrSplitUI
+   Cmd 	= CATStrSplitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Modify/Delete Cutout
+   Id 	= MDSPSCutout
+   DLL 	= CATSpsCutoutUI
+   Cmd 	= CATSpsMDCutoutCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Manage Piece Parts
+   Id 	= CATStrManagePPHdr
+   DLL 	= PiecePartEngine
+   Cmd 	= CATPPEManagePPGCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Shape
+   Id 	= CATSPSShape
+   DLL 	= CATSpsDsaPiecePart
+   Cmd 	= CATSpsCreateShapeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Lock Compartment Membership
+   Id 	= CATSpsSetLockCptMembershipHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuSetLockCptMembershipCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Plate
+   Id 	= CATSPSPlate
+   DLL 	= CATSpsDsaPiecePart
+   Cmd 	= CATSpsCreatePlateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Weld Information
+   Id 	= WeldInfo
+   DLL 	= CATSpsNibblingUI
+   Cmd 	= CATSpsWeldInfoCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update Compartment Membership
+   Id 	= CATSpsUpdateCptMembershipHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuUpdateCptMembershipCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Piece Part Generator
+   Id 	= CATStrPiecePartCmd
+   DLL 	= PiecePartEngine
+   Cmd 	= CATPPEGlobalCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Cutout
+   Id 	= CreateSPSCutout
+   DLL 	= CATSpsCutoutUI
+   Cmd 	= CATSpsCutoutCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Split
+   Id 	= CATSPSSplit
+   DLL 	= CATStrSplitUI
+   Cmd 	= CATStrSplitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Definition
+   Id 	= StrEditNonTypedShape
+   DLL 	= CATSpsDsaPiecePart
+   Cmd 	= CATSpsCreateShapeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manage Structure Publication
+   Id 	= CATStrManagePublication
+   DLL 	= CATSpsManagePublication
+   Cmd 	= CATSpsManagePubCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Contextual Endcut
+   Id 	= CreateGenericSPSEndCut
+   DLL 	= CATSpsGenericUdfCommands
+   Cmd 	= CATSpsGenericUdfInstantiateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace UDF
+   Id 	= CATSPSReplaceUDF
+   DLL 	= CATStrReplaceUDF
+   Cmd 	= CATStrReplaceUDFCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Standard Endcut
+   Id 	= CreateSPSEndcut
+   DLL 	= CATSpsDsaPiecePart
+   Cmd 	= CATSpsPlaceMultiEndCutTypeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Export Structure Skeleton
+   Id 	= CATSpsExportToAP203
+   DLL 	= CATStrModelerUI
+   Cmd 	= CATStrExportAP203Com
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Extend
+   Id 	= MemberLimit
+   DLL 	= CATStrModelerUI
+   Cmd 	= CATStrLimitMemberCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Query Compartment Membership
+   Id 	= CATSpsSelQueryCptHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuSelQueryCptCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Convert plates and shapes
+   Id 	= StrMigratePlatesShapes
+   DLL 	= CATStrConversionCommand
+   Cmd 	= CATStrConversionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Standard Slot
+   Id 	= CreateSPSSlot
+   DLL 	= CATSpsSlotCommand
+   Cmd 	= CATSpsSlotMainCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Modify/Delete EndCut
+   Id 	= EditSPSEndCut
+   DLL 	= CATSpsDsaPiecePart
+   Cmd 	= CATSpsPlaceEndCutTypeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Cutback
+   Id 	= CreateSPSCutback
+   DLL 	= CATStrModelerUI
+   Cmd 	= CATStrPerformCutBack
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Contextual Slot
+   Id 	= CreateGenericSPSSlot
+   DLL 	= CATSpsGenericUdfCommands
+   Cmd 	= CATSpsGenericUdfInstantiateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Plane System
+   Id 	= CATStrPlaneSystemCmd
+   DLL 	= CATStrPartEnvCmd
+   Cmd 	= CATStrGridSetCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update Object Name
+   Id 	= UpdateSPSObjectName
+   DLL 	= CATSpsDsaPiecePart
+   Cmd 	= CATSpsUpdateObjectNameCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Stretch
+   Id 	= MemberStretch
+   DLL 	= CATStrModelerUI
+   Cmd 	= CATStrStretchMemberCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= End-Plate
+   Id 	= CATSPSEndPlate
+   DLL 	= CATSpsDsaPiecePart
+   Cmd 	= CATSpsCreateEndPlate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Small Assemblies
+   Id 	= CATSPSSmallAssemblies
+   DLL 	= CATSpsDsaPiecePart
+   Cmd 	= CATSpsBittyDetailCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=SPSMenu 
+   Title=INSERT 	 Name=CATAfrInsertMnu 
+      Separator Name=SPSInsertSep0
+      Title=Physical Plates & Shapes 	 Name=SPSPhysicalPlatesAndShapes 
+         Starter Name=SPSMPlateIcon
+         Starter Name=SPSMEndPlateIcon
+         Starter Name=SPSMShapeIcon
+         Starter Name=SPSMSmallAssembiesIcon
+         Starter Name=SPSMEndCutIcon
+         Starter Name=SPSMContextualEndCutIcon
+         Starter Name=SPSMSlotIcon
+         Starter Name=SPSMCutBackIcon
+      Title=Tools 	 Name=SPSMTools 
+         Starter Name=CreateGrid
+         Starter Name=PlaneSystem
+         Starter Name=NameSectionChar
+   Title=TOOLS 	 Name=CATAfrToolsMnu 
+      Separator Name=SPSToolsSepar0
+      Title=Report  	 Name=SPSReportTools 
+         Starter Name=SPSReportDefIcon
+         Starter Name=SPSReportGenIcon
+      Title=Project Management 	 Name=SpsPRMTools 
+         Starter Name=SPSPrjMngtStr
+         Starter Name=SpsPRMCheckerStr
+
+ Title of the toolbar=Update and is Name=SPSToolBar003
+   Starter Name=CATUpdate
+
+ Title of the toolbar=Mesure and is Name=SPSToolBar005
+   Starter Name=CATAifAsmSpaceMeasureBetwStr
+   Starter Name=CATAifAsmSpaceMeasureEdgeStr
+   Starter Name=CATAifAsmSpaceMeasureInertiaStr
+
+ Title of the toolbar=Physical Plates and Shapes and is Name=SPSToolBar010
+   Starter Name=CATPlate
+   Starter Name=EndPlate
+   Starter Name=Shape
+   Starter Name=SmallAssemblies
+   Starter Name=Cutout
+   Title of the Icon Box=Endcut Commands 	 Name=SPSToolBar053b 
+      Starter Name=Endcut
+      Starter Name=GenericEndcutCmd
+   Title of the Icon Box=Slot Commands 	 Name=SPSToolBar053 
+      Starter Name=CATSlot
+      Starter Name=GenericSlotCmd
+   Starter Name=Cutback
+   Starter Name=StrSplit
+   Starter Name=StrMerge
+   Starter Name=StrConvertProfile
+   Starter Name=StrReplaceUDF
+
+ Title of the toolbar=Tools and is Name=SPSToolBar080
+   Starter Name=CreateGrid
+   Starter Name=PlaneSystem
+
+ Title of the toolbar=Miscellaneous and is Name=SPSToolBar077
+   Starter Name=PPEGenerator
+   Starter Name=ManagePP
+   Starter Name=NibblingFeat
+
+ Title of the toolbar=SDNF Translators and is Name=TrsCommand
+   Starter Name=SDNFExport
+   Starter Name=SDNFImport
+
+ Title of the toolbar=Compartment Access Updates and is Name=SpsCptMembershipTb
+   Starter Name=SpsUpdateCptMembershipIcon
+   Starter Name=SpsSelQueryCptIcon
+   Starter Name=SpsSetLockCptMembershipIcon

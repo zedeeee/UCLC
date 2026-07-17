@@ -1,0 +1,2573 @@
+Workshop Exposition of CATStrPartConfig 
+
+1- Header List 
+
+Title= 螺旋线...
+   Id 	= CATShapeDesignHelixHdr
+   DLL 	= CATGuiHelix
+   Cmd 	= CATGSMUIHelix
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 螺旋线...
+   Id 	= CATShapeDesignHelixHdr
+   DLL 	= CATGuiHelix
+   Cmd 	= CATGSMUIHelix
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 几何图形集...
+   Id 	= CATInsertGSMBody
+   DLL 	= CATMmuCommands
+   Cmd 	= CATMmuGSMToolInsert
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 复制几何图形特征集
+   Id 	= CATShapeDesignDuplicateBodyHdr
+   DLL 	= CATUdfCommands
+   Cmd 	= CATUdfFeatureInstanciateSelect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 复制几何图形特征集
+   Id 	= CATShapeDesignDuplicateBodyHdr
+   DLL 	= CATUdfCommands
+   Cmd 	= CATUdfFeatureInstanciateSelect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 来自方程式的曲线...
+   Id 	= CATShapeDesignCurveEquations
+   DLL 	= CATGuiCurveEquations
+   Cmd 	= CATGSMUICurveEquations
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 来自方程式的曲线...
+   Id 	= CATShapeDesignCurveEquations
+   DLL 	= CATGuiCurveEquations
+   Cmd 	= CATGSMUICurveEquations
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平行曲线...
+   Id 	= CATShapeDesignParallelHdr
+   DLL 	= CATGuiCurvePar
+   Cmd 	= CATGSMUICurvePar
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平行曲线...
+   Id 	= CATShapeDesignParallelHdr
+   DLL 	= CATGuiCurvePar
+   Cmd 	= CATGSMUICurvePar
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 展开...
+   Id 	= CATSdwUnfoldHdr
+   DLL 	= CATGuiUnfold
+   Cmd 	= CATGSMUIUnfold
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 展开...
+   Id 	= CATSdwUnfoldHdr
+   DLL 	= CATGuiUnfold
+   Cmd 	= CATGSMUIUnfold
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CATFreeShapeBlock
+   Id 	= CATFreeShapeBlock
+   DLL 	= CATStrBlockManagement
+   Cmd 	= CATBlkDefinitionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= CATFreeShapeBlock
+   Id 	= CATFreeShapeBlock
+   DLL 	= CATStrBlockManagement
+   Cmd 	= CATBlkDefinitionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 外插延伸...
+   Id 	= CATShapeDesignExtrapolHdr
+   DLL 	= CATGuiExtrapol
+   Cmd 	= CATGSMUIExtrapol
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 外插延伸...
+   Id 	= CATShapeDesignExtrapolHdr
+   DLL 	= CATGuiExtrapol
+   Cmd 	= CATGSMUIExtrapol
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add A Hull
+   Id 	= AddAHullCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSynchronizeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add A Hull
+   Id 	= AddAHullCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSynchronizeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CATSfmEditConnection
+   Id 	= CATSfmEditConnection
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmConnectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= CATSfmEditConnection
+   Id 	= CATSfmEditConnection
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmConnectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Compute Weight and CoG
+   Id 	= CATStrBlockSystemCompute
+   DLL 	= CATStrBlockManagement
+   Cmd 	= CATBlkSystemPropertiesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Compute Weight and CoG
+   Id 	= CATStrBlockSystemCompute
+   DLL 	= CATStrBlockManagement
+   Cmd 	= CATBlkSystemPropertiesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 凹凸...
+   Id 	= CATSdwBumpHdr
+   DLL 	= CATGuiBump
+   Cmd 	= CATGSMUIBump
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 凹凸...
+   Id 	= CATSdwBumpHdr
+   DLL 	= CATGuiBump
+   Cmd 	= CATGSMUIBump
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 旋转...
+   Id 	= CATShapeDesignRotateHdr
+   DLL 	= CATGuiRotate
+   Cmd 	= CATGSMUIRotate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 旋转...
+   Id 	= CATShapeDesignRotateHdr
+   DLL 	= CATGuiRotate
+   Cmd 	= CATGSMUIRotate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 螺旋线...
+   Id 	= CATHybridPartHelix
+   DLL 	= CATGuiHelix
+   Cmd 	= CATGSMUIHelix
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 螺旋线...
+   Id 	= CATHybridPartHelix
+   DLL 	= CATGuiHelix
+   Cmd 	= CATGSMUIHelix
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Plate Advanced
+   Id 	= CATStrPlateConcave
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrPlateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Plate Advanced
+   Id 	= CATStrPlateConcave
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrPlateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 滚动偏移...
+   Id 	= CATShapeDesignRollingOffsetHdr
+   DLL 	= CATGuiRollingOffset
+   Cmd 	= CATGSMUIRollingOffset
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 滚动偏移...
+   Id 	= CATShapeDesignRollingOffsetHdr
+   DLL 	= CATGuiRollingOffset
+   Cmd 	= CATGSMUIRollingOffset
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 连接曲线...
+   Id 	= CATShapeDesignConnectHdr
+   DLL 	= CATGuiConnect
+   Cmd 	= CATGSMUIConnect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 连接曲线...
+   Id 	= CATShapeDesignConnectHdr
+   DLL 	= CATGuiConnect
+   Cmd 	= CATGSMUIConnect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 圆...
+   Id 	= CATShapeDesignCircleHdr
+   DLL 	= CATGuiCircle
+   Cmd 	= CATGSMUICircle
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 圆...
+   Id 	= CATShapeDesignCircleHdr
+   DLL 	= CATGuiCircle
+   Cmd 	= CATGSMUICircle
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update Object Name
+   Id 	= CATStrReApplyAttributes
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrReApplyAttributesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update Object Name
+   Id 	= CATStrReApplyAttributes
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrReApplyAttributesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 相交...
+   Id 	= CATHybridPartIntersect
+   DLL 	= CATGuiIntersect
+   Cmd 	= CATGSMUIIntersect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 相交...
+   Id 	= CATHybridPartIntersect
+   DLL 	= CATGuiIntersect
+   Cmd 	= CATGSMUIIntersect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 获取支持面特征
+   Id 	= CATShapeDesignGetFeaturesOnWSHdr
+   DLL 	= CATGuiOnSupport
+   Cmd 	= CATGuiWorkingSupportGetFeatures
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 获取支持面特征
+   Id 	= CATShapeDesignGetFeaturesOnWSHdr
+   DLL 	= CATGuiOnSupport
+   Cmd 	= CATGuiWorkingSupportGetFeatures
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 薄零件属性...
+   Id 	= CATSdwThicknessHdr
+   DLL 	= CATGuiThickness
+   Cmd 	= CATGSMUIThickness
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 薄零件属性...
+   Id 	= CATSdwThicknessHdr
+   DLL 	= CATGuiThickness
+   Cmd 	= CATGSMUIThickness
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 圆...
+   Id 	= CATHybridPartCircle
+   DLL 	= CATGuiCircle
+   Cmd 	= CATGSMUICircle
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 圆...
+   Id 	= CATHybridPartCircle
+   DLL 	= CATGuiCircle
+   Cmd 	= CATGSMUICircle
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 反转方向...
+   Id 	= CATShapeDesignInverseHdr
+   DLL 	= CATGuiInverse
+   Cmd 	= CATGuiInverse
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 反转方向...
+   Id 	= CATShapeDesignInverseHdr
+   DLL 	= CATGuiInverse
+   Cmd 	= CATGuiInverse
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Opening
+   Id 	= CATStrOpening
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrOpeningCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Opening
+   Id 	= CATStrOpening
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrOpeningCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 不可拾取的背景...
+   Id 	= UnpickablebackgroundHeader
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 不可拾取的背景...
+   Id 	= UnpickablebackgroundHeader
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Measure Item
+   Id 	= CATStrMeasureEdgeHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Item
+   Id 	= CATStrMeasureEdgeHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Split Plate
+   Id 	= CATStrMaterialSeamsSuperPlate
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSeamDefinitionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Split Plate
+   Id 	= CATStrMaterialSeamsSuperPlate
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSeamDefinitionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 断开连接...
+   Id 	= CATShapeDesignDisconnect
+   DLL 	= CATGuiDisconnect
+   Cmd 	= CATGuiDisconnect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 断开连接...
+   Id 	= CATShapeDesignDisconnect
+   DLL 	= CATGuiDisconnect
+   Cmd 	= CATGuiDisconnect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 设置为非当前
+   Id 	= CATMmrSetNotCurrent3DAxisSystemHdr
+   DLL 	= CATMmuAxisSystem
+   Cmd 	= CATCom3DAxisSystemSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 包络体旋转...
+   Id 	= CATSdwVolumeRevolveHdr
+   DLL 	= CATGuiRevol
+   Cmd 	= CATGSMUIRevol
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 包络体旋转...
+   Id 	= CATSdwVolumeRevolveHdr
+   DLL 	= CATGuiRevol
+   Cmd 	= CATGSMUIRevol
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CATHybridPartTransferHdr
+   Id 	= CATHybridPartTransferHdr
+   DLL 	= CATGuiUnfold
+   Cmd 	= CATGSMUITransfer
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CATHybridPartTransferHdr
+   Id 	= CATHybridPartTransferHdr
+   DLL 	= CATGuiUnfold
+   Cmd 	= CATGSMUITransfer
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 拔模凹面...
+   Id 	= CATSdwSeatDiaboloHdr
+   DLL 	= CATGuiSeatDiabolo
+   Cmd 	= CATGSMUISeatDiabolo
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 拔模凹面...
+   Id 	= CATSdwSeatDiaboloHdr
+   DLL 	= CATGuiSeatDiabolo
+   Cmd 	= CATGSMUISeatDiabolo
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Set as master
+   Id 	= CATStrSetAsMaster
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSetAsMasterCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Set as master
+   Id 	= CATStrSetAsMaster
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSetAsMasterCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 设置为非当前
+   Id 	= CATShapeDesignSetNotCurrentWSHdr
+   DLL 	= CATGuiOnSupport
+   Cmd 	= CATGuiWorkingSupportSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 设置为非当前
+   Id 	= CATShapeDesignSetNotCurrentWSHdr
+   DLL 	= CATGuiOnSupport
+   Cmd 	= CATGuiWorkingSupportSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 端点...
+   Id 	= CATShapeDesignExtremumHdr
+   DLL 	= CATGuiExtremum
+   Cmd 	= CATGSMUIExtremum
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 端点...
+   Id 	= CATShapeDesignExtremumHdr
+   DLL 	= CATGuiExtremum
+   Cmd 	= CATGSMUIExtremum
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 过渡倒圆...
+   Id 	= CATSdwBlendCornerHdr
+   DLL 	= CATGuiBlendCorner
+   Cmd 	= CATGSMUIBlendCorner
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 过渡倒圆...
+   Id 	= CATSdwBlendCornerHdr
+   DLL 	= CATGuiBlendCorner
+   Cmd 	= CATGSMUIBlendCorner
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 桥接曲面...
+   Id 	= CATHybridPartBlend
+   DLL 	= CATGuiBlend
+   Cmd 	= CATGSMUIBlend
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 桥接曲面...
+   Id 	= CATHybridPartBlend
+   DLL 	= CATGuiBlend
+   Cmd 	= CATGSMUIBlend
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Stiffener On Free Edge
+   Id 	= CATStrStiffenerFreeEdge
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrFreeEdgeStiffenerCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Stiffener On Free Edge
+   Id 	= CATStrStiffenerFreeEdge
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrFreeEdgeStiffenerCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 包裹曲面
+   Id 	= CATSdwWrapSurfaceHdr
+   DLL 	= CATGuiWrapSurface
+   Cmd 	= CATGuiWrapSurface
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 包裹曲面
+   Id 	= CATSdwWrapSurfaceHdr
+   DLL 	= CATGuiWrapSurface
+   Cmd 	= CATGuiWrapSurface
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= UDF Optimization
+   Id 	= UDFOptimizationCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrUDFOptimizationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= UDF Optimization
+   Id 	= UDFOptimizationCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrUDFOptimizationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 偏移...
+   Id 	= CATShapeDesignOffsetHdr
+   DLL 	= CATGuiOffset
+   Cmd 	= CATGSMUIOffset
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移...
+   Id 	= CATShapeDesignOffsetHdr
+   DLL 	= CATGuiOffset
+   Cmd 	= CATGSMUIOffset
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 设置为当前
+   Id 	= CATMmrSetCurrent3DAxisSystemHdr
+   DLL 	= CATMmuAxisSystem
+   Cmd 	= CATCom3DAxisSystemSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 法则曲线...
+   Id 	= CATShapeDesignLawHdr
+   DLL 	= CATGuiLaw
+   Cmd 	= CATGSMUILaw
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 法则曲线...
+   Id 	= CATShapeDesignLawHdr
+   DLL 	= CATGuiLaw
+   Cmd 	= CATGSMUILaw
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= GVSEditor
+   Id 	= CATSfdGVSEditor
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrGVSEditorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= GVSEditor
+   Id 	= CATSfdGVSEditor
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrGVSEditorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 二次曲线...
+   Id 	= CATShapeDesignConicHdr
+   DLL 	= CATGuiConic
+   Cmd 	= CATGSMUIConic
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 二次曲线...
+   Id 	= CATShapeDesignConicHdr
+   DLL 	= CATGuiConic
+   Cmd 	= CATGSMUIConic
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update Object Name
+   Id 	= CATStrReApplyAttributesOnSplit
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrReApplyAttributesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update Object Name
+   Id 	= CATStrReApplyAttributesOnSplit
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrReApplyAttributesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= UV 参数化...
+   Id 	= CATSdwUnfoldUVHdr
+   DLL 	= CATGuiUnfold
+   Cmd 	= CATGSMUIUnfold
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= UV 参数化...
+   Id 	= CATSdwUnfoldUVHdr
+   DLL 	= CATGuiUnfold
+   Cmd 	= CATGSMUIUnfold
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 旋转...
+   Id 	= CATHybridPartRotate
+   DLL 	= CATGuiRotate
+   Cmd 	= CATGSMUIRotate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 旋转...
+   Id 	= CATHybridPartRotate
+   DLL 	= CATGuiRotate
+   Cmd 	= CATGSMUIRotate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平移...
+   Id 	= CATHybridPartTranslate
+   DLL 	= CATGuiTranslate
+   Cmd 	= CATGSMUITranslate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平移...
+   Id 	= CATHybridPartTranslate
+   DLL 	= CATGuiTranslate
+   Cmd 	= CATGSMUITranslate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 面间复制...
+   Id 	= CATSdwMultiplePlaneHdr
+   DLL 	= CATGuiMultiple
+   Cmd 	= CATGSMUIMultiplePlane
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 面间复制...
+   Id 	= CATSdwMultiplePlaneHdr
+   DLL 	= CATGuiMultiple
+   Cmd 	= CATGSMUIMultiplePlane
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 桥接...
+   Id 	= CATShapeDesignBlendHdr
+   DLL 	= CATGuiBlend
+   Cmd 	= CATGSMUIBlend
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 桥接...
+   Id 	= CATShapeDesignBlendHdr
+   DLL 	= CATGuiBlend
+   Cmd 	= CATGSMUIBlend
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 复制对象...
+   Id 	= CATHybridPartMultiple
+   DLL 	= CATGuiMultiple
+   Cmd 	= CATGSMUIMultiple
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 复制对象...
+   Id 	= CATHybridPartMultiple
+   DLL 	= CATGuiMultiple
+   Cmd 	= CATGSMUIMultiple
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 外插延伸...
+   Id 	= CATHybridPartExtrapol
+   DLL 	= CATGuiExtrapol
+   Cmd 	= CATGSMUIExtrapol
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 外插延伸...
+   Id 	= CATHybridPartExtrapol
+   DLL 	= CATGuiExtrapol
+   Cmd 	= CATGSMUIExtrapol
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 混合...
+   Id 	= CATShapeDesignCombineHdr
+   DLL 	= CATGuiCombine
+   Cmd 	= CATGSMUICombine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 混合...
+   Id 	= CATShapeDesignCombineHdr
+   DLL 	= CATGuiCombine
+   Cmd 	= CATGSMUICombine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对称...
+   Id 	= CATHybridPartSymmetry
+   DLL 	= CATGuiSymmetry
+   Cmd 	= CATGSMUISymmetry
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对称...
+   Id 	= CATHybridPartSymmetry
+   DLL 	= CATGuiSymmetry
+   Cmd 	= CATGSMUISymmetry
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 可变圆角...
+   Id 	= CATHpwFilletVarHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateVarFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 可变圆角...
+   Id 	= CATHpwFilletVarHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateVarFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= C1 cut criteria
+   Id 	= CATStrTangencyThreshold
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrTangencyThresholdCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= C1 cut criteria
+   Id 	= CATStrTangencyThreshold
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrTangencyThresholdCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 交接点...
+   Id 	= CATSdwJunctionHdr
+   DLL 	= CATGuiJunction
+   Cmd 	= CATGSMUIJunction
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 交接点...
+   Id 	= CATSdwJunctionHdr
+   DLL 	= CATGuiJunction
+   Cmd 	= CATGSMUIJunction
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 投影...
+   Id 	= CATHybridPartProject
+   DLL 	= CATGuiProject
+   Cmd 	= CATGSMUIProject
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 投影...
+   Id 	= CATHybridPartProject
+   DLL 	= CATGuiProject
+   Cmd 	= CATGSMUIProject
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 缩放..
+   Id 	= CATHybridPartScaling
+   DLL 	= CATGuiScaling
+   Cmd 	= CATGSMUIScaling
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 缩放..
+   Id 	= CATHybridPartScaling
+   DLL 	= CATGuiScaling
+   Cmd 	= CATGSMUIScaling
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 圆角...
+   Id 	= CATShapeDesignCornerHdr
+   DLL 	= CATGuiCorner
+   Cmd 	= CATGSMUICorner
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 圆角...
+   Id 	= CATShapeDesignCornerHdr
+   DLL 	= CATGuiCorner
+   Cmd 	= CATGSMUICorner
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 曲线光顺...
+   Id 	= CATShapeDesignCurveSmoothHdr
+   DLL 	= CATGuiCurveSmooth
+   Cmd 	= CATGuiCurveSmooth
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 曲线光顺...
+   Id 	= CATShapeDesignCurveSmoothHdr
+   DLL 	= CATGuiCurveSmooth
+   Cmd 	= CATGuiCurveSmooth
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 折线...
+   Id 	= CATSdwLineCornerHdr
+   DLL 	= CATGuiLineCorner
+   Cmd 	= CATGSMUILineCorner
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 折线...
+   Id 	= CATSdwLineCornerHdr
+   DLL 	= CATGuiLineCorner
+   Cmd 	= CATGSMUILineCorner
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Beam
+   Id 	= CATStrEditBeam
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmMemberCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Beam
+   Id 	= CATStrEditBeam
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmMemberCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 球面...
+   Id 	= CATSdwSphereHdr
+   DLL 	= CATGuiSphere
+   Cmd 	= CATGSMUISphere
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 球面...
+   Id 	= CATSdwSphereHdr
+   DLL 	= CATGuiSphere
+   Cmd 	= CATGSMUISphere
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 点复制...
+   Id 	= CATHybridPartMultiplePoint
+   DLL 	= CATGuiMultiple
+   Cmd 	= CATGSMUIMultiplePoint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 点复制...
+   Id 	= CATHybridPartMultiplePoint
+   DLL 	= CATGuiMultiple
+   Cmd 	= CATGSMUIMultiplePoint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 球面...
+   Id 	= CATHpwSphereHdr
+   DLL 	= CATGuiSphere
+   Cmd 	= CATGSMUISphere
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 球面...
+   Id 	= CATHpwSphereHdr
+   DLL 	= CATGuiSphere
+   Cmd 	= CATGSMUISphere
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 轮廓...
+   Id 	= CATShapeDesignContour
+   DLL 	= CATGuiContour
+   Cmd 	= CATGSMUIContour
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 轮廓...
+   Id 	= CATShapeDesignContour
+   DLL 	= CATGuiContour
+   Cmd 	= CATGSMUIContour
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Validation...
+   Id 	= CATStrPrjMngtCheckerHdr
+   DLL 	= CATPspPRMChecker
+   Cmd 	= CATPspPRMCheckerCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Validation...
+   Id 	= CATStrPrjMngtCheckerHdr
+   DLL 	= CATPspPRMChecker
+   Cmd 	= CATPspPRMCheckerCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 旋转...
+   Id 	= CATShapeDesignRevolHdr
+   DLL 	= CATGuiRevol
+   Cmd 	= CATGSMUIRevol
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 旋转...
+   Id 	= CATShapeDesignRevolHdr
+   DLL 	= CATGuiRevol
+   Cmd 	= CATGSMUIRevol
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 定位变换...
+   Id 	= CATHpwAxisToAxisHdr
+   DLL 	= CATGuiAxisToAxis
+   Cmd 	= CATGSMUIAxisToAxis
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 定位变换...
+   Id 	= CATHpwAxisToAxisHdr
+   DLL 	= CATGuiAxisToAxis
+   Cmd 	= CATGSMUIAxisToAxis
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update
+   Id 	= CATSfmConnectionsUpdate
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmConnectionsUpdateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update
+   Id 	= CATSfmConnectionsUpdate
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmConnectionsUpdateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Synchronize the Planes
+   Id 	= SynchronizePlanesCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSynchronizeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Synchronize the Planes
+   Id 	= SynchronizePlanesCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSynchronizeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平移...
+   Id 	= CATShapeDesignTranslateHdr
+   DLL 	= CATGuiTranslate
+   Cmd 	= CATGSMUITranslate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平移...
+   Id 	= CATShapeDesignTranslateHdr
+   DLL 	= CATGuiTranslate
+   Cmd 	= CATGSMUITranslate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 设置为当前
+   Id 	= CATShapeDesignSetCurrentWSHdr
+   DLL 	= CATGuiOnSupport
+   Cmd 	= CATGuiWorkingSupportSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 设置为当前
+   Id 	= CATShapeDesignSetCurrentWSHdr
+   DLL 	= CATGuiOnSupport
+   Cmd 	= CATGuiWorkingSupportSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 轮廊...
+   Id 	= CATShapeDesignSilhouette
+   DLL 	= CATGuiSilhouette
+   Cmd 	= CATGSMUISilhouette
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 轮廊...
+   Id 	= CATShapeDesignSilhouette
+   DLL 	= CATGuiSilhouette
+   Cmd 	= CATGSMUISilhouette
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 多截面包络体...
+   Id 	= CATSdwVolumeLoftHdr
+   DLL 	= CATGuiLoft
+   Cmd 	= CATGSMUILoft
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 多截面包络体...
+   Id 	= CATSdwVolumeLoftHdr
+   DLL 	= CATGuiLoft
+   Cmd 	= CATGSMUILoft
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update...
+   Id 	= PerformUpdate
+   DLL 	= CATAssCommands
+   Cmd 	= CATAsmCmdUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update...
+   Id 	= PerformUpdate
+   DLL 	= CATAssCommands
+   Cmd 	= CATAsmCmdUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 填充...
+   Id 	= CATShapeDesignFillHdr
+   DLL 	= CATGuiFill
+   Cmd 	= CATGSMUIFill
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 填充...
+   Id 	= CATShapeDesignFillHdr
+   DLL 	= CATGuiFill
+   Cmd 	= CATGSMUIFill
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 点...
+   Id 	= CATHybridPartPoint
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 点...
+   Id 	= CATHybridPartPoint
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generate
+   Id 	= CATStrReportGenHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportGenCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Generate
+   Id 	= CATStrReportGenHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportGenCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Reset color
+   Id 	= ResetColorCmd
+   DLL 	= CATPspRename
+   Cmd 	= CATPspResetColorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Reset color
+   Id 	= ResetColorCmd
+   DLL 	= CATPspRename
+   Cmd 	= CATPspResetColorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 分割..
+   Id 	= CATHybridPartSplit
+   DLL 	= CATGuiSplit
+   Cmd 	= CATGSMUISplit
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 分割..
+   Id 	= CATHybridPartSplit
+   DLL 	= CATGuiSplit
+   Cmd 	= CATGSMUISplit
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 包络体拉伸...
+   Id 	= CATSdwVolumeExtrudeHdr
+   DLL 	= CATGuiExtrude
+   Cmd 	= CATGSMUIExtrude
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 包络体拉伸...
+   Id 	= CATSdwVolumeExtrudeHdr
+   DLL 	= CATGuiExtrude
+   Cmd 	= CATGSMUIExtrude
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 相交...
+   Id 	= CATShapeDesignIntersectHdr
+   DLL 	= CATGuiIntersect
+   Cmd 	= CATGSMUIIntersect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 相交...
+   Id 	= CATShapeDesignIntersectHdr
+   DLL 	= CATGuiIntersect
+   Cmd 	= CATGSMUIIntersect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 相交...
+   Id 	= CATShapeDesignIntersectHdr
+   DLL 	= CATGuiIntersect
+   Cmd 	= CATGSMUIIntersect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Planning Break
+   Id 	= Edit Planning Break
+   DLL 	= CATStrBlockManagement
+   Cmd 	= CATSfmZeroDimPlnBrkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Edit Planning Break
+   Id 	= Edit Planning Break
+   DLL 	= CATStrBlockManagement
+   Cmd 	= CATSfmZeroDimPlnBrkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 面间复制...
+   Id 	= CATHpwMultiplePlaneHdr
+   DLL 	= CATGuiMultiple
+   Cmd 	= CATGSMUIMultiplePlane
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 面间复制...
+   Id 	= CATHpwMultiplePlaneHdr
+   DLL 	= CATGuiMultiple
+   Cmd 	= CATGSMUIMultiplePlane
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define
+   Id 	= CATStrReportDefHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportDefCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define
+   Id 	= CATStrReportDefHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportDefCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Structure Relationships
+   Id 	= CATStrRelObjRelHdr
+   DLL 	= CATStrObjectRelationshipsUI
+   Cmd 	= CATStrRelRelationshipsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Structure Relationships
+   Id 	= CATStrRelObjRelHdr
+   DLL 	= CATStrObjectRelationshipsUI
+   Cmd 	= CATStrRelRelationshipsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 平面...
+   Id 	= CATShapeDesignPlaneHdr
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平面...
+   Id 	= CATShapeDesignPlaneHdr
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平面...
+   Id 	= CATShapeDesignPlaneHdr
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 反射线...
+   Id 	= CATShapeDesignReflectLineHdr
+   DLL 	= CATGuiReflectLine
+   Cmd 	= CATGSMUIReflectLine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 反射线...
+   Id 	= CATShapeDesignReflectLineHdr
+   DLL 	= CATGuiReflectLine
+   Cmd 	= CATGSMUIReflectLine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 简单圆角...
+   Id 	= CATHpwFilletHdr
+   DLL 	= CATGuiFillet
+   Cmd 	= CATGSMUIFillet
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 简单圆角...
+   Id 	= CATHpwFilletHdr
+   DLL 	= CATGuiFillet
+   Cmd 	= CATGSMUIFillet
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 端点坐标...
+   Id 	= CATShapeDesignExtremumPolarHdr
+   DLL 	= CATGuiExtremumPolar
+   Cmd 	= CATGSMUIExtremumPolar
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 端点坐标...
+   Id 	= CATShapeDesignExtremumPolarHdr
+   DLL 	= CATGuiExtremumPolar
+   Cmd 	= CATGSMUIExtremumPolar
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CATStrSeamDefinition
+   Id 	= CATStrSeamDefinition
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSeamDefinitionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= CATStrSeamDefinition
+   Id 	= CATStrSeamDefinition
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSeamDefinitionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Select/Browse...
+   Id 	= CATStrPrjMngtHdr
+   DLL 	= PrjMngtUI
+   Cmd 	= CATPrjMngtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select/Browse...
+   Id 	= CATStrPrjMngtHdr
+   DLL 	= PrjMngtUI
+   Cmd 	= CATPrjMngtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 三切线内圆角...
+   Id 	= CATHpwTriFilletHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateTriFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 三切线内圆角...
+   Id 	= CATHpwTriFilletHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateTriFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 近/远 ...
+   Id 	= CATHybridPartNear
+   DLL 	= CATGuiNearest
+   Cmd 	= CATGSMUINear
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 近/远 ...
+   Id 	= CATHybridPartNear
+   DLL 	= CATGuiNearest
+   Cmd 	= CATGSMUINear
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扫掠...
+   Id 	= CATShapeDesignSweepHdr
+   DLL 	= CATGuiSweep
+   Cmd 	= CATGSMUISweep
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扫掠...
+   Id 	= CATShapeDesignSweepHdr
+   DLL 	= CATGuiSweep
+   Cmd 	= CATGSMUISweep
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扫掠...
+   Id 	= CATShapeDesignSweepHdr
+   DLL 	= CATGuiSweep
+   Cmd 	= CATGSMUISweep
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 面与面的圆角...
+   Id 	= CATShapeDesignFilletFaceHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateFaceFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 面与面的圆角...
+   Id 	= CATShapeDesignFilletFaceHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateFaceFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 展开...
+   Id 	= CATHybridPartDevelopHdr
+   DLL 	= CATGuiDevelop
+   Cmd 	= CATGSMUIDevelop
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 展开...
+   Id 	= CATHybridPartDevelopHdr
+   DLL 	= CATGuiDevelop
+   Cmd 	= CATGSMUIDevelop
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 隔离
+   Id 	= CATShapeDesignIsolateMask
+   DLL 	= CATGuiMask
+   Cmd 	= CATGuiMaskSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 隔离
+   Id 	= CATShapeDesignIsolateMask
+   DLL 	= CATGuiMask
+   Cmd 	= CATGuiMaskSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Measure Between
+   Id 	= CATStrMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Between
+   Id 	= CATStrMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= End Cut
+   Id 	= CATSfdDefineEndCutCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmEndCutCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= End Cut
+   Id 	= CATSfdDefineEndCutCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmEndCutCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 多截面曲面...
+   Id 	= CATShapeDesignLoftHdr
+   DLL 	= CATGuiLoft
+   Cmd 	= CATGSMUILoft
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 多截面曲面...
+   Id 	= CATShapeDesignLoftHdr
+   DLL 	= CATGuiLoft
+   Cmd 	= CATGSMUILoft
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 分割..
+   Id 	= CATShapeDesignSplitHdr
+   DLL 	= CATGuiSplit
+   Cmd 	= CATGSMUISplit
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 分割..
+   Id 	= CATShapeDesignSplitHdr
+   DLL 	= CATGuiSplit
+   Cmd 	= CATGSMUISplit
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 分割..
+   Id 	= CATShapeDesignSplitHdr
+   DLL 	= CATGuiSplit
+   Cmd 	= CATGSMUISplit
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 三切线内圆角...
+   Id 	= CATShapeDesignTriFilletHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateTriFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 三切线内圆角...
+   Id 	= CATShapeDesignTriFilletHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateTriFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 反转方向...
+   Id 	= CATHpwInverseHdr
+   DLL 	= CATGuiInverse
+   Cmd 	= CATGuiInverse
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 反转方向...
+   Id 	= CATHpwInverseHdr
+   DLL 	= CATGuiInverse
+   Cmd 	= CATGuiInverse
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 低亮度背景...
+   Id 	= LowlightbackgroundHeader
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 低亮度背景...
+   Id 	= LowlightbackgroundHeader
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Plane System
+   Id 	= CATStrPlaneSystem
+   DLL 	= CATGuiGridSet
+   Cmd 	= CATGSMUIGridSet
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Plane System
+   Id 	= CATStrPlaneSystem
+   DLL 	= CATGuiGridSet
+   Cmd 	= CATGSMUIGridSet
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扫掠...
+   Id 	= CATHybridPartSweep
+   DLL 	= CATGuiSweep
+   Cmd 	= CATGSMUISweep
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扫掠...
+   Id 	= CATHybridPartSweep
+   DLL 	= CATGuiSweep
+   Cmd 	= CATGSMUISweep
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 面与面的圆角...
+   Id 	= CATHpwFilletFaceHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateFaceFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 面与面的圆角...
+   Id 	= CATHpwFilletFaceHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateFaceFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 转移...
+   Id 	= CATSdwTransferHdr
+   DLL 	= CATGuiUnfold
+   Cmd 	= CATGSMUITransfer
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 转移...
+   Id 	= CATSdwTransferHdr
+   DLL 	= CATGuiUnfold
+   Cmd 	= CATGSMUITransfer
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Small Assemblies
+   Id 	= CATSfdDefinePowerCopyCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrPowerCopyCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Small Assemblies
+   Id 	= CATSfdDefinePowerCopyCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrPowerCopyCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Scallop on 3DAxis
+   Id 	= CATSfdDefineScallopOnAxisCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmScallopOn3DAxisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Scallop on 3DAxis
+   Id 	= CATSfdDefineScallopOnAxisCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmScallopOn3DAxisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 拉伸...
+   Id 	= CATHybridPartExtrude
+   DLL 	= CATGuiExtrude
+   Cmd 	= CATGSMUIExtrude
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 拉伸...
+   Id 	= CATHybridPartExtrude
+   DLL 	= CATGuiExtrude
+   Cmd 	= CATGSMUIExtrude
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移 3D 曲线...
+   Id 	= CATShapeDesign3DCurveOffset
+   DLL 	= CATGui3DCurveOffset
+   Cmd 	= CATGui3DCurveOffset
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移 3D 曲线...
+   Id 	= CATShapeDesign3DCurveOffset
+   DLL 	= CATGui3DCurveOffset
+   Cmd 	= CATGui3DCurveOffset
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 连接曲线...
+   Id 	= CATHybridPartConnect
+   DLL 	= CATGuiConnect
+   Cmd 	= CATGSMUIConnect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 连接曲线...
+   Id 	= CATHybridPartConnect
+   DLL 	= CATGuiConnect
+   Cmd 	= CATGSMUIConnect
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移...
+   Id 	= CATHybridPartOffset
+   DLL 	= CATGuiOffset
+   Cmd 	= CATGSMUIOffset
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移...
+   Id 	= CATHybridPartOffset
+   DLL 	= CATGuiOffset
+   Cmd 	= CATGSMUIOffset
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 展开...
+   Id 	= CATSdwDevelopHdr
+   DLL 	= CATGuiDevelop
+   Cmd 	= CATGSMUIDevelop
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 展开...
+   Id 	= CATSdwDevelopHdr
+   DLL 	= CATGuiDevelop
+   Cmd 	= CATGSMUIDevelop
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Compute Weight and CoG
+   Id 	= CATStrBlockCompute
+   DLL 	= CATStrBlockManagement
+   Cmd 	= CATSfmBlockPropertiesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Compute Weight and CoG
+   Id 	= CATStrBlockCompute
+   DLL 	= CATStrBlockManagement
+   Cmd 	= CATSfmBlockPropertiesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 仿射..
+   Id 	= CATHybridPartAffinity
+   DLL 	= CATGuiAffinity
+   Cmd 	= CATGSMUIAffinity
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 仿射..
+   Id 	= CATHybridPartAffinity
+   DLL 	= CATGuiAffinity
+   Cmd 	= CATGSMUIAffinity
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 折线...
+   Id 	= CATHpwLineCornerHdr
+   DLL 	= CATGuiLineCorner
+   Cmd 	= CATGSMUILineCorner
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 折线...
+   Id 	= CATHpwLineCornerHdr
+   DLL 	= CATGuiLineCorner
+   Cmd 	= CATGSMUILineCorner
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 点复制...
+   Id 	= CATShapeDesignMultiplePointHdr
+   DLL 	= CATGuiMultiple
+   Cmd 	= CATGSMUIMultiplePoint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 点复制...
+   Id 	= CATShapeDesignMultiplePointHdr
+   DLL 	= CATGuiMultiple
+   Cmd 	= CATGSMUIMultiplePoint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 样条线...
+   Id 	= CATShapeDesignCurveHdr
+   DLL 	= CATGuiCurve
+   Cmd 	= CATGSMUICurve
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 样条线...
+   Id 	= CATShapeDesignCurveHdr
+   DLL 	= CATGuiCurve
+   Cmd 	= CATGSMUICurve
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 粗略偏移...
+   Id 	= CATSdwRoughOffsetHdr
+   DLL 	= CATGuiOffset
+   Cmd 	= CATGSMUIOffset
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 粗略偏移...
+   Id 	= CATSdwRoughOffsetHdr
+   DLL 	= CATGuiOffset
+   Cmd 	= CATGSMUIOffset
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 圆柱面...
+   Id 	= CATSdwCylinderHdr
+   DLL 	= CATGuiExtrude
+   Cmd 	= CATGSMUIExtrude
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 圆柱面...
+   Id 	= CATSdwCylinderHdr
+   DLL 	= CATGuiExtrude
+   Cmd 	= CATGSMUIExtrude
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Split Stiffener
+   Id 	= CATStrMaterialSeamsSuperStiffeners
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSeamDefinitionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Split Stiffener
+   Id 	= CATStrMaterialSeamsSuperStiffeners
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSeamDefinitionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 圆角...
+   Id 	= CATHybridPartCorner
+   DLL 	= CATGuiCorner
+   Cmd 	= CATGSMUICorner
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 圆角...
+   Id 	= CATHybridPartCorner
+   DLL 	= CATGuiCorner
+   Cmd 	= CATGSMUICorner
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 直线...
+   Id 	= CATHybridPartLine
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 直线...
+   Id 	= CATHybridPartLine
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 提取...
+   Id 	= CATShapeDesignExtractSolideHdr
+   DLL 	= CATGuiExtractSolide
+   Cmd 	= CATGuiExtractSolide
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 提取...
+   Id 	= CATShapeDesignExtractSolideHdr
+   DLL 	= CATGuiExtractSolide
+   Cmd 	= CATGuiExtractSolide
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 曲面简化...
+   Id 	= CATSdwSurfaceSimplificationHdr
+   DLL 	= CATSurfacicSharedUI
+   Cmd 	= CATGSMUISurfaceSimplificationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 曲面简化...
+   Id 	= CATSdwSurfaceSimplificationHdr
+   DLL 	= CATSurfacicSharedUI
+   Cmd 	= CATGSMUISurfaceSimplificationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 多重提取...
+   Id 	= CATShapeDesignExtractSMultiCHdr
+   DLL 	= CATGuiExtractSolideMultiContour
+   Cmd 	= CATGuiExtractMulti
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 多重提取...
+   Id 	= CATShapeDesignExtractSMultiCHdr
+   DLL 	= CATGuiExtractSolideMultiContour
+   Cmd 	= CATGuiExtractMulti
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 设置为非当前
+   Id 	= CATShapeDesignSetNotCurrentMask
+   DLL 	= CATGuiMask
+   Cmd 	= CATGuiMaskSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 设置为非当前
+   Id 	= CATShapeDesignSetNotCurrentMask
+   DLL 	= CATGuiMask
+   Cmd 	= CATGuiMaskSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 轴线...
+   Id 	= CATHpwAxisLineHdr
+   DLL 	= CATGuiAxisLine
+   Cmd 	= CATGSMUIAxisLine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 轴线...
+   Id 	= CATHpwAxisLineHdr
+   DLL 	= CATGuiAxisLine
+   Cmd 	= CATGSMUIAxisLine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 轴线...
+   Id 	= CATSdwAxisLineHdr
+   DLL 	= CATGuiAxisLine
+   Cmd 	= CATGSMUIAxisLine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 轴线...
+   Id 	= CATSdwAxisLineHdr
+   DLL 	= CATGuiAxisLine
+   Cmd 	= CATGSMUIAxisLine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 螺线...
+   Id 	= CATSdwSpiralHdr
+   DLL 	= CATGuiSpiral
+   Cmd 	= CATGSMUISpiral
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 螺线...
+   Id 	= CATSdwSpiralHdr
+   DLL 	= CATGuiSpiral
+   Cmd 	= CATGSMUISpiral
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 修复...
+   Id 	= CATShapeDesignHealingHdr
+   DLL 	= CATGuiHealing
+   Cmd 	= CATGSMUIHealing
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 修复...
+   Id 	= CATShapeDesignHealingHdr
+   DLL 	= CATGuiHealing
+   Cmd 	= CATGSMUIHealing
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 可变偏移...
+   Id 	= CATSdwVariableOffsetHdr
+   DLL 	= CATGuiVariableOffset
+   Cmd 	= CATGSMUIVariableOffset
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 可变偏移...
+   Id 	= CATSdwVariableOffsetHdr
+   DLL 	= CATGuiVariableOffset
+   Cmd 	= CATGSMUIVariableOffset
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 展开...
+   Id 	= CATHybridPartUnfoldHdr
+   DLL 	= CATGuiUnfold
+   Cmd 	= CATGSMUIUnfold
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 展开...
+   Id 	= CATHybridPartUnfoldHdr
+   DLL 	= CATGuiUnfold
+   Cmd 	= CATGSMUIUnfold
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Advanced Copy
+   Id 	= CATSfdDefineAdvCopyCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrAdvancedCopyCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Advanced Copy
+   Id 	= CATSfdDefineAdvCopyCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrAdvancedCopyCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 提取...
+   Id 	= CATHybridPartExtractSolide
+   DLL 	= CATGuiExtractSolide
+   Cmd 	= CATGuiExtractSolide
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 提取...
+   Id 	= CATHybridPartExtractSolide
+   DLL 	= CATGuiExtractSolide
+   Cmd 	= CATGuiExtractSolide
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Stiffener
+   Id 	= CATStrEditStiffener
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrCreateStiffenerFunctionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Stiffener
+   Id 	= CATStrEditStiffener
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrCreateStiffenerFunctionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 圆柱面...
+   Id 	= CATHpwCylinderHdr
+   DLL 	= CATGuiExtrude
+   Cmd 	= CATGSMUIExtrude
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 圆柱面...
+   Id 	= CATHpwCylinderHdr
+   DLL 	= CATGuiExtrude
+   Cmd 	= CATGSMUIExtrude
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Slot
+   Id 	= CATSfdDefineSlotCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmSlotCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Slot
+   Id 	= CATSfdDefineSlotCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmSlotCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Reset Planning Breaks
+   Id 	= CATStrResetPlanningBreaks
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrResetPlanningBreaksCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Reset Planning Breaks
+   Id 	= CATStrResetPlanningBreaks
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrResetPlanningBreaksCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 近/远 ...
+   Id 	= CATShapeDesignNearHdr
+   DLL 	= CATGuiNearest
+   Cmd 	= CATGSMUINear
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 近/远 ...
+   Id 	= CATShapeDesignNearHdr
+   DLL 	= CATGuiNearest
+   Cmd 	= CATGSMUINear
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 修剪...
+   Id 	= CATHybridPartTrim
+   DLL 	= CATGuiTrim
+   Cmd 	= CATGSMUITrim
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 修剪...
+   Id 	= CATHybridPartTrim
+   DLL 	= CATGuiTrim
+   Cmd 	= CATGSMUITrim
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 接合...
+   Id 	= CATShapeDesignAssembleHdr
+   DLL 	= CATGuiAssemble
+   Cmd 	= CATGSMUIAssemble
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 接合...
+   Id 	= CATShapeDesignAssembleHdr
+   DLL 	= CATGuiAssemble
+   Cmd 	= CATGSMUIAssemble
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 接合...
+   Id 	= CATShapeDesignAssembleHdr
+   DLL 	= CATGuiAssemble
+   Cmd 	= CATGSMUIAssemble
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 从文档实例化...
+   Id 	= CATMmrPrtInstanciatePowerCopyHdr
+   DLL 	= CATUdfCommands
+   Cmd 	= CATUdfFeatureInstanciateFile
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 投影...
+   Id 	= CATShapeDesignProjectHdr
+   DLL 	= CATGuiProject
+   Cmd 	= CATGSMUIProject
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 投影...
+   Id 	= CATShapeDesignProjectHdr
+   DLL 	= CATGuiProject
+   Cmd 	= CATGSMUIProject
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 投影...
+   Id 	= CATShapeDesignProjectHdr
+   DLL 	= CATGuiProject
+   Cmd 	= CATGSMUIProject
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 适应性扫掠...
+   Id 	= CATShapeDesignVarSweepHdr
+   DLL 	= CATGuiVariationalSweep
+   Cmd 	= CATGSMUISweepVar
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 适应性扫掠...
+   Id 	= CATShapeDesignVarSweepHdr
+   DLL 	= CATGuiVariationalSweep
+   Cmd 	= CATGSMUISweepVar
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 简单圆角...
+   Id 	= CATShapeDesignFilletHdr
+   DLL 	= CATGuiFillet
+   Cmd 	= CATGSMUIFillet
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 简单圆角...
+   Id 	= CATShapeDesignFilletHdr
+   DLL 	= CATGuiFillet
+   Cmd 	= CATGSMUIFillet
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 样条线...
+   Id 	= CATHybridPartCurve
+   DLL 	= CATGuiCurve
+   Cmd 	= CATGSMUICurve
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 样条线...
+   Id 	= CATHybridPartCurve
+   DLL 	= CATGuiCurve
+   Cmd 	= CATGSMUICurve
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 中间面...
+   Id 	= CATSdwMidSurfaceHdr
+   DLL 	= CATGuiMidSurface
+   Cmd 	= CATGuiMidSurfaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 中间面...
+   Id 	= CATSdwMidSurfaceHdr
+   DLL 	= CATGuiMidSurface
+   Cmd 	= CATGuiMidSurfaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Beam
+   Id 	= CATSfmMember
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmMemberCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Beam
+   Id 	= CATSfmMember
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmMemberCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 外形渐变
+   Id 	= CATSdwShapeMorphingHdr
+   DLL 	= CATGuiShapeMorphing
+   Cmd 	= CATGuiShapeMorphing
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 外形渐变
+   Id 	= CATSdwShapeMorphingHdr
+   DLL 	= CATGuiShapeMorphing
+   Cmd 	= CATGuiShapeMorphing
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 弦圆角...
+   Id 	= CATShapeDesignFilletChordal
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateVarFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 弦圆角...
+   Id 	= CATShapeDesignFilletChordal
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateVarFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 设置为当前
+   Id 	= CATShapeDesignSetCurrentMask
+   DLL 	= CATGuiMask
+   Cmd 	= CATGuiMaskSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 设置为当前
+   Id 	= CATShapeDesignSetCurrentMask
+   DLL 	= CATGuiMask
+   Cmd 	= CATGuiMaskSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 锁定当前视点...
+   Id 	= LockcurrentviewpointHeader
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 锁定当前视点...
+   Id 	= LockcurrentviewpointHeader
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 缩放...
+   Id 	= CATShapeDesignScalingHdr
+   DLL 	= CATGuiScaling
+   Cmd 	= CATGSMUIScaling
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 缩放...
+   Id 	= CATShapeDesignScalingHdr
+   DLL 	= CATGuiScaling
+   Cmd 	= CATGSMUIScaling
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 修剪...
+   Id 	= CATShapeDesignTrimHdr
+   DLL 	= CATGuiTrim
+   Cmd 	= CATGSMUITrim
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 修剪...
+   Id 	= CATShapeDesignTrimHdr
+   DLL 	= CATGuiTrim
+   Cmd 	= CATGSMUITrim
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 修剪...
+   Id 	= CATShapeDesignTrimHdr
+   DLL 	= CATGuiTrim
+   Cmd 	= CATGSMUITrim
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 倒圆角..
+   Id 	= CATHpwFilletEdgeHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 倒圆角..
+   Id 	= CATHpwFilletEdgeHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 从选择实例化...
+   Id 	= PKTInstanciateSelectHdr
+   DLL 	= CATUdfCommands
+   Cmd 	= CATUdfFeatureInstanciateSelect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 仿射...
+   Id 	= CATShapeDesignAffinityHdr
+   DLL 	= CATGuiAffinity
+   Cmd 	= CATGSMUIAffinity
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 仿射...
+   Id 	= CATShapeDesignAffinityHdr
+   DLL 	= CATGuiAffinity
+   Cmd 	= CATGSMUIAffinity
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 无 3D 背景...
+   Id 	= No3dbackgroundHeader
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 无 3D 背景...
+   Id 	= No3dbackgroundHeader
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 脊线...
+   Id 	= CATShapeDesignSpineHdr
+   DLL 	= CATGuiSpine
+   Cmd 	= CATGSMUISpine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 脊线...
+   Id 	= CATShapeDesignSpineHdr
+   DLL 	= CATGuiSpine
+   Cmd 	= CATGSMUISpine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 填充...
+   Id 	= CATHybridPartFill
+   DLL 	= CATGuiFill
+   Cmd 	= CATGSMUIFill
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 填充...
+   Id 	= CATHybridPartFill
+   DLL 	= CATGuiFill
+   Cmd 	= CATGSMUIFill
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Measure Inertia...
+   Id 	= CATStrMeasureInertiaHdr
+   DLL 	= CATSpaInertia
+   Cmd 	= CATSiLaMeasureInertiaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Inertia...
+   Id 	= CATStrMeasureInertiaHdr
+   DLL 	= CATSpaInertia
+   Cmd 	= CATSiLaMeasureInertiaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Plate
+   Id 	= CATStrPlate
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrPlateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Plate
+   Id 	= CATStrPlate
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrPlateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Plate
+   Id 	= CATStrEditSuperPlate
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrPlateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Plate
+   Id 	= CATStrEditSuperPlate
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrPlateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 倒圆角...
+   Id 	= CATShapeDesignFilletEdgeHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 倒圆角...
+   Id 	= CATShapeDesignFilletEdgeHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Stiffener On Free Edge
+   Id 	= CATStrEditStiffenerFreeEdge
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrFreeEdgeStiffenerCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Stiffener On Free Edge
+   Id 	= CATStrEditStiffenerFreeEdge
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrFreeEdgeStiffenerCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 复制对象...
+   Id 	= CATShapeDesignMultipleHdr
+   DLL 	= CATGuiMultiple
+   Cmd 	= CATGSMUIMultiple
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 复制对象...
+   Id 	= CATShapeDesignMultipleHdr
+   DLL 	= CATGuiMultiple
+   Cmd 	= CATGSMUIMultiple
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Plane System Grid
+   Id 	= CATStrPlaneSystemGrid
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrGridSetGrid
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Plane System Grid
+   Id 	= CATStrPlaneSystemGrid
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrGridSetGrid
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 边界...
+   Id 	= CATHybridPartBoundary
+   DLL 	= CATGuiBoundary
+   Cmd 	= CATGuiBoundary
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 边界...
+   Id 	= CATHybridPartBoundary
+   DLL 	= CATGuiBoundary
+   Cmd 	= CATGuiBoundary
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 点...
+   Id 	= CATShapeDesignPointHdr
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 点...
+   Id 	= CATShapeDesignPointHdr
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 点...
+   Id 	= CATShapeDesignPointHdr
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 不可拾取的低亮度背景...
+   Id 	= UnpickablelowlightbackgroundHeader
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 不可拾取的低亮度背景...
+   Id 	= UnpickablelowlightbackgroundHeader
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 拉伸...
+   Id 	= CATShapeDesignExtrudeHdr
+   DLL 	= CATGuiExtrude
+   Cmd 	= CATGSMUIExtrude
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 拉伸...
+   Id 	= CATShapeDesignExtrudeHdr
+   DLL 	= CATGuiExtrude
+   Cmd 	= CATGSMUIExtrude
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 边界...
+   Id 	= CATShapeDesignBoundaryHdr
+   DLL 	= CATGuiBoundary
+   Cmd 	= CATGuiBoundary
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 边界...
+   Id 	= CATShapeDesignBoundaryHdr
+   DLL 	= CATGuiBoundary
+   Cmd 	= CATGuiBoundary
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 定位变换...
+   Id 	= CATSdwAxisToAxisHdr
+   DLL 	= CATGuiAxisToAxis
+   Cmd 	= CATGSMUIAxisToAxis
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 定位变换...
+   Id 	= CATSdwAxisToAxisHdr
+   DLL 	= CATGuiAxisToAxis
+   Cmd 	= CATGSMUIAxisToAxis
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 多截面曲面...
+   Id 	= CATHybridPartLoft
+   DLL 	= CATGuiLoft
+   Cmd 	= CATGSMUILoft
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 多截面曲面...
+   Id 	= CATHybridPartLoft
+   DLL 	= CATGuiLoft
+   Cmd 	= CATGSMUILoft
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 样式圆角...
+   Id 	= CATShapeDesignStylingFillet
+   DLL 	= CATFsuTopoFillet
+   Cmd 	= CATStCmdTopoFillet
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 样式圆角...
+   Id 	= CATShapeDesignStylingFillet
+   DLL 	= CATFsuTopoFillet
+   Cmd 	= CATStCmdTopoFillet
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Scallop
+   Id 	= CATSfdDefineScallopCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmScallopCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Scallop
+   Id 	= CATSfdDefineScallopCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATSfmScallopCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Synchronize the Hull
+   Id 	= SynchronizeHullCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSynchronizeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Synchronize the Hull
+   Id 	= SynchronizeHullCmd
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSynchronizeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 可变圆角...
+   Id 	= CATShapeDesignFilletVarHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateVarFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 可变圆角...
+   Id 	= CATShapeDesignFilletVarHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateVarFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 直线...
+   Id 	= CATShapeDesignLineHdr
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 直线...
+   Id 	= CATShapeDesignLineHdr
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 直线...
+   Id 	= CATShapeDesignLineHdr
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 旋转...
+   Id 	= CATHybridPartRevol
+   DLL 	= CATGuiRevol
+   Cmd 	= CATGSMUIRevol
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 旋转...
+   Id 	= CATHybridPartRevol
+   DLL 	= CATGuiRevol
+   Cmd 	= CATGSMUIRevol
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 包裹曲线
+   Id 	= CATSdwWrapCurveHdr
+   DLL 	= CATGuiWrapCurve
+   Cmd 	= CATGuiWrapCurveCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 包裹曲线
+   Id 	= CATSdwWrapCurveHdr
+   DLL 	= CATGuiWrapCurve
+   Cmd 	= CATGuiWrapCurveCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 可拾取的可视背景...
+   Id 	= PickablevisiblebackgroundHeader
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 可拾取的可视背景...
+   Id 	= PickablevisiblebackgroundHeader
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 接合...
+   Id 	= CATHybridPartAssemble
+   DLL 	= CATGuiAssemble
+   Cmd 	= CATGSMUIAssemble
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 接合...
+   Id 	= CATHybridPartAssemble
+   DLL 	= CATGuiAssemble
+   Cmd 	= CATGSMUIAssemble
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Stiffener
+   Id 	= CATStrStiffener
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrCreateStiffenerFunctionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Stiffener
+   Id 	= CATStrStiffener
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrCreateStiffenerFunctionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 修复...
+   Id 	= CATHybridPartHealing
+   DLL 	= CATGuiHealing
+   Cmd 	= CATGSMUIHealing
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 修复...
+   Id 	= CATHybridPartHealing
+   DLL 	= CATGuiHealing
+   Cmd 	= CATGSMUIHealing
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扫掠包络体...
+   Id 	= CATSdwVolumeSweepHdr
+   DLL 	= CATGuiSweep
+   Cmd 	= CATGSMUISweep
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扫掠包络体...
+   Id 	= CATSdwVolumeSweepHdr
+   DLL 	= CATGuiSweep
+   Cmd 	= CATGSMUISweep
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 等参数曲线
+   Id 	= CATSdwIsoparamCrvHdr
+   DLL 	= CATFsuIsoparamCurve
+   Cmd 	= CATStCmdIsoparamCurve
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 等参数曲线
+   Id 	= CATSdwIsoparamCrvHdr
+   DLL 	= CATFsuIsoparamCurve
+   Cmd 	= CATStCmdIsoparamCurve
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对称...
+   Id 	= CATShapeDesignSymmetryHdr
+   DLL 	= CATGuiSymmetry
+   Cmd 	= CATGSMUISymmetry
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对称...
+   Id 	= CATShapeDesignSymmetryHdr
+   DLL 	= CATGuiSymmetry
+   Cmd 	= CATGSMUISymmetry
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平面...
+   Id 	= CATHybridPartPlane
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平面...
+   Id 	= CATHybridPartPlane
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=StrPartMenu 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=StrPartInsertSep0
+      Title=Geometric Tools 	 Name=StrPartGSDToolSet 
+         Starter Name=InsertGSMBody
+      Title=Sketcher 	 Name=StrPartGSDSketcher 
+         Starter Name=GSDPartSketchIcon
+         Starter Name=GSDPartSketchPosIcon
+      Title=Wireframe 	 Name=StrPartGSDWireframe 
+         Starter Name=GSDPartPointIcon
+         Starter Name=GSDPartLineIcon
+         Starter Name=GSDPartPlaneIcon
+         Separator Name=StrGSDWireframeInsertSep0
+         Starter Name=GSDPartProjectIcon
+         Starter Name=GSDPartIntersectIcon
+      Title=Surfaces 	 Name=StrPartGSDSurfaces 
+         Starter Name=GSDPartSweepIcon
+      Title=Operations 	 Name=StrPartGSDOperations 
+         Starter Name=GSDPartJoinIcon
+         Separator Name=StrGSDOperationsInsertSep0
+         Starter Name=GSDPartSplitIcon
+         Starter Name=GSDPartTrimIcon
+      Title=Knowledge Templates 	 Name=SfdPartCkePowerCopy 
+         Starter Name=SfdCreatePwCpyIcon
+         Starter Name=SfdCreateUFIcon
+         Starter Name=SfdDocTemplateIcon
+         Starter Name=SfdSavePwCpyIcon
+         Separator Name=SfdCkeTemplate
+         Starter Name=SfdInstDocIcon
+         Starter Name=SfdInstSelectIcon
+      Separator Name=StrPartInsertSep1
+      Title=Functional Objects 	 Name=StrPartFunctionalObjects 
+         Starter Name=StrPartMPlateIcon
+         Starter Name=StrPartMStiffenerIcon
+         Starter Name=StrPartMStiffenerFreeEdgeIcon
+         Starter Name=StrPartMOpeningIcon
+         Starter Name=StrPartMMemberIcon
+      Title=Seam Definition 	 Name=StrSfmSeamIcons 
+         Starter Name=StrSeamPlateDefinitionIcon
+         Starter Name=StrSeamStiffenerDefinitionIcon
+      Title=Detailing Feature Definition 	 Name=StrSfmDetailDesignIcons 
+         Starter Name=StrSlotIcon
+         Starter Name=StrPowerCopyIcon
+         Starter Name=StrEndCutIcon
+         Starter Name=StrScallopIcon
+         Starter Name=StrScallopOnAxisIcon
+         Starter Name=CATSfdDefineAdvCopyIcon
+      Title=Functional Volume Object 	 Name=StrSfmBlockIcons 
+         Starter Name=StrFreeShapeBlockIcon
+      Title=Grid Tool 	 Name=StrSfmGridIcons 
+         Starter Name=StrPlaneSystmIcon
+         Starter Name=StrPlaneSystmGridIcon
+      Title=Review Tools 	 Name=StrSfmNavigatorIcons 
+         Starter Name=StrRelationshipsIcon
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=StrPartToolsSep0
+      Title=Report  	 Name=StrPartReportTools 
+         Starter Name=StrPartReportDefIcon
+         Starter Name=StrPartReportGenIcon
+      Title=Project Management 	 Name=StrPRMTools 
+         Starter Name=StrPartPrjMngtStr
+         Starter Name=StrPRMCheckerStr
+
+ Title of the toolbar=SfdLiteSelect and is Name=SfdLiteSelect
+   Starter Name=CATSelect
+
+ Title of the toolbar=Grid Tool and is Name=StrPartToolBar015
+   Starter Name=PlaneSystem
+   Starter Name=PlaneSystemGrid
+   Starter Name=StrRelationships
+
+ Title of the toolbar=Functional Objects and is Name=StrPartToolBar010
+   Starter Name=CATPlate
+   Starter Name=PlateConcave
+   Starter Name=Shape
+   Starter Name=ShapeOnFreeEdge
+   Starter Name=Member
+   Starter Name=Opening
+
+ Title of the toolbar=Seams and Breaks and is Name=StrPartToolBar014
+   Starter Name=MaterialSeamsSuperPlate
+   Starter Name=MaterialSeamsSuperStiffeners
+
+ Title of the toolbar=Block Objects and is Name=StrPartToolBar012
+   Starter Name=FreeShapeBlock
+
+ Title of the toolbar=Detailing Toolbar and is Name=StrPartToolBar013
+   Starter Name=CATSlot
+   Starter Name=CATPowerCopy
+   Starter Name=EndCutCmd
+   Starter Name=ScallopCmd
+   Starter Name=ScallopOn3DAxisCmd
+   Starter Name=AdvCopyCmd
+   Starter Name=TBGVSEditorCmd

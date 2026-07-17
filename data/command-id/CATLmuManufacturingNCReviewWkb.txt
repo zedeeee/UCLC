@@ -1,0 +1,78 @@
+Workshop Exposition of CATLmuManufacturingNCReviewWkb 
+
+1- Header List 
+
+
+2- Access List 
+
+ Name of the menubar=CATPartMenu 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Separator Name=CATNewSeparator005
+   Title=视图 	 Name=CATAfrView 
+      Title=Machining 	 Name=NCVIEWSMenu 
+         Starter Name=TabularView
+         Starter Name=CATManufacturingFeatureView
+         Starter Name=MfgGantt
+   Title=插入 	 Name=CATAfrInsertMnu 
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Title=Machining Tools 	 Name=NCTOOLSMenu 
+         Starter Name=ProcessTemplate
+
+ Title of the toolbar=Select and is Name=ManufacturingSelectMain
+   Starter Name=CATSelect
+
+ Title of the toolbar=Manufacturing Program and is Name=ManufacturingProgramMain
+   Starter Name=CATCreateSetup
+   Starter Name=CATCreateProgram
+
+ Title of the toolbar=NC Review Management and is Name=ManufacturingNCReviewMain
+   Starter Name=ImportAPT
+   Starter Name=ImportV4Model
+   Starter Name=AssociateAPT
+
+ Title of the toolbar=NC Output Management and is Name=ManufacturingNCReviewToolPathMain
+   Starter Name=CATToolPathReplay
+   Title of the Icon Box=NC Output Generations 	 Name=CATNCOutputContainer 
+      Starter Name=CATNCOutputBatch
+      Starter Name=CATGenerateNCCode
+   Starter Name=NCBatchCompute
+   Starter Name=CATNCDocumentation
+   Starter Name=DNBVNCTransitionHdr
+   Starter Name=DNBVNCMillTurnTransitionHdr
+   Starter Name=MfgScreenCapture
+
+ Title of the toolbar=Auxiliary Commands and is Name=ManufacturingAuxiliaryViewsNCReview
+   Title of the Icon Box=ToolImportContainer 	 Name=PaletteTool 
+      Starter Name=CATManufacturingToolListView
+      Starter Name=ManufacturingTAListView
+   Starter Name=ToolReplace
+   Starter Name=ActivitySelection
+   Starter Name=UpdateStatus
+   Starter Name=MfgSynchro
+   Starter Name=TabularView
+   Starter Name=MfgGantt
+   Title of the Icon Box=Hide/Show geometry 	 Name=PaletteVueAux 
+      Starter Name=HideShowParts
+      Starter Name=HideShowChecks
+
+ Title of the toolbar=Machining Features and is Name=ManufacturingFeaturesNCReview
+   Starter Name=CATManufacturingFeatureView
+
+ Title of the toolbar=Measure and is Name=ConsistencyNCG
+   Starter Name=CATMeasureBetween
+   Starter Name=CATMeasureItem
+
+ Title of the toolbar=Face Selection and is Name=FaceWizard
+
+ Title of the toolbar=Edge Selection and is Name=EdgeWizard
+
+ Title of the toolbar=Find Edges Of Faces and is Name=FindEdgesOfFacesNCR
+
+ Title of the toolbar=Tool Path Management and is Name=TPEEditNCR
+   Starter Name=TPECmdEdit
+Separator Name=Separator
+   Starter Name=TPECmdSplitColl
+   Starter Name=TPEToolLength
+   Starter Name=TPECmdCreateGeom
+
+ Title of the toolbar=Tool Path Editor and is Name=TPEModificationWizardNCR

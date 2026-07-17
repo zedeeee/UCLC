@@ -1,0 +1,307 @@
+Workshop Exposition of CATEAsdWeldWorkbench 
+
+1- Header List 
+
+Title= Single-J Butt Weld
+   Id 	= CreateJGrooveWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcJGrooveWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Double Fillet Weld
+   Id 	= CreateDoubleFilletWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcDoubleFilletWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Joint
+   Id 	= AsdJointsJoint
+   DLL 	= CATAjcCommands
+   Cmd 	= CATAsdCmdJointsJoint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Double-Bevel Butt Weld With Broad Root Face
+   Id 	= CreateDoubleGrooveWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcDoubleGrooveWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Single-V Butt Weld
+   Id 	= CreateVGrooveWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcVGrooveWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Double Bevel Butt Weld
+   Id 	= CreateDoubleBevelGrooveWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcDoubleBevelGrooveWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= User Weld
+   Id 	= CreateUserWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcCmdUserWeldEdit
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Without Preparation Mode
+   Id 	= WithoutPrepaModeWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcCmdSwitchMode
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Single-Bevel Butt Weld
+   Id 	= CreateBevelGrooveWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcBevelGrooveWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Single-U Butt Weld
+   Id 	= CreateUGrooveWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcUGrooveWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Default Mode
+   Id 	= DefaultModeWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcCmdSwitchMode
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Single-V Butt Weld With Broad Root Face
+   Id 	= CreateYGrooveWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcYGrooveWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Double-J Butt Weld
+   Id 	= CreateDoubleJGrooveWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcDoubleJGrooveWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Double-V Butt Weld With Broad Root Face
+   Id 	= CreateDoubleYGrooveWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcDoubleYGrooveWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Double-U Butt Weld
+   Id 	= CreateDoubleUGrooveWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcDoubleUGrooveWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Double-V Butt Weld
+   Id 	= CreateDoubleVGrooveWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcDoubleVGrooveWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title=  Weld Report 
+   Id 	= WeldReportCmd
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcCmdWeldReport
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Joint body
+   Id 	= AsdJointsJointBody
+   DLL 	= CATAjcCommands
+   Cmd 	= CATAsdCmdJointsBody
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Square Butt Weld
+   Id 	= CreateSquareGrooveWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcSquareGrooveWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Single-Bevel Butt Weld With Broad Root Face
+   Id 	= CreateGrooveWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcGrooveWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Fillet Weld
+   Id 	= CreateFilletWeld
+   DLL 	= CATAwcCommands
+   Cmd 	= CATAwcFilletWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=ContWeldMenu 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Starter Name=UpdateEdit
+      Title=Move 	 Name=MoveMenu 
+         Starter Name=CATAifMANIPStr
+         Starter Name=CATSNAP
+         Starter Name=SMARTMOVE
+         Starter Name=StopOnCollEdit
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=SepInsert1
+      Title=Fillet Welds 	 Name=ContainerFilletMenu 
+         Starter Name=FILLETMENU
+         Starter Name=DOUBLEFILLETMENU
+      Starter Name=SterSquareGrooveWeldMenu
+      Title=V Butt Welds 	 Name=ContainerVGrooveMenu 
+         Starter Name=VGROOVEMENU
+         Starter Name=DOUBLEVGROOVEMENU
+      Title=Bevel Butt Welds 	 Name=ContainerBevelGrooveMenu 
+         Starter Name=BEVELGROOVEMENU
+         Starter Name=DOUBLEBEVELGROOVEMENU
+      Title=Y Butt Welds 	 Name=ContainerYGrooveMenu 
+         Starter Name=YGROOVEMENU
+         Starter Name=DOUBLEYGROOVEMENU
+      Title=Butt Welds 	 Name=ContainerGrooveMenu 
+         Starter Name=GROOVEMENU
+         Starter Name=DOUBLEGROOVEMENU
+      Title=U Butt Welds 	 Name=ContainerUGrooveMenu 
+         Starter Name=UGROOVEMENU
+         Starter Name=DOUBLEUGROOVEMENU
+      Title=J Butt Welds 	 Name=ContainerJGrooveMenu 
+         Starter Name=JGROOVEMENU
+         Starter Name=DOUBLEJGROOVEMENU
+      Starter Name=SterUserWeldMenu
+      Starter Name=SterJointMenu
+      Starter Name=SterJointBodyMenu
+      Separator Name=SepInsert2
+      Title=Constraints 	 Name=ConstraintsMenu 
+         Starter Name=CoincidenceMenu
+         Starter Name=ContactMenu
+         Starter Name=OffsetMenu
+         Starter Name=angleMenu
+         Starter Name=FixMenu
+         Starter Name=FixtMenu
+      Separator Name=SepInsert3
+      Starter Name=ScenesMenu
+      Separator Name=SeparINSERTTPSViews
+      Title=标注 	 Name=AnnotationsContainer 
+         Starter Name=TPSCREATEWELDMENU
+         Title=文本 	 Name=TextContainer 
+            Starter Name=TPSCREATETEXTMENU
+            Starter Name=TPSCREATETEXTWITHOUTLEADERMENU
+            Starter Name=TPSCREATETEXTPARALLELONSCREENMENU
+         Title=标识注解 	 Name=FlagNoteContainer 
+            Starter Name=CATTPSCREATEFLAGNOTEMENU
+            Starter Name=TPSCREATEFLAGNOTEWITHOUTLEADERMENU
+         Starter Name=CATFTAViewCreationStr
+         Starter Name=TPSCSOCommand
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=SepTOOL1
+      Starter Name=CompCatalogMenu
+      Title=Mechanical standard parts 	 Name=MechPartCatalogMenu 
+         Starter Name=ENCATALOGMenu
+         Starter Name=ISOCATALOGMenu
+         Starter Name=JISCATALOGMenu
+         Starter Name=USCATALOGMenu
+         Starter Name=USIMPCATALOGMenu
+   Title=Analyze 	 Name=AnalyseMenu 
+      Starter Name=AnlBomMenu
+      Starter Name=AnlUpdateMenu
+      Starter Name=AnlCstMenu
+      Starter Name=AnlWeldMenu
+      Separator Name=SeparatorAnalyse1
+      Starter Name=MeasurEdgeMenu
+      Starter Name=MeasureBetwMenu
+      Starter Name=MeasureInertiaMenu
+      Separator Name=SeparatorAnalyse2
+      Starter Name=SpaClashMenu
+      Starter Name=SpaSectionMenu
+      Starter Name=SpaDistMenu
+
+ Title of the toolbar=Welds and is Name=AsdWeldsToolbar
+   Title of the Icon Box=Creation Mode 	 Name=ContainerWeldMode 
+      Starter Name=DEFAULTMODE
+      Starter Name=WITHOUTPREPAMODE
+   Title of the Icon Box=Fillet Welds 	 Name=ContainerFillet 
+      Starter Name=FILLET
+      Starter Name=DOUBLEFILLET
+   Starter Name=SQUAREGROOVE
+   Title of the Icon Box=V Butt Welds 	 Name=ContainerVGroove 
+      Starter Name=VGROOVE
+      Starter Name=DOUBLEVGROOVE
+   Title of the Icon Box=Bevel Butt Welds 	 Name=ContainerBevelGroove 
+      Starter Name=BEVELGROOVE
+      Starter Name=DOUBLEBEVELGROOVE
+   Title of the Icon Box=Y Butt Welds 	 Name=ContainerYGroove 
+      Starter Name=YGROOVE
+      Starter Name=DOUBLEYGROOVE
+   Title of the Icon Box=Butt Welds 	 Name=ContainerGroove 
+      Starter Name=GROOVE
+      Starter Name=DOUBLEGROOVE
+   Title of the Icon Box=U Butt Welds 	 Name=ContainerUGroove 
+      Starter Name=UGROOVE
+      Starter Name=DOUBLEUGROOVE
+   Title of the Icon Box=J Butt Welds 	 Name=ContainerJGroove 
+      Starter Name=JGROOVE
+      Starter Name=DOUBLEJGROOVE
+   Starter Name=USERWELD
+
+ Title of the toolbar=Joints and is Name=AsdJointsToolbar
+   Starter Name=AsdJoint
+   Starter Name=AsdJointBody
+
+ Title of the toolbar=Move and is Name=MoveToolbar
+   Starter Name=Manipulate
+   Title of the Icon Box=Snap 	 Name=SnapCont 
+      Starter Name=CATSnap
+      Starter Name=SmartMove
+   Starter Name=StopOnColl
+
+ Title of the toolbar=Constraints and is Name=ConstraintsToolbar
+   Starter Name=CATCOINCIDENCE
+   Starter Name=CATCONTACT
+   Starter Name=CATOFFSET
+   Starter Name=CATANGLE
+   Starter Name=CATAifCREATEFIXStr
+   Starter Name=CATASMFIXT
+
+ Title of the toolbar=标注 and is Name=AnnotationsContainer
+   Starter Name=TPSCREATEWELDTOOLBAR
+   Title of the Icon Box=文本 	 Name=TextContainer 
+      Starter Name=TPSCREATETEXTTOOLBAR
+      Starter Name=TPSCREATETEXTWITHOUTLEADERTOOLBAR
+      Starter Name=TPSCREATETEXTPARALLELONSCREENTOOLBAR
+   Title of the Icon Box=标识注解 	 Name=FlagNoteContainer 
+      Starter Name=CATTPSCREATEFLAGNOTETOOLBAR
+      Starter Name=TPSCREATEFLAGNOTEWITHOUTLEADERTOOLBAR
+   Starter Name=CATFTAVIEWCREATTIONSTR
+   Starter Name=TPSCSOCommand
+
+ Title of the toolbar=Update and is Name=AsmUpdateToolbar
+   Starter Name=AsmUpdate
+
+ Title of the toolbar=Catalogs and is Name=MatCatalogToolbar
+   Starter Name=ApplyMat
+   Starter Name=CompCatalog
+
+ Title of the toolbar=Measure and is Name=MeasureToolbar
+   Starter Name=MeasureBetw
+   Starter Name=CATMeasureEdge
+   Starter Name=MeasureInertia
+
+ Title of the toolbar=Space Analysis and is Name=SpaceAnalysisToolbar
+   Starter Name=SpaceClash
+   Starter Name=SpaceSection
+   Starter Name=SpaceMeasure

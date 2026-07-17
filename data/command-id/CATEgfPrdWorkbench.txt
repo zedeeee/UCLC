@@ -1,0 +1,227 @@
+Workshop Exposition of CATEgfPrdWorkbench 
+
+1- Header List 
+
+Title= Measure Between...
+   Id 	= EgfPrdSpaceMeasureBetween
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Quick Roll
+   Id 	= CATEgfNewRollHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfNewRollCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= EHFAuditFTADimension
+   Id 	= CATEgfAuditFTADimensionHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfAuditFTADimensionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Inertia...
+   Id 	= EgfPrdSpaceMeasureInertia
+   DLL 	= CATSpaInertia
+   Cmd 	= CATSiLaMeasureInertiaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Remove Length Tolerance
+   Id 	= CATEgfLengthToleranceRemoveHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfLengthToleranceRemoveCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Arrange Junction - User pattern
+   Id 	= CATEgfArrngJunctUserPatHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfArrangeJunctionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Apply Material
+   Id 	= EgfPrdApplyMaterial
+   DLL 	= CATMatController
+   Cmd 	= CATMatApplyMaterialCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= External System
+   Id 	= Systems_Selection
+   DLL 	= CATElectricalApplicationBase
+   Cmd 	= CATEabSystemsSelectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Arrange Junction - Equal Angle
+   Id 	= CATEgfArrngJunctEqAngleHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfArrangeJunctionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Roll
+   Id 	= CATEgfRollHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfRollCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Length Tolerance
+   Id 	= CATEgfLengthToleranceHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfLengthToleranceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Arrange Junction - Umbrella-like
+   Id 	= CATEgfArrngJunctUmbrlaHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfArrangeJunctionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Update Flatten Link
+   Id 	= CATEgfFlattenLinkManualUpdateHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfFlattenLinkManualUpdateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Catalog Browser
+   Id 	= EgfPrdComponentCatalog
+   DLL 	= CATCuiBrowser
+   Cmd 	= CATCuiSelectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Straighten
+   Id 	= EgfStraight
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfStraightCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Auto Update Flatten Link
+   Id 	= CATEgfFlattenLinkAutoUpdateHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfFlattenLinkAutoUpdateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Measure Item...
+   Id 	= EgfPrdSpaceMeasureEdge
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Remove Flatten Link
+   Id 	= CATEgfFlattenLinkRemoveHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfFlattenLinkRemoveCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Network Assitant
+   Id 	= CATEgfNetworkAssistantHdr
+   DLL 	= CATElectricalApplicationBase
+   Cmd 	= CATEabNetworkAssistantCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=EgfMenuContainer 
+   Title=TOOLS 	 Name=CATAfrToolsMnu 
+      Separator Name=EgfSepearator0
+      Starter Name=CmdEgfFlatten
+      Title=Manipulator 	 Name=EgfManipulatorTools 
+         Starter Name=EgfArrngJunctUmbrela
+         Starter Name=EgfArrngJunctEqAngle
+         Starter Name=EgfArrngJunctUserPat
+         Starter Name=EgfRotate
+         Starter Name=EgfBend
+         Starter Name=EgfNewRoll
+         Starter Name=EgfRoll
+         Starter Name=EgfStraight
+      Title=Length Management 	 Name=EgfManageLengthTools 
+         Starter Name=EgfLengthTolerance
+         Starter Name=EgfLengthToleranceRemove
+         Starter Name=EgfFakeLength
+      Title=Synchronization 	 Name=EgfSynchronizeTools 
+         Starter Name=EgfSynchronize
+         Starter Name=EgfFlattenLinkAutoUpdate
+         Starter Name=EgfFlattenLinkManualUpdate
+         Starter Name=EgfFlattenLinkRemove
+      Title=Harness Filtering 	 Name=EgfExternalSystemTools 
+         Starter Name=EgfSystemsSelection
+         Starter Name=EgfFilteringManagement
+      Starter Name=CmdEgfNetworkAssitant
+      Starter Name=CmdEgfRelatedObject
+      Separator Name=EgfSepearator1
+      Starter Name=CATEdlEabPerformUpdateStr
+      Starter Name=EgfPrdComponentCatalog
+      Title=Report 	 Name=EgfReporterTools 
+         Starter Name=CmdEgfDefineMnu
+         Starter Name=CmdEgfGenerateMnu
+   Title=INSERT 	 Name=CATAfrInsertMnu 
+      Separator Name=EgfSepearator1
+      Starter Name=CmdEgfFlatteningParam
+      Starter Name=CmdEgfExtract
+
+ Title of the toolbar=Flatten and is Name=EHF_Flatten
+   Starter Name=CATEgfNewFormboardHdr
+   Starter Name=EgfExtract
+   Starter Name=EgfFlatten
+
+ Title of the toolbar=Manipulator and is Name=EHF_Manipulator
+   Title of the Icon Box=Arrange Junction 	 Name=EHF_ArrangeJunction 
+      Starter Name=EgfArrngJunctUmbrla
+      Starter Name=EgfArrngJunctEqAngle
+      Starter Name=EgfArrngJunctUserPat
+   Title of the Icon Box=Rotate 	 Name=EHF_Rotate 
+      Starter Name=EgfRotate
+      Starter Name=EgfBend
+   Title of the Icon Box=Roll 	 Name=EHF_Roll 
+      Starter Name=EgfNewRoll
+      Starter Name=EgfRoll
+   Starter Name=Straight
+
+ Title of the toolbar=Length Management and is Name=EHF_ManageLenght
+   Title of the Icon Box=Length Tolerance 	 Name=EHF_LengthTolerance 
+      Starter Name=LengthTolerance
+      Starter Name=LengthToleranceRemove
+   Starter Name=EgfFakeLength
+
+ Title of the toolbar=Synchronization and is Name=EHF_Synchronize
+   Starter Name=EgfSynchronize
+   Title of the Icon Box=Update Flatten Links 	 Name=EHF_UpdateFlattenLinks 
+      Starter Name=FlattenLinkAutoUpdate
+      Starter Name=FlattenLinkManualUpdate
+      Starter Name=FlattenLinkRemove
+
+ Title of the toolbar=Electrical Link and is Name=EHF_ElectricalLink
+   Starter Name=ElectricalAssitant
+   Starter Name=CATAnalyseLinks
+
+ Title of the toolbar=Harness Filtering and is Name=EHF_FilteringManagement
+   Starter Name=SystemsSelection
+   Starter Name=FilteringManagement
+
+ Title of the toolbar=Update and is Name=EgfUpdate
+   Starter Name=CATEdlEabPerformUpdateStr
+
+ Title of the toolbar=Catalog Browser and is Name=EgfBrowseCatalog
+   Starter Name=EgfPrdComponentCatalog
+
+ Title of the toolbar=Measure and is Name=EgfMeasure
+   Starter Name=EgfPrdSpaceMeasureBetween
+   Starter Name=EgfPrdSpaceMeasureEdge
+   Starter Name=EgfPrdSpaceMeasureInertia
+
+ Title of the toolbar=Apply Material and is Name=EgfApplyMaterial
+   Starter Name=EgfPrdApplyMaterial

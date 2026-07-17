@@ -1,0 +1,380 @@
+Workshop Exposition of CATMfgManufacturingProgramWkb 
+
+1- Header List 
+
+Title= Pocketing
+   Id 	= CATCreatePocketingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 4 Axis Pocketing
+   Id 	= Create4XPocketing
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Groove Milling
+   Id 	= CreateGrooveMilling
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Profile Contouring
+   Id 	= CATCreateProfileContouringHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Curve Following
+   Id 	= CATCreateFollowCurveHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Plunge Milling
+   Id 	= CreateMfgPlungeMilling
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Corner Probing
+   Id 	= CreateMfgProbingCorner
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Facing
+   Id 	= CATCreateFacingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Slots or Ribs Probing
+   Id 	= CreateMfgProbingSlot
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Roughing
+   Id 	= CreateRoughing
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Holes or Pins Probing
+   Id 	= CreateMfgProbingHole
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Power Machining
+   Id 	= CreateMfgCavitiesMachining
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Prismatic Roughing
+   Id 	= CreatePrismaticRoughing
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Trochoid milling operation
+   Id 	= CreateTrochoidMilling
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Multi-Pockets Flank contouring
+   Id 	= CreateMfg5AxisMultiPocketsFlank
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Multi-Points Probing
+   Id 	= CreateMfgProbingMultiPoints
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATPartMenu 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Separator Name=CATNewSeparator005
+   Title=视图 	 Name=CATAfrView 
+      Title=Machining 	 Name=NCVIEWSMenu 
+         Starter Name=TabularView
+         Starter Name=CATManufacturingFeatureView
+         Starter Name=CATMfgMachiningProcessViewStr
+         Starter Name=MfgGantt
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Title=Machining Operations 	 Name=CATPrismaticOperations 
+         Title=Axial Machining Operations 	 Name=CATDrillingContainer 
+            Starter Name=CATDrilling
+            Starter Name=CATSpotDrilling
+            Starter Name=CATDrillingDwellDelay
+            Starter Name=CATDrillingDeepHole
+            Starter Name=CATDrillingBreakChips
+            Starter Name=CATTapping
+            Starter Name=CATReverseThreading
+            Starter Name=CATThreadWithoutTapHead
+            Starter Name=CATBoring
+            Starter Name=CATBoringAndChamfering
+            Starter Name=CATBoringSpindleStop
+            Starter Name=CATReaming
+            Starter Name=CATCounterBoring
+            Starter Name=CATCounterSinking
+            Starter Name=CATChamfering2Sides
+            Starter Name=CATBackBoring
+            Starter Name=CATTSlotting
+            Starter Name=CATCircularMilling
+            Starter Name=CATThreadMilling
+            Separator Name=SequentialOpSeparator
+            Starter Name=SequentialAxial
+            Starter Name=SequentialGroove
+         Separator Name=CmdSeparator01
+         Starter Name=CATPocketing
+         Starter Name=CATFacing
+         Starter Name=CATProfileContouring
+         Starter Name=CATFollowCurve
+         Starter Name=GrooveMilling
+         Starter Name=TrochoidMilling
+         Starter Name=CATPointToPoint
+         Separator Name=CmdSeparator02
+         Title=Roughing Operations 	 Name=RoughContainer 
+            Starter Name=PrismaticRoughing
+            Starter Name=PlungeMilling
+         Separator Name=CmdSeparator03
+         Starter Name=4XPocketing
+      Title=Multi-Pockets Operations 	 Name=3xMPGOperations 
+         Starter Name=CavitiesMachining
+         Starter Name=MultiPocketFlankContouring
+      Title=Auxiliary Operations 	 Name=CATAuxiliaryOperations 
+         Title=Tool Change 	 Name=CATManufacturingTools 
+            Starter Name=CATDrillTool
+            Starter Name=CATTapTool
+            Starter Name=CATThreadMillTool
+            Starter Name=CATCountersinkTool
+            Starter Name=CATReamerTool
+            Starter Name=CATSpotDrillTool
+            Starter Name=CATCenterDrillTool
+            Starter Name=CATMultiDiamDrillTool
+            Starter Name=CATBoringAndChamferingTool
+            Starter Name=CATTwoSidesChamferingTool
+            Starter Name=CATBoringBarTool
+            Starter Name=CATCounterboreMillTool
+            Starter Name=CATEndMillTool
+            Starter Name=CATFaceMillTool
+            Starter Name=CATConicalMillTool
+            Starter Name=CATTSlotterTool
+            Starter Name=CATBarrelMillTool
+            Separator Name=Separator
+            Starter Name=CATBallStylusTool
+            Starter Name=CATCylinderStylusTool
+         Starter Name=CATTableHeadRotation
+         Starter Name=CATMachineInstruction
+         Starter Name=HeadChange
+         Starter Name=CATCoordinateSystem
+         Starter Name=CATPPInstruction
+         Title=Transformation Management 	 Name=CopyTracutContainer 
+            Starter Name=CopyAPT
+            Starter Name=TracutAPT
+            Starter Name=CATCopyOrder
+            Separator Name=Separator
+            Starter Name=MfgMPTransformation
+            Starter Name=MfgMPOptimizeTC
+      Title=Probing Operations 	 Name=ProbingOperations 
+         Starter Name=MfgProbingHole
+         Starter Name=MfgProbingSlot
+         Starter Name=MfgProbingCorner
+         Starter Name=MfgProbingMultiPoints
+      Title=Machining Features 	 Name=CATManufacturingFeatures 
+         Title=Milling Features 	 Name=CATMaoMillingContainerSnu 
+            Starter Name=M3xGeoZone
+            Starter Name=M3xFeature
+            Starter Name=Mfg2DMAFeature
+            Starter Name=Mfg2DRAFeature
+            Starter Name=CATMaoM3xOffsetStr
+         Separator Name=Separator
+         Starter Name=CATMachiningAxisSystem
+         Starter Name=CATMachiningPattern
+      Starter Name=ApplyMPFromCatalog
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Title=Machining Tools 	 Name=NCTOOLSMenu 
+         Starter Name=ProcessTemplate
+
+ Title of the toolbar=Select and is Name=ManufacturingSelectMainPrism
+   Starter Name=CATSelect
+
+ Title of the toolbar=Manufacturing Program and is Name=ManufacturingProgramMainPrism
+   Starter Name=CATCreateSetup
+   Starter Name=CATCreateProgram
+
+ Title of the toolbar=Machine Management and is Name=PaletteMachinePrism
+   Starter Name="MfgResCtxt"
+   Starter Name="MfgWorkpieceAutoMountHdr"
+   Starter Name="MfgSnapResourcesHdr"
+   Title of the Icon Box=Align on Machine Management 	 Name=PaletteAlign 
+      Starter Name="MfgSnapSideHdr"
+      Starter Name="MfgSnapPointHdr"
+      Starter Name="MfgRotateSideHdr"
+      Starter Name="MfgDistributeHdr"
+   Starter Name="MfgIgpAttachHdr"
+
+ Title of the toolbar=Machining Operations and is Name=CATPrismaticOperations
+   Title of the Icon Box=Axial Machining Operations 	 Name=CATDrillingContainer 
+      Starter Name=CATDrilling
+      Starter Name=CATSpotDrilling
+      Starter Name=CATDrillingDwellDelay
+      Starter Name=CATDrillingDeepHole
+      Starter Name=CATDrillingBreakChips
+      Starter Name=CATTapping
+      Starter Name=CATReverseThreading
+      Starter Name=CATThreadWithoutTapHead
+      Starter Name=CATBoring
+      Starter Name=CATBoringAndChamfering
+      Starter Name=CATBoringSpindleStop
+      Starter Name=CATReaming
+      Starter Name=CATCounterBoring
+      Starter Name=CATCounterSinking
+      Starter Name=CATChamfering2Sides
+      Starter Name=CATBackBoring
+      Starter Name=CATTSlotting
+      Starter Name=CATCircularMilling
+      Starter Name=CATThreadMilling
+      Starter Name=SequentialOpSeparator
+      Starter Name=SequentialAxial
+      Starter Name=SequentialGroove
+Separator Name=CmdSeparator01
+   Starter Name=CATPocketing
+   Starter Name=CATFacing
+   Starter Name=CATProfileContouring
+   Starter Name=CATFollowCurve
+   Starter Name=GrooveMilling
+   Starter Name=TrochoidMilling
+   Starter Name=CATPointToPoint
+Separator Name=CmdSeparator02
+   Title of the Icon Box=Roughing Operations 	 Name=RoughContainer 
+      Starter Name=PrismaticRoughing
+      Starter Name=PlungeMilling
+Separator Name=CmdSeparator03
+   Starter Name=4XPocketing
+
+ Title of the toolbar=Multi-Pockets Operations and is Name=3xMPGOperations
+   Starter Name=CavitiesMachining
+   Starter Name=MultiPocketFlankContouring
+
+ Title of the toolbar=Standard Machining Processes and is Name=ManufacturingStandardMPPrism
+   Starter Name=ApplyMPFromCatalog
+Separator Name=Separator
+   Title of the Icon Box=StandardDrillingMPContainer 	 Name=StandardDrillingMPContainer 
+      Starter Name=StandardDrilling
+      Starter Name=MPForGenericHoles
+
+ Title of the toolbar=Probing Operations and is Name=ProbingOperations
+   Starter Name=MfgProbingHole
+   Starter Name=MfgProbingSlot
+   Starter Name=MfgProbingCorner
+   Starter Name=MfgProbingMultiPoints
+
+ Title of the toolbar=Auxiliary Operations and is Name=AuxiliaryOperationsPrism
+   Title of the Icon Box=Tool Change 	 Name=CATManufacturingTools 
+      Starter Name=CATDrillTool
+      Starter Name=CATTapTool
+      Starter Name=CATThreadMillTool
+      Starter Name=CATCountersinkTool
+      Starter Name=CATReamerTool
+      Starter Name=CATSpotDrillTool
+      Starter Name=CATCenterDrillTool
+      Starter Name=CATMultiDiamDrillTool
+      Starter Name=CATBoringAndChamferingTool
+      Starter Name=CATTwoSidesChamferingTool
+      Starter Name=CATBoringBarTool
+      Starter Name=CATCounterboreMillTool
+      Starter Name=CATEndMillTool
+      Starter Name=CATFaceMillTool
+      Starter Name=CATConicalMillTool
+      Starter Name=CATTSlotterTool
+      Starter Name=CATBarrelMillTool
+      Starter Name=Separator
+      Starter Name=CATBallStylusTool
+      Starter Name=CATCylinderStylusTool
+   Starter Name=CATTableHeadRotation
+   Starter Name=CATMachineInstruction
+   Starter Name=HeadChange
+   Starter Name=CATCoordinateSystem
+   Starter Name=CATPPInstruction
+   Title of the Icon Box=Transformation Management 	 Name=CopyTracutContainer 
+      Starter Name=CopyAPT
+      Starter Name=TracutAPT
+      Starter Name=CATCopyOrder
+      Starter Name=Separator
+      Starter Name=MfgMPTransformation
+      Starter Name=MfgMPOptimizeTC
+      Starter Name=Separator
+      Starter Name=OPTIONS
+      Starter Name=REVERSE
+      Starter Name=CATPstREORDERStr
+      Starter Name=REVERSEMACROS
+
+ Title of the toolbar=Transition Path Management and is Name=AutomaticCompletePrism
+   Starter Name=GenerateMfgAutomaticCompleteHeader
+   Starter Name=RemoveMfgAutomaticCompleteHeader
+   Starter Name=UpdateMfgAutomaticCompleteHeader
+
+ Title of the toolbar=NC Output Management and is Name=ManufacturingToolPathMainPrism
+   Starter Name=CATToolPathReplay
+   Title of the Icon Box=NC Output Generations 	 Name=CATNCOutputContainer 
+      Starter Name=CATNCOutputBatch
+      Starter Name=CATGenerateNCCode
+   Starter Name=NCBatchCompute
+   Starter Name=CATNCDocumentation
+   Starter Name=DNBVNCTransitionHdr
+   Starter Name=DNBVNCMillTurnTransitionHdr
+   Starter Name=MfgScreenCapture
+
+ Title of the toolbar=Auxiliary Commands and is Name=ManufacturingAuxiliaryViewsPrism
+   Starter Name=CATMfgOpenCatalogStr
+   Title of the Icon Box=ToolImportContainer 	 Name=PaletteTool 
+      Starter Name=CATManufacturingToolListView
+      Starter Name=ManufacturingTAListView
+   Starter Name=ToolReplace
+   Starter Name=ActivitySelection
+   Starter Name=UpdateStatus
+   Starter Name=MfgSynchro
+   Starter Name=TabularView
+   Starter Name=MfgGantt
+   Title of the Icon Box=Hide/Show geometry 	 Name=PaletteVueAux 
+      Starter Name=HideShowParts
+      Starter Name=HideShowChecks
+
+ Title of the toolbar=Machining Process and is Name=ManufacturingMachiningProcessPrism
+   Starter Name=CATMfgMachiningProcessViewStr
+   Starter Name=CATMfgCreateMachiningProcessStr
+
+ Title of the toolbar=Machining Features and is Name=ManufacturingMillingFeaturesPrism
+   Starter Name=M3xGeoZone
+   Title of the Icon Box=MachiningAreaContainer 	 Name=MachiningAreaContainer 
+      Starter Name=Mfg2DMAFeature
+      Starter Name=M3xFeature
+   Starter Name=Mfg2DRAFeature
+   Starter Name=CATMaoM3xOffsetStr
+Separator Name=Separator
+   Title of the Icon Box=PatternMASContainer 	 Name=PatternMASContainer 
+      Starter Name=CATMachiningPattern
+      Starter Name=CATMachiningAxisSystem
+Separator Name=Separator
+   Starter Name=CATManufacturingFeatureView
+
+ Title of the toolbar=Face Selection and is Name=FaceWizardPrism
+
+ Title of the toolbar=Edge Selection and is Name=EdgeWizardPrism
+
+ Title of the toolbar=Find Edges Of Faces and is Name=FindEdgesOfFacesPrism
+
+ Title of the toolbar=Measure and is Name=ConsistencyPrism
+   Starter Name=CATMeasureBetween
+   Starter Name=CATMeasureItem

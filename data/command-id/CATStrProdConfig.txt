@@ -1,0 +1,151 @@
+Workshop Exposition of CATStrProdConfig 
+
+1- Header List 
+
+Title= Generate
+   Id 	= CATStrReportGenHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportGenCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Functional Volume Set
+   Id 	= CATBlkSystem
+   DLL 	= CATStrBlockManagement
+   Cmd 	= CATBlkSystemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define
+   Id 	= CATStrReportDefHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportDefCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Inertia...
+   Id 	= CATStrMeasureInertiaHdr
+   DLL 	= CATSpaInertia
+   Cmd 	= CATSiLaMeasureInertiaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update...
+   Id 	= PerformUpdate
+   DLL 	= CATAssCommands
+   Cmd 	= CATAsmCmdUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Planning Break Preparation
+   Id 	= CATBlkAsm
+   DLL 	= CATStrBlockManagement
+   Cmd 	= CATBlkAsmPrpCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Shell Expansion
+   Id 	= ShellExpansion
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrShellExpCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Manage Section CATPart
+   Id 	= CATStrManageSectionDoc
+   DLL 	= CATStrManageSectionDoc
+   Cmd 	= CATStrManageSectionDocCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Structure Relationships
+   Id 	= CATStrRelObjRelHdr
+   DLL 	= CATStrObjectRelationshipsUI
+   Cmd 	= CATStrRelRelationshipsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Item
+   Id 	= CATStrMeasureEdgeHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select/Browse...
+   Id 	= CATStrPrjMngtHdr
+   DLL 	= PrjMngtUI
+   Cmd 	= CATPrjMngtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Measure Between
+   Id 	= CATStrMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Compute Weight and CoG
+   Id 	= Compute Weight and CoG
+   DLL 	= CATStrBlockManagement
+   Cmd 	= CATBlkSystemPropertiesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create Mesh
+   Id 	= CreateMesh
+   DLL 	= CATStrBlockManagement
+   Cmd 	= CATSfmCreateMeshCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Structure System
+   Id 	= CreatePanelSystem
+   DLL 	= CATStrFunUICmds
+   Cmd 	= CATStrSystemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Validation...
+   Id 	= CATStrPrjMngtCheckerHdr
+   DLL 	= CATPspPRMChecker
+   Cmd 	= CATPspPRMCheckerCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=StrProdMenu 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=StrProdInsertSep0
+      Title=Structural Systems 	 Name=StrProdStructuralSystems 
+         Starter Name=StrProdCreatePanelSystemIcon
+      Title=Review Tools 	 Name=StrSfmNavigatorIcons 
+         Starter Name=StrRelationshipsIcon
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=StrProdToolsSep0
+      Title=Report  	 Name=StrProdReportTools 
+         Starter Name=StrProdReportDefIcon
+         Starter Name=StrProdReportGenIcon
+      Title=Project Management 	 Name=StrProdPRMTools 
+         Starter Name=StrPrjMngtStr
+         Starter Name=StrProdPRMCheckerStr
+
+ Title of the toolbar=Update and is Name=StrProdToolBar003
+   Starter Name=CATUpdate
+
+ Title of the toolbar=Mesure and is Name=StrProdToolBar005
+   Starter Name=CATAifAsmSpaceMeasureBetwStr
+   Starter Name=CATAifAsmSpaceMeasureEdgeStr
+   Starter Name=CATAifAsmSpaceMeasureInertiaStr
+
+ Title of the toolbar=Structural Systems and is Name=StrProdToolBar010
+   Starter Name=StrProdCreatePanelSystem
+   Starter Name=StrRelationships
+   Starter Name=StrMesh
+
+ Title of the toolbar=Block Systems and is Name=StrProdToolBar011
+   Starter Name=BLKSYS
+   Starter Name=BLKSPLIT
+
+ Title of the toolbar=Structure Drafting and is Name=StrProdToolBar015
+   Starter Name=SHELLEXP

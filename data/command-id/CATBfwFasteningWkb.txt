@@ -1,0 +1,763 @@
+Workshop Exposition of CATBfwFasteningWkb 
+
+1- Header List 
+
+Title= BiW SpotPoint
+   Id 	= CATBfwUNSPSpotPointHdr
+   DLL 	= CATBfuSpotPoint
+   Cmd 	= CATBfuSpotPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 转换为半径
+   Id 	= CATDrwDimSwapToRadHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= BiW Mechanical Point
+   Id 	= CATBfwBWMSpotPointHdr
+   DLL 	= CATBfuSpotPoint
+   Cmd 	= CATBfuSpotPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BiW Joined Part Screen Report
+   Id 	= CATBfwBalloonJPSHdr
+   DLL 	= CATBfuUtilities
+   Cmd 	= CATBfuBalloonCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BiW Welding SpotProjection
+   Id 	= CATBfwWLDSpotProjectionHdr
+   DLL 	= CATBfuSpotPoint
+   Cmd 	= CATBfuSpotPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 编辑创成式参数...
+   Id 	= TPSEditMfParameters
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSEditMfParametersCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 打开/关闭标注集
+   Id 	= CATTPSSetVisuHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdTPSSetVisu
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 删除位置链接
+   Id 	= TPSPosLinkDelete
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdPosLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Create Datum
+   Id 	= CATBfwDatumModeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对齐剖视图/截面分割
+   Id 	= CATTPSCreateExtrAlignedViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateExtractionView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Welding Parameters
+   Id 	= CATBfwWLDMngrHdr
+   DLL 	= CATBfuMngr
+   Cmd 	= CATBfuSetupCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 标识注解
+   Id 	= TPSCreateFlagNoteWithoutLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdFlagNoteCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mechanical Fasteners Parameters
+   Id 	= CATBfwBWMMngrHdr
+   DLL 	= CATBfuMngr
+   Cmd 	= CATBfuSetupCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Translated Copy
+   Id 	= CATBfwTranslateHdr
+   DLL 	= CATBfuMngr
+   Cmd 	= CATBfuTranslateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Activate
+   Id 	= CATBfwActiveHdr
+   DLL 	= CATBfuUtilities
+   Cmd 	= CATBfuSwitchActiveCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Unspecified Process Parameters
+   Id 	= CATBfwUNSPMngrHdr
+   DLL 	= CATBfuMngr
+   Cmd 	= CATBfuSetupCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 参考角度视图
+   Id 	= CATFTAViewCreationHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSProjectionViewCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 删除结果特征
+   Id 	= CATTPSDeleteResultFeatureHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdDeleteResultFeature
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 添加引出线
+   Id 	= TPSAddLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATDfcAddLeaderCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= BiW Weld Fastener Annotation
+   Id 	= CATBfwWLDFastenerAnnotationHdr
+   DLL 	= CATBfuUtilities
+   Cmd 	= CATBfuFastenerAnnotationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Deactivate
+   Id 	= CATBfwInactiveHdr
+   DLL 	= CATBfuUtilities
+   Cmd 	= CATBfuSwitchActiveCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 4
+   Id 	= CATDrwDimCheckSector4Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 1
+   Id 	= CATDrwDimCheckSector1Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 2
+   Id 	= CATDrwDimCheckSector2Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 3
+   Id 	= CATDrwDimCheckSector3Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 剖视图/标注平面
+   Id 	= TPSCreateSectionView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 全选
+   Id 	= TPSSelectViewAnnot
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdSelectViewAnnot
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 强制标注元素尺寸
+   Id 	= CATDrwDimCheckAutoHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Adhesive Parameters
+   Id 	= CATBfwADHMngrHdr
+   DLL 	= CATBfuMngr
+   Cmd 	= CATBfuSetupCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建中断
+   Id 	= CATDrwInterruptDimAddHdr
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BiW Fasteners
+   Id 	= CATBfwCheckHdr
+   DLL 	= CATBfuMngr
+   Cmd 	= CATBfuCheckCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 偏移剖视图/截面分割
+   Id 	= CATTPSCreateExtrOffsetViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateExtractionView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BiW Fastener X, Y, Z Screen Report
+   Id 	= CATBfwBalloonJEHdr
+   DLL 	= CATBfuUtilities
+   Cmd 	= CATBfuBalloonCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BiW Sealant SpotPoint
+   Id 	= CATBfwSEASpotPointHdr
+   DLL 	= CATBfuSpotPoint
+   Cmd 	= CATBfuSpotPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建方向链接
+   Id 	= TPSOriLinkCreate
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdOriLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 带引出线的文本
+   Id 	= TPSCreateText
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= BiW Adhesive CurveBead
+   Id 	= CATBfwADHCurveBeadHdr
+   DLL 	= CATBfuCurveBead
+   Cmd 	= CATBfuCurveBeadCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 文本
+   Id 	= TPSCreateTextWithoutLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除方向链接
+   Id 	= TPSOriLinkDelete
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdOriLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 线性
+   Id 	= CATDrwDimCheckLinearHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 截面分割/标注平面
+   Id 	= TPSCreateSectionCut
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除截取平面
+   Id 	= TPSRemoveClipPlane
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdRemoveClipPlane
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示视图
+   Id 	= CATTPSDisplayLightViewHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdLightViewDisplay
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 平行于屏幕的文本
+   Id 	= TPSCreateTextParallelOnScreen
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Measure Between...
+   Id 	= CATBfwSpaceMeasureBetween
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Clipping Plane
+   Id 	= TPSClippingPlane
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 自动
+   Id 	= TPSAddAutoGroup
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdAddAutoGroupTPS
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Definition...
+   Id 	= CATBfwMultiEditionHdr
+   DLL 	= CATBfuJointElement
+   Cmd 	= CATBfuMultiEditionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 诊断报告
+   Id 	= TPSDiagnostic
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdDiagnosticReport
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 等轴测视图
+   Id 	= CATTPSCreateAxonometricViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BiW CurveBead
+   Id 	= CATBfwUNSPCurveBeadHdr
+   DLL 	= CATBfuCurveBead
+   Cmd 	= CATBfuCurveBeadCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BiW Welding SpotPoint
+   Id 	= CATBfwWLDSpotPointHdr
+   DLL 	= CATBfuSpotPoint
+   Cmd 	= CATBfuSpotPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Measure Item...
+   Id 	= CATGbfSpaceMeasureEdge
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 编辑标识注解标注
+   Id 	= TPSEditFlagNotelabel
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdEditFlagNotelabel
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 更改视图支持面...
+   Id 	= TPSSetViewAssociativity
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSViewAssocCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 打开/关闭 3D 标注查询
+   Id 	= TPSCSOCommand
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BiW Joint
+   Id 	= CATBfwJointHdr
+   DLL 	= CATBfuJoint
+   Cmd 	= CATBfuJointCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Flat Report
+   Id 	= CATBfwFullReportHdr
+   DLL 	= CATBfuDataExchange
+   Cmd 	= CATBfuExportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 激活视图
+   Id 	= TPSActivateView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdActivateView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= BiW Fasteners Import
+   Id 	= CATBfwImportHdr
+   DLL 	= CATBfuDataExchange
+   Cmd 	= CATBfuImportCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= BiW Fasteners Export
+   Id 	= CATBfwExportHdr
+   DLL 	= CATBfuDataExchange
+   Cmd 	= CATBfuExportCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 手动
+   Id 	= TPSAddManuGroup
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdAddManuGroupTPS
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建位置链接
+   Id 	= TPSPosLinkCreate
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdPosLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 反转法线
+   Id 	= TPSInvertNormal
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdInvertNormal
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 隔离文本
+   Id 	= TPSTextIsolAttrLink
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextIsolAttrLinkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 本地更新
+   Id 	= CATMmrUpdateCSOHeaderHdr
+   DLL 	= CATMechanicalModelerUI
+   Cmd 	= CATPrtUpdateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BiW Fasteners Rename
+   Id 	= CATBfwRenameHdr
+   DLL 	= CATBfuMngr
+   Cmd 	= CATBfuRenameCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 几何图形连接管理
+   Id 	= TPSConnectionMgtCmd
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSConnectionMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 带引出线的标识注解
+   Id 	= TPSCreateFlagNote
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdFlagNoteCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update...
+   Id 	= CATBfwUpdtState
+   DLL 	= CATAssCommands
+   Cmd 	= CATAsmCmdUpdtState
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 强制在视图中水平标注尺寸
+   Id 	= CATDrwDimCheckHorizHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 显示捕获
+   Id 	= CATTPSDisplayCaptureHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdCaptureDisplay
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 实长尺寸
+   Id 	= CATDrwDimCheckTrueDimHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Joints
+   Id 	= CATBfwIsolateJointsHdr
+   DLL 	= CATBfuUtilities
+   Cmd 	= CATBfuIsolateJointsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Mirror Copy
+   Id 	= CATBfwMirrorHdr
+   DLL 	= CATBfuMngr
+   Cmd 	= CATBfuMirrorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转移至视图/标注平面
+   Id 	= TPSTransferToView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTransferToView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 几何体规范查询和重新定义
+   Id 	= TPSCanonicityRespecificationCmd
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdCanonicityRespec
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 偏移
+   Id 	= CATDrwDimCheckOffsetHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除中断
+   Id 	= CATDrwInterruptDimRemHdr
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BiW Welding CurveBead
+   Id 	= CATBfwWLDCurveBeadHdr
+   DLL 	= CATBfuCurveBead
+   Cmd 	= CATBfuCurveBeadCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 升级
+   Id 	= TPSUpgradeSet
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdUpgradeSet
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Parameters
+   Id 	= CATBfwMngrHdr
+   DLL 	= CATBfuMngr
+   Cmd 	= CATBfuMngrCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= BiW Adhesive SpotPoint
+   Id 	= CATBfwADHSpotPointHdr
+   DLL 	= CATBfuSpotPoint
+   Cmd 	= CATBfuSpotPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update
+   Id 	= CATBfwUpdateHdr
+   DLL 	= CATAssCommands
+   Cmd 	= CATAsmCmdUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 平行
+   Id 	= CATDrwDimCheckParallelHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 选择视图/标注平面
+   Id 	= CATTPSSelectViews
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdSelectViews
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Report
+   Id 	= CATBfwReportHdr
+   DLL 	= CATBfuDataExchange
+   Cmd 	= CATBfuExportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BiW JointBody
+   Id 	= CATBfwJointBodyHdr
+   DLL 	= CATBfuJointBody
+   Cmd 	= CATBfuJointBodyCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Sealant Parameters
+   Id 	= CATBfwSEAMngrHdr
+   DLL 	= CATBfuMngr
+   Cmd 	= CATBfuSetupCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BiW Sealant CurveBead
+   Id 	= CATBfwSEACurveBeadHdr
+   DLL 	= CATBfuCurveBead
+   Cmd 	= CATBfuCurveBeadCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BiW Weld Series Annotation
+   Id 	= CATBfwWLDSeriesAnnotationHdr
+   DLL 	= CATBfuUtilities
+   Cmd 	= CATBfuFastenerAnnotationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 全部显示
+   Id 	= CATFTAShowAllAnnotHdr
+   DLL 	= CATTPSBrowserUI
+   Cmd 	= CATDfuHideShowAllAnnotationsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 全部隐藏
+   Id 	= CATFTAHideAllAnnotHdr
+   DLL 	= CATTPSBrowserUI
+   Cmd 	= CATDfuHideShowAllAnnotationsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 正视图
+   Id 	= TPSCreateFrontView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 补充
+   Id 	= CATDrwDimCheckComplementaryHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 强制在视图中垂直标注尺寸
+   Id 	= CATDrwDimCheckVertHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 焊接特征
+   Id 	= CATTPSCreateWeldHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 查询对象链接...
+   Id 	= TPSTextQryLink
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextQryLink
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示视图
+   Id 	= CATFTADisplayViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATDfcDisplayViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 重新排序
+   Id 	= TPSReorderObjects
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcReorderObjectCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转换为直径
+   Id 	= CATDrwDimSwapToDiaHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATBfwWLDFastenersMnu 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Starter Name=CATBfwUpdate
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=CATBfw00Sep
+      Starter Name=CATBfwMngrStr
+      Separator Name=CATBfw01Sep
+      Starter Name=CATBfwJointStr
+      Starter Name=CATBfwJointBodyStr
+      Separator Name=CATBfw02Sep
+      Title=BiW Welding Spot 	 Name=CATBfwSpotMnu 
+         Starter Name=CATBfwWLDSpotPointStr
+         Starter Name=CATBfwWLDSpotProjectionStr
+      Starter Name=CATBfwWLDCurveBeadStr
+      Starter Name=CATBfwADHSpotPointStr
+      Starter Name=CATBfwADHCurveBeadStr
+      Starter Name=CATBfwSEASpotPointStr
+      Starter Name=CATBfwSEACurveBeadStr
+      Starter Name=CATBfwUNSPSpotPointStr
+      Starter Name=CATBfwUNSPCurveBeadStr
+      Starter Name=CATBfwBWMSpotPointStr
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=CATBfw10Sep
+      Starter Name=CATBfwImportStr
+      Starter Name=CATBfwExportStr
+      Title=BiW Fasteners Report 	 Name=CATBfwReportMnu 
+         Starter Name=CATBfwReportStr
+         Starter Name=CATBfwFullReportStr
+      Starter Name=CATBfwRenameStr
+      Title=BiW Fasteners Transform 	 Name=CATBfwTransformMnu 
+         Starter Name=CATBfwMirrorStr
+         Starter Name=CATBfwTranslateStr
+      Starter Name=CATBfwBalloonJPSStr
+      Starter Name=CATBfwBalloonJEStr
+      Title=BiW Annotations 	 Name=CATBfwAnnotationMenu 
+         Starter Name=CATBfwWLDSeriesAnnotationStr
+         Starter Name=CATBfwWLDFastenerAnnotationStr
+   Title=Analyze 	 Name=CATBfwAnalyzeMnu 
+      Starter Name=CATBfwCheck
+      Starter Name=CATBfwAnalyseUpdate
+      Separator Name=CATBfw01Sep
+      Starter Name=CATBfwMeasureBetween
+      Starter Name=CATBfwMeasureItem
+
+ Title of the toolbar=Automotive BiW Fasteners and is Name=CATBfwBaseFastenersTlb
+   Starter Name=CATBfwMngrStr
+   Starter Name=CATBfwImportStr
+   Starter Name=CATBfwExportStr
+   Title of the Icon Box=BiW Fasteners Report 	 Name=CATBfwReportMenuIcb 
+      Starter Name=CATBfwReportStr
+      Starter Name=CATBfwFullReportStr
+   Starter Name=CATBfwRenameStr
+   Title of the Icon Box=BiW Fasteners Transform 	 Name=CATBfwTransformMenuIcb 
+      Starter Name=CATBfwMirrorStr
+      Starter Name=CATBfwTranslateStr
+Separator Name=CATBfw01Sep
+   Starter Name=CATBfwJointStr
+   Starter Name=CATBfwJointBodyStr
+
+ Title of the toolbar=Welding and is Name=CATBfwWLDFastenersTlb
+   Starter Name=CATBfwWLDMngrStr
+Separator Name=CATBfwWLD01Sep
+   Title of the Icon Box=Spot Welding 	 Name=CATBfwSpotMenuIcb 
+      Starter Name=CATBfwWLDSpotPointStr
+      Starter Name=CATBfwWLDSpotProjectionStr
+   Starter Name=CATBfwWLDCurveBeadStr
+
+ Title of the toolbar=Adhesive and is Name=CATBfwADHFastenersTlb
+   Starter Name=CATBfwADHMngrStr
+Separator Name=CATBfwADH01Sep
+   Starter Name=CATBfwADHSpotPointStr
+   Starter Name=CATBfwADHCurveBeadStr
+
+ Title of the toolbar=Sealant and is Name=CATBfwSEAFastenersTlb
+   Starter Name=CATBfwSEAMngrStr
+Separator Name=CATBfwSEA01Sep
+   Starter Name=CATBfwSEASpotPointStr
+   Starter Name=CATBfwSEACurveBeadStr
+
+ Title of the toolbar=Unspec Process and is Name=CATBfwUNSPFastenersTlb
+   Starter Name=CATBfwUNSPMngrStr
+Separator Name=CATBfwUNSP01Sep
+   Starter Name=CATBfwUNSPSpotPointStr
+   Starter Name=CATBfwUNSPCurveBeadStr
+
+ Title of the toolbar=Mechanical BiW Fasteners and is Name=CATBfwBWMFastenersTlb
+   Starter Name=CATBfwBWMMngrStr
+Separator Name=CATBfwBWM01Sep
+   Starter Name=CATBfwBWMSpotPointStr
+
+ Title of the toolbar=Analysis and is Name=CATBfwAnalysisTlb
+   Starter Name=CATBfwCheckStr
+
+ Title of the toolbar=Tools and is Name=CATBfwAsmToolsTlb
+   Starter Name=CATBfwUpdate
+
+ Title of the toolbar=BiW Tools and is Name=CATBfwBiWToolsTlb
+   Starter Name=CATBfwDatumMode
+   Starter Name=CATBfwBalloonJPSHdr
+   Starter Name=CATBfwBalloonJEStr
+
+ Title of the toolbar=BiW Annotations and is Name=CATBfwBiWAnnotationsTlb
+   Starter Name=CATBfwWLDSeriesAnnotationStr
+   Starter Name=CATBfwWLDFastenerAnnotationStr
+
+ Title of the toolbar=Measure and is Name=CATBfwAsmMeasureTlb
+   Starter Name=CATBfwMeasureBetween
+   Starter Name=CATBfwMeasureItem

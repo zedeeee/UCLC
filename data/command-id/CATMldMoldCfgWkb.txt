@@ -1,0 +1,1371 @@
+Workshop Exposition of CATMldMoldCfgWkb 
+
+1- Header List 
+
+Title= Locating Ring...
+   Id 	= CATMldLocatingRingHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLocatingRingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldLocatingRingRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLocatingRingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldLockingScrewRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLockingScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldEjectorSleeveRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorSleeveCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldDowelPinRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateDowelPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldCorePinReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCorePinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Snap
+   Id 	= CATMldMoldSnapHeaderHdr
+   DLL 	= CATMuiMove
+   Cmd 	= CATMvCmdSnap
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldSupportPillarRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSupportPillarCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldInsertReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateInsertCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= User Component...
+   Id 	= CATMldUserComponentHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateUserComponentCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldBushingNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateBushingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldSprueBushingRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSprueBushingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldRetainerNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateRetainersCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Retainers component
+   Id 	= RetainerEditHeader
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateRetainersCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= New Insert...
+   Id 	= CATMldInsertHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateInsertCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generate Final Holes & Pads
+   Id 	= CATMldGenerateFinalHolesPadHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldGenerateFinalHolesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit User component
+   Id 	= CATMldUserComponentEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateUserComponentCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldBaffleReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateBaffleCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit AnglePin component
+   Id 	= CATMldAnglePinEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateAnglePinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Sleeve component
+   Id 	= CATMldSleeveEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSleeveCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit O-Ring component
+   Id 	= CATMldORingEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateORingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldSpringNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSpringCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Ejector component
+   Id 	= CATMldEjectorEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Locating Ring component
+   Id 	= CATMldLocatingRingEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLocatingRingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldSupportPillarNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSupportPillarCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Interlock...
+   Id 	= CATMldInterlockHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit SpruePuller component
+   Id 	= CATMldSpruePullerEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSpruePullerCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldEjectorPinRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldSlideBlockReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit SlideBlock component
+   Id 	= CATMldSlideBlockEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= SprueBushing...
+   Id 	= CATMldSprueBushingHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSprueBushingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generate Final Holes & Pads
+   Id 	= CATMldGeneratingHolesPadHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldFinalHolesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldEjectorPinReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldSleeveRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSleeveCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldSleeveReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSleeveCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldSpruePullerNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSpruePullerCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldRoundScrewRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldLocatingRingReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLocatingRingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit FlatEjector component
+   Id 	= CATMldEjectorFlatEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateFlatEjectorCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldUserComponentNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateUserComponentCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Plug...
+   Id 	= CATMldPlugHeader
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreatePlugCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Measure Item
+   Id 	= CATMldMoldSpaceMeasureEdgeHeaderHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Tooling Bill of Material...
+   Id 	= CATMldBOMHeaderHdr
+   DLL 	= CATMldBOMUI
+   Cmd 	= CATMldBOMCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Display Technological Results...
+   Id 	= CATMldUITechResHeaderHdr
+   DLL 	= CATMldTechResUI
+   Cmd 	= CATMldUITechResCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldBindingScrewRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldLockingScrewNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLockingScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldCorePinRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCorePinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldSprueBushingReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSprueBushingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldEjectorSleeveNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorSleeveCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldSleeveNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSleeveCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldORingRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateORingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldInterlockReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit EyeBolt component
+   Id 	= CATMldEyeBoltEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEyeBoltCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit KnockOut component
+   Id 	= CATMldKnockOutEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateKnockOutCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Baffle component
+   Id 	= CATMldBaffleEditHeader
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateBaffleCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldEjectorReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mold Plates...
+   Id 	= CATMldPlatesHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateMoldCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Dowel Pin...
+   Id 	= CATMldDowelPinHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateDowelPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldGuidePinNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Bushing...
+   Id 	= CATMldBushingHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateBushingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Gate...
+   Id 	= CATMldGateCreationHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldGateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldStopPinRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateStopPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generate Final Pads
+   Id 	= CATMldGeneratingPadHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldFinalHolesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldEjectorPinNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldBindingScrewNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateBindingScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldEjectorSleeveReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorSleeveCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit StopPin component
+   Id 	= CATMldStopPinEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateStopPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Baffle...
+   Id 	= CATMldBaffleHeader
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateBaffleCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldDowelPinReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateDowelPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldSupportPillarReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSupportPillarCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manipulate...
+   Id 	= CATMldMoldManipulationHeaderHdr
+   DLL 	= CATMuiMove
+   Cmd 	= CATMvCmdManip
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldEjectorFlatRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateFlatEjectorCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldSpringRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSpringCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldEjectorNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldEyeBoltNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEyeBoltCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Tooling structure analysis...
+   Id 	= CATMldAnalyzeConcurrentHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldAnalyzeConcurrentCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update...
+   Id 	= CATMldMoldUpdateHeaderHdr
+   DLL 	= CATAssCommands
+   Cmd 	= CATAsmCmdUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Isolate Component
+   Id 	= CATMldKnockOutRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateKnockOutCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldCountersunkScrewNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCountersunkScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Display Technological Results (old command)...
+   Id 	= CATAnalyzeTechResHeaderHdr
+   DLL 	= CATAnalyzeTechResUI
+   Cmd 	= CATAnalyzeTechResCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= KnockOut...
+   Id 	= CATMldKnockOutHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateKnockOutCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldCapScrewReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCapScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldDowelPinNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateDowelPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldORingReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateORingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= LockingScrew...
+   Id 	= CATMldLockingScrewHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLockingScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldCountersunkScrewReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCountersunkScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CorePin...
+   Id 	= CATMldCorePinHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCorePinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Split Untrimmed Ejectors...
+   Id 	= CATMldSplitUntrimHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldSplitUntrimCmpCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Spacer component
+   Id 	= CATMldSpacerEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldCorePinNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCorePinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldLeaderPinNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLeaderPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= BindingScrew...
+   Id 	= CATMldBindingScrewHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldSliderNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSliderCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldAnglePinNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateAnglePinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldSprueBushingNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSprueBushingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldRetainerReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateRetainersCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldKnockOutNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateKnockOutCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Plate...
+   Id 	= ReplacePlateHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldReplacePlateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldInterlockRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldLeaderPinReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLeaderPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= StopPin...
+   Id 	= CATMldStopPinHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateStopPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Delete component
+   Id 	= CATMldMoldDeleteHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldDeleteComponentCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit CountersunkScrew component
+   Id 	= CATMldCountersunkScrewEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCountersunkScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldPlugRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreatePlugCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldPlugReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreatePlugCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Dowel Pin component
+   Id 	= CATMldDowelPinEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateDowelPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Drill Component...
+   Id 	= CATMldDrillCmpHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldDrillComponentCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldRoundScrewNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateRoundScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Split Synchronization...
+   Id 	= CATMldSynchronizeSplitHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldSynchronizeSplitCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Sleeve...
+   Id 	= CATMldSleeveHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSleeveCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Activate/Deactivate Tooling Component
+   Id 	= CATMldInactivateCmpHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldInactivateCmpCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldLocatingRingNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLocatingRingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldBaffleRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateBaffleCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldSlideBlockNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit GuidePin component
+   Id 	= CATMldGuidePinEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldUserComponentReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateUserComponentCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldKnockOutReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateKnockOutCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldCapScrewRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCapScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit CorePin component
+   Id 	= CATMldCorePinEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCorePinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldSpacerRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= O-Ring...
+   Id 	= CATMldORingHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateORingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldRoundScrewReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= New Retainers...
+   Id 	= RetainerHeader
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateRetainersCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit SprueBushing component
+   Id 	= CATMldSprueBushingEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSprueBushingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= New Slider...
+   Id 	= SliderHeader
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSliderCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit BindingScrew component
+   Id 	= CATMldBindingScrewEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldGuidePinRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldSliderRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSliderCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate component
+   Id 	= CATMldInsertRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateInsertCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Split CorePlate...
+   Id 	= CATMldSplitCorePlateHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldSplitCorePlateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldSpruePullerRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSpruePullerCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldInterlockNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldGuidePinReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit EjectorPin component
+   Id 	= CATMldEjectorPinEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Coolant Channel...
+   Id 	= CATMldCoolantChannelCreationHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCoolantChannelCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Slider component
+   Id 	= SliderEditHeader
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSliderCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldAnglePinRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateAnglePinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldStopPinNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateStopPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldSlideBlockRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldLeaderPinRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLeaderPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldAnglePinReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateAnglePinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Measure Between
+   Id 	= CATMldMoldSpaceMeasureBetweenHeaderHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Split CavityPlate...
+   Id 	= CATMldSplitCavityPlateHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldSplitCavityPlateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldBushingRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateBushingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Spacer...
+   Id 	= CATMldSpacerHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Spring component
+   Id 	= SpringEditHeader
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSpringCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldSpacerReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldSliderReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSliderCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldPlugNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreatePlugCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= EjectorSleeve...
+   Id 	= CATMldEjectorSleeveHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorSleeveCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldStopPinReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateStopPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generate Final Holes
+   Id 	= CATMldGeneratingHolesHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldFinalHolesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Plug component
+   Id 	= CATMldPlugEditHeader
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreatePlugCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Gate...
+   Id 	= CATMldGateEditionHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldGateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldLockingScrewReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLockingScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit EjectorSleeve component
+   Id 	= CATMldEjectorSleeveEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorSleeveCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Interlock component
+   Id 	= CATMldInterlockEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldEyeBoltRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEyeBoltCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= New Mold Plate...
+   Id 	= CATMldPlateHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreatePlateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldCapScrewNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCapScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= SlideBlock...
+   Id 	= CATMldSlideBlockHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldORingNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateORingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= EyeBolt...
+   Id 	= CATMldEyeBoltHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEyeBoltCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Support Pillar...
+   Id 	= CATMldSupportPillarHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSupportPillarCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Split component...
+   Id 	= CATMldSplitComponentHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldSplitComponentCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldEyeBoltReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEyeBoltCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit RoundScrew component
+   Id 	= CATMldRoundScrewEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Runner...
+   Id 	= CATMldRunnerHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldRunnerCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= AnglePin...
+   Id 	= CATMldAnglePinHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateAnglePinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= FlatEjector...
+   Id 	= CATMldEjectorFlatHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateFlatEjectorCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldBaffleNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateBaffleCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Distributed Drill Component...
+   Id 	= CATMldDistribDrillCmpHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldDistribDrillCmpCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= LeaderPin...
+   Id 	= CATMldLeaderPinHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLeaderPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= RoundScrew...
+   Id 	= CATMldRoundScrewHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldSpringReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSpringCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Insert component
+   Id 	= CATMldInsertEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateInsertCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldInsertNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateInsertCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Mold
+   Id 	= CATMldMoldEditionHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateMoldCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldBushingReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateBushingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldCountersunkScrewRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCountersunkScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Spring...
+   Id 	= SpringHeader
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSpringCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldBindingScrewReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= EjectorPin...
+   Id 	= CATMldEjectorPinHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CountersunkScrew...
+   Id 	= CATMldCountersunkScrewHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCountersunkScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add New Instance
+   Id 	= CATMldEjectorFlatNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateFlatEjectorCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldSpruePullerReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSpruePullerCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Reference
+   Id 	= CATMldEjectorFlatReplaceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateFlatEjectorCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CapScrew...
+   Id 	= CATMldCapScrewHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCapScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= GuidePin...
+   Id 	= CATMldGuidePinHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Ejector...
+   Id 	= CATMldEjectorHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Support Pillar component
+   Id 	= CATMldSupportPillarEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSupportPillarCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit CapScrew component
+   Id 	= CATMldCapScrewEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateCapScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Coolant Channel...
+   Id 	= CATMldCoolantChannelEditionHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCoolantChannelCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CATMldSpacerHeaderNewInstanceHeaderHdr
+   Id 	= CATMldSpacerHeaderNewInstanceHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldRetainerRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateRetainersCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldEjectorRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateEjectorCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Component
+   Id 	= CATMldUserComponentRecopyHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateUserComponentCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= SpruePuller...
+   Id 	= CATMldSpruePullerHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateSpruePullerCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Tool Viewer ...
+   Id 	= CATMldToolViewerHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldToolViewerCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit LockingScrew component
+   Id 	= CATMldLockingScrewEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLockingScrewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Bushing component
+   Id 	= CATMldBushingEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateBushingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit LeaderPin component
+   Id 	= CATMldLeaderPinEditHeaderHdr
+   DLL 	= CATMldMoldDesignUI
+   Cmd 	= CATMldCreateLeaderPinCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATMldMoldMenuMbr 
+   Title=编辑 	 Name=CATAfrEditMnu 
+   Title=视图 	 Name=CATAfrView 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=CATAfrEditNew001Sep
+      Title=Mold Base Components 	 Name=CATMldPlateFeatureSnu 
+         Starter Name=CATPlates
+         Starter Name=CATPlate
+         Starter Name=Slider
+         Starter Name=Retainer
+         Starter Name=CATInsert
+      Title=Guiding Components 	 Name=CATMldGuidingFeatureSnu 
+         Starter Name=CATLeaderPin
+         Starter Name=CATBushing
+      Title=Locating Components 	 Name=CATMldLocatingFeatureSnu 
+         Starter Name=CATSleeve
+         Starter Name=CATLocatingRing
+         Starter Name=CATDowelPin
+      Title=Fixing Components 	 Name=CATMldScrewFeatureSnu 
+         Starter Name=CATCapScrew
+         Starter Name=CATCountersunkScrew
+         Starter Name=CATLockingScrew
+      Title=Ejection Components 	 Name=CATMldEjectorFeatureSnu 
+         Starter Name=CATEjectorPin
+         Starter Name=CATEjector
+         Starter Name=CATEjectorFlat
+         Starter Name=CATEjectorSleeve
+         Starter Name=CATCorePin
+         Starter Name=CATStopPin
+         Starter Name=CATAnglePin
+         Starter Name=CATKnockOut
+      Title=Injection Components 	 Name=CATMldInjectorFeatureSnu 
+         Starter Name=CATSpruBushing
+         Starter Name=CATSpruePuller
+         Starter Name=CATPillar
+         Starter Name=CATORing
+         Starter Name=Plug
+         Starter Name=Baffle
+         Starter Name=CATGate
+         Starter Name=CATRunner
+         Starter Name=CATCoolantChannel
+      Title=Miscellaneous Components 	 Name=CATMldOtherFeatureSnu 
+         Starter Name=CATUserComponent
+         Starter Name=CATEyeBolt
+         Starter Name=Spring
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=CATNewSeparator003
+      Starter Name=CATDrillCmp
+      Starter Name=CATDistribDrillCmp
+      Starter Name=CATSynchronizeSplit
+      Starter Name=CATGenerateFinalHolesPad
+      Starter Name=CATToolViewer
+      Starter Name=CATSplitUntrim
+   Title=分析 	 Name=CATANALYZE 
+      Starter Name=CATMldANABOMStr
+      Starter Name=CATMldANACSTStr
+      Separator Name=CATAfrEditNew002Sep
+      Starter Name=CATMeasureEdge
+      Starter Name=CATMeasureBetween
+      Separator Name=CATPbbNewSeparator004Sep
+      Starter Name=AnalyzeConcurrent
+      Starter Name=CATMldUITechRes
+   Title=窗口 	 Name=CATAfrWindowMnu 
+
+ Title of the toolbar=Tools and is Name=CATMldMoldToolsTlb
+   Starter Name=CATMldMoldUpdateStr
+
+ Title of the toolbar=DrillTools and is Name=DrillTools
+   Starter Name=DrillCmp
+
+ Title of the toolbar=Measure and is Name=CATMldMoldMeasureTlb
+   Starter Name=CATMeasureEdge
+   Starter Name=CATMeasureBetween
+
+ Title of the toolbar=Mold Base Components and is Name=CATMldMoldPlateTlb
+   Starter Name=CATPlates
+   Starter Name=CATPlate
+   Title of the Icon Box=MoldPlatesub 	 Name=MoldPlatesub 
+      Starter Name=Slider
+      Starter Name=Retainer
+      Starter Name=CATInsert
+
+ Title of the toolbar=Guiding Components and is Name=CATMldMoldGuidingTlb
+   Title of the Icon Box=MoldGuidingsub 	 Name=CATMldMoldGuidingsubIcb 
+      Starter Name=CATLeaderPin
+      Starter Name=CATBushing
+
+ Title of the toolbar=Locating Components and is Name=CATMldMoldLocatingTlb
+   Title of the Icon Box=MoldLocatingsub 	 Name=CATMldMoldLocatingsubIcb 
+      Starter Name=CATSleeve
+      Starter Name=CATLocatingRing
+      Starter Name=CATDowelPin
+
+ Title of the toolbar=Fixing Components and is Name=CATMldMoldScrewsTlb
+   Title of the Icon Box=MoldScrewssub 	 Name=CATMldMoldScrewssubIcb 
+      Starter Name=CATCapScrew
+      Starter Name=CATCountersunkScrew
+      Starter Name=CATLockingScrew
+
+ Title of the toolbar=Ejection Components and is Name=CATMldMoldEjectorTlb
+   Title of the Icon Box=MoldEjectorsub 	 Name=CATMldMoldEjectorsubIcb 
+      Starter Name=CATEjectorPin
+      Starter Name=CATEjector
+      Starter Name=CATEjectorFlat
+      Starter Name=CATEjectorSleeve
+      Starter Name=CATCorePin
+      Starter Name=CATStopPin
+      Starter Name=CATAnglePin
+      Starter Name=CATKnockOut
+
+ Title of the toolbar=Injection Components and is Name=CATMldMoldInjectorTlb
+   Title of the Icon Box=MoldInjectorsub 	 Name=CATMldMoldInjectorsubIcb 
+      Starter Name=CATSpruBushing
+      Starter Name=CATSpruePuller
+      Starter Name=CATPillar
+      Starter Name=CATORing
+      Starter Name=Plug
+      Starter Name=Baffle
+   Starter Name=CATGate
+   Starter Name=CATRunner
+   Starter Name=CATCoolantChannel
+
+ Title of the toolbar=Miscellaneous Components and is Name=CATMldMoldOtherTlb
+   Title of the Icon Box=MoldOthersub 	 Name=CATMldMoldOthersubIcb 
+      Starter Name=CATUserComponent
+      Starter Name=CATEyeBolt
+      Starter Name=Spring
+
+ Title of the toolbar=Move and is Name=CATMldNewPartTlb
+   Starter Name=CATMldMoldManipulationStr
+   Starter Name=CATMldMoldSnapStr

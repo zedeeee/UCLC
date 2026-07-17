@@ -1,0 +1,279 @@
+Workshop Exposition of CATEdlPrdWorkbenchWkb 
+
+1- Header List 
+
+Title= Define Mounting Equipment
+   Id 	= EdlDefineMountingEqt
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineMountingEqtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Link Functional Device
+   Id 	= CATEdlLinkFunctionalHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlReconcilePlaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Shell
+   Id 	= CATEdlDefineShellHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineShellCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Shell Connection Point
+   Id 	= EdlCtxShellCnctPt
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Unlink Functional Device
+   Id 	= CATEdlUnlinkFunctionalHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlUnreconcileCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Cavity Connection Point
+   Id 	= EdlCtxCavityCnctPt
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Contact
+   Id 	= CATEdlDefineContactHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineContactCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Protection Product
+   Id 	= EdlInternalProtection
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineInternalProtectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Apply Material
+   Id 	= CATEdlPrdApplyMaterialHdr
+   DLL 	= CATMatController
+   Cmd 	= CATMatApplyMaterialCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Back Shell Connection Point
+   Id 	= CATEdlDefineBackShellCnxPtHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Connector Connection Point
+   Id 	= EdlCtxConnectorCnctPt
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Termination
+   Id 	= EdlCtxTermination
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineTerminationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Filler Plug
+   Id 	= CATEdlDefineFillerPlugHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineFillerPlugCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Between...
+   Id 	= CATEdlPrdSpaceMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Inertia...
+   Id 	= CATEdlPrdSpaceMeasureInertiaHdr
+   DLL 	= CATSpaInertia
+   Cmd 	= CATSiLaMeasureInertiaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Shell Connection Point
+   Id 	= CATEdlDefineShellCnxPtHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Store Device
+   Id 	= CATEdlStoreDeviceHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlStoreDeviceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Back Shell
+   Id 	= CATEdlDefineBackShellHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineBackShellCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Cavity
+   Id 	= EdlCtxCavity
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Link Physical Device
+   Id 	= CATEdlLinkPhysicalHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlReconcilePlaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place Physical Device
+   Id 	= EdlPlaceFunctionalLink
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlReconcilePlaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Add Link
+   Id 	= CATEdlAddFunctionalLinkHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlReconcilePlaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Define Wire
+   Id 	= CATEdlDefineWireHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineWireCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Smart Move
+   Id 	= EdlPrdSmartMove
+   DLL 	= CATElectricalApplicationBase
+   Cmd 	= CATEabSmartMoveCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Unlink Physical Device
+   Id 	= CATEdlUnlinkPhysicalHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlUnreconcileCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Wire Group
+   Id 	= EdlDefineWireGroup
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineWireGroupCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Item...
+   Id 	= CATEdlPrdSpaceMeasureEdgeHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Bundle Connection Point
+   Id 	= EdlCtxBundleCnctPt
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineBundleCnctPtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Back Shell Connection Point
+   Id 	= EdlCtxBackShellCnctPt
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Remove Functional Link
+   Id 	= CATEdlRemoveFunctionalLinkHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlUnreconcileCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Place Physical Device
+   Id 	= CATEdlPlacePhysicalHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlReconcilePlaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=EdlMenuBar 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=CATEwdNewSeparator1Sep
+      Starter Name=EdlInternalProtection
+
+ Title of the toolbar=Routable Definition and is Name=CATEdlRoutableTlb
+   Starter Name=CATEdlDefineWireStr
+   Starter Name=DefineWireGroup
+
+ Title of the toolbar=Electrical Assembly Definition and is Name=CATEdlAssemblyTlb
+   Starter Name=CATADDNEWPART
+   Starter Name=CATIMPORTCOMPONENT
+   Starter Name=CATAnalyseLinks
+
+ Title of the toolbar=Electrical Device Definition and is Name=CATEdlDevicesTlb
+   Starter Name=DefineMountingEqt
+   Starter Name=CATEdlDefineEquipmentStr
+   Starter Name=CATEdlDefineShellStr
+   Starter Name=CATEdlDefineConnectorStr
+   Starter Name=CATEdlDefineContactStr
+   Starter Name=CATEdlDefineFillerPlugStr
+   Starter Name=CATEdlDefineBackShellStr
+
+ Title of the toolbar=Electrical Connection Point Definition and is Name=CATEdlConnectionPointTlb
+   Starter Name=CATEdlDefineCavityStr
+   Starter Name=CATEdlDefineTerminationStr
+   Starter Name=CATEdlDefineConnectorCnxPtStr
+   Starter Name=CATEdlDefineBundleCnxPtStr
+   Starter Name=CATEdlDefineCavitCnxPtStr
+   Starter Name=CATEdlDefineBackShellCnxPtStr
+   Starter Name=CATEdlDefineShellCnxPtStr
+Separator Name=CATEdlConnectionSeparatorSep
+   Starter Name=CATEdlCreateConnexionStr
+   Starter Name=CATEdlDisconnectStr
+
+ Title of the toolbar=Electrical Device Storage and is Name=CATEdlStoreDeviceTlb
+   Starter Name=CATEdlStoreDeviceStr
+
+ Title of the toolbar=Link Definition and is Name=CATEdlReconcileTlb
+   Title of the Icon Box=Reconciliation 	 Name=CATEdlContReconcileIcb 
+      Starter Name=CATEdlPrdPlacePhysicalStr
+      Starter Name=CATEdlPrdLinkPhysicalStr
+   Starter Name=CATEdlPrdUnlinkFunctionalStr
+Separator Name=ReconcileSeparator
+   Starter Name=ExternalReconcile
+
+ Title of the toolbar=Internal Protection Management and is Name=ProtectionToolbar
+   Starter Name=EdlInternalProtection
+
+ Title of the toolbar=Apply Material and is Name=CATEdlApplyMaterialTlb
+   Starter Name=CATEdlPrdApplyMaterialStr
+
+ Title of the toolbar=Measure and is Name=CATEdlMeasureTlb
+   Starter Name=CATEdlPrdSpaceMeasureBetweenStr
+   Starter Name=CATEdlPrdSpaceMeasureEdgeStr
+   Starter Name=CATEdlPrdSpaceMeasureInertiaStr
+
+ Title of the toolbar=Update and is Name=CATEdlUpdateTlb
+   Starter Name=CATEdlEabPerformUpdateStr
+
+ Title of the toolbar=Catalog Browser and is Name=CATEdlBrowseCatalogTlb
+   Starter Name=CATEdlPrdComponentCatalogStr
+   Starter Name=EdlPrdSmartPlacement
+   Starter Name=EdlPrdSmartMove
+
+ Title of the toolbar=External System Management and is Name=SystemsManagement
+   Starter Name=EdlPrdSystemsSelection

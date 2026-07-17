@@ -1,0 +1,200 @@
+Workshop Exposition of CATEhiWorkshopPartWkb 
+
+1- Header List 
+
+Title= Plane
+   Id 	= CATEhiPlaneHdr
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Plane
+   Id 	= CATEhiPlaneHdr
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除无用元素...
+   Id 	= CATMmrDeleteNotUsedHdr
+   DLL 	= CATMechanicalCommands
+   Cmd 	= CATMcoDeleteCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Delete Special
+   Id 	= EhiDeleteSpecialFromPart
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiDeleteSpecialCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Delete Special
+   Id 	= EhiDeleteSpecialFromPart
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiDeleteSpecialCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Light Protective Covering
+   Id 	= EhiInternalProtectionFromPart
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiSingleInternalProtectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Light Protective Covering
+   Id 	= EhiInternalProtectionFromPart
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiSingleInternalProtectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Exit Workbench
+   Id 	= CATEhiBundle_ExitHdr
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiBundleExitCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Exit Workbench
+   Id 	= CATEhiBundle_ExitHdr
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiBundleExitCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= EhiMultipleInternalProtectionFromPart
+   Id 	= EhiMultipleInternalProtectionFromPart
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiMultipleInternalProtectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= EhiMultipleInternalProtectionFromPart
+   Id 	= EhiMultipleInternalProtectionFromPart
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiMultipleInternalProtectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Line
+   Id 	= CATEhiLineHdr
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Line
+   Id 	= CATEhiLineHdr
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Bundle Segment Definition
+   Id 	= CATEhiBundle_DefinitionHdr
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiBundleDefCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Bundle Segment Definition
+   Id 	= CATEhiBundle_DefinitionHdr
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiBundleDefCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Point
+   Id 	= CATEhiPointHdr
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Point
+   Id 	= CATEhiPointHdr
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add Branch Point
+   Id 	= CATEhiCreate_BranchPointHdr
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiCreateRemoveBranchPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add Branch Point
+   Id 	= CATEhiCreate_BranchPointHdr
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiCreateRemoveBranchPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Remove Branch Point
+   Id 	= CATEhiRemove_BranchPointHdr
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiCreateRemoveBranchPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Remove Branch Point
+   Id 	= CATEhiRemove_BranchPointHdr
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiCreateRemoveBranchPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Branch Definition
+   Id 	= CATEhiBranchableBundle_DefinitionHdr
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiBundleDefCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Branch Definition
+   Id 	= CATEhiBranchableBundle_DefinitionHdr
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiBundleDefCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= List Broken Publications
+   Id 	= EhiBrokenPublicationsList
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiBrokenPublicationsListCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= List Broken Publications
+   Id 	= EhiBrokenPublicationsList
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiBrokenPublicationsListCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=EhiMenuBar 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=CATEwdNewSeparator1Sep
+      Starter Name=EhiInternalProtectionFromPart
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=CATEwdNewSeparator2Sep
+      Starter Name=CATSdwDeleteNotUsedStr
+      Starter Name=EhiBrokenPublicationsList
+
+ Title of the toolbar=Select and is Name=CATEhiPart_ToolBar1Tlb
+   Starter Name=CATSelect
+   Starter Name=CATEhiBundle_ExitStr
+
+ Title of the toolbar=General and is Name=CATEhiPart_ToolBar2Tlb
+   Starter Name=CATEhiBundle_DefinitionStr
+   Starter Name=CATBranchableBundle_DefinitionStr
+   Starter Name=CATEhiCreate_BranchPointStr
+   Starter Name=CATEhiRemove_BranchPointStr
+
+ Title of the toolbar=Geometrical Element and is Name=CATEhiPart_ToolBar3Tlb
+   Starter Name=CATEhiPointStr
+   Starter Name=CATEhiLineStr
+   Starter Name=CATEhiPlaneStr
+
+ Title of the toolbar=Update All and is Name=CATEhiUpdatePrtTlb
+   Starter Name=CATUpdate
+
+ Title of the toolbar=DeleteToolbarFromPart and is Name=DeleteToolbarFromPart
+   Starter Name=EhiDeleteSpecialFromPart
+
+ Title of the toolbar=Internal Protection and is Name=EhiProtectionToolbar
+   Starter Name=EhiInternalProtectionFromPart

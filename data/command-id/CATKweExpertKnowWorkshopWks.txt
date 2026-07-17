@@ -1,0 +1,85 @@
+Workshop Exposition of CATKweExpertKnowWorkshopWks 
+
+1- Header List 
+
+Title= 专家规则集...
+   Id 	= RuleSet
+   DLL 	= CATExpertKnowWorkshop
+   Cmd 	= CATRuleSetCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 专家规则...
+   Id 	= CATKweGenerativeRuleHdr
+   DLL 	= CATExpertKnowWorkshop
+   Cmd 	= CATKbRuleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 求解...
+   Id 	= CATKweSolveHdr
+   DLL 	= CATExpertKnowWorkshop
+   Cmd 	= CATKbSolveCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 报告...
+   Id 	= CATKweReportHdr
+   DLL 	= CATExpertKnowWorkshop
+   Cmd 	= CATReportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 来自现有文档...
+   Id 	= CATKweImportRuleBaseHdr
+   DLL 	= CATExpertKnowWorkshop
+   Cmd 	= CATImportRuleBaseCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= KwaUpdateHeaderAsm
+   Id 	= CATKwaUpdateHeaderAsmHdr
+   DLL 	= CATAssCommands
+   Cmd 	= CATAsmCmdUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= RuleBaseProtection
+   Id 	= RuleBaseProtection
+   DLL 	= CATLiteralsEditor
+   Cmd 	= CATLieRightsDefineCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 专家检查...
+   Id 	= CATKweReportCheckHdr
+   DLL 	= CATExpertKnowWorkshop
+   Cmd 	= CATKbRuleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= KwaUpdateHeader
+   Id 	= CATKwaUpdateHeaderHdr
+   DLL 	= CATMechanicalModelerUI
+   Cmd 	= CATPrtUpdateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATKweExpertKnowledgeMenuMbr 
+   Title=编辑 	 Name=CATAfrEditMnu 
+   Title=视图 	 Name=CATAfrView 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=CATGenerativeRule
+      Starter Name=CATReportCheck
+      Starter Name=RuleSet
+      Starter Name=CATImportRuleBase
+      Starter Name=CATAfrTechnologicalPackageHdr
+   Title=工具 	 Name=CATAfrToolsMnu 
+   Title=窗口 	 Name=CATAfrWindowMnu 
+
+ Title of the toolbar=知识工程专家工具栏 and is Name=CATKweExpertrativeKnowledgeToolBarTlb
+   Starter Name=CATSelection
+   Starter Name=CATGenerativeRule
+   Starter Name=CATReportCheck
+   Starter Name=RuleSet
+   Starter Name=CATImportRuleBase
+   Starter Name=CATKweReportStr
+   Starter Name=CATKweSolveStr

@@ -1,0 +1,830 @@
+Workshop Exposition of CATShapeDesignWorkbenchWkb 
+
+1- Header List 
+
+Title= 联合修剪...
+   Id 	= TrimVolumeHeader
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateTrimCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 工作支持面
+   Id 	= CATShapeDesignShowGridHdr
+   DLL 	= CATGuiOnSupport
+   Cmd 	= CATGSMUIOnSupport
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 获取截面部件
+   Id 	= CATSdwGetComponentsSectionHdr
+   DLL 	= CATGuiSectioning
+   Cmd 	= CATGSMUIGetComponentsSection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 锐度模式
+   Id 	= CATShapeDesignSharpness
+   DLL 	= CATGuiWysiwyg
+   Cmd 	= CATGuiSharpness
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 可变拔模斜度...
+   Id 	= DraftVariableVolumeHeader
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtDraftVariableCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 缝合曲面...
+   Id 	= CATShapeDesignSewSurface
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtModifySewingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 圆形阵列...
+   Id 	= CATShapeDesignCircPatternHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateCircularPatternCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 拔模..
+   Id 	= DraftVolumeHeader
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtDraftStandardCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 抽壳..
+   Id 	= ShellVolumeHeader
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtModifyShellCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 编辑截面
+   Id 	= CATSdwEditSectionInSketcherHdr
+   DLL 	= CATGuiSectioning
+   Cmd 	= CATGSMUIEditSection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除修饰
+   Id 	= CATSdwVisuHideHdr
+   DLL 	= CATFsuCtrlPtDisplay
+   Cmd 	= CATStCmdCtrlPointsDisplay
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除变形
+   Id 	= CATGSMUIRemoveDistortions
+   DLL 	= CATGuiUnfold
+   Cmd 	= CATGSMUIDisplayDistortions
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 所见即所得模式
+   Id 	= CATShapeDesignWysiwyg
+   DLL 	= CATGuiWysiwyg
+   Cmd 	= CATGuiWysiwyg
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 移除..
+   Id 	= BoolVolumeRemove
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtBoolCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 分析连接检查器...
+   Id 	= CATShapeDesignConnectCheckerHdr
+   DLL 	= CATFauConnectChecker
+   Cmd 	= CATStCmdConnectCheckerAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 检查
+   Id 	= CATGSMUIChecker
+   DLL 	= CATGuiChecker
+   Cmd 	= CATGSMUIChecker
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 不保留模式
+   Id 	= CATShapeDesignNoKeepMode
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 用户阵列..
+   Id 	= CATShapeDesignUserPattern
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateUserPatternCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 倒角...
+   Id 	= CATShapeDesignChamfer
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateChamferCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 取消修剪...
+   Id 	= CATShapeDesignUntrimHdr
+   DLL 	= CATFsuFeatUntrim
+   Cmd 	= CATStCmdFeatUntrim
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 编辑参数
+   Id 	= CATSdwHideShow3DParametersHdr
+   DLL 	= CATGuiSectioning
+   Cmd 	= CATGSMUIHideShow3DParameters
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 仅显示选定元素
+   Id 	= CATSdwSTHTemporaryHideHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 分析光线间距
+   Id 	= ClaNewDynDistanceAnalysisLight
+   DLL 	= CATFauDynDistance
+   Cmd 	= CATStCmdDynDistanceAnalysis
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 更改根截面...
+   Id 	= CATSdwChangeBodySectionHdr
+   DLL 	= CATGuiSectioning
+   Cmd 	= CATGSMUIChangeBodySection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 矩形阵列..
+   Id 	= CATShapeDesignRectPatternHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateRectangularPatternCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 厚度..
+   Id 	= ThicknessVolumeHeader
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtModifyThickCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 过滤截面部件
+   Id 	= CATSdwSectionComponentsFilter
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 分析拔模特征
+   Id 	= CATShapeDesignDraftAnalysisHdr
+   DLL 	= CATFauDraft
+   Cmd 	= CATStCmdDraft
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 箭状曲率分析
+   Id 	= CATSdwPorcAnalysisHdr
+   DLL 	= CATFauCurvature
+   Cmd 	= CATStCmdCurvature
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 自动圆角...
+   Id 	= CATShapeDesignAutoFillet
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtModifyAutoFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 定义工作截面
+   Id 	= CATSdwDefineInWorkSectionHdr
+   DLL 	= CATGuiSectioning
+   Cmd 	= CATGSMUIDefineInWorkSection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 截面搜索
+   Id 	= CATSdwSectionSearchHdr
+   DLL 	= CATGuiSectioning
+   Cmd 	= CATGuiSectionSearchDialog
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 保留模式
+   Id 	= CATShapeDesignKeepMode
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 遮罩...
+   Id 	= CATShapeDesignMaskHdr
+   DLL 	= CATGuiMask
+   Cmd 	= CATGuiMask
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 拆解...
+   Id 	= CATShapeDesignDisassembleHdr
+   DLL 	= CATFsuDisassemble
+   Cmd 	= CATStCmdDisassemble
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 选择性加载模式
+   Id 	= CATSdwSectionSelectiveLoading
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 厚曲面...
+   Id 	= ThickSurfaceVolumeHeader
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtModifyOffsetCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 应用修饰
+   Id 	= CATSdwVisuShowHdr
+   DLL 	= CATFsuCtrlPtDisplay
+   Cmd 	= CATStCmdCtrlPointsDisplay
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 相交...
+   Id 	= BoolVolumeIntersect
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtBoolCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 工作支持面选择
+   Id 	= CATShapeDesignGridFilter
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 缝合曲面...
+   Id 	= SewingVolumeHeader
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtModifySewingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 封闭曲面...
+   Id 	= CloseSurfaceVolumeHeader
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtModifyCloseCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 更新截面容器
+   Id 	= CATSdwUpdateSectionContHdr
+   DLL 	= CATGuiSectioning
+   Cmd 	= CATGuiSectionContainerUpdate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 平面系...
+   Id 	= CATSdwGridSetHdr
+   DLL 	= CATGuiGridSet
+   Cmd 	= CATGSMUIGridSet
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除面...
+   Id 	= CATShapeDesignRemoveFace
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateRemoveFaceCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 调整无限元素的大小
+   Id 	= CATShapeDesignResizeInfiniteElements
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 插入截面
+   Id 	= CATSdwInsertSectionHdr
+   DLL 	= CATGuiSectioning
+   Cmd 	= CATGSMUIInsertSection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 2D 视图截面
+   Id 	= CATSdwInsert2DViewSectionHdr
+   DLL 	= CATGuiSectioning
+   Cmd 	= CATGuiInsert2DViewSection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 临时分析
+   Id 	= CATShapeDesignTemporaryAnalysisMode
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 添加..
+   Id 	= BoolVolumeAdd
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtBoolCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 将几何体转换为截面...
+   Id 	= CATSdwConvertBodyToSectionHdr
+   DLL 	= CATGuiSectioning
+   Cmd 	= CATGSMUIInsertSection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 显示变形
+   Id 	= CATGSMUIDisplayDistortions
+   DLL 	= CATGuiUnfold
+   Cmd 	= CATGSMUIDisplayDistortions
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 几何信息
+   Id 	= CATSdwGeometryInfoHdr
+   DLL 	= CATFsuGeomInfo
+   Cmd 	= CATStCmdGeomInfo
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 3D 工作支持面
+   Id 	= CATShapeDesignShow3DGrid
+   DLL 	= CATGuiOnSupport
+   Cmd 	= CATGSMUI3DOnSupport
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 清除特征
+   Id 	= DefeaturingVolumeHeader
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtModifyDefeaturingCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 仅将选定元素设置为可拾取
+   Id 	= CATSdwSTHTemporaryLLNPHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 分析曲面曲率
+   Id 	= CATShapeDesignGaussCurvatureHdr
+   DLL 	= CATFauSurfCurv
+   Cmd 	= CATStCmdSurfCurv
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 拔模反射线...
+   Id 	= DraftReflectVolumeHeader
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtDraftReflectCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATPartMenu 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Separator Name=CATCmdSeparator4101Separator
+      Starter Name=CATUpdate
+      Separator Name=CATCmdSeparator4103Separator
+      Starter Name=CATActiveObject
+   Title=视图 	 Name=CATAfrView 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=CATBody
+      Starter Name=InsertGS
+      Starter Name=InsertOGS
+      Separator Name=pMenuSeparator01
+      Title=草图编辑器 	 Name=PrtSketcher 
+         Starter Name=CATSketch
+         Starter Name=SketchPositioning
+      Separator Name=pMenuSeparator02
+      Title=轴系 	 Name=AxisSystems 
+         Starter Name=CATCmd3DAxisSystem
+         Starter Name=AxisSystemFromRobot
+      Separator Name=CATCmdSeparator4305
+      Title=线框 	 Name=CATShapeDesignWireFrameSnu 
+         Starter Name=CATPoint
+         Starter Name=CATMultiplePoint
+         Starter Name=CATExtremum
+         Starter Name=CATExtremumPolar
+         Starter Name=CATLine
+         Starter Name=CATSdwAxisLineStr
+         Starter Name=CATSdwLineCornerStr
+         Starter Name=CATPlane
+         Separator Name=CATCmdSeparator430611Separator
+         Starter Name=CATProject
+         Starter Name=CATCombine
+         Starter Name=CATReflectLine
+         Starter Name=Silhouette
+         Starter Name=CATIntersect
+         Starter Name=CATParallel
+         Starter Name=CATRollingOffset
+         Starter Name=3DCurveOffset
+         Separator Name=CATCmdSeparator43064Separator
+         Starter Name=CATCircle
+         Starter Name=CATCorner
+         Starter Name=CATConnect
+         Starter Name=CATConic
+         Starter Name=CATCurve
+         Starter Name=CATHelix
+         Starter Name=CATSdwSpiralStr
+         Starter Name=CATSpine
+         Starter Name=Contour
+         Starter Name=IsoparCurve
+         Starter Name=CurveEquations
+      Title=法则曲线 	 Name=CATShapeDesignLawSnu 
+         Starter Name=CATLaw
+      Title=曲面 	 Name=CATShapeDesignSurfacSnu 
+         Starter Name=CATExtrude
+         Starter Name=CATRevol
+         Starter Name=Sphere
+         Starter Name=CATSdwCylinderStr
+         Starter Name=CATOffset
+         Starter Name=VariableOffset
+         Starter Name=RoughOffset
+         Starter Name=MidSurface
+         Starter Name=CATSweep
+         Starter Name=CATVarSweep
+         Starter Name=CATFill
+         Starter Name=CATLoft
+         Starter Name=CATBlend
+      Title=包络体 	 Name=VolumeFeature 
+         Starter Name=VolumeExtrude
+         Starter Name=VolumeRevolve
+         Starter Name=CATSdwVolumeLoftStr
+         Starter Name=CATSdwVolumeSweepStr
+         Starter Name=VolumeThickSurface
+         Starter Name=VolumeClose
+         Separator Name=CATAfrEditNew001Sep
+         Starter Name=DraftVolumeHeader
+         Starter Name=DraftVariableVolumeHeader
+         Starter Name=DraftReflectVolumeHeader
+         Separator Name=CATAfrEditNew002Sep
+         Starter Name=VolumeShell
+         Starter Name=VolumeSewing
+         Starter Name=VolumeThickness
+         Separator Name=CATNewSeparator003
+         Starter Name=BoolVolumeAdd
+         Starter Name=BoolVolumeRemove
+         Starter Name=BoolVolumeIntersect
+         Starter Name=VolumeTrim
+         Starter Name=VolumeDefeaturing
+      Title=操作 	 Name=CATShapeDesignModifSnu 
+         Starter Name=CATAssemble
+         Starter Name=CATHealing
+         Starter Name=CATCurveSmooth
+         Starter Name=SurfaceSimplification
+         Starter Name=CATUntrim
+         Starter Name=CATDisassemble
+         Separator Name=CATCmdSeparator4308119Separator
+         Starter Name=CATSplit
+         Starter Name=CATTrim
+         Starter Name=CATSewSurface
+         Starter Name=RemoveFace
+         Separator Name=CATCmdSeparator43083Separator
+         Starter Name=CATBoundary
+         Starter Name=CATExtract
+         Starter Name=CATExtractMultiC
+         Separator Name=CATCmdSeparator43084Separator
+         Starter Name=CATFillet
+         Starter Name=CATFilletE
+         Starter Name=FilletG
+         Starter Name=CATFilletFace
+         Starter Name=CATFilletTritangent
+         Separator Name=CATCmdSeparator4308651Separator
+         Starter Name=CATChamfer
+         Separator Name=CATCmdSeparatorResTransfo
+         Starter Name=CATTranslate
+         Starter Name=CATRotate
+         Starter Name=CATSymmetry
+         Starter Name=CATScaling
+         Starter Name=CATAffinity
+         Starter Name=CATSdwAxisToAxisStr
+         Separator Name=CATCmdSeparator430813Separator
+         Starter Name=CATExtrapol
+         Starter Name=CATInverse
+         Starter Name=CATNear
+      Title=高级操作 	 Name=CATShapeDesignAdvOpe 
+         Starter Name=AutoFillet
+      Separator Name=CATSdwCmdSeparator43085SeparatorSep
+      Title=约束 	 Name=CATShapeDesignConstraintSnu 
+         Starter Name=CATConstraintWithPanel
+         Starter Name=CATCreateConstraint
+      Title=标注 	 Name=AnnotationsContainer 
+         Title=文本 	 Name=TextContainer 
+            Starter Name=TPSCREATETEXTMENU
+            Starter Name=TPSCREATETEXTWITHOUTLEADERMENU
+            Starter Name=TPSCREATETEXTPARALLELONSCREENMENU
+         Title=标识注解 	 Name=FlagNoteContainer 
+            Starter Name=CATTPSCREATEFLAGNOTEMENU
+            Starter Name=TPSCREATEFLAGNOTEWITHOUTLEADERMENU
+         Starter Name=CATFTAViewCreationStr
+         Starter Name=TPSCSOCommand
+         Starter Name=GSM3DTagStr
+      Title=分析 	 Name=CATShapeDesignAnalyseSnu 
+         Starter Name=CATConnectChecker
+         Starter Name=DynDistanceLight
+         Separator Name=CATSdwCmdSeparator430952SeparatorSep
+         Starter Name=CATDraftAnalysisHead
+         Starter Name=CATGaussCurvatureHead
+         Starter Name=CATSdwPorcAnalysisStr
+         Separator Name=CATCmdSeparator430955Separator
+         Starter Name=CATSdwVisuShowStr
+         Starter Name=CATSdwVisuHideStr
+         Starter Name=CATSdwGeometryInfoStr
+         Separator Name=CATCmdStarter430959Separator
+         Starter Name=Wysiwyg
+         Starter Name=Sharpness
+      Separator Name=CATSdwCmdSeparator43010SeparatorSep
+      Title=高级复制工具 	 Name=CATShapeDesignAdvanceSnu 
+         Starter Name=CATShapeDesignMultiple
+         Starter Name=CATShapeDesignMultiplePoint
+         Starter Name=CATSdwMultiplePlaneStr
+         Starter Name=CATSdwGridSetStr
+         Separator Name=CATSdwCmdSeparator43014SeparatorSep
+         Starter Name=CATRectPattern
+         Starter Name=CATCircPattern
+         Starter Name=CATUserPattern
+         Separator Name=CATSdwCmdSeparator430146SeparatorSep
+         Starter Name=CATDuplicateBody
+      Title=知识工程模板 	 Name=CATAfrPKTMenu 
+         Starter Name=PKTCreatePowerCopyHdr
+         Starter Name=PKTCreateUserFeatureHdr
+         Starter Name=PKTCreateDocTemplateHdr
+         Starter Name=PKTSaveInCatalogHdr
+      Starter Name=PKTInstanciateFromDocHdr
+      Starter Name=PKTInstanciateSelectHdr
+      Separator Name=CATCmdSeparator430148Separator
+      Title=高级曲面 	 Name=CATSdwGSOSnu 
+         Starter Name=CATSdwBumpStr
+         Starter Name=CATSdwWrapCurveStr
+         Starter Name=CATSdwWrapSurfaceStr
+         Starter Name=CATSdwShapeMorphingStr
+      Title=已展开外形 	 Name=CATSdwDL1Snu 
+         Starter Name=CATSdwUnfoldStr
+         Starter Name=CATSdwTransferStr
+         Starter Name=CATSdwDevelopStr
+      Separator Name=BIWInsertMenuSep
+      Title=BiW Templates 	 Name=BIWInsertSubMenu 
+         Starter Name=JunctionMnu
+         Starter Name=DiaboloMnu
+         Starter Name=HoleMnu
+         Starter Name=HoleCurveMnu
+         Starter Name=RidgeMnu
+         Starter Name=BeadMnu
+         Starter Name=2DViewSectionMnu
+         Starter Name=BlendCornerMnu
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Title=网格 	 Name=CATGrid 
+         Starter Name=CATShapeDesignOnSupportStr
+         Starter Name=CAT3DOnSupport
+         Starter Name=CATShapeDesignSnapGridStr
+         Starter Name=CATActivityGrid
+         Starter Name=GridFeaturization
+      Starter Name=CATSdwPublishStr
+      Separator Name=CATCmdSeparator4406Separator
+      Starter Name=CATParentChildren
+      Starter Name=CATShapeDesignEditorStr
+      Starter Name=CATShapeDesignMaskStr
+      Starter Name=CATUdfCata
+      Starter Name=CATSdwDeleteNotUsedStr
+      Starter Name=CATSdwExternalViewStr
+      Starter Name=CATSdwThicknessStr
+      Separator Name=CATCmdSeparator4415Separator
+   Title=窗口 	 Name=CATAfrWindowMnu 
+
+ Title of the toolbar=选择 and is Name=CATShapeDesignToolBarSelectTlb
+   Starter Name=CATSelect
+   Title of the Icon Box=扫描 	 Name=CATSdwScanIcb 
+      Starter Name=CATMmuQuickSelectHdr
+      Starter Name=CATSdwScanStr
+
+ Title of the toolbar=草图编辑器 and is Name=CATPcfPrtSketchTlb
+   Title of the Icon Box=草图编辑器 	 Name=ContainerSketcher 
+      Starter Name=CATSketch
+      Starter Name=SketchPositioning
+
+ Title of the toolbar=线框 and is Name=CATShapeDesignToolBarWireFrameTlb
+   Title of the Icon Box=点 	 Name=CATContainerPoint 
+      Starter Name=CATPoint
+      Starter Name=CATMultiplePoint
+      Starter Name=CATExtremum
+      Starter Name=CATExtremumPolar
+   Title of the Icon Box=直线-轴线 	 Name=LineAxisPolyLine 
+      Starter Name=CATLine
+      Starter Name=CATSdwAxisLineStr
+      Starter Name=CATSdwLineCornerStr
+   Title of the Icon Box=Planes 	 Name=Planes 
+      Starter Name=CATPlane
+      Starter Name=CATMultiplePoint
+      Starter Name=CATSdwMultiplePlaneStr
+Separator Name=CATCmdSeparatorWire101Separator
+   Title of the Icon Box=投影-混合 	 Name=CATSdwProjectCombineReflectLineIcb 
+      Starter Name=CATProjection
+      Starter Name=CATCombine
+      Starter Name=CATReflectLine
+      Starter Name=Silhouette
+   Starter Name=CATIntersection
+   Title of the Icon Box=曲线偏移 	 Name=Offset2D3D 
+      Starter Name=CATParallel
+      Starter Name=CATRollingOffset
+      Starter Name=3DCurveOffset
+Separator Name=CATCmdSeparatorWire4Separator
+   Title of the Icon Box=圆-圆锥 	 Name=CATCircleConic 
+      Starter Name=CATCircle
+      Starter Name=CATCorner
+      Starter Name=CATConnect
+      Starter Name=CATConic
+   Title of the Icon Box=曲线 	 Name=CATCurve 
+      Starter Name=CATCurve
+      Starter Name=CATHelix
+      Starter Name=CATSdwSpiralStr
+      Starter Name=CATSpine
+      Starter Name=Contour
+      Starter Name=IsoparCurve
+      Starter Name=CurveEquations
+
+ Title of the toolbar=法则曲线 and is Name=CATShapeDesignToolBarLawTlb
+   Starter Name=CATLaw
+
+ Title of the toolbar=曲面 and is Name=CATShapeDesignToolBarSurfTlb
+   Title of the Icon Box=拉伸-旋转 	 Name=CATExtrudeRevol 
+      Starter Name=CATExtrude
+      Starter Name=CATRevol
+      Starter Name=CATSdwSphereStr
+      Starter Name=CATSdwCylinderStr
+   Title of the Icon Box=偏移 	 Name=OffsetVar 
+      Starter Name=CATOffset
+      Starter Name=VariableOffset
+      Starter Name=RoughOffset
+      Starter Name=MidSurface
+   Title of the Icon Box=扫掠 	 Name=CATSweepS 
+      Starter Name=CATSweep
+      Starter Name=CATVarSweep
+   Starter Name=CATFill
+   Starter Name=CATLoft
+   Starter Name=CATBlend
+
+ Title of the toolbar=操作 and is Name=CATShapeDesignToolBarModifTlb
+   Title of the Icon Box=接合-修复 	 Name=CATAssembleHealing 
+      Starter Name=CATAssemble
+      Starter Name=CATHealing
+      Starter Name=CATCurveSmooth
+      Starter Name=SurfaceSimplification
+      Starter Name=CATUntrim
+      Starter Name=CATDisassemble
+   Title of the Icon Box=修剪-分割 	 Name=CATTrimSplit 
+      Starter Name=CATSplit
+      Starter Name=CATTrim
+      Starter Name=CATSewSurface
+      Starter Name=RemoveFace
+   Title of the Icon Box=提取 	 Name=CATSdwExtractsIcb 
+      Starter Name=CATBoundary
+      Starter Name=CATExtract
+      Starter Name=CATExtractMultiC
+   Title of the Icon Box=圆角 	 Name=CATFilletAll 
+      Starter Name=CATFillet
+      Starter Name=CATFilletE
+      Starter Name=FilletG
+      Starter Name=CATFilletFace
+      Starter Name=CATFilletTritangent
+   Starter Name=CATChamfer
+   Title of the Icon Box=变换 	 Name=CATTransfor 
+      Starter Name=CATTranslate
+      Starter Name=CATRotate
+      Starter Name=CATSymmetry
+      Starter Name=CATScaling
+      Starter Name=CATAffinity
+      Starter Name=CATSdwAxisToAxisStr
+   Title of the Icon Box=外插延伸-反转-近接 	 Name=Extrapola 
+      Starter Name=CATExtrapol
+      Starter Name=CATInverse
+      Starter Name=CATNear
+
+ Title of the toolbar=复制 and is Name=CATShapeDesignToolBarReplicateTlb
+   Title of the Icon Box=复制 	 Name=CATMultiple 
+      Starter Name=CATShapeDesignMultiple
+      Starter Name=CATShapeDesignMultiplePoint
+      Starter Name=CATSdwMultiplePlaneStr
+   Title of the Icon Box=阵列 	 Name=SurfaceFeature 
+      Starter Name=CATRectPattern
+      Starter Name=CATCircPattern
+      Starter Name=CATUserPattern
+   Starter Name=CATDuplicateBody
+
+ Title of the toolbar=产品知识工程模板工具栏 and is Name=CATAfrPKTToolbar
+   Title of the Icon Box=产品知识工程模板创建工具栏 	 Name=CATAfrPKTCreateToolbox 
+      Starter Name=PKTCreatePowerCopyHdr
+      Starter Name=PKTCreateUserFeatureHdr
+      Starter Name=PKTCreateDocTemplateHdr
+      Starter Name=PKTSaveInCatalogHdr
+   Title of the Icon Box=产品知识工程模板实例化工具栏 	 Name=CATAfrPKTInstantiateToolbox 
+      Starter Name=PKTInstanciateFromDocHdr
+      Starter Name=PKTInstanciateSelectHdr
+
+ Title of the toolbar=工具 and is Name=CATShapeDesignToolBarToolsTlb
+   Starter Name=CATUpdate
+   Starter Name=ManualUpdateMode
+   Title of the Icon Box=AxisSystems 	 Name=AxisSystems 
+      Starter Name=CATCmd3DAxisSystem
+      Starter Name=AxisSystemFromRobot
+   Starter Name=CATGraph
+   Title of the Icon Box=网格 	 Name=CATGrid 
+      Starter Name=CATOnSupport
+      Starter Name=CAT3DOnSupport
+      Starter Name=CATSnapGrid
+      Starter Name=CATActivityGrid
+      Starter Name=GridFeaturization
+      Starter Name=CATSdwGridSetStr
+   Title of the Icon Box=2D 可视化模式 	 Name=2DMode 
+      Starter Name=Pickablevisiblebackground
+      Starter Name=No3dbackground
+      Starter Name=Unpickablebackground
+      Starter Name=Lowlightbackground
+      Starter Name=Unpickablelowlightbackground
+      Starter Name=CATCmdSeparatorSurfacic1Separator
+      Starter Name=Lockcurrentviewpoint
+   Starter Name=CATShapeDesignMaskStr
+   Starter Name=CATShapeDesignResizeInfElem
+   Starter Name=CATDatumMode
+   Starter Name=TemporaryAnalysis
+   Starter Name=InsertMode
+   Title of the Icon Box=保留-不保留 	 Name=KeepNoKeep 
+      Starter Name=NoKeep
+      Starter Name=Keep
+   Starter Name=OnlyCurrentBodyMode
+   Starter Name=CATUdfCata
+   Starter Name=CATCurrentTool
+
+ Title of the toolbar=约束 and is Name=CATShapeDesignToolBarConstraintTlb
+   Starter Name=CATConstraintWithPanel
+   Starter Name=CATCreateConstraint
+
+ Title of the toolbar=标注 and is Name=AnnotationsContainer
+   Title of the Icon Box=文本 	 Name=TextContainer 
+      Starter Name=TPSCREATETEXTTOOLBAR
+      Starter Name=TPSCREATETEXTWITHOUTLEADERTOOLBAR
+      Starter Name=TPSCREATETEXTPARALLELONSCREENTOOLBAR
+   Title of the Icon Box=标识注解 	 Name=FlagNoteContainer 
+      Starter Name=CATTPSCREATEFLAGNOTETOOLBAR
+      Starter Name=TPSCREATEFLAGNOTEWITHOUTLEADERTOOLBAR
+   Starter Name=CATFTAVIEWCREATTIONSTR
+   Starter Name=TPSCSOCommand
+   Starter Name=GSM3DTag
+
+ Title of the toolbar=分析 and is Name=CATShapeDesignToolBarAnalyseTlb
+   Title of the Icon Box=分析 	 Name=CATAnalyse 
+      Starter Name=CATConnectChecker
+      Starter Name=DynDistanceLight
+      Starter Name=CATSdwCmdSeparatorAnalyse2SeparatorSep
+      Starter Name=CATDraftAnalysisHead
+      Starter Name=CATGaussCurvatureHead
+      Starter Name=CATSdwPorcAnalysisStr
+      Starter Name=CATCmdSeparatorAnalyse5Separator
+      Starter Name=CATSdwVisuShowStr
+      Starter Name=CATSdwVisuHideStr
+      Starter Name=CATSdwGeometryInfoStr
+      Starter Name=CATCmdStarterAnalyse61Separator
+      Starter Name=Wysiwyg
+      Starter Name=Sharpness
+
+ Title of the toolbar=动态切割 and is Name=PrtDynSectioning
+   Starter Name=PrtDynamicSectioning
+
+ Title of the toolbar=高级操作 and is Name=AdvancedOperationsSurfaceFeature
+   Starter Name=AutoFillet
+
+ Title of the toolbar=高级曲面 and is Name=CATSdwToolBarGSOTlb
+   Starter Name=CATSdwBumpStr
+   Starter Name=CATSdwWrapCurveStr
+   Starter Name=CATSdwWrapSurfaceStr
+   Starter Name=CATSdwShapeMorphingStr
+
+ Title of the toolbar=已展开外形 and is Name=CATSdwToolBarDL1Tlb
+   Starter Name=CATSdwUnfoldStr
+   Starter Name=CATSdwTransferStr
+   Starter Name=CATSdwDevelopStr
+
+ Title of the toolbar=包络体 and is Name=VolumeFeature
+   Starter Name=VolumeExtrude
+   Starter Name=VolumeRevolve
+   Starter Name=CATSdwVolumeLoftStr
+   Starter Name=CATSdwVolumeSweepStr
+   Starter Name=VolumeThickSurface
+   Starter Name=VolumeClose
+Separator Name=NewSeparator011
+   Title of the Icon Box=包络体拔模 	 Name=PrtDraftVolumeContainer 
+      Starter Name=DraftVolumeHeader
+      Starter Name=DraftVariableVolumeHeader
+      Starter Name=DraftReflectVolumeHeader
+   Starter Name=VolumeShell
+   Starter Name=VolumeSewing
+   Starter Name=VolumeThickness
+Separator Name=NewSeparator012
+   Title of the Icon Box=包络体操作 	 Name=PrtBoolVolumeContainer 
+      Starter Name=BoolVolumeAdd
+      Starter Name=BoolVolumeRemove
+      Starter Name=BoolVolumeIntersect
+      Starter Name=VolumeTrim
+   Starter Name=VolumeDefeaturing
+
+ Title of the toolbar=截面管理 and is Name=CATSdwToolBar2DCW1Tlb
+   Starter Name=CATSdwInsert2DViewSectionStr
+Separator Name=CATCmdSeparatorSelect1Separator
+   Starter Name=CATSdwSectionComponentsFilterStr
+   Starter Name=DIWS
+Separator Name=CATCmdSeparatorSelect2Separator
+   Title of the Icon Box=截面背景可视化 	 Name=SectionBckGroundMode 
+      Starter Name=TemporaryHide
+      Starter Name=TemporaryLLNP
+
+ Title of the toolbar=插入 and is Name=CATPcfPrtInsertBodyTlb
+   Starter Name=CATBody
+   Title of the Icon Box=几何图形集 	 Name=ContainerGS 
+      Starter Name=InsertGS
+      Starter Name=InsertOGS

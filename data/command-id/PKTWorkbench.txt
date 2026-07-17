@@ -1,0 +1,86 @@
+Workshop Exposition of PKTWorkbench 
+
+1- Header List 
+
+Title= 保存在目录中...
+   Id 	= PKTSaveInCatalogHdr
+   DLL 	= CATPublish
+   Cmd 	= CATUdfFeatureSave
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 知识工程阵列
+   Id 	= PKTCreatePatternHdr
+   DLL 	= CATLieKnowledgePattern
+   Cmd 	= CATKwePatternEditorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 用户特征...
+   Id 	= PKTCreateUserFeatureHdr
+   DLL 	= CATUdfCommands
+   Cmd 	= CATUdfDefineMainCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 超级副本...
+   Id 	= PKTCreatePowerCopyHdr
+   DLL 	= CATUdfCommands
+   Cmd 	= CATUdfDefineMainCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 从文档实例化...
+   Id 	= PKTInstanciateFromDocHdr
+   DLL 	= CATUdfCommands
+   Cmd 	= CATUdfFeatureInstanciateFile
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 文档模板...
+   Id 	= PKTCreateDocTemplateHdr
+   DLL 	= CATUdfCommands
+   Cmd 	= CATUdfDefineMainCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 目录浏览器
+   Id 	= PKTOpenCatalogHdr
+   DLL 	= CATCuiBrowser
+   Cmd 	= CATCuiSelectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 生成的脚本...
+   Id 	= PKTScriptHdr
+   DLL 	= CATGeneKnowWorkshop
+   Cmd 	= CATScriptCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= UDF 调试
+   Id 	= PKTUdfDebugHdr
+   DLL 	= CATUdfCommands
+   Cmd 	= CATUdfDefineCmdDebug
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= PKTEditOpenBodyHdr
+   Id 	= PKTEditOpenBodyHdr
+   DLL 	= CATUdfCommands
+   Cmd 	= CATUdfEditObject
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Title of the toolbar=Generative Knowledge Toolbar and is Name=CATPKTScriptToolbar
+   Starter Name=PKTScriptHdr
+
+ Title of the toolbar=Templates Creation Toolbar and is Name=CATPKTCreateTemplatesToolbar
+   Starter Name=PKTCreateDocTemplateHdr
+   Starter Name=PKTSaveInCatalogHdr
+
+ Title of the toolbar=Templates Instantiation Toolbar and is Name=CATPKTCatalogToolbar
+   Starter Name=PKTInstanciateSelectHdr
+   Starter Name=PKTInstanciateFromDocHdr
+   Starter Name=PKTOpenCatalogHdr

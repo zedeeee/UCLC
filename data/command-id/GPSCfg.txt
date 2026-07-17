@@ -1,0 +1,719 @@
+Workshop Exposition of GPSCfg 
+
+1- Header List 
+
+Title= Enforced displacement vizualization on mesh
+   Id 	= CATGPSImageEnforcedDispHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mapping Property
+   Id 	= CATGPSMappedPropertyHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Distributed Mass and Inertia
+   Id 	= CATGPSInertiaMassHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= External Storage Clean-up
+   Id 	= CATGPSClearAllSolutionsHdr
+   DLL 	= CATAnalysisElfiniUI
+   Cmd 	= CATElfClearSolverDataCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generate Mapping File
+   Id 	= CATGPSGenMappingFileHdr
+   DLL 	= CATGPSCommands
+   Cmd 	= CATGPSGenerateMappingFileCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Ball Joint
+   Id 	= CATGPSBallJoinHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Solution External Storage Clean-up
+   Id 	= CATGPSClearSelectedSolutionHdr
+   DLL 	= CATAnalysisElfiniUI
+   Cmd 	= CATElfClearSolverDataCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Surface Mass Density
+   Id 	= CATGPSSurfacicMassHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Bearing Load
+   Id 	= CATGPSBearingLoadHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Imported Moment
+   Id 	= CATGPSImportedMomentHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Static Constrained Modes
+   Id 	= CATGPSStaticConstrainedModeCaseHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateCaseCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Change Type
+   Id 	= CATGPSModify2DMPTypeHdr
+   DLL 	= CATAnalysisMechanicalUI
+   Cmd 	= CATSamModifyMeshPhysicalType
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Change Type
+   Id 	= CATGPSModify1DMPTypeHdr
+   DLL 	= CATAnalysisMechanicalUI
+   Cmd 	= CATSamModifyMeshPhysicalType
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Line Mass Density
+   Id 	= CATGPSLineicMassHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Sliding Pivot
+   Id 	= CATGPSSlidingPivotHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Assembled Masses
+   Id 	= CATGPSMassAssemblyHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Imported Beam Property 
+   Id 	= CATGPSImpProp1DHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Historic of Computations
+   Id 	= CATGPSGraphResultHdr
+   DLL 	= CATGPSCommands
+   Cmd 	= CATGPSCmdGraphResult
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Temperature Field
+   Id 	= CATGPSTemperatureFieldHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Combined Masses
+   Id 	= CATGPSCombineMassHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Slider
+   Id 	= CATGPSSliderHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Upgrade Sensors
+   Id 	= CATGPSReactionSensorUpgradeHdr
+   DLL 	= CATAnalysisMechanicalUI
+   Cmd 	= CATSamCmdUpgradeReactionSensor
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Restraint vizualization on mesh
+   Id 	= CATGPSImageRestraintHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import Forces
+   Id 	= CATGPSImportForcesHdr
+   DLL 	= CATGPSCommands
+   Cmd 	= CATGPSImportDispCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Distributed mass vizualization on mesh
+   Id 	= CATGPSImageDistributedMassHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= External Storage
+   Id 	= CATGPSExternalStorageHdr
+   DLL 	= CATAnalysisElfiniUI
+   Cmd 	= CATElfCmdExternalStorage
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Line load vizualization on mesh
+   Id 	= CATGPSImageLineicLoadHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= User-defined Restraint
+   Id 	= CATGPSRestraintHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Distributed Force
+   Id 	= CATGPSDistributedForceHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Pivot
+   Id 	= CATGPSPivotHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Enforced Displacement
+   Id 	= CATGPSEnforcedDispHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Internal Load Sensor
+   Id 	= CATGPSInternalLoadPreproSensorSingleLoadHdr
+   DLL 	= CATAnalysisMechanicalUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rotation Force vizualization on mesh
+   Id 	= CATGPSImageRotationForceHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Moment vizualization on mesh
+   Id 	= CATGPSImageMomentHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Distributed force vizualization on mesh
+   Id 	= CATGPSImageDistributedForceHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Pressure
+   Id 	= CATGPSPressureHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Surface load vizualization on mesh
+   Id 	= CATGPSImageSurfacicLoadHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Line Force Density
+   Id 	= CATGPSLineicForceHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Temperature Field from Thermal Solution
+   Id 	= CATGPSTemperatureFieldFromThermalSolutionHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Moment
+   Id 	= CATGPSMomentHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Volume Force Density
+   Id 	= CATGPSBodyForceHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Static Case
+   Id 	= CATGPSStaticCaseHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateCaseCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= CATGPSCreateImportDispUIEntityHdr
+   Id 	= CATGPSCreateImportDispUIEntityHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamEntityCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Clamp
+   Id 	= CATGPSClampHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Imported Composite Property
+   Id 	= CATGPSDesCompositeHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Temporary External Storage
+   Id 	= CATGPSLocateScratchHdr
+   DLL 	= CATAnalysisElfiniUI
+   Cmd 	= CATElfCmdExternalStorage
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Surface Slider
+   Id 	= CATGPSPlanPlanHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Buckling Case
+   Id 	= CATGPSBucklingCaseHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateCaseCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Loads
+   Id 	= CATGPSCreateLoadSetHdr
+   DLL 	= CATAnalysisMechanicalUI
+   Cmd 	= CATSamCmdCreateUserSet
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Local Adaptivity
+   Id 	= CATGPSAdaptLocalHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCmdLocalEntity
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Imported Moment Vizualization on Mesh
+   Id 	= CATGPSImageImportedMomentHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Adaptivity Entity
+   Id 	= CATGPSAdaptivityEntityHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Line Group by Boundary
+   Id 	= CATGPSLineBoundaryGroupHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Temperature field visualization on mesh
+   Id 	= CATGPSImageTemperatureFieldHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Bearing load visualization on mesh
+   Id 	= CATGPSImageBearingLoadHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Volume load vizualization on mesh
+   Id 	= CATGPSImageVolumicLoadHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Distributed Mass
+   Id 	= CATGPSDistributedMassHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Masses
+   Id 	= CATGPSCreateMassSetHdr
+   DLL 	= CATAnalysisMechanicalUI
+   Cmd 	= CATSamCmdCreateUserSet
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rotation Force
+   Id 	= CATGPSRotationHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Assembled Loads
+   Id 	= CATGPSLoadAssemblyHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Surface Group by Boundary
+   Id 	= CATGPSSurfBoundaryGroupHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Restraints
+   Id 	= CATGPSCreateRestraintSetHdr
+   DLL 	= CATAnalysisMechanicalUI
+   Cmd 	= CATSamCmdCreateUserSet
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Compute
+   Id 	= CATGPSComputeHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCmdUpdateLocal
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Measure Item
+   Id 	= CATGPSMeasureItemHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Between
+   Id 	= CATGPSMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Translational acceleration vizualization on mesh
+   Id 	= CATGPSImageTransAccelerationHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Elfini Solver Log
+   Id 	= CATGPSElfiniListingHdr
+   DLL 	= CATAnalysisElfiniUI
+   Cmd 	= CATElfCmdListing
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Imported Force
+   Id 	= CATGPSImportedForceHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Frequency Case
+   Id 	= CATGPSFrequencyCaseHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateCaseCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= CATGPSCreateImportForceUIEntityHdr
+   Id 	= CATGPSCreateImportForceUIEntityHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamEntityCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Imported Force Vizualization on Mesh
+   Id 	= CATGPSImageImportedForceHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Surface Force Density
+   Id 	= CATGPSSurfacicForceHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Force Density
+   Id 	= CATGPSForceDensityHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Force density vizualization on mesh
+   Id 	= CATGPSImageForceDensityHdr
+   DLL 	= CATSPMUI
+   Cmd 	= CATSPMListImageAndFEMCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Solution Case
+   Id 	= CATGPSCreateSolutionCaseHdr
+   DLL 	= CATAnalysisMechanicalUI
+   Cmd 	= CATSamCmdCreateBagOfSets
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Combined Case
+   Id 	= CATGPSCombinedStaticCaseHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateCaseCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Combined Loads
+   Id 	= CATGPSCombineLoadHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Internal Load Sensor
+   Id 	= CATGPSInternalLoadPreproSensorHdr
+   DLL 	= CATAnalysisMechanicalUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Compute with Adaptivity
+   Id 	= CATGPSComputeAdaptHdr
+   DLL 	= CATGPSCommands
+   Cmd 	= CATGPSCmdComputeAdaptivity
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Acceleration
+   Id 	= CATGPSAccelerationHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Isostatic Restraint
+   Id 	= CATGPSIsostaticHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamCreateEntityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= CATGPSNewSensorHdr
+   Id 	= CATGPSNewSensorHdr
+   DLL 	= CATAnalysisMechanicalUI
+   Cmd 	= CATSamCmdCreateNewSensor
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Find Interactions
+   Id 	= CATGPSContactConnectionWizardHdr
+   DLL 	= CATAnalysisModelerUI
+   Cmd 	= CATSamInteractionWizardCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=GPSCfgMenu 
+   Title=编辑 	 Name=CATAfrEditMnu 
+   Title=视图 	 Name=CATAfrView 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=GPSStaticCaseStarterMenu
+      Starter Name=GPSFrequencyCaseStarterMenu
+      Starter Name=GPSBucklingCaseStarterMenu
+      Starter Name=GPSCombinedStaticCaseStarterMenu
+      Starter Name=GPSStaticConstrainedModeCaseStarterMenu
+      Starter Name=GPSBagOfSetsCaseStarterMenu
+      Starter Name=GPSSolutionCaseStarterMenu
+      Starter Name=SPMEnvelopComputer
+      Starter Name=DYNRespCaseStarterMenu
+      Starter Name=DYNTimeRespCaseStarterMenu
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=GPSSeparatorToolsAnalysis
+      Starter Name=SPMBasicReportStarterMenu
+      Starter Name=SPMAnimateStarterMenu
+      Starter Name=SPMCutPlaneAnalysisStarterMenu
+      Starter Name=SPMDeformStarterMenu
+      Starter Name=SPMInfosStarterMenu
+      Starter Name=SPMImageExtremaStarterMenu
+      Starter Name=SPMImageDispatchStarterMenu
+      Starter Name=SPMSimplificationStarterMenu
+      Starter Name=GPSExternalStorageStarterMenu
+      Starter Name=GPSGraphResultStarterMenu
+   Title=窗口 	 Name=CATAfrWindowMnu 
+
+ Title of the toolbar=Model Manager and is Name=GPSModelManagerContainer
+   Title of the Icon Box=Mesh Parts 	 Name=GPSMeshCreationContainer 
+      Starter Name=CATAmtOctree3DStr
+      Starter Name=CATAmtOctree2DStr
+      Starter Name=CATAmt1DMesherStr
+   Title of the Icon Box=Mesh Specifications 	 Name=GPSMeshSpecificationContainer 
+      Starter Name=CATGPSElementTypeStr
+      Starter Name=CATGPSLocalMeshSizeStr
+      Starter Name=CATGPSLocalMeshSagStr
+Separator Name=Separator
+   Starter Name=CATGPSProp3DStr
+   Title of the Icon Box=2D Properties 	 Name=GPSProp2DContainer 
+      Starter Name=CATGPSProp2DStr
+      Starter Name=CATGPSDesCompositeStr
+   Title of the Icon Box=1D Properties 	 Name=GPSProp1DContainer 
+      Starter Name=CATGPSProp1DStr
+      Starter Name=CATGPSImpProp1DStr
+   Starter Name=CATGPSMappedPropertyStr
+Separator Name=Separator
+   Starter Name=CATGPSModelCheckStr
+Separator Name=Separator
+   Starter Name=CATGPSMaterialWithNoSupport2Str
+
+ Title of the toolbar=Groups and is Name=GPSGroupsContainer
+   Title of the Icon Box=Geometrical Groups 	 Name=GPSSpecifiedGroupsContainer 
+      Starter Name=CATGPSVertexGroupStr
+      Starter Name=CATGPSEdgeGroupStr
+      Starter Name=CATGPSSurfaceGroupStr
+      Starter Name=CATGPSBodyGroupStr
+   Title of the Icon Box=Spatial Groups 	 Name=GPSFreeGroupContainer 
+      Starter Name=CATGPSBoxGroupStr
+      Starter Name=CATGPSSphereGroupStr
+   Title of the Icon Box=Groups by Neighborhood 	 Name=GPSProximityGroupContainer 
+      Starter Name=CATGPSVertexByProxiStr
+      Starter Name=CATGPSLineByProxiStr
+      Starter Name=CATGPSSurfByProxiStr
+   Title of the Icon Box=Groups by Boundary 	 Name=GPSBoundaryGroupContainer 
+      Starter Name=CATGPSLineBoundaryGroupStr
+      Starter Name=CATGPSSurfBoundaryGroupStr
+
+ Title of the toolbar=Analysis Supports and is Name=GPSConnectionDesignContainer
+   Starter Name=CATGPSGeneConnDesignStr
+   Title of the Icon Box=Point Analysis Connections 	 Name=GPSPointConnectionContainer 
+      Starter Name=CATGPSPointConnDesignStr
+      Starter Name=CATGPSPointConnDesignWOPStr
+   Title of the Icon Box=Line Analysis Connections 	 Name=GPSLineConnectionContainer 
+      Starter Name=CATGPSLineConnDesignStr
+      Starter Name=CATGPSLineConnDesignWOPStr
+   Title of the Icon Box=Surface Analysis Connections 	 Name=GPSSurfConnectionContainer 
+      Starter Name=CATGPSSurfConnDesignStr
+      Starter Name=CATGPSSurfConnDesignWOPStr
+   Title of the Icon Box=Point Analysis Supports 	 Name=GPSPointPointConnectionContainer 
+      Starter Name=CATGPSPointPointConnDesignStr
+      Starter Name=CATGPSPointHalfConnDesignStr
+
+ Title of the toolbar=Connection Properties and is Name=GPSConnectionCommandContainer
+   Starter Name=CATGPSContactConnectionWizardStr
+   Title of the Icon Box=Face Face Connection Properties 	 Name=GPSFaceConnectionContainer 
+      Starter Name=CATGPSSliderConnectionStr
+      Starter Name=CATGPSContactConnectionStr
+      Starter Name=CATGPSFastenedConnectionStr
+      Starter Name=CATGPSFastenedSpringConnectionStr
+      Starter Name=CATGPSPressureFittingStr
+      Starter Name=CATGPSBoltTighteningStr
+   Title of the Icon Box=Distant Connection Properties 	 Name=GPSDistantConnectionContainer 
+      Starter Name=CATGPSRigidConnectionStr
+      Starter Name=CATGPSSmoothConnectionStr
+      Starter Name=CATGPSVirtBoltTighteningStr
+      Starter Name=CATGPSVirtSpringBoltTighStr
+      Starter Name=CATGPSGenericDistantStr
+   Title of the Icon Box=Welding Connection Properties 	 Name=GPSWeldConnectionContainer 
+      Starter Name=CATGPSSpotWeldingConnectionStr
+      Starter Name=CATGPSSeamWeldStr
+      Starter Name=CATGPSSurfWeldStr
+   Title of the Icon Box=Point Based Connection Properties 	 Name=GPSAeroConnectionContainer 
+      Starter Name=CATGPSPointPointPropStr
+      Starter Name=CATGPSHalfPointPropStr
+
+ Title of the toolbar=Restraints and is Name=GPSRestraintContainer
+   Starter Name=CATGPSClampStr
+   Title of the Icon Box=Mechanical Restraints 	 Name=GPSMechanicalRestraintContainer 
+      Starter Name=CATGPSPlanPlanStr
+      Starter Name=CATGPSSliderStr
+      Starter Name=CATGPSSlidingPivotStr
+      Starter Name=CATGPSBallJoinStr
+      Starter Name=CATGPSPivotStr
+   Title of the Icon Box=Advanced Restraints 	 Name=GPSAdvancedRestraintContainer 
+      Starter Name=CATGPSRestraintStr
+      Starter Name=CATGPSIsostaticStr
+
+ Title of the toolbar=Loads and is Name=GPSLoadContainer
+   Starter Name=CATGPSPressureStr
+   Title of the Icon Box=Forces 	 Name=GPSForceContainer 
+      Starter Name=CATGPSDistributedForceStr
+      Starter Name=CATGPSMomentStr
+      Starter Name=CATGPSBearingLoadStr
+      Starter Name=CATGPSImportedForceStr
+      Starter Name=CATGPSImportedMomentStr
+   Title of the Icon Box=Body Motion Loads 	 Name=GPSAccelerationContainer 
+      Starter Name=CATGPSAccelerationStr
+      Starter Name=CATGPSRotationStr
+   Title of the Icon Box=Force Densities 	 Name=GPSForceDensityContainer 
+      Starter Name=CATGPSLineicForceStr
+      Starter Name=CATGPSSurfacicForceStr
+      Starter Name=CATGPSBodyForceStr
+      Starter Name=CATGPSForceDensityStr
+   Starter Name=CATGPSEnforcedDispStr
+   Title of the Icon Box=Temperature 	 Name=GPSTemperatureFieldsContainer 
+      Starter Name=CATGPSTemperatureFieldStr
+      Starter Name=CATGPSTemperatureFieldFromThermalSolutionStr
+   Title of the Icon Box=Advanced Loads 	 Name=GPSAdvancedLoadsContainer 
+      Starter Name=CATGPSCombineLoadStr
+      Starter Name=CATGPSLoadAssemblyStr
+
+ Title of the toolbar=Masses and is Name=GPSMassContainer
+   Title of the Icon Box=Masses 	 Name=GPSMassCommandContainer 
+      Starter Name=CATGPSDistributedMassStr
+      Starter Name=CATGPSLineicMassStr
+      Starter Name=CATGPSSurfacicMassStr
+      Starter Name=CATGPSInertiaMassStr
+   Title of the Icon Box=Advanced Masses 	 Name=GPSAdvancedMassesContainer 
+      Starter Name=CATGPSCombineMassStr
+      Starter Name=CATGPSMassAssemblyStr
+
+ Title of the toolbar=Compute and is Name=GPSComputeContainer
+   Title of the Icon Box=Compute 	 Name=GPSComputeCommandContainer 
+      Starter Name=CATGPSComputeStr
+      Starter Name=CATGPSComputeAdaptStr
+
+ Title of the toolbar=Image and is Name=GPSImageContainer
+   Starter Name=SPMImageDeformedMeshStarter
+   Starter Name=SPMImageVonMisesIsoStarter
+   Title of the Icon Box=Other Image 	 Name=GPSAdvancedImageContainer 
+      Starter Name=SPMImageDispStarter
+      Starter Name=SPMImagePrincipalStressStarter
+      Starter Name=SPMImageErrorStarter
+
+ Title of the toolbar=Adaptivity and is Name=GPSAdaptBoxContainer
+   Starter Name=CATGPSAdaptivityEntityStr
+
+ Title of the toolbar=Virtual Parts and is Name=GPSVirtualContainer
+   Title of the Icon Box=Virtual Parts 	 Name=GPSVirtualCommandContainer 
+      Starter Name=CATGPSVirPartSmoothStr
+      Starter Name=CATGPSVirPartContactStr
+      Starter Name=CATGPSVirPartRigidStr
+      Starter Name=CATGPSVirPartSpringStr
+      Starter Name=CATGPSVirPartSmoSpriStr
+   Starter Name=CATGPSPeriodicStr
+
+ Title of the toolbar=Analysis Tools and is Name=GPSAnalysisVisuToolsContainer
+   Starter Name=CATSPMAnimate
+   Starter Name=CATSPMCutPlaneAnalysis
+   Starter Name=CATSPMDeform
+   Starter Name=CATSPMImageExtrema
+   Starter Name=CATSPMInfos
+   Starter Name=CATSPMLayout
+   Starter Name=CATSPMSimplification
+
+ Title of the toolbar=Analysis Results and is Name=GPSAnalysisResultContainer
+   Title of the Icon Box=Report 	 Name=GPSReportingContainer 
+      Starter Name=GPSBasicReportStarter
+      Starter Name=GPSAdvancedReportStarter
+   Starter Name=CATGPSGraphResultStr
+   Starter Name=CATGPSElfiniListingStr
+
+ Title of the toolbar=Solver Tools and is Name=GPSSolverToolsContainer
+   Title of the Icon Box=Solver Tools 	 Name=GPSSolverToolsCommandContainer 
+      Starter Name=CATGPSExternalStorageStr
+      Starter Name=CATGPSClearAllSolutionsStr
+      Starter Name=CATGPSLocateScratchStr
+
+ Title of the toolbar=Material on Analysis Connection and is Name=GPSMaterialOnAnalysisContainer
+   Starter Name=CATGPSApplyMaterialStr
+
+ Title of the toolbar=Measure and is Name=GPSMeasureTlb
+   Starter Name=CATGPSMeasureBetweenStr
+   Starter Name=CATGPSMeasureItemStr

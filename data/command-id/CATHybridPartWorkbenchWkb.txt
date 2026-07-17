@@ -1,0 +1,266 @@
+Workshop Exposition of CATHybridPartWorkbenchWkb 
+
+1- Header List 
+
+Title= 分析连接检查器...
+   Id 	= CATHpwConnectCheckerHdr
+   DLL 	= CATFauConnectChecker
+   Cmd 	= CATStCmdConnectCheckerAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 拆解...
+   Id 	= CATHybridPartDisassembleHdr
+   DLL 	= CATFsuDisassemble
+   Cmd 	= CATStCmdDisassemble
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 保留模式
+   Id 	= CATHybridPartKeepMode
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 不保留模式
+   Id 	= CATHybridPartNoKeepMode
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 设置为当前
+   Id 	= CATHybridPartSetCurrentWSHdr
+   DLL 	= CATGuiOnSupport
+   Cmd 	= CATGuiWorkingSupportSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 不设置为当前
+   Id 	= CATHybridPartSetNotCurrentWSHdr
+   DLL 	= CATGuiOnSupport
+   Cmd 	= CATGuiWorkingSupportSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 工作支持面
+   Id 	= CATHybridPartShowGridHdr
+   DLL 	= CATGuiOnSupport
+   Cmd 	= CATGSMUIOnSupport
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 工作支持面活动
+   Id 	= CATHybridPartChangeActivityWSHdr
+   DLL 	= CATGuiOnSupport
+   Cmd 	= CATGuiWorkingSupportSetCurrent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 点捕捉
+   Id 	= CATHybridPartSnapGridHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATPartMenu 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Separator Name=CATHpwCmdSeparator41010SeparatorSep
+      Starter Name=CATUpdate
+      Separator Name=CATHpwCmdSeparator41030SeparatorSep
+      Starter Name=CATActiveObject
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=CATBody
+      Starter Name=InsertGS
+      Starter Name=InsertOGS
+      Separator Name=pMenuSeparator01
+      Title=草图编辑器 	 Name=PrtSketcher 
+         Starter Name=CATSketch
+         Starter Name=SketchPositioning
+      Separator Name=pMenuSeparator02
+      Starter Name=CATCmd3DAxisSystem
+      Separator Name=CATHpwCmdSeparator430562SeparatorSep
+      Title=线框 	 Name=CATHybridPartWireFrameSnu 
+         Starter Name=CATPoint
+         Starter Name=CATHybridPartMultiplePointStr
+         Starter Name=CATLine
+         Starter Name=CATHpwAxisLineStr
+         Starter Name=CATHpwLineCornerStr
+         Starter Name=CATPlane
+         Separator Name=CATCmdSeparator430650Separator
+         Starter Name=CATProject
+         Starter Name=CATIntersect
+         Separator Name=CATHpwCmdSeparator430640SeparatorSep
+         Starter Name=CATCircle
+         Starter Name=CATCorner
+         Starter Name=CATConnect
+         Starter Name=CATCurve
+         Starter Name=CATHelix
+      Title=曲面 	 Name=CATHybridPartSurfacSnu 
+         Starter Name=CATExtrude
+         Starter Name=CATRevol
+         Starter Name=CATHpwSphereStr
+         Starter Name=CATHpwCylinderStr
+         Starter Name=CATOffset
+         Starter Name=CATSweep
+         Starter Name=CATFill
+         Starter Name=CATLoft
+         Starter Name=CATBlend
+      Title=操作 	 Name=CATHybridPartModifSnu 
+         Starter Name=CATAssemble
+         Starter Name=CATHealing
+         Starter Name=CATUntrim
+         Starter Name=CATDisassemble
+         Starter Name=CATSplit
+         Starter Name=CATTrim
+         Separator Name=CATCmdSeparator430830Separator
+         Starter Name=CATBoundary
+         Starter Name=CATExtract
+         Separator Name=CATCmdSeparator430820Separator
+         Starter Name=CATTranslate
+         Starter Name=CATRotate
+         Starter Name=CATSymmetry
+         Starter Name=CATScaling
+         Starter Name=CATAffinity
+         Starter Name=CATHpwAxisToAxisStr
+         Separator Name=CATHpwCmdSeparator4308100SeparatorSep
+         Starter Name=CATInverse
+         Starter Name=CATNear
+         Starter Name=CATExtrapol
+      Title=分析 	 Name=CATHpwAnalysisSnu 
+         Starter Name=CATHpwConnectCheckerStr
+      Separator Name=CATHpwCmdSeparator430100SeparatorSep
+      Title=高级复制工具 	 Name=CATHybridPartAdvanceSnu 
+         Starter Name=CATHybridPartMultipleStr
+         Starter Name=CATHybridPartMultiplePointStr
+         Starter Name=CATHpwMultiplePlaneStr
+         Separator Name=CATHpwCmdSeparator430131SeparatorSep
+         Starter Name=CATCreatePowerCopy
+         Starter Name=CATHpwSaveUdfStr
+      Title=用户特征 	 Name=CATHpwUdfSnu 
+         Starter Name=CATHpwCreateUdfStr
+         Starter Name=CATHpwSaveUdfStr
+      Starter Name=CATHpwDocumentTemplateStr
+      Starter Name=CATInstPowerCopy
+      Title=已展开外形 	 Name=CATSdwDL1Snu 
+         Starter Name=CATSdwUnfoldStr
+         Starter Name=CATSdwTransferStr
+         Starter Name=CATSdwDevelopStr
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Starter Name=CATParentChildren
+      Starter Name=CATHpwGSMOnSupportStr
+      Starter Name=CATHybridPartSnapGridStr
+      Starter Name=CATUdfCata
+      Separator Name=CATHpwCmdSeperator4405SeparatorSep
+      Starter Name=CATSdwExternalViewStr
+      Separator Name=CATCmdAccess4402Separator
+
+ Title of the toolbar=选择 and is Name=CATHybridPartToolBarSelectTlb
+   Starter Name=CATHybridPartSelectStr
+   Starter Name=CATHpwScanStr
+
+ Title of the toolbar=草图编辑器 and is Name=CATPcfPrtSketchTlb
+   Title of the Icon Box=草图编辑器 	 Name=ContainerSketcher 
+      Starter Name=CATSketch
+      Starter Name=SketchPositioning
+
+ Title of the toolbar=线框 and is Name=CATHybridPartToolBarWireFrameTlb
+   Title of the Icon Box=点 	 Name=CATContainerPoint 
+      Starter Name=CATPoint
+      Starter Name=CATMultiplePoint
+   Title of the Icon Box=LineAxisPolyLine 	 Name=LineAxisPolyLine 
+      Starter Name=CATLine
+      Starter Name=CATHpwAxisLineStr
+      Starter Name=CATHpwLineCornerStr
+   Title of the Icon Box=Planes 	 Name=Planes 
+      Starter Name=CATPlane
+      Starter Name=CATMultiplePoint
+      Starter Name=CATHpwMultiplePlaneStr
+Separator Name=CATCmdSeparatorWire101Separator
+   Starter Name=CATProjection
+   Starter Name=CATIntersection
+Separator Name=CATCmdSeparatorWire60Separator
+   Title of the Icon Box=圆弧-圆角-连接 	 Name=CATHpwCircleIcb 
+      Starter Name=CATCircle
+      Starter Name=CATCorner
+      Starter Name=CATConnect
+   Title of the Icon Box=曲线 	 Name=CATHpwCurveIcb 
+      Starter Name=CATCurve
+      Starter Name=CATHelix
+
+ Title of the toolbar=曲面 and is Name=CATHybridPartToolBarSurfTlb
+   Starter Name=CATExtrude
+   Starter Name=CATRevol
+   Starter Name=CATHpwSphereStr
+   Starter Name=CATHpwCylinderStr
+   Starter Name=CATOffset
+   Starter Name=CATSweep
+   Starter Name=CATFill
+   Starter Name=CATLoft
+   Starter Name=CATBlend
+
+ Title of the toolbar=操作 and is Name=CATHybridPartToolBarModifTlb
+   Title of the Icon Box=接合-修复 	 Name=CATAssembleHealing 
+      Starter Name=CATAssemble
+      Starter Name=CATHealing
+      Starter Name=CATUntrim
+      Starter Name=CATDisassemble
+   Title of the Icon Box=分割-修剪 	 Name=CATHpwSplitIcb 
+      Starter Name=CATSplit
+      Starter Name=CATTrim
+   Title of the Icon Box=提取 	 Name=CATHpwBoundaryIcb 
+      Starter Name=CATBoundary
+      Starter Name=CATExtract
+   Title of the Icon Box=变换 	 Name=CATHpwTransfoIcb 
+      Starter Name=CATTranslate
+      Starter Name=CATRotate
+      Starter Name=CATSymmetry
+      Starter Name=CATScaling
+      Starter Name=CATAffinity
+      Starter Name=CATHpwAxisToAxisStr
+   Starter Name=CATExtrapol
+
+ Title of the toolbar=复制 and is Name=CATHybridPartToolBarReplicateTlb
+   Title of the Icon Box=复制 	 Name=CATMultiple 
+      Starter Name=CATHybridPartMultipleStr
+      Starter Name=CATHybridPartMultiplePointStr
+      Starter Name=CATHpwMultiplePlaneStr
+   Title of the Icon Box=超级副本 	 Name=CATPowerCopy 
+      Starter Name=CATCreatePowerCopy
+      Starter Name=CATInstPowerCopy
+
+ Title of the toolbar=分析 and is Name=CATHpwAnalysisTlb
+   Starter Name=CATHpwConnectCheckerStr
+
+ Title of the toolbar=工具 and is Name=CATHybridPartToolBarToolsTlb
+   Starter Name=CATUpdate
+   Starter Name=ManualUpdateMode
+   Starter Name=CATCmd3DAxisSystem
+   Title of the Icon Box=网格 	 Name=CATHpwGridIcb 
+      Starter Name=CATOnSupport
+      Starter Name=CATSnapGrid
+      Starter Name=CATActivityGrid
+   Title of the Icon Box=2D 可视化模式 	 Name=2DMode 
+      Starter Name=Pickablevisiblebackground
+      Starter Name=No3dbackground
+      Starter Name=Unpickablebackground
+      Starter Name=Lowlightbackground
+      Starter Name=Unpickablelowlightbackground
+      Starter Name=CATCmdSeparatorSurfacic1Separator
+      Starter Name=Lockcurrentviewpoint
+   Starter Name=CATDatumMode
+   Title of the Icon Box=保留-不保留 	 Name=KeepNoKeep 
+      Starter Name=NoKeep
+      Starter Name=Keep
+   Title of the Icon Box=实例化 	 Name=CATHpwProductKnowledgeIcb 
+      Starter Name=CATUdfCata
+      Starter Name=CATHpwInstantiateStr
+
+ Title of the toolbar=已展开外形 and is Name=CATSdwToolBarDL1Tlb
+   Starter Name=CATHybridPartUnfoldStr
+   Starter Name=CATHybridPartTransferStr
+   Starter Name=CATHybridPartDevelopStr
+
+ Title of the toolbar=插入 and is Name=CATPcfPrtInsertBodyTlb
+   Starter Name=CATBody
+   Title of the Icon Box=ContainerGS 	 Name=ContainerGS 
+      Starter Name=InsertGS
+      Starter Name=InsertOGS

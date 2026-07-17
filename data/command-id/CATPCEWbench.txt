@@ -1,0 +1,107 @@
+Workshop Exposition of CATPCEWbench 
+
+1- Header List 
+
+Title= Add Components
+   Id 	= CATPCECreateComponentHdr
+   DLL 	= CATOBMWorkbench
+   Cmd 	= CATPCECreateComponentsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Reorder
+   Id 	= ReorderBehaviorCmdHId
+   DLL 	= CATBehaveUI
+   Cmd 	= CATReorderBehaviorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Add Attribute
+   Id 	= CATAddAttributeHdr
+   DLL 	= CATOBMWorkbench
+   Cmd 	= CATPCEAddAttributeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Generate Applicative Workbench
+   Id 	= CATUserWkbenchHdr
+   DLL 	= CATOBMWorkbench
+   Cmd 	= CATOBMUserWorkbenchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Add Function/Method
+   Id 	= CATAddInteractiveFunctionHdr
+   DLL 	= CATOBMWorkbench
+   Cmd 	= CATPCEAddInteractiveFunctionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Check technological objects definition
+   Id 	= CATPCECheckErrorHdr
+   DLL 	= CATOBMWorkbench
+   Cmd 	= CATCCDcommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Object Variable
+   Id 	= CATBehIOEditCmdHId
+   DLL 	= CATBehaveUI
+   Cmd 	= CATBehaviorIOEditCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Open User Dictionary
+   Id 	= CATPCEImportHdr
+   DLL 	= CATOBMWorkbench
+   Cmd 	= CATPCEImportCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Generate Report
+   Id 	= CATPCEGenerateReportHdr
+   DLL 	= CATOBMWorkbench
+   Cmd 	= CATPCEGenerateReport
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create Technological Type
+   Id 	= CATCreateTechTypeHdr
+   DLL 	= CATOBMWorkbench
+   Cmd 	= CATPCECreateSubclass
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Expose Main behavior
+   Id 	= CATExposeBehaviorHdr
+   DLL 	= CATOBMWorkbench
+   Cmd 	= CATExposeMainBehaviorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Link UnLink
+   Id 	= LinkUnlinkCmdHdr
+   DLL 	= CATBehaveUI
+   Cmd 	= CATBehaviorManageParameterLinkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Title of the toolbar=TechnoObject and is Name=TechnoObject
+   Starter Name=CATPCEImportStarter
+Separator Name=sep1Separator
+   Starter Name=CATCreateTechTypeStr
+   Starter Name=CATAddAttributeStr
+   Starter Name=CATPCECreateComponentStr
+   Starter Name=CATAddInteractiveFunctionStr
+   Starter Name=LinkUnLink
+
+ Title of the toolbar=UserApplication and is Name=UserApplication
+   Starter Name=UserWkbenchStarter
+
+ Title of the toolbar=Report and is Name=CATKweReportStr
+   Starter Name=GenerateReportStarter
+   Starter Name=CheckErrorStarter
+   Starter Name=ExposeBehaviorStarter

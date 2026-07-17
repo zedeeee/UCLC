@@ -1,0 +1,79 @@
+Workshop Exposition of CATSilDMUCheckWkb 
+
+1- Header List 
+
+Title= 通过三点的弧
+   Id 	= CATSpaceMeasureArcHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureArcsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 零件与零件碰撞
+   Id 	= CATSpacePartToPartClashHdr
+   DLL 	= CATSpaClash
+   Cmd 	= CATClashCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 比较产品
+   Id 	= CATPartCompNHdr
+   DLL 	= SpaceManagement
+   Cmd 	= CATDMOPartCompCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATNavMenu 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=CATSeparLink1
+      Starter Name=CATADDCLASH
+      Starter Name=CATSilADDSECTIONStr
+      Starter Name=CATADDDISTANCE
+      Starter Name=CATADDTEXT
+      Starter Name=CATADDGROUP
+      Separator Name=CATSeparLink3
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=CATSeparPublish
+      Title=发布 	 Name=CATDMUPublish 
+         Starter Name=CATToolsStartPublish
+         Starter Name=CATToolsStopPublish
+      Starter Name=ToolsDynSAG
+   Title=分析 	 Name=CATANALYZE 
+      Starter Name=CATSilMEASUREBETWEENStr
+      Starter Name=CATSilMEASUREDGEStr
+      Starter Name=CATSilMEASUREARCStr
+      Separator Name=CATSeparAnalyse
+      Starter Name=CATSilPTOPCLASHStr
+      Starter Name=CATSilINERTIAStr
+      Separator Name=CATSeparAnalyse
+      Starter Name=CATMESSAGE
+      Starter Name=CATDMUNavigatorSelection
+
+ Title of the toolbar=DMU 查看 and is Name=CATDMUViewingToolBar
+   Starter Name=CATDMUNavigatorLookAt
+   Starter Name=CATDMUNavigatorPreviewStep
+   Starter Name=CATDMUNavigatorNextStep
+   Starter Name=CATDMUNavigatorMagnifier
+   Starter Name=CATDMUNavigatorDepthEffect
+   Starter Name=CATDMUNavigatorGround
+   Starter Name=CATDMUNavigatorLighting
+
+ Title of the toolbar=DMU 空间分析 and is Name=CATDMUCheckToolBar
+   Starter Name=CATNavigation4DClash
+   Starter Name=CATNavigation4DSection
+   Starter Name=CATNavigation4DMeasure
+   Starter Name=CATSilNavigationGeometricComparisonStr
+   Starter Name=CATNavigation4DMeasureBetween
+   Starter Name=CATNavigation4DMeasureEdge
+   Starter Name=CATNavigation4DMeasureArc
+   Starter Name=CATNavigation4DMeasureInertia
+   Starter Name=CATNavigation4DText
+   Starter Name=CATNavigation4DView
+   Starter Name=CATNavigationViewDialog
+   Starter Name=GroupList
+
+ Title of the toolbar=渲染 and is Name=CATDMURenderingToolBar
+   Starter Name=CATDMUApplyMaterial

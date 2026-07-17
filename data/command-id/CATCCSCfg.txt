@@ -1,0 +1,630 @@
+Workshop Exposition of CATCCSCfg 
+
+1- Header List 
+
+Title= Explode View...
+   Id 	= CCSExplode
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSExplodeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Assistant Loft...
+   Id 	= CCSPartingSrfLoft
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSPartingSurfaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Digitized Morphing...
+   Id 	= CCSShapeMorphing
+   DLL 	= CATDSMDigitizedMorphingUI
+   Cmd 	= CATDSMShapeMorphingCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Set as current axis system
+   Id 	= CCSDraftAnalysisSetCurrent
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSPDirectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reflect Line...
+   Id 	= CATHybridPartReflectLine
+   DLL 	= CATGuiReflectLine
+   Cmd 	= CATGSMUIReflectLine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Connect Checker Analysis...
+   Id 	= CurveConnectChecker
+   DLL 	= CATFauConnectChecker
+   Cmd 	= CATStCmdConnectCheckerAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Main Pulling Direction
+   Id 	= CCSDraftAnalysisPrincipaleEdition
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSPDirectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Parting Line by Color...
+   Id 	= CCSPLineColor
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSPLineColorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Pulling Direction...
+   Id 	= CCSDraftAnalysis
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSPDirectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Slider Lifter...
+   Id 	= CCSDraftAnalysisT
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSPDirectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Middle Point...
+   Id 	= CCSMiddlePoint
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIMidpoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Smooth Edges...
+   Id 	= CCSSmoothEdgesMode
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSSmoothEdgesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Plug Faces...
+   Id 	= CCSSliderHoles
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSSliderHolesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Vectors Field Filter...
+   Id 	= DSMCloudFilter
+   DLL 	= CATDSMDigitizedMorphingUI
+   Cmd 	= CATDSMCloudFilterCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Parallel Curve...
+   Id 	= CATHybridPartParallel
+   DLL 	= CATGuiCurvePar
+   Cmd 	= CATGSMUICurvePar
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 3D Deformation Law...
+   Id 	= CCSDSM3DLaw
+   DLL 	= CATDSMDigitizedMorphingUI
+   Cmd 	= CATDSMShapeMorphingCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CCSColorFace
+   Id 	= CCSColorFace
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSColorFaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Curve Smooth...
+   Id 	= CCSCurveSmooth
+   DLL 	= CATGuiCurveSmooth
+   Cmd 	= CATGuiCurveSmooth
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Sectioning...
+   Id 	= CCSSpaceSection
+   DLL 	= CATSpaSectioning
+   Cmd 	= CATSiLaSectionCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Surface Boundaries...
+   Id 	= CCSBorderEdgesMode
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSBorderEdgesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Fill Surface...
+   Id 	= CCSFillHoles
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSHolesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Bounding Box...
+   Id 	= CCSBoundingBox
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSBlockBoxCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Sharp Faces...
+   Id 	= CCSSharpFaces
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSSharpFacesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Near...
+   Id 	= CCSNear
+   DLL 	= CATGuiNearest
+   Cmd 	= CATGSMUINear
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Transfer...
+   Id 	= CCSTransferHeader
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSEltTransferCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Import...
+   Id 	= CCSImportMdlHeader
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSImportModelCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Invert Orientation...
+   Id 	= CCSInvert
+   DLL 	= CATGuiInverse
+   Cmd 	= CATGuiInverse
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Untrim...
+   Id 	= CATHybridPartUntrim
+   DLL 	= CATFsuFeatUntrim
+   Cmd 	= CATStCmdFeatUntrim
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Slider Direction
+   Id 	= CCSDraftAnalysisSecondaireEdition
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSPDirectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Search Fillets...
+   Id 	= CCSRadiusFillet
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSFilletSearchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Change Body...
+   Id 	= CCSChangeBody
+   DLL 	= CATMmuCommands
+   Cmd 	= CATMmuChangeBody
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Assistant Extrude...
+   Id 	= CCSPartingSrfExtr
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSPartingSurfaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Stamping Die...
+   Id 	= CCVAddendaSurface
+   DLL 	= CATDFDDieFaceUI
+   Cmd 	= CATDFDAddendaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update Main Pulling Direction
+   Id 	= CCSDraftAnalysisUpdate
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSPDirectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Displacement Optimization...
+   Id 	= CCSDSMPreparation
+   DLL 	= CATDSMDigitizedMorphingUI
+   Cmd 	= CATDSMPreparationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Remove a geometrical set
+   Id 	= CCSRemoveBody
+   DLL 	= CATMmuCommands
+   Cmd 	= CATMmuRemoveBody
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Parting Line...
+   Id 	= CCSPartingLine
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSPartingLineCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Face Orientation ...
+   Id 	= CCSFacesOrientation
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSOrientationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Sew Surface...
+   Id 	= CCSSewSurface
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSSewSurfaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Parting Surface...
+   Id 	= CCSPartingSurface
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSPartingSurfaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Chaining Edges...
+   Id 	= CCSChainingEdges
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSChainingEdgesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Split Mold Area...
+   Id 	= CCSSplitMold
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSSplitCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Face Color Editor...
+   Id 	= CCSFaceWizard
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSFaceWizardCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Aggregate Mold Area...
+   Id 	= CCSAggregate
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSAggregateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update Digitized Morphing...
+   Id 	= CCSCheckDSMFiles
+   DLL 	= CATDSMDigitizedMorphingUI
+   Cmd 	= CATDSMCheckFilesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Generative Form Block...
+   Id 	= CCSBlock
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSBlockCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Fillet Radius Reduction...
+   Id 	= CCSRadius
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSFilletCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Surfacic Curvature Analysis
+   Id 	= CCSGaussCurvature
+   DLL 	= CATFauSurfCurv
+   Cmd 	= CATStCmdSurfCurv
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Chordal Fillet...
+   Id 	= CATHpwFilletChordalHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateVarFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Light Surface...
+   Id 	= CCSSurfaceSimplify
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSSimplifyCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Comparison...
+   Id 	= CCSCompareMdlHeader
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSCompareModelCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Pulling Direction Analysis...
+   Id 	= CCSAnalysis
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSAnalysisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Model Properties
+   Id 	= CCSModelProperties
+   DLL 	= CATCCSCoreCavitySeparationUI
+   Cmd 	= CATCCSModelPropertiesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CoreMenu 
+   Title=编辑 	 Name=CATAfrEditMnu 
+   Title=视图 	 Name=CATAfrView 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=NewSeparator000
+      Starter Name=CCSMenuBody
+      Starter Name=CCSInsertShapeBody
+      Separator Name=CATAfrEditNew001Sep
+      Starter Name=CATSketch
+      Separator Name=CATAfrEditNew002Sep
+      Starter Name=CCSMenu3DAxis
+      Separator Name=NewSeparator011
+      Title=Models 	 Name=CCSMenuImport 
+         Starter Name=CCSMenuImportMdl
+         Starter Name=CCSMenuCompareMdl
+         Separator Name=NewSeparatorTBM01
+         Starter Name=CCSMenuAnalysis
+         Separator Name=NewSeparatorTBM02
+         Starter Name=CCSMenuBoundingBox
+         Starter Name=CCSMenuModelProperties
+         Starter Name=CCSTBSection
+         Starter Name=MenuWallThickness
+      Title=Pulling Direction 	 Name=CCSMenuPulling 
+         Starter Name=CCSMenuMainPDir
+         Starter Name=CCSMenu2ndPDir
+         Starter Name=CCSMenuTransfer
+         Starter Name=CCSMenuSplitMold
+         Starter Name=CCSMenuAggregate
+         Starter Name=CCSMenuExplode
+         Starter Name=CCSMenuOrient
+      Title=Blocks 	 Name=CCSMenuBlocks 
+         Starter Name=CCSMenuInsertBlock
+         Starter Name=CCSMenuSewSurface
+      Separator Name=NewSeparator021
+      Title=Wireframe 	 Name=CCSMenuWire 
+         Starter Name=CCSMenuPoint
+         Starter Name=CCSMenuMidPoint
+         Starter Name=CCSMenuExtremum
+         Starter Name=CCSMenuDroite
+         Starter Name=CCSMenuPlan
+         Separator Name=CATCmdSeparatorWire1
+         Starter Name=CCSMenuProj
+         Starter Name=CCSMenuRefLine
+         Starter Name=CCSMenuIntersect
+         Starter Name=CCSMenuParallel
+         Starter Name=CCSMenu3DCurveOffset
+         Separator Name=CATCmdSeparatorWire2
+         Starter Name=CCSMenuCorner
+         Starter Name=CCSMenuConnect
+         Starter Name=CCSMenuSpline
+         Starter Name=CCSMenuSpine
+         Starter Name=CCSMenuCrvOnSrf
+      Title=Curves 	 Name=CCSMenuPLine 
+         Starter Name=CCSMenuPartingLine
+         Starter Name=CCSMenuChainingEdges
+         Starter Name=CCSPLineColor
+      Title=Surfaces 	 Name=CCSMenuPSurf 
+         Starter Name=CCSPHoles
+         Starter Name=CCSMenuFillHoles
+         Starter Name=MenuPartingSrf
+         Starter Name=CCSSurfaceSimplify
+         Separator Name=CATCmdSeparatorMenuSrf1
+         Starter Name=CATExtrude
+         Starter Name=SurfaceOffset
+         Starter Name=CATSweep
+         Starter Name=CATFill
+         Starter Name=CATLoft
+         Starter Name=CATBlend
+      Title=Operations 	 Name=CCSMenuOper 
+         Starter Name=CCSMenuAsm
+         Starter Name=CCSMenuCurveSmooth
+         Starter Name=CCSMenuUntrim
+         Separator Name=CATCmdSeparatorOper1
+         Starter Name=CCSMenuSplit
+         Starter Name=CCSMenuTrim
+         Separator Name=CATCmdSeparatorOper2
+         Starter Name=CCSMenuBoundary
+         Starter Name=CATExtract
+         Separator Name=CATCmdSeparatorOper3
+         Starter Name=CATHpwFilletEdgeHdr
+         Starter Name=EdgeFillet
+         Starter Name=CATHpwFilletVarHdr
+         Starter Name=CATHpwFilletChordalHdr
+         Starter Name=CATHpwFilletFaceHdr
+         Starter Name=CATHpwTriFilletHdr
+         Separator Name=CATCmdSeparatorOper4
+         Starter Name=CATHybridPartTranslate
+         Starter Name=CATHybridPartRotate
+         Starter Name=CATHybridPartSymmetry
+         Starter Name=CATHybridPartScaling
+         Starter Name=CATHybridPartAffinity
+         Starter Name=CATHpwAxisToAxisHdr
+         Separator Name=CATCmdSeparatorOper5
+         Starter Name=CATExtrapol
+         Starter Name=CCSMenuInvert
+         Starter Name=CCSMenuNear
+      Separator Name=CATNewSeparator005
+      Title=Annotations 	 Name=CCSMenuAnnotations 
+         Starter Name=CCSMenuCreateText
+         Starter Name=CCSMenuFlagNote
+      Title=Analysis 	 Name=CCSMenuAnalysis 
+         Starter Name=BorderEdgesMode
+         Starter Name=SmoothEdgesMode
+         Separator Name=NewSeparator023
+         Starter Name=CurveConnectChecker
+         Separator Name=NewSeparator022
+         Starter Name=CATGaussCurvature
+         Separator Name=NewDraftSeparator021
+         Starter Name=ColorFace
+      Separator Name=NewSeparator006
+      Title=Advanced Replication Tools 	 Name=CCSMenuPowerCopy 
+         Starter Name=PrtCreatePowerCopy
+         Starter Name=PrtSaveInCatalog
+         Starter Name=PrtInstanciatePowerCopy
+      Separator Name=CATNewSeparator007
+      Title=Modify Fillet Radius 	 Name=CCSMenuRadius 
+         Starter Name=CCSMenuRadiusFillet
+         Starter Name=CCSMenuRad
+      Title=Realistic Shape Optimizer 	 Name=CCSMenuMorphing 
+         Starter Name=CCSMenuPrepa
+         Starter Name=DSMMenuDFilter
+         Starter Name=CCSDSM3DLaw
+         Starter Name=CCSMenuMorphing
+         Starter Name=CCSMenuDFiles
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=NewSeparator010
+      Starter Name=CATMMUIPublication
+   Title=窗口 	 Name=CATAfrWindowMnu 
+
+ Title of the toolbar=Tools and is Name=CCSToolBarTools
+   Starter Name=CATUpdate
+   Starter Name=CATCmd3DAxisSystem
+   Starter Name=CATCmdGraph
+   Title of the Icon Box=CCSToolBarWOS 	 Name=CCSToolBarWOS 
+      Starter Name=CCSOnSupport
+      Starter Name=CCSOnSupport3D
+      Starter Name=CCSSnapGrid
+      Starter Name=CCSWOSActivity
+   Starter Name=CATCmdDatumMode
+   Starter Name=OnlyCurrentBodyMode
+   Starter Name=CATCmdCurrentTool
+
+ Title of the toolbar=Select and is Name=CCSToolBarSelect
+   Starter Name=CATSelect
+
+ Title of the toolbar=Sketcher and is Name=CCSToolBarSketch
+   Starter Name=CATSketch
+
+ Title of the toolbar=Models and is Name=CCSToolBarImportMdl
+   Starter Name=ImportMdl
+   Starter Name=CompareMdl
+Separator Name=NewSeparatorTBM01
+   Starter Name=TBCCSAnalysis
+Separator Name=NewSeparatorTBM02
+   Starter Name=CCSBoundingBox
+   Starter Name=CCSModelProperties
+   Starter Name=CCSTBSection
+   Starter Name=WallThickness
+
+ Title of the toolbar=Pulling Direction and is Name=CCSToolBarPulling
+   Starter Name=CATDraftAnalysisHead
+   Starter Name=DraftAnalysisTHead
+   Starter Name=CCSTransfer
+   Starter Name=SplitMold
+   Starter Name=CCSAggregate
+   Starter Name=CCSExplode
+   Starter Name=CCSFacesOrientation
+
+ Title of the toolbar=Blocks and is Name=CCSToolBarBlocks
+   Starter Name=InsertBlock
+   Starter Name=CCSSew
+
+ Title of the toolbar=Wireframe and is Name=CCSToolBarWireFrame
+   Title of the Icon Box=Points 	 Name=LesPoints 
+      Starter Name=CATPoint
+      Starter Name=CCSMiddlePoint
+      Starter Name=CATShapeDesignExtremum
+   Starter Name=CATLine
+   Starter Name=CATPlane
+Separator Name=CATCmdSeparatorWire4
+   Starter Name=CCSProjection
+   Starter Name=CATReflectLine
+   Starter Name=CATHybridPartIntersect
+   Title of the Icon Box=CurveParallel 	 Name=CurveParallel 
+      Starter Name=CATHybridPartParallel
+      Starter Name=CATShapeDesign3DCurveOffset
+Separator Name=CATCmdSeparatorWire5
+   Title of the Icon Box=Corner-Connect 	 Name=CornerConnect 
+      Starter Name=CATShapeDesignCorner
+      Starter Name=CATHybridPartConnect
+   Title of the Icon Box=3D Curves 	 Name=3DCurves 
+      Starter Name=Spline
+      Starter Name=CCSSpine
+      Starter Name=CrvOnSrf
+
+ Title of the toolbar=Curves and is Name=CCSToolBarPartingLine
+   Starter Name=CCSPartingLine
+   Starter Name=CCSChainingEdges
+   Starter Name=CCSPLineColor
+
+ Title of the toolbar=Surfaces and is Name=CCSToolBarPartingSurf
+   Starter Name=CCSPHoles
+   Starter Name=CCSFillHoles
+   Starter Name=CCSPartingSurface
+   Starter Name=CCSSurfaceSimplify
+Separator Name=CATCmdSeparatorSrf1
+   Starter Name=CATHybridPartExtrude
+   Starter Name=CATShapeDesignOffset
+   Starter Name=CATHybridPartSweep
+   Starter Name=CATHybridPartFill
+   Starter Name=CATHybridPartLoft
+   Starter Name=CCSBlend
+
+ Title of the toolbar=Operations and is Name=CCSToolBarOperations
+   Title of the Icon Box=Join-Healing 	 Name=JoinUntrim 
+      Starter Name=CATAssemble
+      Starter Name=CATCurveSmooth
+      Starter Name=CATHybridPartUntrim
+   Title of the Icon Box=Trim-Split 	 Name=CATTrimSplit 
+      Starter Name=CATSplit
+      Starter Name=CATTrim
+   Title of the Icon Box=Extracts 	 Name=CATSdwExtractsIcb 
+      Starter Name=CATBoundary
+      Starter Name=CATExtract
+   Title of the Icon Box=Fillets 	 Name=Fillets 
+      Starter Name=CATHpwFilletEdgeHdr
+      Starter Name=CATHpwFilletHdr
+      Starter Name=CATHpwFilletVarHdr
+      Starter Name=CATHpwFilletChordalHdr
+      Starter Name=CATHpwFilletFaceHdr
+      Starter Name=CATHpwTriFilletHdr
+   Title of the Icon Box=Transformations 	 Name=Transformations 
+      Starter Name=CATHybridPartTranslate
+      Starter Name=CATHybridPartRotate
+      Starter Name=CATHybridPartSymmetry
+      Starter Name=CATHybridPartScaling
+      Starter Name=CATHybridPartAffinity
+      Starter Name=CATHpwAxisToAxisHdr
+Separator Name=CATCmdSeparatorExtra1
+   Starter Name=CATHybridPartExtrapol
+   Starter Name=CCSInvert
+   Starter Name=CCSNear
+
+ Title of the toolbar=Annotations and is Name=CCSToolBarAnnotations
+   Starter Name=TPSCreateText
+   Starter Name=TPSCreateFlagNote
+
+ Title of the toolbar=Analysis and is Name=CCSToolBarAnalysis
+   Starter Name=TBBorderEdgesMode
+   Starter Name=TBSmoothEdgesMode
+Separator Name=NewSeparatorTB023
+   Starter Name=TBCurveConnectChecker
+Separator Name=NewSeparatorTB022
+   Starter Name=TBGaussCurvature
+Separator Name=NewDraftSeparatorTB021
+   Starter Name=TBCCSColorFace
+
+ Title of the toolbar=Power Copy and is Name=CCSToolBarPowerCopy
+   Starter Name=PrtCreatePowerCopy
+   Starter Name=PrtSaveInCatalog
+   Starter Name=PrtInstanciatePowerCopy
+
+ Title of the toolbar=Modify Fillet Radius and is Name=CCSToolBarRadFillet
+   Starter Name=CCSRadiusFillet
+   Starter Name=CCSRadius
+
+ Title of the toolbar=Realistic Shape Optimizer and is Name=CCSToolBarMorphing
+   Starter Name=CCSDSMPreparation
+   Starter Name=DSMCloudFilter
+   Starter Name=CCSDSM3DLaw
+   Starter Name=CCSShapeMorphing
+   Starter Name=CCSCheckDSMFiles

@@ -1,0 +1,233 @@
+Workshop Exposition of CATFsuFsyWkb 
+
+1- Header List 
+
+Title= Instantiate...
+   Id 	= Instanciate
+   DLL 	= CATUdfCommands
+   Cmd 	= CATUdfFeatureInstanciateSelect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= SubSystem from scratch...
+   Id 	= New_System
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaInsertNewSystemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Local Cache of System...
+   Id 	= ManageData_System
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaSystemEditCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= FunctionalActions Group
+   Id 	= FcaActionsGroupCreate
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaActionsGroupCreateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create a Functional Variant
+   Id 	= CATFsuFcaVariantCreateHdr
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaVariantCreateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit a Variant Description
+   Id 	= CATFsuFcaEditVariantDescriptionHdr
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaDescriptionSwitchCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Parameter Explorer...
+   Id 	= FeatureEditHeader
+   DLL 	= CATLiteralsEditor
+   Cmd 	= CATLieAddParametersCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 目录浏览器...
+   Id 	= CatalogBrowser
+   DLL 	= CATCuiBrowser
+   Cmd 	= CATCuiSelectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Instantiate From Document...
+   Id 	= InstantiatePowerCopyFromOtherFile
+   DLL 	= CATUdfCommands
+   Cmd 	= CATUdfFeatureInstanciateFile
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Link to Product Item
+   Id 	= CATFsuFcaObjectLinkToProductHdr
+   DLL 	= CATFcaController
+   Cmd 	= CATFsyElementAssocsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Functional Action
+   Id 	= CATFsuFcaActionCreateHdr
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaActionCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reverse Engineering of a Product
+   Id 	= FsyRevEng
+   DLL 	= CATFsyRevEng
+   Cmd 	= CATFsyRevEngCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Functional Object
+   Id 	= CATFsuFcaObjectCreateHdr
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaObjectCreateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Draw Actions as oblique lines
+   Id 	= FcaDirectLines
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaDescriptionOrthogonalCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generative Script of Functional Object
+   Id 	= CATFsuFcaEditGenerativeScriptHdr
+   DLL 	= CATFcaController
+   Cmd 	= CATFsyElementScriptsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= FsyDescriptionCreate
+   Id 	= FsyDescriptionCreate
+   DLL 	= CATFcaController
+   Cmd 	= CATFsyDescriptionCreateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Remove protection on Description
+   Id 	= FcaDescriptionUnlock
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaDescriptionUnlockCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Bidirectional Functional Action
+   Id 	= FcaActionCreateBidir
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaActionCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Functional Action Invert
+   Id 	= FcaActionInvert
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaActionInvertCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit the Original Functional Description
+   Id 	= CATFsuFcaEditOriginalDescriptionHdr
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaDescriptionSwitchCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= PowerCopy Creation...
+   Id 	= CreatePowerCopy
+   DLL 	= CATUdfCommands
+   Cmd 	= CATUdfDefineMainCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Improve graph's layout
+   Id 	= CATFsuFsyGraphLayoutHdr
+   DLL 	= CATFcaController
+   Cmd 	= CATMdgAlgoLayoutCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Draw Actions orthogonally
+   Id 	= FcaOrthogonalLines
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaDescriptionOrthogonalCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Not-oriented Functional Action
+   Id 	= FcaActionCreateNotOrient
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaActionCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= SubSystem referencing an existing System...
+   Id 	= Existing_System
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaInsertExistingSystemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Save In Catalog...
+   Id 	= SavePowerCopyInCatalog
+   DLL 	= CATPublish
+   Cmd 	= CATUdfFeatureSave
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Link to Reference...
+   Id 	= Link_To_CATSystem
+   DLL 	= CATFcaController
+   Cmd 	= CATFcaRelinkReferenceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATFsuNew001Mbr 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=CATFsuNewMenuItem004Str
+      Title=SubSystem 	 Name=FunctSubsystem 
+         Starter Name=New_SystemButtonMI
+         Starter Name=Existing_SystemButtonMI
+         Starter Name=CatalogBrowserButtonMI
+      Title=Action 	 Name=FunctAction 
+         Starter Name=NewMenuItem005a
+         Starter Name=NewMenuItem005b
+         Starter Name=NewMenuItem005c
+      Starter Name=NewMenuItem006
+      Title=Advanced Replication tools 	 Name=FunctReplication 
+         Starter Name=NewMenuItem007
+
+ Title of the toolbar=Graph Definition and is Name=CATFsuFunctionalObjectsTlb
+   Starter Name=FcaObjectCreateButton
+   Title of the Icon Box=CreateSystems 	 Name=CreateSystems 
+      Starter Name=New_SystemButton
+      Starter Name=Existing_SystemButton
+      Starter Name=CatalogBrowserButton
+Separator Name=CATFsuNew01Sep
+   Title of the Icon Box=CreateActions 	 Name=CreateActions 
+      Starter Name=FcaActionCreateButton
+      Starter Name=FcaActionCreateBidirButton
+      Starter Name=FcaActionCreateNotOrientButton
+   Starter Name=FcaActionsGroupCreateButton
+
+ Title of the toolbar=Elements Dress-up and is Name=FunctElemMgt
+   Starter Name=FeatureEditHeaderButton
+Separator Name=CATFsuNew02Sep
+   Starter Name=FcaObjectLinkToProductButton
+   Starter Name=FcaEditGenerativeScriptButton
+Separator Name=NewSep03
+   Starter Name=ManageData_SystemButton
+   Starter Name=Link_To_CATSystemButton
+
+ Title of the toolbar=Graph Layout and is Name=SystemsLayout
+   Starter Name=FsyGraphLayoutButton
+   Starter Name=CreatePowerCopyButton
+   Starter Name=SavePowerCopyInCatalogButton
+   Starter Name=InstantiatePowerCopyFromOtherFileButton
+
+ Title of the toolbar=PowerCopy and is Name=PowerCopy

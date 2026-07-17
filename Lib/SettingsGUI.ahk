@@ -29,6 +29,8 @@ class UCLC_CUI {
     static dlg_btn_add := ""
     static dlg_btn_cancel := ""
     static dlg_target_wb := ""
+    static btn_markDelete := ""
+    static btn_markIgnore := ""
 
     static alias_edits := []
     static hotkey_edits := []
@@ -239,9 +241,10 @@ class UCLC_CUI {
         this.chk_filterDelete.OnEvent("Click", ObjBindMethod(this, "OnFilterDelete"))
         this.chk_filterIgnore.OnEvent("Click", ObjBindMethod(this, "OnFilterIgnore"))
 
-        this.LV_Import := this.GuiObj.Add("ListView", "x30 y165 w720 h310 Grid Checked", ["标题", "命令 ID", "操作",
+        this.LV_Import := this.GuiObj.Add("ListView", "x30 y165 w720 h310 Grid", ["标题", "命令 ID", "操作",
             "导入的命令 ID"])
         this.LV_Import.OnEvent("Click", ObjBindMethod(this, "OnImportListViewClick"))
+        this.LV_Import.OnEvent("ItemSelect", ObjBindMethod(this, "OnImportListViewItemSelect"))
         this.LV_Import.OnEvent("DoubleClick", ObjBindMethod(this, "OnImportListViewDoubleClick"))
         this.LV_Import.OnEvent("ContextMenu", ObjBindMethod(this, "OnImportListViewContextMenu"))
 
@@ -255,13 +258,13 @@ class UCLC_CUI {
         this.Txt_EmptyLV := this.GuiObj.Add("Text", "x250 y305 w280 h30 Center c808080 BackgroundTrans", "请点击上方按钮获取数据")
 
         ; --- 列表底部操作按钮 (分组在同步状态视图内) ---
-        btn_markDelete := this.GuiObj.Add("Button", "x30 y485 w80 h24 Disabled", "删除选中")
-        btn_markDelete.ToolTip := "将选中的命令标记为待删除"
-        btn_markDelete.OnEvent("Click", ObjBindMethod(this, "OnMarkItemsToDelete"))
+        this.btn_markDelete := this.GuiObj.Add("Button", "x30 y485 w80 h24 Disabled", "删除选中")
+        this.btn_markDelete.ToolTip := "将选中的命令标记为待删除"
+        this.btn_markDelete.OnEvent("Click", ObjBindMethod(this, "OnMarkItemsToDelete"))
 
-        btn_markIgnore := this.GuiObj.Add("Button", "x120 y485 w80 h24 Disabled", "忽略选中")
-        btn_markIgnore.ToolTip := "将选中的命令标记为忽略"
-        btn_markIgnore.OnEvent("Click", ObjBindMethod(this, "OnMarkItemsToIgnore"))
+        this.btn_markIgnore := this.GuiObj.Add("Button", "x120 y485 w80 h24 Disabled", "忽略选中")
+        this.btn_markIgnore.ToolTip := "将选中的命令标记为忽略"
+        this.btn_markIgnore.OnEvent("Click", ObjBindMethod(this, "OnMarkItemsToIgnore"))
 
         ; --- 底部区块：执行操作 ---
 
@@ -270,7 +273,7 @@ class UCLC_CUI {
         btn_resetView.OnEvent("Click", ObjBindMethod(this, "OnResetImportView"))
 
         btn_applyAll := this.GuiObj.Add("Button", "x600 y550 w150", "应用修改")
-        btn_applyAll.ToolTip := "将所有勾选的新增/更新/删除操作保存到配置"
+        btn_applyAll.ToolTip := "将列表中高亮选中的新增/更新/删除操作保存到配置"
         btn_applyAll.OnEvent("Click", ObjBindMethod(this, "OnApplyImportAll"))
 
         ; =============== 全局页脚 ===============
@@ -426,6 +429,8 @@ class UCLC_CUI {
         this.dlg_btn_add := ""
         this.dlg_btn_cancel := ""
         this.dlg_target_wb := ""
+        this.btn_markDelete := ""
+        this.btn_markIgnore := ""
     }
 
     static ClearRightPane() {
@@ -895,6 +900,11 @@ class UCLC_CUI {
 
     static OnImportListViewClick(ctrl, item, *) {
     }
+    static OnImportListViewItemSelect(ctrl, item, selected) {
+        has_sel := this.LV_Import.GetNext(0) > 0
+        this.btn_markDelete.Opt(has_sel ? "-Disabled" : "+Disabled")
+        this.btn_markIgnore.Opt(has_sel ? "-Disabled" : "+Disabled")
+    }
     static OnImportListViewDoubleClick(ctrl, item, *) {
     }
     static OnImportListViewContextMenu(ctrl, item, isRightClick, X, Y) {
@@ -954,7 +964,11 @@ class UCLC_CUI {
     }
 
     static OnApplyImportAll(*) {
-        target_wb := this.DDL_ImportWb.Text
+        if (this.DDL_ImportWb.Value > 1) {
+            target_wb := this.import_wb_ids[this.DDL_ImportWb.Value]
+        } else {
+            target_wb := this.DDL_ImportWb.Text
+        }
         if (target_wb == "通过导入文件确定" || target_wb == "") {
             MsgBox("请先选择目标工作台或导入文件", "提示", "Iconi")
             return
@@ -975,6 +989,15 @@ class UCLC_CUI {
             return
         }
 
+        selected_keys := Map()
+        row := 0
+        while (row := this.LV_Import.GetNext(row)) {
+            title := this.LV_Import.GetText(row, 1)
+            old_id := this.LV_Import.GetText(row, 2)
+            new_id := this.LV_Import.GetText(row, 4)
+            selected_keys[title "_" old_id "_" new_id] := true
+        }
+
         new_array := []
         
         for item in this.import_items {
@@ -982,6 +1005,10 @@ class UCLC_CUI {
             old_id := item.local_id
             action := item.action
             new_id := item.imported_id
+
+            if !selected_keys.Has(title "_" old_id "_" new_id) {
+                action := "i"
+            }
 
             if (action == "i" || action == "=") {
                 if (old_id != "" && local_by_id.Has(old_id)) {

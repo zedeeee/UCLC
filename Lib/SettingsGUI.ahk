@@ -110,20 +110,18 @@ class UCLC_CUI {
         this.Txt_CatVal := this.GuiObj.Add("Text", "x400 y80 w340 cBlue Hidden", "")
 
         this.Txt_Desc := this.GuiObj.Add("Text", "x320 y110 w80 Hidden", "功能描述:")
-        this.Edit_Desc := this.GuiObj.Add("Edit", "x400 y106 w340 Hidden", "")
-        this.Edit_Desc.OnEvent("Change", ObjBindMethod(this, "OnDetailChange"))
+        this.Edit_Desc := this.GuiObj.Add("Edit", "x400 y106 w340 Hidden ReadOnly", "")
 
         this.Txt_Cmd := this.GuiObj.Add("Text", "x320 y140 w80 Hidden", "执行命令:")
-        this.Edit_Cmd := this.GuiObj.Add("Edit", "x400 y136 w340 Hidden", "")
-        this.Edit_Cmd.OnEvent("Change", ObjBindMethod(this, "OnDetailChange"))
+        this.Edit_Cmd := this.GuiObj.Add("Edit", "x400 y136 w340 Hidden ReadOnly", "")
 
-        this.Txt_Alias := this.GuiObj.Add("Text", "x320 y180 w80 Hidden", "触发别名:")
+        this.Txt_Alias := this.GuiObj.Add("Text", "x320 y180 w80 Hidden", "用户别名:")
 
         this.alias_pool := []
         loop 10 {
-            e := this.GuiObj.Add("Edit", "x400 y0 w120 Hidden Uppercase", "")
-            btn_add := this.GuiObj.Add("Button", "x530 y0 w30 h24 Hidden", "➕")
-            btn_del := this.GuiObj.Add("Button", "x565 y0 w30 h24 Hidden", "➖")
+            e := this.GuiObj.Add("Edit", "x400 y0 w280 Hidden Uppercase", "")
+            btn_add := this.GuiObj.Add("Button", "x685 y0 w25 h24 Hidden", "➕")
+            btn_del := this.GuiObj.Add("Button", "x715 y0 w25 h24 Hidden", "➖")
 
             btn_add.OnEvent("Click", ObjBindMethod(this, "OnAddAlias", A_Index))
             btn_del.OnEvent("Click", ObjBindMethod(this, "OnDelAlias", A_Index))
@@ -132,17 +130,20 @@ class UCLC_CUI {
             this.alias_pool.Push({ e: e, add: btn_add, del: btn_del })
         }
 
-        this.Txt_Hotkey := this.GuiObj.Add("Text", "x320 y0 w80 Hidden", "触发快捷键:")
+        this.Txt_Hotkey := this.GuiObj.Add("Text", "x320 y0 w80 Hidden", "快捷键:")
 
         this.hotkey_pool := []
         loop 10 {
-            e := this.GuiObj.Add("Edit", "x400 y0 w120 Hidden", "")
-            btn_add := this.GuiObj.Add("Button", "x530 y0 w30 h24 Hidden", "➕")
-            btn_del := this.GuiObj.Add("Button", "x565 y0 w30 h24 Hidden", "➖")
+            e := this.GuiObj.Add("Edit", "x400 y0 w280 Hidden", "")
+            SendMessage(0x1501, 1, StrPtr("直接按键录入"), e)
+            btn_add := this.GuiObj.Add("Button", "x685 y0 w25 h24 Hidden", "➕")
+            btn_del := this.GuiObj.Add("Button", "x715 y0 w25 h24 Hidden", "➖")
 
             btn_add.OnEvent("Click", ObjBindMethod(this, "OnAddHotkey", A_Index))
             btn_del.OnEvent("Click", ObjBindMethod(this, "OnDelHotkey", A_Index))
             e.OnEvent("Change", ObjBindMethod(this, "OnHotkeyChange", A_Index))
+            e.OnEvent("Focus", ObjBindMethod(this, "OnHotkeyFocus", A_Index))
+            e.OnEvent("LoseFocus", ObjBindMethod(this, "OnHotkeyLoseFocus", A_Index))
 
             this.hotkey_pool.Push({ e: e, add: btn_add, del: btn_del })
         }
@@ -196,9 +197,9 @@ class UCLC_CUI {
         btn_addWb.ToolTip := "新增自定义目标工作台名称"
         btn_addWb.OnEvent("Click", ObjBindMethod(this, "OnAddTargetWorkbench"))
 
-        btn_getCatia := this.GuiObj.Add("Button", "x500 y64 w120 h22 Disabled", "从 CATIA 提取")
-        btn_getCatia.ToolTip := "暂不可用：未来版本将支持直接与活动 CATIA 通信"
-        btn_getCatia.OnEvent("Click", ObjBindMethod(this, "OnGetCommandsFromCatia"))
+        btn_getCatia := this.GuiObj.Add("Button", "x500 y64 w120 h22", "导入命令")
+        btn_getCatia.ToolTip := "从已导出的工作台命令库中选择并导入"
+        btn_getCatia.OnEvent("Click", ObjBindMethod(this, "OnImportCommands"))
 
         btn_readTxt := this.GuiObj.Add("Button", "x630 y64 w120 h22", "从 TXT 导入")
         btn_readTxt.ToolTip := "从本地读取导出的 TXT 命令文件"
@@ -302,6 +303,8 @@ class UCLC_CUI {
 
         ; =============== 初始化数据加载 ===============
         this.LoadCommandTree()
+        this.OnLButtonDownBound := ObjBindMethod(this, "OnLButtonDown")
+        OnMessage(0x0201, this.OnLButtonDownBound)
         this.GuiObj.Show("w800 h600")
     }
 
@@ -411,6 +414,22 @@ class UCLC_CUI {
     }
 
     static OnClose(*) {
+        if (this.HasProp("original_json_str") && this.original_json_str != "") {
+            this.SaveInputsToCurrentCmd()
+            current_json := JSON.stringify(AppSettings.commands_obj)
+            if (current_json !== this.original_json_str) {
+                result := MsgBox("当前配置有未保存的修改。`n`n是否在退出前保存？", "未保存的修改", "YesNoCancel Icon?")
+                if (result == "Cancel") {
+                    return true
+                } else if (result == "Yes") {
+                    this.SaveCurrentItem()
+                }
+            }
+        }
+
+        if this.HasProp("OnLButtonDownBound") {
+            OnMessage(0x0201, this.OnLButtonDownBound, 0)
+        }
         this.alias_edits := []
         this.hotkey_edits := []
         this.alias_pool := []
@@ -495,7 +514,7 @@ class UCLC_CUI {
 
         cmd := info.cmd
 
-        this.Txt_CatVal.Value := info.category
+        this.Txt_CatVal.Value := AppSettings.GetWbName(info.category)
         this.Edit_Desc.Value := cmd.Has("desc") ? cmd["desc"] : ""
         this.Edit_Cmd.Value := cmd.Has("command") ? cmd["command"] : ""
 
@@ -555,7 +574,11 @@ class UCLC_CUI {
             if (idx > 10)
                 break
             p := this.hotkey_pool[idx]
-            p.e.Value := hk
+            try {
+                p.e.Value := this.FormatHotkeyForDisplay(hk)
+            } catch {
+                p.e.Value := ""
+            }
             p.e.Move(, cur_y - 4)
             p.add.Move(, cur_y - 5)
             p.del.Move(, cur_y - 5)
@@ -606,7 +629,7 @@ class UCLC_CUI {
         for e in this.hotkey_edits {
             v := Trim(e.Value)
             if (v != "")
-                cmd["hotkeys"].Push(v)
+                cmd["hotkeys"].Push(this.ParseHotkeyFromDisplay(v))
         }
     }
 
@@ -667,13 +690,8 @@ class UCLC_CUI {
             if (info.type == "Item") {
                 orig_cmd := ""
                 wb := info.category
-                if (this.original_commands_obj.Has(wb)) {
-                    for c in this.original_commands_obj[wb] {
-                        if (c["command"] == info.cmd["command"]) {
-                            orig_cmd := c
-                            break
-                        }
-                    }
+                if (this.original_commands_obj.Has(wb) && this.original_commands_obj[wb].Length >= info.index) {
+                    orig_cmd := this.original_commands_obj[wb][info.index]
                 }
 
                 is_dirty := false
@@ -726,6 +744,132 @@ class UCLC_CUI {
         this.CheckGlobalDirty()
     }
 
+    static OnHotkeyFocus(idx, GuiCtrlObj, *) {
+        if this.HasProp("ih") && this.ih {
+            this.ih.Stop()
+            this.ih := ""
+        }
+        
+        ih := InputHook("L1 M")
+        ih.KeyOpt("{All}", "E")
+        ih.KeyOpt("{LCtrl}{RCtrl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}", "-E")
+        
+        ih.OnEnd := ObjBindMethod(this, "OnInputHookEnd", idx, GuiCtrlObj)
+        this.ih := ih
+        ih.Start()
+    }
+
+    static OnHotkeyLoseFocus(idx, GuiCtrlObj, *) {
+        if this.HasProp("ih") && this.ih {
+            this.ih.Stop()
+            this.ih := ""
+        }
+    }
+
+    static OnInputHookEnd(idx, GuiCtrlObj, ih) {
+        if (ih.EndReason = "EndKey") {
+            key := ih.EndKey
+            
+            if (key = "Backspace" || key = "Delete") {
+                GuiCtrlObj.Value := ""
+            } else if (key = "Escape" || key = "Tab" || key = "Enter" || key = "NumpadEnter") {
+                ; Do nothing for focus navigation keys
+            } else {
+                if (StrLen(key) == 1)
+                    key := StrUpper(key)
+                
+                mods := ""
+                if GetKeyState("Ctrl", "P")
+                    mods .= "^"
+                if GetKeyState("Alt", "P")
+                    mods .= "!"
+                if GetKeyState("Shift", "P")
+                    mods .= "+"
+                if GetKeyState("LWin", "P") or GetKeyState("RWin", "P")
+                    mods .= "#"
+                
+                GuiCtrlObj.Value := this.FormatHotkeyForDisplay(mods . key)
+            }
+            
+            this.OnHotkeyChange(idx, GuiCtrlObj)
+        }
+        
+        ; Restart hook if still focused
+        try {
+            if (this.GuiObj.FocusedCtrl == GuiCtrlObj) {
+                this.OnHotkeyFocus(idx, GuiCtrlObj)
+            }
+        }
+    }
+
+    static FormatHotkeyForDisplay(hk) {
+        if (hk == "")
+            return ""
+        
+        display := ""
+        if InStr(hk, "^")
+            display .= "Ctrl + "
+        if InStr(hk, "!")
+            display .= "Alt + "
+        if InStr(hk, "+")
+            display .= "Shift + "
+        if InStr(hk, "#")
+            display .= "Win + "
+            
+        key := RegExReplace(hk, "[\^!\+#]", "")
+        display .= StrUpper(key)
+        return display
+    }
+
+    static ParseHotkeyFromDisplay(display) {
+        if (display == "")
+            return ""
+            
+        hk := ""
+        if InStr(display, "Ctrl + ")
+            hk .= "^"
+        if InStr(display, "Alt + ")
+            hk .= "!"
+        if InStr(display, "Shift + ")
+            hk .= "+"
+        if InStr(display, "Win + ")
+            hk .= "#"
+            
+        key := StrReplace(display, "Ctrl + ", "")
+        key := StrReplace(key, "Alt + ", "")
+        key := StrReplace(key, "Shift + ", "")
+        key := StrReplace(key, "Win + ", "")
+        hk .= key
+        return hk
+    }
+
+    static OnLButtonDown(wParam, lParam, msg, hwnd) {
+        if (this.HasProp("GuiObj") && this.GuiObj) {
+            try {
+                ctrl := this.GuiObj.FocusedCtrl
+                if (!ctrl || Type(ctrl) != "Gui.Edit")
+                    return
+                
+                class := WinGetClass(hwnd)
+                if (class == "Edit" || class == "SysTreeView32" || class == "ComboBox")
+                    return
+                    
+                if (class == "Button") {
+                    style := WinGetStyle(hwnd)
+                    if ((style & 0xF) != 0x7) ; Not a GroupBox
+                        return
+                }
+                
+                SetTimer(ObjBindMethod(this, "DoBlur"), -10)
+            }
+        }
+    }
+
+    static DoBlur() {
+        if (this.HasProp("Tabs") && this.Tabs)
+            try this.Tabs.Focus()
+    }
+
     static OnRevertChanges(*) {
         if (!this.HasOwnProp("original_commands_obj"))
             return
@@ -735,29 +879,19 @@ class UCLC_CUI {
             return
 
         wb := this.TV_Map[itemId].category
-        cmd_id := this.TV_Map[itemId].cmd["command"]
+        index := this.TV_Map[itemId].index
 
         orig_cmd := ""
-        if (this.original_commands_obj.Has(wb)) {
-            for c in this.original_commands_obj[wb] {
-                if (c["command"] == cmd_id) {
-                    orig_cmd := c
-                    break
-                }
-            }
+        if (this.original_commands_obj.Has(wb) && this.original_commands_obj[wb].Length >= index) {
+            orig_cmd := this.original_commands_obj[wb][index]
         }
 
         if (orig_cmd != "") {
             restored_cmd := JSON.parse(JSON.stringify(orig_cmd))
             this.TV_Map[itemId].cmd := restored_cmd
 
-            if (AppSettings.commands_obj.Has(wb)) {
-                for i, c in AppSettings.commands_obj[wb] {
-                    if (c["command"] == cmd_id) {
-                        AppSettings.commands_obj[wb][i] := restored_cmd
-                        break
-                    }
-                }
+            if (AppSettings.commands_obj.Has(wb) && AppSettings.commands_obj[wb].Length >= index) {
+                AppSettings.commands_obj[wb][index] := restored_cmd
             }
 
             this.OnCommandTreeSelect(this.TV_Alias, itemId)
@@ -784,13 +918,8 @@ class UCLC_CUI {
                 if (info.type == "Item") {
                     orig_cmd := ""
                     wb := info.category
-                    if (this.original_commands_obj.Has(wb)) {
-                        for c in this.original_commands_obj[wb] {
-                            if (c["command"] == info.cmd["command"]) {
-                                orig_cmd := c
-                                break
-                            }
-                        }
+                    if (this.original_commands_obj.Has(wb) && this.original_commands_obj[wb].Length >= info.index) {
+                        orig_cmd := this.original_commands_obj[wb][info.index]
                     }
                     if (orig_cmd == "") {
                         hotkey_changed := true
@@ -902,25 +1031,112 @@ class UCLC_CUI {
         this.HandleFilterClick(ctrl)
     }
 
-    static OnGetCommandsFromCatia(ctrl, *) {
-        if !export_workshop_exposition() {
+    static OnImportCommands(ctrl, *) {
+        this.ShowImportSelector()
+    }
+
+    static ShowImportSelector() {
+        cmd_id_dir := A_ScriptDir "\data\command-id"
+        if !DirExist(cmd_id_dir) {
+            MsgBox("未找到工作台命令库目录：" cmd_id_dir, "错误", "Iconx")
             return
         }
-        MsgBox("已向 CATIA 发送获取命令，请在弹出的【Workshop Exposition】窗口中点击【Export】，然后使用【从 TXT 导入】读取导出的文件。", "操作提示", "Iconi")
+
+        dlg := Gui("+Owner" this.GuiObj.Hwnd " -MinimizeBox -MaximizeBox", "导入内置工作台命令")
+        this.GuiObj.Opt("+Disabled")
+
+        dlg.Add("Text", "x15 y15 w80 h20", "搜索工作台:")
+        edit_search := dlg.Add("Edit", "x100 y11 w325 h24")
+        
+        lv := dlg.Add("ListView", "x15 y45 w410 h340 +Grid -Multi", ["工作台名称", "ID"])
+        lv.ModifyCol(1, 260)
+        lv.ModifyCol(2, 120)
+
+        all_items := []
+        loop files, cmd_id_dir "\*.txt" {
+            id := StrReplace(A_LoopFileName, ".txt", "")
+            name := AppSettings.GetWbName(id)
+            all_items.Push({ name: name, id: id })
+        }
+
+        default_wb := ""
+        if (this.DDL_ImportWb.Value > 1) {
+            default_wb := this.import_wb_ids[this.DDL_ImportWb.Value]
+        }
+
+        fill_lv(filter_str := "") {
+            lv.Opt("-Redraw")
+            lv.Delete()
+            default_row := 0
+            for item in all_items {
+                if (filter_str != "" && !InStr(item.name, filter_str) && !InStr(item.id, filter_str)) {
+                    continue
+                }
+                row := lv.Add("", item.name, item.id)
+                if (default_wb != "" && item.id == default_wb) {
+                    default_row := row
+                }
+            }
+            lv.ModifyCol(1, "Sort")
+            if (default_row > 0) {
+                loop lv.GetCount() {
+                    if (lv.GetText(A_Index, 2) == default_wb) {
+                        lv.Modify(A_Index, "Select Focus Vis")
+                        break
+                    }
+                }
+            } else if (lv.GetCount() > 0) {
+                lv.Modify(1, "Select Focus Vis")
+            }
+            lv.Opt("+Redraw")
+        }
+
+        fill_lv()
+
+        edit_search.OnEvent("Change", (ctrl, *) => fill_lv(ctrl.Value))
+
+        btn_confirm := dlg.Add("Button", "x110 y405 w100 h30 Default", "确认导入")
+        btn_cancel := dlg.Add("Button", "x230 y405 w100 h30", "取消")
+
+        do_confirm(*) {
+            row := lv.GetNext(0)
+            if (row == 0) {
+                MsgBox("请先选择一个工作台！", "提示", "Iconi")
+                return
+            }
+            sel_id := lv.GetText(row, 2)
+            filepath := cmd_id_dir "\" sel_id ".txt"
+            this.GuiObj.Opt("-Disabled")
+            dlg.Destroy()
+            this.ImportFile(filepath)
+        }
+
+        close_dlg(*) {
+            this.GuiObj.Opt("-Disabled")
+            dlg.Destroy()
+        }
+
+        btn_confirm.OnEvent("Click", do_confirm)
+        lv.OnEvent("DoubleClick", do_confirm)
+        btn_cancel.OnEvent("Click", close_dlg)
+        dlg.OnEvent("Close", close_dlg)
+        dlg.OnEvent("Escape", close_dlg)
+
+        dlg.Show("w440 h450")
     }
 
     static OnReadExportedTxt(ctrl, *) {
         selectedFile := FileSelect(3, , "选择 CATIA 导出的 Workshop Exposition 文件", "Text Documents (*.txt)")
         if (selectedFile = "")
             return
+        this.ImportFile(selectedFile)
+    }
 
-        ; 每次选择新文件都作为全新导入，重置目标工作台选项
+    static ImportFile(selectedFile) {
         this.DDL_ImportWb.Choose(1)
         target_wb := "通过导入文件确定"
 
-        ; 智能探测文件编码：优先用 UTF-8 读取
         content := FileRead(selectedFile, "UTF-8")
-        ; 如果内容不含特征词，或者包含 UTF-8 解析失败时的替换符()，则降级为系统默认 ANSI(CP0)
         if (!InStr(content, "Workshop Exposition") || InStr(content, Chr(0xFFFD))) {
             content := FileRead(selectedFile, "CP0")
             if !InStr(content, "Workshop Exposition") {

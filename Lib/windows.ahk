@@ -162,7 +162,7 @@ class VolumeController {
   show_volume_status() {
     current_volume := SoundGetVolume()
     mute_status := SoundGetMute() ? "(静音)" : ""
-    k_ToolTip(Format("当前音量：{} {}", Integer(current_volume), mute_status), 1000)
+    k_ToolTip(Format("当前音量：{} {}", Integer(current_volume), mute_status), 1000, "Volume")
   }
 }
 

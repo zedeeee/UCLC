@@ -53,31 +53,70 @@ class k_ToolTipManager {
             this.current_alpha := 0
         }
     }
+    
+    static control_count := 0
 
     static UpdateTextGUI(text) {
         if (text == this.last_text)
             return
+        
+        old_gui := ""
 
-        ; AHK v2 不支持单独销毁控件。为了完美 AutoSize，我们重建整个无边框 GUI
-        if (this.gui != "") {
-            this.gui.Destroy()
-            this.gui := ""
-            this.txt := ""
+        if (this.gui == "" || this.control_count > 30) {
+            ; 如果窗体不存在，或累积控件超标（防极端刷屏导致句柄溢出）
+            if (this.gui != "") {
+                old_gui := this.gui
+            }
+
+            this.gui := Gui("+ToolWindow -Caption +AlwaysOnTop +E0x20 +E0x80000", "")
+            this.gui.BackColor := "2D2D2D"
+            this.gui.SetFont("s10 cFFFFFF", "Segoe UI")
+            this.gui.MarginX := 12
+            this.gui.MarginY := 8
+            this.control_count := 0 ; 计数清零
+
+            if (this.current_x == 0 && this.current_y == 0) {
+                SavedCoordMode := A_CoordModeMouse
+                CoordMode("Mouse", "Screen")
+                MouseGetPos(&mX, &mY)
+                CoordMode("Mouse", SavedCoordMode)
+                this.current_x := mX + 24
+                this.current_y := mY + 24
+                this.current_alpha := 0
+            }
         }
 
-        this.InitGUI()
+        if (this.txt != "") {
+            this.txt.Visible := false  ; 隐藏旧文字控件避免重叠
+        }
+
         this.txt := this.gui.Add("Text", "x12 y8 BackgroundTrans", text)
+        this.control_count++
         WinSetTransparent(Integer(this.current_alpha), this.gui.Hwnd)
         this.gui.Show("AutoSize NA x" Integer(this.current_x) " y" Integer(this.current_y))
+
+        ; 如果触发了垃圾回收（重建窗口），延迟 30 毫秒销毁旧窗口，让 DWM 平滑过渡
+        if (old_gui != "") {
+            SetTimer(ObjBindMethod(old_gui, "Destroy"), -30)
+        }
 
         this.last_text := text
     }
 
-    static Show(Message, Delay_ms) {
+    static Show(Message, Delay_ms, Category := "") {
         this.id_counter++
         current_id := this.id_counter
 
-        this.logs.Push({ id: current_id, text: Message })
+        if (Category != "") {
+            for index, item in this.logs {
+                if (item.HasOwnProp("category") && item.category == Category) {
+                    this.logs.RemoveAt(index)
+                    break
+                }
+            }
+        }
+
+        this.logs.Push({ id: current_id, text: Message, category: Category })
         this.RequestRender()
 
         ; 设定负数延时（单次触发），到期后移除该项
@@ -177,8 +216,11 @@ class k_ToolTipManager {
         ; GUI 跟随模式
         if (this.target_alpha == 0 && this.current_alpha <= 1) {
             this.current_alpha := 0
-            if (this.gui != "")
-                WinSetTransparent(0, this.gui.Hwnd)
+            if (this.gui != "") {
+                this.gui.Destroy()
+                this.gui := ""
+                this.txt := ""
+            }
             SetTimer(this.follow_timer_cb, 0)
             DllCall("Winmm\timeEndPeriod", "UInt", 1) ; 释放系统高精度定时器
             this.is_following := false
@@ -240,6 +282,7 @@ class k_ToolTipManager {
 ; ToolTip 的封装函数，简化函数调用
 ; - string: Message
 ; - int: Delay_ms
-k_ToolTip(Message, Delay_ms := 1000) {
-    k_ToolTipManager.Show(Message, Delay_ms)
+; - string: Category (可选分类，相同分类的气泡互相覆盖)
+k_ToolTip(Message, Delay_ms := 1000, Category := "") {
+    k_ToolTipManager.Show(Message, Delay_ms, Category)
 }

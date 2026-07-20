@@ -2,6 +2,7 @@
 #SingleInstance Force
 ; #MaxThreads 20 ; 已废弃异步轮询，不再需要高并发线程
 SetTitleMatchMode 2
+A_MaxHotkeysPerInterval := 200 ; 防手贱狂滚鼠标触发系统死循环保护
 
 #Include ./Lib/AppSettings.ahk
 #Include ./Lib/CATAlias.ahk
@@ -218,7 +219,7 @@ loop {
     {
         SoundSetMute -1
         muteStatus := SoundGetMute() ? "静音" : "解除静音：" . Integer(SoundGetVolume())
-        k_ToolTip(muteStatus, 1000)
+        k_ToolTip(muteStatus, 1000, "Volume")
     }
 
     ; ^+t::

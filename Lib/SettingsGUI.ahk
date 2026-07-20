@@ -396,6 +396,8 @@ class UCLC_CUI {
             if (catId != 0)
                 this.TV_Alias.Modify(catId, "Expand")
         }
+
+        this.CheckGlobalDirty()
     }
 
     static OnWorkbenchFilter(CtrlObj, *) {
@@ -734,6 +736,29 @@ class UCLC_CUI {
         this.OnCommandTreeSelect(this.TV_Alias, itemId)
     }
 
+    static UpdateRightPaneStyles(info, orig_cmd) {
+        if (orig_cmd == "") {
+            desc_bold := "bold", cmd_bold := "bold", alias_bold := "bold", hk_bold := "bold"
+        } else {
+            desc_bold := ((info.cmd.Has("desc") ? info.cmd["desc"] : "") != (orig_cmd.Has("desc") ? orig_cmd["desc"] : "")) ? "bold" : "norm"
+            cmd_bold := (info.cmd["command"] != orig_cmd["command"]) ? "bold" : "norm"
+            alias_bold := (JSON.stringify(info.cmd.Has("aliases") ? info.cmd["aliases"] : []) != JSON.stringify(orig_cmd.Has("aliases") ? orig_cmd["aliases"] : [])) ? "bold" : "norm"
+            hk_bold := (JSON.stringify(info.cmd.Has("hotkeys") ? info.cmd["hotkeys"] : []) != JSON.stringify(orig_cmd.Has("hotkeys") ? orig_cmd["hotkeys"] : [])) ? "bold" : "norm"
+        }
+        try {
+            this.Txt_Desc.SetFont(desc_bold)
+            this.Edit_Desc.SetFont(desc_bold)
+            this.Txt_Cmd.SetFont(cmd_bold)
+            this.Edit_Cmd.SetFont(cmd_bold)
+            this.Txt_Alias.SetFont(alias_bold)
+            for e in this.alias_edits
+                e.SetFont(alias_bold)
+            this.Txt_Hotkey.SetFont(hk_bold)
+            for e in this.hotkey_edits
+                e.SetFont(hk_bold)
+        }
+    }
+
     static CheckGlobalDirty() {
         if (!this.HasOwnProp("original_json_str") || this.original_json_str == "")
             return
@@ -771,12 +796,16 @@ class UCLC_CUI {
 
                 if (is_dirty) {
                     this.TV_Alias.Modify(id, "Bold")
-                    if (id == this.TV_Alias.GetSelection())
+                    if (id == this.TV_Alias.GetSelection()) {
                         this.Btn_Revert.Opt("-Disabled")
+                        this.UpdateRightPaneStyles(info, orig_cmd)
+                    }
                 } else {
                     this.TV_Alias.Modify(id, "-Bold")
-                    if (id == this.TV_Alias.GetSelection())
+                    if (id == this.TV_Alias.GetSelection()) {
                         this.Btn_Revert.Opt("+Disabled")
+                        this.UpdateRightPaneStyles(info, orig_cmd)
+                    }
                 }
             }
         }

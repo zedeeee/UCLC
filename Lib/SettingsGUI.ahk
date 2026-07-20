@@ -264,18 +264,17 @@ class UCLC_CUI {
         this.chk_filterDelete.OnEvent("Click", ObjBindMethod(this, "OnFilterDelete"))
         this.chk_filterIgnore.OnEvent("Click", ObjBindMethod(this, "OnFilterIgnore"))
 
-        this.LV_Import := this.GuiObj.Add("ListView", "x30 y165 w720 h310 Grid", ["标题", "命令 ID", "操作",
-            "导入的命令 ID"])
+        this.LV_Import := this.GuiObj.Add("ListView", "x30 y165 w720 h310 Grid", ["标题", "命令 ID", "导入的命令 ID", "操作"])
         this.LV_Import.OnEvent("Click", ObjBindMethod(this, "OnImportListViewClick"))
         this.LV_Import.OnEvent("ItemSelect", ObjBindMethod(this, "OnImportListViewItemSelect"))
         this.LV_Import.OnEvent("DoubleClick", ObjBindMethod(this, "OnImportListViewDoubleClick"))
         this.LV_Import.OnEvent("ContextMenu", ObjBindMethod(this, "OnImportListViewContextMenu"))
 
         this.LV_Import.ModifyCol(1, 160)
-        this.LV_Import.ModifyCol(2, 255)
-        this.LV_Import.ModifyCol(3, 50)
-        this.LV_Import.ModifyCol(3, "Center")
-        this.LV_Import.ModifyCol(4, 255)
+        this.LV_Import.ModifyCol(2, 240)
+        this.LV_Import.ModifyCol(3, 253)
+        this.LV_Import.ModifyCol(4, 50)
+        this.LV_Import.ModifyCol(4, "Center")
 
         ; 空状态占位符
         this.Txt_EmptyLV := this.GuiObj.Add("Text", "x250 y305 w280 h30 Center c808080 BackgroundTrans", "请点击上方按钮获取数据")
@@ -413,12 +412,76 @@ class UCLC_CUI {
         this.LoadCommandTree(val)
     }
 
+    static GetUnsavedChangesSummary(orig_str, curr_obj) {
+        try {
+            orig_obj := JSON.parse(orig_str)
+        } catch {
+            return "无法解析数据以生成变更列表。"
+        }
+        
+        diffs := []
+        for wb, cmds in curr_obj {
+            wb_name := AppSettings.GetWbName(wb)
+            wb_diffs := []
+            orig_cmds := orig_obj.Has(wb) ? orig_obj[wb] : []
+            
+            for i, cmd in cmds {
+                if (i > orig_cmds.Length) {
+                    title := cmd.Has("desc") && cmd["desc"] != "" ? cmd["desc"] : cmd["command"]
+                    wb_diffs.Push("  + 新增: " title)
+                } else {
+                    orig_cmd := orig_cmds[i]
+                    if (JSON.stringify(cmd) != JSON.stringify(orig_cmd)) {
+                        title := cmd.Has("desc") && cmd["desc"] != "" ? cmd["desc"] : cmd["command"]
+                        wb_diffs.Push("  * 修改: " title)
+                    }
+                }
+            }
+            if (orig_cmds.Length > cmds.Length) {
+                loop (orig_cmds.Length - cmds.Length) {
+                    orig_cmd := orig_cmds[cmds.Length + A_Index]
+                    title := orig_cmd.Has("desc") && orig_cmd["desc"] != "" ? orig_cmd["desc"] : orig_cmd["command"]
+                    wb_diffs.Push("  - 删除: " title)
+                }
+            }
+            if (wb_diffs.Length > 0) {
+                diffs.Push("【工作台: " wb_name "】")
+                diffs.Push(wb_diffs*)
+            }
+        }
+        
+        for wb, cmds in orig_obj {
+            if !curr_obj.Has(wb) {
+                wb_name := AppSettings.GetWbName(wb)
+                diffs.Push("【工作台: " wb_name "】")
+                diffs.Push("  - 整个工作台被移除")
+            }
+        }
+        
+        if (diffs.Length == 0)
+            return "检测到深层属性变更，无命令级差异。"
+            
+        summary := ""
+        count := 0
+        for item in diffs {
+            if (count >= 15) {
+                summary .= "  ... 以及其他未显示的修改`n"
+                break
+            }
+            summary .= item "`n"
+            count++
+        }
+        return Trim(summary, "`n")
+    }
+
     static OnClose(*) {
         if (this.HasProp("original_json_str") && this.original_json_str != "") {
             this.SaveInputsToCurrentCmd()
             current_json := JSON.stringify(AppSettings.commands_obj)
             if (current_json !== this.original_json_str) {
-                result := MsgBox("当前配置有未保存的修改。`n`n是否在退出前保存？", "未保存的修改", "YesNoCancel Icon?")
+                summary := this.GetUnsavedChangesSummary(this.original_json_str, AppSettings.commands_obj)
+                this.GuiObj.Opt("+OwnDialogs")
+                result := MsgBox("当前配置有未保存的修改：`n`n" summary "`n`n是否在退出前保存？", "未保存的修改", "YesNoCancel Icon?")
                 if (result == "Cancel") {
                     return true
                 } else if (result == "Yes") {
@@ -749,11 +812,11 @@ class UCLC_CUI {
             this.ih.Stop()
             this.ih := ""
         }
-        
+
         ih := InputHook("L1 M")
         ih.KeyOpt("{All}", "E")
         ih.KeyOpt("{LCtrl}{RCtrl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}", "-E")
-        
+
         ih.OnEnd := ObjBindMethod(this, "OnInputHookEnd", idx, GuiCtrlObj)
         this.ih := ih
         ih.Start()
@@ -769,7 +832,7 @@ class UCLC_CUI {
     static OnInputHookEnd(idx, GuiCtrlObj, ih) {
         if (ih.EndReason = "EndKey") {
             key := ih.EndKey
-            
+
             if (key = "Backspace" || key = "Delete") {
                 GuiCtrlObj.Value := ""
             } else if (key = "Escape" || key = "Tab" || key = "Enter" || key = "NumpadEnter") {
@@ -777,7 +840,7 @@ class UCLC_CUI {
             } else {
                 if (StrLen(key) == 1)
                     key := StrUpper(key)
-                
+
                 mods := ""
                 if GetKeyState("Ctrl", "P")
                     mods .= "^"
@@ -787,13 +850,13 @@ class UCLC_CUI {
                     mods .= "+"
                 if GetKeyState("LWin", "P") or GetKeyState("RWin", "P")
                     mods .= "#"
-                
+
                 GuiCtrlObj.Value := this.FormatHotkeyForDisplay(mods . key)
             }
-            
+
             this.OnHotkeyChange(idx, GuiCtrlObj)
         }
-        
+
         ; Restart hook if still focused
         try {
             if (this.GuiObj.FocusedCtrl == GuiCtrlObj) {
@@ -805,7 +868,7 @@ class UCLC_CUI {
     static FormatHotkeyForDisplay(hk) {
         if (hk == "")
             return ""
-        
+
         display := ""
         if InStr(hk, "^")
             display .= "Ctrl + "
@@ -815,7 +878,7 @@ class UCLC_CUI {
             display .= "Shift + "
         if InStr(hk, "#")
             display .= "Win + "
-            
+
         key := RegExReplace(hk, "[\^!\+#]", "")
         display .= StrUpper(key)
         return display
@@ -824,7 +887,7 @@ class UCLC_CUI {
     static ParseHotkeyFromDisplay(display) {
         if (display == "")
             return ""
-            
+
         hk := ""
         if InStr(display, "Ctrl + ")
             hk .= "^"
@@ -834,7 +897,7 @@ class UCLC_CUI {
             hk .= "+"
         if InStr(display, "Win + ")
             hk .= "#"
-            
+
         key := StrReplace(display, "Ctrl + ", "")
         key := StrReplace(key, "Alt + ", "")
         key := StrReplace(key, "Shift + ", "")
@@ -849,17 +912,17 @@ class UCLC_CUI {
                 ctrl := this.GuiObj.FocusedCtrl
                 if (!ctrl || Type(ctrl) != "Gui.Edit")
                     return
-                
+
                 class := WinGetClass(hwnd)
                 if (class == "Edit" || class == "SysTreeView32" || class == "ComboBox")
                     return
-                    
+
                 if (class == "Button") {
                     style := WinGetStyle(hwnd)
                     if ((style & 0xF) != 0x7) ; Not a GroupBox
                         return
                 }
-                
+
                 SetTimer(ObjBindMethod(this, "DoBlur"), -10)
             }
         }
@@ -1047,7 +1110,7 @@ class UCLC_CUI {
 
         dlg.Add("Text", "x15 y15 w80 h20", "搜索工作台:")
         edit_search := dlg.Add("Edit", "x100 y11 w325 h24")
-        
+
         lv := dlg.Add("ListView", "x15 y45 w410 h340 +Grid -Multi", ["工作台名称", "ID"])
         lv.ModifyCol(1, 260)
         lv.ModifyCol(2, 120)
@@ -1211,7 +1274,6 @@ class UCLC_CUI {
                     this.DDL_ImportWb.Add([wb_name])
                     this.import_wb_ids.Push(target_wb)
                     this.DDL_ImportWb.Choose(this.import_wb_ids.Length)
-                    AppSettings.commands_obj[target_wb] := []
                 }
             } else {
                 this.Txt_EmptyLV.Value := "无法从文件中解析出工作台 ID，请手动选择目标工作台"
@@ -1312,7 +1374,7 @@ class UCLC_CUI {
             a := item.action
             if ((a == "+" && showNew) || (a == "T" && showUpdate) || (a == "C" && showOverwrite)
             || (a == "=" && showSame) || (a == "D" && showDelete) || (a == "i" && showIgnore)) {
-                this.LV_Import.Add("", item.title, item.local_id, a, item.imported_id)
+                this.LV_Import.Add("", item.title, item.local_id, item.imported_id, a)
             }
         }
 
@@ -1359,10 +1421,10 @@ class UCLC_CUI {
             return
 
         for r in selected {
-            this.LV_Import.Modify(r, "Col3", "D")
+            this.LV_Import.Modify(r, "Col4", "D")
             title := this.LV_Import.GetText(r, 1)
             old_id := this.LV_Import.GetText(r, 2)
-            new_id := this.LV_Import.GetText(r, 4)
+            new_id := this.LV_Import.GetText(r, 3)
             for item in this.import_items {
                 if (item.title == title && item.local_id == old_id && item.imported_id == new_id) {
                     item.action := "D"
@@ -1383,10 +1445,10 @@ class UCLC_CUI {
             return
 
         for r in selected {
-            this.LV_Import.Modify(r, "Col3", "i")
+            this.LV_Import.Modify(r, "Col4", "i")
             title := this.LV_Import.GetText(r, 1)
             old_id := this.LV_Import.GetText(r, 2)
-            new_id := this.LV_Import.GetText(r, 4)
+            new_id := this.LV_Import.GetText(r, 3)
             for item in this.import_items {
                 if (item.title == title && item.local_id == old_id && item.imported_id == new_id) {
                     item.action := "i"
@@ -1428,7 +1490,7 @@ class UCLC_CUI {
         while (row := this.LV_Import.GetNext(row)) {
             title := this.LV_Import.GetText(row, 1)
             old_id := this.LV_Import.GetText(row, 2)
-            new_id := this.LV_Import.GetText(row, 4)
+            new_id := this.LV_Import.GetText(row, 3)
             selected_keys[title "_" old_id "_" new_id] := true
         }
 

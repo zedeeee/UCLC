@@ -1,4 +1,4 @@
-﻿#Requires AutoHotkey v2.0
+#Requires AutoHotkey v2.0
 
 class Logger {
     static tooltip(message, delay_ms) {
@@ -77,8 +77,10 @@ class Downloader {
 class WindowManager {
     static add_group_by_exe(group_name, section) {
         if (AppSettings.config_obj.Has(section)) {
-            for _, exe in AppSettings.config_obj[section] {
-                GroupAdd(group_name, "ahk_exe " . exe)
+            for key, exe in AppSettings.config_obj[section] {
+                if (key != "Enabled") {
+                    GroupAdd(group_name, "ahk_exe " . exe)
+                }
             }
         }
     }

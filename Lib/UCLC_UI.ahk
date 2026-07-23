@@ -335,7 +335,7 @@ class SettingsModel {
         }
     }
 
-    save_general_settings(everythingEnabled, everythingPath) {
+    save_general_settings(everythingEnabled, everythingPath, debugEnabled, autoImeEnabled, autoImeMap) {
         try {
             if !AppSettings.config_obj.Has("Everything") {
                 AppSettings.config_obj["Everything"] := Map("Enabled", "0", "Path", "")
@@ -343,8 +343,18 @@ class SettingsModel {
             AppSettings.config_obj["Everything"]["Enabled"] := String(everythingEnabled)
             AppSettings.config_obj["Everything"]["Path"] := everythingPath
 
+            if !AppSettings.config_obj.Has("通用") {
+                AppSettings.config_obj["通用"] := Map("DEBUG", "0")
+            }
+            AppSettings.config_obj["通用"]["DEBUG"] := String(debugEnabled)
+
+            autoImeMap["Enabled"] := String(autoImeEnabled)
+            AppSettings.config_obj["AutoIME"] := autoImeMap
+
             AppSettings.Everything_Enabled := everythingEnabled
             AppSettings.Everything_Path := everythingPath
+            AppSettings.DEBUG_I := debugEnabled
+            AppSettings.AutoIME_Enabled := autoImeEnabled
 
             safe_atomic_write(AppSettings.config_json_path, JSON.stringify(AppSettings.config_obj))
             return true
@@ -436,7 +446,7 @@ class SettingsModel {
 
 class SettingsView extends Gui {
     __New() {
-        super.__New("-Resize -MaximizeBox", "UCLC 配置管理控制台 (CUI)")
+        super.__New("-Resize -MaximizeBox", "UCLC 配置管理")
         
         this.tabs := this.Add("Tab3", "x10 y10 w780 h580", ["命令映射", "通用设置", "工作台命令库"])
 
@@ -489,12 +499,28 @@ class SettingsView extends Gui {
 
         ; =============== 第二页: 通用设置 ===============
         this.tabs.UseTab(2)
-        this.Add("GroupBox", "x30 y50 w740 h150", "Everything 快速启动集成")
-        this.Chk_Everything := this.Add("Checkbox", "x50 y80", "启用“双击右Ctrl”呼出 Everything")
-        this.Add("Text", "x50 y120 w80", "主程序路径:")
-        this.Edit_EverythingPath := this.Add("Edit", "x130 y116 w450", "")
-        this.Btn_BrowseEverything := this.Add("Button", "x600 y115 w80", "浏览...")
-        this.btn_saveGen := this.Add("Button", "x600 y160 w150 Default", "保存通用设置")
+        this.Add("GroupBox", "x30 y45 w740 h90", "Everything 快速启动集成")
+        this.Chk_Everything := this.Add("Checkbox", "x50 y66", "启用“双击右Ctrl”呼出 Everything")
+        this.Add("Text", "x50 y97 w80", "主程序路径:")
+        this.Edit_EverythingPath := this.Add("Edit", "x130 y93 w450 h24", "")
+        this.Btn_BrowseEverything := this.Add("Button", "x600 y92 w80 h26", "浏览...")
+
+        this.Add("GroupBox", "x30 y145 w740 h195", "")
+        this.Chk_AutoIME := this.Add("Checkbox", "x45 y145", "启用输入法自动切换")
+
+        this.lv_autoime := this.Add("ListView", "x48 y172 w530 h130 Grid -Multi", ["软件名称", "进程名称 (exe)"])
+        this.lv_autoime.ModifyCol(1, 230)
+        this.lv_autoime.ModifyCol(2, 280)
+
+        this.btn_add_autoime := this.Add("Button", "x595 y172 w150 h26", "➕ 添加规则")
+        this.btn_del_autoime := this.Add("Button", "x595 y206 w150 h26", "➖ 删除规则")
+        this.btn_edit_autoime := this.Add("Button", "x595 y240 w150 h26", "✏️ 修改规则")
+        this.link_ime_guide := this.Add("Link", "x48 y312 w680 cGray", "说明：当检测到上述列表中的进程窗口激活时，脚本会自动强制切换为英文（<a id=`"guide`">前提条件</a>）。")
+
+        this.Add("GroupBox", "x30 y350 w740 h60", "调试与日志设置")
+        this.Chk_Debug := this.Add("Checkbox", "x50 y372", "开启 DEBUG 调试日志输出")
+
+        this.btn_saveGen := this.Add("Button", "x620 y425 w150 h30 Default", "保存通用设置")
 
         ; =============== 第三页: 工作台命令库 ===============
         this.tabs.UseTab(3)
@@ -711,6 +737,13 @@ class SettingsController {
         this.view.Btn_BrowseEverything.OnEvent("Click", ObjBindMethod(this, "BrowseEverything"))
         this.view.btn_saveGen.OnEvent("Click", ObjBindMethod(this, "SaveGeneralSettings"))
 
+        this.view.Chk_AutoIME.OnEvent("Click", ObjBindMethod(this, "OnToggleAutoIME"))
+        this.view.btn_add_autoime.OnEvent("Click", ObjBindMethod(this, "OnAddAutoIME"))
+        this.view.btn_del_autoime.OnEvent("Click", ObjBindMethod(this, "OnDeleteAutoIME"))
+        this.view.btn_edit_autoime.OnEvent("Click", ObjBindMethod(this, "OnEditAutoIME"))
+        this.view.lv_autoime.OnEvent("DoubleClick", ObjBindMethod(this, "OnEditAutoIME"))
+        this.view.link_ime_guide.OnEvent("Click", ObjBindMethod(this, "OnShowImeGuide"))
+
         this.view.ddl_import_wb.OnEvent("Change", ObjBindMethod(this, "on_target_workbench_changed"))
         this.view.Btn_AddWb.OnEvent("Click", ObjBindMethod(this, "OnAddTargetWorkbench"))
         this.view.Btn_ImportCommands.OnEvent("Click", ObjBindMethod(this, "OnImportCommands"))
@@ -738,6 +771,21 @@ class SettingsController {
     LoadGeneralSettings() {
         this.view.Chk_Everything.Value := AppSettings.Everything_Enabled
         this.view.Edit_EverythingPath.Value := AppSettings.Everything_Path
+
+        this.view.Chk_Debug.Value := AppSettings.DEBUG_I
+        this.view.Chk_AutoIME.Value := AppSettings.AutoIME_Enabled
+
+        this.view.lv_autoime.Opt("-Redraw")
+        this.view.lv_autoime.Delete()
+        if AppSettings.config_obj.Has("AutoIME") {
+            for label, exe in AppSettings.config_obj["AutoIME"] {
+                if (label != "Enabled") {
+                    this.view.lv_autoime.Add("", label, exe)
+                }
+            }
+        }
+        this.view.lv_autoime.Opt("+Redraw")
+        this.OnToggleAutoIME()
         
         sort_str := ""
         for k, v in AppSettings.commands_obj {
@@ -1214,15 +1262,170 @@ class SettingsController {
     }
 
     BrowseEverything(*) {
-        this.view.Opt("+Disabled")
         path := FileSelect(, , "请选择 Everything.exe", "程序 (*.exe)")
-        this.view.Opt("-Disabled")
         if path
             this.view.Edit_EverythingPath.Value := path
     }
 
+    OnToggleAutoIME(*) {
+        enabled := this.view.Chk_AutoIME.Value
+        opt := enabled ? "-Disabled" : "+Disabled"
+        this.view.lv_autoime.Opt(opt)
+        this.view.btn_add_autoime.Opt(opt)
+        this.view.btn_del_autoime.Opt(opt)
+        this.view.btn_edit_autoime.Opt(opt)
+        this.view.link_ime_guide.Opt(opt)
+    }
+
+    OnShowImeGuide(*) {
+        msg := "【自动切换英文输入法前提条件】`n`n"
+             . "1. 必须在 Windows 系统语言设置中添加并启用英文输入法（例如：英语(美国) - 美式键盘）。`n`n"
+             . "提示：如果系统中仅存在单语言中文输入法，无法通过 Shift 键自动切换中英文状态。"
+        MsgBox(msg, "输入法配置说明", "Iconi")
+    }
+
+    OnAddAutoIME(*) => this.show_auto_ime_modal()
+
+    OnEditAutoIME(*) {
+        row := this.view.lv_autoime.GetNext(0)
+        if (row == 0) {
+            MsgBox("请先在表格中选择要修改的规则！", "提示", "Iconi")
+            return
+        }
+        label := this.view.lv_autoime.GetText(row, 1)
+        exe := this.view.lv_autoime.GetText(row, 2)
+        this.show_auto_ime_modal(label, exe, row)
+    }
+
+    OnDeleteAutoIME(*) {
+        row := this.view.lv_autoime.GetNext(0)
+        if (row == 0) {
+            MsgBox("请先在表格中选择要删除的规则！", "提示", "Iconi")
+            return
+        }
+        label := this.view.lv_autoime.GetText(row, 1)
+        if (MsgBox("移除 " label " 输入法自动切换？", "移除规则", "YesNo Icon?") == "Yes") {
+            this.view.lv_autoime.Delete(row)
+        }
+    }
+
+    show_auto_ime_modal(default_label := "", default_exe := "", edit_row := 0) {
+        title := edit_row > 0 ? "修改规则" : "添加规则"
+        dlg := Gui("+Owner" this.view.hwnd " -MinimizeBox -MaximizeBox", title)
+        this.view.Opt("+Disabled")
+
+        dlg.Add("Text", "x15 y20 h20 Right", "软件名称:")
+        edit_label := dlg.Add("Edit", "x85 y16 w240 h24", default_label)
+
+        dlg.Add("Text", "x15 y55 h20 Right", "进程名称:")
+        edit_exe := dlg.Add("Edit", "x85 y51 w240 h24 ReadOnly", default_exe)
+
+        btn_capture := dlg.Add("Button", "x85 y83 w240 h26", "指定目标程序")
+
+        close_dlg(*) {
+            this.view.Opt("-Disabled")
+            dlg.Destroy()
+        }
+
+        do_capture(*) {
+            dlg.Hide()
+            ToolTip("请左键点击目标软件窗口以获取进程名称 (按 Esc 取消)...")
+
+            cancelled := false
+            loop {
+                if GetKeyState("Escape", "P") {
+                    cancelled := true
+                    break
+                }
+                if GetKeyState("LButton", "P") {
+                    break
+                }
+                Sleep 20
+            }
+            ToolTip()
+
+            if (cancelled) {
+                dlg.Show()
+                WinActivate(dlg.Hwnd)
+                return
+            }
+
+            KeyWait("LButton")
+            MouseGetPos ,, &target_hwnd
+            if (target_hwnd) {
+                try {
+                    exe_name := WinGetProcessName(target_hwnd)
+                    if (exe_name != "") {
+                        if (StrLower(exe_name) == "explorer.exe") {
+                            MsgBox("不能选择桌面或系统资源管理器！", "提示", "Iconi")
+                        } else {
+                            edit_exe.Value := exe_name
+                            if (edit_label.Value == "") {
+                                edit_label.Value := RegExReplace(exe_name, "(?i)\.exe$", "")
+                            }
+                        }
+                    }
+                }
+            }
+            dlg.Show()
+            WinActivate(dlg.Hwnd)
+            btn_confirm.Focus()
+        }
+
+        do_confirm(*) {
+            label := Trim(edit_label.Value)
+            exe := Trim(edit_exe.Value)
+            if (label == "") {
+                MsgBox("请输入软件名称！", "提示", "Iconi")
+                edit_label.Focus()
+                return
+            }
+            if (exe == "") {
+                MsgBox("请点击【获取目标窗口】以获取进程名称！", "提示", "Iconi")
+                return
+            }
+
+            if (edit_row > 0) {
+                this.view.lv_autoime.Modify(edit_row, "", label, exe)
+            } else {
+                this.view.lv_autoime.Add("", label, exe)
+            }
+            close_dlg()
+        }
+
+        btn_capture.OnEvent("Click", do_capture)
+        btn_confirm := dlg.Add("Button", "x85 y118 w110 h28 Default", "确认")
+        btn_cancel := dlg.Add("Button", "x215 y118 w110 h28", "取消")
+
+        btn_confirm.OnEvent("Click", do_confirm)
+        btn_cancel.OnEvent("Click", close_dlg)
+        dlg.OnEvent("Close", close_dlg)
+        dlg.OnEvent("Escape", close_dlg)
+
+        dlg.Show("w345 h158")
+        if (default_label == "")
+            edit_label.Focus()
+        else
+            btn_confirm.Focus()
+    }
+
     SaveGeneralSettings(*) {
-        success := this.model.save_general_settings(this.view.Chk_Everything.Value, this.view.Edit_EverythingPath.Value)
+        auto_ime_map := Map()
+        loop this.view.lv_autoime.GetCount() {
+            label := this.view.lv_autoime.GetText(A_Index, 1)
+            exe := this.view.lv_autoime.GetText(A_Index, 2)
+            if (label != "" && exe != "" && label != "Enabled") {
+                auto_ime_map[label] := exe
+            }
+        }
+
+        success := this.model.save_general_settings(
+            this.view.Chk_Everything.Value,
+            this.view.Edit_EverythingPath.Value,
+            this.view.Chk_Debug.Value,
+            this.view.Chk_AutoIME.Value,
+            auto_ime_map
+        )
         if success
             this.view.SB.SetText("通用设置保存成功！请手动重新载入 UCLC 脚本以使其生效。")
     }

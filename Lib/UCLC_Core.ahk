@@ -21,6 +21,7 @@ class AppSettings {
     static workbench_list := Map()
     static current_workbench := ""
     static Everything_Enabled := 0
+    static AutoIME_Enabled := 1
     static Version := UCLC_VERSION
     static Everything_Path := ""
     
@@ -198,6 +199,8 @@ class AppSettings {
             this.config_obj["Everything"]["Enabled"] : 0
         this.Everything_Path := this.config_obj.Has("Everything") && this.config_obj["Everything"].Has("Path") ? this.config_obj[
             "Everything"]["Path"] : ""
+        this.AutoIME_Enabled := this.config_obj.Has("AutoIME") && this.config_obj["AutoIME"].Has("Enabled") ?
+            this.config_obj["AutoIME"]["Enabled"] : 1
 
         ; 初始化工作台列表
         this.workbench_list := Map()
@@ -840,7 +843,7 @@ class WinEventHook {
                 GroupAdd("GroupCATIA", "ahk_class " catia_window_hwnd)
             }
 
-            if (WinActive("ahk_group group_autoime")) {
+            if (AppSettings.AutoIME_Enabled && WinActive("ahk_group group_autoime")) {
                 IMEController.switch_ime(IMEController.ime_map["en"])
                 SetTimer(ObjBindMethod(IMEController, "confirm_ime"), -5000)
             }

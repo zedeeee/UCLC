@@ -1,0 +1,27 @@
+Workshop Exposition of DMU2DConfiguration 
+
+1- Header List 
+
+
+2- Access List 
+
+ Title of the toolbar=DMU 2D 工具 and is Name=2DDMUToolbar
+   Starter Name=DMUNavigatorInsert
+   Starter Name=DMUMeasure2D
+   Starter Name=DMUNavigatorComp
+   Starter Name=DMU2DNavigatorPub
+
+ Title of the toolbar=DMU 2D 带标注的视图 and is Name=2DDMUAnnot
+   Starter Name=DMU2DAnnotViewCmd
+   Starter Name=DMU2DAnnotViewDlg
+   Starter Name=DMU2DAnnotViewExpt
+   Starter Name=DMU2DAnnotViewImpt
+
+ Title of the toolbar=DMU 2D 移动 and is Name=2DDMUMoveToolbar
+   Starter Name=2DDMUSelect
+   Starter Name=2DDMUMove
+
+ Title of the toolbar=DMU 2D 查看 and is Name=2DDMUViewing
+   Starter Name=CATDMUNavigatorPreviewStep
+   Starter Name=CATDMUNavigatorNextStep
+   Starter Name=CATDMUNavigatorMagnifier

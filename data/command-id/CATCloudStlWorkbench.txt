@@ -1,0 +1,723 @@
+Workshop Exposition of CATCloudStlWorkbench 
+
+1- Header List 
+
+Title= 自动
+   Id 	= TPSAddAutoGroup
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdAddAutoGroupTPS
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对齐剖视图/截面分割
+   Id 	= CATTPSCreateExtrAlignedViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateExtractionView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Split...
+   Id 	= CATStlSplitHdr
+   DLL 	= CATCldUISplit
+   Cmd 	= CATCloudSplitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Split...
+   Id 	= CATStlSplitHdr
+   DLL 	= CATCldUISplit
+   Cmd 	= CATCloudSplitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 显示视图
+   Id 	= CATFTADisplayViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATDfcDisplayViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Flip Edges...
+   Id 	= CATStlReshaperHdr
+   DLL 	= CATCldUIReshaper
+   Cmd 	= CATCldReshaperCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flip Edges...
+   Id 	= CATStlReshaperHdr
+   DLL 	= CATCldUIReshaper
+   Cmd 	= CATCldReshaperCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平行
+   Id 	= CATDrwDimCheckParallelHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平行于屏幕的文本
+   Id 	= TPSCreateTextParallelOnScreen
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 带引出线的标识注解
+   Id 	= TPSCreateFlagNote
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdFlagNoteCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Decimate...
+   Id 	= CATStlDecimationHdr
+   DLL 	= CATStylingUI
+   Cmd 	= CATStyDecimateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Decimate...
+   Id 	= CATStlDecimationHdr
+   DLL 	= CATStylingUI
+   Cmd 	= CATStyDecimateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 查询对象链接...
+   Id 	= TPSTextQryLink
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextQryLink
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转换为半径
+   Id 	= CATDrwDimSwapToRadHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 偏移剖视图/截面分割
+   Id 	= CATTPSCreateExtrOffsetViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateExtractionView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 显示视图
+   Id 	= CATTPSDisplayLightViewHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdLightViewDisplay
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 反转法线
+   Id 	= TPSInvertNormal
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdInvertNormal
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Mesh Regeneration...
+   Id 	= CATStlPolygonizationHdr
+   DLL 	= CATCldUIPolygonize
+   Cmd 	= CATStCmdCloudPolygonize
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mesh Regeneration...
+   Id 	= CATStlPolygonizationHdr
+   DLL 	= CATCldUIPolygonize
+   Cmd 	= CATStCmdCloudPolygonize
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除位置链接
+   Id 	= TPSPosLinkDelete
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdPosLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建方向链接
+   Id 	= TPSOriLinkCreate
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdOriLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= View Modification
+   Id 	= CATStlFocalAdjusmentHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATFsCmdViewAngleManip
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= View Modification
+   Id 	= CATStlFocalAdjusmentHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATFsCmdViewAngleManip
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 强制标注元素尺寸
+   Id 	= CATDrwDimCheckAutoHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 等轴测视图
+   Id 	= CATTPSCreateAxonometricViewHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Activate...
+   Id 	= CATStlActivateHdr
+   DLL 	= CATCldUISelect
+   Cmd 	= CATCloudActivateCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Activate...
+   Id 	= CATStlActivateHdr
+   DLL 	= CATCldUISelect
+   Cmd 	= CATCloudActivateCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 升级
+   Id 	= TPSUpgradeSet
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdUpgradeSet
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 编辑标识注解标注
+   Id 	= TPSEditFlagNotelabel
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdEditFlagNotelabel
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 参考角度视图
+   Id 	= CATFTAViewCreationHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSProjectionViewCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 几何体规范查询和重新定义
+   Id 	= TPSCanonicityRespecificationCmd
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdCanonicityRespec
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 几何图形连接管理
+   Id 	= TPSConnectionMgtCmd
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSConnectionMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 强制在视图中垂直标注尺寸
+   Id 	= CATDrwDimCheckVertHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除中断
+   Id 	= CATDrwInterruptDimRemHdr
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除结果特征
+   Id 	= CATTPSDeleteResultFeatureHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdDeleteResultFeature
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Mesh Smoothing...
+   Id 	= CATStlSmoothingHdr
+   DLL 	= CATCldUISmoothing
+   Cmd 	= CATCldSmoothingCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mesh Smoothing...
+   Id 	= CATStlSmoothingHdr
+   DLL 	= CATCldUISmoothing
+   Cmd 	= CATCldSmoothingCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 线性
+   Id 	= CATDrwDimCheckLinearHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mesh Offset...
+   Id 	= CATStlOffsetPolygonHdr
+   DLL 	= CATCldUIOffsetPolygon
+   Cmd 	= CATCloudOffsetCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mesh Offset...
+   Id 	= CATStlOffsetPolygonHdr
+   DLL 	= CATCldUIOffsetPolygon
+   Cmd 	= CATCloudOffsetCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 手动
+   Id 	= TPSAddManuGroup
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdAddManuGroupTPS
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 显示捕获
+   Id 	= CATTPSDisplayCaptureHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdCaptureDisplay
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 补充
+   Id 	= CATDrwDimCheckComplementaryHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Trim/Split...
+   Id 	= CATStlTrimSplitHdr
+   DLL 	= CATStylingUI
+   Cmd 	= CATStySplitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Trim/Split...
+   Id 	= CATStlTrimSplitHdr
+   DLL 	= CATStylingUI
+   Cmd 	= CATStySplitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 隔离文本
+   Id 	= TPSTextIsolAttrLink
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextIsolAttrLinkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Fill Holes...
+   Id 	= CATStlStopGapHdr
+   DLL 	= CATCldUIStopGap
+   Cmd 	= CATCloudStopGapCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Fill Holes...
+   Id 	= CATStlStopGapHdr
+   DLL 	= CATCldUIStopGap
+   Cmd 	= CATCloudStopGapCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= View Selection
+   Id 	= CATStlViewSelectorHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATCafCmdViewSelector
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= View Selection
+   Id 	= CATStlViewSelectorHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATCafCmdViewSelector
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Remove...
+   Id 	= CATStlRemoveHdr
+   DLL 	= CATCldUISelect
+   Cmd 	= CATCloudRemoveCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Remove...
+   Id 	= CATStlRemoveHdr
+   DLL 	= CATCldUISelect
+   Cmd 	= CATCloudRemoveCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 焊接特征
+   Id 	= CATTPSCreateWeldHdr
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdWeldCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Mesh Cleaner...
+   Id 	= CATStlMeshCleanerHdr
+   DLL 	= CATCldUIMeshCleaner
+   Cmd 	= CATCldMeshCleanerCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mesh Cleaner...
+   Id 	= CATStlMeshCleanerHdr
+   DLL 	= CATCldUIMeshCleaner
+   Cmd 	= CATCldMeshCleanerCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 诊断报告
+   Id 	= TPSDiagnostic
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSCmdDiagnosticReport
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 编辑创成式参数...
+   Id 	= TPSEditMfParameters
+   DLL 	= CATTPSEDITORUI
+   Cmd 	= CATTPSEditMfParametersCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= STL Export...
+   Id 	= CATStlExportHdr
+   DLL 	= CATCldUIExport
+   Cmd 	= CATCldExportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= STL Export...
+   Id 	= CATStlExportHdr
+   DLL 	= CATCldUIExport
+   Cmd 	= CATCldExportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建位置链接
+   Id 	= TPSPosLinkCreate
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdPosLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 全部显示
+   Id 	= CATFTAShowAllAnnotHdr
+   DLL 	= CATTPSBrowserUI
+   Cmd 	= CATDfuHideShowAllAnnotationsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 实长尺寸
+   Id 	= CATDrwDimCheckTrueDimHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Tessellation...
+   Id 	= CATStlTessellationHdr
+   DLL 	= CATCldUITessellate
+   Cmd 	= CATCldTessellateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Tessellation...
+   Id 	= CATStlTessellationHdr
+   DLL 	= CATCldUITessellate
+   Cmd 	= CATCldTessellateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 4
+   Id 	= CATDrwDimCheckSector4Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 1
+   Id 	= CATDrwDimCheckSector1Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 2
+   Id 	= CATDrwDimCheckSector2Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 3
+   Id 	= CATDrwDimCheckSector3Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 转移至视图/标注平面
+   Id 	= TPSTransferToView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTransferToView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 全部隐藏
+   Id 	= CATFTAHideAllAnnotHdr
+   DLL 	= CATTPSBrowserUI
+   Cmd 	= CATDfuHideShowAllAnnotationsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 标识注解
+   Id 	= TPSCreateFlagNoteWithoutLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdFlagNoteCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 打开/关闭 3D 标注查询
+   Id 	= TPSCSOCommand
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= STL Import...
+   Id 	= CATStlImportHdr
+   DLL 	= CATCldUIImport
+   Cmd 	= CATCloudImportCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= STL Import...
+   Id 	= CATStlImportHdr
+   DLL 	= CATCldUIImport
+   Cmd 	= CATCloudImportCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Interactive Triangle Creation...
+   Id 	= CATStlManualMeshHdr
+   DLL 	= CATCldUIManualMesh
+   Cmd 	= CATCldManualMeshCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Interactive Triangle Creation...
+   Id 	= CATStlManualMeshHdr
+   DLL 	= CATCldUIManualMesh
+   Cmd 	= CATCldManualMeshCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 添加引出线
+   Id 	= TPSAddLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATDfcAddLeaderCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 正视图
+   Id 	= TPSCreateFrontView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 更改视图支持面...
+   Id 	= TPSSetViewAssociativity
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSViewAssocCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 重新排序
+   Id 	= TPSReorderObjects
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcReorderObjectCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 创建中断
+   Id 	= CATDrwInterruptDimAddHdr
+   DLL 	= CATDraftingFTACommands
+   Cmd 	= CATDfcDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 全选
+   Id 	= TPSSelectViewAnnot
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdSelectViewAnnot
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转换为直径
+   Id 	= CATDrwDimSwapToDiaHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 打开/关闭标注集
+   Id 	= CATTPSSetVisuHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdTPSSetVisu
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 剖视图/标注平面
+   Id 	= TPSCreateSectionView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移
+   Id 	= CATDrwDimCheckOffsetHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 文本
+   Id 	= TPSCreateTextWithoutLeader
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 强制在视图中水平标注尺寸
+   Id 	= CATDrwDimCheckHorizHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 带引出线的文本
+   Id 	= TPSCreateText
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdTextCreation
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 移除截取平面
+   Id 	= TPSRemoveClipPlane
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdRemoveClipPlane
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 激活视图
+   Id 	= TPSActivateView
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdActivateView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 选择视图/标注平面
+   Id 	= CATTPSSelectViews
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdSelectViews
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Merge Meshes...
+   Id 	= CATStlMeshMergeHdr
+   DLL 	= CATCldUIMeshMerge
+   Cmd 	= CATCloudMeshMergeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Merge Meshes...
+   Id 	= CATStlMeshMergeHdr
+   DLL 	= CATCldUIMeshMerge
+   Cmd 	= CATCloudMeshMergeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除方向链接
+   Id 	= TPSOriLinkDelete
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdOriLink
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Information...
+   Id 	= CATStlInformationsHdr
+   DLL 	= CATCldUIInformations
+   Cmd 	= CATCldInformationsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Information...
+   Id 	= CATStlInformationsHdr
+   DLL 	= CATCldUIInformations
+   Cmd 	= CATCldInformationsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 添加位置...
+   Id 	= PrtPositionImportCom
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtPositionImportCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 添加位置...
+   Id 	= PrtPositionImportCom
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtPositionImportCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Clipping Plane
+   Id 	= TPSClippingPlane
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 截面分割/标注平面
+   Id 	= TPSCreateSectionCut
+   DLL 	= CATDraftingFTACommands2
+   Cmd 	= CATTPSCmdCreateView
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATStlMenusMbr 
+   Title=编辑 	 Name=CATAfrEditMnu 
+   Title=视图 	 Name=CATAfrView 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=CATBody
+      Starter Name=InsertGS
+      Starter Name=InsertOGS
+      Separator Name=CATStlInsert1SepSeparator
+      Starter Name=CATStlLocalAxisStr
+      Separator Name=CATStlInsert2SepSeparator
+      Starter Name=CATStlImportStr
+      Starter Name=CATStlExportStr
+      Separator Name=CATStlInsert3SepSeparator
+      Title=Edition 	 Name=CATStlEditionSnu 
+         Starter Name=CATStlActivateStr
+         Starter Name=CATStlRemoveStr
+      Title=Mesh 	 Name=CATStlPolygonalizationSnu 
+         Starter Name=CATStlPolygonizationStr
+         Starter Name=CATStlTessellationStr
+         Starter Name=CATStlOffsetPolygonStr
+         Starter Name=CATStlReshaper
+         Starter Name=CATStlSmoothing
+         Starter Name=CATStlMeshCleanerStr
+         Starter Name=CATStlStopGapStr
+         Starter Name=CATStlManualMeshStr
+         Starter Name=CATStlDecimationStr
+      Title=Operations 	 Name=CATStlOperationsSnu 
+         Starter Name=CATStlMeshMergeStr
+         Starter Name=CATStlSplitStr
+         Starter Name=CATStlTrimSplitStr
+      Title=Analysis 	 Name=CATStlAnalysisSnu 
+         Starter Name=CATStlInformationsStr
+   Title=工具 	 Name=CATAfrToolsMnu 
+   Title=窗口 	 Name=CATAfrWindowMnu 
+
+ Title of the toolbar=Tools and is Name=CATStlToolsTlb
+   Starter Name=CATUpdate
+   Starter Name=CATGraph
+   Starter Name=CATDatumMode
+   Starter Name=CATCurrentTool
+
+ Title of the toolbar=Selection and is Name=CATStlSelectTlb
+   Starter Name=CATStlSelectStr
+
+ Title of the toolbar=STL Files and is Name=CATStlImportTlb
+   Starter Name=CATStlImportStr
+   Starter Name=CATStlExportStr
+
+ Title of the toolbar=STL Edition and is Name=CATStlEditionTlb
+   Starter Name=CATStlActivateStr
+   Starter Name=CATStlRemoveStr
+
+ Title of the toolbar=STL Mesh and is Name=CATStlPolygonizationTlb
+   Starter Name=CATStlPolygonizationStr
+   Starter Name=CATStlTessellationStr
+   Starter Name=CATStlOffsetPolygonStr
+   Starter Name=CATStlReshaperStr
+   Starter Name=CATStlSmoothingStr
+   Starter Name=CATStlMeshCleanerStr
+   Starter Name=CATStlStopGapStr
+   Starter Name=CATStlManualMeshStr
+   Starter Name=CATStlDecimationStr
+
+ Title of the toolbar=STL Operations and is Name=CATStlOperationsTlb
+   Starter Name=CATStlMeshMergeStr
+   Starter Name=CATStlSplitStr
+   Starter Name=CATStlTrimSplitStr
+
+ Title of the toolbar=STL Analysis and is Name=CATStlAnalysisTlb
+   Starter Name=CATStlInformationsStr
+
+ Title of the toolbar=View Management and is Name=CATStlViewManagementTlb
+   Starter Name=CATStlViewSelectorStr
+   Starter Name=CATStlFocalAdjusmentStr

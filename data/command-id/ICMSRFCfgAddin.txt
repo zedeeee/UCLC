@@ -1,0 +1,57 @@
+Workshop Exposition of ICMSRFCfgAddin 
+
+1- Header List 
+
+
+2- Access List 
+
+ Name of the menubar=InsertMenu 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=ICMSeparator
+      Starter Name=CATInsertGSMBodyCT
+      Starter Name=CATInsertShapeBodyCT
+      Separator Name=ICMSeparator
+      Title=特征 	 Name=MechanicalSurfaceRefinementFeatureContainerCT 
+         Starter Name=ICMCLA3dCurveFssCT
+         Starter Name=ICMCLAShapeCurveBlendCmdCT
+         Starter Name=ICMCLAShapeConversionCmdCT
+         Starter Name=ICMCLAShapePatchFromCurves2CmdCT
+         Starter Name=ICMCLAShapePatchFromPatchesCmdCT
+         Starter Name=ICMCLAShapeSurfaceConversionCmdCT
+         Starter Name=ICMCLAShapeSurfaceBlendCmdCT
+         Starter Name=ICMCLAShapeFlangeCmdCT
+         Starter Name=ICMClassAFilletFSSCT
+         Starter Name=ICMCLAShapeExtrapolationFeatCmdCT
+         Starter Name=ICMCLAShapeFeatureModelingCmdCT
+         Starter Name=ICMDSMatchingDefCT
+         Starter Name=ICMDashboardFssCT
+      Title=高级分析 	 Name=MechanicalSurfaceRefinementAnalysisContainerCT 
+         Starter Name=ICMCLADiagHighlightCmdCT
+         Starter Name=CT
+         Starter Name=ICMRenderSpecializedTesselationCmdCT
+         Starter Name=ICMCLADiagIsoCurvatureCmdCT
+         Starter Name=ICMCLAApplyDressUpNewFssCT
+      Title=视图 	 Name=ViewContainerCT 
+         Starter Name=CATViewSelectorHdrCT
+
+ Title of the toolbar=特征 and is Name=MechanicalSurfaceRefinementFeatureContainerTB
+   Starter Name=ICMCLA3dCurveFssTB
+   Starter Name=ICMCLAShapeCurveBlendCmdTB
+   Starter Name=ICMCLAShapeConversionCmdTB
+   Starter Name=ICMCLAShapePatchFromCurves2CmdTB
+   Starter Name=ICMCLAShapePatchFromPatchesCmdTB
+   Starter Name=ICMCLAShapeSurfaceConversionCmdTB
+   Starter Name=ICMCLAShapeSurfaceBlendCmdTB
+   Starter Name=ICMCLAShapeFlangeCmdTB
+   Starter Name=ICMClassAFilletFSSTB
+   Starter Name=ICMCLAShapeExtrapolationFeatCmdTB
+   Starter Name=ICMCLAShapeFeatureModelingCmdTB
+   Starter Name=ICMDSMatchingDefTB
+   Starter Name=ICMDashboardFssTB
+
+ Title of the toolbar=高级分析 and is Name=MechanicalSurfaceRefinementAnalysisContainerTB
+   Starter Name=ICMCLADiagHighlightCmdTB
+   Starter Name=TB
+   Starter Name=ICMRenderSpecializedTesselationCmdTB
+   Starter Name=ICMCLADiagIsoCurvatureCmdTB
+   Starter Name=ICMCLAApplyDressUpNewFssTB

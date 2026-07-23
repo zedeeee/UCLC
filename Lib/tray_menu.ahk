@@ -12,14 +12,9 @@ help_Homepage_cb(*) {
     Run "https://github.com/zedeeee/UCLC-config"
 }
 
-modify_alias_cb(*)
+open_script_folder_cb(*)
 {
-    Run "notepad " AppSettings.alias_json_path
-}
-
-modify_shortcut_cb(*)
-{
-    Run "notepad " AppSettings.hotkey_json_path
+    Run A_ScriptDir
 }
 
 about_cb(*)
@@ -91,8 +86,7 @@ dev_sub_menu := [
 menu_items := [
     ["UCLC " AppSettings.Version, NoAction_cb, about_and_updates_menu],
     ["", NoAction_cb, ""],
-    ["自定义别名", modify_alias_cb, ""],
-    ["自定义快捷键", modify_shortcut_cb, ""],
+    ["打开脚本所在文件夹", open_script_folder_cb, ""],
     ["开发功能", NoAction_cb, dev_sub_menu],
     ["", NoAction_cb, ""],
     ; ["配置", disable_botton_cb, ""],
@@ -145,5 +139,6 @@ add_coustom_tray_menu()
         A_TrayMenu.Add(button_name, callback_function)
 
     }
+    A_TrayMenu.Default := "设置..."
     ; A_TrayMenu.Rename(menu_items[1][1], "UCLC")
 }

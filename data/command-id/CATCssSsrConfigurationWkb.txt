@@ -1,0 +1,579 @@
+Workshop Exposition of CATCssSsrConfigurationWkb 
+
+1- Header List 
+
+Title= 测量间距
+   Id 	= ArrSpaceMeasureBetween
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 传送线路
+   Id 	= CATArrTransferRunCmdHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrTransferRunCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 分发
+   Id 	= CATDistributeHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrDistributeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 放样的路径
+   Id 	= CATArrLoftCreationHdr
+   DLL 	= ArrLoft
+   Cmd 	= CATArrLoftCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 多次放置...
+   Id 	= PartPlaceHdr
+   DLL 	= CATLndPartPlace
+   Cmd 	= CATLndPartPlaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 连接...
+   Id 	= CATArrConnectHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrConnectRouteCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 生成
+   Id 	= CATArrReportGenHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportGenCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉三个点
+   Id 	= Snap3PointsHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapThreePointsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 旋转以对齐
+   Id 	= CATRotateSideHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrRotateSideCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 连接器...
+   Id 	= CATConnectorHdr
+   DLL 	= CATCloManageCntr
+   Cmd 	= CATCloManageCntrCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 预留网络...
+   Id 	= CATPathwaySystemHdr
+   DLL 	= ArrNet
+   Cmd 	= CATArrNetCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ArrCatAddNodeHdr
+   Id 	= CATArrCatAddNodeHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrInclusionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 创建偏移传递线路
+   Id 	= CATRouteByOffsetHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrRouteByOffsetCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 定义
+   Id 	= CATArrReportDefHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportDefCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 侧对齐
+   Id 	= CATSnapSideHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapSideCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 调整线路端点
+   Id 	= CATArrAdjustRunExtremityHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrAdjustRunExtremityCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 项位置...
+   Id 	= CATBoxAxisHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrAxisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉曲面
+   Id 	= SnapSurfaceHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapSurfaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 放置来自目录的对象...
+   Id 	= CATArrCatalogBrowserHdr
+   DLL 	= CATArrCatalogPlace
+   Cmd 	= CATArrCatalogPlaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 边界...
+   Id 	= CATBdyLnHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrRouteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 运行...
+   Id 	= CATRouteHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrRouteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 编辑参数...
+   Id 	= EditPartParamsPanelHdr
+   DLL 	= CATArrCatalogPlace
+   Cmd 	= CATArrEditPartParametersPanelCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 通过路径传递
+   Id 	= CATRouteThruPathwayHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrRouteThruPathwayCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ArrCatExpCtrHdr
+   Id 	= CATArrCatExpCtrHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrInclusionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 创建线段与线段的偏移连接
+   Id 	= CATOffsetSegmentHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrOffsetSegmentCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对齐两个平面
+   Id 	= SnapTwoPlanesHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapTwoPlanesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 从样条线传递
+   Id 	= CATRouteFromSplineHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrRouteFromSplineCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 居中对齐
+   Id 	= CATSnapPointHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapPointCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 断开线路
+   Id 	= CATArrBreakRunHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrBreakRunCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 显示附件
+   Id 	= IgpAttachShowHdr
+   DLL 	= ArrIgpAttach
+   Cmd 	= CATArrShowAttachCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 测量惯量...
+   Id 	= ArrSpaceMeasureInertia
+   DLL 	= CATSpaInertia
+   Cmd 	= CATSiLaMeasureInertiaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 复制项预留...
+   Id 	= VolumeCopyHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrCopyVolCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 项预留...
+   Id 	= CATVolumeHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrVolCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 翻转...
+   Id 	= FlipHdr
+   DLL 	= CATLndPartPlace
+   Cmd 	= CATLndFlipCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 更改参考...
+   Id 	= ChangeReferenceHdr
+   DLL 	= CATArrCatalogPlace
+   Cmd 	= CATArrChangeReferenceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 调整子产品
+   Id 	= CATAdjustProductToBoxHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrProductToBoxCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 逻辑装配...
+   Id 	= CATLogicalLineSystemHdr
+   DLL 	= ArrNet
+   Cmd 	= CATArrNetCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 镜像
+   Id 	= CATMirrorHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrMirrorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 测量项
+   Id 	= ArrSpaceMeasureEdge
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 验证...
+   Id 	= CATArrPRMCheckerHdr
+   DLL 	= CATPspPRMChecker
+   Cmd 	= CATPspPRMCheckerCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 逻辑集...
+   Id 	= CATLogicalSetSystemHdr
+   DLL 	= ArrNet
+   Cmd 	= CATArrNetCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 附加工程制图视图
+   Id 	= CATAttachViewHdr
+   DLL 	= ArrArea
+   Cmd 	= CATArrImportDrwViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 附加
+   Id 	= CATIgpAttachmentHdr
+   DLL 	= ArrIgpAttach
+   Cmd 	= CATArrAttachCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 构造平面...
+   Id 	= CATGridHdr
+   DLL 	= CATArrGrid
+   Cmd 	= CATArrGridCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ArrCatPartHdr
+   Id 	= CATArrCatPartHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrInclusionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 在分支连接处中断线路
+   Id 	= CATBranchToStarCnxHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrBranchToStarCnxCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转移
+   Id 	= CATTransferHdr
+   DLL 	= CATArrTransfer
+   Cmd 	= CATArrTransferCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 更新已放样的路径
+   Id 	= CATArrLoftUpdateHdr
+   DLL 	= ArrLoft
+   Cmd 	= CATArrLoftUpdateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 创建偏移传递线路
+   Id 	= CATRoutePathwayByOffsetHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrRouteByOffsetCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 全部更新
+   Id 	= ArrUpdateHeaderAsm
+   DLL 	= CATAssCommands
+   Cmd 	= CATAsmCmdUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 捕捉多边形中心
+   Id 	= SnapCenterPolygonHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapCenterPolygonCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉
+   Id 	= CATSnapResourcesHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapResourcesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 表达式
+   Id 	= CATArrReportExpHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExpressionsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 隐藏附件
+   Id 	= IgpAttachHideHdr
+   DLL 	= ArrIgpAttach
+   Cmd 	= CATArrShowAttachCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 断开连接...
+   Id 	= CATArrDisconnectHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrDisconnectRouteCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 从样条线传递
+   Id 	= CATRoutePathwayFromSplineHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrRouteFromSplineCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 镜像和复制
+   Id 	= CATSymCopyHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSymCopyCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 路径预留...
+   Id 	= CATPathwayHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrRouteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 系统装配...
+   Id 	= CATBoundarySystemHdr
+   DLL 	= ArrNet
+   Cmd 	= CATArrNetCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 选择/浏览...
+   Id 	= ArrPrjMngtHdr
+   DLL 	= PrjMngtUI
+   Cmd 	= CATPrjMngtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 更新尺寸
+   Id 	= CATSurroundingBoxHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrSurroundingBoxCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 编辑参数...
+   Id 	= EditPartParamsHdr
+   DLL 	= CATArrCatalogPlace
+   Cmd 	= CATArrEditPartParametersCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATCssSsrMenuMbr 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Starter Name=CATArrDefinitionId
+      Starter Name=CATArrBranchToStarCnxButton
+   Title=INSERT 	 Name=CATAfrInsertMnu 
+      Separator Name=CATCssSsrSepar0Sep
+      Starter Name=CATSsrPathwaySystemButton
+      Starter Name=CATSsrLogicalSetSystemButton
+      Starter Name=CATSsrPathwayButton
+      Starter Name=CATArrVolumeButton
+      Starter Name=ArrVolumeCopyButton
+      Starter Name=CATArrBoxAxisButton
+      Starter Name=CATSsrRouteFromSplineButton
+      Starter Name=CATSsrRouteByOffsetButton
+      Starter Name=CATSsrRouteThruPathwayButton
+      Starter Name=CATSsrOffsetSegmentButton
+      Starter Name=SsrBreakRunButton
+      Starter Name=SsrAdjustRunButton
+      Starter Name=TransferRunIcon
+      Starter Name=CATArrCatalogPlaceButton
+   Title=TOOLS 	 Name=CATAfrToolsMnu 
+      Separator Name=CATCssSsrToolSepar0Sep
+      Title=报告 	 Name=Reporter 
+         Starter Name=SsrReporterTool
+         Starter Name=SsrReportIcon
+      Title=设计工具 	 Name=CATDesignTools 
+         Starter Name=CATArrSnapSideButton
+         Starter Name=CATArrSnapPointButton
+         Starter Name=CATArrRotateSideButton
+         Starter Name=CATArrDistributeButton
+         Starter Name=ArrSnapTwoPlanesButton
+         Starter Name=ArrQuickTranslateButton
+         Separator Name=CATSeparLink1
+         Starter Name=CATArrSnapResourcesButton
+         Starter Name=ArrSnap3PointsButton
+         Starter Name=ArrSnapCenterPolygonButton
+         Starter Name=ArrSnapSurfaceButton
+         Starter Name=CATArrIgpAttachmentButton
+         Separator Name=CATSeparLink2
+         Starter Name=CATArrMirrorButton
+         Starter Name=CATArrSymCopyButton
+         Separator Name=CATSeparLink3
+         Starter Name=CATArrTransferButton
+         Starter Name=CATArrConnectorButton
+      Title=环境工具 	 Name=CATEnvironmentTools 
+         Starter Name=CATArrSetLocalAxisButton
+         Starter Name=SsrLocalAxisCompassButton
+         Separator Name=CATSeparLink4
+         Starter Name=CATArrSetEdgePlaneButton
+         Starter Name=CATArrSetAdvEdgePlaneButton
+         Separator Name=CATSeparLink5
+         Starter Name=CATArrUp1LevelButton
+         Starter Name=ArrActivateParentButton
+         Starter Name=CATArrSetAreaCurButton
+         Starter Name=CATArrSetNetCurButton
+         Separator Name=CATCssSeparLink6Str
+         Starter Name=CATArrBranchToStarCnxButton
+      Title=项目管理 	 Name=SsrPRMTools 
+         Starter Name=ArrPrjMngtStr
+         Starter Name=SsrPRMCheckerStr
+   Title=分析 	 Name=CATANALYZE 
+      Starter Name=CATArrAnalyzeNetworkButton
+      Starter Name=CATXDocCnxMenu
+      Separator Name=SsrAnalyzeSepar0
+      Starter Name=CATNavigation4DMeasureBetween
+      Starter Name=CATNavigation4DMeasureEdge
+      Starter Name=CATNavigation4DMeasureInertia
+
+ Title of the toolbar=系统空间预留 and is Name=CATCssSsrToolBar001Tlb
+   Title of the Icon Box=系统 	 Name=CATSystems 
+      Starter Name=CATSsrPathwaySystemButton
+      Starter Name=CATSsrLogicalSetSystemButton
+   Title of the Icon Box=PathToolbar 	 Name=PathToolbar 
+      Starter Name=CATSsrPathwayButton
+      Starter Name=SsrLoftCreationIcon
+   Title of the Icon Box=框 	 Name=CATCpaBoxesIcb 
+      Starter Name=CATArrVolumeButton
+      Starter Name=ArrVolumeCopyButton
+      Starter Name=CATArrBoxAxisButton
+   Title of the Icon Box=传递工具 	 Name=CATRouteTools 
+      Starter Name=CATSsrRouteFromSplineButton
+      Starter Name=CATSsrRouteByOffsetButton
+      Starter Name=CATSsrRouteThruPathwayButton
+      Starter Name=CATSsrOffsetSegmentButton
+      Starter Name=SsrBreakRunButton
+      Starter Name=SsrAdjustRunButton
+      Starter Name=TransferRunIcon
+      Starter Name=SolidRunButton
+   Title of the Icon Box=DisconnectTools 	 Name=DisconnectTools 
+      Starter Name=CATArrBranchToStarCnxButton
+      Starter Name=SsrDisconnectIcon
+      Starter Name=SsrConnectIcon
+
+ Title of the toolbar=产品放置工具 and is Name=SsrPrdPlaceTB
+   Starter Name=CATArrCatalogPlaceButton
+   Starter Name=CATLndPartPlaceButton
+   Starter Name=CATLndFlipButton
+   Title of the Icon Box=EditTools 	 Name=CATEditTools 
+      Starter Name=CATArrEditPartParamsButton
+      Starter Name=CATArrChangeReferenceButton
+
+ Title of the toolbar=常规设计工具 and is Name=CATCssArrSsrGenDesignTBTlb
+   Title of the Icon Box=对齐 	 Name=CATAlign 
+      Starter Name=CATArrSnapSideButton
+      Starter Name=CATArrSnapPointButton
+      Starter Name=CATArrRotateSideButton
+      Starter Name=CATArrDistributeButton
+      Starter Name=ArrSnapTwoPlanesButton
+      Starter Name=ArrQuickTranslateButton
+   Title of the Icon Box=Snap 	 Name=CATSnap 
+      Starter Name=CATArrSnapResourcesButton
+      Starter Name=ArrSnap3PointsButton
+      Starter Name=ArrSnapCenterPolygonButton
+      Starter Name=ArrSnapSurfaceButton
+      Starter Name=CATArrIgpAttachmentButton
+   Title of the Icon Box=镜像 	 Name=CATMirror 
+      Starter Name=CATArrMirrorButton
+      Starter Name=CATArrSymCopyButton
+   Starter Name=CATArrTransferButton
+   Starter Name=CATArrConnectorButton
+   Title of the Icon Box=ShowHide 	 Name=ShowHide 
+      Starter Name=ArrIgpAttachHideButton
+      Starter Name=ArrIgpAttachShowButton
+
+ Title of the toolbar=常规环境工具 and is Name=CATCssArrSsrGenEnvTBTlb
+   Title of the Icon Box=DetailInfoMode 	 Name=DetailInfoMode 
+      Starter Name=ArrDetailInfoButton
+      Starter Name=CATArrSetLocalAxisButton
+      Starter Name=ArrSetLocalAxisCompassButton
+      Starter Name=ArrSetPreviousLocalAxisButton
+   Title of the Icon Box=定义平面 	 Name=CATDefinePlane 
+      Starter Name=CATArrSetEdgePlaneButton
+      Starter Name=CATArrSetAdvEdgePlaneButton
+   Starter Name=CATArrSnapModeButton
+   Starter Name=CATArrCurrentStepValue
+   Title of the Icon Box=切换模式 	 Name=CATToggleMode 
+      Starter Name=ArrManipulationModeButton
+      Starter Name=CATArrDimModeButton
+   Title of the Icon Box=活动对象 	 Name=CATActiveObject 
+      Starter Name=CATArrUp1LevelButton
+      Starter Name=ArrActivateParentButton
+      Starter Name=CATArrSetAreaCurButton
+      Starter Name=CATArrSetNetCurButton
+   Title of the Icon Box=DMUDynClashIconBox 	 Name=DMUDynClashIconBox 
+      Starter Name=DynClashOff
+      Starter Name=DynClashOn
+      Starter Name=DynClashStop
+
+ Title of the toolbar=测量 and is Name=PslMeasureTB
+   Starter Name=CATNavigation4DMeasureBetween
+   Starter Name=CATNavigation4DMeasureEdge
+   Starter Name=CATNavigation4DMeasureInertia
+   Starter Name=ArrMeasurementIcon
+
+ Title of the toolbar=更新 and is Name=CATCssSsrUpdateTBTlb
+   Starter Name=CATAsmUpdateButton

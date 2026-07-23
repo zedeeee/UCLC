@@ -1,0 +1,358 @@
+Workshop Exposition of CATCsdSheetmetalAeroDesignWkb 
+
+1- Header List 
+
+Title= Flanged Hole...
+   Id 	= SmaExtrudedHole
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaCreateFlangedHoleCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Circular Pattern...
+   Id 	= SmaCircPattern
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaCreateCircPatternCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Corner...
+   Id 	= SmCorner
+   DLL 	= CATSmUI
+   Cmd 	= CATSmCornerCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Flanged Cut Out...
+   Id 	= SmaExtendedExtrudedHole
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaCreateFlangedCutoutCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= User Flange...
+   Id 	= SmFlange
+   DLL 	= CATSmUI
+   Cmd 	= CATSmCreateFlangeCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Surfacic Flange...
+   Id 	= FlangeSurf
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaDFlangeSurfCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Curve Stamp...
+   Id 	= SmaCurveStamp
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaCreateCurveCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Line...
+   Id 	= CATCsdLineSmaHeaderHdr
+   DLL 	= CATGuiLine
+   Cmd 	= CATGSMUILine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Bead...
+   Id 	= SmaBead
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaCreateBeadCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Point...
+   Id 	= CATCsdPointSmaHeaderHdr
+   DLL 	= CATGuiPoint
+   Cmd 	= CATGSMUIPoint
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Fold/Unfold...
+   Id 	= CATUnfoldHdr
+   DLL 	= CATSmUI
+   Cmd 	= CATSmUnfoldCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Hole...
+   Id 	= SmHole3D
+   DLL 	= CATSmUI
+   Cmd 	= CATSmUIHole3DCreateCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Cut Out...
+   Id 	= CATCsdCutOutHdr
+   DLL 	= CATSmUI
+   Cmd 	= CATSmCutOutCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= User Pattern...
+   Id 	= SmaUserPattern
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaCreateUserPatternCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Surface Stamp...
+   Id 	= SmaSurfaceStamp
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaCreateSurfaceCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Corner Relief...
+   Id 	= CATCsdSmCornerReliefHdr
+   DLL 	= CATSmUI
+   Cmd 	= CATSmCornerReliefCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Plane...
+   Id 	= CATCsdPlaneSmaHeaderHdr
+   DLL 	= CATGuiPlane
+   Cmd 	= CATGSMUIPlane
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Multi Viewer...
+   Id 	= SmMultiView
+   DLL 	= CATSmUI
+   Cmd 	= CATSmMultiViewCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Tear Drop...
+   Id 	= SmTearDrop
+   DLL 	= CATSmUI
+   Cmd 	= CATSmCreateTearDropCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Rectangular Pattern...
+   Id 	= SmaRectPattern
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaCreateRectPatternCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Web...
+   Id 	= CATCsdWebHdr
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaDWebCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Circular Cutout...
+   Id 	= CATCsdHoleHdr
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaHoleCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Chamfer...
+   Id 	= SmChamfer
+   DLL 	= CATSmUI
+   Cmd 	= CATSmChamferCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Stiffening Rib...
+   Id 	= SmaStiffeningRib
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaCreateStiffeningRibCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Flange...
+   Id 	= SmaNumFlange
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaCreateNumFlangeCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Circular Stamp...
+   Id 	= SmaPointStamp
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaCreatePointCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Twin Joggle...
+   Id 	= CATCsdTwinJoggleHdr
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaDTwinJoggleCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Hem...
+   Id 	= SmHem
+   DLL 	= CATSmUI
+   Cmd 	= CATSmCreateHemCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Point or Curve Mapping...
+   Id 	= CATCsdMappingHdr
+   DLL 	= CATSmUI
+   Cmd 	= CATSHMMappingCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= User Stamp...
+   Id 	= SmaUserStamp
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaUserStampCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Joggle...
+   Id 	= CATCsdJoggleHdr
+   DLL 	= CATSmaDUI
+   Cmd 	= CATSmaDJoggleCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Flange...
+   Id 	= SmNumFlange
+   DLL 	= CATSmUI
+   Cmd 	= CATSmCreateNumFlangeCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+
+2- Access List 
+
+ Name of the menubar=CATCsdSmaDMenuMbr 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Separator Name=CATNewSeparator003
+      Starter Name=CATUpdate
+      Separator Name=CATNewSeparator005
+      Starter Name=CATActiveObject
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=InsertGSMBody
+      Starter Name=InsertShapeBody
+      Title=Sketch 	 Name=ContainerSketcherMenu 
+         Starter Name=SketchMenu
+         Starter Name=SketchPositioningMenu
+      Separator Name=SeparatorMenu1
+      Starter Name=ShePartMenu
+      Starter Name=WebMenu
+      Starter Name=CATFlangeSurf
+      Starter Name=CATJoggle
+      Starter Name=CATTwinJoggle
+      Title=Swept Walls 	 Name=SmFlangeContMenu 
+         Starter Name=SmNumFlangeMenu
+         Starter Name=SmHemMenu
+         Starter Name=SmTearDropMenu
+         Starter Name=SmFlangeMenu
+      Separator Name=pSeparatorMenu2
+      Title=Fold/Unfold views management 	 Name=Unfold 
+         Starter Name=CATUnfold
+         Starter Name=SmMultiView
+      Separator Name=pSeparatorMenu3
+      Starter Name=CutOutMenu
+      Starter Name=HoleMenu
+      Starter Name=pHole3DMenu
+      Title=Stampings 	 Name=pStampMenu 
+         Starter Name=pExtrudedHoleMenu
+         Starter Name=pBeadMenu
+         Starter Name=pPointStampMenu
+         Starter Name=pSurfaceStampMenu
+         Starter Name=pExtendedExtrudedHoleStampMenu
+         Starter Name=pCurveStampMenu
+         Starter Name=pSmaStiffeningRibMenu
+         Starter Name=pUserStampMenu
+      Starter Name=SmCornerReliefMenu
+      Starter Name=MappingMenu
+      Title=Corner/Chamfer 	 Name=SmCornerChamferMenu 
+         Starter Name=CornerMenu
+         Starter Name=ChamferMenu
+      Title=Pattern 	 Name=PatternMenu 
+         Starter Name=RectPatternMenu
+         Starter Name=CircPatternMenu
+         Starter Name=UserPatternMenu
+      Separator Name=SeparatorMenu4
+      Title=Constraint 	 Name=SmaDConstraint 
+         Starter Name=ConstraintMenu
+         Starter Name=ConstraintWithPanelMenu
+      Separator Name=pSeparatorMenu7
+      Title=Reference elements 	 Name=pShapeMenu 
+         Starter Name=CATPoint
+         Starter Name=CATLine
+         Starter Name=CATPlane
+      Separator Name=SeparatorMenu5
+      Title=知识工程模板 	 Name=CATAfrPKTMenu 
+         Starter Name=PKTCreatePowerCopyHdr
+         Starter Name=PKTCreateUserFeatureHdr
+         Starter Name=PKTCreateDocTemplateHdr
+         Starter Name=PKTSaveInCatalogHdr
+      Starter Name=PKTInstanciateFromDocHdr
+      Starter Name=PKTInstanciateSelectHdr
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Starter Name=OpenCatalog
+      Separator Name=pSeparatorMenu6
+
+ Title of the toolbar=Select and is Name=SmaDSelect
+   Starter Name=CATSelect
+
+ Title of the toolbar=Sketcher and is Name=SmaDSketch
+   Title of the Icon Box=Sketcher 	 Name=SmaDContainerSketch 
+      Starter Name=CATSketch
+      Starter Name=SketchPositioning
+
+ Title of the toolbar=Aerospace Sheet Metal  and is Name=SmaDesign
+   Starter Name=CATShePart
+Separator Name=SmaDSeparator0
+   Starter Name=CATWeb
+   Starter Name=CATFlangeSurf
+   Starter Name=CATJoggle
+   Starter Name=CATTwinJoggle
+   Title of the Icon Box=Swept Walls 	 Name=SmFlangeCont 
+      Starter Name=SmaNumFlange
+      Starter Name=SmHem
+      Starter Name=SmTearDrop
+      Starter Name=SmFlange
+Separator Name=SmaDSeparator1
+   Title of the Icon Box=Fold/Unfold views management 	 Name=Unfold 
+      Starter Name=CATUnfold
+      Starter Name=SmMultiView
+Separator Name=SmaDSeparator2
+   Starter Name=CATSmCutOut
+   Title of the Icon Box=Holes 	 Name=SmHoleCont 
+      Starter Name=CATSmHole3D
+      Starter Name=CATSmHole
+   Title of the Icon Box=Stampings 	 Name=SmStamp 
+      Starter Name=SmaExtrudedHole
+      Starter Name=SmaBead
+      Starter Name=SmaPointStamp
+      Starter Name=SmaSurfaceStamp
+      Starter Name=SmaExtendedExtrudedHole
+      Starter Name=SmaStiffeningRib
+      Starter Name=SmaCurveStamp
+      Starter Name=SmaUserStamp
+   Starter Name=CATSmCornerRelief
+   Starter Name=CATSHMMapping
+   Title of the Icon Box=Corner/Chamfer 	 Name=SmCornerChamfer 
+      Starter Name=CATCorner
+      Starter Name=CATChamfer
+   Title of the Icon Box=Pattern 	 Name=CATPattern 
+      Starter Name=CATRectPattern
+      Starter Name=CATCircPattern
+      Starter Name=CATUserPattern
+
+ Title of the toolbar=Constraint and is Name=SmaDConstraint
+   Starter Name=CATConstraintWithPanel
+   Starter Name=CATConstraint
+
+ Title of the toolbar=Reference Elements (Extended) and is Name=SmaDWireframe1
+   Starter Name=CATPoint
+   Starter Name=CATLine
+   Starter Name=CATPlane
+
+ Title of the toolbar=Tools and is Name=SmaDTools
+   Starter Name=CATUpdate
+   Starter Name=CATAxisSystem
+   Starter Name=CATConstraint
+   Starter Name=CATDatumMode
+   Starter Name=OnlyCurrentSolidMode

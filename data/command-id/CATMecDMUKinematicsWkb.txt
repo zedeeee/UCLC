@@ -1,0 +1,345 @@
+Workshop Exposition of CATMecDMUKinematicsWkb 
+
+1- Header List 
+
+Title= 更新...
+   Id 	= CATMecKinUpdateHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiKiUpdateCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 固定零件...
+   Id 	= CATMecCreateFixPartHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiFixPartBuilder
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 装配转换...
+   Id 	= CATMecCreateMechFromCstHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiMechFromCstBuilder
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 隐藏自由度
+   Id 	= KinDOFHide
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiHideShowDOFCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 电缆...
+   Id 	= CATMecNewCableHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointCompoundBuilder
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 点曲面...
+   Id 	= CATMecNewPointSurfaceHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointPointSurfaceBuilder2
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 新机械装置
+   Id 	= CATMecCreateMechanismHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiMechanismBuilder
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 圆柱...
+   Id 	= CATMecNewActuatorHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointActuatorBuilder
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 齿轮...
+   Id 	= CATMecNewGearHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointCompoundBuilder
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 使用命令进行模拟...
+   Id 	= CATMecKinematicsSimulationHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiKiExploreCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 重置位置
+   Id 	= KinReset
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiKiResetCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 使用法则曲线进行模拟...
+   Id 	= CATMecSimulationWithLawsHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiKiExploreWithLawsCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 导入子机制...
+   Id 	= CATMecImportSubMechsHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiKiImportSubMechsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 扫掠包络体...
+   Id 	= CATMecSimulationSweptHdr
+   DLL 	= SpaceManagement
+   Cmd 	= CATDMOSweptVolumeCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= CV ...
+   Id 	= CATMecNewCVHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointUniversalBuilder
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 机械装置修饰...
+   Id 	= CATMechanismDressUpHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiKiMechanismDressupCommand2
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 新甘特图窗口
+   Id 	= CATFisGanttHdr
+   DLL 	= ProcessModelerVisu
+   Cmd 	= CATSPPGanttWndOutOfProcessDoc
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 选择上下文产品
+   Id 	= SelectContextProduct
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiSelectContextProdCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 轨迹...
+   Id 	= CATMecKinTracesHdr
+   DLL 	= KV5OUTPUT
+   Cmd 	= CATSiKiTraceCommand2
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示自由度
+   Id 	= KinDOFShow
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiHideShowDOFCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 点曲线...
+   Id 	= CATMecNewPointCurveHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointPointCurveBuilder2
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 通用...
+   Id 	= CATMecNewUniversalHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointUniversalBuilder
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 架子...
+   Id 	= CATMecNewRackHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointCompoundBuilder
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 机械装置分析...
+   Id 	= CATMecKinematicsPropertiesHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiKiPropertiesCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 平面...
+   Id 	= CATMecNewPlanarHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointPlanarBuilder
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 旋转...
+   Id 	= CATMecNewRevoluteHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointRevoluteBuilder2
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 速度和加速度
+   Id 	= NewSpeedAndAcc
+   DLL 	= KV5OUTPUT
+   Cmd 	= CATSpeedAndAccCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 球面...
+   Id 	= CATMecNewSphericalHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointSphericalBuilder
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 基于轴的接合...
+   Id 	= CATMecNewAxisJointHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointAxisBuilder
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 螺钉...
+   Id 	= CATMecNewScrewHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointActuatorBuilder
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 棱形...
+   Id 	= CATMecNewPrismaticHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointPrismaticBuilder
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 滚动曲线...
+   Id 	= CATMecNewRollCurveHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointRollCurveBuilder2
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 刚性...
+   Id 	= CATMecNewRigidHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointRigidBuilder
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 滑动曲线...
+   Id 	= CATMecNewSlideCurveHdr
+   DLL 	= CATMechanisms
+   Cmd 	= CATSiJointSlideCurveBuilder2
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATNavMenu 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=CATSeparLink1
+      Starter Name=CATMecInsertCreateNewKinStr
+      Title=新接合点 	 Name=CATMecInsertJointSnu 
+         Starter Name=CATMecInsertDNewRevoluteStr
+         Starter Name=CATMecInsertNewPrismaticStr
+         Starter Name=CATMecInsertNewActuatorStr
+         Starter Name=CATMecInsertNewScrewStr
+         Starter Name=CATMecInsertNewSphericalStr
+         Starter Name=CATMecInsertNewPlanarStr
+         Starter Name=CATMecInsertNewRigidStr
+         Starter Name=CATMecInsertNewPointCurveStr
+         Starter Name=CATMecInsertNewSlideCurveStr
+         Starter Name=CATMecInsertNewRollCurveStr
+         Starter Name=CATMecInsertNewPointSurfaceStr
+         Starter Name=CATMecInsertNewUniversalStr
+         Starter Name=CATMecInsertCVJointStr
+         Starter Name=CATMecInsertNewGearStr
+         Starter Name=CATMecInsertRackJointStr
+         Starter Name=CATMecInsertCableJointStr
+      Starter Name=CATMecInsertCreateFixPartStr
+      Separator Name=CATSeparLink2
+      Starter Name=CATADDEXPERIMENT
+      Starter Name=CATADDCLASH
+      Starter Name=CATADDDISTANCE
+      Starter Name=CATADDGROUP
+      Separator Name=CATSeparLink3
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=CATSeparPublish
+      Title=发布 	 Name=CATMecDMUKinPublishSnu 
+         Starter Name=CATToolsStartPublish
+         Starter Name=CATToolsStopPublish
+      Title=模拟 	 Name=DMUKinSimulation 
+         Starter Name=ToolsKINCompile
+         Starter Name=ToolsKINFilmCompile
+   Title=分析 	 Name=CATANALYZE 
+      Starter Name=CATMecMenuKinPropertiesStr
+      Separator Name=CATSeparLink4
+      Starter Name=CATMESSAGE
+      Starter Name=CATDMUNavigatorSelection
+   Title=窗口 	 Name=CATAfrWindowMnu 
+      Starter Name=CATFisGanttStr
+
+ Title of the toolbar=DMU 查看 and is Name=CATMecDMUKinematicsViewingTlb
+   Starter Name=CATDMUNavigatorLookAt
+   Starter Name=CATDMUNavigatorPreviewStep
+   Starter Name=CATDMUNavigatorNextStep
+   Starter Name=CATDMUNavigatorMagnifier
+   Starter Name=CATDMUNavigatorDepthEffect
+   Starter Name=CATDMUNavigatorGround
+   Starter Name=CATDMUNavigatorLighting
+
+ Title of the toolbar=DMU 测量 and is Name=CATDMUMeasureToolBar
+   Starter Name=CATMecDMUKinematicsMeasureBetweenStr
+   Starter Name=CATMecDMUKinematicsMeasureItemStr
+
+ Title of the toolbar=DMU 运动机构 and is Name=CATMecDMUKinematicsTlb
+   Title of the Icon Box=模拟 	 Name=CATMecDMUSimulationContainerIcb 
+      Starter Name=CATMecNavigation4DExploreStr
+      Starter Name=CATMecNavigation4DSimulWithLawsStr
+   Starter Name=CATMecNavigationKinDressUpStr
+Separator Name=CATMecSeparKinematic1Sep
+   Title of the Icon Box=运动接合点 	 Name=CATMecDMUNewJointsToolBarIcb 
+      Starter Name=CATMecNavigation4DNewRevoluteStr
+      Starter Name=CATMecNavigation4DNewPrismaticStr
+      Starter Name=CATMecNavigation4DNewActuatorStr
+      Starter Name=CATMecNavigation4DNewScrewStr
+      Starter Name=CATMecNavigation4DNewSphericalStr
+      Starter Name=CATMecNavigation4DNewPlanarStr
+      Starter Name=CATMecNavigation4DNewRigidStr
+      Starter Name=CATMecNavigation4DNewPointCurveStr
+      Starter Name=CATMecNavigation4DNewSlideCurveStr
+      Starter Name=CATMecNavigation4DNewRollCurveStr
+      Starter Name=CATMecNavigation4DNewPointSurfaceStr
+      Starter Name=CATMecNavigation4DNewUniversalStr
+      Starter Name=CATMecNavigation4DCVJointStr
+      Starter Name=CATMecNavigation4DNewGearStr
+      Starter Name=CATMecNavigation4DRackJointStr
+      Starter Name=CATMecNavigation4DCableJointStr
+      Starter Name=CATMecNavigation4DAxisJointStr
+   Starter Name=CATMecNavigation4DCreateFixPartStr
+   Starter Name=CATMecNavigation4DCreateMechFromCstStr
+   Starter Name=NavigationNewSpeedAndAcc
+Separator Name=CATMecSeparKinematic2Sep
+   Starter Name=CATMecNavigationKinPropertiesStr
+
+ Title of the toolbar=DMU 一般动画 and is Name=CATMecDMUKinematicsAnimationTlb
+   Title of the Icon Box=DMUGenericSimulationCommands 	 Name=DMUGenericSimulationCommands 
+      Starter Name=CATDMUNavigatorExperiment
+      Starter Name=CATDMUNavigatorCompile
+      Starter Name=CATDMUNavigatorReplay
+   Title of the Icon Box=DMUPlayerCommands 	 Name=DMUPlayerCommands 
+      Starter Name=Navigation4DPlayer
+      Starter Name=Navigation4DSequence
+   Starter Name=CATDMUDynClashIconBox
+   Starter Name=CATNavigation4DSwepVol
+   Starter Name=CATMecNavigationKinTracesStr
+
+ Title of the toolbar=DMU 空间分析 and is Name=CATMecDMUKinematicsCheckTlb
+   Starter Name=CATNavigation4DClash
+   Starter Name=CATNavigation4DMeasure
+
+ Title of the toolbar=运动机构更新 and is Name=CATMecDMUKinematicsUpdateTlb
+   Starter Name=CATMecNavigation4DKinUpdateStr
+   Starter Name=CATMecNavigation4DImportSubMechsStr
+   Starter Name=Navigation4DKinReset

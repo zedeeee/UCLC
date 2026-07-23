@@ -1,0 +1,1900 @@
+Workshop Exposition of CAT2DLMainWkb 
+
+1- Header List 
+
+Title= 3D 平面
+   Id 	= CAT2DLPlaneHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLPlaneCreateCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 水平位置
+   Id 	= CATDrwXPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除中断
+   Id 	= CATDrwInterruptDimRemHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CATD2cDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平行
+   Id 	= CATDrwDimCheckParallelHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 颜色
+   Id 	= DrwColor
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 倒圆角
+   Id 	= CAT2DCornerHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCorner
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 倒角尺寸
+   Id 	= DrwDimChamf
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwChamferDimCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 尺寸系统选择模式
+   Id 	= CATDrwDimSystemSelectModHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 将尺寸重新分组
+   Id 	= CATDrwRegroupDimHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcManageDimInSystemCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 矩形
+   Id 	= CAT2DRectangleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 测量...
+   Id 	= CATMeasureItemHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 封闭弧
+   Id 	= CAT2DCloseHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSClose
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 草图分析
+   Id 	= CATSKU2DAnalyseHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DAnalysis
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 基准目标
+   Id 	= DrwDatumTarg
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLDatumTargetCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 斜置矩形
+   Id 	= CAT2DOrientedRectangleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRectOrient
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 着色 (SHD)
+   Id 	= CATAfrShadingHdr
+   DLL 	= CAT2DLRenderStyle
+   Cmd 	= CAT2DLRenderStyleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 样条线
+   Id 	= CAT2DSplineHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSSpline
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 轮廓角度视图
+   Id 	= CAT2DLCreateMPSVHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLNewSectionAndAuxiliaryViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 相切弧
+   Id 	= 2DArc1Tgt
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArc1Tgt
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 多边形
+   Id 	= CAT2DPolygonHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPolygon
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 使用坐标创建点
+   Id 	= CAT2DPointCoordHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPointXY
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 3D 轴
+   Id 	= CAT2DLProfileAxisHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLAxisCreateCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 删除显示视图的历史记录
+   Id 	= CATDrwDeleteDisplayViewHistoryHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcDeleteDisplayViewHistoryCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 分析显示模式
+   Id 	= DrwDimDesignMode
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 直径尺寸
+   Id 	= DrwDimDiameter
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLDiameterDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= FTA 中的视图布局
+   Id 	= CAT2DLViewLayoutHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLViewLayoutCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 基准定位器...
+   Id 	= DatumLocator
+   DLL 	= CATDiaGDT
+   Cmd 	= CATDrwDatumLocatorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 新建详图
+   Id 	= DrwCreateSheetOfDetail
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLSheetCreate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 三切线圆
+   Id 	= CAT2DCircle3TangentHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DCircle3Tangent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 动态移除隐藏线
+   Id 	= CATAfrHrdHdr
+   DLL 	= CAT2DLRenderStyle
+   Cmd 	= CAT2DLRenderStyleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 直线
+   Id 	= CAT2DLineHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSLine
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 带引出线的文本
+   Id 	= DrwTextLeader
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLTextCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 含边线着色
+   Id 	= CATAfrShadingWithEdgesHdr
+   DLL 	= CAT2DLRenderStyle
+   Cmd 	= CAT2DLRenderStyleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 实例化固联
+   Id 	= 2DInstantiateFixTogether
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcCompInstantiationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 参考角度视图
+   Id 	= CAT2DLCreateViewFromHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLDesignViewCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 居中矩形
+   Id 	= 2DCenteredRectangle
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCenteredRect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 补充
+   Id 	= CATDrwDimCheckComplementaryHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 螺纹尺寸
+   Id 	= CATDrwDimThreadHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimThreadCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 新建图纸
+   Id 	= DrwCreateSheet
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLSheetCreate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 固联
+   Id 	= 2DFixTogether
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSFixTogether
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 具有参考的中心线
+   Id 	= DrwCenterLineRef
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLCenterLineRefCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 更新
+   Id 	= CAT2DLUpdate3DCmdHdr
+   DLL 	= CAT2DLUpdate
+   Cmd 	= CAT2DLUpdateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 零件序号
+   Id 	= DrwBalloon
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLBalloonCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 含材料着色
+   Id 	= CATAfrShadingWithTextureHdr
+   DLL 	= CAT2DLRenderStyle
+   Cmd 	= CAT2DLRenderStyleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 4
+   Id 	= CATDrwDimCheckSector4Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 1
+   Id 	= CATDrwDimCheckSector1Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移
+   Id 	= CAT2DOffsetContourHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DOffsetContour
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 2
+   Id 	= CATDrwDimCheckSector2Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扇形 3
+   Id 	= CATDrwDimCheckSector3Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 接触约束
+   Id 	= CAT2DContactConstraintHdr
+   DLL 	= CATConstraintModelerUI
+   Cmd 	= CATCom2DContactConstraint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 轴测视图
+   Id 	= CAT2DLCreateAxonometricViewHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLDesignViewCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 堆叠式尺寸
+   Id 	= DrwDimStack
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLQuickDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 文本
+   Id 	= DrwText
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLTextCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 转换为半径
+   Id 	= CATDrwDimSwapToRadHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 偏移
+   Id 	= CATDrwDimCheckOffsetHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 2D 部件
+   Id 	= CAT2DLCreateViewDetailHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLDetailViewCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 不可视
+   Id 	= CAT2DLBckgndNoHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLBckgndVisuCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 弧
+   Id 	= CAT2DArcRadiusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArcCtrRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 圆
+   Id 	= CAT2DCircleRadiusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCircleCtrRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 平移
+   Id 	= CAT2DTranslateHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSTranslate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 表
+   Id 	= CATDrwTableHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDftTableCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 不可拾取
+   Id 	= CAT2DLBckgndNoPickHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLBckgndVisuCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 为每个视图显示指定的背景
+   Id 	= CAT2DLDispBackAsInFilterHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 含材料和边线着色
+   Id 	= CATAfrShadingWithTextureAndEdgesHdr
+   DLL 	= CAT2DLRenderStyle
+   Cmd 	= CAT2DLRenderStyleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 断开
+   Id 	= CAT2DBreakHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSBreak
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 从两个平面新建截面
+   Id 	= CAT2DLSectionFromPlaneHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLDesignViewCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 轮廓
+   Id 	= CAT2DContourHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSContour
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 累积尺寸
+   Id 	= DrwDimCumul
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLQuickDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 插入符号
+   Id 	= CATDrwDimSymbolHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 通过焦点创建双曲线
+   Id 	= CAT2DHyperbolaFocusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSHyperbolaFocus
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 将尺寸分组
+   Id 	= CATDrwGroupDimHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcManageDimInSystemCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 三点弧
+   Id 	= CAT2DArc3PointsHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArc3Pts
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 长度/距离尺寸
+   Id 	= DrwDimLengthDist
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLLengthDistanceDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 图纸背景
+   Id 	= CATDrwEditFrame
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDrwEditFrame
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 字体大小
+   Id 	= CATDrwFontSizeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 草图求解状态
+   Id 	= 2DLightAnalyse
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DLightAnalyse
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 角平分线
+   Id 	= CAT2DBisectLineHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DBisectingLine
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 排列
+   Id 	= DrwLineUp
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcLineUpCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 使用元素对齐视图
+   Id 	= CATDrwAlignViewsEltHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLAlignViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 使用坐标创建圆
+   Id 	= CAT2DCircleCoordHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCircleXYRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 创建/修改裁剪
+   Id 	= CATDrwClippingDimAddHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwClippingDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 方向
+   Id 	= CATDrwOrientationHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 选择性粘贴...
+   Id 	= CATAfrPasteSpecialHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwPasteSpecialCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 上标/下标
+   Id 	= CATDrwXScriptHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 投影 3D 轮廓边线
+   Id 	= CAT2DLUseEdgeSilhHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLUseEdgeSilhCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 实长尺寸
+   Id 	= CATDrwDimCheckTrueDimHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 自定义视图
+   Id 	= CATAfrCustomizeViewModeHdr
+   DLL 	= CAT2DLRenderStyle
+   Cmd 	= CAT2DLRenderStyleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 起始受限的三点弧
+   Id 	= CAT2DArc3Points132Hdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArc3Pts132
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 替换...
+   Id 	= DrwDSAReplace
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwReplaceTextCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 线型
+   Id 	= DrwLineType
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 缩放
+   Id 	= CAT2DScaleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSScale
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 与 3D 元素相交
+   Id 	= CAT2DLUseEdgeIntHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLUseEdgeCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 半径尺寸
+   Id 	= DrwDimRadius
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLRadiusDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 视图背景操作
+   Id 	= CAT2DLViewBackManipHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 主视图
+   Id 	= CAT2DLCreateViewHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLPrincipalViewsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 自动搜索
+   Id 	= CAT2DAutoSearchHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DAutoSearch2
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 点对齐
+   Id 	= CATSnapGridHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 垂直位置
+   Id 	= CATDrwYPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 居中平行四边形
+   Id 	= 2DCenteredParallelogram
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCenteredParallelogram
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 平行四边形
+   Id 	= CAT2DParallelogramHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSParallelogram
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 重设尺寸
+   Id 	= CATDrwRerootDimHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLRerouteDimCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 剪切
+   Id 	= CATAfrCutHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwCCP_CutCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 六边形
+   Id 	= CAT2DHexagonHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DHexagon
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 坐标尺寸
+   Id 	= DrwDimCoord
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLCoordCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 替换轮廓
+   Id 	= CAT2DLReplaceProfileHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLReplaceProfileCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 加下划线/加上划线
+   Id 	= CATDrwXLineHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移 3D 元素
+   Id 	= CAT2DLUseEdgeOffsetHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DOffsetContour
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 轴线
+   Id 	= DrwAxisLine
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLAxisLineCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 样式
+   Id 	= CATDrwStyleHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 轴线和中心线
+   Id 	= DrwAxisCenter
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLAxisCenterCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 实例化 2D 部件
+   Id 	= DrwDitto
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcCompInstantiationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建已检测到的约束
+   Id 	= DrwCstCreation
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 页面设置...
+   Id 	= DrwPageSetup
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwPageSetup
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 添加引出线
+   Id 	= DrwLeaderAdd
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLLeaderAddCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 对齐点
+   Id 	= 2DAlignPoints
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DAlignPoints
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 线宽
+   Id 	= DrwThickness
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 线性
+   Id 	= CATDrwDimCheckLinearHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 测量间距...
+   Id 	= CATMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 构造元素
+   Id 	= 2DEditConstructionElement
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComConstructionElement
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 隔离点
+   Id 	= 2DIsolateSharedPoints
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DIsolateSharedPoints
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 链式尺寸
+   Id 	= CATDrwDimChainHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLQuickDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建中断
+   Id 	= CATDrwInterruptDimAddHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CATD2cDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 将尺寸取消分组
+   Id 	= CATDrwUngroupDimHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcManageDimInSystemCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 扩展至中心
+   Id 	= CATDrwDimCheckToCenterHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 手动定位文本
+   Id 	= CATDrwCalloutTextFreeCheckHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除隐藏线 (HLR)
+   Id 	= CATAfrHlrHdr
+   DLL 	= CAT2DLRenderStyle
+   Cmd 	= CAT2DLRenderStyleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 带边着色但不光顺边线
+   Id 	= ShadingWithEdgesWithoutSmoothEdges
+   DLL 	= CAT2DLRenderStyle
+   Cmd 	= CAT2DLRenderStyleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 目录浏览器...
+   Id 	= CatalogBrowser
+   DLL 	= CATCuiBrowser
+   Cmd 	= CATCuiSelectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 低亮度
+   Id 	= CAT2DLBckgndLowIntHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLBckgndVisuCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 添加相切曲率
+   Id 	= 2DAddControlPointTangencyCurv
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DCstPointTangencyCurv
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 强制标注元素尺寸
+   Id 	= CATDrwDimCheckAutoHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对称
+   Id 	= CAT2DPureSymmetryHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcSymmetryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 钥匙孔轮廓
+   Id 	= CAT2DKeyHoleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DKeyHole
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示网格
+   Id 	= DisplayGrid
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 查找...
+   Id 	= DrwDSAFind
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwFindTextCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 标准
+   Id 	= CAT2DLBckgndHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLBckgndVisuCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 三点圆
+   Id 	= CAT2DCircle3PointsHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCircle3Pts
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 修改区域填充
+   Id 	= CATDrwAreaFillModHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATAreaFillModificationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 创建区域填充
+   Id 	= CATDrwAreaFillCreatHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATAreaFillCreationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 角度尺寸
+   Id 	= DrwDimAngle
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLAngleDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 切除面
+   Id 	= CAT2DLClippingPlaneHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 水平
+   Id 	= CAT2DHorizontalHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSHorizontal
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 形位公差
+   Id 	= DrwGeoTol
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLGDTCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 阵列
+   Id 	= DrwPattern
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 打印...
+   Id 	= CATAfrPrintHdr
+   DLL 	= CATDrafting2DLInfraUI
+   Cmd 	= CAT2DLPrintCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转换为直径
+   Id 	= CATDrwDimSwapToDiaHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 在 3D 中显示视图
+   Id 	= CAT2DLDisplayViewIn3DHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CATD2cDisplayViewIn3DCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 元素定位
+   Id 	= DrwPositioning
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwPositioningCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 删除
+   Id 	= CATAfrDeleteHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwCCP_DeleteCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 布局视图过滤器...
+   Id 	= CAT2DLFiltersHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLLayoutViewFiltersCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 线框 (NHR)
+   Id 	= CATAfrNhrHdr
+   DLL 	= CAT2DLRenderStyle
+   Cmd 	= CAT2DLRenderStyleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 曲率分析
+   Id 	= 2DCurvatureAnalysis
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DCurvatureAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 移除裁剪
+   Id 	= CATDrwClippingDimRemHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwClippingDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 二次曲线
+   Id 	= 2DConicCurve
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSConicCurve
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 分解
+   Id 	= CAT2DExplodeHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSExplodePolyline
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 基准特征
+   Id 	= DrwDatumFeat
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLDatumFeatureCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 公差
+   Id 	= DrwTolerance
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 取消固定
+   Id 	= CAT2DUnfixHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSUnfix
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 圆柱形延长孔
+   Id 	= CAT2DTrouOblongArcHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DTrouOblongArc
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 包括背景
+   Id 	= CAT2DLIntegrateBackgroundInViewFrameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 几何约束
+   Id 	= DrwConstraint
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwGeomCstCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 含边线和隐藏边线着色
+   Id 	= ShadingWithEdgesAndHiddenEdges
+   DLL 	= CAT2DLRenderStyle
+   Cmd 	= CAT2DLRenderStyleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 隔离
+   Id 	= CATSKU2DIsolateHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSIsolate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 焊接符号
+   Id 	= DrwWeldingSymbol
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLWeldingCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 还原值位置
+   Id 	= DrwRestoreValuePosition
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwRestoreValuePosCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 精度
+   Id 	= DrwPrecision
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 投影点
+   Id 	= CAT2DPointProjectHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DPointProject
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 螺纹
+   Id 	= DrwThread
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLThreadCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 具有参考的螺纹
+   Id 	= DrwThreadRef
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLThreadRefCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 斜体
+   Id 	= CATDrwItalicHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 箭头
+   Id 	= DrwArrow
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLArrowCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 从 CSV 创建表
+   Id 	= CATDrwTableFromCSVHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDrwTableFromCSVCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 对齐
+   Id 	= CATDrwJustificationHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 图片...
+   Id 	= DrwImportPicture
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwImportPictureCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕获
+   Id 	= CATDrwCaptureDisplayAreaHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcCaptureDisplayAreaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 固定
+   Id 	= CAT2DFixHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSFix
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 数字显示说明
+   Id 	= DrwNumDisp
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 定位点
+   Id 	= CATDrwTextAnchorHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 编辑
+   Id 	= CATDrwEditDisplayAreaHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcEditDisplayAreaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 延长孔
+   Id 	= CAT2DTrouOblongHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DTrouOblong
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 旋转
+   Id 	= CAT2DRotateHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRotate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 点
+   Id 	= CAT2DPointHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPoint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 反转视图方向
+   Id 	= CAT2DLReverseNormalHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLReverseNormalCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 竖直
+   Id 	= CAT2DVerticalHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSVertical
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 粗糙度符号
+   Id 	= DrwRoughness
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLRoughCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 在系统中对齐
+   Id 	= DrwAlignIntoSystem
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcAlignIntoSystemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 等距点
+   Id 	= CAT2DPointsSpacesHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPointsSpaces
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 3D 轮廓
+   Id 	= CAT2DLProfileHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLProfileCreateCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 修剪
+   Id 	= CAT2DRelimitationHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRelimit
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 投影 3D 标准侧影轮廓边线
+   Id 	= CAT2DLUseEdgeCanonicalSilhHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLUseEdgeSilhCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 工作视图
+   Id 	= CATDrwEditSheet
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDrwEditSheet
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 补充
+   Id 	= CAT2DComplementHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSComplementary
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 尺寸线
+   Id 	= DrwDimLine
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 编辑相切和曲率
+   Id 	= 2DEditControlPointTangencyCurv
+   DLL 	= CATSkuCommands
+   Cmd 	= CATEdit2DCstPointTangencyCurv
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示为每个视图指定的视图框架
+   Id 	= CATDrwDisplayViewFrameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 公差说明
+   Id 	= DrwTolDescrip
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 倒角
+   Id 	= CAT2DChamferHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSChamfer
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 几何元素
+   Id 	= 2DEditGeometricalElement
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComConstructionElement
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 选择边界边线
+   Id 	= 2DSelectionEdges
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSSelectionEdges
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示视图
+   Id 	= CATDrwDisplayViewHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CATD2cDisplayViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 投影 3D 元素
+   Id 	= CAT2DLUseEdgeProjHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLUseEdgeProjCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 快速修剪
+   Id 	= CAT2DQuickTrimHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSQuickTrim
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 无限长线
+   Id 	= CAT2DLineHVHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSLineHV
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 从文件导入...
+   Id 	= DrwImport
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcImportFromFileCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 尺寸
+   Id 	= DrwDim
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLQuickDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 可在实例中修改
+   Id 	= CATDrwBecomeModifiable
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwBecomeModifiableCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 约束...
+   Id 	= CAT2DConstraintPanelHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrw2DConstraintPanel
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 强制在视图中垂直标注尺寸
+   Id 	= CATDrwDimCheckVertHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 通过焦点创建抛物线
+   Id 	= CAT2DParabolaFocusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSParabolaFocus
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 不可拾取的低亮度
+   Id 	= CAT2DLBckgndLowIntNoPickHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLBckgndVisuCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 相交点
+   Id 	= CAT2DPointIntersectHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DPointIntersect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 替换参考
+   Id 	= CATDrwReplaceDetailHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDicReplaceDetailCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 
+   Id 	= CATDrwTextFrameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 点类型
+   Id 	= CATDrwPointTypeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 编辑网格大小
+   Id 	= CAT2DL3DGridEditSizeHdr
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DL3DGridEditGridSizeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 曲线的法线
+   Id 	= 2DLineNormalToCurve
+   DLL 	= CATDraftingBaseInfraUI
+   Cmd 	= CATDbuCom2DLineNormalToCurve
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 双切线
+   Id 	= CAT2DLine2TangentHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DLine2Tangent
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 添加控制点： 
+   Id 	= 2DAddControlPoint
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComAdd2DCstPoint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 删除线
+   Id 	= CATDrwStrikeThruHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 显示约束
+   Id 	= DrwShowCst
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 复制对象格式
+   Id 	= DrwPainter
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwPainterCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 强制在视图中水平标注尺寸
+   Id 	= CATDrwDimCheckHorizHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 椭圆
+   Id 	= CAT2DEllipseRadiusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSEllipseCtrRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 连接
+   Id 	= CAT2DConnectHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSConnect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 粗体
+   Id 	= CATDrwBoldHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 移除
+   Id 	= CATDrwRemoveDisplayAreaHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcRemoveDisplayAreaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 中心线
+   Id 	= DrwCenterLine
+   DLL 	= CATDrafting2DLCommands
+   Cmd 	= CAT2DLCenterLineCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 镜像
+   Id 	= CAT2DSymmetryHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcSymmetryCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 字体名称
+   Id 	= CATDrwFontNameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CAT2DLMainMbr 
+   Title=文件 	 Name=CATAfrFileMnu 
+      Starter Name=CAT2DLPageSetupStr
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Starter Name=CAT2DLDSAFindStr
+      Starter Name=CAT2DLDSAReplaceStr
+      Starter Name=CAT2DAutoSearchStr
+      Separator Name=CAT2DLEdit2Sep
+      Starter Name=CAT2DLEditFrameStr
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=CAT2DLInsert1Sep
+      Title=Layout 	 Name=CAT2DLDrawingSnu 
+         Title=Sheets 	 Name=CAT2DLSheetSnu 
+            Starter Name=CAT2DLSheetStr
+            Starter Name=CAT2DLDetailSheetStr
+         Title=Views 	 Name=CAT2DLViewSnu 
+            Starter Name=CAT2DLViewStr
+            Starter Name=CAT2DLViewFromStr
+            Starter Name=CAT2DLMPSVStr
+            Starter Name=CAT2DLSectionFromPlaneStr
+         Title=Reference/Instance Components 	 Name=CAT2DLDetailDittoSnu 
+            Starter Name=CAT2DLDetailViewStr
+            Starter Name=CAT2DLDittoStr
+      Title=Dimensioning 	 Name=CAT2DLDimensioningSnu 
+         Title=Dimensions 	 Name=CAT2DLDimensionsSnu 
+            Starter Name=CAT2DLDimensionsStr
+            Starter Name=CAT2DLDimChainStr
+            Starter Name=CAT2DLDimCumulStr
+            Starter Name=CAT2DLDimStackStr
+            Separator Name=CAT2DLDim1Sep
+            Starter Name=CAT2DLDimLengthDistStr
+            Starter Name=CAT2DLDimAngleStr
+            Starter Name=CAT2DLDimRadiusStr
+            Starter Name=CAT2DLDimDiameterStr
+            Separator Name=CAT2DLDim2Sep
+            Starter Name=CAT2DLDimChamferStr
+            Starter Name=CAT2DLDimThreadStr
+            Starter Name=CAT2DLDimCoordStr
+         Title=Dimension Edition 	 Name=CAT2DLInterruptSnu 
+            Starter Name=CAT2DLRerootDimStr
+            Starter Name=CAT2DLInterruptDimAddStr
+            Starter Name=CAT2DLInterruptDimRemStr
+            Starter Name=CAT2DLClippingDimAddStr
+            Starter Name=CAT2DLClippingDimRemStr
+         Separator Name=CAT2DLDim4Sep
+         Title=Tolerancing 	 Name=CAT2DLTolerancingSnu 
+            Starter Name=CAT2DLDatumFeatureStr
+            Starter Name=CAT2DLGeometricalToleranceStr
+      Title=Annotations 	 Name=CAT2DLAnnotationsSnu 
+         Title=Text 	 Name=CAT2DLTextsSnu 
+            Starter Name=CAT2DLTextStr
+            Starter Name=CAT2DLTextLeaderStr
+            Starter Name=CAT2DLBalloonStr
+            Starter Name=CAT2DLDatumTargetStr
+         Title=Symbols 	 Name=CAT2DLSymbolsSnu 
+            Starter Name=CAT2DLRoughnessStr
+            Starter Name=CAT2DLWeldingSymbolStr
+         Title=Table 	 Name=CAT2DLTablesSnu 
+            Starter Name=CAT2DLTableStr
+            Starter Name=CAT2DLTableFromCSVStr
+         Separator Name=CAT2DLAnnotation1Sep
+         Starter Name=CAT2DLLeaderAddStr
+      Title=Dress-up 	 Name=CAT2DLDressupSnu 
+         Title=Axis and Threads 	 Name=CAT2DLAxisSnu 
+            Starter Name=CAT2DLCenterLineStr
+            Starter Name=CAT2DLCenterLineRefStr
+            Starter Name=CAT2DLThreadStr
+            Starter Name=CAT2DLThreadRefStr
+            Starter Name=CAT2DLAxisLineStr
+            Starter Name=CAT2DLAxisCenterStr
+         Title=Area Fill 	 Name=CAT2DLAreaFillSnu 
+            Starter Name=CAT2DLAreaFillCreatStr
+            Starter Name=CAT2DLAreaFillModStr
+         Starter Name=CAT2DLArrowStr
+      Title=Geometry creation 	 Name=CAT2DLGeomCreationSnu 
+         Starter Name=CAT2DContourStr
+         Title=Predefined Profile 	 Name=CAT2DLProfilesSnu 
+            Starter Name=CAT2DRectangleStr
+            Starter Name=CAT2DOrientedRectangleStr
+            Starter Name=CAT2DParallelogramStr
+            Starter Name=CAT2DTrouOblongStr
+            Starter Name=CAT2DTrouOblongArcStr
+            Starter Name=CAT2DKeyHoleStr
+            Starter Name=CAT2DPolygonStr
+            Starter Name=CAT2DCenteredRectangleStr
+            Starter Name=CAT2DCenteredParallelogramStr
+         Title=Circle 	 Name=CAT2DLCircleSnu 
+            Starter Name=CAT2DCircleRadiusStr
+            Starter Name=CAT2DCircle3PointsStr
+            Starter Name=CAT2DCircleCoordStr
+            Starter Name=CAT2DCircle3TangentStr
+            Starter Name=CAT2DArc3PointsStr
+            Starter Name=CAT2DArc3Points132Str
+            Starter Name=CAT2DArcRadiusStr
+         Title=Spline 	 Name=CAT2DLSplineSnu 
+            Starter Name=CAT2DSplineStr
+            Starter Name=CAT2DConnectStr
+         Title=Conic 	 Name=CAT2DLCurvesSnu 
+            Starter Name=CAT2DEllipseRadiusStr
+            Starter Name=CAT2DParabolaFocusStr
+            Starter Name=CAT2DHyperbolaFocusStr
+            Starter Name=CAT2DConicCurveStr
+         Title=Line 	 Name=CAT2DLLineSnu 
+            Starter Name=CAT2DLineStr
+            Starter Name=CAT2DLineHVStr
+            Starter Name=CAT2DLine2TangentStr
+            Starter Name=CAT2DBisectLineStr
+            Starter Name=CAT2DLineNormalToCurveStr
+         Title=Point 	 Name=CAT2DLPointSnu 
+            Starter Name=CAT2DPointStr
+            Starter Name=CAT2DPointCoordStr
+            Starter Name=CAT2DPointsSpacesStr
+            Starter Name=CAT2DPointsIntersectStr
+            Starter Name=CAT2DPointsProjectStr
+            Starter Name=CAT2DL2DAlignPointsStr
+      Title=Geometry modification 	 Name=CAT2DLGeomEditionSnu 
+         Title=Corners 	 Name=CAT2DLCornerIcb 
+            Starter Name=CAT2DCornerStr
+            Starter Name=CAT2DArcTgtStr
+         Starter Name=CAT2DChamferStr
+         Title=Relimitations 	 Name=CAT2DLRelimitSnu 
+            Starter Name=CAT2DRelimitationStr
+            Starter Name=CAT2DBreakStr
+            Starter Name=CAT2DQuickTrimStr
+            Starter Name=CAT2DCloseStr
+            Starter Name=CAT2DComplementStr
+         Title=Transformations 	 Name=CAT2DLTransforSnu 
+            Starter Name=CAT2DSymmetryStr
+            Starter Name=CAT2DPureSymmetryStr
+            Starter Name=CAT2DTranslateStr
+            Starter Name=CAT2DRotateStr
+            Starter Name=CAT2DScaleStr
+            Starter Name=CAT2DOffsetContourStr
+      Title=Constraint 	 Name=CAT2DLConstraintSnu 
+         Title=Constraints 	 Name=CAT2DLCstDiaSnu 
+            Starter Name=CAT2DLConstraintStr
+            Starter Name=CAT2DConstraintPanelStr
+            Starter Name=CAT2DContactConstraintStr
+         Starter Name=CAT2DFixTogetherStr
+      Title=3D Geometry 	 Name=CAT2DL3DGeometrySnu 
+         Title=3D Outputs 	 Name=CAT2DLProfileSnu 
+            Starter Name=CAT2DLProfileStr
+            Starter Name=CAT2DLPlaneStr
+            Starter Name=CAT2DLProfileAxisStr
+         Title=Use-Edge 	 Name=CAT2DLUseEdgeSnu 
+            Starter Name=CAT2DLUseEdgeProjStr
+            Starter Name=CAT2DLUseEdgeIntStr
+            Starter Name=CAT2DLUseEdgeSilhStr
+            Starter Name=CAT2DLUseEdgeCanonicalSilhStr
+            Starter Name=CAT2DLUseEdgeOffsetStr
+            Separator Name=CAT2DL3DGeom1Sep
+            Starter Name=CAT2DL2DIsolateStr
+      Separator Name=CAT2DLInsert2Sep
+      Starter Name=CAT2DLImportPictureStr
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Starter Name=CAT2DLFiltersStr
+      Separator Name=CAT2DLTools1Sep
+      Title=Positioning 	 Name=CAT2DLPositioningSnu 
+         Starter Name=CAT2DLPositioningStr
+         Starter Name=CAT2DLLineUpStr
+         Starter Name=CAT2DLAlignIntoSystemStr
+      Separator Name=CAT2DLImportFromFileSep
+      Starter Name=CAT2DLImportFromFileStr
+      Separator Name=CAT2DLTools2Sep
+      Starter Name=CAT2DLSketchAnalyseStr
+
+ Title of the toolbar=Select and is Name=CAT2DLSelectTlb
+   Starter Name=CATSelectHeader
+   Starter Name=CATSelectRotate
+
+ Title of the toolbar=Layout and is Name=CAT2DLDrawingTlb
+   Title of the Icon Box=Sheets 	 Name=CAT2DLSheetIcb 
+      Starter Name=CAT2DLSheetStr
+      Starter Name=CAT2DLDetailSheetStr
+   Title of the Icon Box=Views 	 Name=CAT2DLViewIcb 
+      Starter Name=CAT2DLViewStr
+      Starter Name=CAT2DLViewFromStr
+      Starter Name=CAT2DLMPSVStr
+      Starter Name=CAT2DLSectionFromPlaneStr
+      Starter Name=CAT2DLViewLayoutStr
+   Title of the Icon Box=Reference/Instance Components 	 Name=CAT2DLDetailDittoIcb 
+      Starter Name=CAT2DLDetailViewStr
+      Starter Name=CAT2DLDittoStr
+
+ Title of the toolbar=Dimensioning and is Name=CAT2DLDimensionTlb
+   Title of the Icon Box=Dimensions 	 Name=CAT2DLDimensionIcb 
+      Starter Name=CAT2DLDimensionsStr
+      Starter Name=CAT2DLDimChainStr
+      Starter Name=CAT2DLDimCumulStr
+      Starter Name=CAT2DLDimStackStr
+      Starter Name=CAT2DLDim1Sep
+      Starter Name=CAT2DLDimLengthDistStr
+      Starter Name=CAT2DLDimAngleStr
+      Starter Name=CAT2DLDimRadiusStr
+      Starter Name=CAT2DLDimDiameterStr
+      Starter Name=CAT2DLDim2Sep
+      Starter Name=CAT2DLDimChamferStr
+      Starter Name=CAT2DLDimThreadStr
+      Starter Name=CAT2DLDimCoordStr
+   Title of the Icon Box=Dimension Edition 	 Name=CAT2DLInterruptIcb 
+      Starter Name=CAT2DLRerootDimStr
+      Starter Name=CAT2DLInterruptDimAddStr
+      Starter Name=CAT2DLInterruptDimRemStr
+      Starter Name=CAT2DLClippingDimAddStr
+      Starter Name=CAT2DLClippingDimRemStr
+Separator Name=CAT2DLDim4Sep
+   Title of the Icon Box=Tolerancing 	 Name=CAT2DLTolerancingIcb 
+      Starter Name=CAT2DLDatumFeatureStr
+      Starter Name=CAT2DLGeometricalToleranceStr
+
+ Title of the toolbar=Annotations and is Name=CAT2DLAnnotationsTlb
+   Title of the Icon Box=Text 	 Name=CAT2DLTextsIcb 
+      Starter Name=CAT2DLTextStr
+      Starter Name=CAT2DLTextLeaderStr
+      Starter Name=CAT2DLBalloonStr
+      Starter Name=CAT2DLDatumTargetStr
+   Title of the Icon Box=Symbols 	 Name=CAT2DLSymbolsIcb 
+      Starter Name=CAT2DLRoughnessStr
+      Starter Name=CAT2DLWeldingSymbolStr
+   Title of the Icon Box=Table 	 Name=CAT2DLTableIcb 
+      Starter Name=CAT2DLTableStr
+      Starter Name=CAT2DLTableFromCSVStr
+
+ Title of the toolbar=Dress-up and is Name=CAT2DLDressupTlb
+   Title of the Icon Box=Axis and Threads 	 Name=CAT2DLAxisIcb 
+      Starter Name=CAT2DLCenterLineStr
+      Starter Name=CAT2DLCenterLineRefStr
+      Starter Name=CAT2DLThreadStr
+      Starter Name=CAT2DLThreadRefStr
+      Starter Name=CAT2DLAxisLineStr
+      Starter Name=CAT2DLAxisCenterStr
+   Title of the Icon Box=Area Fill 	 Name=CAT2DLAreaFillIcb 
+      Starter Name=CAT2DLAreaFillCreatStr
+      Starter Name=CAT2DLAreaFillModStr
+   Starter Name=CAT2DLArrowStr
+
+ Title of the toolbar=Geometry Creation and is Name=CAT2DLGeometryCreationTlb
+   Starter Name=CAT2DContourStr
+   Title of the Icon Box=Predefined Profile 	 Name=CAT2DLProfilesIcb 
+      Starter Name=CAT2DRectangleStr
+      Starter Name=CAT2DOrientedRectangleStr
+      Starter Name=CAT2DParallelogramStr
+      Starter Name=CAT2DTrouOblongStr
+      Starter Name=CAT2DTrouOblongArcStr
+      Starter Name=CAT2DKeyHoleStr
+      Starter Name=CAT2DPolygonStr
+      Starter Name=CAT2DCenteredRectangleStr
+      Starter Name=CAT2DCenteredParallelogramStr
+   Title of the Icon Box=Circle 	 Name=CAT2DLCircleIcb 
+      Starter Name=CAT2DCircleRadiusStr
+      Starter Name=CAT2DCircle3PointsStr
+      Starter Name=CAT2DCircleCoordStr
+      Starter Name=CAT2DCircle3TangentStr
+      Starter Name=CAT2DArc3PointsStr
+      Starter Name=CAT2DArc3Points132Str
+      Starter Name=CAT2DArcRadiusStr
+   Title of the Icon Box=Spline 	 Name=CAT2DLSplineSnu 
+      Starter Name=CAT2DSplineStr
+      Starter Name=CAT2DConnectStr
+   Title of the Icon Box=Conic 	 Name=CAT2DLCurvesIcb 
+      Starter Name=CAT2DEllipseRadiusStr
+      Starter Name=CAT2DParabolaFocusStr
+      Starter Name=CAT2DHyperbolaFocusStr
+      Starter Name=CAT2DConicCurveStr
+   Title of the Icon Box=Line 	 Name=CAT2DLLineIcb 
+      Starter Name=CAT2DLineStr
+      Starter Name=CAT2DLineHVStr
+      Starter Name=CAT2DLine2TangentStr
+      Starter Name=CAT2DBisectLineStr
+      Starter Name=CAT2DLineNormalToCurveStr
+   Title of the Icon Box=Point 	 Name=CAT2DLPointIcb 
+      Starter Name=CAT2DPointStr
+      Starter Name=CAT2DPointCoordStr
+      Starter Name=CAT2DPointsSpacesStr
+      Starter Name=CAT2DPointsIntersectStr
+      Starter Name=CAT2DPointsProjectStr
+      Starter Name=CAT2DL2DAlignPointsStr
+
+ Title of the toolbar=Geometry Modification and is Name=CAT2DLGeometryEditionTlb
+   Title of the Icon Box=Corners 	 Name=CAT2DLCornerIcb 
+      Starter Name=CAT2DCornerStr
+      Starter Name=CAT2DArcTgtStr
+   Starter Name=CAT2DChamferStr
+   Title of the Icon Box=Relimitations 	 Name=CAT2DLRelimitIcb 
+      Starter Name=CAT2DRelimitationStr
+      Starter Name=CAT2DBreakStr
+      Starter Name=CAT2DQuickTrimStr
+      Starter Name=CAT2DCloseStr
+      Starter Name=CAT2DComplementStr
+   Title of the Icon Box=Transformations 	 Name=CAT2DLTransforIcb 
+      Starter Name=CAT2DSymmetryStr
+      Starter Name=CAT2DPureSymmetryStr
+      Starter Name=CAT2DTranslateStr
+      Starter Name=CAT2DRotateStr
+      Starter Name=CAT2DScaleStr
+      Starter Name=CAT2DOffsetContourStr
+
+ Title of the toolbar=Constraint and is Name=CAT2DLConstraintTlb
+   Title of the Icon Box=Constraints 	 Name=CAT2DLCstDiaIcb 
+      Starter Name=CAT2DLConstraintStr
+      Starter Name=CAT2DConstraintPanelStr
+      Starter Name=CAT2DContactConstraintStr
+   Starter Name=CAT2DFixTogetherStr
+
+ Title of the toolbar=Style and is Name=CAT2DLStyleTlb
+   Starter Name=CAT2DLStyleStr
+
+ Title of the toolbar=Text Properties and is Name=CAT2DLTextPropertiesTlb
+   Starter Name=CAT2DLFontNameStr
+   Starter Name=CAT2DLFontSizeStr
+Separator Name=CAT2DLTextProp1Sep
+   Starter Name=CAT2DLBoldStr
+   Starter Name=CAT2DLItalicStr
+   Starter Name=CAT2DLXLineStr
+   Starter Name=CAT2DLStrikeThruStr
+   Starter Name=CAT2DLXScriptStr
+Separator Name=CAT2DLTextProp2Sep
+   Starter Name=CAT2DLJustificationStr
+   Starter Name=CAT2DLTextAnchorStr
+   Starter Name=CAT2DLTextFrameStr
+Separator Name=CAT2DLTextProp3Sep
+   Starter Name=CAT2DLSymbolStr
+
+ Title of the toolbar=Dimension Properties and is Name=CAT2DLDimensionPropertiesTlb
+   Starter Name=CAT2DLDimLineStr
+Separator Name=CAT2DLDimProp1Sep
+   Starter Name=CAT2DLTolDescripStr
+   Starter Name=CAT2DLToleranceStr
+
+ Title of the toolbar=Numerical Properties and is Name=CAT2DLNumericalPropertiesTlb
+   Starter Name=CAT2DLNumDispStr
+   Starter Name=CAT2DLPrecisionStr
+
+ Title of the toolbar=Graphic Properties and is Name=CAT2DLGraphicPropertiesTlb
+   Starter Name=CAT2DLColorStr
+   Starter Name=CAT2DLThicknessStr
+   Starter Name=CAT2DLLineTypeStr
+   Starter Name=CAT2DLPointTypeStr
+   Starter Name=CAT2DLPainterStr
+   Starter Name=CAT2DLPatternStr
+
+ Title of the toolbar=Position and Orientation and is Name=CAT2DLPositionOrientationTlb
+   Starter Name=CAT2DLXPositionStr
+   Starter Name=CAT2DLYPositionStr
+   Starter Name=CAT2DLOrientationStr
+
+ Title of the toolbar=Tools and is Name=CAT2DLToolsTlb
+   Starter Name=CAT2DLSnapGridStr
+Separator Name=CAT2DLTools1Sep
+   Starter Name=CAT2DLCstCreationStr
+Separator Name=CAT2DLTools2Sep
+   Starter Name=CAT2DLDimSystemSelModStr
+   Starter Name=CAT2DLViewBackManipStr
+Separator Name=CAT2DLTools3Sep
+   Starter Name=CAT2DLUpdate3DStr
+   Title of the Icon Box=2D Analysis Tools 	 Name=CAT2DLSktAnalyseIcb 
+      Starter Name=CAT2DLLightSktAnalyseStr
+      Starter Name=CAT2DLSktAnalyseStr
+      Starter Name=CAT2DL2DCurvatureAnalysisStr
+
+ Title of the toolbar=Visualization and is Name=CAT2DLVisualizationTlb
+   Starter Name=CAT2DLDisplayGridStr
+Separator Name=CAT2DLVisualization1Sep
+   Starter Name=CAT2DLClippingPlaneStr
+   Starter Name=CAT2DLDispBackAsInFilterStr
+Separator Name=CAT2DLVisualization2Sep
+   Starter Name=CAT2DLShowCstStr
+   Starter Name=CAT2DLDisplayViewFrameStr
+   Starter Name=CAT2DLIntegrateBackgroundInViewFrameStr
+Separator Name=CAT2DLVisualization3Sep
+   Starter Name=CAT2DLDimDesignModeStr
+
+ Title of the toolbar=Positioning and is Name=CAT2DLPositioningTlb
+   Starter Name=CAT2DLPositioningStr
+   Starter Name=CAT2DLLineUpStr
+   Starter Name=CAT2DLAlignIntoSystemStr
+
+ Title of the toolbar=Measure and is Name=CAT2DLMeasureTlb
+   Starter Name=CATMeasureBetween
+   Starter Name=MeasureItem
+
+ Title of the toolbar=Catalog Browser and is Name=CAT2DLBrowserTlb
+   Starter Name=CatalogBrowser
+
+ Title of the toolbar=3D Geometry and is Name=CAT2DL3DGeometryTlb
+   Title of the Icon Box=3D Outputs 	 Name=CAT2DLProfileIcb 
+      Starter Name=CAT2DLProfileStr
+      Starter Name=CAT2DLPlaneStr
+      Starter Name=CAT2DLProfileAxisStr
+   Title of the Icon Box=Use-Edge 	 Name=CAT2DLUseEdgeIcb 
+      Starter Name=CAT2DLUseEdgeProjStr
+      Starter Name=CAT2DLUseEdgeIntStr
+      Starter Name=CAT2DLUseEdgeSilhStr
+      Starter Name=CAT2DLUseEdgeCanonicalSilhStr
+      Starter Name=CAT2DLUseEdgeOffsetStr

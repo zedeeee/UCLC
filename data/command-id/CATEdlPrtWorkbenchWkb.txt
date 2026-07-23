@@ -1,0 +1,265 @@
+Workshop Exposition of CATEdlPrtWorkbenchWkb 
+
+1- Header List 
+
+Title= Define Cavity
+   Id 	= CATEdlPrtDefineCavityHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Cavity
+   Id 	= CATEdlPrtDefineCavityHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Back Shell
+   Id 	= CATEdlPrtDefineBackShellHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineBackShellCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Back Shell
+   Id 	= CATEdlPrtDefineBackShellHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineBackShellCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Protection Part
+   Id 	= CATEdlPrtDefineProtectionHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineProtectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Protection Part
+   Id 	= CATEdlPrtDefineProtectionHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineProtectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Termination
+   Id 	= CATEdlPrtDefineTerminationHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineTerminationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Termination
+   Id 	= CATEdlPrtDefineTerminationHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineTerminationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Store Device
+   Id 	= CATEdlPrtStoreDeviceHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlStoreDeviceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Store Device
+   Id 	= CATEdlPrtStoreDeviceHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlStoreDeviceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Equipment
+   Id 	= CATEdlPrtDefineEquipmentHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineEquipmentCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Equipment
+   Id 	= CATEdlPrtDefineEquipmentHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineEquipmentCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Shell Connection Point
+   Id 	= CATEdlPrtDefineShellCnxPtHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Shell Connection Point
+   Id 	= CATEdlPrtDefineShellCnxPtHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Mounting Equipment
+   Id 	= EdlPrtDefineMountingEqt
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineMountingEqtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Mounting Equipment
+   Id 	= EdlPrtDefineMountingEqt
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineMountingEqtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Contact
+   Id 	= CATEdlPrtDefineContactHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineContactCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Contact
+   Id 	= CATEdlPrtDefineContactHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineContactCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Cavity Connection Point
+   Id 	= CATEdlPrtDefineCavityCnxPtHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Cavity Connection Point
+   Id 	= CATEdlPrtDefineCavityCnxPtHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Shell
+   Id 	= CATEdlPrtDefineShellHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineShellCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Shell
+   Id 	= CATEdlPrtDefineShellHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineShellCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Filler Plug
+   Id 	= CATEdlPrtDefineFillerPlugHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineFillerPlugCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Filler Plug
+   Id 	= CATEdlPrtDefineFillerPlugHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineFillerPlugCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Connector Connection Point
+   Id 	= CATEdlPrtDefineConnectorCnxPtHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Connector Connection Point
+   Id 	= CATEdlPrtDefineConnectorCnxPtHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Connector
+   Id 	= CATEdlPrtDefinePhysicalConnectorHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnectorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Connector
+   Id 	= CATEdlPrtDefinePhysicalConnectorHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnectorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Bundle Connection Point
+   Id 	= CATEdlPrtDefineBundleCnxPtHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineBundleCnctPtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Bundle Connection Point
+   Id 	= CATEdlPrtDefineBundleCnxPtHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineBundleCnctPtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Support Part
+   Id 	= CATEdlPrtDefineSupportHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineSupportCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Support Part
+   Id 	= CATEdlPrtDefineSupportHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineSupportCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Back Shell Connection Point
+   Id 	= CATEdlPrtDefineBackShellCnxPtHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Back Shell Connection Point
+   Id 	= CATEdlPrtDefineBackShellCnxPtHdr
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Title of the toolbar=Selection and is Name=CATEdlSelectTlb
+   Starter Name=CATSelect
+
+ Title of the toolbar=Electrical Device Definition and is Name=CATEdlPrtElectricalDeviceDefinitionTlb
+   Starter Name=EdlPrtDefineMountingEqt
+   Starter Name=CATEdlPrtDefineEquipmentStr
+   Starter Name=CATEdlPrtDefineShellStr
+   Starter Name=CATEdlPrtDefinePhysicalConnectorStr
+   Starter Name=CATEdlPrtDefineContactStr
+   Starter Name=CATEdlPrtDefineFillerPlugStr
+   Starter Name=CATEdlPrtDefineBackShellStr
+   Starter Name=CATEdlPrtDefineProtectionStr
+
+ Title of the toolbar=Electrical Connection Point Definition and is Name=CATEdlPrtElectricalCnctPtDefinitionTlb
+   Starter Name=CATEdlPrtDefineCavityStr
+   Starter Name=CATEdlPrtDefineTerminationStr
+   Starter Name=CATEdlPrtDefineConnectorCnxPtStr
+   Starter Name=CATEdlPrtDefineBundleCnxPtStr
+   Starter Name=CATEdlPrtDefineCavitCnxPtStr
+   Starter Name=CATEdlPrtDefineBackShellCnxPtStr
+   Starter Name=CATEdlPrtDefineShellCnxPtStr
+
+ Title of the toolbar=Electrical Device Storage and is Name=CATEdlPrtStoreDeviceTlb
+   Starter Name=CATEdlPrtStoreDevice
+
+ Title of the toolbar=Update and is Name=CATEdlPrtUpdateTlb
+   Starter Name=CATUpdate
+
+ Title of the toolbar=Electrical Support Definition and is Name=CATEdlPrtElectricalSupportDefinitionTlb
+   Starter Name=CATEdlPrtDefineSupportStr

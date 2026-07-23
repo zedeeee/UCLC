@@ -1,0 +1,2412 @@
+Workshop Exposition of CATLmuLatheProgramWkb 
+
+1- Header List 
+
+Title= Drilling
+   Id 	= CATCreateDrillingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Delete unused indices
+   Id 	= DeleteUnusedIndices
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteUnusedIndicesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Face Selection
+   Id 	= CATMaoNormalFacesPanelHdr
+   DLL 	= CATMachinistOperations
+   Cmd 	= CATM3xNormalFacesPanelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Geometry creation
+   Id 	= TPECreateGeometry
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATTPECreateGeometryCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Post-Processor Instruction
+   Id 	= CATCreatePPInstructionHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Spot Drill
+   Id 	= CATCreateSpotDrillHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reverse Macros
+   Id 	= CATMfgOPPOSITEReverseMacrosHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgReverseMacrosCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manage Batch Queue
+   Id 	= NCBatchCompute
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgBatchCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Machining Process View
+   Id 	= CATMfgMachiningProcessViewHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateProcessViewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Assign Machine From File...
+   Id 	= CATMfgAssignMachineHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgAssignMachineCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit
+   Id 	= TPEEdit
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPEEditCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Assign a Feature...
+   Id 	= AssignFeature
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgAssignFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Ball Stylus
+   Id 	= CreateBallStylusTool
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Selects visibles faces in a polygon trap
+   Id 	= NewPolygonTrapVisu
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgPolygonSelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Define a Mapping Rule Name...
+   Id 	= MfgDefineMappingRule
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgMappingRuleNameCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Starts Machine Simulation
+   Id 	= DNBVNCTransitionHdr
+   DLL 	= DNBVNCWorkbench
+   Cmd 	= DNBVNCSwitchingCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mirror
+   Id 	= TPEMirror
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPEMirrorCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Save in catalog
+   Id 	= MfgSaveMachiningProcessInCatalog
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgSaveMachiningProcessInCatalogCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select by Polyline
+   Id 	= TPEPolygonSelection
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATTPEPolygonSelectionCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Hide/Show parts elements
+   Id 	= MfgHideShowPartsHeader
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgHideShowGeometryCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBMfgZipRunOneBlock
+   Id 	= DNBMfgZipRunOneBlock
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgRunOneBlockCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= Chamfered Hole
+   Id 	= CreateChamferedHole
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= TPECheckHeightMixed
+   Id 	= TPECheckHeightMixed
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPECheckHeightMixedCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Machining Process
+   Id 	= CATMfgCreateMachiningProcessHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateMPCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Delete Generated Machine Rotations
+   Id 	= DeleteAutoTabHedRot
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteAutoTabHedRotCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Recess Turning
+   Id 	= CreateMfgLatheRecessing
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Unlock Children
+   Id 	= ProgramTPSUnlock
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgProgramToolPathUnlockCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= QuickSelInsert
+   Id 	= QuickSelInsert
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgInsertSelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBMfgZipCollList
+   Id 	= DNBMfgZipCollList
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgCollisionListCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Prismatic Machining Area
+   Id 	= CreateMfg2DMAFeature
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Activate Spindle Direction Display 
+   Id 	= ActivateSpindleRotationRep
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgSpindleRepCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Machinable Axial Features
+   Id 	= DeleteUnusedMachAxialFeature
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteUnusedFeaturesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Delete Generated Tool Changes
+   Id 	= DeleteAutoToolChanges
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteAutoToolChangeCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Point to Point
+   Id 	= CATCreatePointToPointHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CreateProcessTemplate
+   Id 	= CreateProcessTemplate
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateProcessTemplateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= TRACUT Operator Instruction
+   Id 	= CreateTracutAPT
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateCopyOrderActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Unpack Tool Path
+   Id 	= ToolPathUnpack
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgToolPathUnpackCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Sort by Operations
+   Id 	= SortByActivities
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgSortMfgViewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Drilling Break Chips
+   Id 	= CATCreateDrillingBreakChipsHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Axial Process for Design Holes
+   Id 	= MPForGenericHoles
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgApplyDrillingProcessCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Boring and Chamfering
+   Id 	= CATCreateBoringAndChamferingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Ramp Recess Turning
+   Id 	= CreateMfgLatheRampingRecessing
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Clean Computed Stock Data
+   Id 	= RemoveIPMPrimitive
+   DLL 	= CATMfgInProcessModel
+   Cmd 	= CATMfgRemoveIPMPrimitiveCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Check Tool Length
+   Id 	= TPEToolLength
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPEToolLengthCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Reset
+   Id 	= MfgResetToolReq
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgResetToolReqCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Compute Final Stock
+   Id 	= ComputeFinalStock
+   DLL 	= CATMfgInProcessModel
+   Cmd 	= CATMfgComputeStockAndTPCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Sort by Tooling
+   Id 	= SortByTools
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgSortMfgViewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Profile Contouring
+   Id 	= CATCreateProfileContouringFeatureHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Preview the Contour
+   Id 	= CATPreviewContourHdr
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgPreviewContourCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Reverse
+   Id 	= TPEReverse
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPEReverseToolPathCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ChainingEdgesPanel
+   Id 	= ChainingEdgesPanel
+   DLL 	= CATM3xEdgeWizzardUI
+   Cmd 	= CATM3xChainingEdgesPanelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Advanced Sort and Filtering
+   Id 	= AdvSort
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgSortMfgViewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Back Bore
+   Id 	= CATCreateBackBoreHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Expand tree to tool paths
+   Id 	= ExpandTreeToToolPaths
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgExpandTreeToCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Groove Finish Turning
+   Id 	= CreateMfgLatheGrooveFinish
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Snap
+   Id 	= MfgSnapResourcesHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapResourcesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Deactivate automatic precedence constraints
+   Id 	= AutomaticPrecedencesOFF
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgAutoPrecedMfgViewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= MfgSpaceSection
+   Id 	= MfgSpaceSection
+   DLL 	= CATSpaSectioning
+   Cmd 	= CATSiLaSectionCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Translation
+   Id 	= TPETranslate
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATTPETranslationCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= CreateProfileDrilling
+   Id 	= CATCreateProfileDrillingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Accept Geometry Selections
+   Id 	= OKFEOF
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgOKFEOFCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Selection by One Point
+   Id 	= TPESelectionOnePoint
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xAreaModificationOnePointCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Reset All Selections
+   Id 	= CATResetSelHdr
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgResetSelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Split on Collision Points
+   Id 	= TPESplitToCopyTransformation
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPESplitToCopyTransformationCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Manufacturing Program
+   Id 	= CATCreateProgramHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Delete Unused Resources
+   Id 	= DeleteToolingResources
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgDeleteResourcesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= AssignAssembly
+   Id 	= AssignAssembly
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgAssemblySelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Head Change
+   Id 	= CreateHeadChange
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Boring Bar
+   Id 	= CATCreateBoringBarToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Selection by 2 points
+   Id 	= TPESelectionTwoPoints
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xAreaModificationTwoPointsCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Simulate Machine using NC Code
+   Id 	= MachineISOSimu
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgMachineISOSimuCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Thread Mill
+   Id 	= CATCreateThreadMillToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select faces in a polygon trap
+   Id 	= NewPolygonTrap
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgPolygonSelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Reverse Machining Direction
+   Id 	= ReverseMachiningDirection
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgMAFReverseDirectionCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import/List Tools
+   Id 	= ManufacturingToolListView
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolImportCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Internal Thread Insert-Holder
+   Id 	= CATCreateMfgThreadInternalToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolChangeLatheCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Change approach and retract
+   Id 	= TPEApproachRetract
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATTPEApproachRetractCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Align Center
+   Id 	= MfgSnapPointHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapPointCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= DNBMfgZipAnimUpdate
+   Id 	= DNBMfgZipAnimUpdate
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgAnimUpdateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= DNBMfgZipStop
+   Id 	= DNBMfgZipStop
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgStopCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= Delete Transition Paths
+   Id 	= RemoveMfgAutomaticCompleteHeader
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgRemoveAutomaticCompleteCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= QueryAssembly
+   Id 	= QueryAssembly
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgAssemblySelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reset selections by step back
+   Id 	= ResetBack
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgResetBackCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= TPECheckColl
+   Id 	= TPECheckColl
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPECheckCollCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Show Sketch
+   Id 	= Show Sketch
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgMaxTurnEnvelopeShowSketchCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= DNBNVGMeasure
+   Id 	= DNBNVGMeasure
+   DLL 	= DNBZipNVGController
+   Cmd 	= DNBZipNVGMeasureCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= Deactivate Spindle Direction Display 
+   Id 	= DeActivateSpindleRotationRep
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgSpindleRepCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Run video from last video result
+   Id 	= RunLastVideoFromMO
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgRunVideoOnProgram
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Thread Without Tap Head
+   Id 	= CATCreateThreadWithoutTapHeadHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Drilling Deep Hole
+   Id 	= CATCreateDrillingDeepHoleHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBMfgZipSaveCloud
+   Id 	= DNBMfgZipSaveCloud
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgCatPartSaveCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= Generate Documentation
+   Id 	= CATNCDocumentationHdr
+   DLL 	= ProcessModelerVisu
+   Cmd 	= CATSPPDocumentProcessDialog
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Attach
+   Id 	= MfgIgpAttachHdr
+   DLL 	= ArrIgpAttach
+   Cmd 	= CATArrAttachCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rework Areas
+   Id 	= DeleteUnusedReworkAreas
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteUnusedFeaturesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Remove User Representation
+   Id 	= RemoveUserRep
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgResourceRemoveUserRepCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Run full video
+   Id 	= RunFullVideoFromMO
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgRunVideoOnProgram
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Navigate on Faces
+   Id 	= CATNavigateFaceHdr
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgTangentEdgeCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Generate Machine Rotations
+   Id 	= GenerateTabHedRot
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgGenerateTabHedRotCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= AssignInsert
+   Id 	= AssignInsert
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgInsertSelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Tool Change
+   Id 	= CreateToolChange
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Catalog Browser
+   Id 	= MfgOpenCatalog
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgOpenCatalogCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Thread Milling
+   Id 	= CATCreateThreadMillingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CreateTransitionPath
+   Id 	= CreateTransitionPath
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Activate/Deactivate
+   Id 	= SwapActivate
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgActivateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= End Mill
+   Id 	= CATCreateEndMillToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Tap
+   Id 	= CATCreateTapToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Sort by Features
+   Id 	= SortByFeatures
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgSortMfgViewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Circular Milling
+   Id 	= CATCreateCircularMillingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Machining Area
+   Id 	= CreateM3xFeature
+   DLL 	= CATMachinistOperations
+   Cmd 	= CATM3xCreateSurfaceFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Cancel Geometry Selections
+   Id 	= CancelFEOF
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgCancelFEOFCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= T-Slotting
+   Id 	= CATCreateTSlottingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Formula...
+   Id 	= MfgParametrize
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgParametrizeValueCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Analyze Photo
+   Id 	= DNBMfgZipErrors
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgErrorsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Selection by Contour
+   Id 	= TPESelectionContour
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xAreaModificationContourCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Expand tree to tool changes
+   Id 	= ExpandTreeToToolChanges
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgExpandTreeToCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Standard Drilling
+   Id 	= StandardDrilling
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgApplyStandardDrillingCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Machinable Area Features
+   Id 	= DeleteUnusedMachAreaFeature
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteUnusedFeaturesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select a Mapping rule...
+   Id 	= SelMappingRule
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgMappingRuleSelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Search Circular Edges
+   Id 	= SearchFEOF
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgSearchFEOFCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= MfgComputeOutputStock
+   Id 	= MfgComputeOutputStock
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgComputeOutputStockCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= MachineInContext
+   Id 	= MachineInContext
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rotate To Align
+   Id 	= MfgRotateSideHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrRotateSideCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rotation
+   Id 	= TPERotate
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATTPERotationCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= External Thread Insert-Holder
+   Id 	= CATCreateMfgThreadExternalToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolChangeLatheCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Machining Processes Application
+   Id 	= ApplyMPFromCatalog
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgApplyMPFromCatalogCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Navigate on Edges Until an Edge
+   Id 	= NavigateToEdge
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgNavigateToEdgeCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Generate NC Code Interactively
+   Id 	= CATGenerateNCCodeHdr
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgToolPathGenerateNCCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Merge Program
+   Id 	= MfgMPOptimizeTC
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgMPOptimizeTCCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= TPECheckTPContactAndNormal
+   Id 	= TPECheckTPContactAndNormal
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPECheckTPContactAndNormalCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Machining Axis System
+   Id 	= CATCreateMachiningAxisSystemHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBMfgZipAnim
+   Id 	= DNBMfgZipAnim
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgAnimZipCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Navigate on Belt of Edges
+   Id 	= NavigateBeltEdge
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgNavigateOnEdgeCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Unlock Tool Path
+   Id 	= ProgramTPSUnlockOnly
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgProgramToolPathUnlockCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Maximum Turning Envelope
+   Id 	= CreateMaxTurnEnvelopeMachinableFeature
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateMaxTurnEnvelopeMafCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBMfgZipRunReverse
+   Id 	= DNBMfgZipRunReverse
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgRunReverseCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= Multi-Diameter Drill
+   Id 	= CATCreateMultiDiamDrillToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Translate an Area
+   Id 	= TPETranslateArea
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPETranslateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Activate automatic precedence constraints
+   Id 	= AutomaticPrecedencesON
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgAutoPrecedMfgViewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBNVGCompare
+   Id 	= DNBNVGCompare
+   DLL 	= DNBZipNVGController
+   Cmd 	= DNBZipNVGCompareCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= Deactivate Output Computation
+   Id 	= IntermStockNoOutput
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgIntermStockNoOutput
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= COPY Operator Instruction
+   Id 	= CreateCopyAPT
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateCopyOrderActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Displays Status of Selected Activities
+   Id 	= MfgUpdateStatus
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgUpdateStatusCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Change hierarchical level of graph
+   Id 	= Change_Level
+   DLL 	= SP0VVPPR
+   Cmd 	= CATPPRChangeGraphLevel
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= AssignSetupMachine
+   Id 	= AssignSetupMachine
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgAssignSetupMachineCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Multi-selection of Face
+   Id 	= MultiSelect
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgMultiSelectCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Reverse an Area
+   Id 	= TPEReverseSelection
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPEReverseCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Starts Mill-Turn Machine Simulation
+   Id 	= DNBVNCMillTurnTransitionHdr
+   DLL 	= DNBVNCWorkbench
+   Cmd 	= DNBVNCMillTurnSwitchingCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Tapping
+   Id 	= CATCreateTappingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Prismatic Rework Areas
+   Id 	= DeleteUnused2DRAFeature
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteUnusedFeaturesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Chamfering 2 Sides
+   Id 	= CATCreateChamfering2SidesHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Start Video Simulation using NC Code
+   Id 	= VideoISOSimu
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgVideoISOSimuCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Navigate on Belt of Faces
+   Id 	= NavigateBeltFace
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgNavigateBeltCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= New from current
+   Id 	= MfgNewFromPattern
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgNewFromPatternCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Hole
+   Id 	= CATCreateHoleHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Groove Turning
+   Id 	= CATLmuCreateMfgLatheGroovingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reverse Machining Conditions
+   Id 	= CATMfgOPPOSITEReverseMachiningConditionsHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgReverseMachiningConditions
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Unlock
+   Id 	= ToolPathUnlock
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgActivityToolPathUnlockCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Go to Manufacturing Tolerancing Assistant
+   Id 	= GotoIpTolerancingHdr
+   DLL 	= DNBDptIPMTolerance
+   Cmd 	= DELMDptIPMTolGotoIPTCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= QuickSelTool
+   Id 	= QuickSelTool
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolSelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CollisionCheckingOptionEditionHdr
+   Id 	= CollisionCheckingOptionEditionHdr
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgCollisionCheckingOptionEditionCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Machining Axis Change
+   Id 	= CATCreateCoordinateSystemHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace Tool...
+   Id 	= ReplaceTool
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolReplaceCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Merge PP Instructions...
+   Id 	= MergeContiguousPP
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgMergeContiguousPPCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import/List Tools
+   Id 	= CATImportToolsHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolImportCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CycleEdition
+   Id 	= CycleEdition
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCycleEditorCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBZipMfgRunToEnd
+   Id 	= DNBZipMfgRunToEnd
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgRunToEndCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= TPECheckTPContinuity
+   Id 	= TPECheckTPContinuity
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPECheckTPContinuityCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rough Turning
+   Id 	= CATLmuCreateMfgLatheLongRoughHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 测量间距...
+   Id 	= CATMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Definition...
+   Id 	= EditMultiMO
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgEditMultiMOCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manufacturing View
+   Id 	= ManufacturingFeatureView
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateFeatureViewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Machining Areas
+   Id 	= DeleteUnusedMachiningAreas
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteUnusedFeaturesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Display NC File
+   Id 	= OutputFileBrowse
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgNCOutputFileBrowserCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Process Table
+   Id 	= TabularView
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateTabularViewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import IPM Instance
+   Id 	= CATMfgInsertFrozenIPMCmdHdr
+   DLL 	= DNBDptSharedCmds
+   Cmd 	= DNBDptImportIPMInstanceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Accept Geometry Selections
+   Id 	= CATExitWizardHdr
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgExitWizardCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Screen Capture
+   Id 	= MfgScreenCapture
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCaptureCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Isolate Process Data
+   Id 	= PanelProcessTemplate
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateProcessTemplatePanel
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Prismatic Pocket
+   Id 	= CATCreatePrismaticPocketHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Distribute
+   Id 	= MfgDistributeHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrDistributeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Internal Insert-Holder
+   Id 	= CATCreateMfgInternalToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolChangeLatheCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Prismatic Machining Areas
+   Id 	= DeleteUnused2DMAFeature
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteUnusedFeaturesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= All Machining Features
+   Id 	= DeleteAllUnusedFeatures
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteUnusedFeaturesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generate NC Code in Batch Mode
+   Id 	= CATNCOutputBatchHdr
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgNCOutputBatchCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= External Groove Insert-Holder
+   Id 	= CATCreateMfgGrooveExternalToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolChangeLatheCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Back Boring
+   Id 	= CATCreateBackBoringHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Boring
+   Id 	= CATCreateBoringHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit NC Resources
+   Id 	= EditNCResource
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgResEditCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Lock Tool Path
+   Id 	= ProgramTPSLockOnly
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgProgramToolPathLockCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Counterbore
+   Id 	= CATCreateCounterboreHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Counter Boring
+   Id 	= CATCreateCounterBoringHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBMfgZipSaveAnim
+   Id 	= DNBMfgZipSaveAnim
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgSaveCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= Frontal Groove Insert-Holder
+   Id 	= CATCreateMfgGrooveFrontalToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolChangeLatheCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Copy Transformation Instruction
+   Id 	= CreateCopyOrder
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateCopyOrderActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= LinkingMode
+   Id 	= LinkingMode
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Synchronize IPM Instance
+   Id 	= CATMfgIPMInstanceSynchroIPMCmdHdr
+   DLL 	= DNBDptSharedCmds
+   Cmd 	= DNBDptIPMInstanceSynchroCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Show Children
+   Id 	= RepresentationNodeShow
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgSetActivityRepresentationCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Machine Instruction
+   Id 	= CreateMachineInstruction
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Spot Drill
+   Id 	= CATCreateSpotDrillToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CreateFlutelessTapping
+   Id 	= CATCreateFlutelessTappingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Counter Sinking
+   Id 	= CATCreateCounterSinkingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Start Video Simulation
+   Id 	= RunVideoOnProgram
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgRunVideoOnProgram
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= TPEPPWordModification
+   Id 	= TPEPPWordModification
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATTPEPPWordModificationCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Lock Children
+   Id 	= ProgramTPSLock
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgProgramToolPathLockCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= QuickSelAssembly
+   Id 	= QuickSelAssembly
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgAssemblySelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generate Tool Changes
+   Id 	= GenerateToolChanges
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgGenerateToolChangesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Counterbore Mill
+   Id 	= CreateCounterboreMillTool
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replay Tool Path
+   Id 	= CATToolPathReplayHdr
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgReplayToolPathCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Barrel Mill
+   Id 	= CreateBarrelMillTool
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Ramp Rough Turning
+   Id 	= CreateMfgLatheRampingRoughing
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Connection
+   Id 	= TPEConnect
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPEConnectToolPathCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= RerouteProductHdr
+   Id 	= RerouteProductHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgRerouteProductCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= NCOutputModelSelection
+   Id 	= NCOutputModelSelection
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgNCOutputModelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit User Data...
+   Id 	= EditUserData
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgEditUserDataCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= AssignPartOpProduct
+   Id 	= AssignPartOpProduct
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgAssignProduct2PartOpCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= MeasureArc
+   Id 	= MeasureArc
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureArcsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create TDM Tool List...
+   Id 	= TDMToolListCreation
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgTDMToolListCreationCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Retrieve faces of same color
+   Id 	= NewSameColor
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgSameColorCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= TPECheckRamp
+   Id 	= TPECheckRamp
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPECheckRampCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Photo Options
+   Id 	= DNBMfgZipSettings
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgSettingsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Drilling Dwell Delay
+   Id 	= CATCreateDrillingDwellDelayHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Quick Check on Simulation
+   Id 	= DNBVncQuickCheckCmdHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncQuickCheckCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Internal Groove Insert-Holder
+   Id 	= CATCreateMfgGrooveInternalToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolChangeLatheCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBMfgZipRemoveChip
+   Id 	= DNBMfgZipRemoveChip
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgRemoveChipCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Replace Tools
+   Id 	= ToolReplace
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolReplaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select collision points
+   Id 	= TPECheckToolSelection
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATTPECheckToolSelectionCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Drill
+   Id 	= CATCreateDrillToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Prismatic Slab
+   Id 	= CATCreatePrismaticSlabHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBZipAnimISOSimulation
+   Id 	= DNBZipAnimISOSimulation
+   DLL 	= DNBZipIsoController
+   Cmd 	= DNBZipAnimISOCodeSimulCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Generate Transition Paths
+   Id 	= GenerateMfgAutomaticCompleteHeader
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgGenerateAutomaticCompleteCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= AssignPartOpProductInst
+   Id 	= AssignPartOpProductInst
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgAssignProductInstance2PartOpCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Resets selections to stop edge
+   Id 	= ResetToEdge
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgResetToEdgeCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Lock
+   Id 	= ToolPathLock
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgActivityToolPathLockCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBMfgZipRewind
+   Id 	= DNBMfgZipRewind
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgRewindCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= MfgComputeActualStock
+   Id 	= MfgComputeActualStock
+   DLL 	= CATMfgInProcessModel
+   Cmd 	= CATMfgComputeActualStockCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Face Mill
+   Id 	= CATCreateFaceMillToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Refresh Photo
+   Id 	= DNBMfgZipUpdate
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgUpdateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Update Transition Paths
+   Id 	= UpdateMfgAutomaticCompleteHeader
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgGenerateAutomaticCompleteCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Feedrate Modification
+   Id 	= TPEFeedrateModification
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPEFeedrateModificationCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Sort by Machining Features
+   Id 	= SortByMachinableFeatures
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgSortMfgViewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Start Video Simulation using Tool Path
+   Id 	= VideoTPathSimu
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgVideoTPathSimuCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ActivitySelection
+   Id 	= ActivitySelection
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Expand tree to machining operations
+   Id 	= ExpandTreeToMachiningOperations
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgExpandTreeToCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Offset Groups
+   Id 	= DeleteUnusedOffsetGroups
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteUnusedFeaturesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align Side
+   Id 	= MfgSnapSideHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapSideCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Profile Finish Turning
+   Id 	= CATLmuCreateMfgLatheProfileFinishHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Extend Last Selected Edge
+   Id 	= ExtendLastEdge
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgExtendLastEdgeCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Merge PP Instructions...
+   Id 	= MergePPInstructions
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgMergePPInstructionCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= RerouteLocalOrGlobalHdr
+   Id 	= RerouteLocalOrGlobalHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgRerouteLocalOrGlobalCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Center Drill
+   Id 	= CATCreateCenterDrillToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Lock Tool Path
+   Id 	= ToolPathLockOnly
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgActivityToolPathLockCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 测量...
+   Id 	= CATMeasureItemHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Area Selection Option
+   Id 	= TPEOptionSelection
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPEOptionCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Closes Contour with Line
+   Id 	= CATCloseEdgeHdr
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgCloseEdgeCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= T-Slotter
+   Id 	= CATCreateTSlotterToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBMfgZipErrorCrossRef
+   Id 	= DNBMfgZipErrorCrossRef
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgErrorCrossRefCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Point Modification
+   Id 	= TPEPointModification
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATTPEPointModificationCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Machine Rotation
+   Id 	= CATCreateTableHeadRotationHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Checks...
+   Id 	= MfgEditChecks
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgEditChecksCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Show Solid
+   Id 	= Show Solid
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgMaxTurnEnvelopeShowSolidCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Thread Mill
+   Id 	= CreateThreadMill
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBMfgZipLoadSimuResult
+   Id 	= DNBMfgZipLoadSimuResult
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgLoadSimuResultCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= Import/List Tool Assemblies
+   Id 	= ManufacturingTAListView
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolAssemblyImportCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Display option panel
+   Id 	= OptionPanel
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgOptionEdgeWizardPanelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= External Insert-Holder
+   Id 	= CATCreateMfgExternalToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolChangeLatheCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Unlock Tool Path
+   Id 	= ToolPathUnlockOnly
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgActivityToolPathUnlockCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Show/Hide Children
+   Id 	= RepresentationNode
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgSetActivityRepresentationCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Pack Tool Path
+   Id 	= ToolPathPack
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgToolPathPackCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reorder Operation List
+   Id 	= CATMfgOPPOSITEReorderMOListHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgReverseMOList
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Thread Turning
+   Id 	= CreateMfgLatheThreading
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Navigate on Faces Until a Face
+   Id 	= NavigateToFace
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgNavigateToCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 激活
+   Id 	= Activate
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgActivateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Duplicate Resources
+   Id 	= DuplicateResources
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgDuplicateResourcesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reset All Selections
+   Id 	= ResetSelFEOF
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgResetSelFEOFCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Process Synchronization
+   Id 	= MfgNCSynchro
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgSynchroCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Conical Mill
+   Id 	= CATCreateConicalMillToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBMfgZipRun
+   Id 	= DNBMfgZipRun
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgRunCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= Propagate Tangentially on Sharp Edges
+   Id 	= CATTangentEdgeHdr
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgTangentEdgeCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Slope Areas
+   Id 	= DeleteUnusedSlopeAreas
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteUnusedFeaturesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Cancel
+   Id 	= TPECancelArea
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xAreaModificationCancelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Internal Thread
+   Id 	= CATCreateInternalThreadHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reaming
+   Id 	= CATCreateReamingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Insert Lines on Gaps
+   Id 	= CATInsertLineHdr
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgInsertLineCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Assign Tool...
+   Id 	= AssignTool
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolSelCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Choose Reference Feature
+   Id 	= ReferenceFEOF
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgReferenceFEOFCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Copy Program
+   Id 	= MfgMPTransformation
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgMPTransformationCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Simulate Machine using Tool Path
+   Id 	= MachineTPathSimu
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgMachineTPathSimuCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Machining Gantt Chart
+   Id 	= MfgGantt
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgGanttChartCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Compute Input Stock and Tool Path
+   Id 	= ComputeStockAndToolpath
+   DLL 	= CATMfgInProcessModel
+   Cmd 	= CATMfgComputeStockAndTPCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Boring and Chamfering Tool
+   Id 	= CATCreateBoringAndChamferingToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Cancel Geometry Selections
+   Id 	= CATCancelWizardHdr
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgCancelWizardCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Assign Machine From PPR...
+   Id 	= CATMfgAssignMachineInPPRHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgAssignMachineInPPRCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Spot Drilling
+   Id 	= CATCreateSpotDrillingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Send To Catalog...
+   Id 	= SendResourcesToCatalog
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgSendResourcesToCatalogCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Countersink
+   Id 	= CATCreateCountersinkHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Opposite Hand Machining Options
+   Id 	= CATMfgOPPOSITEOptionsHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgOppositeOptionsCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= TPECheckHeight
+   Id 	= TPECheckHeight
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPECheckHeightCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Cut an Area
+   Id 	= TPECutArea
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPECutCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= DNBMfgZipRunReverseNBlock
+   Id 	= DNBMfgZipRunReverseNBlock
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipRunReverseNBlockCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= Initialize Photo
+   Id 	= DNBMfgZipMill
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgZipMillCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= DNBNVGRunSummary
+   Id 	= DNBNVGRunSummary
+   DLL 	= DNBZipNVGController
+   Cmd 	= DNBZipNVGRunSummaryCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= Sequential Groove
+   Id 	= CreateSequentialGroove
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DNBMfgZipAnimMeasure
+   Id 	= DNBMfgZipAnimMeasure
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgAnimMeasureCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= T-Slot
+   Id 	= CATCreateTSlotHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= NCOutputFileSelection
+   Id 	= NCOutputFileSelection
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgNCOutputFileCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Boring Spindle Stop
+   Id 	= CATCreateBoringSpindleStopHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Machining Pattern
+   Id 	= CATCreateMachiningPatternHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Geometrical Zones
+   Id 	= DeleteUnusedGeometricalZones
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteUnusedFeaturesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reverse Threading
+   Id 	= CATCreateReverseThreadingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Resource Context
+   Id 	= MfgImportResource
+   DLL 	= SP0VVPPR
+   Cmd 	= CATImportCtxtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Circular Mill
+   Id 	= CATCreateCircularMillHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Workpiece Automatic Mount
+   Id 	= MfgWorkpieceAutoMountHdr
+   DLL 	= CATMfgMTSimulationCmd
+   Cmd 	= CATMfgWorkpieceAutoMountCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Hide/Show checks elements
+   Id 	= MfgHideShowChecksHeader
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgHideShowGeometryCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Sort by Patterns
+   Id 	= SortByPatterns
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgSortMfgViewCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CreateSpotFacing
+   Id 	= CATCreateSpotFacingHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Clean Computed Stock Data
+   Id 	= RemoveIPMData
+   DLL 	= CATMfgInProcessModel
+   Cmd 	= CATMfgRemoveIPMDataCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= NCOutputModelNameSelection
+   Id 	= NCOutputModelNameSelection
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgNCOutputModelNameCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Sequential Turning
+   Id 	= CreateMfgLatheSequential
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 取消激活
+   Id 	= Deactivate
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgActivateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Area Modification
+   Id 	= TPEAreaModification
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPEModificationWizardCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= TPECheckWidth
+   Id 	= TPECheckWidth
+   DLL 	= CATToolPathEditor2
+   Cmd 	= CATM3xTPECheckWidthCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Point to Point
+   Id 	= CATCreatePtToPtFeatureHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Hide Children
+   Id 	= RepresentationNodeHide
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgSetActivityRepresentationCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Cylinder Stylus
+   Id 	= CreateCylinderStylusTool
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import APT, Clfile or NC code
+   Id 	= APTImport
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgAPTImportCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 2 Sides Chamfer
+   Id 	= CATCreate2SidesChamferHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Machining Patterns
+   Id 	= DeleteUnusedPatternUsage
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgDeleteUnusedFeaturesCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Stiffeners selection
+   Id 	= NewSelectPlanesAndFillets
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgSelectPlanesAndFilletsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= CreateDrillingDeepClassic
+   Id 	= CATCreateDrillingDeepClassicHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ReroutePubManualHdr
+   Id 	= ReroutePubManualHdr
+   DLL 	= CATManufacturingBaseCmd
+   Cmd 	= CATMfgReroutePublicationManualCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add User Representation...
+   Id 	= AddUserRep
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgResourceAddUserRepCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Two Sides Chamfering Tool
+   Id 	= CATCreateTwoSidesChamferingToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Sequential Axial
+   Id 	= CreateSequentialAxial
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Remove Tool Path
+   Id 	= DeleteToolPath
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgDeleteToolPathCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= MfgCheckOnMachine
+   Id 	= MfgCheckOnMachine
+   DLL 	= MfgMachineIntergration
+   Cmd 	= MfgCheckOnMachineCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Part Operation
+   Id 	= CATCreateSetupHdr
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreateActivityCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Ignore in Tool Path Computation
+   Id 	= IntermStockIgnore
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgIntermStockIgnore
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Load Simulation result
+   Id 	= LoadSimulationResult
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgLoadSimulationResultCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Feature Query
+   Id 	= QueryFEOF
+   DLL 	= CATManufacturingGeo
+   Cmd 	= CATMfgQueryFEOFCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Update Computed Input Stock Status
+   Id 	= UpdateIPMStatus
+   DLL 	= CATMfgInProcessModel
+   Cmd 	= CATMfgUpdateIPMStatusCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Prismatic Rework Area
+   Id 	= CreateMfg2DRAFeature
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgCreatePrismaticFeatureCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reamer
+   Id 	= CATCreateReamerToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= MfgPtToPtEditSeqGoto
+   Id 	= MfgPtToPtEditSeqGoto
+   DLL 	= CATPrismaticMachining
+   Cmd 	= CATMfgPtToPtEditSeqGotoCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Countersink
+   Id 	= CATCreateCountersinkToolHdr
+   DLL 	= CATManufacturingResourceUI
+   Cmd 	= CATMfgToolCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Remove Video Result
+   Id 	= DeleteVideoResult
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgDeleteVideoResultCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Compute Tool Path
+   Id 	= ComputeToolPath
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgComputeToolPathCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= MfgComputeInputStock
+   Id 	= MfgComputeInputStock
+   DLL 	= CATManufacturingUI
+   Cmd 	= CATMfgComputeInputStockCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATPartMenu 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Separator Name=CATNewSeparator005
+   Title=视图 	 Name=CATAfrView 
+      Title=Machining 	 Name=NCVIEWSMenu 
+         Starter Name=TabularView
+         Starter Name=CATManufacturingFeatureView
+         Starter Name=CATMfgMachiningProcessViewStr
+         Starter Name=MfgGantt
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Title=Machining Operations 	 Name=LatheOperations 
+         Starter Name=MfgLatheLongRough
+         Starter Name=MfgLatheGrooving
+         Starter Name=MfgLatheRecessing
+         Starter Name=MfgLatheProfileFinish
+         Starter Name=MfgLatheGrooveFinish
+         Starter Name=MfgLatheThreading
+         Starter Name=MfgLatheSequential
+         Starter Name=MfgLatheRampingRoughing
+         Starter Name=MfgLatheRampingRecessing
+         Title=Axial Machining Operations 	 Name=CATDrillingContainer 
+            Starter Name=CATDrilling
+            Starter Name=CATSpotDrilling
+            Starter Name=CATDrillingDwellDelay
+            Starter Name=CATDrillingDeepHole
+            Starter Name=CATDrillingBreakChips
+            Starter Name=CATTapping
+            Starter Name=CATReverseThreading
+            Starter Name=CATThreadWithoutTapHead
+            Starter Name=CATBoring
+            Starter Name=CATBoringAndChamfering
+            Starter Name=CATBoringSpindleStop
+            Starter Name=CATReaming
+            Starter Name=CATCounterBoring
+            Starter Name=CATCounterSinking
+            Starter Name=CATChamfering2Sides
+            Starter Name=CATBackBoring
+            Starter Name=CATTSlotting
+            Starter Name=CATCircularMilling
+            Starter Name=CATThreadMilling
+            Separator Name=SequentialOpSeparator
+            Starter Name=SequentialAxial
+            Starter Name=SequentialGroove
+      Title=Auxiliary Operations 	 Name=AuxiliaryOperationsLathe 
+         Title=Turning Tool Change 	 Name=PaletteLatheTC 
+            Starter Name="CreateMfgExternalTool"
+            Starter Name="CreateMfgInternalTool"
+            Starter Name="CreateMfgGrooveExternalTool"
+            Starter Name="CreateMfgGrooveFrontalTool"
+            Starter Name="CreateMfgGrooveInternalTool"
+            Starter Name="CreateMfgThreadExternalTool"
+            Starter Name="CreateMfgThreadInternalTool"
+         Title=Milling Tool Change 	 Name=CATManufacturingTools 
+            Starter Name=CATDrillTool
+            Starter Name=CATTapTool
+            Starter Name=CATThreadMillTool
+            Starter Name=CATCountersinkTool
+            Starter Name=CATReamerTool
+            Starter Name=CATSpotDrillTool
+            Starter Name=CATCenterDrillTool
+            Starter Name=CATMultiDiamDrillTool
+            Starter Name=CATBoringAndChamferingTool
+            Starter Name=CATTwoSidesChamferingTool
+            Starter Name=CATBoringBarTool
+            Starter Name=CATCounterboreMillTool
+            Starter Name=CATEndMillTool
+            Starter Name=CATFaceMillTool
+            Starter Name=CATConicalMillTool
+            Starter Name=CATTSlotterTool
+            Starter Name=CATBarrelMillTool
+            Separator Name=Separator
+            Starter Name=CATBallStylusTool
+            Starter Name=CATCylinderStylusTool
+         Starter Name=CATTableHeadRotation
+         Starter Name=CATMachineInstruction
+         Starter Name=HeadChange
+         Starter Name=CATCoordinateSystem
+         Starter Name=CATPPInstruction
+         Title=Transformation Management 	 Name=CopyTracutContainer 
+            Starter Name=CopyAPT
+            Starter Name=TracutAPT
+            Starter Name=CATCopyOrder
+            Separator Name=Separator
+            Starter Name=MfgMPTransformation
+            Starter Name=MfgMPOptimizeTC
+      Title=Machining Features 	 Name=LatheFeatures 
+         Title=Milling Features 	 Name=CATMaoMillingContainerSnu 
+            Starter Name=M3xGeoZone
+            Starter Name=M3xFeature
+            Starter Name=CATMaoM3xOffsetStr
+         Separator Name=Separator
+         Starter Name=CATMachiningAxisSystem
+         Starter Name=CATMachiningPattern
+         Starter Name=MaxTurnEnvelopeMachinableFeature
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Title=Machining Tools 	 Name=NCTOOLSMenu 
+         Starter Name=ProcessTemplate
+
+ Title of the toolbar=Select and is Name=ManufacturingSelectMainLathe
+   Starter Name=CATSelect
+
+ Title of the toolbar=Manufacturing Program and is Name=ManufacturingProgramMainLathe
+   Starter Name=CATCreateSetup
+   Starter Name=CATCreateProgram
+
+ Title of the toolbar=Machine Management and is Name=PaletteMachineLathe
+   Starter Name="MfgResCtxt"
+   Starter Name="MfgWorkpieceAutoMountHdr"
+   Starter Name="MfgSnapResourcesHdr"
+   Title of the Icon Box=Align on Machine Management 	 Name=PaletteAlign 
+      Starter Name="MfgSnapSideHdr"
+      Starter Name="MfgSnapPointHdr"
+      Starter Name="MfgRotateSideHdr"
+      Starter Name="MfgDistributeHdr"
+   Starter Name="MfgIgpAttachHdr"
+
+ Title of the toolbar=Machining Operations and is Name=LatheOperations
+   Starter Name=MfgLatheLongRough
+   Starter Name=MfgLatheGrooving
+   Starter Name=MfgLatheRecessing
+   Starter Name=MfgLatheProfileFinish
+   Starter Name=MfgLatheGrooveFinish
+   Starter Name=MfgLatheThreading
+   Starter Name=MfgLatheSequential
+   Starter Name=MfgLatheRampingRoughing
+   Starter Name=MfgLatheRampingRecessing
+   Title of the Icon Box=Axial Machining Operations 	 Name=CATDrillingContainer 
+      Starter Name=CATDrilling
+      Starter Name=CATSpotDrilling
+      Starter Name=CATDrillingDwellDelay
+      Starter Name=CATDrillingDeepHole
+      Starter Name=CATDrillingBreakChips
+      Starter Name=CATTapping
+      Starter Name=CATReverseThreading
+      Starter Name=CATThreadWithoutTapHead
+      Starter Name=CATBoring
+      Starter Name=CATBoringAndChamfering
+      Starter Name=CATBoringSpindleStop
+      Starter Name=CATReaming
+      Starter Name=CATCounterBoring
+      Starter Name=CATCounterSinking
+      Starter Name=CATChamfering2Sides
+      Starter Name=CATBackBoring
+      Starter Name=CATTSlotting
+      Starter Name=CATCircularMilling
+      Starter Name=CATThreadMilling
+      Starter Name=SequentialOpSeparator
+      Starter Name=SequentialAxial
+      Starter Name=SequentialGroove
+
+ Title of the toolbar=Auxiliary Operations and is Name=AuxiliaryOperationsLathe
+   Title of the Icon Box=Turning Tool Change 	 Name=PaletteLatheTC 
+      Starter Name="CreateMfgExternalTool"
+      Starter Name="CreateMfgInternalTool"
+      Starter Name="CreateMfgGrooveExternalTool"
+      Starter Name="CreateMfgGrooveFrontalTool"
+      Starter Name="CreateMfgGrooveInternalTool"
+      Starter Name="CreateMfgThreadExternalTool"
+      Starter Name="CreateMfgThreadInternalTool"
+   Title of the Icon Box=Milling Tool Change 	 Name=CATManufacturingTools 
+      Starter Name=CATDrillTool
+      Starter Name=CATTapTool
+      Starter Name=CATThreadMillTool
+      Starter Name=CATCountersinkTool
+      Starter Name=CATReamerTool
+      Starter Name=CATSpotDrillTool
+      Starter Name=CATCenterDrillTool
+      Starter Name=CATMultiDiamDrillTool
+      Starter Name=CATBoringAndChamferingTool
+      Starter Name=CATTwoSidesChamferingTool
+      Starter Name=CATBoringBarTool
+      Starter Name=CATCounterboreMillTool
+      Starter Name=CATEndMillTool
+      Starter Name=CATFaceMillTool
+      Starter Name=CATConicalMillTool
+      Starter Name=CATTSlotterTool
+      Starter Name=CATBarrelMillTool
+      Starter Name=Separator
+      Starter Name=CATBallStylusTool
+      Starter Name=CATCylinderStylusTool
+   Starter Name=CATTableHeadRotation
+   Starter Name=CATMachineInstruction
+   Starter Name=HeadChange
+   Starter Name=CATCoordinateSystem
+   Starter Name=CATPPInstruction
+   Title of the Icon Box=Transformation Management 	 Name=CopyTracutContainer 
+      Starter Name=CopyAPT
+      Starter Name=TracutAPT
+      Starter Name=CATCopyOrder
+      Starter Name=Separator
+      Starter Name=MfgMPTransformation
+      Starter Name=MfgMPOptimizeTC
+      Starter Name=Separator
+      Starter Name=OPTIONS
+      Starter Name=REVERSE
+      Starter Name=CATPstREORDERStr
+      Starter Name=REVERSEMACROS
+
+ Title of the toolbar=NC Output Management and is Name=ManufacturingToolPathMainLathe
+   Starter Name=CATToolPathReplay
+   Title of the Icon Box=NC Output Generations 	 Name=CATNCOutputContainer 
+      Starter Name=CATNCOutputBatch
+      Starter Name=CATGenerateNCCode
+   Starter Name=NCBatchCompute
+   Starter Name=CATNCDocumentation
+   Starter Name=DNBVNCTransitionHdr
+   Starter Name=DNBVNCMillTurnTransitionHdr
+   Starter Name=MfgScreenCapture
+
+ Title of the toolbar=Auxiliary Commands and is Name=ManufacturingAuxiliaryViewsLathe
+   Starter Name=CATMfgOpenCatalogStr
+   Title of the Icon Box=ToolImportContainer 	 Name=PaletteTool 
+      Starter Name=CATManufacturingToolListView
+      Starter Name=ManufacturingTAListView
+   Starter Name=ToolReplace
+   Starter Name=ActivitySelection
+   Starter Name=UpdateStatus
+   Starter Name=MfgSynchro
+   Starter Name=TabularView
+   Starter Name=MfgGantt
+   Title of the Icon Box=Hide/Show geometry 	 Name=PaletteVueAux 
+      Starter Name=HideShowParts
+      Starter Name=HideShowChecks
+
+ Title of the toolbar=Standard Machining Processes and is Name=ManufacturingStandardMPLathe
+   Starter Name=ApplyMPFromCatalog
+Separator Name=Separator
+   Title of the Icon Box=StandardDrillingMPContainer 	 Name=StandardDrillingMPContainer 
+      Starter Name=StandardDrilling
+      Starter Name=MPForGenericHoles
+
+ Title of the toolbar=Machining Process and is Name=ManufacturingMachiningProcessLathe
+   Starter Name=CATMfgMachiningProcessViewStr
+   Starter Name=CATMfgCreateMachiningProcessStr
+
+ Title of the toolbar=Machining Features and is Name=ManufacturingFeaturesLathe
+   Starter Name=M3xGeoZone
+   Starter Name=M3xFeature
+   Starter Name=CATMaoM3xOffsetStr
+Separator Name=Separator
+   Title of the Icon Box=PatternMASContainer 	 Name=PatternMASContainer 
+      Starter Name=CATMachiningPattern
+      Starter Name=CATMachiningAxisSystem
+Separator Name=Separator
+   Starter Name=CATManufacturingFeatureView
+Separator Name=Separator
+   Starter Name=MaxTurnEnvelopeMachinableFeature
+
+ Title of the toolbar=Face Selection and is Name=FaceWizardLathe
+
+ Title of the toolbar=Edge Selection and is Name=EdgeWizardLathe
+
+ Title of the toolbar=Find Edges Of Faces and is Name=FindEdgesOfFacesLathe
+
+ Title of the toolbar=Measure and is Name=ConsistencyLathe
+   Starter Name=CATMeasureBetween
+   Starter Name=CATMeasureItem
+
+ Title of the toolbar=Tool Path Editor and is Name=TPEModificationWizardLathe

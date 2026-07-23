@@ -1,0 +1,207 @@
+Workshop Exposition of CATEcwWkb 
+
+1- Header List 
+
+Title= 相关的对象
+   Id 	= CATEcwRelatedObjectsHdr
+   DLL 	= CATPspObjectNavigator
+   Cmd 	= CATPspCurrentSelection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 导入查询...
+   Id 	= CATEcwImportQueryHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExportQueryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 复制//粘贴 3D 系统...
+   Id 	= CATEcwCopyPaste3DSystemsHdr
+   DLL 	= CATArrCCP3DSystems
+   Cmd 	= CATArrCopyPaste3DSysCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转移元素...
+   Id 	= CATEcwTransferElementsHdr
+   DLL 	= CATCloTransferElements
+   Cmd 	= CATCloTransferElementsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 管理异常
+   Id 	= CATEcwManageExceptionsHdr
+   DLL 	= CATPspFuncPhysIntegrator
+   Cmd 	= CATPspManageExceptionsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 导出查询...
+   Id 	= CATEcwExportQueryHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExportQueryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 断开连接...
+   Id 	= CATEcwDisconnectPartsHdr
+   DLL 	= CATCloManageCnx
+   Cmd 	= CATCloDisconnectMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 连接...
+   Id 	= CATEcwConnectPartsHdr
+   DLL 	= CATCloManageCnx
+   Cmd 	= CATCloConnectionMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 分析功能 - 物理集成状态
+   Id 	= CATEcwAnalyzeFuncPhysStatusHdr
+   DLL 	= CATPspFuncPhysIntegrator
+   Cmd 	= CATPspAnalyzeFuncPhysStatusCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATCssSsrMenuMbr 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Starter Name=CATArrDefinitionId
+      Starter Name=CATArrBranchToStarCnxButton
+   Title=INSERT 	 Name=CATAfrInsertMnu 
+      Separator Name=CATCssSsrSepar0Sep
+      Starter Name=CATSsrPathwayButton
+      Starter Name=CATSsrRouteFromSplineButton
+      Starter Name=CATSsrRouteByOffsetButton
+      Starter Name=CATSsrRouteThruPathwayButton
+      Starter Name=CATSsrOffsetSegmentButton
+      Starter Name=SsrBreakRunButton
+      Starter Name=TransferRunIcon
+      Starter Name=SsrAdjustRunButton
+   Title=TOOLS 	 Name=CATAfrToolsMnu 
+      Separator Name=CATCssSsrToolSepar0Sep
+      Title=Reporter 	 Name=Reporter 
+         Starter Name=SsrReporterTool
+         Starter Name=SsrCatalogReportIcon
+      Title=设计工具 	 Name=CATDesignTools 
+         Starter Name=CATArrSnapSideButton
+         Starter Name=CATArrSnapPointButton
+         Starter Name=CATArrRotateSideButton
+         Starter Name=CATArrDistributeButton
+         Starter Name=ArrSnapTwoPlanesButton
+         Starter Name=ArrQuickTranslateButton
+         Separator Name=CATSeparLink1
+         Starter Name=CATArrSnapResourcesButton
+         Starter Name=ArrSnap3PointsButton
+         Starter Name=ArrSnapCenterPolygonButton
+         Starter Name=ArrSnapSurfaceButton
+         Separator Name=CATSeparLink2
+         Starter Name=CATArrMirrorButton
+         Starter Name=CATArrSymCopyButton
+      Title=环境工具 	 Name=CATEnvironmentTools 
+         Starter Name=CATArrSetLocalAxisButton
+         Starter Name=SsrLocalAxisCompassButton
+         Starter Name=PreviousLocalAxisIcon
+         Separator Name=CATSeparLink4
+         Starter Name=CATArrSetEdgePlaneButton
+         Starter Name=CATArrSetAdvEdgePlaneButton
+         Separator Name=CATSeparLink5
+         Starter Name=CATArrUp1LevelButton
+         Starter Name=ArrActivateParentButton
+         Starter Name=CATArrSetAreaCurButton
+         Starter Name=CATArrSetNetCurButton
+         Separator Name=CATCssSeparLink6Str
+         Starter Name=CATArrBranchToStarCnxButton
+      Title=项目管理 	 Name=SsrPRMTools 
+         Starter Name=ArrPrjMngtStr
+         Starter Name=ArrPRMCheckerStr
+      Title=查询 	 Name=EcwQueriesTools 
+         Starter Name=ExportQueriesStr
+         Starter Name=ImportQueriesStr
+      Starter Name=PspMangePubIcon
+   Title=分析 	 Name=CATANALYZE 
+      Starter Name=CATArrAnalyzeNetworkButton
+      Starter Name=CATXDocCnxMenu
+      Separator Name=SsrAnalyzeSepar0
+      Starter Name=EcwRelatedObjectsMenu
+      Starter Name=CATNavigation4DMeasureBetween
+      Starter Name=CATNavigation4DMeasureEdge
+      Starter Name=CATNavigation4DMeasureInertia
+      Separator Name=SsrAnalyzeSepar1
+      Title=功能 - 物理集成 	 Name=SsrFuncPhysIntegration 
+         Starter Name=PspAnalyzeFuncPhysStatusMenu
+         Starter Name=PspManageExceptionMenu
+      Starter Name=SsrDesignValidation
+
+ Title of the toolbar=EcrSelAsm and is Name=EcrSelAsm
+   Starter Name=EcrSelectAssemblyIcon
+
+ Title of the toolbar=系统空间预留 and is Name=CATCssSsrToolBar001Tlb
+   Title of the Icon Box=PathToolbar 	 Name=PathToolbar 
+      Starter Name=SsrLoftCreationIcon
+      Starter Name=CATSsrPathwayButton
+   Title of the Icon Box=传递工具 	 Name=CATRouteTools 
+      Starter Name=CATSsrRouteFromSplineButton
+      Starter Name=CATSsrRouteByOffsetButton
+      Starter Name=CATSsrRouteThruPathwayButton
+      Starter Name=CATSsrOffsetSegmentButton
+      Starter Name=SsrBreakRunButton
+      Starter Name=TransferRunIcon
+      Starter Name=SsrAdjustRunButton
+   Title of the Icon Box=DisconnectTools 	 Name=DisconnectTools 
+      Starter Name=CATArrBranchToStarCnxButton
+      Starter Name=SsrDisconnectIcon
+      Starter Name=SsrConnectIcon
+   Title of the Icon Box=CCPTools 	 Name=CCPTools 
+      Starter Name=SsrTransferElementsIcon
+      Starter Name=SsrCCP3DSystemsIcon
+
+ Title of the toolbar=常规设计工具 and is Name=CATCssArrSsrGenDesignTBTlb
+   Title of the Icon Box=对齐 	 Name=CATAlign 
+      Starter Name=CATArrSnapSideButton
+      Starter Name=CATArrSnapPointButton
+      Starter Name=CATArrRotateSideButton
+      Starter Name=CATArrDistributeButton
+      Starter Name=ArrSnapTwoPlanesButton
+      Starter Name=ArrQuickTranslateButton
+   Title of the Icon Box=Snap 	 Name=CATSnap 
+      Starter Name=CATArrSnapResourcesButton
+      Starter Name=ArrSnap3PointsButton
+      Starter Name=ArrSnapCenterPolygonButton
+      Starter Name=ArrSnapSurfaceButton
+   Title of the Icon Box=镜像 	 Name=CATMirror 
+      Starter Name=CATArrMirrorButton
+      Starter Name=CATArrSymCopyButton
+
+ Title of the toolbar=常规环境工具 and is Name=CATCssArrSsrGenEnvTBTlb
+   Title of the Icon Box=DetailInfoMode 	 Name=DetailInfoMode 
+      Starter Name=ArrDetailInfoButton
+      Starter Name=CATArrSetLocalAxisButton
+      Starter Name=ArrSetLocalAxisCompassButton
+      Starter Name=ArrSetPreviousLocalAxisButton
+   Title of the Icon Box=定义平面 	 Name=CATDefinePlane 
+      Starter Name=CATArrSetEdgePlaneButton
+      Starter Name=CATArrSetAdvEdgePlaneButton
+   Starter Name=CATArrSnapModeButton
+   Starter Name=CATArrCurrentStepValue
+   Title of the Icon Box=切换模式 	 Name=CATToggleMode 
+      Starter Name=ArrManipulationModeButton
+      Starter Name=CATArrDimModeButton
+   Title of the Icon Box=活动对象 	 Name=CATActiveObject 
+      Starter Name=CATArrUp1LevelButton
+      Starter Name=ArrActivateParentButton
+      Starter Name=CATArrSetAreaCurButton
+      Starter Name=CATArrSetNetCurButton
+   Title of the Icon Box=DMUDynClashIconBox 	 Name=DMUDynClashIconBox 
+      Starter Name=DynClashOff
+      Starter Name=DynClashOn
+      Starter Name=DynClashStop
+
+ Title of the toolbar=测量 and is Name=PslMeasureTB
+   Starter Name=CATNavigation4DMeasureBetween
+   Starter Name=CATNavigation4DMeasureEdge
+   Starter Name=CATNavigation4DMeasureInertia
+
+ Title of the toolbar=更新 and is Name=CATCssSsrUpdateTBTlb
+   Starter Name=CATAsmUpdateButton

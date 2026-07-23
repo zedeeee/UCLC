@@ -1,0 +1,172 @@
+Workshop Exposition of CATKwaKnowledgeAdvisorWks 
+
+1- Header List 
+
+Title= Asynchronous Relations Update
+   Id 	= KweMeasureUpdate
+   DLL 	= CATLiteralsEditor
+   Cmd 	= CATKweMeasureUpdateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= RelationSet
+   Id 	= AddRelationSetHeader
+   DLL 	= CATLiteralsEditor
+   Cmd 	= CATLieAddRelationSetCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Law
+   Id 	= Law
+   DLL 	= CATLiteralsEditor
+   Cmd 	= CATKweLawCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update
+   Id 	= KweUpdate
+   DLL 	= CATKnuEditors
+   Cmd 	= CATKweUpdateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Reactions
+   Id 	= ReactionHeader
+   DLL 	= CATKnuEditors
+   Cmd 	= CATKweReactionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Parameter Explorer...
+   Id 	= FeatureEditHeader
+   DLL 	= CATLiteralsEditor
+   Cmd 	= CATLieAddParametersCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Macros with arguments
+   Id 	= MacroHeader
+   DLL 	= CATKnuEditors
+   Cmd 	= CATKweMacroEditCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= KwaUpdateHeaderAsm
+   Id 	= CATKwaUpdateHeaderAsmHdr
+   DLL 	= CATAssCommands
+   Cmd 	= CATAsmCmdUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Comment & URLs
+   Id 	= CommentURLHeader
+   DLL 	= CATLiteralsEditor
+   Cmd 	= CATLieCommentURLDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= MeasureItem
+   Id 	= CATMeasureItemHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Knowledge catalog
+   Id 	= CatalogHeader
+   DLL 	= CATKnuEditors
+   Cmd 	= CATKnowledgeCatalogBrowser
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ParameterSet
+   Id 	= AddParameterSetHeader
+   DLL 	= CATLiteralsEditor
+   Cmd 	= CATLieAddParameterSetCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Actions
+   Id 	= kweActionHeader
+   DLL 	= CATLieUserView
+   Cmd 	= CATKweActionEditorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= List
+   Id 	= ListHeader
+   DLL 	= CATLiteralsEditor
+   Cmd 	= CATListCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Loop
+   Id 	= LoopHeader
+   DLL 	= CATGeneKnowWorkshop
+   Cmd 	= CATLoopCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Add parameters on geometry
+   Id 	= KweAddParamsOnTopo
+   DLL 	= CATKnuEditors
+   Cmd 	= CATKweAddParamOnTopoCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Check...
+   Id 	= CATKwaCheckHdr
+   DLL 	= CATLiteralsEditor
+   Cmd 	= CATKbwareEditorCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= MeasureBetween
+   Id 	= CATMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rule...
+   Id 	= CATKwaProgramHdr
+   DLL 	= CATLiteralsEditor
+   Cmd 	= CATKbwareEditorCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= KwaUpdateHeader
+   Id 	= CATKwaUpdateHeaderHdr
+   DLL 	= CATMechanicalModelerUI
+   Cmd 	= CATPrtUpdateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATKwaKnowledgeAdvisorMenuMbr 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=CATAfrTechnologicalPackageHdr
+
+ Title of the toolbar=Reactive Features and is Name=KnowledgeReactiveFeatureToolBar
+   Starter Name=CATSelection
+   Starter Name=CATKwaProgramStr
+   Starter Name=CATKwaCheckStr
+   Starter Name=ReactionHeader
+
+ Title of the toolbar=Control Features and is Name=KnowledgeControlFeatureToolbar
+   Starter Name=ListHeader
+   Starter Name=LoopHeader
+
+ Title of the toolbar=Organise Knowledge and is Name=OrganiseKnowledgeToolbar
+   Starter Name=AddParameterSetHeader
+   Starter Name=AddRelationSetHeader
+   Title of the Icon Box=Parameter Explorer 	 Name=CATCmdContParmExplorer 
+      Starter Name=FeatureEditHeader
+      Starter Name=KweAddParamsOnTopo
+   Starter Name=CommentURLHeader
+
+ Title of the toolbar=Actions and is Name=KnowledgeActionsToolbar
+   Starter Name=MacroHeader
+   Starter Name=kweActionHeader
+
+ Title of the toolbar=Tools and is Name=KnowledgeToolsToolbar
+   Starter Name=KweMeasureUpdate
+   Starter Name=KweUpdate
+
+ Title of the toolbar=KnowledgeEnoviaToolsToolbar and is Name=KnowledgeEnoviaToolsToolbar

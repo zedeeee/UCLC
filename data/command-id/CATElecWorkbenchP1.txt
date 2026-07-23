@@ -1,0 +1,230 @@
+Workshop Exposition of CATElecWorkbenchP1 
+
+1- Header List 
+
+Title= Multi-Branchable Document
+   Id 	= EhiCreateBnsSplit
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiCreateBundleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Connect Electrical Devices
+   Id 	= EdlCreateConnexion
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlLinkDevicesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Harness Flattening Parameters
+   Id 	= CATEgfNewFormboardHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfNewFormboardCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Geometrical Bundle
+   Id 	= EhiCreateGBN
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiCreateGeoBundleCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Bend
+   Id 	= CATEgfBendHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfRotateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Define Connector
+   Id 	= EdlDefineConnector
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnectorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Cavity Connection Point
+   Id 	= EdlDefineCavityCnxPt
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Disconnect Electrical Devices
+   Id 	= EdlDisconnect
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDisconnectCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Split
+   Id 	= EhiSplit
+   DLL 	= CATElectricalHarnessDesign
+   Cmd 	= CATEhiSplitMergeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Termination
+   Id 	= EdlDefineTermination
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineTerminationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Cavity
+   Id 	= EdlDefineCavity
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manage Links
+   Id 	= EdlExternalReconcile
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlReconcilePlaceFromUipCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Connector Connection Point
+   Id 	= EdlDefineConnectorCnxPt
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineConnexionPointCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Synchronize
+   Id 	= CATEgfSynchronizeHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfSynchronizeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Catalog Browser
+   Id 	= EdlPrdComponentCatalog
+   DLL 	= CATCuiBrowser
+   Cmd 	= CATCuiSelectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select External Systems
+   Id 	= EdlPrdSystemsSelection
+   DLL 	= CATElectricalApplicationBase
+   Cmd 	= CATEabSystemsSelectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rotate
+   Id 	= CATEgfRotateHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfRotateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= Define Bundle Connection Point
+   Id 	= EdlDefineBundleCnxPt
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineBundleCnctPtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Scale
+   Id 	= CATEgfFakeLengthHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfFakeLengthCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Generate
+   Id 	= CATEgfReportGenHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportGenCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Extract
+   Id 	= CATEgfExtractHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfExtractCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Flatten
+   Id 	= CATEgfFlattenHdr
+   DLL 	= CATElectricalFormboardDesign
+   Cmd 	= CATEgfFlattenCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= Smart Place
+   Id 	= EdlPrdSmartPlacement
+   DLL 	= CATElectricalApplicationBase
+   Cmd 	= CATEabSmartPlaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define Equipment
+   Id 	= EdlDefineEquipment
+   DLL 	= CATElectricalDeviceLibrarian
+   Cmd 	= CATEdlDefineEquipmentCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define
+   Id 	= CATEgfReportDefHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportDefCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=EC1EgfReportRelMnu 
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=EgfSepearator
+      Title=Report 	 Name=EgfReportMnu 
+         Starter Name=EgfDefineMnu
+         Starter Name=EgfGenerateMnu
+      Title=Export Wires 	 Name=EC1EwdExportContainer 
+         Starter Name=CATEwdEXPORTStr
+         Starter Name=EXPORT_IXF
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Separator Name=CATEwdNewSeparator2Sep
+      Starter Name=CATUpdate
+
+ Title of the toolbar=Related Objects and is Name=EC1RelatedContainer
+   Starter Name=ElecAnalyseLinks
+
+ Title of the toolbar=Electrical Device Definition and is Name=EC1EquipmentDefinition
+   Starter Name=CATEdlDefineEquipmentStr
+   Starter Name=CATEdlDefineConnectorStr
+   Starter Name=CATEdlCreateConnexionStr
+   Starter Name=CATEdlDisconnectStr
+   Starter Name=CATEdlDefineTerminationStr
+   Starter Name=CATEdlDefineCavityStr
+   Starter Name=CATEdlDefineConnectorCnxPtStr
+   Starter Name=CATEdlDefineBundleCnxPtStr
+   Starter Name=CATEdlDefineCavitCnxPtStr
+
+ Title of the toolbar=Harness Definition and is Name=EC1GeometricalBundleDefinition
+   Starter Name=CreateGeoBundle
+   Starter Name=MultiBundleCreation
+   Starter Name=CATEwdCREATE_BUNDLEStr
+   Starter Name=SplitBranchable
+
+ Title of the toolbar=External Electrical Systems and is Name=EC1SystemsManagement
+   Starter Name=EdlPrdSystemsSelection
+   Starter Name=LinkExternalDevice
+   Starter Name=CATEwdAUTO_CREATEStr
+   Starter Name=Compute_Signal
+
+ Title of the toolbar=Update and is Name=EC1EP1_Update
+   Starter Name=CATUpdate
+
+ Title of the toolbar=Harness Flattening and is Name=EC1EgfFormboard
+   Starter Name=CATEgfNewFormboardHdr
+   Starter Name=EgfExtract
+   Starter Name=EgfFlatten
+   Starter Name=EgfRotate
+   Starter Name=EgfBend
+   Starter Name=EgfFakeLength
+   Starter Name=EgfSynchronize
+
+ Title of the toolbar=Catalog Browser and is Name=EC1CatalogBrowser
+   Starter Name=Catalog
+   Starter Name=Smart_Place

@@ -1,0 +1,799 @@
+Workshop Exposition of DNBVNCSimulation 
+
+1- Header List 
+
+Title= Export PPR
+   Id 	= CATSPPExportCmdHdr
+   DLL 	= ProcessModelerVisu
+   Cmd 	= CATSPPExportCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Import APT, Clfile or NC code
+   Id 	= NCReviewAPTImport
+   DLL 	= CATManufacturingToolPathUI
+   Cmd 	= CATMfgAPTImportCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Tag Transformation
+   Id 	= DNBVNCTagTransformation
+   DLL 	= DNBIgpSetupCommands
+   Cmd 	= DNBIgpTagTransformationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Selection Mode
+   Id 	= DELMSimSelectModeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Unassign a Resource
+   Id 	= DNBVNCUnassignResource
+   DLL 	= ProcessModelerVisu
+   Cmd 	= CATProcUnassignResource
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Hide/Show 3D trace
+   Id 	= DELMSimTraceHideShowHdr
+   DLL 	= DNBSimulationCommands
+   Cmd 	= DNBSimTraceHideShowCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Toggle Manipulation Handle Mode
+   Id 	= DELMSimArrManipBoxHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Fault List
+   Id 	= DNBVNCCollsionListCmdHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncCollisionListCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Align Side
+   Id 	= DNBVNCSnapSideHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapTwoPlanesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Device Selection
+   Id 	= DELMSimSelectDevHdr
+   DLL 	= DNBSimulationCommands
+   Cmd 	= DNBSelectModeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Snap Surface
+   Id 	= DNBVNCSnapSurfaceCmd
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapSurfaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Snap
+   Id 	= DNBVNCSnapResourcesHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapResourcesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Generate Simulation Results in Batch Mode
+   Id 	= DNBVNCBatchSimulResultsCmdHdr
+   DLL 	= DNBVncBatchMain
+   Cmd 	= DNBVncBatchSimulationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉 XY 构造平面
+   Id 	= CATSnapToXYHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToXYCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create Camera
+   Id 	= DELMPrcNavig4DCameraHdr
+   DLL 	= CATCamController
+   Cmd 	= CATCamCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 高级偏移平面
+   Id 	= CATSetAdvEdgePlaneHdr
+   DLL 	= ArrPlane
+   Cmd 	= CATArrSetAdvEdgePlaneCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Save Initial State
+   Id 	= DELMSimSaveInitStateHdr
+   DLL 	= DNBSimulationCommands
+   Cmd 	= DNBSaveSimStartCondCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Analysis Display
+   Id 	= DELMSimAnalysisDisplayHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 隐藏附件
+   Id 	= IgpAttachHideHdr
+   DLL 	= ArrIgpAttach
+   Cmd 	= CATArrShowAttachCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Delete Resource
+   Id 	= DNBDpmDeleteResourceCmdHdr
+   DLL 	= DNBDpmPlanner
+   Cmd 	= DNBDpmDeleteResourceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Interactive Analysis
+   Id 	= DELMSimInteractiveAnalysisHdr
+   DLL 	= DNBSimulationCommands
+   Cmd 	= DNBInteractiveAnalysisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Restore Design Positions
+   Id 	= DELMPrcRestorePositionsHdr
+   DLL 	= DNBDpmPlanner
+   Cmd 	= DNBDpmRestoreDesignPosCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Show/Hide World Axis
+   Id 	= DELMPrcShowHideWCSHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Partial Simulation
+   Id 	= DNBVNCPartialSimulationHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncPartialSimulationContextMenuCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Machine Simulation
+   Id 	= DNBVNCMachineSimCmdHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncSimCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Analysis Configuration
+   Id 	= DELMSimAnalysisConfigHdr
+   DLL 	= DNBSimulationCommands
+   Cmd 	= DNBAnalysisConfigCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create Default Clashes
+   Id 	= DNBVNCAutoCollisionCmdHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncAutoCollisionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= PPR Selective Load
+   Id 	= DELMPrcPPRSelectiveLoadHdr
+   DLL 	= DNBDpmPlanner
+   Cmd 	= DNBDpmPPRSelectiveLoadCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= Data  Readout
+   Id 	= DNBVNCMachineDataReadOutCmdHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncMachineDataReadOutCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Modify Mount Point
+   Id 	= DNBVNCMountPointCmdHdr
+   DLL 	= DNBMTBCommands
+   Cmd 	= DNBMTBDefineMountPointsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Simulate MillTurn Machine
+   Id 	= DNBVncMillTurnSimCmdHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncMillTurnSimCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Add Hyperlink
+   Id 	= DELMPrcInsertURLHdr
+   DLL 	= CATMkrLink
+   Cmd 	= CATURLInsertCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= DNBVncLoadSimulResultsCmdHdr
+   Id 	= DNBVncLoadSimulResultsCmdHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncLoadSimulResultsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Between
+   Id 	= DELMSimSpaceMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 碰撞
+   Id 	= SpaceClash
+   DLL 	= CATSimulationLab
+   Cmd 	= CATSiLaITFClashCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Feature Selection
+   Id 	= DELMSimSelectFeatHdr
+   DLL 	= DNBSimulationCommands
+   Cmd 	= DNBSelectModeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Hide/Show Reference Frames
+   Id 	= DELMPrcHideShowBaseFrameCmdHdr
+   DLL 	= DNBProcessCommands
+   Cmd 	= DNBHideShowBaseFrameCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Project Tags
+   Id 	= DNBVNCProjectTag
+   DLL 	= DNBIgpSetupCommands
+   Cmd 	= DNBIgpProjectTagCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Attach
+   Id 	= DNBVNCAttachHdr
+   DLL 	= ArrIgpAttach
+   Cmd 	= CATArrAttachCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Clash
+   Id 	= DELMSimSpaceClashHdr
+   DLL 	= CATSimulationLab
+   Cmd 	= CATSiLaITFClashCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Snap Center of Polygon
+   Id 	= DNBVNCSnapCenterPolygonCmd
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapCenterPolygonCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Restore Initial State
+   Id 	= DELMSimRestoreInitStateHdr
+   DLL 	= DNBSimulationCommands
+   Cmd 	= DNBRestoreSimStartCondCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Activity Synchronisation
+   Id 	= DELMPrcActivitySynchronisationHdr
+   DLL 	= DNBDpmPlanner
+   Cmd 	= DNBDpmActivitySynchronisationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ProductList/ResourceList Reorder
+   Id 	= DELMPrcPrdResReorderHdr
+   DLL 	= SP0VVCMD
+   Cmd 	= CATSPPPrdResCmdReorder
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Display PCS Status Dialog
+   Id 	= DELMHIDisplayPCSStatusHdr
+   DLL 	= DNBMfgHubIntigrationCommands
+   Cmd 	= DNBMHIDisplayPCSStatusCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Item
+   Id 	= DELMSimSpaceMeasureEdgeHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Remove Tool Path Trace
+   Id 	= DNBVNCRemoveTPTraceHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncRemoveTPTraceTPCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉高程平面
+   Id 	= CATSnapToElevatHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToElevatCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Distribute
+   Id 	= DNBVNCDistributeHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrDistributeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Snap Mode
+   Id 	= DELMSimSnapModeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Read manufacturing data from a V4 Model
+   Id 	= ImportV4Model
+   DLL 	= CATManufacturingNCRUI
+   Cmd 	= CATMfgImportV4Model
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= New Tag
+   Id 	= DNBVNCTagOnGeometry
+   DLL 	= DNBIgpSetupCommands
+   Cmd 	= DNBIgpTagOnGeometryCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Delete Control Flow
+   Id 	= DELMDDPControlFlowDeleteHdr
+   DLL 	= DNBDpmPlanner
+   Cmd 	= DNBControlFlowDeleteCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Save Stock 
+   Id 	= DNBVNCDNBZipMfgSaveCmdHdr
+   DLL 	= DNBZipMfgController
+   Cmd 	= DNBZipMfgSaveCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉最后位置的下降步幅
+   Id 	= CATSnapToDeltaHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToDeltaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Remove from PPR
+   Id 	= DNBVNCRemoveFromPPR
+   DLL 	= DNBDpmPlanner
+   Cmd 	= CATDPMRemoveContext
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Jog
+   Id 	= DNBVNCJogCmdHdr
+   DLL 	= DNBIgpSetupCommands
+   Cmd 	= DNBIgpJogCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Distance and Band Analysis
+   Id 	= DELMSpaceMeasureHdr
+   DLL 	= CATSimulationLab
+   Cmd 	= CATSiLaDistanceCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Options for Default Clashes
+   Id 	= DNBVNCAutoColliOptionsHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncAutoColliOptionsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Exit NC Machine Tool Simulation
+   Id 	= DNBVNCExitingCmdHdr
+   DLL 	= DNBVNCWorkbench
+   Cmd 	= DNBVNCExitingCmd
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= Delete simulation trace
+   Id 	= DELMSimTraceDeleteHdr
+   DLL 	= DNBSimulationCommands
+   Cmd 	= DNBSimTraceDeleteCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Associate output NC file to a program
+   Id 	= AssociateAPT
+   DLL 	= CATManufacturingNCRUI
+   Cmd 	= CATMfgPreAssociateAPT
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 距离和区域分析
+   Id 	= CATSpaceMeasureHdr
+   DLL 	= CATSimulationLab
+   Cmd 	= CATSiLaDistanceCommand
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Assign machine
+   Id 	= DNBVNCAssginCmdHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncAssginMachineCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉工程制图元素
+   Id 	= CATSnapToSElemHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToSElemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Product Selection
+   Id 	= DELMSimSelectProdHdr
+   DLL 	= DNBSimulationCommands
+   Cmd 	= DNBSelectModeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 当前轴历史
+   Id 	= SetPreviousLocalAxisHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrSetPreviousLocalAxisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Catalog Browser
+   Id 	= DELMPrcCatalogBrowserHdr
+   DLL 	= DNBProcessCommands
+   Cmd 	= DNBCatalogPlaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Generate Simulation Results Interactively
+   Id 	= DNBVncDynCollisionCmdHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncDynamicCollisionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Show/Hide Assembly Constraints
+   Id 	= DELMPrcHideShowConstraintsHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Snap Three Points
+   Id 	= DNBVNCSnapThreePointsHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapThreePointsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Align Center
+   Id 	= DNBVNCSnapPointHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapPointCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉当前轴的下降步幅
+   Id 	= CATSnapToPointHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToPointCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= New Tag Group
+   Id 	= DNBVNCNewTagGroup
+   DLL 	= DNBIgpSetupCommands
+   Cmd 	= DNBIgpTagGroupCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rotate To Align
+   Id 	= DNBVNCRotateSideHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrRotateSideCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 偏移平面
+   Id 	= CATSetEdgePlaneHdr
+   DLL 	= ArrPlane
+   Cmd 	= CATArrSetEdgePlaneCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Stock Analysis
+   Id 	= DNBVncNVGAnalysisCmdHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncNVGAnalysisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create Precedence Constraint
+   Id 	= DELMPrcCreatePrecedenceHdr
+   DLL 	= DNBDpmPlanner
+   Cmd 	= DNBDpmCreatePrecedenceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 更改当前轴并捕捉指南针
+   Id 	= SetLocalAxisCompassHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrSetLocalAxisWithCompassCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉所有构造平面
+   Id 	= CATSnapToXYZHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToXYZCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Export To D5
+   Id 	= DNBVncD5VncExportCmdHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncD5VncExportCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Workpiece Automatic Mount
+   Id 	= DNBVNCWorkpieceAutoMountHdr
+   DLL 	= CATMfgMTSimulationCmd
+   Cmd 	= CATMfgWorkpieceAutoMountCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Enter current grid step value
+   Id 	= DELMSimCurrentStepValueHdr
+   DLL 	= DELMSimCurrentStepValueHdr
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Modify Tool Path
+   Id 	= DNBVNCModifyTPHdr
+   DLL 	= DNBVNCController
+   Cmd 	= DNBVncModifyTPCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 当前轴
+   Id 	= CATSetLocalAxisHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrSetLocalAxisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Go to Hyperlink
+   Id 	= DELMPrcOpenURLHdr
+   DLL 	= CATMkrLink
+   Cmd 	= CATURLOpenCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示附件
+   Id 	= IgpAttachShowHdr
+   DLL 	= ArrIgpAttach
+   Cmd 	= CATArrShowAttachCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Synchronize 3D Model
+   Id 	= DELMSimSync3DWorldHdr
+   DLL 	= DNBSimActivityCommands
+   Cmd 	= DNBUpdateWorldCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Analysis Mode
+   Id 	= DELMSimAnalysisStatusHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=DELMSimMenuBarMbr 
+   Title=文件 	 Name=CATAfrFileMnu 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Title=Tag 	 Name=DNBVNCTagEditMnu 
+         Starter Name=DNBVNCTagTransformation
+         Starter Name=DNBVNCProjectTag
+   Title=视图 	 Name=CATAfrView 
+      Starter Name=DELMPrcShowHideWCSHdr
+      Starter Name=DELMPrcHideShowConstraintsHdr
+      Starter Name=DELMPrcHideShowBaseFrameCmdHdr
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=DELMPrcInsertSep1
+      Starter Name=DELMPrcImportProductHdr
+      Separator Name=DELMPrcInsertSep1
+      Starter Name=DELMPrcImportResourceHdr
+      Starter Name=DELMPrcPrdResReorderHdr
+      Starter Name=DELMPrcCatalogBrowserHdr
+      Starter Name=DELMPrcCreatePrecedenceHdr
+      Starter Name=DELMPrcActivitySynchronisationHdr
+      Starter Name=DNBVNCNewTagGroup
+      Starter Name=DNBVNCTagOnGeometry
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=DELMPrcToolsSep10
+      Title=PPR Tools 	 Name=DELMPrcPPRToolsMnu 
+         Starter Name=DELMPrcPPRSelectiveLoadHdr
+         Starter Name=DNBVNCAssginCmdHdr
+         Starter Name=DNBVNCUnassignResource
+      Title=URL 	 Name=DELMPrcURLMnu 
+         Starter Name=DELMPrcNavig4DCameraHdr
+         Starter Name=DELMPrcInsertURLHdr
+         Starter Name=DELMPrcOpenURLHdr
+      Separator Name=DELMSimToolsSep1
+      Title=Environment Tools 	 Name=DELMSimEnvironmentMnu 
+         Starter Name=SetLocalAxisHdr
+         Starter Name=SetLocalAxisCompassHdr
+         Starter Name=SetPreviousLocalAxisHdr
+         Separator Name=DELMSimToolsSep3
+         Starter Name=SetEdgePlaneHdr
+         Starter Name=SetAdvEdgePlaneHdr
+         Separator Name=DELMSimToolsSep4
+         Starter Name=DELMSimSnapModeHdr
+         Separator Name=DELMSimToolsSep5
+         Starter Name=DELMSimArrManipBoxHdr
+         Separator Name=DELMSimToolsSep31
+         Starter Name=IgpAttachShowHdr
+         Starter Name=IgpAttachHideHdr
+      Separator Name=
+      Title=Positioning Tools 	 Name=DNBVNCPLOToolsMnu 
+         Starter Name=DNBVNCAttachHdr
+         Starter Name=DNBVNCWorkpieceAutoMountHdr
+         Starter Name=DNBVNCSnapSideHdr
+         Starter Name=DNBVNCSnapPointHdr
+         Starter Name=DNBVNCRotateSideHdr
+         Starter Name=DNBVNCDistributeHdr
+         Starter Name=DNBVNCSnapResourcesHdr
+         Starter Name=DNBVNCSnapThreePointsHdr
+         Starter Name=DNBVNCSnapCenterPolygonCmd
+         Starter Name=DNBVNCSnapSurfaceCmd
+      Separator Name=
+      Title=Machine Management 	 Name=DNBMachineMgrMnu 
+         Starter Name=DNBVncDynCollisionCmdHdr
+         Starter Name=DNBVNCBatchSimulResultsCmdHdr
+         Starter Name=DNBVNCCollsionListCmdHdr
+         Starter Name=DNBVNCJogCmdHdr
+         Starter Name=DNBVNCMountPointCmdHdr
+         Starter Name=DNBVncD5VncExportCmdHdr
+      Separator Name=
+      Title=Stock Management 	 Name=DNBVNCStockMgrMnu 
+         Starter Name=DNBVNCDNBZipMfgSaveCmdHdr
+         Starter Name=DNBVncNVGAnalysisCmdHdr
+   Title=Analyze 	 Name=CATANALYZE 
+      Title=Simulation 	 Name=DELMSimSimulationMnu 
+         Starter Name=DELMSimSaveInitStateHdr
+         Starter Name=DELMSimRestoreInitStateHdr
+         Starter Name=DNBVNCMachineSimCmdHdr
+         Starter Name=DNBVncMillTurnSimCmdHdr
+      Title=Simulation Analysis Tools 	 Name=DELMSimSimulationAnalysisMnu 
+         Starter Name=DELMSimAnalysisConfigHdr
+         Starter Name=DELMSimAnalysisStatusHdr
+         Starter Name=DELMSimAnalysisDisplayHdr
+         Starter Name=DELMSimSpaceClashHdr
+         Starter Name=DELMSpaceMeasureHdr
+         Starter Name=DELMSimInteractiveAnalysisHdr
+         Starter Name=DNBVNCMachineDataReadOutCmdHdr
+         Starter Name=DNBVNCAutoCollisionCmdHdr
+         Starter Name=DNBVNCAutoColliOptionsHdr
+      Starter Name=DELMSimSpaceMeasureBetweenHdr
+      Starter Name=DELMSimSpaceMeasureEdgeHdr
+
+ Title of the toolbar=Select and is Name=DELMPrcSelectTlb
+   Starter Name=CATSelectHeader
+   Starter Name=DELMSimSelectModeHdr
+
+ Title of the toolbar=Activity Management and is Name=DELMPrcActivityManagementTlb
+   Starter Name=DELMPrcImportProductHdr
+   Starter Name=DELMPrcImportResourceHdr
+   Starter Name=DELMPrcPrdResReorderHdr
+   Starter Name=DELMPrcCatalogBrowserHdr
+
+ Title of the toolbar=PPR Tools and is Name=DELMPrcPPRToolsTlb
+   Starter Name=DELMPrcPPRSelectiveLoadHdr
+   Starter Name=DNBVNCAssginCmdHdr
+   Starter Name=DNBVNCUnassignResource
+
+ Title of the toolbar=State Management Tools and is Name=DELMPrcPositioningToolsTlb
+
+ Title of the toolbar=URL and is Name=DELMPrcURLTlb
+   Starter Name=DELMPrcNavig4DCameraHdr
+   Starter Name=DELMPrcInsertURLHdr
+   Starter Name=DELMPrcOpenURLHdr
+
+ Title of the toolbar=Environment Tools and is Name=DELMSimEnvironmentToolsTlb
+   Title of the Icon Box=Environment Tools/Axis 	 Name=DELMSimEnvAxisIcb 
+      Starter Name=SetLocalAxisHdr
+      Starter Name=SetLocalAxisCompassHdr
+      Starter Name=SetPreviousLocalAxisHdr
+   Title of the Icon Box=Environment Tools/Offset 	 Name=DELMSimEnvOffsetIcb 
+      Starter Name=SetEdgePlaneHdr
+      Starter Name=SetAdvEdgePlaneHdr
+   Starter Name=DELMSimSnapModeHdr
+   Starter Name=DELMSimCurrentStepValueHdr
+   Starter Name=DELMSimArrManipBoxHdr
+   Title of the Icon Box=Environment Tools/Attach 	 Name=DELMSimShowHideIcb 
+      Starter Name=IgpAttachShowHdr
+      Starter Name=IgpAttachHideHdr
+
+ Title of the toolbar=Simulation Analysis Tools and is Name=DELMSimSimulationAnalysisTlb
+   Starter Name=DELMSimAnalysisConfigHdr
+   Starter Name=DELMSimAnalysisStatusHdr
+   Starter Name=DELMSimAnalysisDisplayHdr
+   Starter Name=DELMSimSpaceClashHdr
+   Starter Name=DELMSpaceMeasureHdr
+   Starter Name=DELMSimInteractiveAnalysisHdr
+   Starter Name=DNBVNCMachineDataReadOutCmdHdr
+   Starter Name=DNBVNCAutoCollisionCmdHdr
+   Starter Name=DNBVNCAutoColliOptionsHdr
+
+ Title of the toolbar=Analysis Tools and is Name=DELMSimAnalysisTlb
+   Starter Name=DELMSimSpaceMeasureBetweenHdr
+   Starter Name=DELMSimSpaceMeasureEdgeHdr
+
+ Title of the toolbar=Simulation and is Name=DELMSimSimulationTlb
+   Starter Name=DELMSimSaveInitStateHdr
+   Starter Name=DELMSimRestoreInitStateHdr
+   Starter Name=DNBVNCMachineSimCmdHdr
+   Starter Name=DNBVncMillTurnSimCmdHdr
+
+ Title of the toolbar=Tag and is Name=DNBVNCTagToolBar
+   Starter Name=DNBVNCNewTagGroup
+   Starter Name=DNBVNCTagOnGeometry
+   Starter Name=DNBVNCTagTransformation
+   Starter Name=DNBVNCProjectTag
+
+ Title of the toolbar=Positioning Tools and is Name=DNBVNCPLOTlb
+   Title of the Icon Box=Positioning Tools/Align 	 Name=DNBVNCAlignTlb 
+      Starter Name=DNBVNCSnapSideHdr
+      Starter Name=DNBVNCSnapPointHdr
+      Starter Name=DNBVNCRotateSideHdr
+      Starter Name=DNBVNCDistributeHdr
+   Title of the Icon Box=Positioning Tools/Snap 	 Name=DNBVNCSnapTlb 
+      Starter Name=DNBVNCSnapResourcesHdr
+      Starter Name=DNBVNCSnapThreePointsHdr
+      Starter Name=DNBVNCSnapCenterPolygonCmd
+      Starter Name=DNBVNCSnapSurfaceCmd
+   Starter Name=DNBVNCAttachHdr
+   Starter Name=DNBVNCWorkpieceAutoMountHdr
+
+ Title of the toolbar=Exit Tool Bar and is Name=DNBVNCExitToolBar
+   Starter Name=DNBVNCExitingCmdHdr
+
+ Title of the toolbar=Machine Management and is Name=DNBVNCMachineMgrToolBar
+   Starter Name=DNBVncDynCollisionCmdHdr
+   Starter Name=DNBVNCBatchSimulResultsCmdHdr
+   Starter Name=DNBVNCCollsionListCmdHdr
+   Starter Name=DNBVNCJogCmdHdr
+   Starter Name=DNBVNCMountPointCmdHdr
+   Starter Name=DNBVncD5VncExportCmdHdr
+
+ Title of the toolbar=Stock Management and is Name=DNBVNCStockMgrToolBar
+   Starter Name=DNBVNCDNBZipMfgSaveCmdHdr
+   Starter Name=DNBVncNVGAnalysisCmdHdr
+
+ Title of the toolbar=Edge Selection and is Name=EdgeWizard
+
+ Title of the toolbar=Face Selection and is Name=FaceWizard
+
+ Title of the toolbar=Find Edges Of Faces and is Name=FindEdgesOfFaces

@@ -1,0 +1,70 @@
+Workshop Exposition of CATFsdFsDWorkbenchWkb 
+
+1- Header List 
+
+Title= IMA - View Modification
+   Id 	= ConicalViewAdjustmentHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATFsCmdViewAngleManip
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= IMA - View Modification
+   Id 	= ConicalViewAdjustmentHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATFsCmdViewAngleManip
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create screen shot
+   Id 	= NewScreenShot
+   DLL 	= CATFsScreenShotUI
+   Cmd 	= CATFsScreenShotCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create screen shot
+   Id 	= NewScreenShot
+   DLL 	= CATFsScreenShotUI
+   Cmd 	= CATFsScreenShotCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create painting
+   Id 	= CATFsdNewSketchComponentHdr
+   DLL 	= CATFsSketchUI
+   Cmd 	= CATFsSketchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create painting
+   Id 	= CATFsdNewSketchComponentHdr
+   DLL 	= CATFsSketchUI
+   Cmd 	= CATFsSketchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= IMA - View Selection
+   Id 	= ViewSelectorTstHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATCafCmdViewSelector
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= IMA - View Selection
+   Id 	= ViewSelectorTstHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATCafCmdViewSelector
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Title of the toolbar=Paintings and is Name=CATFsdFsDToolbarTlb
+   Starter Name=CATFsdFsDSketchStr
+   Starter Name=FsDScreenShot
+
+ Title of the toolbar=View Management and is Name=ViewManagementToolbar
+   Starter Name=CATDesViewSelectorStr
+   Starter Name=CATDesConicalViewManagerStr

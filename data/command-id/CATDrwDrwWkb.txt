@@ -1,0 +1,2279 @@
+Workshop Exposition of CATDrwDrwWkb 
+
+1- Header List 
+
+Title= ˮƽλ��
+   Id 	= CATDrwXPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����ΪĬ��
+   Id 	= CATDrwSetAsDefaultHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= �Ƴ��ж�
+   Id 	= CATDrwInterruptDimRemHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDicDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= DrwPosLinkCreate
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAssocCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ƽ��
+   Id 	= CATDrwDimCheckParallelHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��ɫ
+   Id 	= DrwColor
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��Բ��
+   Id 	= CAT2DCornerHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCorner
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ���ǳߴ�
+   Id 	= DrwDimChamf
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwChamferDimCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ߴ�ϵͳѡ��ģʽ
+   Id 	= CATDrwDimSystemSelectModHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ������������
+   Id 	= CATDrwGMECreationHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���ߴ����·���
+   Id 	= CATDrwRegroupDimHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcManageDimInSystemCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CAT2DRectangleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����...
+   Id 	= CATMeasureItemHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��ջ�
+   Id 	= CAT2DCloseHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSClose
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��ͼ����
+   Id 	= CATSKU2DAnalyseHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DAnalysis
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ɾ��
+   Id 	= DrwTextOrientDelete
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAssocDeleteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��׼Ŀ��
+   Id 	= DrwDatumTarg
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDatumTargetCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= б�þ���
+   Id 	= CAT2DOrientedRectangleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRectOrient
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������
+   Id 	= CAT2DSplineHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSSpline
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������ͼƽ��
+   Id 	= CATDrwViewPositionHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwViewPlaneCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CATDrwAuxViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATAuxViewDlg
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= �Ƴ�����
+   Id 	= CATUnBreakoutHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDrwUnBreakoutCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= DrwTextOrientCreate
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAssocCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���л�
+   Id 	= 2DArc1Tgt
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArc1Tgt
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �����
+   Id 	= CAT2DPolygonHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPolygon
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ʹ�����괴����
+   Id 	= CAT2DPointCoordHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPointXY
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������ʾģʽ
+   Id 	= DrwDimDesignMode
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ֱ���ߴ�
+   Id 	= DrwDimDiameter
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDiameterDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= �Ƴ� 3D �ü�
+   Id 	= CATDrwClippingBoxDelHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDrwClippingBoxDeleteCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��׼��λ��...
+   Id 	= DatumLocator
+   DLL 	= CATDiaGDT
+   Cmd 	= CATDrwDatumLocatorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �༭�ο�����&#x2028;
+   Id 	= CATDrwGoToDetailHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATGoToDetailCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �½���ͼ
+   Id 	= DrwCreateSheetOfDetail
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATSheetCreate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ������Բ
+   Id 	= CAT2DCircle3TangentHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DCircle3Tangent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���봴��ʽ��ͼ��ʽ...
+   Id 	= CATDrwForceGVSStyleHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDrwForceStyleCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �߼�����ͼ
+   Id 	= CATDrwFrontViewAdvHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATFrontViewAdv
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �������ָ�
+   Id 	= CATDrwAlignedSectCutViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATSectionViewDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= ����
+   Id 	= DrwTextIsolAttrLink
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextIsolAttrLinkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ȡ���ֽ�
+   Id 	= CATUnBreakHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDrwUnBreakCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ֱ��
+   Id 	= CAT2DLineHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSLine
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �������ߵ��ı�
+   Id 	= DrwTextLeader
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��ʾ 2D ����
+   Id 	= DrwDetailExpose
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDrwDittoExposeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����ͼ��ʽӦ����
+   Id 	= CATDrwGVSApplyOnHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDrwApplyStyleToCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �Ƕȼ��������ߴ�
+   Id 	= CATDrwFeatDimAngleHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwFeatureDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ʵ��������
+   Id 	= 2DInstantiateFixTogether
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcCompInstantiationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���о���
+   Id 	= 2DCenteredRectangle
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCenteredRect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CATDrwDimCheckComplementaryHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��������ͼ
+   Id 	= CATDrwAlignedSectViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATSectionViewDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= ���Ƴߴ�
+   Id 	= CATDrwDimThreadHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimThreadCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �½�ͼֽ
+   Id 	= DrwCreateSheet
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATSheetCreate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= 2DFixTogether
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSFixTogether
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ���вο���������
+   Id 	= DrwCenterLineRef
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATCenterLineRefCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ֲ���ͼ
+   Id 	= CATDrwBrokenViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATBrokenViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 3D ��ͼ
+   Id 	= CATDrwTPSViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATExtractViewFrom3D
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������
+   Id 	= DrwBalloon
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDftBalloonCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ���� 4
+   Id 	= CATDrwDimCheckSector4Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���� 1
+   Id 	= CATDrwDimCheckSector1Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ƫ��
+   Id 	= CAT2DOffsetContourHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DOffsetContour
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���� 2
+   Id 	= CATDrwDimCheckSector2Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���� 3
+   Id 	= CATDrwDimCheckSector3Hdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= �Ӵ�Լ��
+   Id 	= CAT2DContactConstraintHdr
+   DLL 	= CATConstraintModelerUI
+   Cmd 	= CATCom2DContactConstraint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ѵ�ʽ�ߴ�
+   Id 	= DrwDimStack
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwQuickDimCmdNew
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= չ����ͼ
+   Id 	= CATDrwUnfoldedViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATUnfoldedView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ı�
+   Id 	= DrwText
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���ɳߴ�
+   Id 	= CATDrwGenDimHdr
+   DLL 	= GENDIM
+   Cmd 	= CATGenDim
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= ת��Ϊ�뾶
+   Id 	= CATDrwDimSwapToRadHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ƫ��
+   Id 	= CATDrwDimCheckOffsetHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ͶӰ
+   Id 	= CATDrwProjViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATGenProjView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= ǿ��ѡȡģʽ
+   Id 	= DrwForcePick
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDrwForcePickCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��
+   Id 	= CAT2DArcRadiusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArcCtrRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����ڲ����������ߴ�
+   Id 	= CATDrwFeatDimMultiHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwFeatureDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����������
+   Id 	= CATDrwGenBalloonHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATGenBalloonCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= DrwOverView
+   Id 	= CATDrwOverViewHdr
+   DLL 	= CATDraftingInfrastructureUI
+   Cmd 	= CATDfuOverviewHideShow
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Բ
+   Id 	= CAT2DCircleRadiusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCircleCtrRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ƽ��
+   Id 	= CAT2DTranslateHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSTranslate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����ͼ
+   Id 	= CATDrwFrontViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATFrontView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��
+   Id 	= CATDrwTableHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDftTableCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ڶ�����
+   Id 	= CATDrwPredef3WizardHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATViewCreationEngine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ȡ���ü�
+   Id 	= CATUnClipHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDrwUnClipCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �߼������嵥
+   Id 	= CATDrwAdvBOMHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATGenAdvBOMCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����...
+   Id 	= CATDrwGenDimAnalHdr
+   DLL 	= GENDIM
+   Cmd 	= CATGenDimAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �Ͽ�
+   Id 	= CAT2DBreakHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSBreak
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CAT2DContourHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSContour
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������...
+   Id 	= CATDrwGenDimParamsHdr
+   DLL 	= GENDIM
+   Cmd 	= CATNewGenDimParams
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= �ۻ��ߴ�
+   Id 	= DrwDimCumul
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwQuickDimCmdNew
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= �������
+   Id 	= CATDrwDimSymbolHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= �ü���ͼ����
+   Id 	= CATDrwExactContourClippingViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDetailViewDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= ͨ�����㴴��˫����
+   Id 	= CAT2DHyperbolaFocusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSHyperbolaFocus
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �������ͼ
+   Id 	= CATDrwIsometricViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATIsomView
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ���ߴ����
+   Id 	= CATDrwGroupDimHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcManageDimInSystemCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���ٲü���ͼ
+   Id 	= CATDrwCircleClippingViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDetailViewDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= ���㻡
+   Id 	= CAT2DArc3PointsHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArc3Pts
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����/����ߴ�
+   Id 	= DrwDimLengthDist
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwLengthDistanceDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���µ�ǰͼֽ
+   Id 	= CATDrwViewUpdateHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATViewUpdate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= �����嵥
+   Id 	= DrwBOMCmd
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATGenBOMCmdR8
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ͼֽ����
+   Id 	= CATDrwEditFrame
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDrwEditFrame
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= �����С
+   Id 	= CATDrwFontSizeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��ͼ���״̬
+   Id 	= 2DLightAnalyse
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DLightAnalyse
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= �ص�
+   Id 	= CATDrwSuperposeOnHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDrwSuperposeOnCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �����ı�ģ��
+   Id 	= CATDrwATSPlaceHdr
+   DLL 	= CATDiaAtsPlace
+   Cmd 	= CATDrwAtsPlaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��ƽ����
+   Id 	= CAT2DBisectLineHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DBisectingLine
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= DrwLineUp
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcLineUpCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ʹ��Ԫ�ض�����ͼ
+   Id 	= CATDrwAlignViewsEltHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDicAlignViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����ѡ��
+   Id 	= CATDrwUpdateSelectionHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATSelectiveUpdate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ʹ�����괴��Բ
+   Id 	= CAT2DCircleCoordHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCircleXYRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����/�޸Ĳü�
+   Id 	= CATDrwClippingDimAddHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwClippingDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ɾ��
+   Id 	= DrwPosLinkDelete
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAssocDeleteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CATDrwOrientationHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ѡ����ճ��...
+   Id 	= CATAfrPasteSpecialHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwPasteSpecialCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ϱ�/�±�
+   Id 	= CATDrwXScriptHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��������
+   Id 	= CATDrw2DTo3DStabilizerHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDrwSpecCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������ϸ��ͼ����
+   Id 	= CATDrwContourQuickDetailViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDetailViewDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= ʵ���ߴ�
+   Id 	= CATDrwDimCheckTrueDimHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��ʼ���޵����㻡
+   Id 	= CAT2DArc3Points132Hdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArc3Pts132
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �滻...
+   Id 	= DrwDSAReplace
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwReplaceTextCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �������λ��
+   Id 	= RelativePosition
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDfuViewRelativePositioning
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= DrwLineType
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= �ߴ綨λ...
+   Id 	= DrwDimAutoPos
+   DLL 	= DRWAUTOPOS
+   Cmd 	= CATDrwAutoPos
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������ϸ��ͼ
+   Id 	= CATDrwCircleQuickDetailViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDetailViewDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= ����
+   Id 	= CAT2DScaleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSScale
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������������
+   Id 	= DrwRmAllConstrLines
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwRemoveAllCstrLinesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �뾶�ߴ�
+   Id 	= DrwDimRadius
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwRadiusDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ������ͼ
+   Id 	= CATDrwBreakoutViewDlgHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATBreakoutViewDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= �Զ�����
+   Id 	= CAT2DAutoSearchHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DAutoSearch2
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����ߴ��
+   Id 	= DrwCoordDimTable
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwCoordDimTableCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �����
+   Id 	= CATSnapGridHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��ֱλ��
+   Id 	= CATDrwYPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����ƽ���ı���
+   Id 	= 2DCenteredParallelogram
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCenteredParallelogram
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ƽ���ı���
+   Id 	= CAT2DParallelogramHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSParallelogram
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����ߴ�
+   Id 	= CATDrwRerootDimHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwRerouteDimCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CATAfrCutHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwCCP_CutCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= ������
+   Id 	= CAT2DHexagonHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DHexagon
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����ߴ�
+   Id 	= DrwDimCoord
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDimCoordCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��������Ĭ��ֵ
+   Id 	= CATDrwResetDefaultsHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDuiResetDefaults
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= ���»���/���ϻ���
+   Id 	= CATDrwXLineHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���ȼ��������ߴ�
+   Id 	= CATDrwFeatDimLengthDistHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwFeatureDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= DrwAxisLine
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATAxisLineCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ֱ�����������ߴ�
+   Id 	= CATDrwFeatDimDiameterHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwFeatureDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����ͼͶӰ
+   Id 	= CATDrwCombiViewHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwViewProjCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��ʽ
+   Id 	= CATDrwStyleHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���ߺ�������
+   Id 	= DrwAxisCenter
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAxisCenterCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ʵ���� 2D ����
+   Id 	= DrwDitto
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcCompInstantiationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= �����Ѽ�⵽��Լ��
+   Id 	= DrwCstCreation
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ҳ������...
+   Id 	= DrwPageSetup
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwPageSetup
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �½���ͼ
+   Id 	= CATDrwCreateViewHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATViewCreate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����������
+   Id 	= DrwLeaderAdd
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATLeaderAddCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �����
+   Id 	= 2DAlignPoints
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DAlignPoints
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �߿�
+   Id 	= DrwThickness
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CATDrwDimCheckLinearHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= �������...
+   Id 	= CATMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ߴ����...
+   Id 	= DrwDimPosAnal
+   DLL 	= AnalysisInterference
+   Cmd 	= CATAICmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����Ԫ��
+   Id 	= 2DEditConstructionElement
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComConstructionElement
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �����
+   Id 	= 2DIsolateSharedPoints
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DIsolateSharedPoints
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��ʽ�ߴ�
+   Id 	= CATDrwDimChainHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwQuickDimCmdNew
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��ϸ��ͼ����
+   Id 	= CATDrwContourDetailViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDetailViewDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= �����ж�
+   Id 	= CATDrwInterruptDimAddHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDicDimensionInterruptionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���ߴ�ȡ������
+   Id 	= CATDrwUngroupDimHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcManageDimInSystemCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��չ������
+   Id 	= CATDrwDimCheckToCenterHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Ŀ¼�����...
+   Id 	= CatalogBrowser
+   DLL 	= CATCuiBrowser
+   Cmd 	= CATCuiSelectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������������ͼ
+   Id 	= CAT2DTo3DViewCreationHdr
+   DLL 	= CAT2DTo3DViewCreation
+   Cmd 	= CAT2DTo3DViewCreationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������������
+   Id 	= 2DAddControlPointTangencyCurv
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DCstPointTangencyCurv
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ǿ�Ʊ�עԪ�سߴ�
+   Id 	= CATDrwDimCheckAutoHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= �Գ�
+   Id 	= CAT2DPureSymmetryHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcSymmetryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Կ�׿�����
+   Id 	= CAT2DKeyHoleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DKeyHole
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��ʾ����
+   Id 	= DisplayGrid
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����...
+   Id 	= DrwDSAFind
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwFindTextCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����Բ
+   Id 	= CAT2DCircle3PointsHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCircle3Pts
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �޸��������
+   Id 	= CATDrwAreaFillModHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATAreaFillModificationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �����������
+   Id 	= CATDrwAreaFillCreatHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATAreaFillCreationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �Ƕȳߴ�
+   Id 	= DrwDimAngle
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAngleDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ˮƽ
+   Id 	= CAT2DHorizontalHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSHorizontal
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��λ����
+   Id 	= DrwGeoTol
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDftGDTCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= DrwPattern
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��ӡ...
+   Id 	= CATAfrPrintHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwPrint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ת��Ϊֱ��
+   Id 	= CATDrwDimSwapToDiaHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwDimRadDiaSwitchCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��ȫ���ӵ�����ʾ����ͼ��
+   Id 	= DrwAnalyze2D3D
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDuiMVAnalyseCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ���������ɵ�Ԫ��
+   Id 	= CATDrwHLRFilterHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Ԫ�ض�λ
+   Id 	= DrwPositioning
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwPositioningCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ɾ��
+   Id 	= CATAfrDeleteHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwCCP_DeleteCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= �Ƴ��ü�
+   Id 	= CATDrwClippingDimRemHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwClippingDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��������
+   Id 	= 2DConicCurve
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSConicCurve
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ֽ�
+   Id 	= CAT2DExplodeHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSExplodePolyline
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��׼����
+   Id 	= DrwDatumFeat
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDatFeatureCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= DrwTolerance
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ȡ���̶�
+   Id 	= CAT2DUnfixHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSUnfix
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Բ�����ӳ���
+   Id 	= CAT2DTrouOblongArcHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DTrouOblongArc
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����Լ��
+   Id 	= DrwConstraint
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwGeomCstCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ���ӷ���
+   Id 	= DrwWeldingSymbol
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATWeldingCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��ԭֵλ��
+   Id 	= DrwRestoreValuePosition
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwRestoreValuePosCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= DrwPrecision
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ͶӰ��
+   Id 	= CAT2DPointProjectHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DPointProject
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= DrwThread
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATThreadCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ���вο�������
+   Id 	= DrwThreadRef
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATThreadRefCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= б��
+   Id 	= CATDrwItalicHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��ͷ
+   Id 	= DrwArrow
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwArrowCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��
+   Id 	= CATDrwWizardHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATViewCreationEngine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= �� CSV ������
+   Id 	= CATDrwTableFromCSVHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDrwTableFromCSVCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��һ����
+   Id 	= CATDrwPredef1WizardHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATViewCreationEngine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CATDrwJustificationHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ǿ�Ƹ���
+   Id 	= CATForceUpdateHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATViewUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ͼƬ...
+   Id 	= DrwImportPicture
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwImportPictureCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ���ٲü���ͼ����
+   Id 	= CATDrwContourClippingViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDetailViewDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= �̶�
+   Id 	= CAT2DFixHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSFix
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������ʾ˵��
+   Id 	= DrwNumDisp
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��λ��
+   Id 	= CATDrwTextAnchorHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ������Ӧ����
+   Id 	= CATApplyBreakoutToHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDrwApplyBreakoutToCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ӳ���
+   Id 	= CAT2DTrouOblongHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DTrouOblong
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��ת
+   Id 	= CAT2DRotateHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRotate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �����ɳߴ�
+   Id 	= DrwGenDimStep
+   DLL 	= GENDIM
+   Cmd 	= CATGenDim
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= ��
+   Id 	= CAT2DPointHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPoint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��ϸ��ͼ
+   Id 	= CATDrwCircleDetailViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDetailViewDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= ��ֱ
+   Id 	= CAT2DVerticalHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSVertical
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ֲڶȷ���
+   Id 	= DrwRoughness
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDftRoughCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��ϵͳ�ж���
+   Id 	= DrwAlignIntoSystem
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcAlignIntoSystemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ü���ͼ
+   Id 	= CATDrwExactCircleClippingViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDetailViewDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= �Ⱦ��
+   Id 	= CAT2DPointsSpacesHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPointsSpaces
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �뾶���������ߴ�
+   Id 	= CATDrwFeatDimRadiusHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwFeatureDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��ʽ���������ߴ�
+   Id 	= CATDrwFeatDimChainHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwFeatureDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��������
+   Id 	= CATDrwPredef5WizardHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATViewCreationEngine
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��ʾ����
+   Id 	= DrwConstrLines
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwMultiViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �޼�
+   Id 	= CAT2DRelimitationHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRelimit
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������ͼ
+   Id 	= CATDrwEditSheet
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDrwEditSheet
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CAT2DComplementHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSComplementary
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= CATDrwEnoviaEffectivitySelectionHdr
+   Id 	= CATDrwEnoviaEffectivitySelectionHdr
+   DLL 	= CATDicEnovia
+   Cmd 	= CATDrwEnoviaEffectivitySelectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ߴ���
+   Id 	= DrwDimLine
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= �༭���к�����
+   Id 	= 2DEditControlPointTangencyCurv
+   DLL 	= CATSkuCommands
+   Cmd 	= CATEdit2DCstPointTangencyCurv
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��ʾΪÿ����ͼָ������ͼ���
+   Id 	= CATDrwDisplayViewFrameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����ͼ����
+   Id 	= CATDrwToggleOverViewHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����˵��
+   Id 	= DrwTolDescrip
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CAT2DChamferHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSChamfer
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ı�����
+   Id 	= CATDrwTextReplicateHdr
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextReplicateCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����Ԫ��
+   Id 	= 2DEditGeometricalElement
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComConstructionElement
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��������
+   Id 	= DrwRmConstrLines
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwRemoveCstrLinesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ���� 3D �ü�
+   Id 	= CATDrwClipBoxCurViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDrwClippingBoxCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= �� 3D �ü�Ӧ����
+   Id 	= CATDrwApplyClipBoxToHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDrwClippingBoxApplyToCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �����޼�
+   Id 	= CAT2DQuickTrimHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSQuickTrim
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ���޳���
+   Id 	= CAT2DLineHVHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSLineHV
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��ѯ��������...
+   Id 	= DrwTextQryLink
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextQryLinkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ƫ�ƽ���ָ�
+   Id 	= CATDrwSectCutViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATSectionViewDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= ���ļ�����...
+   Id 	= DrwImport
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATImportCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������ͼ��ʽ
+   Id 	= CATDrwChangeStyleHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATDrwChangeStyleCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ߴ�
+   Id 	= DrwDim
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwQuickDimCmdNew
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ����ʵ�����޸�
+   Id 	= CATDrwBecomeModifiable
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwBecomeModifiableCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Լ��...
+   Id 	= CAT2DConstraintPanelHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrw2DConstraintPanel
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ǿ������ͼ�д�ֱ��ע�ߴ�
+   Id 	= CATDrwDimCheckVertHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ͨ�����㴴��������
+   Id 	= CAT2DParabolaFocusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSParabolaFocus
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �ཻ��
+   Id 	= CAT2DPointIntersectHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DPointIntersect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �滻�ο�
+   Id 	= CATDrwReplaceDetailHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDicReplaceDetailCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 
+   Id 	= CATDrwTextFrameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ������
+   Id 	= CATDrwPointTypeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= �ֽ� 2D ����
+   Id 	= DrwDittoExplode
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDittoExplodeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ƫ������ͼ
+   Id 	= CATDrwSectViewHdr
+   DLL 	= CATDraftingGenUI
+   Cmd 	= CATSectionViewDlg
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= ���Ƽ���ͼ��
+   Id 	= CATDrwDupGenItemHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDuiDuplicateGenItemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ���ߵķ���
+   Id 	= 2DLineNormalToCurve
+   DLL 	= CATDraftingBaseInfraUI
+   Cmd 	= CATDbuCom2DLineNormalToCurve
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ˫����
+   Id 	= CAT2DLine2TangentHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DLine2Tangent
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= CATDrwEnoviaEffectivityHdr
+   Id 	= CATDrwEnoviaEffectivityHdr
+   DLL 	= CATDicEnovia
+   Cmd 	= CATDrwEnoviaEffectivityCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ���ӿ��Ƶ㣺 
+   Id 	= 2DAddControlPoint
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComAdd2DCstPoint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= �׳ߴ��
+   Id 	= CATDrwHoleDimTableHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwHoleDimTableCmdR8
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ɾ����
+   Id 	= CATDrwStrikeThruHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��ʾԼ��
+   Id 	= DrwShowCst
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���ƶ����ʽ
+   Id 	= DrwPainter
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwPainterCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ǿ������ͼ��ˮƽ��ע�ߴ�
+   Id 	= CATDrwDimCheckHorizHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ��Բ
+   Id 	= CAT2DEllipseRadiusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSEllipseCtrRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CATDrwWeldingGeomHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATWeldingGeoCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CAT2DConnectHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSConnect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CATDrwBoldHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ������
+   Id 	= DrwCenterLine
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATCenterLineCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ����
+   Id 	= CAT2DSymmetryHdr
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcSymmetryCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ������ͼ����
+   Id 	= AddViewName
+   DLL 	= CATDraftingBaseCommands
+   Cmd 	= CATDbcAddViewNameTextCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ��������
+   Id 	= CATDrwFontNameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ���������ߴ�
+   Id 	= CATDrwFeatDimHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwFeatureDimCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATDrwcontDraftingMenuMbr 
+   Title=�ļ� 	 Name=CATAfrFileMnu 
+      Starter Name=CATDrwPageSetup
+   Title=�༭ 	 Name=CATAfrEditMnu 
+      Separator Name=CATSeparatorEdit1
+      Starter Name=CATDrwViewUpdate
+      Starter Name=CATDrwDSAFind
+      Starter Name=CATDrwDSAReplace
+      Starter Name=CAT2DAutoSearch
+      Separator Name=CATSeparatorEdit2
+      Starter Name=CATDrwEditFrameStr
+   Title=��ͼ 	 Name=CATAfrView 
+      Separator Name=CATSeparatorView1
+      Starter Name=CATDrwToggleOverView
+   Title=���� 	 Name=CATAfrInsertMnu 
+      Separator Name=CATSeparatorMenuInsert
+      Title=��ͼ 	 Name=CATcontMenuViews 
+         Title=ͶӰ 	 Name=CATDrwcontMenuProjectionsSnu 
+            Starter Name=CATDrwFrontViewMenuStr
+            Starter Name=CATDrwUnfoldedViewMenuStr
+            Starter Name=CATDrwTPSViewMenuStr
+            Starter Name=CATDrwProjViewMenuStr
+            Starter Name=CATDrwAuxViewMenuStr
+            Starter Name=CATDrwIsometricViewMenuStr
+            Starter Name=CATDrwFrontViewAdvMenuStr
+         Title=���� 	 Name=CATDrwcontMenuSectionsSnu 
+            Starter Name=CATDrwSectViewMenuStr
+            Starter Name=CATDrwAlignedSectViewMenuStr
+            Starter Name=CATDrwSectCutViewMenuStr
+            Starter Name=CATDrwAlignedSectCutViewMenuStr
+         Title=��ϸ��Ϣ 	 Name=CATDrwcontMenuDetailsSnu 
+            Starter Name=CATDrwCircleDetailViewMenuStr
+            Starter Name=CATDrwContourDetailViewMenuStr
+            Starter Name=CATDrwCircleQuickDetailViewMenuStr
+            Starter Name=CATDrwContourQuickDetailViewMenuStr
+         Title=�ü� 	 Name=CATDrwcontMenuClippingsSnu 
+            Starter Name=CATDrwExactCircleClippingViewStr
+            Starter Name=CATDrwExactContourClippingViewStr
+            Starter Name=CATDrwCircleClippingViewMenuStr
+            Starter Name=CATDrwContourClippingViewMenuStr
+         Title=�Ͽ���ͼ 	 Name=CATDrwcontMenuBrokenSnu 
+            Starter Name=CATDrwBrokenViewMenuStr
+            Starter Name=CATDrwBreakoutViewDlgMenuStr
+            Starter Name=CATDrwClipBoxCurViewStr
+         Separator Name=CATDrwSeparatorMenuViews2Sep
+         Title=�� 	 Name=CATDrwcontMenuViewWizardSnu 
+            Starter Name=CATDrwWizardMenuStr
+            Starter Name=CATDrwPredef1WizardMenuStr
+            Starter Name=CATDrwPredef3WizardMenuStr
+            Starter Name=CATDrwPredef5WizardMenuStr
+      Title=����ͼ 	 Name=CATcontMenuDrawing 
+         Title=ͼֽ 	 Name=CATDrwcontMenuSheetsSnu 
+            Starter Name=CATDrwCreateSheetMenu
+            Starter Name=CATDrwCreateSheetOfDetailMenu
+         Starter Name=CATDrwCreateViewMenu
+         Starter Name=CATDrwDittoMenuStr
+      Title=�ߴ��ע 	 Name=CATcontMenuDimensioning 
+         Title=�ߴ� 	 Name=CATcontMenuDimensions 
+            Starter Name=CATDrwDimMenu
+            Starter Name=CATDrwDimChainMnu
+            Starter Name=CATDrwDimCumulMenu
+            Starter Name=CATDrwDimStackMenu
+            Separator Name=CATseparatorDimLengthMenu
+            Starter Name=CATDrwDimLengthDistMenu
+            Starter Name=CATDrwDimAngleMenu
+            Starter Name=CATDrwDimRadiusMenu
+            Starter Name=CATDrwDimDiameterMenu
+            Separator Name=CATseparatorDimChamferMenu
+            Starter Name=CATDrwDimChamfMenu
+            Starter Name=CATDrwDimThreadMenuStr
+            Starter Name=CATDrwDimCoordMenu
+            Separator Name=CATDrwDimTableMnuSep
+            Starter Name=CATDrwHoleDimTableMenuStr
+            Starter Name=DrwCoordDimTableMenuStr
+         Title=���������ߴ� 	 Name=CATDrwFeatDimSnu 
+            Starter Name=CATDrwSnuFeatDimStr
+            Separator Name=CATDrwSnuFeatDim1Sep
+            Starter Name=CATDrwFeatDimMultiStr
+            Starter Name=CATDrwFeatDimChainStr
+            Separator Name=CATDrwFeatDimSep
+            Starter Name=CATDrwFeatDimLengthDistStr
+            Starter Name=CATDrwFeatDimAngleStr
+            Starter Name=CATDrwFeatDimRadiusStr
+            Starter Name=CATDrwFeatDimDiameterStr
+         Title=�ߴ�༭ 	 Name=CATcontMenuInterrupt 
+            Starter Name=CATDrwRerootDimMnStr
+            Starter Name=CATDrwInterruptDimAddMnStr
+            Starter Name=CATDrwInterruptDimRemMnStr
+            Starter Name=CATDrwClippingDimAddMnStr
+            Starter Name=CATDrwClippingDimRemMnStr
+         Separator Name=CATDrwInterTolSep
+         Title=���� 	 Name=CATcontMenuTolerancing 
+            Starter Name=CATDrwDatumFeatMenu
+            Starter Name=CATDrwGeoTolMenu
+      Title=���� 	 Name=CATDrwcontMenuGenerationSnu 
+         Starter Name=CATDrwGenDimMenuStr
+         Starter Name=DrwGenDimStepMenu
+         Starter Name=CATDrwGenBalloonMenuStr
+         Separator Name=separatorMenuGene1
+         Title=�����嵥 	 Name=CATDrwBOMSnu 
+            Starter Name=CATDrwAdvBOMStr
+            Starter Name=DrwBOMCmd
+      Title=��ע 	 Name=CATcontMenuAnnotations 
+         Title=�ı� 	 Name=CATcontMenuTexts 
+            Starter Name=CATDrwTextMenu
+            Starter Name=CATDrwTextLeaderMenu
+            Starter Name=CATDrwTextReplicateMenu
+            Starter Name=CATDrwBalloonMenu
+            Starter Name=CATDrwDatumTargMenu
+            Starter Name=CATDrwATSPlaceMenuStr
+         Title=���� 	 Name=CATcontMenuSymbols 
+            Starter Name=CATDrwRoughnessMenu
+            Starter Name=CATDrwWeldingSymbolMenu
+            Starter Name=CATDrwWeldingGeomMenu
+         Title=�� 	 Name=CATDrwContTableMenuSnu 
+            Starter Name=CATDrwTableMenuStr
+            Starter Name=CATDrwTableFromCSVMenuStr
+         Separator Name=CATSeparatorDressupMenu
+         Starter Name=CATDrwLeaderAddMenu
+      Title=���� 	 Name=CATcontMenuDressup 
+         Title=������� 	 Name=CATcontMenuAxis 
+            Starter Name=CATDrwCenterLineMenu
+            Starter Name=CATDrwCenterLineRefMenu
+            Starter Name=CATDrwThreadMenu
+            Starter Name=CATDrwThreadRefMenu
+            Starter Name=CATDrwAxisLineMenu
+            Starter Name=CATDrwAxisCenterMenu
+         Title=������� 	 Name=CATDrwAreaFillSnu 
+            Starter Name=CATDrwAreaFillCreatStr
+            Starter Name=CATDrwAreaFillModStr
+         Starter Name=CATDrwArrowMenu
+      Title=����ͼ�δ��� 	 Name=CATcontMenuGeometryCreation 
+         Title=�� 	 Name=CATcontMenuPoint 
+            Starter Name=CAT2DPointMenu
+            Starter Name=CAT2DPointCoordMenu
+            Starter Name=CAT2DPointsSpacesMenu
+            Starter Name=CAT2DPointsIntersectMenu
+            Starter Name=CAT2DPointsProjectMenu
+            Starter Name=CATDrw2DAlignPointsStr
+         Title=ֱ�� 	 Name=CATcontMenuLine 
+            Starter Name=CAT2DLineMenu
+            Starter Name=CAT2DLineHVMenu
+            Starter Name=CAT2DLine2TangentMenu
+            Starter Name=CAT2DBisectLineMenu
+            Starter Name=CAT2DLineNormalToCurveStr
+         Title=Բ����Բ 	 Name=CATcontMenuCircle 
+            Starter Name=CAT2DCircleRadiusMenu
+            Starter Name=CAT2DCircle3PointsMenu
+            Starter Name=CAT2DCircleCoordMenu
+            Starter Name=CAT2DCircle3TangentMenu
+            Starter Name=CAT2DArcRadiusMenu
+            Starter Name=CAT2DArc3PointsMenu
+            Starter Name=CAT2DArc3Points132Menu
+            Starter Name=CAT2DEllipseRadiusMenu
+         Title=���� 	 Name=CATcontMenuProfiles 
+            Starter Name=CAT2DContourMenu
+            Starter Name=CAT2DRectangleMenu
+            Starter Name=CAT2DOrientedRectangleMenu
+            Starter Name=CAT2DParallelogramMenu
+            Starter Name=2DPolygonMenu
+            Starter Name=CAT2DTrouOblongMenu
+            Starter Name=CAT2DTrouOblongArcMenu
+            Starter Name=CAT2DKeyHoleMenu
+            Starter Name=CAT2DCenteredRectangleStr
+            Starter Name=CAT2DCenteredParallelogramStr
+         Title=���� 	 Name=CATcontMenuCurves 
+            Starter Name=CAT2DSplineMenu
+            Starter Name=CAT2DConnectMenu
+            Starter Name=CAT2DParabolaFocus
+            Starter Name=CAT2DHyperbolaFocus
+            Starter Name=CAT2DConicCurveStr
+      Title=����ͼ���޸� 	 Name=CATcontMenuGeometryEdition 
+         Title=�����޶� 	 Name=CATcontMenuRelimit 
+            Starter Name=CAT2DCornerMenu
+            Starter Name=2DArc1Tgt
+            Starter Name=CAT2DChamferMenu
+            Starter Name=CAT2DRelimitationMenu
+            Starter Name=CAT2DBreakMenu
+            Starter Name=CAT2DQuickTrimMenu
+            Starter Name=CAT2DCloseMenu
+            Starter Name=CAT2DComplementMenu
+         Title=�任 	 Name=CATcontMenuTransfor 
+            Starter Name=CAT2DSymmetryMenu
+            Starter Name=CAT2DPureSymmetryStr
+            Starter Name=CAT2DTranslateMenu
+            Starter Name=CAT2DRotateMenu
+            Starter Name=CAT2DScaleMenu
+            Starter Name=CAT2DOffsetContour
+         Title=Լ�� 	 Name=CATcontMenuCst 
+            Starter Name=DrwConstraintMenu
+            Starter Name=CAT2DConstraintPanelMenu
+            Starter Name=CAT2DFixTogetherStr
+            Starter Name=CAT2DContactConstraint
+      Separator Name=separatorPictureMenu
+      Starter Name=DrwImportPictureMenu
+   Title=���� 	 Name=CATAfrToolsMnu 
+      Separator Name=CATSeparatorTools1Menu
+      Title=��λ 	 Name=CATcontMenuDrwPositioning 
+         Starter Name=CATDrwPositioningMenu
+         Starter Name=CATDrwLineUpMenu
+         Starter Name=DrwAlignIntoSystemMenu
+         Starter Name=DrwDimAutoPosMenu
+      Title=���� 	 Name=contMenuDrwAnalyze 
+         Starter Name=DrwAnalyze2D3DMenu
+         Starter Name=DrwDimPosAnalMenu
+      Title=����ͼ(I)(2.5 D) 	 Name=CATDrwcontMenuDrwMultiViewSnu 
+         Starter Name=CATDrwCombiViewMenuStr
+         Starter Name=CATDrwViewPositionMenuStr
+      Separator Name=SeparatorTools2Menu
+      Title=�ߴ����� 	 Name=CATDrwcontMenuDrwGenDimToolsSnu 
+         Starter Name=CATDrwGenDimParamsMenuStr
+         Starter Name=CATDrwGenDimAnalMenuStr
+      Separator Name=CATDrwSeparatorTools3MenuSep
+      Starter Name=CATDrwForceGVSStyleMnu
+      Separator Name=CATDrwTools5Sep
+      Starter Name=CATDrwResetDefaultsMenu
+      Separator Name=CATSeparatorTools4Menu
+      Starter Name=CATDrwImportMenu
+      Starter Name=CAT2DTo3DViewCreationStr
+      Separator Name=CATDrwTools6Sep
+      Starter Name=CATDrwSketchAnalyseStr
+
+ Title of the toolbar=ѡ�� and is Name=CATDrwcontTbSelectTlb
+   Starter Name=CATSelectHeader
+   Starter Name=CATSelectRotate
+
+ Title of the toolbar=��ͼ and is Name=CATDrwcontTbViewsTlb
+   Title of the Icon Box=ͶӰ 	 Name=CATDrwcontProjectionsIcb 
+      Starter Name=CATDrwFrontViewStr
+      Starter Name=CATDrwUnfoldedViewStr
+      Starter Name=CATDrwTPSViewStr
+      Starter Name=CATDrwProjViewStr
+      Starter Name=CATDrwAuxViewStr
+      Starter Name=CATDrwIsometricViewStr
+      Starter Name=CATDrwFrontViewAdvStr
+   Title of the Icon Box=���� 	 Name=CATDrwcontSectionsIcb 
+      Starter Name=CATDrwSectViewStr
+      Starter Name=CATDrwAlignedSectViewStr
+      Starter Name=CATDrwSectCutViewStr
+      Starter Name=CATDrwAlignedSectCutViewStr
+   Title of the Icon Box=��ϸ��Ϣ 	 Name=CATDrwcontDetailsIcb 
+      Starter Name=CATDrwCircleDetailViewStr
+      Starter Name=CATDrwContourDetailViewStr
+      Starter Name=CATDrwCircleQuickDetailViewStr
+      Starter Name=CATDrwContourQuickDetailViewStr
+   Title of the Icon Box=�ü� 	 Name=CATDrwcontClippingsIcb 
+      Starter Name=CATDrwStr
+      Starter Name=CATDrwExactContourClippingViewStr
+      Starter Name=CATDrwCircleClippingViewStr
+      Starter Name=CATDrwContourClippingViewStr
+   Title of the Icon Box=�Ͽ���ͼ 	 Name=CATDrwcontBrokenIcb 
+      Starter Name=CATDrwBrokenViewStr
+      Starter Name=CATDrwBreakoutViewDlgStr
+      Starter Name=CATDrwClipBoxCurViewStr
+Separator Name=CATDrwSeparatorViews1Sep
+   Title of the Icon Box=�� 	 Name=CATDrwcontViewWizardIcb 
+      Starter Name=CATDrwWizardStr
+      Starter Name=CATDrwPredef1WizardStr
+      Starter Name=CATDrwPredef3WizardStr
+      Starter Name=CATDrwPredef5WizardStr
+
+ Title of the toolbar=����ͼ and is Name=CATDrwcontTbDrawingTlb
+   Title of the Icon Box=ͼֽ 	 Name=CATDrwcontSheetsIcb 
+      Starter Name=CATDrwCreateSheet
+      Starter Name=CATDrwCreateSheetOfDetail
+   Starter Name=CATDrwCreateView
+   Starter Name=CATDrwDittoStr
+
+ Title of the toolbar=�ߴ��ע and is Name=CATDrwcontTbDimensioningTlb
+   Title of the Icon Box=�ߴ� 	 Name=CATcontDimensions 
+      Starter Name=CATDrwDim
+      Starter Name=CATDrwDimChainStr
+      Starter Name=CATDrwDimCumul
+      Starter Name=CATDrwDimStack
+      Starter Name=CATseparatorDimLength
+      Starter Name=CATDrwDimLengthDist
+      Starter Name=CATDrwDimAngle
+      Starter Name=CATDrwDimRadius
+      Starter Name=CATDrwDimDiameter
+      Starter Name=CATseparatorDimChamfer
+      Starter Name=CATDrwDimChamf
+      Starter Name=CATDrwDimThreadStr
+      Starter Name=CATDrwDimCoord
+      Starter Name=CATDrwDimTableSep
+      Starter Name=CATDrwHoleDimTableStr
+      Starter Name=DrwCoordDimTableStr
+   Title of the Icon Box=���������ߴ� 	 Name=CATDrwFeatDimIcb 
+      Starter Name=CATDrwFeatDimStr
+      Starter Name=CATDrwFeatDim1Sep
+      Starter Name=CATDrwFeatDimMultiStr
+      Starter Name=CATDrwFeatDimChainStr
+      Starter Name=CATDrwFeatDimSep
+      Starter Name=CATDrwFeatDimLengthDistStr
+      Starter Name=CATDrwFeatDimAngleStr
+      Starter Name=CATDrwFeatDimRadiusStr
+      Starter Name=CATDrwFeatDimDiameterStr
+   Title of the Icon Box=�ߴ�༭ 	 Name=CATDrwContInterruptTlb 
+      Starter Name=CATDrwRerootDimStr
+      Starter Name=CATDrwInterruptDimAddStr
+      Starter Name=CATDrwInterruptDimRemStr
+      Starter Name=CATDrwClippingDimAddStr
+      Starter Name=CATDrwClippingDimRemStr
+Separator Name=CATDrwInterruptTolerancingSep
+   Title of the Icon Box=���� 	 Name=CATcontTolerancing 
+      Starter Name=CATDrwDatumFeat
+      Starter Name=CATDrwGeoTol
+
+ Title of the toolbar=���� and is Name=CATDrwcontTbGenerationTlb
+   Title of the Icon Box=�ߴ����� 	 Name=contGenDim 
+      Starter Name=CATDrwGenDimStr
+      Starter Name=DrwGenDimStep
+      Starter Name=CATDrwGenBalloonStr
+
+ Title of the toolbar=��ע and is Name=CATDrwcontTbAnnotationsTlb
+   Title of the Icon Box=�ı� 	 Name=CATcontTexts 
+      Starter Name=CATDrwText
+      Starter Name=CATDrwTextLeader
+      Starter Name=CATDrwTextReplicate
+      Starter Name=CATDrwBalloon
+      Starter Name=CATDrwDatumTarg
+      Starter Name=CATDrwATSPlaceStr
+   Title of the Icon Box=���� 	 Name=CATcontSymbols 
+      Starter Name=CATDrwRoughness
+      Starter Name=CATDrwWeldingSymbol
+      Starter Name=CATDrwWeldingGeom
+   Title of the Icon Box=�� 	 Name=CATDrwContTableIcb 
+      Starter Name=CATDrwTableStr
+      Starter Name=CATDrwTableFromCSVStr
+
+ Title of the toolbar=���� and is Name=CATDrwcontTbDressupTlb
+   Title of the Icon Box=������� 	 Name=CATcontAxis 
+      Starter Name=CATDrwCenterLine
+      Starter Name=CATDrwCenterLineRef
+      Starter Name=CATDrwThread
+      Starter Name=CATDrwThreadRef
+      Starter Name=CATDrwAxisLine
+      Starter Name=CATDrwAxisCenter
+   Title of the Icon Box=������� 	 Name=CATDrwAreaFillIcb 
+      Starter Name=CATDrwAreaFillCreatStr
+      Starter Name=CATDrwAreaFillModStr
+   Starter Name=CATDrwArrowStr
+
+ Title of the toolbar=����ͼ�δ��� and is Name=CATDrwcontTbGeometryCreationTlb
+   Title of the Icon Box=�� 	 Name=CATcontPoint 
+      Starter Name=CAT2DPoint
+      Starter Name=CAT2DPointCoord
+      Starter Name=CAT2DPointsSpaces
+      Starter Name=CAT2DPointsIntersect
+      Starter Name=CAT2DPointsProject
+      Starter Name=CATDrw2DAlignPointsStr
+   Title of the Icon Box=ֱ�� 	 Name=CATcontLine 
+      Starter Name=CAT2DLine
+      Starter Name=CAT2DLineHV
+      Starter Name=CAT2DLine2Tangent
+      Starter Name=CAT2DBisectLine
+      Starter Name=CAT2DLineNormalToCurveStr
+   Title of the Icon Box=Բ����Բ 	 Name=CATcontCircle 
+      Starter Name=CAT2DCircleRadius
+      Starter Name=CAT2DCircle3Points
+      Starter Name=CAT2DCircleCoord
+      Starter Name=CAT2DCircle3Tangent
+      Starter Name=CAT2DArcRadius
+      Starter Name=CAT2DArc3Points
+      Starter Name=CAT2DArc3Points132
+      Starter Name=CAT2DEllipseRadius
+   Title of the Icon Box=���� 	 Name=CATcontProfiles 
+      Starter Name=CAT2DContour
+      Starter Name=CAT2DRectangle
+      Starter Name=CAT2DOrientedRectangle
+      Starter Name=CAT2DParallelogram
+      Starter Name=2DPolygon
+      Starter Name=CAT2DTrouOblong
+      Starter Name=CAT2DTrouOblongArc
+      Starter Name=CAT2DKeyHole
+      Starter Name=CAT2DCenteredRectangleStr
+      Starter Name=CAT2DCenteredParallelogramStr
+   Title of the Icon Box=���� 	 Name=CATcontCurves 
+      Starter Name=CAT2DSpline
+      Starter Name=CAT2DConnect
+      Starter Name=CAT2DParabolaFocus
+      Starter Name=CAT2DHyperbolaFocus
+      Starter Name=CAT2DConicCurveStr
+
+ Title of the toolbar=����ͼ���޸� and is Name=CATDrwcontTbGeometryEditionTlb
+   Title of the Icon Box=�����޶� 	 Name=CATcontRelimit 
+      Starter Name=CAT2DCorner
+      Starter Name=2DArc1Tgt
+      Starter Name=CAT2DChamfer
+      Starter Name=CAT2DRelimitation
+      Starter Name=CAT2DBreak
+      Starter Name=CAT2DQuickTrim
+      Starter Name=CAT2DClose
+      Starter Name=CAT2DComplement
+   Title of the Icon Box=�任 	 Name=CATcontTransfor 
+      Starter Name=CAT2DSymmetry
+      Starter Name=CAT2DPureSymmetryStr
+      Starter Name=CAT2DTranslate
+      Starter Name=CAT2DRotate
+      Starter Name=CAT2DScale
+      Starter Name=CAT2DOffsetContour
+   Title of the Icon Box=Լ�� 	 Name=CATcontCst 
+      Starter Name=DrwConstraint
+      Starter Name=CAT2DConstraintPanel
+      Starter Name=CAT2DFixTogetherStr
+      Starter Name=CAT2DContactConstraint
+
+ Title of the toolbar=��ʽ and is Name=CATDrwcontTbStyleTlb
+   Starter Name=CATDrwStyle
+
+ Title of the toolbar=�ı����� and is Name=CATDrwcontTbTextPropertiesTlb
+   Starter Name=CATDrwFontName
+   Starter Name=CATDrwFontSize
+Separator Name=CATSeparatorTextProp1
+   Starter Name=CATDrwBold
+   Starter Name=CATDrwItalic
+   Starter Name=CATDrwXLineStr
+   Starter Name=CATDrwStrikeThru
+   Starter Name=CATDrwXScriptStr
+Separator Name=CATSeparatorTextProp2
+   Starter Name=CATDrwJustificationStr
+   Starter Name=CATDrwTextAnchor
+   Starter Name=CATDrwTextFrame
+Separator Name=CATSeparatorTextProp3
+   Starter Name=CATDrwDimSymbol
+
+ Title of the toolbar=�ߴ����� and is Name=CATDrwcontTbDimensionPropertiesTlb
+   Starter Name=CATDrwDimLine
+Separator Name=CATSeparatorDimProp1
+   Starter Name=CATDrwTolDescrip
+   Starter Name=CATDrwTolerance
+
+ Title of the toolbar=�������� and is Name=CATDrwMumericalPropertiesTlb
+   Starter Name=CATDrwNumDisp
+   Starter Name=CATDrwPrecision
+
+ Title of the toolbar=ͼ������ and is Name=CATDrwcontTbGraphicPropertiesTlb
+   Starter Name=CATDrwColor
+   Starter Name=CATDrwThickness
+   Starter Name=CATDrwLineType
+   Starter Name=CATDrwPointTypeHdr
+   Starter Name=CATAfrViewChangeLayerStr
+   Starter Name=CATDrwPainter
+   Starter Name=CATDrwPattern
+
+ Title of the toolbar=λ�úͷ��� and is Name=CATDrwcontTbOrientationTlb
+   Starter Name=CATDrwXPosition
+   Starter Name=CATDrwYPosition
+   Starter Name=CATDrwOrientation
+
+ Title of the toolbar=���� and is Name=CATDrwcontTbUpdateTlb
+   Starter Name=CATDrwViewUpdate
+
+ Title of the toolbar=���� and is Name=CATDrwcontTbToolsTlb
+   Starter Name=CATSnapGrid
+Separator Name=CATSeparatorTools1
+   Starter Name=CATDrwCstCreation
+   Starter Name=CATDrwGMECreationStr
+Separator Name=CATDrwTools2Sep
+   Starter Name=CATDrwDimSystemSelModStr
+Separator Name=CATDrwTools3Sep
+   Title of the Icon Box=2D �������� 	 Name=CATDrwSktAnalyseIcb 
+      Starter Name=CATDrwLightSktAnalyseStr
+      Starter Name=CATDrwSktAnalyseStr
+
+ Title of the toolbar=���ӻ� and is Name=CATDrwVisualizationTlb
+   Starter Name=CATDisplayGrid
+Separator Name=CATDrwVisualization1Sep
+   Starter Name=CATDrwShowCst
+   Starter Name=CATDrwDisplayViewFrameStr
+   Starter Name=CATDrwHLRFilter
+Separator Name=CATDrwTools3Sep
+   Starter Name=CATDrwDimDesignMode
+
+ Title of the toolbar=��λ and is Name=CATDrwcontTbPositionTlb
+   Starter Name=CATDrwPositioning
+   Starter Name=CATDrwLineUp
+   Starter Name=DrwAlignIntoSystem
+   Starter Name=DrwDimAutoPos
+
+ Title of the toolbar=���� and is Name=contTbAnalyze
+   Starter Name=DrwAnalyze2D3D
+   Starter Name=DrwDimPosAnal
+
+ Title of the toolbar=����ͼ(I)(2.5 D) and is Name=CATDrwcontTbMultiViewTlb
+   Starter Name=CATDrwCombiViewStr
+   Starter Name=CATDrwViewPositionStr
+
+ Title of the toolbar=���� and is Name=CATDrwcontTbMeasureTlb
+   Starter Name=CATMeasureBetween
+   Starter Name=CATMeasureItem
+
+ Title of the toolbar=Ŀ¼����� and is Name=CATDrwcontTbBrowserTlb
+   Starter Name=CATCatalogBrowser

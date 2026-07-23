@@ -1,0 +1,256 @@
+Workshop Exposition of CATCuiCATALOGWks 
+
+1- Header List 
+
+Title= 同步章节
+   Id 	= CATCuiSyncChaptersHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiSyncChaptersCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 关键字默认值...
+   Id 	= CATCuiKeywordEditHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiChapterKeyword
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 添加零件系列...
+   Id 	= CATCuiAddPartsFamilyHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiAddChapterFromDesignTable
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 添加部件...
+   Id 	= CATCuiAddDescriptionHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiChapterDesc
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 过滤器定义...
+   Id 	= CATCuiAddResolvedFilterHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiAddResolvedFilter
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 定义...
+   Id 	= CATCuiChapterEditHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiEditChapter
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 选择性粘贴...
+   Id 	= CATAfrPasteSpecialHdr
+   DLL 	= PasteSpecial
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 0
+   State Current	= 0
+Title= 解析
+   Id 	= CATCuiOnResolveHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiOnResolve
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 对子级重新排序
+   Id 	= ReorderChildren
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATReorderChildrenGraphCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 重置所有过滤器
+   Id 	= ResetALL
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiResetAllSubQueries
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 添加关键字...
+   Id 	= CATCuiAddKeywordHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiAddKeyword
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 目录浏览器...
+   Id 	= CatalogBrowser
+   DLL 	= CATCuiBrowser
+   Cmd 	= CATCuiLocalBrowserCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 剪切
+   Id 	= CATAfrCutHdr
+   DLL 	= Cut
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 0
+   State Current	= 0
+Title= 属性
+   Id 	= CATAfrOpenPropertyHdr
+   DLL 	= OpenProperty
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 0
+   State Current	= 0
+Title= 添加章节...
+   Id 	= CATCuiAddChapterHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiAddChapter
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 删除
+   Id 	= CATAfrDeleteHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiDeleteCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 添加系列...
+   Id 	= CATCuiAddFamilyHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiAddChapter
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 重新排序关键字...
+   Id 	= CATCuiReorderKwdHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATReorderChildrenGraphCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 打开参考文档
+   Id 	= DescriptionLoadRef
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiDescriptionLoad
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 添加其他目录的链接
+   Id 	= CATCuiAddExternalChapterHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiAddLinkToChapter
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 同步所有过滤器
+   Id 	= ReSynchronizeQueries
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiReSynchronizeQueries
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 重新排序部件...
+   Id 	= CATCuiReorderDescHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATReorderChildrenGraphCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 定义...
+   Id 	= CATCuiDescriptionEditHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiDescriptionEdit
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 打开文档
+   Id 	= CATCuiDescriptionLoadHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiDescriptionLoad
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 作为新参考文档打开
+   Id 	= DescriptionLoadRefNew
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiDescriptionLoad
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 编辑选择集...
+   Id 	= CATAfrSelectionSaveHdr
+   DLL 	= SelectionSave
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 0
+   State Current	= 0
+Title= 重置
+   Id 	= ResetDescriptions
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiResetAllSubQueries
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 复制关键字...
+   Id 	= CATCuiKeywordFromHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiHeritageKeyword
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 作为新文档打开
+   Id 	= CATCuiDescriptionLoadNewHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiDescriptionLoad
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 添加零件部件...
+   Id 	= CATCuiAddPartsFamilyComponentsHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiAddComponentsFromDesignTable
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 更新描述名称...
+   Id 	= CATCuiDescriptionUpdNameHdr
+   DLL 	= CATCuiCommands
+   Cmd 	= CATCuiDescriptionName
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 隐藏/显示
+   Id 	= CATAfrSwapHideShowHdr
+   DLL 	= SwapHideShow
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 0
+   State Current	= 0
+Title= 选择集...
+   Id 	= CATAfrSelectionLoadHdr
+   DLL 	= SelectionLoad
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 0
+   State Current	= 0
+
+2- Access List 
+
+ Name of the menubar=CATMyMenu 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=CATCuiAddChapterMbr
+      Starter Name=CATCuiAddExternalChapterMbr
+      Starter Name=CATCuiAddFamilyMbr
+      Starter Name=CATCuiAddPartsFamilyMbr
+      Separator Name=CATCuiCmdCatalogMenuInsert01Sep
+      Starter Name=CATCuiAddKeywordMbr
+      Separator Name=CATCuiCmdCatalogMenuInsert02Sep
+      Starter Name=CATCuiAddComponentMbr
+      Starter Name=CATCuiAddPartsComponentsMbr
+      Starter Name=AddResolvedFilterItem
+      Separator Name=CATCmdCatalogMenuInsertSeparator03Separator
+      Starter Name=CATCuiComponentNameUpdateMbr
+
+ Title of the toolbar=选择 and is Name=CATCuiCatalogToolBarSelectTlb
+   Starter Name=CATSelect
+
+ Title of the toolbar=章节 and is Name=CATCuiCatalogToolBarChapterTlb
+   Starter Name=CATCuiAddChapterFolderStr
+   Starter Name=CATCuiAddExternalFolderStr
+   Starter Name=CATCuiAddDescriptionFolderStr
+   Starter Name=CATCuiAddDesignTableChapterStr
+
+ Title of the toolbar=数据 and is Name=CATCuiCatalogToolBarDescriptionTlb
+   Starter Name=CATCuiChapterKeywordsStr
+   Starter Name=CATCuiAddDescriptionStr
+   Starter Name=CATCuiAddDesignTableDescriptionsStr
+   Starter Name=CATCuiAddResolvedFilterHdr
+   Starter Name=CATCuiSyncChaptersCmd
+
+ Title of the toolbar=浏览器 and is Name=CATCuiCatalogToolBarBrowserTlb
+   Starter Name=CATCuiBrowserInEditorStr

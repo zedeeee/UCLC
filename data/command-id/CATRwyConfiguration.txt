@@ -1,0 +1,598 @@
+Workshop Exposition of CATRwyConfiguration 
+
+1- Header List 
+
+Title= Measure Item
+   Id 	= CATRwyMeasureEdgeHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Align Center
+   Id 	= CATRwySnapPointHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapPointCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Merge Line ID
+   Id 	= CATRwyMergeLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Validation...
+   Id 	= CATRwyPRMCheckerHdr
+   DLL 	= CATPspPRMChecker
+   Cmd 	= CATPspPRMCheckerCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rename Line ID
+   Id 	= CATRwyRenameLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place Object from Catalog...
+   Id 	= RwyCatalogBrowserHdr
+   DLL 	= CATArrCatalogPlace
+   Cmd 	= CATArrCatalogPlaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Place Hole
+   Id 	= CATRwyPlaceHoleHdr
+   DLL 	= CATCloPartPlaceUI
+   Cmd 	= CATCloPlaceHoleCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align Two Planes
+   Id 	= CATRwySnapTwoPlanesHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapTwoPlanesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= CATRwyInterruptHdr
+   Id 	= CATRwyInterruptHdr
+   DLL 	= CATCloPartPlaceUI
+   Cmd 	= CATClo2DPipeInterruptCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select to measure distance/angle between runs and/or connectors
+   Id 	= CATRwyMeasurementHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrMeasurementCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select/Query Compartment
+   Id 	= CATRwySelQueryCptHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuSelQueryCptCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Build Connector
+   Id 	= CATRwyConnectorHdr
+   DLL 	= CATCloManageCntr
+   Cmd 	= CATCloManageCntrCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Lock Compartment Membership
+   Id 	= CATRwySetLockCptMembershipHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuSetLockCptMembershipCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Transfer run
+   Id 	= CATRwyTransferRunHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrTransferRunCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Import Line ID
+   Id 	= CATRwyLineIDImportHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLineIDImportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Set Object Type
+   Id 	= CATRwyModifySubTypeHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloModifySubTypeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Connect parts...
+   Id 	= CATRwyConnectPartsHdr
+   DLL 	= CATCloManageCnx
+   Cmd 	= CATCloConnectionMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Loose Parts Management
+   Id 	= CATRwyLoosePartHdr
+   DLL 	= CATCloLooseParts
+   Cmd 	= CATCloLoosePartsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Expressions
+   Id 	= CATRwyReportExpHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExpressionsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Manage Graphics Representation
+   Id 	= CATRwyActivateRepHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloActivateRepCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Snap Surface
+   Id 	= CATRwySnapSurfaceHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapSurfaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Between
+   Id 	= CATRwyMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Snap
+   Id 	= CATRwySnapResourcesHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapResourcesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select/Browse...
+   Id 	= CATRwyPrjMngtHdr
+   DLL 	= PrjMngtUI
+   Cmd 	= CATPrjMngtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Create segment to segment offset connection
+   Id 	= CATRwyOffsetSegmentHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrOffsetSegmentCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select to Activate Grids
+   Id 	= CATRwyActivateGridHdr
+   DLL 	= CATArrGrid
+   Cmd 	= CATArrActivateGridCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Change Reference...
+   Id 	= CATRwyChangeReferenceHdr
+   DLL 	= CATArrCatalogPlace
+   Cmd 	= CATArrChangeReferenceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Adjust Layout
+   Id 	= CATRwyDryStackingHdr
+   DLL 	= CATCloPartPlaceUI
+   Cmd 	= CATCloDryStackingCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Manage Exceptions
+   Id 	= CATRwyManageExceptionsHdr
+   DLL 	= CATPspFuncPhysIntegrator
+   Cmd 	= CATPspManageExceptionsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select/Query Line ID
+   Id 	= CATRwySelectLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Route from spline
+   Id 	= CATRwyRouteFromSplineHdr
+   DLL 	= CATCloRoute
+   Cmd 	= CATCloRouteFromSplineCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Modify Cableway Network Attributes and Data
+   Id 	= CATRwyCablewayNwkModificationCmdHdr
+   DLL 	= CATCloRoute
+   Cmd 	= CATCloCablewayNwkModificationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Related Objects
+   Id 	= CATRwyRelatedObjectsHdr
+   DLL 	= CATPspObjectNavigator
+   Cmd 	= CATPspCurrentSelection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Snap Center of Polygon
+   Id 	= CATRwySnapCenterPolygonHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapCenterPolygonCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Disconnect parts...
+   Id 	= CATRwyDisconnectPartsHdr
+   DLL 	= CATCloManageCnx
+   Cmd 	= CATCloDisconnectMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create Line ID
+   Id 	= CATRwyCreateLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align Side
+   Id 	= CATRwySnapSideHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapSideCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Generate
+   Id 	= CATRwyReportGenHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportGenCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Route a Run...
+   Id 	= CATRwyRouteRwyRunHdr
+   DLL 	= CATCloRoute
+   Cmd 	= CATCloRouteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Create an offset route
+   Id 	= CATRwyRouteByOffsetHdr
+   DLL 	= CATCloRoute
+   Cmd 	= CATCloRouteByOffsetCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Analyze Functional-Physical Integration Status
+   Id 	= CATRwyAnalyzeFuncPhysStatusHdr
+   DLL 	= CATPspFuncPhysIntegrator
+   Cmd 	= CATPspAnalyzeFuncPhysStatusCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Build Raceway Part
+   Id 	= CATRwyCreatePartHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloCreatePartCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Define
+   Id 	= CATRwyReportDefHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportDefCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Copy/Paste 3D Systems...
+   Id 	= CATRwyCopyPaste3DSysHdr
+   DLL 	= CATArrCCP3DSystems
+   Cmd 	= CATArrCopyPaste3DSysCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rotate To Align
+   Id 	= CATRwyRotateSideHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrRotateSideCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Transfer Line ID
+   Id 	= CATRwyTransferLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Delete Line ID
+   Id 	= CATRwyDeleteLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flip...
+   Id 	= CATRwyFlipHdr
+   DLL 	= CATLndPartPlace
+   Cmd 	= CATLndFlipCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Params...
+   Id 	= CATRwyEditPartParamsHdr
+   DLL 	= CATCloOverrideParm
+   Cmd 	= CATCloManageParmCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rename ID
+   Id 	= CATRwyRenameIDHdr
+   DLL 	= CATPspRename
+   Cmd 	= CATPspRenameRouteCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Break run
+   Id 	= CATRwyBreakRunHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrBreakRunCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update Compartment Membership
+   Id 	= CATRwyUpdateCptMembershipHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuUpdateCptMembershipCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CATRwyFixDeadPartBuilderHdr
+   Id 	= CATRwyFixDeadPartBuilderHdr
+   DLL 	= CATCloPartPlaceUI
+   Cmd 	= CATCloFixPartBuilderCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Adjust Run Extremity
+   Id 	= CATRwyAdjustRunExtremityHdr
+   DLL 	= ArrRoute
+   Cmd 	= CATArrAdjustRunExtremityCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Place Raceway part...
+   Id 	= CATRwyCatalogBrowserHdr
+   DLL 	= CATCloPartPlaceUI
+   Cmd 	= CATCloNFPlaceCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Distribute
+   Id 	= CATRwyDistributeHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrDistributeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Inertia...
+   Id 	= CATRwyMeasureInertiaHdr
+   DLL 	= CATSpaInertia
+   Cmd 	= CATSiLaMeasureInertiaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Apply Material...
+   Id 	= CATRwyApplyMaterialHdr
+   DLL 	= CATMatController
+   Cmd 	= CATMatApplyMaterialCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Copy Attributes
+   Id 	= CATRwyCopyAttributesHdr
+   DLL 	= CATPspChangeUserType
+   Cmd 	= CATPspCopyAttributesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Snap Three Points
+   Id 	= CATRwySnapThreePointsHdr
+   DLL 	= ArrAlign
+   Cmd 	= CATArrSnapThreePointsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=RwyMenu 
+   Title=EDIT 	 Name=CATAfrEditMnu 
+      Separator Name=RwyEditSepar0
+      Starter Name=RwyDefinitionId
+      Starter Name=RwyResetColor
+      Separator Name=RwyEditSepar1
+      Title=Line ID 	 Name=RwyLineID 
+         Starter Name=RwySelectLineIcon
+         Starter Name=RwyTransferLineIcon
+         Starter Name=RwyRenameLineIcon
+         Starter Name=RwyDeleteLineIcon
+         Starter Name=RwyMergeLineIcon
+      Title=Product Placement 	 Name=RwyProductPlacement 
+         Starter Name=RwyUpdatePartIcon
+         Starter Name=RwyEditPartParmsIcon
+         Starter Name=RwyFlipPartsIcon
+         Starter Name=RwyActivateRepIcon
+         Starter Name=CloTransferElementsIcon
+         Starter Name=CloCopyPasteElementsIcon
+      Title=Connections 	 Name=RwyConnections 
+         Starter Name=RwyOffsetConnectionIcon
+         Starter Name=RwyConnectPartsIcon
+         Starter Name=RwyDisconnectPartsIcon
+   Title=INSERT 	 Name=CATAfrInsertMnu 
+      Separator Name=RwySepar0
+      Starter Name=RwyPlaceFromCatalogIcon
+      Starter Name=RwyCreateLineIcon
+      Starter Name=RwyLineIDImportIcon
+      Starter Name=RwyRouteRwyeRunIcon
+      Starter Name=RwyRouteByOffsetIcon
+      Starter Name=RwyRouteFromSplineIcon
+      Starter Name=RwyBreakRunIcon
+      Starter Name=RwyBuildComponentIcon
+      Starter Name=RwyBuildConnectorIcon
+      Starter Name=RwyCatalogPlaceButton
+      Starter Name=RwyPlaceInterruptIcon
+   Title=TOOLS 	 Name=CATAfrToolsMnu 
+      Separator Name=RwyToolsSepar0
+      Title=Report  	 Name=RwyReportTools 
+         Starter Name=RwyReportDefIcon
+         Starter Name=RwyReportGenIcon
+         Starter Name=RwyReportExpIcon
+         Starter Name=RwyCatalogReportIcon
+      Title=Design Tools 	 Name=RwyDesignTools 
+         Starter Name=P3AlignToSideIcon
+         Starter Name=RwyAlignToPointIcon
+         Starter Name=RwyRotateSideIcon
+         Starter Name=RwyDistributeIcon
+         Starter Name=RwyAlignTwoPlanesIcon
+         Starter Name=RwyQuickTranslateIcon
+         Separator Name=CATSeparLink1
+         Starter Name=RwySnapIcon
+         Starter Name=RwySnap3PointsIcon
+         Starter Name=RwySnapCenterPolygonIcon
+         Starter Name=RwySnapSurfaceIcon
+      Title=Environmental Tools 	 Name=RwyEnvironmentalTools 
+         Starter Name=RwyLocalAxisIcon
+         Starter Name=RwyAxisCompassIcon
+         Starter Name=PreviousLocalAxisIcon
+         Separator Name=CATSeparLink2
+         Starter Name=RwyPlaneIcon
+         Starter Name=RwyAdvancePlaneIcon
+      Title=Queries  	 Name=RwyQueriesTools 
+         Starter Name=ExportQueriesStr
+         Starter Name=ImportQueriesStr
+      Title=Project Management 	 Name=RwyPRMTools 
+         Starter Name=RwyPrjMngtStr
+         Starter Name=RwyPRMCheckerStr
+      Starter Name=RwyBldNewRefStr
+      Starter Name=PspMangePubIcon
+   Title=Analyze 	 Name=CATANALYZE 
+      Starter Name=RwyAnalyzeNetworkMenu
+      Starter Name=CATXDocCnxMenu
+      Separator Name=RwyAnalyzeSepar0
+      Starter Name=RwyRelatedObjectsMenu
+      Starter Name=RwyMeasureBetweenIcon
+      Starter Name=RwyMeasureEdgeIcon
+      Starter Name=RwyMeasureInertiaIcon
+      Separator Name=RwyAnalyzeSepar1
+      Title=Functional-Physical Integration 	 Name=RwyFuncPhysIntegration 
+         Starter Name=RwyAnalyzeFuncPhysStatusMenu
+         Starter Name=RwyManageExceptionMenu
+      Starter Name=RwyDesignValidation
+
+ Title of the toolbar=Select Assembly and is Name=RwySelAsm
+   Starter Name=RwySelectAssemblyIcon
+
+ Title of the toolbar=Raceway Line Management and is Name=RwyRwycLine
+   Title of the Icon Box=Line ID 	 Name=RwyLineId 
+      Starter Name=RwySelectLineIcon
+      Starter Name=RwyCreateLineIcon
+      Starter Name=RwyTransferLineIcon
+      Starter Name=RwyRenameLineIcon
+      Starter Name=RwyDeleteLineIcon
+      Starter Name=RwyMergeLineIcon
+      Starter Name=RwyLineIDImportIcon
+
+ Title of the toolbar=Design Create and is Name=RwyRouting
+   Starter Name=RwyRouteRwyeRunIcon
+   Title of the Icon Box=Route Tools 	 Name=RwyRouteTools 
+      Starter Name=RwyRouteByOffsetIcon
+      Starter Name=RwyRouteFromSplineIcon
+      Starter Name=RwyBreakRunIcon
+      Starter Name=CATRwyTransferRunIcon
+      Starter Name=SolidRunButton
+   Title of the Icon Box=RwyPartPlaceTools 	 Name=RwyPartPlaceTools 
+      Starter Name=RwyPlaceFromCatalogIcon
+      Starter Name=RwyLoosePartIcon
+      Starter Name=RwyPlaceInterruptIcon
+
+ Title of the toolbar=Design Modify and is Name=RwyParts
+   Title of the Icon Box=RwyFlipTools 	 Name=RwyFlipTools 
+      Starter Name=RwyEditPartParmsIcon
+      Starter Name=RwyFlipPartsIcon
+      Starter Name=RwyMoveRotateIcon
+      Starter Name=RwyUpdatePartIcon
+      Starter Name=RwyResizeIcon
+      Starter Name=CATRwyAdjustRunExtremityIcon
+      Starter Name=CloCablewayNwkModificationCmdIcon
+   Title of the Icon Box=RwyDisconnectTools 	 Name=RwyDisconnectTools 
+      Starter Name=RwyConnectPartsIcon
+      Starter Name=RwyDisconnectPartsIcon
+      Starter Name=RwyOffsetConnectionIcon
+   Starter Name=RwyActivateRepIcon
+   Title of the Icon Box=RwyCCPTools 	 Name=RwyCCPTools 
+      Starter Name=CloTransferElementsIcon
+      Starter Name=CloCopyPasteElementsIcon
+   Title of the Icon Box=RwyCptMembership 	 Name=RwyCptMembership 
+      Starter Name=RwyUpdateCptMembershipIcon
+      Starter Name=RwySelQueryCptIcon
+      Starter Name=RwySetLockCptMembershipIcon
+
+ Title of the toolbar=Build Create and is Name=RwySetup
+   Title of the Icon Box=RwyBuild 	 Name=RwyBuild 
+      Starter Name=RwyBuildComponentIcon
+      Starter Name=RwyBuildConnectorIcon
+      Starter Name=RwyModifySubTypeIcon
+
+ Title of the toolbar=General Design Tools and is Name=RwyDesignTools
+   Title of the Icon Box=Align 	 Name=RwyAlign 
+      Starter Name=P3AlignToSideIcon
+      Starter Name=RwyAlignToPointIcon
+      Starter Name=RwyRotateSideIcon
+      Starter Name=RwyDistributeIcon
+      Starter Name=RwyAlignTwoPlanesIcon
+      Starter Name=RwyQuickTranslateIcon
+   Title of the Icon Box=RwySnap 	 Name=RwySnap 
+      Starter Name=RwySnapIcon
+      Starter Name=RwySnap3PointsIcon
+      Starter Name=RwySnapCenterPolygonIcon
+      Starter Name=RwySnapSurfaceIcon
+
+ Title of the toolbar=Update and is Name=RwyUpdateIcon
+   Starter Name=RwyUpdateIcon
+
+ Title of the toolbar=General Environment Tools and is Name=RwyGenEnvTools
+   Title of the Icon Box=RwyDetailInfo 	 Name=RwyDetailInfo 
+      Starter Name=RwyDetailInfoIcon
+      Starter Name=ArrQueryAutoPartsButton
+      Starter Name=RwyLocalAxisIcon
+      Starter Name=RwyAxisCompassIcon
+      Starter Name=PreviousLocalAxisIcon
+      Starter Name=RwyHideShowCntrVisuIcon
+      Starter Name=RwyConvertObjToDesignModeIcon
+   Title of the Icon Box=Define Plane 	 Name=RwyDefinePlane 
+      Starter Name=RwyPlaneIcon
+      Starter Name=RwyAdvancePlaneIcon
+   Title of the Icon Box=RwyToggle 	 Name=RwyToggle 
+      Starter Name=RwyManipulationIcon
+      Starter Name=RwyDimIcon
+   Starter Name=RwySnapModeIcon
+   Starter Name=RwyGridStepIcon
+   Title of the Icon Box=RwyUIActive 	 Name=RwyUIActive 
+      Starter Name=RwyPlaceUnderUIActiveIcon
+      Starter Name=RwyActivateParentIcon
+      Starter Name=CATRwyActivateGridIcon
+   Title of the Icon Box=DMUDynClashIconBox 	 Name=DMUDynClashIconBox 
+      Starter Name=DynClashOff
+      Starter Name=DynClashOn
+      Starter Name=DynClashStop
+
+ Title of the toolbar=Measure and is Name=RwyMeasureTools
+   Starter Name=RwyMeasureBetweenIcon
+   Starter Name=RwyMeasureEdgeIcon
+   Starter Name=RwyMeasureInertiaIcon
+   Starter Name=RwyMeasurementIcon
+
+ Title of the toolbar=Raceway Line and is Name=RwyRwycLineComboTools
+   Starter Name=RwyComboRwycLineName
+
+ Title of the toolbar=Rename and is Name=RwyRenameID
+   Starter Name=RwyRenameIDIcon
+   Starter Name=RwyCopyAttributesIcon
+
+ Title of the toolbar=Apply Material  and is Name=RwyApplyMaterial
+   Starter Name=RwyMaterialIcon

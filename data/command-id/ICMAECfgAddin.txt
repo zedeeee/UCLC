@@ -1,0 +1,734 @@
+Workshop Exposition of ICMAECfgAddin 
+
+1- Header List 
+
+Title= 点捕捉
+   Id 	= CATStSnapOnGridSettingsHeader
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 管道
+   Id 	= ICMCLAShapeTubingCmd
+   DLL 	= ICMCLAShpUITubing
+   Cmd 	= ICMCLAShapeTubingCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 3 点补面
+   Id 	= ICMCLA3PointPatchFss
+   DLL 	= CATFsuPatches
+   Cmd 	= CATStCmdCreatePatch
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 改装
+   Id 	= ICMCLAShapeRefitCmd
+   DLL 	= ICMCLAShpUIRefit
+   Cmd 	= ICMCLAShapeRefitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 等参数曲线...
+   Id 	= ClaIsoparametricCurve
+   DLL 	= CATFsuIsoparamCurve
+   Cmd 	= CATStCmdIsoparametricCurve
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 曲线偏移
+   Id 	= ICMCLAShapeCurveOffsetCmd
+   DLL 	= ICMCLAShpUICurveOffset
+   Cmd 	= ICMCLAShapeCurveOffsetCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 视图角度
+   Id 	= ICMCLAViewAngleGlobal
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATFsCmdViewAngleManip
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 外形映射
+   Id 	= ICMCLAShapeMappingCmd
+   DLL 	= ICMCLAShpUIMapping
+   Cmd 	= ICMCLAShapeMappingCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 旋转曲面
+   Id 	= ICMCLAShapeRevolSurfaceCmd
+   DLL 	= ICMCLAShpUIRevolSurface
+   Cmd 	= ICMCLAShapeRevolSurfaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 指南针管理
+   Id 	= ICMCLACompassFss
+   DLL 	= CATFsuQuickAccess
+   Cmd 	= CATStCmdQuickCompass
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 光顺
+   Id 	= ICMCLAShapeSmoothCmd
+   DLL 	= ICMCLAShpUISmooth
+   Cmd 	= ICMCLAShapeSmoothCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 衍射线
+   Id 	= ICMCLAInflectLinesFss
+   DLL 	= CATFauInflectionLines
+   Cmd 	= CATStCmdInflectionLinesAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 相交
+   Id 	= ICMCLAShapeIntersectionCmd
+   DLL 	= ICMCLAShpUIIntersection
+   Cmd 	= ICMCLAShapeIntersectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 分析曲面曲率
+   Id 	= ICMCLASurfacicCurvatureAnalysisFss
+   DLL 	= CATFauSurfCurv
+   Cmd 	= CATStCmdSurfCurv
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 创建曲线
+   Id 	= ICMCLA3dCurveFss
+   DLL 	= CATFsu3DCurve
+   Cmd 	= CATStCmd3DCurve
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 控制点
+   Id 	= ClaControlPoints
+   DLL 	= CATFsuCP
+   Cmd 	= CATStCmdCP
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 桥接曲面
+   Id 	= ICMCLAShapeSurfaceBlendCmd
+   DLL 	= ICMCLAShpUISurfaceBlend
+   Cmd 	= ICMCLAShapeSurfaceBlendCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 取消修剪
+   Id 	= ClaUntrim
+   DLL 	= CATClassAUI
+   Cmd 	= CATClaUntrimCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 光源
+   Id 	= ICMCLALightSourceManipulationAnalysisFss
+   DLL 	= CATFauLightSourceManip
+   Cmd 	= CATStCmdLightSources
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 样式圆角
+   Id 	= ICMClassAFilletFSS
+   DLL 	= CATFsuTopoFillet
+   Cmd 	= CATStCmdTopoFillet
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 外插延伸（功能）
+   Id 	= ICMCLAShapeExtrapolationFeatCmd
+   DLL 	= ICMCLAShpUIExtrapolationFeat
+   Cmd 	= ICMCLAShapeExtrapolationFeatCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 断开
+   Id 	= ICMCLABreakFss
+   DLL 	= CATFsuBreak
+   Cmd 	= CATStCmdBreak
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 提取几何图形
+   Id 	= ICMCLAGeometryExtractionFss
+   DLL 	= CATFsuSurfOnSurf
+   Cmd 	= CATStCmdSurfOnSurf
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 反转（基准）
+   Id 	= ICMCLAShapeInvertOnlyDatumCmd
+   DLL 	= ICMCLAShpUIInvert
+   Cmd 	= ICMCLAShapeInvertCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 外形建模
+   Id 	= ICMCLAShapeModelingCmd
+   DLL 	= ICMCLAShpUIModeling
+   Cmd 	= ICMCLAShapeModelingCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 几何信息
+   Id 	= ICMCLAGeometricInformationFss
+   DLL 	= CATFsuGeomInfo
+   Cmd 	= CATStCmdGeomInfo
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 快速选择
+   Id 	= ICMCLAQuickSelectGsd
+   DLL 	= CATUdfToolCmds
+   Cmd 	= CATUdfQuickSelect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 曲线转换
+   Id 	= ICMCLAShapeConversionCmd
+   DLL 	= ICMCLAShpUIConversion
+   Cmd 	= ICMCLAShapeConversionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 曲线投影
+   Id 	= ICMCLAShapeProjectCmd
+   DLL 	= ICMCLAShpUIProject
+   Cmd 	= ICMCLAShapeProjectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 曲面偏移
+   Id 	= ICMCLAShapeSurfaceOffset2Cmd
+   DLL 	= ICMCLAShpUISurfaceOffset2
+   Cmd 	= ICMCLAShapeSurfaceOffset2Cmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 分割曲线
+   Id 	= ICMCLAShapeSplitCurveCmd
+   DLL 	= ICMCLAShpUISplitCurve
+   Cmd 	= ICMCLAShapeSplitCurveCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ACA 中断曲线
+   Id 	= ClaBreakCurves
+   DLL 	= CATClassAUI
+   Cmd 	= CATClaBreakCurvesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示设置
+   Id 	= ICMRenderDisplaylistsCmd
+   DLL 	= ICMRenderUIDisplaylists
+   Cmd 	= ICMRenderDisplaylistsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 仪表板
+   Id 	= ICMDashboardFss
+   DLL 	= CATFsuQuickAccess
+   Cmd 	= CATStCmdDashboardOnOff
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 桥接曲线
+   Id 	= ICMCLAShapeCurveBlendCmd
+   DLL 	= ICMCLAShpUICurveBlend
+   Cmd 	= ICMCLAShapeCurveBlendCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 排序
+   Id 	= ICMCLAShapeOrderCmd
+   DLL 	= ICMCLAShpUIOrder
+   Cmd 	= ICMCLAShapeOrderCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 专用网格
+   Id 	= ICMRenderSpecializedTesselationCmd
+   DLL 	= ICMRenderUISpecializedTesselation
+   Cmd 	= ICMRenderSpecializedTesselationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 等曲率分析
+   Id 	= ICMCLADiagIsoCurvatureCmd
+   DLL 	= ICMCLADiaUIIsoCurvature
+   Cmd 	= ICMCLADiagIsoCurvatureCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 新建修饰...
+   Id 	= ICMCLAApplyDressUpNewFss
+   DLL 	= CATCauDressUpUI
+   Cmd 	= CATCauDressUpCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 平面补面
+   Id 	= ICMCLAPlanarPatchFss
+   DLL 	= CATFsuPatches
+   Cmd 	= CATStCmdCreatePatch
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= ACA 中断
+   Id 	= ClaBreak
+   DLL 	= CATClassAUI
+   Cmd 	= CATClaBreakCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 曲面转换
+   Id 	= ICMCLAShapeSurfaceConversionCmd
+   DLL 	= ICMCLAShpUISurfaceConversion
+   Cmd 	= ICMCLAShapeSurfaceConversionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 分段
+   Id 	= ICMCLAFragmentationFss
+   DLL 	= CATFsuExplode
+   Cmd 	= CATStCmdExplode
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 外插延伸（基准）
+   Id 	= ICMCLAShapeExtrapolationCmd
+   DLL 	= ICMCLAShpUIExtrapolation
+   Cmd 	= ICMCLAShapeExtrapolationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 四点补面
+   Id 	= Cla4PointPatch
+   DLL 	= CATClassAUI
+   Cmd 	= CATClaPatch4PtsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 切除面分析
+   Id 	= ClaCuttingPlaneAnalysis
+   DLL 	= CATFauCuttingPlaneAnalysis
+   Cmd 	= CATStCmdCuttingPlaneAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 突出显示分析
+   Id 	= ICMCLADiagHighlightCmd
+   DLL 	= ICMCLADiaUIHighlight
+   Cmd 	= ICMCLADiagHighlightCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 匹配约束
+   Id 	= ClaConstraintMatching
+   DLL 	= CATFsuCstMatch
+   Cmd 	= CATStCmdCstMatch
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 连接检查器分析
+   Id 	= ICMCLAConnectCheckerFss
+   DLL 	= CATFauConnectChecker
+   Cmd 	= CATStCmdConnectCheckerAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 扫掠
+   Id 	= ICMCLAShapeSweepCmd
+   DLL 	= ICMCLAShpUISweep
+   Cmd 	= ICMCLAShapeSweepCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 环境映射
+   Id 	= ICMCLAEnvironmentMappingAnalysisFss
+   DLL 	= CATFauEnvironmentMapping
+   Cmd 	= CATStCmdEnvironmentMappingAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 曲线补面
+   Id 	= ICMCLAShapePatchFromCurves2Cmd
+   DLL 	= ICMCLAShpUIPatchFromCurves2
+   Cmd 	= ICMCLAShapePatchFromCurves2Cmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 取消修剪
+   Id 	= ICMCLAUntrimFss
+   DLL 	= CATFsuFeatUntrim
+   Cmd 	= CATStCmdFeatUntrim
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= ClaConstraintMatchingInsert
+   Id 	= ClaConstraintMatchingInsert
+   DLL 	= CATFsuCstMatch
+   Cmd 	= CATStCmdCstMatch
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 拆解
+   Id 	= ICMCLADisassembleFss
+   DLL 	= CATFsuDisassemble
+   Cmd 	= CATStCmdDisassemble
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 拉伸视图
+   Id 	= ICMCLAStretchViewFss
+   DLL 	= CATFsuStretchViewer
+   Cmd 	= CATStCmdStretchViewer
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 反转（功能）
+   Id 	= ICMCLAShapeInvertCmd
+   DLL 	= ICMCLAShpUIInvert
+   Cmd 	= ICMCLAShapeInvertCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 距离分析...
+   Id 	= ClaNewDynDistanceAnalysis
+   DLL 	= CATFauDynDistance
+   Cmd 	= CATStCmdDynDistanceAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 放样
+   Id 	= ICMCLAShapeLoftCmd
+   DLL 	= ICMCLAShpUILoft
+   Cmd 	= ICMCLAShapeLoftCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 箭状分析
+   Id 	= ICMCLAPorcupineCurvatureAnalysisFss
+   DLL 	= CATFauCurvature
+   Cmd 	= CATStCmdCurvature
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 来自补面的补面
+   Id 	= ICMCLAShapePatchFromPatchesCmd
+   DLL 	= ICMCLAShpUIPatchFromPatches
+   Cmd 	= ICMCLAShapePatchFromPatchesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 样式外插延伸
+   Id 	= ICMCLAStylingExtrapolationFss
+   DLL 	= CATFsuExtend
+   Cmd 	= CATStCmdExtend
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 分割分析
+   Id 	= ICMCLADiagSplitAnalysisCmd
+   DLL 	= ICMCLADiaUISplitAnalysis
+   Cmd 	= ICMCLADiagSplitAnalysisCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 镜像分析
+   Id 	= ICMCLAMirror
+   DLL 	= CATFauMirror
+   Cmd 	= CATStCmdMirrorAnalysis
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 凸缘
+   Id 	= ICMCLAShapeFlangeCmd
+   DLL 	= ICMCLAShpUIFlange
+   Cmd 	= ICMCLAShapeFlangeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 视图选择器
+   Id 	= CATViewSelectorHdr
+   DLL 	= CATIAApplicationFrame
+   Cmd 	= CATCafCmdViewSelector
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 填充
+   Id 	= ICMCLAShapeFillCmd
+   DLL 	= ICMCLAShpUIFill
+   Cmd 	= ICMCLAShapeFillCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=InsertMenu 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=ICMSeparator
+      Starter Name=CATInsertGSMBodyCT
+      Starter Name=CATInsertShapeBodyCT
+      Separator Name=ICMSeparator
+      Title=工具 	 Name=ToolsContainerCT 
+         Starter Name=UpdateHeaderCT
+         Starter Name=CATMmuSwitchUpdateModeHdrCT
+         Starter Name=ICMCLAGeometricInformationFssCT
+         Starter Name=CATOnlyCurrentBodyModeCT
+         Starter Name=CATShapeDesignAddGraphCT
+         Starter Name=ICMCLAApplyDressUpNewFssCT
+         Starter Name=Create3DAxisSystemCT
+         Starter Name=ICMDashboardFssCT
+         Starter Name=ICMRenderSpecializedTesselationCmdCT
+         Starter Name=ICMCLAFlipCompassBaseFssCT
+         Starter Name=ICMCLASetCompassFssCT
+         Starter Name=ICMCLAResetCompassFssCT
+         Starter Name=ICMDSWysiwygDefCT
+      Title=形状分析 	 Name=ShapeAnalysisContainerCT 
+         Starter Name=ICMCLAConnectCheckerFssCT
+         Starter Name=ICMCLAPorcupineCurvatureAnalysisFssCT
+         Starter Name=ICMCLADiagIsoCurvatureCmdCT
+         Starter Name=CT
+         Starter Name=ICMDSDistanceAnalysisDefCT
+         Title=曲面曲率分析 	 Name=SurfacicCurvatureSubContainerCT 
+            Starter Name=ICMCLASurfacicCurvatureAnalysisFssCT
+            Starter Name=ICMCLADiagSplitAnalysisCmdCT
+         Starter Name=ICMCLAEnvironmentMappingAnalysisFssCT
+         Starter Name=ICMCLAMirrorCT
+         Starter Name=ICMCLAInflectLinesFssCT
+         Starter Name=ICMCLALightSourceManipulationAnalysisFssCT
+         Starter Name=ICMCLADiagHighlightCmdCT
+      Title=管理形状 	 Name=ShapeManagementContainerCT 
+         Starter Name=ICMDSJoinDefCT
+         Starter Name=ICMCLABreakFssCT
+         Starter Name=ICMCLAUntrimFssCT
+         Title=变换 	 Name=TransformSubContainerCT 
+            Starter Name=ICMDSTranslateDefCT
+            Starter Name=ICMDSRotateDefCT
+            Starter Name=ICMDSSymmetryDefCT
+            Starter Name=ICMDSScalingDefCT
+            Starter Name=ICMDSAffinityDefCT
+            Starter Name=ICMDSAxisToAxisDefCT
+         Starter Name=ICMCLAFragmentationFssCT
+         Starter Name=ICMCLADisassembleFssCT
+         Title=转换 	 Name=ConversionSubContainerCT 
+            Starter Name=ICMCLAShapeConversionCmdCT
+            Starter Name=ICMCLAShapeSurfaceConversionCmdCT
+         Title=分割 	 Name=SplitSubContainerCT 
+            Starter Name=ICMDSSplitDefCT
+            Starter Name=ICMDSTrimDefCT
+      Title=修改形状 	 Name=ShapeModificationContainerCT 
+         Starter Name=ICMDSControlPointsDefCT
+         Starter Name=ICMCLAShapeOrderCmdCT
+         Starter Name=ICMDSMatchingDefCT
+         Title=反转 	 Name=InvertSubContainerCT 
+            Starter Name=ICMCLAShapeInvertCmdCT
+            Starter Name=ICMCLAShapeInvertOnlyDatumCmdCT
+         Starter Name=ICMCLAShapeSmoothCmdCT
+         Title=外插延伸 	 Name=ExtrapolationSubContainerCT 
+            Starter Name=ICMCLAShapeExtrapolationFeatCmdCT
+            Starter Name=ICMCLAShapeExtrapolationCmdCT
+         Starter Name=ICMCLAShapeRefitCmdCT
+         Starter Name=ICMCLAShapeMappingCmdCT
+         Starter Name=ICMCLAShapeModelingCmdCT
+         Starter Name=ICMCLAStylingExtrapolationFssCT
+      Title=创建曲线 	 Name=CurveCreationContainerCT 
+         Starter Name=ICMCLA3dCurveFssCT
+         Starter Name=ICMDSIsoparametricCurveDefCT
+         Starter Name=ICMCLAShapeProjectCmdCT
+         Starter Name=ICMCLAShapeCurveBlendCmdCT
+         Starter Name=ICMCLAShapeCurveOffsetCmdCT
+         Starter Name=ICMCLAShapeSplitCurveCmdCT
+         Starter Name=ICMCLAShapeIntersectionCmdCT
+      Title=创建曲面 	 Name=SurfaceCreationContainerCT 
+         Title=创建补面 	 Name=PatchCreationSubContainerCT 
+            Starter Name=ICMCLAPlanarPatchFssCT
+            Starter Name=ICMCLA3PointPatchFssCT
+            Starter Name=ICMDSFourPointsPatchDefCT
+            Starter Name=ICMCLAGeometryExtractionFssCT
+         Starter Name=ICMCLAShapeRevolSurfaceCmdCT
+         Title=补面来源... 	 Name=PatchFromSubContainerCT 
+            Starter Name=ICMCLAShapePatchFromCurves2CmdCT
+            Starter Name=ICMCLAShapePatchFromPatchesCmdCT
+         Starter Name=ICMCLAShapeFlangeCmdCT
+         Starter Name=ICMClassAFilletFSSCT
+         Starter Name=ICMCLAShapeFillCmdCT
+         Starter Name=ICMCLAShapeSurfaceOffset2CmdCT
+         Starter Name=ICMCLAShapeTubingCmdCT
+         Starter Name=ICMCLAShapeSurfaceBlendCmdCT
+         Starter Name=ICMCLAShapeSweepCmdCT
+         Starter Name=ICMCLAShapeLoftCmdCT
+      Title=构造 	 Name=ConstructionContainerCT 
+         Title=草图 	 Name=SketchSubContainerCT 
+            Starter Name=SketchHeaderCT
+            Starter Name=SketchPositioningHeaderCT
+         Title=点 	 Name=PointCreationSubContainerCT 
+            Starter Name=ICMDSPointDefCT
+            Starter Name=ICMDSPolarExtremumDefCT
+            Starter Name=ICMDSExtremumPointDefCT
+         Starter Name=ICMDSLineDefCT
+         Title=平面 	 Name=PlaneCreationSubContainerCT 
+            Starter Name=ICMDSPlaneDatumDefCT
+            Starter Name=ICMDSMultiplePlaneDefCT
+            Starter Name=ICMDSMultiplePointDefCT
+         Title=曲线 	 Name=CircleCreationSubContainerCT 
+            Starter Name=ICMDSCircleDefCT
+            Starter Name=ICMDSConicDefCT
+            Starter Name=ICMDSCombineDefCT
+            Starter Name=ICMDSIntersectGSDDefCT
+            Starter Name=ICMDSParallelCurveDefCT
+            Starter Name=ICMDSSpineDefCT
+         Title=边界 	 Name=BoundarySubContainerCT 
+            Starter Name=ICMDSBoundaryDefCT
+            Starter Name=ICMDSExtractDefCT
+            Starter Name=ICMDSMultiExtractDefCT
+         Title=网格 	 Name=GridSubContainerCT 
+            Starter Name=ICMDSWOSDefCT
+            Starter Name=ICMDSWOSSnapToPointDefCT
+            Starter Name=ICMDSWOSActivityDefCT
+            Starter Name=ICMDSPlaneSystemDefCT
+            Starter Name=ICMDSOnSupportDefCT
+      Title=操作 	 Name=OperationsContainerCT 
+         Starter Name=CATMMUIPublicationCT
+         Starter Name=ICMDSNearDefCT
+      Title=视图 	 Name=ViewContainerCT 
+         Starter Name=ICMCLAViewAngleGlobalCT
+         Starter Name=CATViewSelectorHdrCT
+         Starter Name=ICMCLAStretchViewFssCT
+      Title=显示设置 	 Name=DisplaySetsContainerCT 
+         Starter Name=ICMRenderDisplaylistsCmdCT
+
+ Title of the toolbar=工具 and is Name=ToolsContainerTB
+   Starter Name=UpdateHeaderTB
+   Starter Name=CATMmuSwitchUpdateModeHdrTB
+   Starter Name=ICMCLAGeometricInformationFssTB
+   Starter Name=CATOnlyCurrentBodyModeTB
+   Starter Name=CATShapeDesignAddGraphTB
+   Starter Name=ICMCLAApplyDressUpNewFssTB
+   Starter Name=Create3DAxisSystemTB
+   Starter Name=ICMDashboardFssTB
+   Starter Name=ICMRenderSpecializedTesselationCmdTB
+   Starter Name=CATMechCurrentToolTB
+   Starter Name=ICMDSWysiwygDefTB
+
+ Title of the toolbar=形状分析 and is Name=ShapeAnalysisContainerTB
+   Starter Name=ICMCLAConnectCheckerFssTB
+   Starter Name=ICMCLAPorcupineCurvatureAnalysisFssTB
+   Starter Name=ICMCLADiagIsoCurvatureCmdTB
+   Starter Name=TB
+   Starter Name=ICMDSDistanceAnalysisDefTB
+   Title of the Icon Box=曲面曲率分析 	 Name=SurfacicCurvatureSubContainerTB 
+      Starter Name=ICMCLASurfacicCurvatureAnalysisFssTB
+      Starter Name=ICMCLADiagSplitAnalysisCmdTB
+   Starter Name=ICMCLAEnvironmentMappingAnalysisFssTB
+   Starter Name=ICMCLAMirrorTB
+   Starter Name=ICMCLAInflectLinesFssTB
+   Starter Name=ICMCLALightSourceManipulationAnalysisFssTB
+   Starter Name=ICMCLADiagHighlightCmdTB
+
+ Title of the toolbar=管理形状 and is Name=ShapeManagementContainerTB
+   Starter Name=ICMDSJoinDefTB
+   Starter Name=ICMCLABreakFssTB
+   Starter Name=ICMCLAUntrimFssTB
+   Title of the Icon Box=变换 	 Name=TransformSubContainerTB 
+      Starter Name=ICMDSTranslateDefTB
+      Starter Name=ICMDSRotateDefTB
+      Starter Name=ICMDSSymmetryDefTB
+      Starter Name=ICMDSScalingDefTB
+      Starter Name=ICMDSAffinityDefTB
+      Starter Name=ICMDSAxisToAxisDefTB
+   Starter Name=ICMCLAFragmentationFssTB
+   Starter Name=ICMCLADisassembleFssTB
+   Title of the Icon Box=转换 	 Name=ConversionSubContainerTB 
+      Starter Name=ICMCLAShapeConversionCmdTB
+      Starter Name=ICMCLAShapeSurfaceConversionCmdTB
+   Title of the Icon Box=分割 	 Name=SplitSubContainerTB 
+      Starter Name=ICMDSSplitDefTB
+      Starter Name=ICMDSTrimDefTB
+
+ Title of the toolbar=修改形状 and is Name=ShapeModificationContainerTB
+   Starter Name=ICMDSControlPointsDefTB
+   Starter Name=ICMCLAShapeOrderCmdTB
+   Starter Name=ICMDSMatchingDefTB
+   Title of the Icon Box=反转 	 Name=InvertSubContainerTB 
+      Starter Name=ICMCLAShapeInvertCmdTB
+      Starter Name=ICMCLAShapeInvertOnlyDatumCmdTB
+   Starter Name=ICMCLAShapeSmoothCmdTB
+   Title of the Icon Box=外插延伸 	 Name=ExtrapolationSubContainerTB 
+      Starter Name=ICMCLAShapeExtrapolationFeatCmdTB
+      Starter Name=ICMCLAShapeExtrapolationCmdTB
+   Starter Name=ICMCLAShapeRefitCmdTB
+   Starter Name=ICMCLAShapeMappingCmdTB
+   Starter Name=ICMCLAShapeModelingCmdTB
+   Starter Name=ICMCLAStylingExtrapolationFssTB
+
+ Title of the toolbar=选择形状 and is Name=ShapeSelectContainerTB
+   Starter Name=USTHPointTB
+   Starter Name=USTHCurveTB
+   Starter Name=USTHSurfaceTB
+   Starter Name=USTHVolumeTB
+Separator Name=ICMSeparator
+   Starter Name=ICMDSSelectFeatureFilterDefTB
+   Starter Name=ICMDSSelectGeometricFilterDefTB
+Separator Name=ICMSeparator
+   Starter Name=ICMDSSelectWorkOnSupportDefTB
+Separator Name=ICMSeparator
+   Starter Name=TrapSelectionOnGeometryTB
+   Title of the Icon Box=捕捉模式 	 Name=TrapSubContainerTB 
+      Starter Name=TrapSelectModeInsideTB
+      Starter Name=TrapSelectModeInsideIntersectingTB
+      Starter Name=TrapSelectModePolygonTB
+      Starter Name=TrapSelectModeFreeHandTB
+      Starter Name=TrapSelectModeOutsideTB
+      Starter Name=TrapSelectModeOutsideIntersectingTB
+Separator Name=ICMSeparator
+   Starter Name=ICMDSFilterTrimDefTB
+   Starter Name=ICMDSFilterUntrimDefTB
+Separator Name=ICMSeparator
+   Starter Name=SelectionSaveTB
+   Starter Name=SelectionLoadTB
+   Starter Name=SelectionSetOwnerTB
+Separator Name=ICMSeparator
+   Starter Name=SelectTB
+   Title of the Icon Box=快速选择 	 Name=QuickSelectSubContainerTB 
+      Starter Name=ICMCLAQuickSelectGsdTB
+      Starter Name=SetCurrentFeatureTB
+
+ Title of the toolbar=创建曲线 and is Name=CurveCreationContainerTB
+   Starter Name=ICMCLA3dCurveFssTB
+   Starter Name=ICMDSIsoparametricCurveDefTB
+   Starter Name=ICMCLAShapeProjectCmdTB
+   Starter Name=ICMCLAShapeCurveBlendCmdTB
+   Starter Name=ICMCLAShapeCurveOffsetCmdTB
+   Starter Name=ICMCLAShapeSplitCurveCmdTB
+   Starter Name=ICMCLAShapeIntersectionCmdTB
+
+ Title of the toolbar=创建曲面 and is Name=SurfaceCreationContainerTB
+   Title of the Icon Box=创建补面 	 Name=PatchCreationSubContainerTB 
+      Starter Name=ICMCLAPlanarPatchFssTB
+      Starter Name=ICMCLA3PointPatchFssTB
+      Starter Name=ICMDSFourPointsPatchDefTB
+      Starter Name=ICMCLAGeometryExtractionFssTB
+   Starter Name=ICMCLAShapeRevolSurfaceCmdTB
+   Title of the Icon Box=补面来源... 	 Name=PatchFromSubContainerTB 
+      Starter Name=ICMCLAShapePatchFromCurves2CmdTB
+      Starter Name=ICMCLAShapePatchFromPatchesCmdTB
+   Starter Name=ICMCLAShapeFlangeCmdTB
+   Starter Name=ICMClassAFilletFSSTB
+   Starter Name=ICMCLAShapeFillCmdTB
+   Starter Name=ICMCLAShapeSurfaceOffset2CmdTB
+   Starter Name=ICMCLAShapeTubingCmdTB
+   Starter Name=ICMCLAShapeSurfaceBlendCmdTB
+   Starter Name=ICMCLAShapeSweepCmdTB
+   Starter Name=ICMCLAShapeLoftCmdTB
+
+ Title of the toolbar=构造 and is Name=ConstructionContainerTB
+   Title of the Icon Box=草图 	 Name=SketchSubContainerTB 
+      Starter Name=SketchHeaderTB
+      Starter Name=SketchPositioningHeaderTB
+   Title of the Icon Box=点 	 Name=PointCreationSubContainerTB 
+      Starter Name=ICMDSPointDefTB
+      Starter Name=ICMDSPolarExtremumDefTB
+      Starter Name=ICMDSExtremumPointDefTB
+   Starter Name=ICMDSLineDefTB
+   Title of the Icon Box=平面 	 Name=PlaneCreationSubContainerTB 
+      Starter Name=ICMDSPlaneDatumDefTB
+      Starter Name=ICMDSMultiplePlaneDefTB
+      Starter Name=ICMDSMultiplePointDefTB
+   Title of the Icon Box=曲线 	 Name=CircleCreationSubContainerTB 
+      Starter Name=ICMDSCircleDefTB
+      Starter Name=ICMDSConicDefTB
+      Starter Name=ICMDSCombineDefTB
+      Starter Name=ICMDSIntersectGSDDefTB
+      Starter Name=ICMDSParallelCurveDefTB
+      Starter Name=ICMDSSpineDefTB
+   Title of the Icon Box=边界 	 Name=BoundarySubContainerTB 
+      Starter Name=ICMDSBoundaryDefTB
+      Starter Name=ICMDSExtractDefTB
+      Starter Name=ICMDSMultiExtractDefTB
+   Title of the Icon Box=网格 	 Name=GridSubContainerTB 
+      Starter Name=ICMDSWOSDefTB
+      Starter Name=ICMDSWOSSnapToPointDefTB
+      Starter Name=ICMDSWOSActivityDefTB
+      Starter Name=ICMDSPlaneSystemDefTB
+      Starter Name=ICMDSOnSupportDefTB
+
+ Title of the toolbar=显示设置 and is Name=DisplaySetsContainerTB
+   Starter Name=ICMRenderDisplaylistsCmdTB
+   Starter Name=ICMRenderDisplaylistsSaveHeaderTB
+   Starter Name=ICMRenderDisplaylistsBaseHeaderTB

@@ -1,0 +1,70 @@
+Workshop Exposition of CATDECCfg 
+
+1- Header List 
+
+Title= 产品至零件
+   Id 	= DECProductToPart
+   DLL 	= CATDECProductToPart
+   Cmd 	= CATProductToPartStateCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 产品至零件
+   Id 	= DECProductToPart
+   DLL 	= CATDECProductToPart
+   Cmd 	= CATProductToPartStateCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DECTestDMUGroup
+   Id 	= DECTestDMUGroup
+   DLL 	= CATDECProductToPart
+   Cmd 	= CATProductToPartStateCommand
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= DECTestDMUGroup
+   Id 	= DECTestDMUGroup
+   DLL 	= CATDECProductToPart
+   Cmd 	= CATProductToPartStateCommand
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= 零件至零件
+   Id 	= DECDatumPart
+   DLL 	= CATDECProductToPart
+   Cmd 	= CATProductToPartStateCommand
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= 零件至零件
+   Id 	= DECDatumPart
+   DLL 	= CATDECProductToPart
+   Cmd 	= CATProductToPartStateCommand
+   Arg 	= 
+   State Initial	= 0
+   State Current	= 0
+Title= 产品至产品
+   Id 	= DECProductToProduct
+   DLL 	= CATDECProductToPart
+   Cmd 	= CATProductToPartStateCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 产品至产品
+   Id 	= DECProductToProduct
+   DLL 	= CATDECProductToPart
+   Cmd 	= CATProductToPartStateCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=DECMenu 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=NewSeparator
+      Starter Name=ProductToPart
+      Starter Name=ProducToProduct
+      Starter Name=DatumPart
+
+ Title of the toolbar=过滤产品数据 and is Name=DECToolBarFRA
+   Starter Name=ProductToPart
+   Starter Name=ProductToProduct
+   Starter Name=DatumPart

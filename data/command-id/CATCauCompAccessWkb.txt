@@ -1,0 +1,1130 @@
+Workshop Exposition of CATCauCompAccessWkb 
+
+1- Header List 
+
+Title= Measure Between
+   Id 	= CATCauMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Between
+   Id 	= CATCauMeasureBetweenHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureBetwCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Generate Compartments
+   Id 	= CATCauExtractCptsFromWallSystemHdr
+   DLL 	= CATCauCompartment
+   Cmd 	= CATCauExtractCptsFromWallSystemCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generate Compartments
+   Id 	= CATCauExtractCptsFromWallSystemHdr
+   DLL 	= CATCauCompartment
+   Cmd 	= CATCauExtractCptsFromWallSystemCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manage Graphics Representation
+   Id 	= CATCauActivateRepHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloActivateRepCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Manage Graphics Representation
+   Id 	= CATCauActivateRepHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloActivateRepCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Set Object Type
+   Id 	= CATCauModifySubTypeHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloModifySubTypeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Set Object Type
+   Id 	= CATCauModifySubTypeHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloModifySubTypeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 分析项
+   Id 	= ArrDetailInfoHdr
+   DLL 	= ArrSelect
+   Cmd 	= CATArrAnalyzeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 分析项
+   Id 	= ArrDetailInfoHdr
+   DLL 	= ArrSelect
+   Cmd 	= CATArrAnalyzeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 跨文档连接...
+   Id 	= ArrXDocCnxHdr
+   DLL 	= CATArrXDocCnxCmd
+   Cmd 	= CATArrManageXDocCnxCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 跨文档连接...
+   Id 	= ArrXDocCnxHdr
+   DLL 	= CATArrXDocCnxCmd
+   Cmd 	= CATArrManageXDocCnxCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Copy Attributes
+   Id 	= CATCauCopyAttributesHdr
+   DLL 	= CATPspChangeUserType
+   Cmd 	= CATPspCopyAttributesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Copy Attributes
+   Id 	= CATCauCopyAttributesHdr
+   DLL 	= CATPspChangeUserType
+   Cmd 	= CATPspCopyAttributesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 捕捉 XY 构造平面
+   Id 	= CATSnapToXYHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToXYCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉 XY 构造平面
+   Id 	= CATSnapToXYHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToXYCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Complex Compartment
+   Id 	= CATCauCompositeVolumeCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauCompositeVolumeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Complex Compartment
+   Id 	= CATCauCompositeVolumeCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauCompositeVolumeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Reset Color
+   Id 	= CATCauResetColorHdr
+   DLL 	= CATPspRename
+   Cmd 	= CATPspResetColorCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reset Color
+   Id 	= CATCauResetColorHdr
+   DLL 	= CATPspRename
+   Cmd 	= CATPspResetColorCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 捕捉高程平面
+   Id 	= CATSnapToElevatHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToElevatCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉高程平面
+   Id 	= CATSnapToElevatHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToElevatCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= DbgWrongInstHdr
+   Id 	= CATDbgWrongInstHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrDbgWrongInstCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= DbgWrongInstHdr
+   Id 	= CATDbgWrongInstHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrDbgWrongInstCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Change Compartment User Type
+   Id 	= CATCauChangeCptUserTypeHdr
+   DLL 	= CATPspChangeUserType
+   Cmd 	= CATPspChangeUserTypeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Change Compartment User Type
+   Id 	= CATCauChangeCptUserTypeHdr
+   DLL 	= CATPspChangeUserType
+   Cmd 	= CATPspChangeUserTypeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select/Browse...
+   Id 	= CATCauPrjMngtHdr
+   DLL 	= PrjMngtUI
+   Cmd 	= CATPrjMngtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select/Browse...
+   Id 	= CATCauPrjMngtHdr
+   DLL 	= PrjMngtUI
+   Cmd 	= CATPrjMngtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 捕捉所有构造平面
+   Id 	= CATSnapToXYZHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToXYZCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉所有构造平面
+   Id 	= CATSnapToXYZHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToXYZCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Manage Opening
+   Id 	= CATCauManageOpeningAccessHdr
+   DLL 	= CATCauOpening
+   Cmd 	= CATCauManageOpeningCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manage Opening
+   Id 	= CATCauManageOpeningAccessHdr
+   DLL 	= CATCauOpening
+   Cmd 	= CATCauManageOpeningCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 转换到设计模式
+   Id 	= ConvertObjToDesignModeHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrConvertObjToDesignModeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转换到设计模式
+   Id 	= ConvertObjToDesignModeHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrConvertObjToDesignModeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Inertia...
+   Id 	= CATCauMeasureInertiaHdr
+   DLL 	= CATSpaInertia
+   Cmd 	= CATSiLaMeasureInertiaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Inertia...
+   Id 	= CATCauMeasureInertiaHdr
+   DLL 	= CATSpaInertia
+   Cmd 	= CATSiLaMeasureInertiaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 网络
+   Id 	= CATArrNetworkAnalHdr
+   DLL 	= CATAruAnalysis
+   Cmd 	= CATAECBNetWorkDiaEng
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 网络
+   Id 	= CATArrNetworkAnalHdr
+   DLL 	= CATAruAnalysis
+   Cmd 	= CATAECBNetWorkDiaEng
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 网络
+   Id 	= CATArrNetworkAnalHdr
+   DLL 	= CATAruAnalysis
+   Cmd 	= CATAECBNetWorkDiaEng
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Complex Compartment
+   Id 	= CATCauCompositeVolumeEditCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauCompositeVolumeEditCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Complex Compartment
+   Id 	= CATCauCompositeVolumeEditCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauCompositeVolumeEditCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Import Queries...
+   Id 	= CATCauImportQueryHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExportQueryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import Queries...
+   Id 	= CATCauImportQueryHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExportQueryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Report Definition
+   Id 	= CATCauReportDefHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportDefCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Report Definition
+   Id 	= CATCauReportDefHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportDefCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 更改当前轴并捕捉指南针
+   Id 	= SetLocalAxisCompassHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrSetLocalAxisWithCompassCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 更改当前轴并捕捉指南针
+   Id 	= SetLocalAxisCompassHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrSetLocalAxisWithCompassCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Intersect Wall System
+   Id 	= CATCauIntersectWallSystemHdr
+   DLL 	= CATCauCompartment
+   Cmd 	= CATCauIntersectWallSystemCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Intersect Wall System
+   Id 	= CATCauIntersectWallSystemHdr
+   DLL 	= CATCauCompartment
+   Cmd 	= CATCauIntersectWallSystemCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Params...
+   Id 	= CATCauEditPartParamsHdr
+   DLL 	= CATCloOverrideParm
+   Cmd 	= CATCloManageParmCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Params...
+   Id 	= CATCauEditPartParamsHdr
+   DLL 	= CATCloOverrideParm
+   Cmd 	= CATCloManageParmCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 激活区域...
+   Id 	= CATSetAreaCurHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrSetAreaCurCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 激活区域...
+   Id 	= CATSetAreaCurHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrSetAreaCurCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 显示连接器
+   Id 	= HideShowConnectorVisuHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrConnectorDisplayCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示连接器
+   Id 	= HideShowConnectorVisuHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrConnectorDisplayCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select/Query Compartment
+   Id 	= CATCauSelQueryCptHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuSelQueryCptCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select/Query Compartment
+   Id 	= CATCauSelQueryCptHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuSelQueryCptCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 激活产品的父级...
+   Id 	= ActivateParentHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrActivateParentCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 激活产品的父级...
+   Id 	= ActivateParentHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrActivateParentCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 全部更新
+   Id 	= ArrUpdateHeaderAsm
+   DLL 	= CATAssCommands
+   Cmd 	= CATAsmCmdUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 0
+Title= 全部更新
+   Id 	= ArrUpdateHeaderAsm
+   DLL 	= CATAssCommands
+   Cmd 	= CATAsmCmdUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Lock Compartment Membership
+   Id 	= CATCauSetLockCptMembershipHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuSetLockCptMembershipCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Lock Compartment Membership
+   Id 	= CATCauSetLockCptMembershipHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuSetLockCptMembershipCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Boundary
+   Id 	= CATCauBoundaryCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauBoundaryCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Boundary
+   Id 	= CATCauBoundaryCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauBoundaryCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Change Boundary User Type
+   Id 	= CATCauChangeBdryUserTypeHdr
+   DLL 	= CATPspChangeUserType
+   Cmd 	= CATPspChangeUserTypeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Change Boundary User Type
+   Id 	= CATCauChangeBdryUserTypeHdr
+   DLL 	= CATPspChangeUserType
+   Cmd 	= CATPspChangeUserTypeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Build Wall System Part
+   Id 	= CATCauBuildWallSystemHdr
+   DLL 	= CATCauCompartment
+   Cmd 	= CATCauBuildWallSystemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Build Wall System Part
+   Id 	= CATCauBuildWallSystemHdr
+   DLL 	= CATCauCompartment
+   Cmd 	= CATCauBuildWallSystemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update Wall System
+   Id 	= CATCauUpdateWallSystemHdr
+   DLL 	= CATCauCompartment
+   Cmd 	= CATCauUpdateWallSystemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update Wall System
+   Id 	= CATCauUpdateWallSystemHdr
+   DLL 	= CATCauCompartment
+   Cmd 	= CATCauUpdateWallSystemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Manage Compartment Generation
+   Id 	= CATCauEnableDisableCptExtractionHdr
+   DLL 	= CATCauCompartment
+   Cmd 	= CATCauEnableDisableCptExtractionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manage Compartment Generation
+   Id 	= CATCauEnableDisableCptExtractionHdr
+   DLL 	= CATCauCompartment
+   Cmd 	= CATCauEnableDisableCptExtractionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Build Connectors
+   Id 	= CATCauCreateConnectorHdr
+   DLL 	= CATCloManageCntr
+   Cmd 	= CATCloManageCntrCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Build Connectors
+   Id 	= CATCauCreateConnectorHdr
+   DLL 	= CATCloManageCntr
+   Cmd 	= CATCloManageCntrCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Connect Access Part
+   Id 	= CATCauConnectAccessHdr
+   DLL 	= CATCauAccessObject
+   Cmd 	= CATCauPlaceAccessCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Connect Access Part
+   Id 	= CATCauConnectAccessHdr
+   DLL 	= CATCauAccessObject
+   Cmd 	= CATCauPlaceAccessCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Disconnect Access Part
+   Id 	= CATCauDisconnectAccessHdr
+   DLL 	= CATCauAccessObject
+   Cmd 	= CATCauDisconnectAccessPartCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Disconnect Access Part
+   Id 	= CATCauDisconnectAccessHdr
+   DLL 	= CATCauAccessObject
+   Cmd 	= CATCauDisconnectAccessPartCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉最后位置的下降步幅
+   Id 	= CATSnapToDeltaHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToDeltaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉最后位置的下降步幅
+   Id 	= CATSnapToDeltaHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToDeltaCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Build Access Part
+   Id 	= CATCauCreateCatalogPartHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloCreatePartCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Build Access Part
+   Id 	= CATCauCreateCatalogPartHdr
+   DLL 	= CATCloBuild
+   Cmd 	= CATCloCreatePartCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Compartment
+   Id 	= CATCauGeomCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauGeomCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Compartment
+   Id 	= CATCauGeomCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauGeomCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 定义
+   Id 	= CATArrEditDefinitionHdr
+   DLL 	= ArrSelect
+   Cmd 	= CATArrDefinitionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 定义
+   Id 	= CATArrEditDefinitionHdr
+   DLL 	= ArrSelect
+   Cmd 	= CATArrDefinitionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Params...
+   Id 	= CATCauEditPartParamsPanelHdr
+   DLL 	= CATArrCatalogPlace
+   Cmd 	= CATArrEditPartParametersPanelCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Params...
+   Id 	= CATCauEditPartParamsPanelHdr
+   DLL 	= CATArrCatalogPlace
+   Cmd 	= CATArrEditPartParametersPanelCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Boundary
+   Id 	= CATCauBoundaryEditCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauBoundaryEditCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Boundary
+   Id 	= CATCauBoundaryEditCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauBoundaryEditCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 选择测量线路和/或连接器之间的距离/角度
+   Id 	= CATArrMeasurementHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrMeasurementCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 选择测量线路和/或连接器之间的距离/角度
+   Id 	= CATArrMeasurementHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrMeasurementCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 高级偏移平面
+   Id 	= CATSetAdvEdgePlaneHdr
+   DLL 	= ArrPlane
+   Cmd 	= CATArrSetAdvEdgePlaneCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 高级偏移平面
+   Id 	= CATSetAdvEdgePlaneHdr
+   DLL 	= ArrPlane
+   Cmd 	= CATArrSetAdvEdgePlaneCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 请输入当前网格步幅值
+   Id 	= CATCurrentStepValueHdr
+   DLL 	= CurrentStepValueHdr
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 请输入当前网格步幅值
+   Id 	= CATCurrentStepValueHdr
+   DLL 	= CurrentStepValueHdr
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place Access Part
+   Id 	= CATCauPlaceAccessHdr
+   DLL 	= CATCauAccessObject
+   Cmd 	= CATCauPlaceAccessCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place Access Part
+   Id 	= CATCauPlaceAccessHdr
+   DLL 	= CATCauAccessObject
+   Cmd 	= CATCauPlaceAccessCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 当前轴
+   Id 	= CATSetLocalAxisHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrSetLocalAxisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 当前轴
+   Id 	= CATSetLocalAxisHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrSetLocalAxisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 查询自动零件
+   Id 	= CATArrAnalyzeAutoPartsHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrAnalyzeAutoPartsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 查询自动零件
+   Id 	= CATArrAnalyzeAutoPartsHdr
+   DLL 	= ArrVolume
+   Cmd 	= CATArrAnalyzeAutoPartsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 切换操作手柄模式
+   Id 	= ArrManipulationModeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 切换操作手柄模式
+   Id 	= ArrManipulationModeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Create Opening
+   Id 	= CATCauCreateOpeningAccessHdr
+   DLL 	= CATCauOpening
+   Cmd 	= CATCauCreateOpeningCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Create Opening
+   Id 	= CATCauCreateOpeningAccessHdr
+   DLL 	= CATCauOpening
+   Cmd 	= CATCauCreateOpeningCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 切换亮度控制模式
+   Id 	= CATArrDimModeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 切换亮度控制模式
+   Id 	= CATArrDimModeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generate Walls
+   Id 	= CATCauExtractWallsFromSketchHdr
+   DLL 	= CATCauCompartment
+   Cmd 	= CATCauExtractWallsFromSketchCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Generate Walls
+   Id 	= CATCauExtractWallsFromSketchHdr
+   DLL 	= CATCauCompartment
+   Cmd 	= CATCauExtractWallsFromSketchCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Measure Item
+   Id 	= CATCauMeasureEdgeHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Item
+   Id 	= CATCauMeasureEdgeHdr
+   DLL 	= CATSpaMeasure
+   Cmd 	= CATSiLaMeasureEdgeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= CATCauUpdateOpeningAccessHdr
+   Id 	= CATCauUpdateOpeningAccessHdr
+   DLL 	= CATCauOpening
+   Cmd 	= CATCauUpdateOpeningCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CATCauUpdateOpeningAccessHdr
+   Id 	= CATCauUpdateOpeningAccessHdr
+   DLL 	= CATCauOpening
+   Cmd 	= CATCauUpdateOpeningCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 定义
+   Id 	= CATArrDefinitionHdr
+   DLL 	= ArrSelect
+   Cmd 	= CATArrDefinitionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 定义
+   Id 	= CATArrDefinitionHdr
+   DLL 	= ArrSelect
+   Cmd 	= CATArrDefinitionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 重置颜色
+   Id 	= CATArrResetColorCmdHdr
+   DLL 	= CATPspRename
+   Cmd 	= CATPspResetColorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 重置颜色
+   Id 	= CATArrResetColorCmdHdr
+   DLL 	= CATPspRename
+   Cmd 	= CATPspResetColorCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 当前轴历史
+   Id 	= SetPreviousLocalAxisHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrSetPreviousLocalAxisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 当前轴历史
+   Id 	= SetPreviousLocalAxisHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrSetPreviousLocalAxisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Loose Parts Management
+   Id 	= CATCauLoosePartHdr
+   DLL 	= CATCloLooseParts
+   Cmd 	= CATCloLoosePartsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Loose Parts Management
+   Id 	= CATCauLoosePartHdr
+   DLL 	= CATCloLooseParts
+   Cmd 	= CATCloLoosePartsCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rename ID
+   Id 	= CATCauRenameIDHdr
+   DLL 	= CATPspRename
+   Cmd 	= CATPspRenameRouteCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rename ID
+   Id 	= CATCauRenameIDHdr
+   DLL 	= CATPspRename
+   Cmd 	= CATPspRenameRouteCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Validation...
+   Id 	= CATCauPRMCheckerHdr
+   DLL 	= CATPspPRMChecker
+   Cmd 	= CATPspPRMCheckerCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Validation...
+   Id 	= CATCauPRMCheckerHdr
+   DLL 	= CATPspPRMChecker
+   Cmd 	= CATPspPRMCheckerCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Edit Compartment
+   Id 	= CATCauGeomEditCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauGeomEditCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Edit Compartment
+   Id 	= CATCauGeomEditCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauGeomEditCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Related Objects
+   Id 	= CATCauRelatedObjectsHdr
+   DLL 	= CATPspObjectNavigator
+   Cmd 	= CATPspCurrentSelection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Related Objects
+   Id 	= CATCauRelatedObjectsHdr
+   DLL 	= CATPspObjectNavigator
+   Cmd 	= CATPspCurrentSelection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 捕捉模式
+   Id 	= CATSnapModeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 捕捉模式
+   Id 	= CATSnapModeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 激活网络、系统或逻辑线路
+   Id 	= CATSetNetCurHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrSetAreaCurCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 激活网络、系统或逻辑线路
+   Id 	= CATSetNetCurHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrSetAreaCurCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 激活父级...
+   Id 	= CATUp1LevelHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrUp1LevelCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 激活父级...
+   Id 	= CATUp1LevelHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrUp1LevelCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= DbgPositionHdr
+   Id 	= CATDbgPositionHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrDbgPositionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= DbgPositionHdr
+   Id 	= CATDbgPositionHdr
+   DLL 	= ArrEnv
+   Cmd 	= CATArrDbgPositionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Update Compartment Membership
+   Id 	= CATCauUpdateCptMembershipHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuUpdateCptMembershipCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update Compartment Membership
+   Id 	= CATCauUpdateCptMembershipHdr
+   DLL 	= CATCpuCptMembership
+   Cmd 	= CATCpuUpdateCptMembershipCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Export Queries...
+   Id 	= CATCauExportQueryHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExportQueryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Export Queries...
+   Id 	= CATCauExportQueryHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExportQueryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Split Compartment
+   Id 	= CATCauSplitCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauSplitCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Split Compartment
+   Id 	= CATCauSplitCmdHdr
+   DLL 	= CATCauCompartment2
+   Cmd 	= CATCauSplitCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Report Generation
+   Id 	= CATCauReportGenHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportGenCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Report Generation
+   Id 	= CATCauReportGenHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportGenCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Part Catalog Report
+   Id 	= CATPspPartCatalogReportHdr
+   DLL 	= CATPspCatalogReportUI
+   Cmd 	= CATPspCatalogReportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Part Catalog Report
+   Id 	= CATPspPartCatalogReportHdr
+   DLL 	= CATPspCatalogReportUI
+   Cmd 	= CATPspCatalogReportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 捕捉当前轴的下降步幅
+   Id 	= CATSnapToPointHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToPointCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉当前轴的下降步幅
+   Id 	= CATSnapToPointHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToPointCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉工程制图元素
+   Id 	= CATSnapToSElemHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToSElemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 捕捉工程制图元素
+   Id 	= CATSnapToSElemHdr
+   DLL 	= ArrMode
+   Cmd 	= CATArrSnapToSElemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 偏移平面
+   Id 	= CATSetEdgePlaneHdr
+   DLL 	= ArrPlane
+   Cmd 	= CATArrSetEdgePlaneCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 偏移平面
+   Id 	= CATSetEdgePlaneHdr
+   DLL 	= ArrPlane
+   Cmd 	= CATArrSetEdgePlaneCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATCauCompAccessMbr 
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Separator Name=CATCauMenuEditSep
+      Starter Name=CATCauDefinitionStr
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=CATCauMenuInsert1Sep
+      Title=Part Creation 	 Name=CATCauPartCreationMnu 
+         Starter Name=CATCauMenuCreateCatalogPartStr
+         Starter Name=CATCauMenuCreateConnectorStr
+      Separator Name=CATCauMenuInsert2Sep
+      Title=Wall System 	 Name=CATCauWallSystemMnu 
+         Starter Name=CATCauMenuBuildWallSystemStr
+         Starter Name=CATCauMenuExtractWallsFromSketchStr
+         Starter Name=CATCauMenuExtractCptsFromWallSystemStr
+      Separator Name=CATCauMenuInsert3Sep
+      Starter Name=CATCauMenuPlaceAccessStr
+      Separator Name=CATCauMenuInsert4Sep
+      Title=Compartment 	 Name=CATCauSPLMnu 
+         Starter Name=CATCauMenuGeomCmdStr
+         Starter Name=CATCauMenuCompositeVolumeCmdStr
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=CATCauMenuToolsSep
+      Title=Report 	 Name=CATCauReportMnu 
+         Starter Name=CATCauMenuReportDefStr
+         Starter Name=CATCauMenuReportGenStr
+         Starter Name=CATCauPartCatalogReportStr
+      Title=Queries 	 Name=CATCauQueryMnu 
+         Starter Name=CATCauMenuExportQueryStr
+         Starter Name=CATCauMenuImportQueryStr
+      Title=Project Management 	 Name=CauPRMTools 
+         Starter Name=CATCauMenuPrjMngtStr
+         Starter Name=CauPRMCheckerStr
+   Title=Analyze 	 Name=ANALYSIS 
+      Starter Name=CATCauMenuRelatedObjectsStr
+      Separator Name=CATCauMenuAnalysisSep
+      Starter Name=CATCauMenuMeasureBetweenStr
+      Starter Name=CATCauMenuMeasureEdgeStr
+      Starter Name=CATCauMenuMeasureInertiaStr
+
+ Title of the toolbar=Part Creation and is Name=CATCauPartCreateTlb
+   Starter Name=CATCauCreateCatalogPartStr
+   Starter Name=CATCauCreateConnectorStr
+   Starter Name=CATCauModifySubTypeStr
+
+ Title of the toolbar=Wall System and is Name=CATCauWallSystemTlb
+   Title of the Icon Box=Define Wall System 	 Name=CATCauBuildWallSystemSubTlb 
+      Starter Name=CATCauBuildWallSystemStr
+      Starter Name=CATCauIntersectWallSystemStr
+   Title of the Icon Box=Extract Wall System 	 Name=CATCauExtractWallSystemSubTlb 
+      Starter Name=CATCauExtractWallsFromSketchStr
+      Starter Name=CATCauEnableDisableCptExtractionStr
+   Starter Name=CATCauExtractCptsFromWallSystemStr
+
+ Title of the toolbar=Part Placement and is Name=CATCauPartPlaceTlb
+   Title of the Icon Box=Part Placement 	 Name=CATCauPartPlaceSubTlb 
+      Starter Name=CATCauPlaceAccessStr
+      Starter Name=CATCauLoosePartStr
+
+ Title of the toolbar=Compartment and is Name=CATCauSPLTlb
+   Starter Name=CATCauGeomCmdStr
+   Starter Name=CATCauSplitCmdStr
+   Starter Name=CATCauCompositeVolumeCmdStr
+   Starter Name=CATCauBoundaryCmdStr
+
+ Title of the toolbar=Design Modify and is Name=CATCauDesignModifyTlb
+   Title of the Icon Box=Change User Type 	 Name=CATCauChangeUserTypeSubTlb 
+      Starter Name=CATCauChangeCptUserTypeStr
+      Starter Name=CATCauChangeBdryUserTypeStr
+   Starter Name=CATCauEditPartParamsStr
+   Title of the Icon Box=Access Part Connect 	 Name=CATCauConnectSubTlb 
+      Starter Name=CATCauDisconnectAccessStr
+      Starter Name=CATCauConnectAccessStr
+   Starter Name=CATCauActivateRepStr
+
+ Title of the toolbar=Compartment Membership and is Name=CATCauCptMembershipTlb
+   Title of the Icon Box=Compartment Membership 	 Name=CATCauCptMembershipSubTlb 
+      Starter Name=CATCauUpdateCptMembershipStr
+      Starter Name=CATCauSelQueryCptStr
+      Starter Name=CATCauSetLockCptMembershipStr
+
+ Title of the toolbar=Update and is Name=CATCauUpdateTlb
+   Starter Name=CATCauUpdateWallSystemStr
+Separator Name=CATCauUpdateSep
+   Starter Name=CATCauUpdateStr
+
+ Title of the toolbar=ID/Attributes Management and is Name=CATCauIDManagementTlb
+   Starter Name=CATCauRenameIDStr
+   Starter Name=CATCauCopyAttributesStr
+
+ Title of the toolbar=Measure and is Name=CATCauMeasureTlb
+   Starter Name=CATCauMeasureBetweenStr
+   Starter Name=CATCauMeasureEdgeStr
+   Starter Name=CATCauMeasureInertiaStr
+
+ Title of the toolbar=General Environment and is Name=CATCauGenEnvTlb
+   Title of the Icon Box=Define Plane 	 Name=CATCauDefinePlaneSubTlb 
+      Starter Name=CATCauRefPlaneStr
+      Starter Name=CATCauAdvRefPlaneStr
+   Starter Name=CATCauGridStepStr
+   Starter Name=CATCauManipulationModeStr
+
+ Title of the toolbar=Opening Management and is Name=CATCauOpeningTlb
+   Starter Name=CATCauOpeningAccessStr
+   Starter Name=CATCauOpeningAccessStr3

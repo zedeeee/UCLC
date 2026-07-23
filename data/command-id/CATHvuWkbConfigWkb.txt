@@ -1,0 +1,2524 @@
+Workshop Exposition of CATHvuWkbConfigWkb 
+
+1- Header List 
+
+Title= 页面设置...
+   Id 	= DrwPageSetup
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwPageSetup
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 页面设置...
+   Id 	= DrwPageSetup
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwPageSetup
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 镜像
+   Id 	= CAT2DSymmetryHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSSymmetry
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 镜像
+   Id 	= CAT2DSymmetryHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSSymmetry
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Disconnect
+   Id 	= CATHvuDisconnectHdr
+   DLL 	= CATScuConnectable
+   Cmd 	= CATScuDisconnectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Disconnect
+   Id 	= CATHvuDisconnectHdr
+   DLL 	= CATScuConnectable
+   Cmd 	= CATScuDisconnectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Delete Zone
+   Id 	= CATHvuDeleteZoneHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacZoneSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Delete Zone
+   Id 	= CATHvuDeleteZoneHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacZoneSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平移
+   Id 	= CAT2DTranslateHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSTranslate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 平移
+   Id 	= CAT2DTranslateHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSTranslate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 弧
+   Id 	= CAT2DArcRadiusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArcCtrRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 弧
+   Id 	= CAT2DArcRadiusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArcCtrRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 斜体
+   Id 	= CATDrwItalicHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 斜体
+   Id 	= CATDrwItalicHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 通过焦点创建双曲线
+   Id 	= CAT2DHyperbolaFocusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSHyperbolaFocus
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 通过焦点创建双曲线
+   Id 	= CAT2DHyperbolaFocusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSHyperbolaFocus
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 三切线圆
+   Id 	= CAT2DCircle3TangentHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DCircle3Tangent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 三切线圆
+   Id 	= CAT2DCircle3TangentHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DCircle3Tangent
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Report Expressions
+   Id 	= CATHvuReportExpressionsHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExpressionsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Report Expressions
+   Id 	= CATHvuReportExpressionsHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExpressionsCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Query On/Off Sheet Connectors
+   Id 	= CATHvuOnOffQueryHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuOnOffQueryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Query On/Off Sheet Connectors
+   Id 	= CATHvuOnOffQueryHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuOnOffQueryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DrwOverView
+   Id 	= CATDrwOverViewHdr
+   DLL 	= CATDraftingInfrastructureUI
+   Cmd 	= CATDfuOverviewHideShow
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DrwOverView
+   Id 	= CATDrwOverViewHdr
+   DLL 	= CATDraftingInfrastructureUI
+   Cmd 	= CATDfuOverviewHideShow
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manage Route Flexiblity
+   Id 	= CATHvuFlexRouteHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacManageRouteFlexibilityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manage Route Flexiblity
+   Id 	= CATHvuFlexRouteHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacManageRouteFlexibilityCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 字体大小
+   Id 	= CATDrwFontSizeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 字体大小
+   Id 	= CATDrwFontSizeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align Vertical
+   Id 	= CATHvuAlignCompVertHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuAlignCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align Vertical
+   Id 	= CATHvuAlignCompVertHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuAlignCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add Hyperlinks
+   Id 	= CATHvuURLInsertCmdHdr
+   DLL 	= CATMkrLink
+   Cmd 	= CATURLInsertCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Add Hyperlinks
+   Id 	= CATHvuURLInsertCmdHdr
+   DLL 	= CATMkrLink
+   Cmd 	= CATURLInsertCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Report Generation
+   Id 	= CATHvuReportGenHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportGenCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Report Generation
+   Id 	= CATHvuReportGenHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportGenCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import Component Image
+   Id 	= CATHvuImageComponentHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuImageCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import Component Image
+   Id 	= CATHvuImageComponentHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuImageCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 文本
+   Id 	= DrwText
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 文本
+   Id 	= DrwText
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 字体名称
+   Id 	= CATDrwFontNameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 字体名称
+   Id 	= CATDrwFontNameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Build Connector
+   Id 	= CATHvuBuildConnectorHdr
+   DLL 	= CATScuBuild
+   Cmd 	= CATScuBuildCntrCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Build Connector
+   Id 	= CATHvuBuildConnectorHdr
+   DLL 	= CATScuBuild
+   Cmd 	= CATScuBuildCntrCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 剪切
+   Id 	= CATAfrCutHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwCCP_CutCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 剪切
+   Id 	= CATAfrCutHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwCCP_CutCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 剪切
+   Id 	= CATAfrCutHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwCCP_CutCom
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 插入符号
+   Id 	= CATDrwDimSymbolHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 插入符号
+   Id 	= CATDrwDimSymbolHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 起始受限的三点弧
+   Id 	= CAT2DArc3Points132Hdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArc3Pts132
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 起始受限的三点弧
+   Id 	= CAT2DArc3Points132Hdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArc3Pts132
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 点对齐
+   Id 	= CATSnapGridHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 点对齐
+   Id 	= CATSnapGridHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flow Show
+   Id 	= CATHvuFlowShowHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuFlowShowCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flow Show
+   Id 	= CATHvuFlowShowHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuFlowShowCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select/Query Zone
+   Id 	= CATHvuSelectZoneHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacZoneSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select/Query Zone
+   Id 	= CATHvuSelectZoneHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacZoneSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移
+   Id 	= CAT2DOffsetContourHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DOffsetContour
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 偏移
+   Id 	= CAT2DOffsetContourHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DOffsetContour
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 区域填充
+   Id 	= DrwAreaFill
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATAreaFillCreationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 区域填充
+   Id 	= DrwAreaFill
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATAreaFillCreationCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rename Line ID
+   Id 	= CATHvuRenameLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rename Line ID
+   Id 	= CATHvuRenameLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除
+   Id 	= CATAfrDeleteHdr
+   DLL 	= CATScuEnvironment
+   Cmd 	= CATScuDeleteCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 删除
+   Id 	= CATAfrDeleteHdr
+   DLL 	= CATScuEnvironment
+   Cmd 	= CATScuDeleteCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Frame Information
+   Id 	= CATHvuFrameInfoHdr
+   DLL 	= CATScuAnnotation
+   Cmd 	= CATScuFrameInfoCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Frame Information
+   Id 	= CATHvuFrameInfoHdr
+   DLL 	= CATScuAnnotation
+   Cmd 	= CATScuFrameInfoCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 强制选取模式
+   Id 	= DrwForcePick
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwForcePickCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 强制选取模式
+   Id 	= DrwForcePick
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwForcePickCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示折线
+   Id 	= DrwConstrLines
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwMultiViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 显示折线
+   Id 	= DrwConstrLines
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwMultiViewCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Swap Graphic
+   Id 	= CATHvuSwapGraphicCompHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuSwapGraphicCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Swap Graphic
+   Id 	= CATHvuSwapGraphicCompHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuSwapGraphicCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Close Route
+   Id 	= CATHvuCloseRouteHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuCloseRouteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Close Route
+   Id 	= CATHvuCloseRouteHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuCloseRouteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Go to Hyperlinks
+   Id 	= CATHvuURLOpenCmdHdr
+   DLL 	= CATMkrLink
+   Cmd 	= CATURLOpenCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Go to Hyperlinks
+   Id 	= CATHvuURLOpenCmdHdr
+   DLL 	= CATMkrLink
+   Cmd 	= CATURLOpenCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Lock shape
+   Id 	= CATHvuRouteFixHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuRouteFixCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Lock shape
+   Id 	= CATHvuRouteFixHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuRouteFixCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align Horizontal
+   Id 	= CATHvuAlignCompHorizHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuAlignCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Align Horizontal
+   Id 	= CATHvuAlignCompHorizHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuAlignCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Related Objects
+   Id 	= CATHvuRelatedObjectsHdr
+   DLL 	= CATPspObjectNavigator
+   Cmd 	= CATPspCurrentSelection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Related Objects
+   Id 	= CATHvuRelatedObjectsHdr
+   DLL 	= CATPspObjectNavigator
+   Cmd 	= CATPspCurrentSelection
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Link On/Off Sheet Connectors
+   Id 	= CATHvuOnOffLinkHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuOnOffConnectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Link On/Off Sheet Connectors
+   Id 	= CATHvuOnOffLinkHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuOnOffConnectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Export Queries...
+   Id 	= CATHvuExportQueryHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExportQueryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Export Queries...
+   Id 	= CATHvuExportQueryHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuExportQueryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对齐
+   Id 	= CATDrwJustificationHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 对齐
+   Id 	= CATDrwJustificationHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flow Direction
+   Id 	= CATHvuFlowDirectionHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacFlowDirectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flow Direction
+   Id 	= CATHvuFlowDirectionHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacFlowDirectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 断开
+   Id 	= CAT2DBreakHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSBreak
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 断开
+   Id 	= CAT2DBreakHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSBreak
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Replace
+   Id 	= CATHvuReplaceCompHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacReplaceCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Replace
+   Id 	= CATHvuReplaceCompHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacReplaceCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除线
+   Id 	= CATDrwStrikeThruHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除线
+   Id 	= CATDrwStrikeThruHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 轮廓
+   Id 	= CAT2DContourHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSContour
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 轮廓
+   Id 	= CAT2DContourHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSContour
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 上标/下标
+   Id 	= CATDrwXScriptHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 上标/下标
+   Id 	= CATDrwXScriptHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place annotation break
+   Id 	= CATHvuSpecBreakHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuSpecBreakCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place annotation break
+   Id 	= CATHvuSpecBreakHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuSpecBreakCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 元素定位
+   Id 	= DrwPositioning
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwPositioningCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 元素定位
+   Id 	= DrwPositioning
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwPositioningCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 加下划线/加上划线
+   Id 	= CATDrwXLineHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 加下划线/加上划线
+   Id 	= CATDrwXLineHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 新建视图
+   Id 	= CATDrwCreateViewHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATViewCreate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 新建视图
+   Id 	= CATDrwCreateViewHdr
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATViewCreate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Flip In Line
+   Id 	= CATHvuFlipCompInLineHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuFlipCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flip In Line
+   Id 	= CATHvuFlipCompInLineHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuFlipCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 倒圆角
+   Id 	= CAT2DCornerHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCorner
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 倒圆角
+   Id 	= CAT2DCornerHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCorner
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 双切线
+   Id 	= CAT2DLine2TangentHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DLine2Tangent
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 双切线
+   Id 	= CAT2DLine2TangentHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DLine2Tangent
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Measure Tool
+   Id 	= CATHvuMeasureHdr
+   DLL 	= CATScuConnectable
+   Cmd 	= CATScuMeasureCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Measure Tool
+   Id 	= CATHvuMeasureHdr
+   DLL 	= CATScuConnectable
+   Cmd 	= CATScuMeasureCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 垂直位置
+   Id 	= CATDrwYPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 垂直位置
+   Id 	= CATDrwYPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 样式
+   Id 	= CATDrwStyleHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 样式
+   Id 	= CATDrwStyleHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Sheet Background
+   Id 	= CATScuDrwEditFrame
+   DLL 	= CATScuUtilities
+   Cmd 	= CATScuDrwEditFrame
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Sheet Background
+   Id 	= CATScuDrwEditFrame
+   DLL 	= CATScuUtilities
+   Cmd 	= CATScuDrwEditFrame
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Build Graphic
+   Id 	= CATHvuBuildGraphicHdr
+   DLL 	= CATScuBuild
+   Cmd 	= CATScuBuildGraphicCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Build Graphic
+   Id 	= CATHvuBuildGraphicHdr
+   DLL 	= CATScuBuild
+   Cmd 	= CATScuBuildGraphicCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 三点圆
+   Id 	= CAT2DCircle3PointsHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCircle3Pts
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 三点圆
+   Id 	= CAT2DCircle3PointsHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCircle3Pts
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 粘贴
+   Id 	= CATAfrPasteHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacPasteCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 粘贴
+   Id 	= CATAfrPasteHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacPasteCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 矩形
+   Id 	= CAT2DRectangleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 矩形
+   Id 	= CAT2DRectangleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 查询对象链接...
+   Id 	= DrwTextQryLink
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextQryLinkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 查询对象链接...
+   Id 	= DrwTextQryLink
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextQryLinkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 线宽
+   Id 	= DrwThickness
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 线宽
+   Id 	= DrwThickness
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建
+   Id 	= DrwTextOrientCreate
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAssocCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建
+   Id 	= DrwTextOrientCreate
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAssocCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 延长孔
+   Id 	= CAT2DTrouOblongHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DTrouOblong
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 延长孔
+   Id 	= CAT2DTrouOblongHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DTrouOblong
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Text Update
+   Id 	= CATHvuTextUpdateHdr
+   DLL 	= CATScuDrwCmds
+   Cmd 	= CATScuSelectiveUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Text Update
+   Id 	= CATHvuTextUpdateHdr
+   DLL 	= CATScuDrwCmds
+   Cmd 	= CATScuSelectiveUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rotate Left
+   Id 	= CATHvuRotateCompLeftHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuRotateCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rotate Left
+   Id 	= CATHvuRotateCompLeftHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuRotateCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 直线
+   Id 	= CAT2DLineHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSLine
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 直线
+   Id 	= CAT2DLineHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSLine
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 粗体
+   Id 	= CATDrwBoldHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 粗体
+   Id 	= CATDrwBoldHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Query Connector Info
+   Id 	= CATHvuQueryCntrInfoHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacQueryCntrInfoCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Query Connector Info
+   Id 	= CATHvuQueryCntrInfoHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacQueryCntrInfoCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 钥匙孔轮廓
+   Id 	= CAT2DKeyHoleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DKeyHole
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 钥匙孔轮廓
+   Id 	= CAT2DKeyHoleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DKeyHole
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 粘贴为部件图像
+   Id 	= CATAfrPasteSpecialHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacPasteAsCompImageCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 粘贴为部件图像
+   Id 	= CATAfrPasteSpecialHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacPasteAsCompImageCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 0
+Title= 定位点
+   Id 	= CATDrwTextAnchorHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 定位点
+   Id 	= CATDrwTextAnchorHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Build Internal Flow
+   Id 	= CATHvuBuildFlowHdr
+   DLL 	= CATScuBuild
+   Cmd 	= CATScuBuildFlowCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Build Internal Flow
+   Id 	= CATHvuBuildFlowHdr
+   DLL 	= CATScuBuild
+   Cmd 	= CATScuBuildFlowCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 新建详图
+   Id 	= DrwCreateSheetOfDetail
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATSheetCreate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 新建详图
+   Id 	= DrwCreateSheetOfDetail
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATSheetCreate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place Text Template
+   Id 	= CATHvuATSTextPlaceHdr
+   DLL 	= CATScuAnnotation
+   Cmd 	= CATScuPRMAtsPlaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place Text Template
+   Id 	= CATHvuATSTextPlaceHdr
+   DLL 	= CATScuAnnotation
+   Cmd 	= CATScuPRMAtsPlaceCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 打印...
+   Id 	= CATAfrPrintHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwPrint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 打印...
+   Id 	= CATAfrPrintHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATDrwPrint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Networks
+   Id 	= CATHvuNetworkAnalHdr
+   DLL 	= CATAruAnalysis
+   Cmd 	= CATAECBNetWorkDiaEng
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Networks
+   Id 	= CATHvuNetworkAnalHdr
+   DLL 	= CATAruAnalysis
+   Cmd 	= CATAECBNetWorkDiaEng
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 隐藏折线
+   Id 	= DrwRmConstrLines
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwRemoveCstrLinesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 隐藏折线
+   Id 	= DrwRmConstrLines
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwRemoveCstrLinesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 三点弧
+   Id 	= CAT2DArc3PointsHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArc3Pts
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 三点弧
+   Id 	= CAT2DArc3PointsHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSArc3Pts
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 颜色
+   Id 	= DrwColor
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 颜色
+   Id 	= DrwColor
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 更新选择
+   Id 	= CATDrwUpdateSelectionHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATSelectiveUpdate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 更新选择
+   Id 	= CATDrwUpdateSelectionHdr
+   DLL 	= CATDraftingUI
+   Cmd 	= CATSelectiveUpdate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 添加引出线
+   Id 	= DrwLeaderAdd
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATLeaderAddCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 添加引出线
+   Id 	= DrwLeaderAdd
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATLeaderAddCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Select/Query Line ID
+   Id 	= CATHvuSelQryLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select/Query Line ID
+   Id 	= CATHvuSelQryLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 线型
+   Id 	= DrwLineType
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 线型
+   Id 	= DrwLineType
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 旋转
+   Id 	= CAT2DRotateHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRotate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 旋转
+   Id 	= CAT2DRotateHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRotate
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Build Component Group Internal Flow
+   Id 	= CATHvuBuildCompGrpFlowHdr
+   DLL 	= CATScuBuild
+   Cmd 	= CATScuBuildCompGroupFlowCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Build Component Group Internal Flow
+   Id 	= CATHvuBuildCompGrpFlowHdr
+   DLL 	= CATScuBuild
+   Cmd 	= CATScuBuildCompGroupFlowCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 使用坐标创建点
+   Id 	= CAT2DPointCoordHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPointXY
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 使用坐标创建点
+   Id 	= CAT2DPointCoordHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPointXY
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Show All Flow
+   Id 	= CATHvuFlowShowAllHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuShowFlowAllCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Show All Flow
+   Id 	= CATHvuFlowShowAllHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuShowFlowAllCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place On/Off Sheet Connectors
+   Id 	= CATHvuOnOffSheetHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuOnOffSheetCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place On/Off Sheet Connectors
+   Id 	= CATHvuOnOffSheetHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuOnOffSheetCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 水平位置
+   Id 	= CATDrwXPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 水平位置
+   Id 	= CATDrwXPositionHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Part Catalog Report
+   Id 	= CATPspPartCatalogReportHdr
+   DLL 	= CATPspCatalogReportUI
+   Cmd 	= CATPspCatalogReportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Part Catalog Report
+   Id 	= CATPspPartCatalogReportHdr
+   DLL 	= CATPspCatalogReportUI
+   Cmd 	= CATPspCatalogReportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Report Definition
+   Id 	= CATHvuReportDefHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportDefCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Report Definition
+   Id 	= CATHvuReportDefHdr
+   DLL 	= CATRpuReport
+   Cmd 	= CATRpuReportDefCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Break Route
+   Id 	= CATHvuBreakRouteHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuBreakRouteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Break Route
+   Id 	= CATHvuBreakRouteHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuBreakRouteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Build Component
+   Id 	= CATHvuBuildComponentHdr
+   DLL 	= CATScuBuild
+   Cmd 	= CATScuBuildCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Build Component
+   Id 	= CATHvuBuildComponentHdr
+   DLL 	= CATScuBuild
+   Cmd 	= CATScuBuildCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update Selection
+   Id 	= CATHvuSelectiveUpdateHdr
+   DLL 	= CATScuDrwCmds
+   Cmd 	= CATScuSelectiveUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update Selection
+   Id 	= CATHvuSelectiveUpdateHdr
+   DLL 	= CATScuDrwCmds
+   Cmd 	= CATScuSelectiveUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Schematic Translate
+   Id 	= CATHvuTranslateHdr
+   DLL 	= CATScuConnectable
+   Cmd 	= CATScuTranslateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Schematic Translate
+   Id 	= CATHvuTranslateHdr
+   DLL 	= CATScuConnectable
+   Cmd 	= CATScuTranslateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 点类型
+   Id 	= CATDrwPointTypeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 点类型
+   Id 	= CATDrwPointTypeHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 阵列
+   Id 	= DrwPattern
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 阵列
+   Id 	= DrwPattern
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import dittos
+   Id 	= CATHvuImportDittosHdr
+   DLL 	= CATPspUIUtils
+   Cmd 	= CATPspImportFromCatalogCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import dittos
+   Id 	= CATHvuImportDittosHdr
+   DLL 	= CATPspUIUtils
+   Cmd 	= CATPspImportFromCatalogCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Part Selection
+   Id 	= CATHvuPartSelectionHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacPartSelectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Part Selection
+   Id 	= CATHvuPartSelectionHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacPartSelectionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Route HVAC Line
+   Id 	= CATHvuRouteHVACLineHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuRouteLineCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Route HVAC Line
+   Id 	= CATHvuRouteHVACLineHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuRouteLineCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 可在实例中修改
+   Id 	= CATDrwBecomeModifiable
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwBecomeModifiableCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 可在实例中修改
+   Id 	= CATDrwBecomeModifiable
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwBecomeModifiableCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Place annotation symbol
+   Id 	= CATHvuDatumSymbolHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuDatumSymbolCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place annotation symbol
+   Id 	= CATHvuDatumSymbolHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuDatumSymbolCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 零件序号
+   Id 	= DrwBalloon
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDftBalloonCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 零件序号
+   Id 	= DrwBalloon
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDftBalloonCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Manage Document Links...
+   Id 	= CATHvuManageDocLinksHdr
+   DLL 	= CATPspPublication
+   Cmd 	= CATPspManageDocLinksCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manage Document Links...
+   Id 	= CATHvuManageDocLinksHdr
+   DLL 	= CATPspPublication
+   Cmd 	= CATPspManageDocLinksCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flip Vertical
+   Id 	= CATHvuFlipCompVertHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuFlipCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flip Vertical
+   Id 	= CATHvuFlipCompVertHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuFlipCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Annotation Editor...
+   Id 	= CATHvuEditAnnotHdr
+   DLL 	= CATScuAnnotation
+   Cmd 	= CATScuEditAnnotCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Annotation Editor...
+   Id 	= CATHvuEditAnnotHdr
+   DLL 	= CATScuAnnotation
+   Cmd 	= CATScuEditAnnotCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 样条线
+   Id 	= CAT2DSplineHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSSpline
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 样条线
+   Id 	= CAT2DSplineHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSSpline
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 创建
+   Id 	= DrwPosLinkCreate
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAssocCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 创建
+   Id 	= DrwPosLinkCreate
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAssocCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Transfer Line ID
+   Id 	= CATHvuTransferLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Transfer Line ID
+   Id 	= CATHvuTransferLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Existing View
+   Id 	= CATHvuInsertViewHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacInsertIntelligentBGCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Existing View
+   Id 	= CATHvuInsertViewHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacInsertIntelligentBGCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Noshow All Flow
+   Id 	= CATHvuFlowNoShowAllHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuShowFlowAllCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Noshow All Flow
+   Id 	= CATHvuFlowNoShowAllHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuShowFlowAllCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 方向
+   Id 	= CATDrwOrientationHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 方向
+   Id 	= CATDrwOrientationHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 平行四边形
+   Id 	= CAT2DParallelogramHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSParallelogram
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 平行四边形
+   Id 	= CAT2DParallelogramHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSParallelogram
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 带引出线的文本
+   Id 	= DrwTextLeader
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 带引出线的文本
+   Id 	= DrwTextLeader
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place Component
+   Id 	= CATHvuPlaceComponentHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuPlaceCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Place Component
+   Id 	= CATHvuPlaceComponentHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuPlaceCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除
+   Id 	= DrwPosLinkDelete
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAssocDeleteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除
+   Id 	= DrwPosLinkDelete
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAssocDeleteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import rules and checks
+   Id 	= CATHvuImportRulesAndChecksHdr
+   DLL 	= CATPspUIUtils
+   Cmd 	= CATPspImportFromCatalogCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import rules and checks
+   Id 	= CATHvuImportRulesAndChecksHdr
+   DLL 	= CATPspUIUtils
+   Cmd 	= CATPspImportFromCatalogCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 新建图纸
+   Id 	= DrwCreateSheet
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATSheetCreate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 新建图纸
+   Id 	= DrwCreateSheet
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATSheetCreate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 投影点
+   Id 	= CAT2DPointProjectHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DPointProject
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 投影点
+   Id 	= CAT2DPointProjectHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DPointProject
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 圆柱形延长孔
+   Id 	= CAT2DTrouOblongArcHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DTrouOblongArc
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 圆柱形延长孔
+   Id 	= CAT2DTrouOblongArcHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DTrouOblongArc
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rename Zone
+   Id 	= CATHvuRenameZoneHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacZoneSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rename Zone
+   Id 	= CATHvuRenameZoneHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacZoneSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rename ID
+   Id 	= CATHvuRenameIDHdr
+   DLL 	= CATPspRename
+   Cmd 	= CATPspRenameRouteCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rename ID
+   Id 	= CATHvuRenameIDHdr
+   DLL 	= CATPspRename
+   Cmd 	= CATPspRenameRouteCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flip Connections
+   Id 	= CATHvuFlipCompConnectionsHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuReorientCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flip Connections
+   Id 	= CATHvuFlipCompConnectionsHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuReorientCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 缩放
+   Id 	= CAT2DScaleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSScale
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 缩放
+   Id 	= CAT2DScaleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSScale
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Delete Line ID
+   Id 	= CATHvuDeleteLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Delete Line ID
+   Id 	= CATHvuDeleteLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manage Logical Publications...
+   Id 	= CATHvuManageLogicalPubHdr
+   DLL 	= CATPspPublication
+   Cmd 	= CATPspManagePublicationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Manage Logical Publications...
+   Id 	= CATHvuManageLogicalPubHdr
+   DLL 	= CATPspPublication
+   Cmd 	= CATPspManagePublicationCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 复制对象格式
+   Id 	= DrwPainter
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwPainterCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 复制对象格式
+   Id 	= DrwPainter
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwPainterCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 工程图概述
+   Id 	= CATDrwToggleOverViewHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 工程图概述
+   Id 	= CATDrwToggleOverViewHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 连接
+   Id 	= CAT2DConnectHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSConnect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 连接
+   Id 	= CAT2DConnectHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSConnect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 点
+   Id 	= CAT2DPointHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPoint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 点
+   Id 	= CAT2DPointHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPoint
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Flip Horizontal
+   Id 	= CATHvuFlipCompHorizHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuFlipCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flip Horizontal
+   Id 	= CATHvuFlipCompHorizHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuFlipCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 隐藏所有折线
+   Id 	= DrwRmAllConstrLines
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwRemoveAllCstrLinesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 隐藏所有折线
+   Id 	= DrwRmAllConstrLines
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwRemoveAllCstrLinesCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Build Component Group
+   Id 	= CATHvuBuildCompGrpHdr
+   DLL 	= CATScuBuild
+   Cmd 	= CATScuBuildCompGroupCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Build Component Group
+   Id 	= CATHvuBuildCompGrpHdr
+   DLL 	= CATScuBuild
+   Cmd 	= CATScuBuildCompGroupCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import/Update Line IDs
+   Id 	= CATHvuLineIDImportHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLineIDImportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Import/Update Line IDs
+   Id 	= CATHvuLineIDImportHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLineIDImportCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Copy Attributes
+   Id 	= CATHvuCopyAttributesHdr
+   DLL 	= CATPspChangeUserType
+   Cmd 	= CATPspCopyAttributesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Copy Attributes
+   Id 	= CATHvuCopyAttributesHdr
+   DLL 	= CATPspChangeUserType
+   Cmd 	= CATPspCopyAttributesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Query/Update Images
+   Id 	= CATHvuUpdateImageHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacUpdateImageCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Query/Update Images
+   Id 	= CATHvuUpdateImageHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacUpdateImageCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Zone Boundaries
+   Id 	= CATHvuDefZoneBdryHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacZoneAddBoundaryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define Zone Boundaries
+   Id 	= CATHvuDefZoneBdryHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacZoneAddBoundaryCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 修剪
+   Id 	= CAT2DRelimitationHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRelimit
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 修剪
+   Id 	= CAT2DRelimitationHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRelimit
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 箭头
+   Id 	= DrwArrow
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwArrowCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 箭头
+   Id 	= DrwArrow
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwArrowCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 等距点
+   Id 	= CAT2DPointsSpacesHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPointsSpaces
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 等距点
+   Id 	= CAT2DPointsSpacesHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSPointsSpaces
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Connect
+   Id 	= CATHvuConnectHdr
+   DLL 	= CATScuConnectable
+   Cmd 	= CATScuConnectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Connect
+   Id 	= CATHvuConnectHdr
+   DLL 	= CATScuConnectable
+   Cmd 	= CATScuConnectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select/Browse...
+   Id 	= CATHvuPrjMngtHdr
+   DLL 	= PrjMngtUI
+   Cmd 	= CATPrjMngtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Select/Browse...
+   Id 	= CATHvuPrjMngtHdr
+   DLL 	= PrjMngtUI
+   Cmd 	= CATPrjMngtCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 设置相对位置
+   Id 	= RelativePosition
+   DLL 	= CATDraftingInfrastructureUI
+   Cmd 	= CATDfuViewRelativePositioning
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 设置相对位置
+   Id 	= RelativePosition
+   DLL 	= CATDraftingInfrastructureUI
+   Cmd 	= CATDfuViewRelativePositioning
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 斜置矩形
+   Id 	= CAT2DOrientedRectangleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRectOrient
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 斜置矩形
+   Id 	= CAT2DOrientedRectangleHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSRectOrient
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 通过焦点创建抛物线
+   Id 	= CAT2DParabolaFocusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSParabolaFocus
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 通过焦点创建抛物线
+   Id 	= CAT2DParabolaFocusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSParabolaFocus
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Show All Gaps
+   Id 	= CATHvuGapShowAllHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuGapAllCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Show All Gaps
+   Id 	= CATHvuGapShowAllHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuGapAllCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Merge Line ID
+   Id 	= CATHvuMergeLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Merge Line ID
+   Id 	= CATHvuMergeLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineSelectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Unlock shape
+   Id 	= CATHvuRouteUnfixHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuRouteFixCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Unlock shape
+   Id 	= CATHvuRouteUnfixHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuRouteFixCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 圆
+   Id 	= CAT2DCircleRadiusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCircleCtrRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 圆
+   Id 	= CAT2DCircleRadiusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCircleCtrRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Create Line ID
+   Id 	= CATHvuCreateLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Create Line ID
+   Id 	= CATHvuCreateLogLineHdr
+   DLL 	= CATPspLogLine
+   Cmd 	= CATPspLogLineCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除
+   Id 	= DrwTextOrientDelete
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAssocDeleteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 删除
+   Id 	= DrwTextOrientDelete
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwAssocDeleteCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 倒角
+   Id 	= CAT2DChamferHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSChamfer
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 倒角
+   Id 	= CAT2DChamferHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSChamfer
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 使用坐标创建圆
+   Id 	= CAT2DCircleCoordHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCircleXYRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 使用坐标创建圆
+   Id 	= CAT2DCircleCoordHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSCircleXYRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 图片...
+   Id 	= DrwImportPicture
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwImportPictureCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 图片...
+   Id 	= DrwImportPicture
+   DLL 	= CATDraftingIntCommands
+   Cmd 	= CATDrwImportPictureCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Reset Color
+   Id 	= CATHvuResetColorHdr
+   DLL 	= CATPspRename
+   Cmd 	= CATPspResetColorCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Reset Color
+   Id 	= CATHvuResetColorHdr
+   DLL 	= CATPspRename
+   Cmd 	= CATPspResetColorCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Validation...
+   Id 	= CATHvuPRMCheckerHdr
+   DLL 	= CATPspPRMChecker
+   Cmd 	= CATPspPRMCheckerCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Validation...
+   Id 	= CATHvuPRMCheckerHdr
+   DLL 	= CATPspPRMChecker
+   Cmd 	= CATPspPRMCheckerCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 复制
+   Id 	= CATAfrCopyHdr
+   DLL 	= CATScuEnvironment
+   Cmd 	= CATScuCopyCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 复制
+   Id 	= CATAfrCopyHdr
+   DLL 	= CATScuEnvironment
+   Cmd 	= CATScuCopyCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Rotate Right
+   Id 	= CATHvuRotateCompRightHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuRotateCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rotate Right
+   Id 	= CATHvuRotateCompRightHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuRotateCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 显示网格
+   Id 	= DisplayGrid
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 显示网格
+   Id 	= DisplayGrid
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Create Zone
+   Id 	= CATHvuCreateZoneHdr
+   DLL 	= CATPspZone
+   Cmd 	= CATPspZoneCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Create Zone
+   Id 	= CATHvuCreateZoneHdr
+   DLL 	= CATPspZone
+   Cmd 	= CATPspZoneCreateCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 六边形
+   Id 	= CAT2DHexagonHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DHexagon
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 六边形
+   Id 	= CAT2DHexagonHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DHexagon
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Unlink On/Off Sheet Connectors
+   Id 	= CATHvuOnOffUnlinkHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuOnOffDisconnectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Unlink On/Off Sheet Connectors
+   Id 	= CATHvuOnOffUnlinkHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuOnOffDisconnectCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Scale
+   Id 	= CATHvuScaleCompHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuScaleCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Scale
+   Id 	= CATHvuScaleCompHdr
+   DLL 	= CATScuComponent
+   Cmd 	= CATScuScaleCompCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update Zones
+   Id 	= CATHvuUpdateZoneHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacUpdateZonesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Update Zones
+   Id 	= CATHvuUpdateZoneHdr
+   DLL 	= CATSacUI
+   Cmd 	= CATSacUpdateZonesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Noshow All Gaps
+   Id 	= CATHvuGapNoShowAllHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuGapAllCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Noshow All Gaps
+   Id 	= CATHvuGapNoShowAllHdr
+   DLL 	= CATScuRoute
+   Cmd 	= CATScuGapAllCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 椭圆
+   Id 	= CAT2DEllipseRadiusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSEllipseCtrRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 椭圆
+   Id 	= CAT2DEllipseRadiusHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATComDYSEllipseCtrRds
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 相交点
+   Id 	= CAT2DPointIntersectHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DPointIntersect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 相交点
+   Id 	= CAT2DPointIntersectHdr
+   DLL 	= CATSkuCommands
+   Cmd 	= CATCom2DPointIntersect
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 隔离
+   Id 	= DrwTextIsolAttrLink
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextIsolAttrLinkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 隔离
+   Id 	= DrwTextIsolAttrLink
+   DLL 	= CATDiaText
+   Cmd 	= CATDrwTextIsolAttrLinkCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 
+   Id 	= CATDrwTextFrameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 
+   Id 	= CATDrwTextFrameHdr
+   DLL 	= NotUsed
+   Cmd 	= 
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATHvuSchematicMbr 
+   Title=文件 	 Name=CATAfrFileMnu 
+      Starter Name=CATHvuMenuDrwPageSetupStr
+      Starter Name=CATHvuMenuDrwPreviewStr
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Separator Name=CATHvuEdit1Sep
+      Starter Name=CATHvuMenuDrwToggleWorkingViewStr
+   Title=视图 	 Name=CATAfrView 
+      Separator Name=CATHvuView1Sep
+      Starter Name=CATHvuMenuDrwToggleOverViewStr
+      Separator Name=CATHvuView2Sep
+      Title=Flow 	 Name=CATHvuFlowAllMnuSnu 
+         Starter Name=CATHvuMenuShowAllFlowStr
+         Starter Name=CATHvuMenuNoShowAllFlowStr
+      Title=Gaps 	 Name=CATHvuGapsMnuSnu 
+         Starter Name=CATHvuMenuShowGapsStr
+         Starter Name=CATHvuMenuNoShowGapsStr
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=CATHvuMenuFrameInfoStr
+      Separator Name=CATHvuMenuInsert1Sep
+      Title=Design Create 	 Name=CATHvuDesignCreateMnuSnu 
+         Starter Name=CATHvuMenuPlaceComponentStr
+         Starter Name=CATHvuMenuOnOffSheetStr
+         Starter Name=CATHvuMenuRouteHVACLineStr
+         Starter Name=CATHvuMenuCreateLineIDStr
+         Starter Name=CATHvuMenuCreateZoneStr
+      Separator Name=CATHvuMenuInsert2Sep
+      Title=Drawing 	 Name=CATHvuDrawingMnuSnu 
+         Starter Name=CATHvuMenuDrwCreateSheetOfDetailStr
+         Starter Name=CATHvuMenuDrwCreateViewStr
+         Starter Name=CATHvuMenuInsertViewStr
+      Title=Annotations 	 Name=CATHvuAnnotationsMnuSnu 
+         Title=Texts 	 Name=CATHvuTextsSnu 
+            Starter Name=CATHvuMenuDrwTextStr
+            Starter Name=CATHvuMenuDrwTextLeaderStr
+            Starter Name=CATHvuMenuDrwBalloonStr
+            Starter Name=CATHvuMenuDrwATSTextPlaceStr
+         Separator Name=CATHvuMenuDressupSep
+         Starter Name=CATHvuMenuDrwLeaderAddStr
+      Title=Dressup 	 Name=CATHvuDressupMnuSnu 
+         Starter Name=CATHvuMenuDrwAreaFillStr
+         Starter Name=CATHvuMenuDrwArrowStr
+      Title=Geometry creation 	 Name=CATHvuGeometryCreationMnuSnu 
+         Title=Points 	 Name=CATHvuPointSnu 
+            Starter Name=CATHvuMenu2DPointStr
+            Starter Name=CATHvuMenu2DPointCoordStr
+            Starter Name=CATHvuMenu2DPointsSpacesStr
+            Starter Name=CATHvuMenu2DPointsIntersectStr
+            Starter Name=CATHvuMenu2DPointsProjectStr
+         Title=Lines 	 Name=CATHvuLineSnu 
+            Starter Name=CATHvuMenu2DLineStr
+            Starter Name=CATHvuMenu2DLine2TangentStr
+         Title=Circles and ellipse 	 Name=CATHvuCircleSnu 
+            Starter Name=CATHvuMenu2DCircleRadiusStr
+            Starter Name=CATHvuMenu2DCircle3PointsStr
+            Starter Name=CATHvuMenu2DCircleCoordStr
+            Starter Name=CATHvuMenu2DCircle3TangentStr
+            Starter Name=CATHvuMenu2DArcRadiusStr
+            Starter Name=CATHvuMenu2DArc3PointsStr
+            Starter Name=CATHvuMenu2DArc3Points132Str
+            Starter Name=CATHvuMenu2DEllipseRadiusStr
+         Title=Profiles 	 Name=CATHvuProfilesSnu 
+            Starter Name=CATHvuMenu2DContourStr
+            Starter Name=CATHvuMenu2DRectangleStr
+            Starter Name=CATHvuMenu2DOrientedRectangleStr
+            Starter Name=CATHvuMenu2DParallelogramStr
+            Starter Name=CATHvuMenu2DHexagonStr
+            Starter Name=CATHvuMenu2DTrouOblongStr
+            Starter Name=CATHvuMenu2DTrouOblongArcStr
+            Starter Name=CATHvuMenu2DKeyHoleStr
+         Title=Curves 	 Name=CATHvuCurvesSnu 
+            Starter Name=CATHvuMenu2DSplineStr
+            Starter Name=CATHvuMenu2DParabolaFocusStr
+            Starter Name=CATHvuMenu2DHyperbolaFocusStr
+      Title=Geometry edition 	 Name=CATHvuGeometryEditionMnuSnu 
+         Title=Relimitations 	 Name=CATHvuRelimitSnu 
+            Starter Name=CATHvuMenu2DCornerStr
+            Starter Name=CATHvuMenu2DChamferStr
+            Starter Name=CATHvuMenu2DRelimitationStr
+            Starter Name=CATHvuMenu2DBreakStr
+         Title=Transformations 	 Name=CATHvuTransforSnu 
+            Starter Name=CATHvuMenu2DSymmetryStr
+            Starter Name=CATHvuMenu2DTranslateStr
+            Starter Name=CATHvuMenu2DRotateStr
+            Starter Name=CATHvuMenu2DScaleStr
+            Starter Name=CATHvuMenu2DOffsetContourStr
+      Starter Name=CATHvuImportPictureStr
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=CATHvuMenuTools1Sep
+      Title=Report 	 Name=CATHvuReportMnu 
+         Starter Name=CATHvuMenuReportDefStr
+         Starter Name=CATHvuMenuReportGenStr
+         Starter Name=CATHvuMenuReportExpressionsStr
+         Starter Name=CATPiuPartCatalogReportStr
+      Starter Name=CATHvuMenuExportQueryStr
+      Title=Project Management 	 Name=HvuPRMTools 
+         Starter Name=CATHvuMenuPrjMngtStr
+         Starter Name=CATHvuMenuPRMCheckerStr
+      Starter Name=CATHvuMenuManageLogicalPubStr
+      Starter Name=CATHvuMenuManageDocLinksStr
+      Separator Name=CATHvuMenuTools2Sep
+      Starter Name=CATHvuMenuDrwPositioningStr
+   Title=Analyze 	 Name=contHVACAnalyzeMenu 
+      Starter Name=CATHvuMenuNetworkAnalStr
+      Starter Name=CATHvuMenuRelatedObjectsStr
+
+ Title of the toolbar=Select and is Name=CATHvuSelectTlb
+   Starter Name=CATHvuSelectStr
+
+ Title of the toolbar=Build Create and is Name=CATHvuBuildCreateTlb
+   Starter Name=CATHvuBuildComponentStr
+   Starter Name=CATHvuBuildGraphicStr
+   Starter Name=CATHvuBuildConnectorStr
+   Starter Name=CATHvuBuildFlowStr
+   Title of the Icon Box=Component Group 	 Name=CATHvuBuildCompGrpSubTlb 
+      Starter Name=CATHvuBuildCompGrpStr
+      Starter Name=CATHvuBuildCompGrpFlowStr
+
+ Title of the toolbar=Design Create and is Name=CATHvuDesignCreateTlb
+   Starter Name=CATHvuPlaceComponentStr
+   Starter Name=CATHvuRouteHVACLineStr
+
+ Title of the toolbar=Design Modify and is Name=CATHvuDesignModifyTlb
+   Title of the Icon Box=Rotate 	 Name=CATHvuRotateSubTlbIcb 
+      Starter Name=CATHvuRotateCompLeftStr
+      Starter Name=CATHvuRotateCompRightStr
+   Title of the Icon Box=Flip 	 Name=CATHvuFlipSubTlbIcb 
+      Starter Name=CATHvuFlipCompHorizStr
+      Starter Name=CATHvuFlipCompVertStr
+   Title of the Icon Box=Reorient/Flip in line 	 Name=CATHvuReorientSubTlbIcb 
+      Starter Name=CATHvuReorientComp1Str
+      Starter Name=CATHvuFlipCompInLineStr
+   Starter Name=CATHvuScaleComp1Str
+   Starter Name=CATHvuReplaceComp1Str
+   Title of the Icon Box=Align 	 Name=CATHvuAlignSubTlb 
+      Starter Name=CATHvuAlignCompHorizStr
+      Starter Name=CATHvuAlignCompVertStr
+Separator Name=CATHvuCompModifySep
+   Starter Name=CATHvuTranslateStr
+   Title of the Icon Box=Connect 	 Name=CATHvuConnectSubTlbIcb 
+      Starter Name=CATHvuConnectStr
+      Starter Name=CATHvuDisconnectStr
+Separator Name=CATHvuRouteModifySep
+   Title of the Icon Box=Break 	 Name=CATHvuBreakSubTlbIcb 
+      Starter Name=CATHvuBreakRouteStr
+      Starter Name=CATHvuCloseRouteStr
+      Starter Name=CATHvuFlexRouteStr
+   Title of the Icon Box=Flow 	 Name=CATHvuFlowSubTlbIcb 
+      Starter Name=CATHvuFlowShowStr
+      Starter Name=CATHvuFlowDirectionStr
+   Title of the Icon Box=CATHvuCntrSymbolSubTlb 	 Name=CATHvuCntrSymbolSubTlb 
+      Starter Name=CATHvuSpecBreakStr
+      Starter Name=CATHvuDatumSymbolStr
+
+ Title of the toolbar=Line ID and is Name=CATHvuLogLineTlb
+   Title of the Icon Box=Line ID 	 Name=CATHvuLogLineSubTlbIcb 
+      Starter Name=CATHvuCreateLogLineStr
+      Starter Name=CATHvuSelectLogLineStr
+      Starter Name=CATHvuTransferLogLineStr
+      Starter Name=CATHvuMergeLogLineStr
+      Starter Name=CATHvuRenameLogLineStr
+      Starter Name=CATHvuDeleteLogLineStr
+      Starter Name=CATHvuLineIDImportStr
+
+ Title of the toolbar=Zone and is Name=CATHvuZoneTlb
+   Title of the Icon Box=Zone 	 Name=CATHvuZoneSubTlb 
+      Starter Name=CATHvuCreateZoneStr
+      Starter Name=CATHvuSelectZoneStr
+      Starter Name=CATHvuRenameZoneStr
+      Starter Name=CATHvuDeleteZoneStr
+      Starter Name=CATHvuDefZoneBdryStr
+      Starter Name=CATHvuUpdateZoneStr
+
+ Title of the toolbar=On/Off Sheet Connector and is Name=CATHvuOnOffSheetTlb
+   Title of the Icon Box=CATHvuOnOffSheetSubTlb 	 Name=CATHvuOnOffSheetSubTlbIcb 
+      Starter Name=CATHvuOnOffSheetStr
+      Starter Name=CATHvuOnOffQueryStr
+      Starter Name=CATHvuOnOffLinkStr
+      Starter Name=CATHvuOnOffUnlinkStr
+
+ Title of the toolbar=ID/Attributes Management and is Name=CATHvuIDManagementTlb
+   Starter Name=CATHvuRenameIDStr
+   Starter Name=CATHvuCopyAttributesStr
+
+ Title of the toolbar=Part Selection and is Name=CATHvuPartSelectionTlb
+   Starter Name=CATHvuPartSelectionStr
+
+ Title of the toolbar=Image and is Name=CATHvuImageTlb
+   Title of the Icon Box=Image 	 Name=CATHvuImageSubTlb 
+      Starter Name=CATHvuImageComponentStr
+      Starter Name=CATHvuUpdateImageStr
+
+ Title of the toolbar=Cntr Info and is Name=CATHvuQueryCntrInfoTlb
+   Starter Name=CATHvuQueryCntrInfoStr
+
+ Title of the toolbar=Drawing and is Name=CATHvuDrawingTlb
+   Starter Name=CATHvuDrwCreateSheetOfDetailStr
+   Starter Name=CATHvuDrwCreateViewStr
+
+ Title of the toolbar=Annotations and is Name=CATHvuAnnotationsTlb
+   Title of the Icon Box=Texts 	 Name=CATHvuTextsSubTlbIcb 
+      Starter Name=CATHvuDrwTextStr
+      Starter Name=CATHvuDrwTextLeaderStr
+      Starter Name=CATHvuDrwBalloonStr
+      Starter Name=CATHvuDrwATSTextPlaceStr
+      Starter Name=CATHvuTextUpdateStr
+
+ Title of the toolbar=Dressup and is Name=CATHvuDressupTlb
+   Starter Name=CATHvuDrwAreaFillStr
+
+ Title of the toolbar=Geometry Creation and is Name=CATHvuGeometryCreationTlb
+   Title of the Icon Box=Points 	 Name=CATHvuPointSubTlbIcb 
+      Starter Name=CATHvu2DPointStr
+      Starter Name=CATHvu2DPointCoordStr
+      Starter Name=CATHvu2DPointsSpacesStr
+      Starter Name=CATHvu2DPointsIntersectStr
+      Starter Name=CATHvu2DPointsProjectStr
+   Title of the Icon Box=Lines 	 Name=CATHvuLineSubTlbIcb 
+      Starter Name=CATHvu2DLineStr
+      Starter Name=CATHvu2DLine2TangentStr
+   Title of the Icon Box=Circles and Ellipse 	 Name=CATHvuCircleSubTlbIcb 
+      Starter Name=CATHvu2DCircleRadiusStr
+      Starter Name=CATHvu2DCircle3PointsStr
+      Starter Name=CATHvu2DCircleCoordStr
+      Starter Name=CATHvu2DCircle3TangentStr
+      Starter Name=CATHvu2DArcRadiusStr
+      Starter Name=CATHvu2DArc3PointsStr
+      Starter Name=CATHvu2DArc3Points132Str
+      Starter Name=CATHvu2DEllipseRadiusStr
+   Title of the Icon Box=Profiles 	 Name=CATHvuProfilesSubTlbIcb 
+      Starter Name=CATHvu2DContourStr
+      Starter Name=CATHvu2DRectangleStr
+      Starter Name=CATHvu2DOrientedRectangleStr
+      Starter Name=CATHvu2DParallelogramStr
+      Starter Name=CATHvu2DHexagonStr
+      Starter Name=CATHvu2DTrouOblongStr
+      Starter Name=CATHvu2DTrouOblongArcStr
+      Starter Name=CATHvu2DKeyHoleStr
+   Title of the Icon Box=Curves 	 Name=CATHvuCurvesSubTlbIcb 
+      Starter Name=CATHvu2DSplineStr
+      Starter Name=CATHvu2DParabolaFocusStr
+      Starter Name=CATHvu2DHyperbolaFocusStr
+
+ Title of the toolbar=Geometry Edition and is Name=CATHvuGeometryEditionTlb
+   Title of the Icon Box=Relimitations 	 Name=CATHvuRelimitSubTlbIcb 
+      Starter Name=CATHvu2DCornerStr
+      Starter Name=CATHvu2DChamferStr
+      Starter Name=CATHvu2DRelimitationStr
+      Starter Name=CATHvu2DBreakStr
+   Title of the Icon Box=Transformations 	 Name=CATHvuTransforSubTlbIcb 
+      Starter Name=CATHvu2DSymmetryStr
+      Starter Name=CATHvu2DTranslateStr
+      Starter Name=CATHvu2DRotateStr
+      Starter Name=CATHvu2DScaleStr
+      Starter Name=CATHvu2DOffsetContourStr
+
+ Title of the toolbar=Style and is Name=CATHvuStyleTlb
+   Starter Name=CATHvuDrwStyleStr
+
+ Title of the toolbar=Text Properties and is Name=CATHvuTextPropertiesTlb
+   Starter Name=CATHvuDrwFontNameStr
+   Starter Name=CATHvuDrwFontSizeStr
+Separator Name=CATHvuTextProp1Sep
+   Starter Name=CATHvuDrwBoldStr
+   Starter Name=CATHvuDrwItalicStr
+   Starter Name=CATHvuDrwXLineStr
+   Starter Name=CATHvuDrwStrikeThruStr
+   Starter Name=CATHvuDrwXScriptStr
+Separator Name=CATHvuTextProp2Sep
+   Starter Name=CATHvuDrwJustificationStr
+   Starter Name=CATHvuDrwTextAnchorStr
+   Starter Name=CATHvuDrwTextFrameStr
+Separator Name=CATHvuTextProp3Sep
+   Starter Name=CATHvuDrwDimSymbolStr
+
+ Title of the toolbar=Graphic Properties and is Name=CATHvuGraphicPropertiesTlb
+   Starter Name=CATHvuDrwColorStr
+   Starter Name=CATHvuDrwThicknessStr
+   Starter Name=CATHvuDrwLineTypeStr
+   Starter Name=CATHvuDrwPointTypeStr
+   Starter Name=CATHvuDrwLayerStr
+   Starter Name=CATHvuDrwPainterStr
+   Starter Name=CATHvuDrwPatternStr
+
+ Title of the toolbar=Tools and is Name=CATHvuToolsTlb
+   Starter Name=CATHvuDisplayGridStr
+   Starter Name=CATHvuSnapGridStr
+Separator Name=CATHvuTools1Sep
+
+ Title of the toolbar=Import from catalog and is Name=CATHvuImportFromCatalogTlb
+   Starter Name=CATHvuImportRulesAndChecksStr
+   Starter Name=CATHvuImportDittosStr
+
+ Title of the toolbar=Measure Tool and is Name=CATHvuMeasureTlb
+   Starter Name=CATHvuMeasureStr
+
+ Title of the toolbar=Positioning and is Name=CATHvuPositionTlb
+   Starter Name=CATHvuDrwPositioningStr
+
+ Title of the toolbar=Position and Orientation and is Name=CATHvuOrientationTlb
+   Starter Name=CATHvuDrwXPositionStr
+   Starter Name=CATHvuDrwYPositionStr
+   Starter Name=CATHvuDrwOrientationStr
+
+ Title of the toolbar=Frame and Title Block and is Name=CATHvuFrameTitleBlockTlb
+   Starter Name=CATHvuDrwFrameAndTitleBlockStr

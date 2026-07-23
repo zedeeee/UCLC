@@ -1,0 +1,79 @@
+Workshop Exposition of CompositesProductWorkbench 
+
+1- Header List 
+
+Title= Core Sample
+   Id 	= CoreSampleId
+   DLL 	= CATCrwAnalysis
+   Cmd 	= CATCoCoreSampleCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Numerical Analysis
+   Id 	= NumAnalysisId
+   DLL 	= CATCrwAnalysis
+   Cmd 	= CATCoNumAnalysisCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Producibility Inspection
+   Id 	= CreateProduceInspectionId
+   DLL 	= CATCrwManufacturing
+   Cmd 	= CATCoProduceInspectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Fiber Direction
+   Id 	= CreateFiberDirectionId
+   DLL 	= CATCusManufacturing
+   Cmd 	= CATCoFiberDirectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Interactive Ply Table
+   Id 	= PlyMgtId
+   DLL 	= CATCusPlyMgt
+   Cmd 	= CATCoCusPlyMgtCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= On the Fly Information
+   Id 	= CATCoSelectionId
+   DLL 	= CATCrwSelection
+   Cmd 	= CATCoSelectionCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Composites Link - Export Plies
+   Id 	= CATSLTCompositesLinkExportId
+   DLL 	= CATSLTAnaTranUICore
+   Cmd 	= SLTClkCmdExport
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=MenuBarId 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Separator Name=CATCmdSeparator1
+      Title=Analysis 	 Name=AnalysisTBar 
+         Starter Name=pFlyCPDMenu
+         Starter Name=pNumericalAnalysisMenu
+         Starter Name=pCoreSampleMenu
+         Starter Name=PlyMgtMenu
+         Starter Name=CreateProduceInspection
+         Starter Name=CreateFiberDirection
+      Separator Name=CATCmdSeparator2
+      Title=Export Data 	 Name=ExportDataToolbar 
+         Starter Name=CompositesLinkPlyExportMenu
+
+ Title of the toolbar=Analysis and is Name=AnalysisTBar
+   Starter Name=FlyinfoCmd
+   Starter Name=NumericalAnalysis
+   Starter Name=CoreSample
+   Starter Name=PlyMgt
+   Starter Name=CreateProduceInspection
+   Starter Name=CreateFiberDirection
+
+ Title of the toolbar=Export Data and is Name=ExportDataToolbar
+   Starter Name=CompositesLinkPlyExportCmd

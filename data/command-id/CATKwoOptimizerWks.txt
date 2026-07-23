@@ -1,0 +1,48 @@
+Workshop Exposition of CATKwoOptimizerWks 
+
+1- Header List 
+
+Title= Optimization
+   Id 	= CATKwoOptimizerHdr
+   DLL 	= CATKwoDialogs
+   Cmd 	= CATKwoOptimizeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= KwaUpdateHeaderAsm
+   Id 	= CATKwaUpdateHeaderAsmHdr
+   DLL 	= CATAssCommands
+   Cmd 	= CATAsmCmdUpdate
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Define a PEO Problem
+   Id 	= CATKwoDefineOptProblemCmd
+   DLL 	= CATKwoDialogs
+   Cmd 	= CATKwoDefineOptProblemCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= KwaUpdateHeader
+   Id 	= CATKwaUpdateHeaderHdr
+   DLL 	= CATMechanicalModelerUI
+   Cmd 	= CATPrtUpdateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= DOE
+   Id 	= CATKwoFullDoeCmd
+   DLL 	= CATKwoDialogs
+   Cmd 	= CATKwoFullDoeCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATKwoOptimizerMenuMbr 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=CATAfrTechnologicalPackageHdr
+
+ Title of the toolbar=Product Engineering Optimizer and is Name=CATKwoOptimizerTlb
+   Starter Name=CATSelection
+   Starter Name=CATKwoOptimizerStr
+   Starter Name=NewButton4

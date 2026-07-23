@@ -237,15 +237,15 @@ quick_manipulation(diraction) {
 match_current_workbench(workbench_map) {
     try {
         workbench_control_hwnd := ControlGetHwnd("WebBrowser", "A")
-        ; workbench_buttons :=
 
         for button in WinGetControls(workbench_control_hwnd) {
             button_name := ControlGetText(button, workbench_control_hwnd)
-            for key in workbench_map {
-                if button_name == key
-                    return button_name
+            id := AppSettings.GetWbIdByUI(button_name)
+            if workbench_map.Has(id) {
+                return id
             }
         }
+        return "通用"
     }
     catch {
         ; WebBrowser 控件未找到，工具栏未吸附 (情况 1)
@@ -353,4 +353,27 @@ read_all_section_from_ini(ini_path, dict) {
             dict.Set(section, "")
         }
     }
+}
+
+/**
+ * 触发 CATIA 导出 Workshop Exposition 窗口
+ * @returns {boolean} 是否成功
+ */
+export_workshop_exposition() {
+    hwnd := WinExist("A")
+    catia_class := identify_catia_window(hwnd)
+    if !catia_class {
+        MsgBox("未检测到活动的 CATIA 窗口，请先激活 CATIA", "UCLC 提示", "Icon!")
+        return false
+    }
+
+    power_input_hwnd := get_power_input_edit_hwnd()
+    if !power_input_hwnd {
+        MsgBox("未找到 CATIA 超级输入框", "UCLC 错误", "Iconx")
+        return false
+    }
+
+    ControlSetText("c:Workshop Exposition", power_input_hwnd)
+    safe_send_enter(power_input_hwnd)
+    return true
 }

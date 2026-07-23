@@ -1,0 +1,65 @@
+Workshop Exposition of CATTbuDMUTolerancingWkb 
+
+1- Header List 
+
+Title= 2D 可视化
+   Id 	= CATTbuTPSVisu2DHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdVisu2D
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 转至超级链接
+   Id 	= TPSOpenURL
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSURLOpenCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 3D 可视化
+   Id 	= CATTbuTPSVisu3DHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdVisu3D
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 相关的曲面
+   Id 	= CATTbuTPSRelatedSurfHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdRelatedSurf
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 镜像
+   Id 	= CATTbuTPSMirrorHdr
+   DLL 	= CATTPSBROWSERUI
+   Cmd 	= CATTPSCmdMirror
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Title of the toolbar=DMU 公差 and is Name=CATTbuGDTBrowserToolBarTlb
+   Starter Name=CATTbuNavigation4DFDTVisu3DStr
+   Starter Name=CATTbuNavigation4DFDTVisu2DStr
+   Starter Name=CATTbuNavigation4DFDTSurStr
+   Starter Name=CATTPSUpdateUnresolvedFeatureStr
+   Starter Name=CATTbuNavigation4DFDTFilterStr
+   Starter Name=Navigation4DFDTMirror
+   Starter Name=Navigation4DFDTSAnnotationBlanking
+   Starter Name=DMUTPSStartPublish
+   Starter Name=Navigation4DFDTOpenURL
+
+ Title of the toolbar=DMU 查看 and is Name=CATDMUViewingToolBar
+   Starter Name=CATTbuDMUTPSNavigatorLookAtStr
+   Starter Name=CATTbuDMUTPSNavigatorPreviewStepStr
+   Starter Name=CATTbuDMUTPSNavigatorNextStepStr
+   Starter Name=CATTbuDMUTPSNavigatorMagnifierStr
+   Starter Name=CATTbuDMUTPSNavigatorDepthEffectStr
+   Starter Name=CATTbuDMUTPSNavigatorGroundStr
+   Starter Name=CATTbuDMUTPSNavigatorLightingStr
+
+ Title of the toolbar=DMU 测量 and is Name=CATDMUMeasureToolBar
+   Starter Name=CATTbuDMUTPSMeasureBetweenStr
+   Starter Name=CATTbuDMUTPSMeasureItemStr

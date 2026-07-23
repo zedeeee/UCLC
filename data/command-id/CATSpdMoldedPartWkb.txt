@@ -1,0 +1,605 @@
+Workshop Exposition of CATSpdMoldedPartWkb 
+
+1- Header List 
+
+Title= Cut
+   Id 	= CATSpdCutFeatureCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdCutFeatureCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rib
+   Id 	= CATSpdRibCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdRibCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Push
+   Id 	= CATSpdPushCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdPushFeatureCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Divide
+   Id 	= CATSpdSplitCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdSplitCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Lip
+   Id 	= CATSpdLipCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdLipCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Join
+   Id 	= CATSpdJoinCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdJoinCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Offset
+   Id 	= CATSpdOffsetCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdOffsetCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Functional Edge Fillet
+   Id 	= CATSpdFuncEdgeFilletHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdEdgeFilletCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Internal Feature
+   Id 	= CATSpdInternalShapeCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdInternalShapeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= External Feature
+   Id 	= CATSpdCavityShapeCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdCavityShapeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Remove Feature
+   Id 	= CATSpdRemovedShapeCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdRemovedShapeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Shell Properties
+   Id 	= CATSpdShellPropertiesCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdShellPropertiesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 面与面的圆角...
+   Id 	= CATPrtFuncFilletFaceHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateFaceFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Pull
+   Id 	= CATSpdPullCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdPullFeatureCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Core Extraction
+   Id 	= CATSpdCoreExtractionCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdCoreExtractionFeatureCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 倒角...
+   Id 	= CATPrtFuncChamferHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateChamferCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Transform
+   Id 	= CATSpdTransformCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdTransformCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Intersect Feature
+   Id 	= CATSpdIntersectShapeCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdIntersectShapeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Cutout
+   Id 	= CATSpdCutoutCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdCutoutCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 拔模.
+   Id 	= CATPrtFuncDraftHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtDraftStandardCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Boss
+   Id 	= CATSpdBossCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdBossCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Pattern
+   Id 	= CATSpdPatternCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdPatternCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Extraction Properties
+   Id 	= CATSpdExtractionPropertiesCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdExtractionPropertiesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Functional Import Wizard
+   Id 	= CATSpdShellWizardHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdShellWizardCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 功能集
+   Id 	= InsertFunctionalSetCmdHId
+   DLL 	= CATMmFunctionalModelerUI
+   Cmd 	= CATInsertFuncSetCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Protected Feature
+   Id 	= CATSpdProtectedShapeCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdProtectedShapeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 弦圆角...
+   Id 	= CATPrtFuncFilletChordalHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateVarFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Added Feature
+   Id 	= CATSpdAddedShapeCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdAddedShapeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Pocket
+   Id 	= CATSpdPocketCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdPocketCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 三切线内圆角...
+   Id 	= CATPrtFuncFilletTritangentHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateTriFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Fitting
+   Id 	= CATSpdFittingCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdFittingFeatureCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Cavity Extraction
+   Id 	= CATSpdCavityExtractionCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdCavityExtractionFeatureCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Grill
+   Id 	= CATSpdGrillCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdGrillCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Flange
+   Id 	= CATSpdFlangeCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdFlangeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Volumes Extraction
+   Id 	= CATSpdVolumesExtractionCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdVolumesExtractionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 孔..
+   Id 	= CATPrtFuncHoleHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateHoleCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= CATTsiDumpHdr
+   Id 	= CATTsiDumpHdr
+   DLL 	= CATSpdFeatureDump
+   Cmd 	= CATTsiDumpCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 本地工作
+   Id 	= LocalGotoCmdHId
+   DLL 	= CATMmFunctionalModelerUI
+   Cmd 	= CATFmLocalGoToCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= Reinforcement
+   Id 	= CATSpdReinforcementCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdReinforcementCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Change Functional Behavior...
+   Id 	= CATSpdChangeBehaviorCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdChangeBehaviorCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Thickness...
+   Id 	= CATSpdThicknessLocalModifierCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdThicknessCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 实体功能集
+   Id 	= InsertFunctionalBodyCmdHId
+   DLL 	= CATMmFunctionalModelerUI
+   Cmd 	= CATInsertFuncBodyCmd
+   Arg 	= 
+   State Initial	= 1
+   State Current	= 1
+Title= 可变圆角...
+   Id 	= CATPrtFuncFilletVariableHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateVarFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Mirror
+   Id 	= CATSpdMirrorCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdMirrorCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Cutout or Push
+   Id 	= CATSpdCutoutPushCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdCutoutPushCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 可变角度拔摸...
+   Id 	= CATPrtFuncDraftVarHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtDraftVariableCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Shellable Feature
+   Id 	= CATSpdShellableShapeCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdShellableShapeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Snap Lock
+   Id 	= CATSpdSnapLockCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdSnapLockCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Draft Properties
+   Id 	= CATSpdDraftPropertiesCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdDraftPropertiesCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Behavior Extraction
+   Id 	= CATSpdBehaviorExtractionCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdBehaviorExtractionCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Rest
+   Id 	= CATSpdRestCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdRestCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 拔模反射线...
+   Id 	= CATPrtFuncDraftReflectHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtDraftReflectCreateCom
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Core Feature
+   Id 	= CATSpdCoreShapeCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdCoreShapeCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= 倒圆角..
+   Id 	= CATPrtFuncFilletEdgeHdr
+   DLL 	= CATPartDesignUI
+   Cmd 	= CATPrtCreateFilletCommand
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+Title= Boss or Pull
+   Id 	= CATSpdBossPullCommandHdr
+   DLL 	= CATSpdFunctionalUI
+   Cmd 	= CATSpdBossPullCmd
+   Arg 	= <an address>   State Initial	= 1
+   State Current	= 1
+
+2- Access List 
+
+ Name of the menubar=CATSpdMoldedPartMbr 
+   Title=插入 	 Name=CATAfrInsertMnu 
+      Starter Name=CATBody
+      Starter Name=InsertGS
+      Starter Name=InsertOGS
+      Starter Name=FMPInsertMainFuncSetSolid
+      Starter Name=FMPInsertFuncSet
+      Separator Name=CATSpdMoldedPartInsertSep
+      Title=标注 	 Name=AnnotationsContainer 
+         Title=文本 	 Name=TextContainer 
+            Starter Name=TPSCREATETEXTMENU
+            Starter Name=TPSCREATETEXTWITHOUTLEADERMENU
+            Starter Name=TPSCREATETEXTPARALLELONSCREENMENU
+         Title=标识注解 	 Name=FlagNoteContainer 
+            Starter Name=CATTPSCREATEFLAGNOTEMENU
+            Starter Name=TPSCREATEFLAGNOTEWITHOUTLEADERMENU
+         Starter Name=TPSCSOCommand
+      Title=草图编辑器 	 Name=PrtSketcher 
+         Starter Name=CATSketch
+         Starter Name=SketchPositioning
+      Title=约束 	 Name=CATPrtConstraints 
+         Starter Name=CATConstraint
+         Starter Name=CATConstraintWithPanel
+      Separator Name=CATSpdMoldedPartInsert2Sep
+      Title=Basic Features 	 Name=CATSpdBasicFeaturesMnu 
+         Starter Name=CATSpdAddedShapeCommandMnu
+         Starter Name=CATSpdProtectedShapeCommandMnu
+         Starter Name=CATSpdShellableShapeCommandMnu
+         Starter Name=CATSpdInternalShapeCommandMnu
+         Starter Name=CATSpdCavityShapeCommandMnu
+         Starter Name=CATSpdCoreShapeCommandMnu
+         Starter Name=CATSpdCutoutPushCommandMnu
+         Starter Name=CATSpdPushCommandMnu
+         Starter Name=CATSpdBossPullCommandTbr
+         Starter Name=CATSpdFittingCommandMnu
+      Title=Functional Features 	 Name=CATSpdFuncFeatureMnu 
+         Starter Name=CATSpdPocketCommandMnu
+         Starter Name=CATSpdRibCommandMnu
+         Starter Name=CATSpdReinforcementCommandMnu
+         Starter Name=CATPrtFuncHoleMenuSt
+      Title=Modifiers 	 Name=CATSpdModifiersMnu 
+         Starter Name=CATSpdCutFeatureCommandMnu
+         Starter Name=CATSpdRemovedShapeCommandMnu
+         Starter Name=CATSpdIntersectShapeCommandMnu
+         Separator Name=CATSpdIntersectInsertSep
+         Starter Name=CATSpdPatternCommandMnu
+         Starter Name=CATSpdTransformCommandMnu
+         Starter Name=CATSpdMirrorCommandMnu
+         Starter Name=CATSpdOffsetCommandMnu
+         Starter Name=CATSpdThicknessLocalModifierCommandMnu
+         Starter Name=CATThread
+      Title=Dressup 	 Name=CATSpdDressupMnu 
+         Starter Name=CATSpdFuncEdgeFilletMenuSt
+         Starter Name=CATPrtFuncFilletEdgeMenuSt
+         Starter Name=CATPrtFuncFaceFilletMenuSt
+         Starter Name=CATPrtFuncTriFilletMenuSt
+         Separator Name=CATSpdPartFilletInsertSep
+         Starter Name=CATFillet
+         Starter Name=CATFilletFace
+         Starter Name=CATFilletTritangent
+         Separator Name=CATSpdFuncFilletInsertSep
+         Starter Name=CATPrtFuncChamferMenuSt
+         Starter Name=CATChamfer
+         Separator Name=CATSpdChamferInsertSep
+         Starter Name=CATPrtFuncDraftMenuSt
+         Starter Name=CATPrtFuncDraftVarMenuSt
+         Starter Name=CATPrtFuncDraftReflectMenuSt
+         Starter Name=CATPcfDraftAngleStr
+         Starter Name=CATPcfDraftVariableStr
+         Starter Name=CATPcfDraftReflectStr
+      Title=Mold Design Properties 	 Name=CATSpdMoldDesignPropMnu 
+         Starter Name=CATSpdShellPropertiesCommandMnu
+         Starter Name=CATSpdDraftPropertiesCommandMnu
+      Title=Multi-Body Features 	 Name=CATSpdMultiBodyFeaturesMnu 
+         Starter Name=CATSpdSplitCommandMnu
+         Starter Name=CATSpdLipCommandMnu
+         Starter Name=CATSpdFlangeCommandMnu
+         Starter Name=CATSpdJoinCommandMnu
+         Starter Name=CATSpdSnapLockCommandMnu
+      Title=Functional Extraction 	 Name=CATSpdCoreCavityExtractionMnu 
+         Starter Name=CATSpdExtractionPropertiesCommandMnu
+         Starter Name=CATSpdCoreExtractionCommandMnu
+         Starter Name=CATSpdCavityExtractionCommandMnu
+         Starter Name=CATSpdVolumesExtractionCommandMnu
+         Starter Name=CATSpdBehaviorExtractionCommandMnu
+      Title=布尔操作 	 Name=CATPcfBooleanOperationSnu 
+         Starter Name=CATBoolAssemble
+         Separator Name=CATAfrEditNew001Sep
+         Starter Name=CATBoolAdd
+         Starter Name=CATBoolRemove
+         Starter Name=CATBoolIntersect
+      Title=分析 	 Name=AnalysisCommandsMenu 
+         Starter Name=CATDraftCurvature
+         Starter Name=CATGaussCurvature
+         Starter Name=PrtThreadAnalysis
+         Starter Name=PrtWallThicknessAnalysis
+      Separator Name=CATSpdMoldedPartInsert3Sep
+      Title=知识工程模板 	 Name=CATAfrPKTMenu 
+         Starter Name=PKTCreatePowerCopyHdr
+         Starter Name=PKTCreateUserFeatureHdr
+         Starter Name=PKTCreateDocTemplateHdr
+         Starter Name=PKTSaveInCatalogHdr
+      Starter Name=PKTInstanciateFromDocHdr
+      Starter Name=PKTInstanciateSelectHdr
+   Title=编辑 	 Name=CATAfrEditMnu 
+      Separator Name=CATNewSeparator003
+      Starter Name=CATUpdate
+      Separator Name=CATNewSeparator005
+   Title=工具 	 Name=CATAfrToolsMnu 
+      Separator Name=NewSeparator006
+      Starter Name=FMPLocalGoto
+      Separator Name=CATNewSeparator007
+      Starter Name=CATMMUIPublication
+
+ Title of the toolbar=选择 and is Name=CATPcfPrtSelectTlb
+   Starter Name=CATSelect
+
+ Title of the toolbar=约束 and is Name=CATPrtConstraints
+   Starter Name=CATConstraintWithPanel
+   Starter Name=CATConstraint
+
+ Title of the toolbar=标注 and is Name=AnnotationsContainer
+   Title of the Icon Box=文本 	 Name=TextContainer 
+      Starter Name=TPSCREATETEXTTOOLBAR
+      Starter Name=TPSCREATETEXTWITHOUTLEADERTOOLBAR
+      Starter Name=TPSCREATETEXTPARALLELONSCREENTOOLBAR
+   Title of the Icon Box=标识注解 	 Name=FlagNoteContainer 
+      Starter Name=CATTPSCREATEFLAGNOTETOOLBAR
+      Starter Name=TPSCREATEFLAGNOTEWITHOUTLEADERTOOLBAR
+   Starter Name=CATFTAVIEWCREATTIONSTR
+   Starter Name=TPSCSOCommand
+   Starter Name=GSM3DTag
+
+ Title of the toolbar=分析 and is Name=CATPcfPrtAnalysisTlb
+   Starter Name=CATDraftCurvature
+   Starter Name=CATGaussCurvature
+   Starter Name=PrtThreadAnalysis
+   Starter Name=PrtWallThicknessAnalysis
+
+ Title of the toolbar=插入 and is Name=CATPcfPrtInsertBodyTlb
+   Starter Name=CATBody
+   Title of the Icon Box=Geometrical Sets 	 Name=ContainerGS 
+      Starter Name=InsertGS
+      Starter Name=InsertOGS
+
+ Title of the toolbar=工具 and is Name=CATPcfPrtToolsTlb
+   Starter Name=CATUpdate
+   Starter Name=ManualUpdateMode
+   Starter Name=CATAxisSystem
+   Starter Name=CATConstraint
+   Title of the Icon Box=2D 可视化模式 	 Name=2DMode 
+      Starter Name=Pickablevisiblebackground
+      Starter Name=No3dbackground
+      Starter Name=Unpickablebackground
+      Starter Name=Lowlightbackground
+      Starter Name=Unpickablelowlightbackground
+      Starter Name=CATCmdSeparatorSurfacic1Separator
+      Starter Name=Lockcurrentviewpoint
+   Starter Name=CATDatumMode
+   Title of the Icon Box=视图模式 	 Name=ContainerOnlyCurrent 
+      Starter Name=OnlyCurrentBodyMode
+      Starter Name=OnlyCurrentSolidMode
+   Starter Name=PrtOpenCatalog
+
+ Title of the toolbar=动态切割 and is Name=PrtDynSectioning
+   Starter Name=PrtDynamicSectioning
+
+ Title of the toolbar=Basic Features and is Name=CATSpdBasicFeaturesTbr
+   Title of the Icon Box=Functional Sets 	 Name=CATSpdFuncSetTbr 
+      Starter Name=FMPInsertMainFuncSetSolid
+      Starter Name=FMPInsertFuncSet
+      Starter Name=CATSpdShellWizardMnu
+   Title of the Icon Box=Sketcher 	 Name=CATSpdSketcherTbr 
+      Starter Name=SketchPositioning
+      Starter Name=CATSketch
+   Title of the Icon Box=Reference Elements 	 Name=CATSpdReferenceElementsTbr 
+      Starter Name=CATPcfPoint_PartStr
+      Starter Name=CATPrtRectangles
+      Starter Name=CATPcfLine_PartStr
+   Starter Name=CATSpdAddedShapeCommandTbr
+   Starter Name=CATSpdProtectedShapeCommandTbr
+   Starter Name=CATSpdShellableShapeCommandTbr
+   Starter Name=CATSpdInternalShapeCommandTbr
+   Starter Name=CATSpdCavityShapeCommandTbr
+   Starter Name=CATSpdCoreShapeCommandTbr
+   Starter Name=CATSpdCutoutPushCommandTbr
+   Starter Name=CATSpdBossPullCommandTbr
+   Title of the Icon Box=Body Modifiers 	 Name=CATSpdPPFContainerTbr 
+      Starter Name=CATSpdFittingCommandTbr
+
+ Title of the toolbar=Dressup and is Name=CATSpdDressupModifiersTbr
+   Title of the Icon Box=CATSpdFeatureModifiersTbr 	 Name=CATSpdFeatureModifiersTbr 
+      Starter Name=CATSpdCutFeatureCommandTbr
+      Starter Name=CATSpdRemovedShapeCommandTbr
+      Starter Name=CATSpdIntersectShapeCommandTbr
+   Title of the Icon Box=Functional Fillets 	 Name=CATSpdFuncFilletTbr 
+      Starter Name=CATSpdFuncEdgeFilletTbx
+      Starter Name=CATPrtFuncFilletTbx
+      Starter Name=CATPrtFuncFaceFilletTbx
+      Starter Name=CATPrtFuncTriFilletTbx
+   Title of the Icon Box=Part Design Fillets 	 Name=CATPrtDesignFilletTbr 
+      Starter Name=CATPcfFilletEdgeStr
+      Starter Name=CATFilletFace
+      Starter Name=CATFilletTritangent
+   Title of the Icon Box=Chamfers 	 Name=CATPrtFuncChamferTbr 
+      Starter Name=CATChamfer
+      Starter Name=CATPrtFuncChamferTbx
+   Title of the Icon Box=Drafts 	 Name=CATPrtFuncDraftTbr 
+      Starter Name=CATPcfDraftStandardStr
+      Starter Name=CATPcfDraftVariableStr
+      Starter Name=CATPcfDraftReflectStr
+      Starter Name=CATPrtFuncDraftTbx
+      Starter Name=CATPrtFuncDraftVarTbx
+      Starter Name=CATPrtFuncDraftReflectTbx
+   Title of the Icon Box=Transformation Modifiers 	 Name=CATSpdTransformationModifiersTbr 
+      Starter Name=CATSpdPatternCommandTbr
+      Starter Name=CATSpdTransformCommandTbr
+      Starter Name=CATSpdMirrorCommandTbr
+      Starter Name=CATSpdOffsetCommandTbr
+      Starter Name=CATSpdThicknessLocalModifierTbr
+      Starter Name=CATThread
+
+ Title of the toolbar=Functional Features and is Name=CATSpdFuncFeatureTbr
+   Starter Name=CATSpdPocketCommandTbr
+   Starter Name=CATSpdRibCommandTbr
+   Starter Name=CATSpdRestCommandTbr
+   Starter Name=CATSpdGrillCommandTbr
+   Starter Name=CATSpdReinforcementCommandTbr
+   Starter Name=CATPrtFuncHoleTbx
+
+ Title of the toolbar=Functional Extraction and is Name=CATSpdCoreCavityExtractionTbr
+   Starter Name=CATSpdExtractionPropertiesCommandTbr
+   Starter Name=CATSpdCoreExtractionCommandTbr
+   Starter Name=CATSpdCavityExtractionCommandTbr
+   Starter Name=CATSpdVolumesExtractionCommandTbr
+   Starter Name=CATSpdBehaviorExtractionCommandTbr
+
+ Title of the toolbar=Multi-Body Features and is Name=CATSpdMultiBodyFeaturesTbr
+   Starter Name=CATSpdSplitCommandTbr
+   Starter Name=CATSpdLipCommandTbr
+   Starter Name=CATSpdFlangeCommandTbr
+   Starter Name=CATSpdJoinCommandTbr
+   Starter Name=CATSpdSnapLockCommandTbr
+
+ Title of the toolbar=Mold Design Properties and is Name=CATSpdMoldDesignPropTbr
+   Starter Name=CATSpdShellPropertiesCommandTbr
+   Starter Name=CATSpdDraftPropertiesCommandTbr
+
+ Title of the toolbar=Boolean Operations and is Name=CATSpdBooleanOperationsTbr
+   Starter Name=CATBoolAssemble
+Separator Name=CATSelectSeparator
+   Title of the Icon Box=Add Remove Intersect 	 Name=CATSpdAddRemoveIntersectTbr 
+      Starter Name=CATBoolAdd
+      Starter Name=CATBoolRemove
+      Starter Name=CATBoolIntersect
+
+ Title of the toolbar=产品知识工程模板工具栏 and is Name=CATAfrPKTToolbar
+   Title of the Icon Box=产品知识工程模板创建工具栏 	 Name=CATAfrPKTCreateToolbox 
+      Starter Name=PKTCreatePowerCopyHdr
+      Starter Name=PKTCreateUserFeatureHdr
+      Starter Name=PKTCreateDocTemplateHdr
+      Starter Name=PKTSaveInCatalogHdr
+   Title of the Icon Box=产品知识工程模板实例化工具栏 	 Name=CATAfrPKTInstantiateToolbox 
+      Starter Name=PKTInstanciateFromDocHdr
+      Starter Name=PKTInstanciateSelectHdr

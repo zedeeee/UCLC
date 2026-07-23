@@ -63,10 +63,10 @@ run_spy_cb(*)
         ahk_dir "\..\WindowSpy.ahk",
         ahk_dir "\WindowSpy.ahk"
     ]
-    
+
     try spy_paths.Push(RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey", "InstallDir") "\UX\WindowSpy.ahk")
     try spy_paths.Push(RegRead("HKEY_CURRENT_USER\SOFTWARE\AutoHotkey", "InstallDir") "\UX\WindowSpy.ahk")
-    
+
     for path in spy_paths {
         if FileExist(path) {
             Run('"' path '"')
@@ -174,19 +174,19 @@ ShowSettingsGUI(*) => show_settings_gui()
 safe_atomic_write(filepath, content) {
     tmp_path := filepath . ".tmp"
     bak_path := filepath . ".bak"
-    
+
     if FileExist(tmp_path)
         FileDelete(tmp_path)
-    
+
     f := FileOpen(tmp_path, "w", "UTF-8")
     f.Write(content)
     f.Close()
-    
+
     has_orig := FileExist(filepath)
     if (has_orig) {
         FileCopy(filepath, bak_path, 1)
     }
-    
+
     try {
         FileMove(tmp_path, filepath, 1)
         return true
@@ -270,13 +270,13 @@ class SettingsModel {
         } catch {
             return "无法解析数据以生成变更列表。"
         }
-        
+
         diffs := []
         for wb, cmds in curr_obj {
             wb_name := AppSettings.GetWbName(wb)
             wb_diffs := []
             orig_cmds := orig_obj.Has(wb) ? orig_obj[wb] : []
-            
+
             for i, cmd in cmds {
                 if (i > orig_cmds.Length) {
                     title := cmd.Has("desc") && cmd["desc"] != "" ? cmd["desc"] : cmd["command"]
@@ -301,7 +301,7 @@ class SettingsModel {
                 diffs.Push(wb_diffs*)
             }
         }
-        
+
         for wb, cmds in orig_obj {
             if !curr_obj.Has(wb) {
                 wb_name := AppSettings.GetWbName(wb)
@@ -309,10 +309,10 @@ class SettingsModel {
                 diffs.Push("  - 整个工作台被移除")
             }
         }
-        
+
         if (diffs.Length == 0)
             return "检测到深层属性变更，无命令级差异。"
-            
+
         summary := ""
         count := 0
         for item in diffs {
@@ -405,7 +405,7 @@ class SettingsModel {
         }
 
         local_array := AppSettings.commands_obj.Has(target_wb) ? AppSettings.commands_obj[target_wb] : []
-        
+
         local_by_id := Map()
         local_by_title := Map()
         for cmd in local_array {
@@ -443,7 +443,7 @@ class SettingsModel {
                 import_items.Push({ title: desc, local_id: id, action: "D", imported_id: "" })
             }
         }
-        
+
         this.import_items := import_items
         return import_items
     }
@@ -453,80 +453,98 @@ class SettingsModel {
 class SettingsView extends Gui {
     __New() {
         super.__New("-Resize -MaximizeBox", "UCLC 配置管理")
-        
-        this.tabs := this.Add("Tab3", "x10 y10 w780 h580", ["命令映射", "通用设置"])
 
-        ; =============== 第一页: 命令映射 ===============
+        this.tabs := this.Add("Tab3", "x10 y10 w530 h410", ["命令配置", "系统设置"])
+
+        ; =============== 第一页: 命令配置 ===============
         this.tabs.UseTab(1)
-        this.Add("Text", "x30 y40 w200", "命令列表树 (工作台 -> 功能):")
-        this.Add("Text", "x30 y65 w45", "工作台:")
 
-        this.ddl_workbench := this.Add("DropDownList", "x75 y61 w205 Choose1", ["全部工作台"])
-        
-        this.Add("Text", "x30 y90 w40", "搜索:")
-        this.edit_search := this.Add("Edit", "x70 y86 w210")
-        
-        this.tv_alias := this.Add("TreeView", "x30 y115 w250 h430")
-        
-        this.Btn_OpenCmdLib := this.Add("Button", "x30 y550 w250 h26", "导入命令")
+        ; ====================
+        ; 左侧：命令树与导入
+        ; ====================
+        this.tv_alias := this.Add("TreeView", "x20 y45 w190 h330")
+        this.Btn_OpenCmdLib := this.Add("Button", "x20 y380 w190 h28", "导入命令ID")
 
-        this.Add("GroupBox", "x300 y60 w460 h490", "详细属性与动态编辑")
+        ; ====================
+        ; 右侧上：全局检索区
+        ; ====================
+        this.Add("Text", "x235 y45 w60", "工作台:")
+        this.ddl_workbench := this.Add("DropDownList", "x295 y40 w195 Choose1", ["全部工作台"])
+
+        this.Add("Text", "x235 y75 w60", "搜　索:")
+        this.edit_search := this.Add("Edit", "x295 y72 w195")
+
+        ; 分割线
+        this.Add("Text", "x230 y100 w270 h1 0x10")
+
+        ; ====================
+        ; 右侧下：详情编辑区
+        ; ====================
+        this.Add("Text", "x230 y115 w270 c0055AA", "■ 命令详细属性")
 
         this.tabs.UseTab(1)
-        this.Txt_Cat := this.Add("Text", "x320 y80 w80 Hidden", "所属工作台:")
-        this.Txt_CatVal := this.Add("Text", "x400 y80 w340 cBlue Hidden", "")
-        this.Txt_Desc := this.Add("Text", "x320 y110 w80 Hidden", "功能描述:")
-        this.edit_desc := this.Add("Edit", "x400 y106 w340 Hidden ReadOnly", "")
-        this.Txt_Cmd := this.Add("Text", "x320 y140 w80 Hidden", "执行命令:")
-        this.Edit_Cmd := this.Add("Edit", "x400 y136 w340 Hidden ReadOnly", "")
-        this.Txt_Alias := this.Add("Text", "x320 y180 w80 Hidden", "用户别名:")
+        this.Txt_Cat := this.Add("Text", "x235 y141 w60 Hidden", "所属模块:")
+        this.Txt_CatVal := this.Add("Text", "x295 y141 w195 cBlue Hidden", "")
+
+        this.Txt_Desc := this.Add("Text", "x235 y171 w60 Hidden", "功能描述:")
+        this.edit_desc := this.Add("Edit", "x295 y168 w195 Hidden ReadOnly", "")
+
+        this.Txt_Cmd := this.Add("Text", "x235 y201 w60 Hidden", "执行指令:")
+        this.Edit_Cmd := this.Add("Edit", "x295 y198 w195 Hidden ReadOnly", "")
+
+        this.Txt_Alias := this.Add("Text", "x235 y231 w60 Hidden", "触发别名:")
 
         this.alias_pool := []
         loop 10 {
-            e := this.Add("Edit", "x400 y0 w280 Hidden Uppercase", "")
-            btn_add := this.Add("Button", "x685 y0 w25 h24 Hidden", "➕")
-            btn_del := this.Add("Button", "x715 y0 w25 h24 Hidden", "➖")
+            e := this.Add("Edit", "x295 y0 w135 Hidden Uppercase", "")
+            btn_add := this.Add("Button", "x440 y0 w24 h24 Hidden", "➕")
+            btn_del := this.Add("Button", "x466 y0 w24 h24 Hidden", "➖")
             this.alias_pool.Push({ e: e, add: btn_add, del: btn_del })
         }
 
-        this.Txt_Hotkey := this.Add("Text", "x320 y0 w80 Hidden", "快捷键:")
+        this.Txt_Hotkey := this.Add("Text", "x235 y0 w60 Hidden", "绑定热键:")
         this.hotkey_pool := []
         loop 10 {
-            e := this.Add("Edit", "x400 y0 w280 Hidden", "")
+            e := this.Add("Edit", "x295 y0 w135 Hidden", "")
             SendMessage(0x1501, 1, StrPtr("直接按键录入"), e.Hwnd)
-            btn_add := this.Add("Button", "x685 y0 w25 h24 Hidden", "➕")
-            btn_del := this.Add("Button", "x715 y0 w25 h24 Hidden", "➖")
+            btn_add := this.Add("Button", "x440 y0 w24 h24 Hidden", "➕")
+            btn_del := this.Add("Button", "x466 y0 w24 h24 Hidden", "➖")
             this.hotkey_pool.Push({ e: e, add: btn_add, del: btn_del })
         }
 
-        this.Btn_Revert := this.Add("Button", "x400 y0 w120 h35 Hidden Disabled", "撤销当前修改")
-        this.btn_save := this.Add("Button", "x620 y550 w140 h26 Disabled", "应用修改")
+        this.Btn_Revert := this.Add("Button", "x250 y285 w105 h28 Hidden Disabled", "撤销修改")
+        this.btn_save := this.Add("Button", "x385 y285 w105 h28 Disabled", "保存修改")
         this.SB := this.Add("StatusBar")
+        version_str := AppSettings.Version
+        ; 动态计算分段位置（收紧字宽：英文约 6.5px，加上 15px 边距）
+        part1_width := 550 - (StrLen(RegExReplace(version_str, "[^\x00-\xff]", "xx")) * 6.5 + 15)
+        this.SB.SetParts(part1_width)
+        this.SB.SetText(version_str, 2)
 
-        ; =============== 第二页: 通用设置 ===============
+        ; =============== 第二页: 系统设置 ===============
         this.tabs.UseTab(2)
-        this.Add("GroupBox", "x30 y45 w740 h90", "Everything 快速启动集成")
-        this.Chk_Everything := this.Add("Checkbox", "x50 y66", "启用“双击右Ctrl”呼出 Everything")
-        this.Add("Text", "x50 y97 w80", "主程序路径:")
-        this.Edit_EverythingPath := this.Add("Edit", "x130 y93 w450 h24", "")
-        this.Btn_BrowseEverything := this.Add("Button", "x600 y92 w80 h26", "浏览...")
+        this.Add("GroupBox", "x20 y40 w510 h90", "Everything 快速呼出")
+        this.Chk_Everything := this.Add("Checkbox", "x35 y61", "启用双击右 Ctrl 唤起 Everything")
+        this.Add("Text", "x35 y92 w70", "Program 路径:")
+        this.Edit_EverythingPath := this.Add("Edit", "x105 y88 w345 h24", "")
+        this.Btn_BrowseEverything := this.Add("Button", "x455 y87 w65 h26", "浏览...")
 
-        this.Add("GroupBox", "x30 y145 w740 h195", "")
-        this.Chk_AutoIME := this.Add("Checkbox", "x45 y145", "启用输入法自动切换")
+        this.Add("GroupBox", "x20 y135 w510 h185", "输入法自动切换")
+        this.Chk_AutoIME := this.Add("Checkbox", "x30 y135", "激活特定窗口时自动切为英文")
 
-        this.lv_autoime := this.Add("ListView", "x48 y172 w530 h130 Grid -Multi", ["软件名称", "进程名称 (exe)"])
-        this.lv_autoime.ModifyCol(1, 230)
-        this.lv_autoime.ModifyCol(2, 280)
+        this.lv_autoime := this.Add("ListView", "x30 y162 w355 h120 Grid -Multi", ["软件名称", "进程名称 (exe)"])
+        this.lv_autoime.ModifyCol(1, 150)
+        this.lv_autoime.ModifyCol(2, 200)
 
-        this.btn_add_autoime := this.Add("Button", "x595 y172 w150 h26", "➕ 添加规则")
-        this.btn_del_autoime := this.Add("Button", "x595 y206 w150 h26", "➖ 删除规则")
-        this.btn_edit_autoime := this.Add("Button", "x595 y240 w150 h26", "✏️ 修改规则")
-        this.link_ime_guide := this.Add("Link", "x48 y312 w680 cGray", "说明：当检测到上述列表中的进程窗口激活时，脚本会自动强制切换为英文（<a id=`"guide`">前提条件</a>）。")
+        this.btn_add_autoime := this.Add("Button", "x395 y162 w120 h26", "➕ 添加规则")
+        this.btn_del_autoime := this.Add("Button", "x395 y196 w120 h26", "➖ 删除规则")
+        this.btn_edit_autoime := this.Add("Button", "x395 y230 w120 h26", "✏️ 修改规则")
+        this.link_ime_guide := this.Add("Link", "x30 y290 w490 cGray", "说明：当匹配的主程序窗口激活时，系统将自动切换至英文输入法（<a id=`"guide`">前提条件</a>）。")
 
-        this.Add("GroupBox", "x30 y350 w740 h60", "调试与日志设置")
-        this.Chk_Debug := this.Add("Checkbox", "x50 y372", "开启 DEBUG 调试日志输出")
+        this.Add("GroupBox", "x20 y330 w510 h60", "日志与调试")
+        this.Chk_Debug := this.Add("Checkbox", "x35 y352", "开启详细 Debug 调试日志")
 
-        this.btn_saveGen := this.Add("Button", "x620 y425 w150 h30 Default", "保存通用设置")
+        this.btn_saveGen := this.Add("Button", "x400 y410 w130 h30 Default", "保存系统设置")
 
         ; =============== (原第三页工作台命令库已重构成弹窗) ===============
     }
@@ -569,7 +587,7 @@ class SettingsView extends Gui {
         this.Edit_Cmd.Opt("-Hidden")
         this.Txt_Alias.Opt("-Hidden")
 
-        cur_y := 180
+        cur_y := 228
         aliases := (cmd.Has("aliases") && cmd["aliases"].Length > 0) ? cmd["aliases"] : [""]
         alias_edits := []
 
@@ -578,9 +596,9 @@ class SettingsView extends Gui {
                 break
             p := this.alias_pool[idx]
             p.e.Value := al
-            p.e.Move(, cur_y - 4)
-            p.add.Move(, cur_y - 5)
-            p.del.Move(, cur_y - 5)
+            p.e.Move(, cur_y)
+            p.add.Move(, cur_y)
+            p.del.Move(, cur_y)
 
             p.e.Opt("-Hidden")
             p.add.Opt("-Hidden")
@@ -589,11 +607,11 @@ class SettingsView extends Gui {
             p.add.Opt((Trim(al) != "") ? "-Disabled" : "+Disabled")
             p.del.Opt((aliases.Length > 1) ? "-Disabled" : "+Disabled")
             alias_edits.Push(p.e)
-            cur_y += 30
+            cur_y += 28
         }
 
-        cur_y += 10
-        this.Txt_Hotkey.Move(, cur_y)
+        cur_y += 6
+        this.Txt_Hotkey.Move(, cur_y + 3)
         this.Txt_Hotkey.Opt("-Hidden")
 
         hotkeys := (cmd.Has("hotkeys") && cmd["hotkeys"].Length > 0) ? cmd["hotkeys"] : [""]
@@ -606,9 +624,9 @@ class SettingsView extends Gui {
             try p.e.Value := format_hotkey_for_display(hk)
             catch
                 p.e.Value := ""
-            p.e.Move(, cur_y - 4)
-            p.add.Move(, cur_y - 5)
-            p.del.Move(, cur_y - 5)
+            p.e.Move(, cur_y)
+            p.add.Move(, cur_y)
+            p.del.Move(, cur_y)
 
             p.e.Opt("-Hidden")
             p.add.Opt("-Hidden")
@@ -617,11 +635,12 @@ class SettingsView extends Gui {
             p.add.Opt((Trim(hk) != "") ? "-Disabled" : "+Disabled")
             p.del.Opt((hotkeys.Length > 1) ? "-Disabled" : "+Disabled")
             hotkey_edits.Push(p.e)
-            cur_y += 30
+            cur_y += 28
         }
 
-        cur_y += 30
-        this.Btn_Revert.Move(, cur_y)
+        cur_y += 12
+        this.Btn_Revert.Move(250, cur_y)
+        this.btn_save.Move(385, cur_y)
         this.Btn_Revert.Opt("-Hidden")
 
         return { alias_edits: alias_edits, hotkey_edits: hotkey_edits }
@@ -634,7 +653,7 @@ class SettingsController {
         this.model := model
         this.view := view
         this.BindEvents()
-        
+
         this.tv_map := Map()
         this.alias_edits := []
         this.hotkey_edits := []
@@ -652,7 +671,7 @@ class SettingsController {
         this.load_command_tree()
         this.OnLButtonDownBound := ObjBindMethod(this, "on_lbutton_down")
         OnMessage(0x0201, this.OnLButtonDownBound)
-        this.view.Show("w800 h600")
+        this.view.Show("w550 h440")
     }
 
     BindEvents() {
@@ -713,7 +732,7 @@ class SettingsController {
         }
         this.view.lv_autoime.Opt("+Redraw")
         this.OnToggleAutoIME()
-        
+
         sort_str := ""
         for k, v in AppSettings.commands_obj {
             if (k != "_comment") {
@@ -736,11 +755,11 @@ class SettingsController {
             wb_list3.Push(parts[1])
             this.import_wb_ids.Push(parts[2])
         }
-        
+
         this.view.ddl_workbench.Delete()
         this.view.ddl_workbench.Add(wb_list)
         this.view.ddl_workbench.Choose(1)
-        
+
         if (this.view.HasProp("ddl_import_wb") && this.view.ddl_import_wb) {
             this.view.ddl_import_wb.Delete()
             this.view.ddl_import_wb.Add(wb_list3)
@@ -750,7 +769,7 @@ class SettingsController {
 
     OnClose(*) {
         if (this.HasProp("model") && this.model && this.model.original_json_str != "") {
-            this.save_inputs_to_current_cmd()
+            this.SaveInputsToCurrentCmd()
             if (this.model.check_dirty(AppSettings.commands_obj)) {
                 summary := this.model.get_unsaved_changes_summary(AppSettings.commands_obj)
                 this.view.Opt("+OwnDialogs")
@@ -786,7 +805,7 @@ class SettingsController {
         if this.HasProp("view") && this.view {
             this.view.Destroy()
         }
-        
+
         this.view := ""
         this.model := ""
         this.alias_edits := ""
@@ -888,7 +907,7 @@ class SettingsController {
         this.view.SB.SetText("")
     }
 
-    save_inputs_to_current_cmd() {
+    SaveInputsToCurrentCmd() {
         itemId := this.view.tv_alias.GetSelection()
         if (!itemId || !this.tv_map.Has(itemId) || this.tv_map[itemId].type != "Item") {
             return
@@ -913,8 +932,8 @@ class SettingsController {
         }
     }
 
-    on_add_alias(idx, *) {
-        this.save_inputs_to_current_cmd()
+    OnAddAlias(idx, *) {
+        this.SaveInputsToCurrentCmd()
         itemId := this.view.tv_alias.GetSelection()
         cmd := this.tv_map[itemId].cmd
         if (!cmd.Has("aliases")) {
@@ -924,8 +943,8 @@ class SettingsController {
         this.on_command_tree_select(this.view.tv_alias, itemId)
     }
 
-    on_del_alias(idx, *) {
-        this.save_inputs_to_current_cmd()
+    OnDelAlias(idx, *) {
+        this.SaveInputsToCurrentCmd()
         itemId := this.view.tv_alias.GetSelection()
         cmd := this.tv_map[itemId].cmd
         if (cmd.Has("aliases") && cmd["aliases"].Length >= idx)
@@ -933,8 +952,8 @@ class SettingsController {
         this.on_command_tree_select(this.view.tv_alias, itemId)
     }
 
-    on_add_hotkey(idx, *) {
-        this.save_inputs_to_current_cmd()
+    OnAddHotkey(idx, *) {
+        this.SaveInputsToCurrentCmd()
         itemId := this.view.tv_alias.GetSelection()
         cmd := this.tv_map[itemId].cmd
         if (!cmd.Has("hotkeys")) {
@@ -944,8 +963,8 @@ class SettingsController {
         this.on_command_tree_select(this.view.tv_alias, itemId)
     }
 
-    on_del_hotkey(idx, *) {
-        this.save_inputs_to_current_cmd()
+    OnDelHotkey(idx, *) {
+        this.SaveInputsToCurrentCmd()
         itemId := this.view.tv_alias.GetSelection()
         cmd := this.tv_map[itemId].cmd
         if (cmd.Has("hotkeys") && cmd["hotkeys"].Length >= idx)
@@ -979,7 +998,7 @@ class SettingsController {
     CheckGlobalDirty() {
         is_dirty := this.model.check_dirty(AppSettings.commands_obj)
         this.view.btn_save.Opt(is_dirty ? "-Disabled" : "+Disabled")
-        
+
         for id, info in this.tv_map {
             if (info.type == "Item") {
                 orig_cmd := ""
@@ -1016,21 +1035,21 @@ class SettingsController {
     }
 
     OnDetailChange(*) {
-        this.save_inputs_to_current_cmd()
+        this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
     }
 
     OnAliasChange(idx, GuiCtrlObj, *) {
         p := this.view.alias_pool[idx]
         p.add.Opt((Trim(GuiCtrlObj.Value) != "") ? "-Disabled" : "+Disabled")
-        this.save_inputs_to_current_cmd()
+        this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
     }
 
     OnHotkeyChange(idx, GuiCtrlObj, *) {
         p := this.view.hotkey_pool[idx]
         p.add.Opt((Trim(GuiCtrlObj.Value) != "") ? "-Disabled" : "+Disabled")
-        this.save_inputs_to_current_cmd()
+        this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
     }
 
@@ -1137,7 +1156,7 @@ class SettingsController {
     }
 
     SaveCurrentItem(*) {
-        this.save_inputs_to_current_cmd()
+        this.SaveInputsToCurrentCmd()
         itemId := this.view.tv_alias.GetSelection()
         saved_cmd_id := ""
         saved_cat := ""
@@ -1203,8 +1222,8 @@ class SettingsController {
 
     OnShowImeGuide(*) {
         msg := "【自动切换英文输入法前提条件】`n`n"
-             . "1. 必须在 Windows 系统语言设置中添加并启用英文输入法（例如：英语(美国) - 美式键盘）。`n`n"
-             . "提示：如果系统中仅存在单语言中文输入法，无法通过 Shift 键自动切换中英文状态。"
+            . "1. 必须在 Windows 系统语言设置中添加并启用英文输入法（例如：英语(美国) - 美式键盘）。`n`n"
+            . "提示：如果系统中仅存在单语言中文输入法，无法通过 Shift 键自动切换中英文状态。"
         MsgBox(msg, "输入法配置说明", "Iconi")
     }
 
@@ -1275,7 +1294,7 @@ class SettingsController {
             }
 
             KeyWait("LButton")
-            MouseGetPos ,, &target_hwnd
+            MouseGetPos , , &target_hwnd
             if (target_hwnd) {
                 try {
                     exe_name := WinGetProcessName(target_hwnd)
@@ -1519,7 +1538,7 @@ class SettingsController {
                 return
             }
         }
-        
+
         this.model.calculate_import_diff(target_wb)
         this.render_import_lv()
     }
@@ -1544,7 +1563,7 @@ class SettingsController {
             }
         }
         c_all := c_new + c_upd + c_ovr + c_sam + c_del + c_ign
-        
+
         this.view.chk_filter_all.Text := "全部`n(" c_all ")"
         this.view.chk_filter_new.Text := "新增`n(" c_new ")"
         this.view.chk_filter_update.Text := "更新标题`n(" c_upd ")"
@@ -1567,7 +1586,7 @@ class SettingsController {
         for item in items {
             a := item.action
             if ((a == "+" && showNew) || (a == "T" && showUpdate) || (a == "C" && showOverwrite)
-            || (a == "=" && showSame) || (a == "D" && showDelete) || (a == "i" && showIgnore)) {
+                || (a == "=" && showSame) || (a == "D" && showDelete) || (a == "i" && showIgnore)) {
                 this.view.lv_import.Add("", item.title, item.local_id, item.imported_id, a)
             }
         }
@@ -1624,7 +1643,7 @@ class SettingsController {
     }
 
     on_import_list_view_click(*) {
-        
+
     }
     on_import_list_view_item_select(*) {
         sel_count := this.view.lv_import.GetCount("S")
@@ -1633,10 +1652,10 @@ class SettingsController {
         this.view.txt_sel_count.Value := "已选中: " sel_count " 项"
     }
     on_import_list_view_double_click(*) {
-        
+
     }
     on_import_list_view_context_menu(*) {
-        
+
     }
 
     on_mark_items_to_delete(*) {
@@ -1693,7 +1712,7 @@ class SettingsController {
     }
 
     OnAddTargetWorkbench(*) {
-        
+
     }
 
     OnReadExportedTxt(*) {
@@ -1797,7 +1816,7 @@ class SettingsController {
         }
 
         dlg := Gui("+Resize +Owner" this.view.hwnd " +MinSize350x300", "从指定工作台添加命令 - 目标: " target_wb)
-        
+
         on_dlg_size(GuiObj, MinMax, Width, Height) {
             if (MinMax == -1)
                 return
@@ -1944,8 +1963,8 @@ class SettingsController {
             }
         }
 
-        this.dlg_btn_add.OnEvent("Click", do_add)
-        this.dlg_btn_cancel.OnEvent("Click", (*) => dlg.Destroy())
+        dlg_btn_add.OnEvent("Click", do_add)
+        dlg_btn_cancel.OnEvent("Click", (*) => dlg.Destroy())
         load_dlg_cmds()
         dlg.Show("w450 h500")
     }
@@ -2076,4 +2095,3 @@ class SettingsController {
         this.on_reset_import_view()
     }
 }
-

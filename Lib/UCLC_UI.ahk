@@ -1,4 +1,4 @@
-﻿#Requires AutoHotkey v2.0
+#Requires AutoHotkey v2.0
 
 #Include "UCLC_Core.ahk"
 #Include "UCLC_System.ahk"
@@ -52,7 +52,7 @@ Nothing_cb(*) {
 
 NoAction_cb(*) {
     ; Do Nothing
-    k_ToolTip("功能未开放", 2000)
+    Logger.tooltip("功能未开放", 2000)
 }
 
 run_spy_cb(*)
@@ -666,7 +666,7 @@ class SettingsController {
     }
 
     is_valid() {
-        try return WinExist(this.view.Hwnd) != 0
+        try return this.HasProp("view") && this.view && WinExist(this.view.Hwnd) != 0
         catch
             return false
     }
@@ -683,7 +683,8 @@ class SettingsController {
     BindEvents() {
         this.view.OnEvent("Close", ObjBindMethod(this, "OnClose"))
         this.view.OnEvent("Escape", ObjBindMethod(this, "OnClose"))
-        OnMessage(0x0200, ObjBindMethod(this, "on_mouse_move"))
+        this.on_mouse_move_bound := ObjBindMethod(this, "on_mouse_move")
+        OnMessage(0x0200, this.on_mouse_move_bound)
 
         this.view.ddl_workbench.OnEvent("Change", ObjBindMethod(this, "OnWorkbenchFilter"))
         this.view.edit_search.OnEvent("Change", ObjBindMethod(this, "OnSearchFilter"))
@@ -771,7 +772,7 @@ class SettingsController {
     }
 
     OnClose(*) {
-        if (this.model.original_json_str != "") {
+        if (this.HasProp("model") && this.model && this.model.original_json_str != "") {
             this.save_inputs_to_current_cmd()
             if (this.model.check_dirty(AppSettings.commands_obj)) {
                 summary := this.model.get_unsaved_changes_summary(AppSettings.commands_obj)
@@ -784,10 +785,36 @@ class SettingsController {
                 }
             }
         }
-        if this.HasProp("OnLButtonDownBound") {
+        this._release_all()
+    }
+
+    _release_all() {
+        ; --- 1. 注销全局消息钩子 ---
+        if this.HasProp("OnLButtonDownBound") && this.OnLButtonDownBound {
             OnMessage(0x0201, this.OnLButtonDownBound, 0)
+            this.OnLButtonDownBound := ""
         }
-        this.view.Destroy()
+        if this.HasProp("on_mouse_move_bound") && this.on_mouse_move_bound {
+            OnMessage(0x0200, this.on_mouse_move_bound, 0)
+            this.on_mouse_move_bound := ""
+        }
+
+        ; --- 2. 停止 InputHook ---
+        if this.HasProp("ih") && this.ih {
+            this.ih.Stop()
+            this.ih := ""
+        }
+
+        ; --- 3. 销毁物理窗口 & 断开对象引用 ---
+        if this.HasProp("view") && this.view {
+            this.view.Destroy()
+        }
+        
+        this.view := ""
+        this.model := ""
+        this.alias_edits := ""
+        this.hotkey_edits := ""
+        this.tv_map := ""
     }
 
     ClearRightPane() {
@@ -1530,12 +1557,12 @@ class SettingsController {
             if (MinMax == -1)
                 return
             try {
-                this.dlg_ddl_src.Move(, , Width - 120)
-                this.dlg_edit_filter.Move(, , Width - 120)
-                this.dlg_lv.Move(, , Width - 40, Height - 140)
+                dlg_ddl_src.Move(, , Width - 120)
+                dlg_edit_filter.Move(, , Width - 120)
+                dlg_lv.Move(, , Width - 40, Height - 140)
                 btn_w := (Width - 60) // 2
-                this.dlg_btn_add.Move(20, Height - 45, btn_w)
-                this.dlg_btn_cancel.Move(20 + btn_w + 20, Height - 45, btn_w)
+                dlg_btn_add.Move(20, Height - 45, btn_w)
+                dlg_btn_cancel.Move(20 + btn_w + 20, Height - 45, btn_w)
             }
         }
         dlg.OnEvent("Size", on_dlg_size)
@@ -1555,22 +1582,22 @@ class SettingsController {
             return
         }
 
-        this.dlg_ddl_src := dlg.Add("DropDownList", "x100 y16 w330 Choose1", src_wbs)
+        dlg_ddl_src := dlg.Add("DropDownList", "x100 y16 w330 Choose1", src_wbs)
         dlg.Add("Text", "x20 y52 w80 h20", "快速过滤:")
-        this.dlg_edit_filter := dlg.Add("Edit", "x100 y48 w330 h22")
-        this.dlg_lv := dlg.Add("ListView", "x20 y85 w410 h360", ["功能描述", "命令 ID"])
-        this.dlg_lv.ModifyCol(1, 140)
-        this.dlg_lv.ModifyCol(2, 200)
-        this.dlg_btn_add := dlg.Add("Button", "x20 y455 w195 h30 Default", "添加")
-        this.dlg_btn_cancel := dlg.Add("Button", "x235 y455 w195 h30", "取消")
+        dlg_edit_filter := dlg.Add("Edit", "x100 y48 w330 h22")
+        dlg_lv := dlg.Add("ListView", "x20 y85 w410 h360", ["功能描述", "命令 ID"])
+        dlg_lv.ModifyCol(1, 140)
+        dlg_lv.ModifyCol(2, 200)
+        dlg_btn_add := dlg.Add("Button", "x20 y455 w195 h30 Default", "添加")
+        dlg_btn_cancel := dlg.Add("Button", "x235 y455 w195 h30", "取消")
 
         load_dlg_cmds(*) {
-            this.dlg_lv.Delete()
-            src_wb := this.dlg_ddl_src.Text
+            dlg_lv.Delete()
+            src_wb := dlg_ddl_src.Text
             if (src_wb == "")
                 return
 
-            filter := Trim(this.dlg_edit_filter.Value)
+            filter := Trim(dlg_edit_filter.Value)
             target_cmds := Map()
             if AppSettings.commands_obj.Has(target_wb) {
                 for cmd in AppSettings.commands_obj[target_wb] {
@@ -1580,7 +1607,7 @@ class SettingsController {
             }
 
             if AppSettings.commands_obj.Has(src_wb) {
-                this.dlg_lv.Opt("-Redraw")
+                dlg_lv.Opt("-Redraw")
                 for cmd in AppSettings.commands_obj[src_wb] {
                     desc := cmd.Has("desc") ? cmd["desc"] : ""
                     command := cmd.Has("command") ? cmd["command"] : ""
@@ -1588,19 +1615,19 @@ class SettingsController {
                         continue
                     }
                     is_dup := target_cmds.Has(command)
-                    this.dlg_lv.Add("", is_dup ? desc " (已存在)" : desc, command)
+                    dlg_lv.Add("", is_dup ? desc " (已存在)" : desc, command)
                 }
-                this.dlg_lv.Opt("+Redraw")
+                dlg_lv.Opt("+Redraw")
             }
         }
 
-        this.dlg_ddl_src.OnEvent("Change", load_dlg_cmds)
-        this.dlg_edit_filter.OnEvent("Change", load_dlg_cmds)
+        dlg_ddl_src.OnEvent("Change", load_dlg_cmds)
+        dlg_edit_filter.OnEvent("Change", load_dlg_cmds)
 
         do_add(*) {
             selected_indices := []
             row := 0
-            while (row := this.dlg_lv.GetNext(row)) {
+            while (row := dlg_lv.GetNext(row)) {
                 selected_indices.Push(row)
             }
 
@@ -1619,13 +1646,13 @@ class SettingsController {
                     existing_cmds[c["command"]] := 1
             }
 
-            src_wb := this.dlg_ddl_src.Text
+            src_wb := dlg_ddl_src.Text
             src_cmd_list := AppSettings.commands_obj[src_wb]
             added_count := 0
             skipped_count := 0
 
             for idx in selected_indices {
-                cmd_id := this.dlg_lv.GetText(idx, 2)
+                cmd_id := dlg_lv.GetText(idx, 2)
                 src_cmd := ""
                 for c in src_cmd_list {
                     if (c.Has("command") && c["command"] == cmd_id) {

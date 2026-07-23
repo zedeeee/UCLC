@@ -1,8 +1,6 @@
 ﻿#Requires AutoHotKey v2.0
 #SingleInstance Force
-; #MaxThreads 20 ; 已废弃异步轮询，不再需要高并发线程
 SetTitleMatchMode 2
-
 
 ; === UCLC 核心基础库 ===
 #Include Lib\UCLC_System.ahk
@@ -10,105 +8,107 @@ SetTitleMatchMode 2
 #Include Lib\UCLC_UI.ahk
 ; === UCLC 核心基础库 ===
 
-AppSettings.Init()
-add_coustom_tray_menu()
+class UCLCApp {
+    __New() {
+        this.volume_control := VolumeController()
+    }
 
-; 检查 USER-CONFIG文件
-check_user_config()
+    Run() {
+        AppSettings.Init()
+        add_coustom_tray_menu()
 
-; 创建 计算器 组
-GroupAdd "group_calc", "计算器"
-GroupAdd "group_calc", "Calculator"
+        this.check_user_config()
 
-; 从 JSON Map 补充工作台列表
-for wb, _ in AppSettings.alias_obj {
-    if !AppSettings.workbench_list.Has(wb)
-        AppSettings.workbench_list[wb] := ""
-}
+        GroupAdd "group_calc", "计算器"
+        GroupAdd "group_calc", "Calculator"
+        WindowManager.add_group_by_exe("group_autoime", "AutoIME")
 
-; 注册热键
-HotIfWinActive "ahk_group GroupCATIA"
-{
-    customize_hotkey_list_dict := Map()
+        for wb, _ in AppSettings.alias_obj {
+            if !AppSettings.workbench_list.Has(wb)
+                AppSettings.workbench_list[wb] := ""
+        }
 
-    ; 将内存中所有热键写入字典
-    for workbench, keys_map in AppSettings.hotkey_obj {
-        for hotkey_str, _ in keys_map {
-            if !customize_hotkey_list_dict.Has(hotkey_str) {
-                customize_hotkey_list_dict.Set(hotkey_str, "")
+        this.register_hotkeys()
+        
+        WinEventHook.Start()
+    }
+
+    check_user_config() {
+        alias_ini := AppSettings.alias_ini_path
+        hotkey_ini := AppSettings.hotkey_ini_path
+        
+        if (FileExist(AppSettings.commands_json_path) = "" && FileExist(alias_ini) = "" && FileExist(hotkey_ini) = "") {
+            result := MsgBox(
+                "未找到配置文件`n"
+                "是否从 Github/Gitee 下载示例文件？`n"
+                , "配置文件缺失"
+                , 51
+            )
+
+            switch result {
+                case "No":
+                    MsgBox "
+            (
+              示例配置文件下载地址：
+              https://github.com/zedeeee/UCLC-config
+            )"
+                    ExitApp
+
+                case "Yes":
+                    config_and_path := [
+                        ["CAT_Alias.ini", alias_ini],
+                        ["CAT_Hotkey.ini", hotkey_ini]
+                    ]
+
+                    flag := 1
+                    for config_info in config_and_path {
+                        if not Downloader.download_configurations(config_info[1], config_info[2])
+                            flag := 0
+                    }
+
+                    MsgBox("获取配置文件成功，请重新载入脚本")
+                    Reload()
+
+                default: ExitApp
             }
         }
     }
 
-    for each_hotkey in customize_hotkey_list_dict {
-        Hotkey each_hotkey, register_command
-    }
-}
+    register_hotkeys() {
+        HotIfWinActive("ahk_group GroupCATIA")
+        
+        customize_hotkey_list_dict := Map()
 
-check_user_config() {
-    alias_ini := AppSettings.alias_ini_path
-    hotkey_ini := AppSettings.hotkey_ini_path
-    
-    if (FileExist(AppSettings.commands_json_path) = "" && FileExist(alias_ini) = "" && FileExist(hotkey_ini) = "") {
-        result := MsgBox(
-            "未找到配置文件`n"
-            "是否从 Github/Gitee 下载示例文件？`n"
-            , "配置文件缺失"
-            , 51
-        )
-
-        switch result {
-            case "No":
-                MsgBox "
-        (
-          示例配置文件下载地址：
-          https://github.com/zedeeee/UCLC-config
-        )"
-                ExitApp
-
-            case "Yes":
-                config_and_path := [
-                    ["CAT_Alias.ini", alias_ini],
-                    ["CAT_Hotkey.ini", hotkey_ini]
-                ]
-
-                flag := 1
-                for config_info in config_and_path {
-                    if not download_configurations(config_info[1], config_info[2])
-                        flag := 0
+        for workbench, keys_map in AppSettings.hotkey_obj {
+            for hotkey_str, _ in keys_map {
+                if !customize_hotkey_list_dict.Has(hotkey_str) {
+                    customize_hotkey_list_dict.Set(hotkey_str, "")
                 }
+            }
+        }
 
-                MsgBox("获取配置文件成功，请重新载入脚本")
-                Reload()
-
-            default: ExitApp
+        for each_hotkey in customize_hotkey_list_dict {
+            Hotkey(each_hotkey, ObjBindMethod(CommandEngine, "register_command"))
         }
     }
 }
 
-add_group_by_exe("group_autoime", "AutoIME")
-
-volume_control := VolumeController.Call()
-
-; 启动脚本后通过事件钩子监听窗口激活，彻底摒弃无限轮询
-WinEventHook.Start()
+app := UCLCApp()
+app.Run()
 
 #HotIf WinActive
 {
     ^+r::
     {
-        ToolTip "Reloading Script ..."
+        Logger.tooltip("Reloading Script ...", 500)
         Sleep 500
-        ToolTip
-        Reload		; 设定 Ctrl-Shift-R 热键来重启脚本.
+        Logger.tooltip("", 0)
+        Reload
     }
 
-    ; win + c 启动系统自带的计算器
-    ; 如果计算器已经打开，则激活它
     #c::
     {
-        try
-        {
+        try {
             WinActivate("ahk_group group_calc")
         }
         catch as e {
@@ -120,44 +120,38 @@ WinEventHook.Start()
 
     ~RControl::
     {
-        ; 检查功能是否启用
         if !AppSettings.Everything_Enabled {
             return
         }
 
-        ; 双击判断逻辑不变
         if (A_PriorHotkey != "~RControl" or A_TimeSincePriorHotkey > 400) {
             KeyWait "Control"
             return
         }
 
-        ; 如果 Everything 正在运行，直接激活
         if ProcessExist("Everything.exe") {
-            Send "#]" ; 仍然依赖用户在 Everything 中设置的快捷键
+            Send "#]" 
             return
         }
 
-        ; 如果未运行，检查路径是否有效
         if (AppSettings.Everything_Path and FileExist(AppSettings.Everything_Path)) {
             Run AppSettings.Everything_Path
         }
         else {
-            ; --- 核心改进：弹出交互式对话框 ---
             result := MsgBox(
                 "“Everything 快速启动”功能已启用，但未找到 Everything.exe。`n`n"
                 "请检查 config.ini 中的路径配置是否正确。`n`n"
                 "要现在打开设置窗口进行配置吗？"
                 , "配置缺失"
-                , 36 ; Yes/No buttons + Question icon
+                , 36
             )
 
             if (result == "Yes") {
-                ShowSettingsGUI() ; 直接调用显示设置窗口的函数
+                ShowSettingsGUI()
             }
         }
     }
 
-    ; Win + 鼠标滚轮上下 切换虚拟桌面
     LWin & WheelDown::
     {
         try {
@@ -174,65 +168,53 @@ WinEventHook.Start()
         }
     }
 
-    ; 右ALT+鼠标滚轮上，音量增大
     RAlt & WheelUp::
     {
-        increment := volume_control.get_volume_increment()
+        increment := app.volume_control.get_volume_increment()
         SoundSetVolume "+" . increment
-        volume_control.show_volume_status()
+        app.volume_control.show_volume_status()
         Sleep 5
     }
 
-    ; 右ALT+鼠标滚轮下，音量减小
     RAlt & WheelDown::
     {
-        increment := volume_control.get_volume_increment()
+        increment := app.volume_control.get_volume_increment()
         SoundSetVolume "-" . increment
-        volume_control.show_volume_status()
+        app.volume_control.show_volume_status()
         Sleep 5
     }
 
-    ; 右ALT+鼠标中键，静音
     RAlt & MButton::
     {
         SoundSetMute -1
         muteStatus := SoundGetMute() ? "静音" : "解除静音：" . Integer(SoundGetVolume())
-        k_ToolTip(muteStatus, 1000)
+        Logger.tooltip(muteStatus, 1000)
     }
-
-    ; ^+t::
-    ; {
-
-    ; }
 }
 
-; 仅 CATIA 窗口生效的 热键/热字串
 #HotIf WinActive("ahk_group GroupCATIA")
 {
-
     Space::
     {
-        power_input_edit_control_hwnd := get_power_input_edit_hwnd()
+        power_input_edit_control_hwnd := CATIAWindow.get_power_input_edit_hwnd()
         edit_text := ControlGetText(power_input_edit_control_hwnd)
 
         if (edit_text == "") {
             SendInput "^y"
-            Exit
+            return
         }
 
-        cat_command_execution(edit_text, "alias", power_input_edit_control_hwnd)
+        CommandEngine.execute(edit_text, "alias", power_input_edit_control_hwnd)
     }
 
     +Tab::
     {
         GroupActivate "GroupCATIA"
-        k_ToolTip(WinGetTitle("A"), 1000)
+        Logger.tooltip(WinGetTitle("A"), 1000)
     }
 
-    ; 清除 CATIA power-input 输入框里的内容
     ~Esc::
     {
-        ControlSetText("", get_power_input_edit_hwnd())
+        ControlSetText("", CATIAWindow.get_power_input_edit_hwnd())
     }
-
 }

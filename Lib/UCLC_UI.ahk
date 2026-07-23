@@ -364,7 +364,7 @@ class SettingsModel {
         }
     }
 
-    save_addon_settings(everythingEnabled, everythingPath, volumeEnabled, calcEnabled, calcHotkey) {
+    save_addon_settings(everythingEnabled, everythingPath, volumeEnabled, calcEnabled, calcHotkey, catiaMButtonEnabled) {
         try {
             if !AppSettings.config_obj.Has("Everything") {
                 AppSettings.config_obj["Everything"] := Map("Enabled", "0", "Path", "")
@@ -382,6 +382,11 @@ class SettingsModel {
             }
             AppSettings.config_obj["Calculator"]["Enabled"] := String(calcEnabled)
             AppSettings.config_obj["Calculator"]["Hotkey"] := calcHotkey
+
+            if !AppSettings.config_obj.Has("CatiaMButton") {
+                AppSettings.config_obj["CatiaMButton"] := Map("Enabled", "0")
+            }
+            AppSettings.config_obj["CatiaMButton"]["Enabled"] := String(catiaMButtonEnabled)
 
             AppSettings.Everything_Enabled := everythingEnabled
             AppSettings.Everything_Path := everythingPath
@@ -583,13 +588,17 @@ class SettingsView extends Gui {
         this.Chk_Volume := this.Add("Checkbox", "x35 y167", "启用音量调节快捷键")
         this.Chk_Volume.ToolTip := "按住 右Alt 键并滚动鼠标滚轮调节音量，点击鼠标中键静音"
 
-        this.Add("GroupBox", "x20 y220 w510 h90", "打开计算器")
-        this.Chk_Calc := this.Add("Checkbox", "x35 y242", "启用计算器快捷键")
-        this.Add("Text", "x35 y273 w60", "绑定热键:")
-        this.Edit_CalcHotkey := this.Add("Edit", "x100 y269 w120 h24", "")
+        this.Add("GroupBox", "x20 y215 w510 h85", "打开计算器")
+        this.Chk_Calc := this.Add("Checkbox", "x35 y237", "启用计算器快捷键")
+        this.Add("Text", "x35 y268 w60", "绑定热键:")
+        this.Edit_CalcHotkey := this.Add("Edit", "x100 y264 w120 h24", "")
         SendMessage(0x1501, 1, StrPtr("点击录入热键"), this.Edit_CalcHotkey.Hwnd)
 
-        this.btn_saveAddon := this.Add("Button", "x400 y325 w130 h30 Default", "保存附加功能")
+        this.Add("GroupBox", "x20 y310 w510 h60", "CATIA 快捷操作")
+        this.Chk_CatiaMButton := this.Add("Checkbox", "x35 y332", "使用中键代替确认")
+        this.Chk_CatiaMButton.ToolTip := "在 CATIA 中，Alt + 中键 = 确认，Shift + 中键 = 预览"
+
+        this.btn_saveAddon := this.Add("Button", "x400 y385 w130 h30 Default", "保存附加功能")
 
         ; =============== (原第三页工作台命令库已重构成弹窗) ===============
     }
@@ -716,7 +725,7 @@ class SettingsController {
         this.load_command_tree()
         this.OnLButtonDownBound := ObjBindMethod(this, "on_lbutton_down")
         OnMessage(0x0201, this.OnLButtonDownBound)
-        
+
         tips_file := A_ScriptDir "\data\tips.json"
         if FileExist(tips_file) {
             try {
@@ -785,6 +794,9 @@ class SettingsController {
         if AppSettings.config_obj.Has("Calculator") {
             this.view.Chk_Calc.Value := Integer(AppSettings.config_obj["Calculator"]["Enabled"])
             this.view.Edit_CalcHotkey.Value := AppSettings.config_obj["Calculator"]["Hotkey"]
+        }
+        if AppSettings.config_obj.Has("CatiaMButton") {
+            this.view.Chk_CatiaMButton.Value := Integer(AppSettings.config_obj["CatiaMButton"]["Enabled"])
         }
 
         this.view.lv_autoime.Opt("-Redraw")
@@ -1493,7 +1505,8 @@ class SettingsController {
             this.view.Edit_EverythingPath.Value,
             this.view.Chk_Volume.Value,
             this.view.Chk_Calc.Value,
-            this.view.Edit_CalcHotkey.Value
+            this.view.Edit_CalcHotkey.Value,
+            this.view.Chk_CatiaMButton.Value
         )
         if success
             this.view.SB.SetText("附加功能设置保存成功！请手动重新载入 UCLC 脚本以使其生效。")

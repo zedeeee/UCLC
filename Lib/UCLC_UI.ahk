@@ -499,15 +499,18 @@ class SettingsView extends Gui {
         ; ====================
         this.tv_alias := this.Add("TreeView", "x20 y45 w190 h330")
         this.Btn_OpenCmdLib := this.Add("Button", "x20 y380 w190 h28", "导入命令ID")
+        this.Btn_OpenCmdLib.ToolTip := "从本地文件批量导入新的命令"
 
         ; ====================
         ; 右侧上：全局检索区
         ; ====================
         this.Add("Text", "x235 y45 w60", "工作台:")
         this.ddl_workbench := this.Add("DropDownList", "x295 y40 w195 Choose1", ["全部工作台"])
+        this.ddl_workbench.ToolTip := "按所属工作台过滤左侧命令列表"
 
         this.Add("Text", "x235 y75 w60", "搜　索:")
         this.edit_search := this.Add("Edit", "x295 y72 w195")
+        this.edit_search.ToolTip := "支持拼音首字母模糊匹配"
 
         ; 分割线
         this.Add("Text", "x230 y100 w270 h1 0x10")
@@ -522,12 +525,17 @@ class SettingsView extends Gui {
         this.Txt_CatVal := this.Add("Text", "x295 y141 w195 cBlue Hidden", "")
 
         this.Txt_Desc := this.Add("Text", "x235 y171 w60 Hidden", "功能描述:")
+        this.Txt_Desc.ToolTip := "显示该命令的具体功能说明"
         this.edit_desc := this.Add("Edit", "x295 y168 w195 Hidden ReadOnly", "")
+        this.edit_desc.ToolTip := "显示该命令的具体功能说明"
 
         this.Txt_Cmd := this.Add("Text", "x235 y201 w60 Hidden", "执行指令:")
+        this.Txt_Cmd.ToolTip := "底层 CATIA 命令标识符，通常自动导入生成，无需手动修改"
         this.Edit_Cmd := this.Add("Edit", "x295 y198 w195 Hidden ReadOnly", "")
+        this.Edit_Cmd.ToolTip := "底层 CATIA 命令标识符，通常自动导入生成，无需手动修改"
 
         this.Txt_Alias := this.Add("Text", "x235 y231 w60 Hidden", "触发别名:")
+        this.Txt_Alias.ToolTip := "在 CATIA 绘图区内直接输入这些字母即可快速触发该命令"
 
         this.alias_pool := []
         loop 10 {
@@ -538,6 +546,7 @@ class SettingsView extends Gui {
         }
 
         this.Txt_Hotkey := this.Add("Text", "x235 y0 w60 Hidden", "绑定热键:")
+        this.Txt_Hotkey.ToolTip := "绑定全局键盘快捷键（例如：Ctrl+Shift+A），按下即触发"
         this.hotkey_pool := []
         loop 10 {
             e := this.Add("Edit", "x295 y0 w135 Hidden", "")
@@ -559,7 +568,8 @@ class SettingsView extends Gui {
         ; =============== 第二页: 系统设置 ===============
         this.tabs.UseTab(2)
         this.Add("GroupBox", "x20 y40 w510 h200", "输入法自动切换")
-        this.Chk_AutoIME := this.Add("Checkbox", "x35 y60", "激活特定窗口时自动切换为英文")
+        this.Chk_AutoIME := this.Add("Checkbox", "x35 y60", "指定程序自动切换为英文")
+        this.Chk_AutoIME.ToolTip := "保持英文状态可避免在使用命令别名时误触中文输入法"
 
         this.lv_autoime := this.Add("ListView", "x35 y87 w350 h115 Grid -Multi", ["软件名称", "进程名称 (exe)"])
         this.lv_autoime.ModifyCol(1, 145)
@@ -572,6 +582,7 @@ class SettingsView extends Gui {
 
         this.Add("GroupBox", "x20 y255 w510 h60", "日志与调试")
         this.Chk_Debug := this.Add("Checkbox", "x35 y278", "开启详细 Debug 调试日志")
+        this.Chk_Debug.ToolTip := "仅在排查软件 Bug 时开启，平时请关闭以避免产生大量日志文件"
 
         this.btn_saveGen := this.Add("Button", "x400 y330 w130 h30 Default", "保存系统设置")
 
@@ -580,9 +591,10 @@ class SettingsView extends Gui {
         this.Add("GroupBox", "x20 y40 w510 h90", "Everything 快速呼出")
         this.Chk_Everything := this.Add("Checkbox", "x35 y62", "启用 Everything 快捷搜索")
         this.Chk_Everything.ToolTip := "双击右 Ctrl 键唤起 Everything"
-        this.Add("Text", "x35 y93 w85", "Program 路径:")
+        this.Add("Text", "x35 y93 w85", "安装路径:")
         this.Edit_EverythingPath := this.Add("Edit", "x125 y89 w320 h24", "")
         this.Btn_BrowseEverything := this.Add("Button", "x455 y88 w60 h26", "浏览...")
+        this.Btn_BrowseEverything.ToolTip := "选择 Everything.exe 所在路径"
 
         this.Add("GroupBox", "x20 y145 w510 h60", "音量调节")
         this.Chk_Volume := this.Add("Checkbox", "x35 y167", "启用音量调节快捷键")
@@ -590,8 +602,10 @@ class SettingsView extends Gui {
 
         this.Add("GroupBox", "x20 y215 w510 h85", "打开计算器")
         this.Chk_Calc := this.Add("Checkbox", "x35 y237", "启用计算器快捷键")
+        this.Chk_Calc.ToolTip := "快捷唤起系统自带计算器，多次按下可在前后台间捞起窗口"
         this.Add("Text", "x35 y268 w60", "绑定热键:")
         this.Edit_CalcHotkey := this.Add("Edit", "x100 y264 w120 h24", "")
+        this.Edit_CalcHotkey.ToolTip := "鼠标点进框里，直接按下你想绑定的快捷键组合"
         SendMessage(0x1501, 1, StrPtr("点击录入热键"), this.Edit_CalcHotkey.Hwnd)
 
         this.Add("GroupBox", "x20 y310 w510 h60", "CATIA 快捷操作")
@@ -794,6 +808,12 @@ class SettingsController {
         if AppSettings.config_obj.Has("Calculator") {
             this.view.Chk_Calc.Value := Integer(AppSettings.config_obj["Calculator"]["Enabled"])
             this.view.Edit_CalcHotkey.Value := AppSettings.config_obj["Calculator"]["Hotkey"]
+            if (this.view.Edit_CalcHotkey.Value == "") {
+                this.view.Chk_Calc.Opt("+Disabled")
+                this.view.Chk_Calc.Value := 0
+            } else {
+                this.view.Chk_Calc.Opt("-Disabled")
+            }
         }
         if AppSettings.config_obj.Has("CatiaMButton") {
             this.view.Chk_CatiaMButton.Value := Integer(AppSettings.config_obj["CatiaMButton"]["Enabled"])
@@ -1152,6 +1172,11 @@ class SettingsController {
     }
 
     OnInputHookEnd(idx, GuiCtrlObj, ih) {
+        try {
+            _ := GuiCtrlObj.Hwnd
+        } catch {
+            return
+        }
         if (ih.EndReason = "EndKey") {
             key := ih.EndKey
             if (key = "Backspace" || key = "Delete") {
@@ -1201,6 +1226,11 @@ class SettingsController {
     }
 
     OnCalcInputHookEnd(GuiCtrlObj, ih) {
+        try {
+            _ := GuiCtrlObj.Hwnd
+        } catch {
+            return
+        }
         if (ih.EndReason = "EndKey") {
             key := ih.EndKey
             if (key = "Backspace" || key = "Delete") {
@@ -1222,6 +1252,14 @@ class SettingsController {
                 GuiCtrlObj.Value := this.FormatHotkeyForDisplay(mods . key)
             }
         }
+        
+        if (GuiCtrlObj.Value == "") {
+            this.view.Chk_Calc.Opt("+Disabled")
+            this.view.Chk_Calc.Value := 0
+        } else {
+            this.view.Chk_Calc.Opt("-Disabled")
+        }
+
         try {
             if (this.view.focused_ctrl == GuiCtrlObj)
                 this.OnCalcHotkeyFocus(GuiCtrlObj)
@@ -1514,22 +1552,24 @@ class SettingsController {
 
     on_mouse_move(wParam, lParam, msg, hwnd) {
         static prev_hwnd := 0
-        static hover_timer := 0
+        static last_tip := ""
         if (hwnd == prev_hwnd) {
             return
         }
         prev_hwnd := hwnd
-        if (hover_timer) {
-            SetTimer(hover_timer, 0)
-            hover_timer := 0
-        }
-        ToolTip()
         try {
             guiCtrl := GuiCtrlFromHwnd(hwnd)
             if (guiCtrl && guiCtrl.HasProp("ToolTip") && guiCtrl.ToolTip != "") {
-                tipText := guiCtrl.ToolTip
-                hover_timer := () => ToolTip(tipText)
-                SetTimer(hover_timer, -600)
+                this.view.SB.SetText(guiCtrl.ToolTip)
+                last_tip := guiCtrl.ToolTip
+            } else if (last_tip != "") {
+                this.view.SB.SetText("")
+                last_tip := ""
+            }
+        } catch {
+            if (last_tip != "") {
+                this.view.SB.SetText("")
+                last_tip := ""
             }
         }
     }

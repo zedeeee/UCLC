@@ -39,8 +39,6 @@ class UCLCApp {
 
         this.register_hotkeys()
 
-        this.start_tips_timer()
-
         WinEventHook.Start()
     }
 

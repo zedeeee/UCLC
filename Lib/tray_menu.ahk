@@ -57,8 +57,23 @@ NoAction_cb(*) {
 
 run_spy_cb(*)
 {
-    win_spy_path := RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey", "InstallDir") . "\UX\WindowSpy.ahk"
-    Run(win_spy_path)
+    SplitPath A_AhkPath, , &ahk_dir
+    spy_paths := [
+        ahk_dir "\..\UX\WindowSpy.ahk",
+        ahk_dir "\..\WindowSpy.ahk",
+        ahk_dir "\WindowSpy.ahk"
+    ]
+    
+    try spy_paths.Push(RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey", "InstallDir") "\UX\WindowSpy.ahk")
+    try spy_paths.Push(RegRead("HKEY_CURRENT_USER\SOFTWARE\AutoHotkey", "InstallDir") "\UX\WindowSpy.ahk")
+    
+    for path in spy_paths {
+        if FileExist(path) {
+            Run('"' path '"')
+            return
+        }
+    }
+    MsgBox("无法找到 WindowSpy.ahk，请确认 AutoHotkey 是否完整安装。", "UCLC", 0x10)
 }
 
 disable_botton_cb(ItemName, ItemPos, MyMenu) {

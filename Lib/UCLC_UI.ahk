@@ -364,6 +364,36 @@ class SettingsModel {
         }
     }
 
+    save_addon_settings(everythingEnabled, everythingPath, volumeEnabled, calcEnabled, calcHotkey) {
+        try {
+            if !AppSettings.config_obj.Has("Everything") {
+                AppSettings.config_obj["Everything"] := Map("Enabled", "0", "Path", "")
+            }
+            AppSettings.config_obj["Everything"]["Enabled"] := String(everythingEnabled)
+            AppSettings.config_obj["Everything"]["Path"] := everythingPath
+
+            if !AppSettings.config_obj.Has("Volume") {
+                AppSettings.config_obj["Volume"] := Map("Enabled", "0")
+            }
+            AppSettings.config_obj["Volume"]["Enabled"] := String(volumeEnabled)
+
+            if !AppSettings.config_obj.Has("Calculator") {
+                AppSettings.config_obj["Calculator"] := Map("Enabled", "0", "Hotkey", "")
+            }
+            AppSettings.config_obj["Calculator"]["Enabled"] := String(calcEnabled)
+            AppSettings.config_obj["Calculator"]["Hotkey"] := calcHotkey
+
+            AppSettings.Everything_Enabled := everythingEnabled
+            AppSettings.Everything_Path := everythingPath
+
+            safe_atomic_write(AppSettings.config_json_path, JSON.stringify(AppSettings.config_obj))
+            return true
+        } catch Error as e {
+            MsgBox("保存附加功能失败: " e.Message, "错误", 16)
+            return false
+        }
+    }
+
     parse_import_file(filepath) {
         content := FileRead(filepath, "UTF-8")
         if (!InStr(content, "Workshop Exposition") || InStr(content, Chr(0xFFFD))) {
@@ -454,7 +484,7 @@ class SettingsView extends Gui {
     __New() {
         super.__New("-Resize -MaximizeBox", "UCLC 配置管理")
 
-        this.tabs := this.Add("Tab3", "x10 y10 w530 h410", ["命令配置", "系统设置"])
+        this.tabs := this.Add("Tab3", "x10 y10 w530 h460", ["命令配置", "系统设置", "附加功能"])
 
         ; =============== 第一页: 命令配置 ===============
         this.tabs.UseTab(1)
@@ -523,28 +553,43 @@ class SettingsView extends Gui {
 
         ; =============== 第二页: 系统设置 ===============
         this.tabs.UseTab(2)
-        this.Add("GroupBox", "x20 y40 w510 h90", "Everything 快速呼出")
-        this.Chk_Everything := this.Add("Checkbox", "x35 y61", "启用双击右 Ctrl 唤起 Everything")
-        this.Add("Text", "x35 y92 w70", "Program 路径:")
-        this.Edit_EverythingPath := this.Add("Edit", "x105 y88 w345 h24", "")
-        this.Btn_BrowseEverything := this.Add("Button", "x455 y87 w65 h26", "浏览...")
+        this.Add("GroupBox", "x20 y40 w510 h200", "输入法自动切换")
+        this.Chk_AutoIME := this.Add("Checkbox", "x35 y60", "激活特定窗口时自动切换为英文")
 
-        this.Add("GroupBox", "x20 y135 w510 h185", "输入法自动切换")
-        this.Chk_AutoIME := this.Add("Checkbox", "x30 y135", "激活特定窗口时自动切为英文")
-
-        this.lv_autoime := this.Add("ListView", "x30 y162 w355 h120 Grid -Multi", ["软件名称", "进程名称 (exe)"])
-        this.lv_autoime.ModifyCol(1, 150)
+        this.lv_autoime := this.Add("ListView", "x35 y87 w350 h115 Grid -Multi", ["软件名称", "进程名称 (exe)"])
+        this.lv_autoime.ModifyCol(1, 145)
         this.lv_autoime.ModifyCol(2, 200)
 
-        this.btn_add_autoime := this.Add("Button", "x395 y162 w120 h26", "➕ 添加规则")
-        this.btn_del_autoime := this.Add("Button", "x395 y196 w120 h26", "➖ 删除规则")
-        this.btn_edit_autoime := this.Add("Button", "x395 y230 w120 h26", "✏️ 修改规则")
-        this.link_ime_guide := this.Add("Link", "x30 y290 w490 cGray", "说明：当匹配的主程序窗口激活时，系统将自动切换至英文输入法（<a id=`"guide`">前提条件</a>）。")
+        this.btn_add_autoime := this.Add("Button", "x395 y87 w120 h26", "➕ 添加规则")
+        this.btn_del_autoime := this.Add("Button", "x395 y131 w120 h26", "➖ 删除规则")
+        this.btn_edit_autoime := this.Add("Button", "x395 y175 w120 h26", "✏️ 修改规则")
+        this.link_ime_guide := this.Add("Link", "x35 y210 w480 cGray", "说明：当匹配的主程序窗口激活时，系统将自动切换至英文输入法（<a id=`"guide`">前提条件</a>）。")
 
-        this.Add("GroupBox", "x20 y330 w510 h60", "日志与调试")
-        this.Chk_Debug := this.Add("Checkbox", "x35 y352", "开启详细 Debug 调试日志")
+        this.Add("GroupBox", "x20 y255 w510 h60", "日志与调试")
+        this.Chk_Debug := this.Add("Checkbox", "x35 y278", "开启详细 Debug 调试日志")
 
-        this.btn_saveGen := this.Add("Button", "x400 y410 w130 h30 Default", "保存系统设置")
+        this.btn_saveGen := this.Add("Button", "x400 y330 w130 h30 Default", "保存系统设置")
+
+        ; =============== 第三页: 附加功能 ===============
+        this.tabs.UseTab(3)
+        this.Add("GroupBox", "x20 y40 w510 h90", "Everything 快速呼出")
+        this.Chk_Everything := this.Add("Checkbox", "x35 y62", "启用 Everything 快捷搜索")
+        this.Chk_Everything.ToolTip := "双击右 Ctrl 键唤起 Everything"
+        this.Add("Text", "x35 y93 w85", "Program 路径:")
+        this.Edit_EverythingPath := this.Add("Edit", "x125 y89 w320 h24", "")
+        this.Btn_BrowseEverything := this.Add("Button", "x455 y88 w60 h26", "浏览...")
+
+        this.Add("GroupBox", "x20 y145 w510 h60", "音量调节")
+        this.Chk_Volume := this.Add("Checkbox", "x35 y167", "启用音量调节快捷键")
+        this.Chk_Volume.ToolTip := "按住 右Alt 键并滚动鼠标滚轮调节音量，点击鼠标中键静音"
+
+        this.Add("GroupBox", "x20 y220 w510 h90", "打开计算器")
+        this.Chk_Calc := this.Add("Checkbox", "x35 y242", "启用计算器快捷键")
+        this.Add("Text", "x35 y273 w60", "绑定热键:")
+        this.Edit_CalcHotkey := this.Add("Edit", "x100 y269 w120 h24", "")
+        SendMessage(0x1501, 1, StrPtr("点击录入热键"), this.Edit_CalcHotkey.Hwnd)
+
+        this.btn_saveAddon := this.Add("Button", "x400 y325 w130 h30 Default", "保存附加功能")
 
         ; =============== (原第三页工作台命令库已重构成弹窗) ===============
     }
@@ -703,6 +748,10 @@ class SettingsController {
 
         this.view.Btn_BrowseEverything.OnEvent("Click", ObjBindMethod(this, "BrowseEverything"))
         this.view.btn_saveGen.OnEvent("Click", ObjBindMethod(this, "SaveGeneralSettings"))
+        this.view.btn_saveAddon.OnEvent("Click", ObjBindMethod(this, "SaveAddonSettings"))
+
+        this.view.Edit_CalcHotkey.OnEvent("Focus", ObjBindMethod(this, "OnCalcHotkeyFocus"))
+        this.view.Edit_CalcHotkey.OnEvent("LoseFocus", ObjBindMethod(this, "OnCalcHotkeyLoseFocus"))
 
         this.view.Chk_AutoIME.OnEvent("Click", ObjBindMethod(this, "OnToggleAutoIME"))
         this.view.btn_add_autoime.OnEvent("Click", ObjBindMethod(this, "OnAddAutoIME"))
@@ -720,6 +769,13 @@ class SettingsController {
 
         this.view.Chk_Debug.Value := AppSettings.DEBUG_I
         this.view.Chk_AutoIME.Value := AppSettings.AutoIME_Enabled
+
+        if AppSettings.config_obj.Has("Volume")
+            this.view.Chk_Volume.Value := Integer(AppSettings.config_obj["Volume"]["Enabled"])
+        if AppSettings.config_obj.Has("Calculator") {
+            this.view.Chk_Calc.Value := Integer(AppSettings.config_obj["Calculator"]["Enabled"])
+            this.view.Edit_CalcHotkey.Value := AppSettings.config_obj["Calculator"]["Hotkey"]
+        }
 
         this.view.lv_autoime.Opt("-Redraw")
         this.view.lv_autoime.Delete()
@@ -1102,6 +1158,54 @@ class SettingsController {
         }
     }
 
+    OnCalcHotkeyFocus(GuiCtrlObj, *) {
+        if this.HasProp("ih") && this.ih {
+            this.ih.Stop()
+            this.ih := ""
+        }
+        ih := InputHook("L1 M")
+        ih.KeyOpt("{All}", "E")
+        ih.KeyOpt("{LCtrl}{RCtrl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}", "-E")
+        ih.OnEnd := ObjBindMethod(this, "OnCalcInputHookEnd", GuiCtrlObj)
+        this.ih := ih
+        ih.Start()
+    }
+
+    OnCalcHotkeyLoseFocus(GuiCtrlObj, *) {
+        if this.HasProp("ih") && this.ih {
+            this.ih.Stop()
+            this.ih := ""
+        }
+    }
+
+    OnCalcInputHookEnd(GuiCtrlObj, ih) {
+        if (ih.EndReason = "EndKey") {
+            key := ih.EndKey
+            if (key = "Backspace" || key = "Delete") {
+                GuiCtrlObj.Value := ""
+            } else if (key = "Escape" || key = "Tab" || key = "Enter" || key = "NumpadEnter") {
+                ; pass
+            } else {
+                if (StrLen(key) == 1)
+                    key := StrUpper(key)
+                mods := ""
+                if GetKeyState("Ctrl", "P")
+                    mods .= "^"
+                if GetKeyState("Alt", "P")
+                    mods .= "!"
+                if GetKeyState("Shift", "P")
+                    mods .= "+"
+                if GetKeyState("LWin", "P") or GetKeyState("RWin", "P")
+                    mods .= "#"
+                GuiCtrlObj.Value := this.FormatHotkeyForDisplay(mods . key)
+            }
+        }
+        try {
+            if (this.view.focused_ctrl == GuiCtrlObj)
+                this.OnCalcHotkeyFocus(GuiCtrlObj)
+        }
+    }
+
     FormatHotkeyForDisplay(hk) => format_hotkey_for_display(hk)
     ParseHotkeyFromDisplay(display) => parse_hotkey_from_display(display)
 
@@ -1371,6 +1475,18 @@ class SettingsController {
         )
         if success
             this.view.SB.SetText("通用设置保存成功！请手动重新载入 UCLC 脚本以使其生效。")
+    }
+
+    SaveAddonSettings(*) {
+        success := this.model.save_addon_settings(
+            this.view.Chk_Everything.Value,
+            this.view.Edit_EverythingPath.Value,
+            this.view.Chk_Volume.Value,
+            this.view.Chk_Calc.Value,
+            this.view.Edit_CalcHotkey.Value
+        )
+        if success
+            this.view.SB.SetText("附加功能设置保存成功！请手动重新载入 UCLC 脚本以使其生效。")
     }
 
     on_mouse_move(wParam, lParam, msg, hwnd) {

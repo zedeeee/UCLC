@@ -25,6 +25,10 @@ class AppSettings {
     static Version := UCLC_VERSION
     static Everything_Path := ""
     
+    static Volume_Enabled := 0
+    static Calc_Enabled := 0
+    static Calc_Hotkey := ""
+    
     static workbench_mapping := Map()
 
     static LoadWorkbenchMapping() {
@@ -201,6 +205,13 @@ class AppSettings {
             "Everything"]["Path"] : ""
         this.AutoIME_Enabled := this.config_obj.Has("AutoIME") && this.config_obj["AutoIME"].Has("Enabled") ?
             this.config_obj["AutoIME"]["Enabled"] : 1
+
+        this.Volume_Enabled := this.config_obj.Has("Volume") && this.config_obj["Volume"].Has("Enabled") ? 
+            Integer(this.config_obj["Volume"]["Enabled"]) : 0
+        this.Calc_Enabled := this.config_obj.Has("Calculator") && this.config_obj["Calculator"].Has("Enabled") ? 
+            Integer(this.config_obj["Calculator"]["Enabled"]) : 0
+        this.Calc_Hotkey := this.config_obj.Has("Calculator") && this.config_obj["Calculator"].Has("Hotkey") ? 
+            this.config_obj["Calculator"]["Hotkey"] : ""
 
         ; 初始化工作台列表
         this.workbench_list := Map()

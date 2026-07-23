@@ -1,4 +1,4 @@
-﻿#Requires AutoHotKey v2.0
+#Requires AutoHotKey v2.0
 #SingleInstance Force
 SetTitleMatchMode 2
 
@@ -23,20 +23,29 @@ class UCLCApp {
         GroupAdd "group_calc", "Calculator"
         WindowManager.add_group_by_exe("group_autoime", "AutoIME")
 
+        if (AppSettings.Calc_Enabled && AppSettings.Calc_Hotkey != "") {
+            try {
+                hk := parse_hotkey_from_display(AppSettings.Calc_Hotkey)
+                Hotkey(hk, ObjBindMethod(UCLCApp, "run_calc"), "On")
+            } catch Error as e {
+                Logger.info("计算器快捷键绑定失败：" . e.Message)
+            }
+        }
+
         for wb, _ in AppSettings.alias_obj {
             if !AppSettings.workbench_list.Has(wb)
                 AppSettings.workbench_list[wb] := ""
         }
 
         this.register_hotkeys()
-        
+
         WinEventHook.Start()
     }
 
     check_user_config() {
         alias_ini := AppSettings.alias_ini_path
         hotkey_ini := AppSettings.hotkey_ini_path
-        
+
         if (FileExist(AppSettings.commands_json_path) = "" && FileExist(alias_ini) = "" && FileExist(hotkey_ini) = "") {
             result := MsgBox(
                 "未找到配置文件`n"
@@ -48,10 +57,10 @@ class UCLCApp {
             switch result {
                 case "No":
                     MsgBox "
-            (
-              示例配置文件下载地址：
-              https://github.com/zedeeee/UCLC-config
-            )"
+                    (
+                        示例配置文件下载地址：
+                        https://github.com/zedeeee/UCLC-config
+                    )"
                     ExitApp
 
                 case "Yes":
@@ -76,7 +85,7 @@ class UCLCApp {
 
     register_hotkeys() {
         HotIfWinActive("ahk_group GroupCATIA")
-        
+
         customize_hotkey_list_dict := Map()
 
         for workbench, keys_map in AppSettings.hotkey_obj {
@@ -91,6 +100,17 @@ class UCLCApp {
             Hotkey(each_hotkey, ObjBindMethod(CommandEngine, "register_command"))
         }
     }
+
+    static run_calc(*) {
+        try {
+            WinActivate("ahk_group group_calc")
+        }
+        catch as e {
+            Run "Calc"
+            WinWait("ahk_group group_calc")
+            WinActivate("ahk_group group_calc")
+        }
+    }
 }
 
 app := UCLCApp()
@@ -100,22 +120,10 @@ app.Run()
 {
     ^+r::
     {
-        Logger.tooltip("Reloading Script ...", 500)
-        Sleep 500
+        Logger.tooltip("重新载入 UCLC", 1000)
+        Sleep 1000
         Logger.tooltip("", 0)
         Reload
-    }
-
-    #c::
-    {
-        try {
-            WinActivate("ahk_group group_calc")
-        }
-        catch as e {
-            Run "Calc"
-            WinWait("ahk_group group_calc")
-            WinActivate("ahk_group group_calc")
-        }
     }
 
     ~RControl::
@@ -130,7 +138,7 @@ app.Run()
         }
 
         if ProcessExist("Everything.exe") {
-            Send "#]" 
+            Send "#]"
             return
         }
 
@@ -167,30 +175,32 @@ app.Run()
                 Send "{Ctrl Down}{LWin Down}{Left}{Ctrl Up}{LWin Up}"
         }
     }
-
-    RAlt & WheelUp::
-    {
-        increment := app.volume_control.get_volume_increment()
-        SoundSetVolume "+" . increment
-        app.volume_control.show_volume_status()
-        Sleep 5
-    }
-
-    RAlt & WheelDown::
-    {
-        increment := app.volume_control.get_volume_increment()
-        SoundSetVolume "-" . increment
-        app.volume_control.show_volume_status()
-        Sleep 5
-    }
-
-    RAlt & MButton::
-    {
-        SoundSetMute -1
-        muteStatus := SoundGetMute() ? "静音" : "解除静音：" . Integer(SoundGetVolume())
-        Logger.tooltip(muteStatus, 1000)
-    }
 }
+
+#HotIf AppSettings.Volume_Enabled
+RAlt & WheelUp::
+{
+    increment := app.volume_control.get_volume_increment()
+    SoundSetVolume "+" . increment
+    app.volume_control.show_volume_status()
+    Sleep 5
+}
+
+RAlt & WheelDown::
+{
+    increment := app.volume_control.get_volume_increment()
+    SoundSetVolume "-" . increment
+    app.volume_control.show_volume_status()
+    Sleep 5
+}
+
+RAlt & MButton::
+{
+    SoundSetMute -1
+    muteStatus := SoundGetMute() ? "静音" : "解除静音：" . Integer(SoundGetVolume())
+    Logger.tooltip(muteStatus, 1000)
+}
+#HotIf
 
 #HotIf WinActive("ahk_group GroupCATIA")
 {

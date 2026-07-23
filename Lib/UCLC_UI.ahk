@@ -52,7 +52,7 @@ Nothing_cb(*) {
 
 NoAction_cb(*) {
     ; Do Nothing
-    k_ToolTip("功能未开放", 2000)
+    Logger.tooltip("功能未开放", 2000)
 }
 
 run_spy_cb(*)

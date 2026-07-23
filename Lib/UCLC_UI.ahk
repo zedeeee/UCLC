@@ -716,6 +716,16 @@ class SettingsController {
         this.load_command_tree()
         this.OnLButtonDownBound := ObjBindMethod(this, "on_lbutton_down")
         OnMessage(0x0201, this.OnLButtonDownBound)
+        
+        tips_file := A_ScriptDir "\data\tips.json"
+        if FileExist(tips_file) {
+            try {
+                tips_array := JSON.parse(FileRead(tips_file, "UTF-8"))
+                if (tips_array.Length > 0)
+                    this.view.SB.SetText(" " . tips_array[Random(1, tips_array.Length)])
+            }
+        }
+
         this.view.Show("w550 h440")
     }
 

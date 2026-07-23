@@ -39,7 +39,34 @@ class UCLCApp {
 
         this.register_hotkeys()
 
+        this.start_tips_timer()
+
         WinEventHook.Start()
+    }
+
+    start_tips_timer() {
+        this.tips_array := []
+        tips_file := A_ScriptDir "\data\tips.json"
+        if FileExist(tips_file) {
+            try {
+                this.tips_array := JSON.parse(FileRead(tips_file, "UTF-8"))
+            } catch Error as e {
+                Logger.info("解析 tips.json 失败：" . e.Message)
+            }
+        }
+        if (this.tips_array.Length > 0) {
+            this.rotate_tray_tip()
+            SetTimer(ObjBindMethod(this, "rotate_tray_tip"), 300000) ; 5分钟更换一次
+        } else {
+            A_IconTip := "UCLC - " . AppSettings.Version
+        }
+    }
+
+    rotate_tray_tip() {
+        if (this.tips_array.Length == 0)
+            return
+        idx := Random(1, this.tips_array.Length)
+        A_IconTip := this.tips_array[idx]
     }
 
     check_user_config() {

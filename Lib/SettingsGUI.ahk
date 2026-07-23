@@ -3,7 +3,7 @@
 
 show_settings_gui(*) {
     static controller := ""
-    if (!controller) {
+    if (!controller || !controller.is_valid()) {
         model := SettingsModel()
         view := SettingsView()
         controller := SettingsController(model, view)
@@ -12,6 +12,79 @@ show_settings_gui(*) {
 }
 
 ShowSettingsGUI(*) => show_settings_gui()
+
+safe_atomic_write(filepath, content) {
+    tmp_path := filepath . ".tmp"
+    bak_path := filepath . ".bak"
+    
+    if FileExist(tmp_path)
+        FileDelete(tmp_path)
+    
+    f := FileOpen(tmp_path, "w", "UTF-8")
+    f.Write(content)
+    f.Close()
+    
+    has_orig := FileExist(filepath)
+    if (has_orig) {
+        FileCopy(filepath, bak_path, 1)
+    }
+    
+    try {
+        FileMove(tmp_path, filepath, 1)
+        return true
+    } catch Error as err {
+        if (has_orig && FileExist(bak_path))
+            FileCopy(bak_path, filepath, 1)
+        throw Error("文件原子写入失败: " err.Message)
+    }
+}
+
+is_array_equal(arr1, arr2) {
+    if (arr1.Length != arr2.Length)
+        return false
+    for idx, item in arr1 {
+        if (item != arr2[idx])
+            return false
+    }
+    return true
+}
+
+format_hotkey_for_display(hk) {
+    if (hk == "")
+        return ""
+    display := ""
+    if InStr(hk, "^")
+        display .= "Ctrl + "
+    if InStr(hk, "!")
+        display .= "Alt + "
+    if InStr(hk, "+")
+        display .= "Shift + "
+    if InStr(hk, "#")
+        display .= "Win + "
+    key := RegExReplace(hk, "[\^!\+#]", "")
+    display .= StrUpper(key)
+    return display
+}
+
+parse_hotkey_from_display(display) {
+    if (display == "")
+        return ""
+    hk := ""
+    if InStr(display, "Ctrl + ")
+        hk .= "^"
+    if InStr(display, "Alt + ")
+        hk .= "!"
+    if InStr(display, "Shift + ")
+        hk .= "+"
+    if InStr(display, "Win + ")
+        hk .= "#"
+    key := StrReplace(display, "Ctrl + ", "")
+    key := StrReplace(key, "Alt + ", "")
+    key := StrReplace(key, "Shift + ", "")
+    key := StrReplace(key, "Win + ", "")
+    hk .= key
+    return hk
+}
 
 class SettingsModel {
     __New() {
@@ -98,9 +171,8 @@ class SettingsModel {
     flush_commands_json(curr_obj) {
         AppSettings.commands_obj := curr_obj
         try {
-            FileDelete(AppSettings.commands_json_path)
-            FileAppend(JSON.stringify(AppSettings.commands_obj), AppSettings.commands_json_path, "UTF-8")
-        } catch as e {
+            safe_atomic_write(AppSettings.commands_json_path, JSON.stringify(AppSettings.commands_obj))
+        } catch Error as e {
             MsgBox("写入 JSON 文件失败: " e.Message, "错误", 16)
         }
     }
@@ -116,10 +188,9 @@ class SettingsModel {
             AppSettings.Everything_Enabled := everythingEnabled
             AppSettings.Everything_Path := everythingPath
 
-            FileDelete(AppSettings.config_json_path)
-            FileAppend(JSON.stringify(AppSettings.config_obj), AppSettings.config_json_path, "UTF-8")
+            safe_atomic_write(AppSettings.config_json_path, JSON.stringify(AppSettings.config_obj))
             return true
-        } catch as e {
+        } catch Error as e {
             MsgBox("保存失败: " e.Message, "错误", 16)
             return false
         }
@@ -326,6 +397,102 @@ class SettingsView extends Gui {
         this.btn_resetView := this.Add("Button", "x30 y550 w150", "重置视图")
         this.Btn_ApplyAll := this.Add("Button", "x600 y550 w150", "应用修改")
     }
+
+    clear_detail_pane() {
+        this.Txt_Cat.Opt("Hidden")
+        this.Txt_CatVal.Opt("Hidden")
+        this.Txt_Desc.Opt("Hidden")
+        this.edit_desc.Opt("Hidden")
+        this.Txt_Cmd.Opt("Hidden")
+        this.Edit_Cmd.Opt("Hidden")
+        this.Txt_Alias.Opt("Hidden")
+
+        for p in this.alias_pool {
+            p.e.Opt("Hidden")
+            p.add.Opt("Hidden")
+            p.del.Opt("Hidden")
+        }
+
+        this.Txt_Hotkey.Opt("Hidden")
+        for p in this.hotkey_pool {
+            p.e.Opt("Hidden")
+            p.add.Opt("Hidden")
+            p.del.Opt("Hidden")
+        }
+
+        this.Btn_Revert.Opt("Hidden")
+    }
+
+    render_detail_panel(wb_name, cmd) {
+        this.Txt_CatVal.Value := wb_name
+        this.edit_desc.Value := cmd.Has("desc") ? cmd["desc"] : ""
+        this.Edit_Cmd.Value := cmd.Has("command") ? cmd["command"] : ""
+
+        this.Txt_Cat.Opt("-Hidden")
+        this.Txt_CatVal.Opt("-Hidden")
+        this.Txt_Desc.Opt("-Hidden")
+        this.edit_desc.Opt("-Hidden")
+        this.Txt_Cmd.Opt("-Hidden")
+        this.Edit_Cmd.Opt("-Hidden")
+        this.Txt_Alias.Opt("-Hidden")
+
+        cur_y := 180
+        aliases := (cmd.Has("aliases") && cmd["aliases"].Length > 0) ? cmd["aliases"] : [""]
+        alias_edits := []
+
+        for idx, al in aliases {
+            if (idx > 10)
+                break
+            p := this.alias_pool[idx]
+            p.e.Value := al
+            p.e.Move(, cur_y - 4)
+            p.add.Move(, cur_y - 5)
+            p.del.Move(, cur_y - 5)
+
+            p.e.Opt("-Hidden")
+            p.add.Opt("-Hidden")
+            p.del.Opt("-Hidden")
+
+            p.add.Opt((Trim(al) != "") ? "-Disabled" : "+Disabled")
+            p.del.Opt((aliases.Length > 1) ? "-Disabled" : "+Disabled")
+            alias_edits.Push(p.e)
+            cur_y += 30
+        }
+
+        cur_y += 10
+        this.Txt_Hotkey.Move(, cur_y)
+        this.Txt_Hotkey.Opt("-Hidden")
+
+        hotkeys := (cmd.Has("hotkeys") && cmd["hotkeys"].Length > 0) ? cmd["hotkeys"] : [""]
+        hotkey_edits := []
+
+        for idx, hk in hotkeys {
+            if (idx > 10)
+                break
+            p := this.hotkey_pool[idx]
+            try p.e.Value := format_hotkey_for_display(hk)
+            catch
+                p.e.Value := ""
+            p.e.Move(, cur_y - 4)
+            p.add.Move(, cur_y - 5)
+            p.del.Move(, cur_y - 5)
+
+            p.e.Opt("-Hidden")
+            p.add.Opt("-Hidden")
+            p.del.Opt("-Hidden")
+
+            p.add.Opt((Trim(hk) != "") ? "-Disabled" : "+Disabled")
+            p.del.Opt((hotkeys.Length > 1) ? "-Disabled" : "+Disabled")
+            hotkey_edits.Push(p.e)
+            cur_y += 30
+        }
+
+        cur_y += 30
+        this.Btn_Revert.Move(, cur_y)
+        this.Btn_Revert.Opt("-Hidden")
+
+        return { alias_edits: alias_edits, hotkey_edits: hotkey_edits }
+    }
 }
 
 
@@ -338,6 +505,12 @@ class SettingsController {
         this.tv_map := Map()
         this.alias_edits := []
         this.hotkey_edits := []
+    }
+
+    is_valid() {
+        try return WinExist(this.view.Hwnd) != 0
+        catch
+            return false
     }
 
     show() {
@@ -460,28 +633,7 @@ class SettingsController {
     }
 
     ClearRightPane() {
-        this.view.Txt_Cat.Opt("Hidden")
-        this.view.Txt_CatVal.Opt("Hidden")
-        this.view.Txt_Desc.Opt("Hidden")
-        this.view.edit_desc.Opt("Hidden")
-        this.view.Txt_Cmd.Opt("Hidden")
-        this.view.Edit_Cmd.Opt("Hidden")
-        this.view.Txt_Alias.Opt("Hidden")
-
-        for p in this.view.alias_pool {
-            p.e.Opt("Hidden")
-            p.add.Opt("Hidden")
-            p.del.Opt("Hidden")
-        }
-
-        this.view.Txt_Hotkey.Opt("Hidden")
-        for p in this.view.hotkey_pool {
-            p.e.Opt("Hidden")
-            p.add.Opt("Hidden")
-            p.del.Opt("Hidden")
-        }
-
-        this.view.Btn_Revert.Opt("Hidden")
+        this.view.clear_detail_pane()
         this.alias_edits := []
         this.hotkey_edits := []
     }
@@ -571,77 +723,9 @@ class SettingsController {
             return
         }
 
-        cmd := info.cmd
-        this.view.Txt_CatVal.Value := AppSettings.GetWbName(info.category)
-        this.view.edit_desc.Value := cmd.Has("desc") ? cmd["desc"] : ""
-        this.view.Edit_Cmd.Value := cmd.Has("command") ? cmd["command"] : ""
-
-        this.view.Txt_Cat.Opt("-Hidden")
-        this.view.Txt_CatVal.Opt("-Hidden")
-        this.view.Txt_Desc.Opt("-Hidden")
-        this.view.edit_desc.Opt("-Hidden")
-        this.view.Txt_Cmd.Opt("-Hidden")
-        this.view.Edit_Cmd.Opt("-Hidden")
-        this.view.Txt_Alias.Opt("-Hidden")
-
-        cur_y := 180
-        aliases := cmd.Has("aliases") ? cmd["aliases"] : []
-        if (aliases.Length == 0)
-            aliases := [""]
-
-        for idx, al in aliases {
-            if (idx > 10) {
-                break
-            }
-            p := this.view.alias_pool[idx]
-            p.e.Value := al
-            p.e.Move(, cur_y - 4)
-            p.add.Move(, cur_y - 5)
-            p.del.Move(, cur_y - 5)
-
-            p.e.Opt("-Hidden")
-            p.add.Opt("-Hidden")
-            p.del.Opt("-Hidden")
-
-            p.add.Opt((Trim(al) != "") ? "-Disabled" : "+Disabled")
-            p.del.Opt((aliases.Length > 1) ? "-Disabled" : "+Disabled")
-            this.alias_edits.Push(p.e)
-            cur_y += 30
-        }
-
-        cur_y += 10
-        this.view.Txt_Hotkey.Move(, cur_y)
-        this.view.Txt_Hotkey.Opt("-Hidden")
-
-        hotkeys := cmd.Has("hotkeys") ? cmd["hotkeys"] : []
-        if (hotkeys.Length == 0)
-            hotkeys := [""]
-
-        for idx, hk in hotkeys {
-            if (idx > 10) {
-                break
-            }
-            p := this.view.hotkey_pool[idx]
-            try p.e.Value := this.FormatHotkeyForDisplay(hk)
-            catch
-                p.e.Value := ""
-            p.e.Move(, cur_y - 4)
-            p.add.Move(, cur_y - 5)
-            p.del.Move(, cur_y - 5)
-
-            p.e.Opt("-Hidden")
-            p.add.Opt("-Hidden")
-            p.del.Opt("-Hidden")
-
-            p.add.Opt((Trim(hk) != "") ? "-Disabled" : "+Disabled")
-            p.del.Opt((hotkeys.Length > 1) ? "-Disabled" : "+Disabled")
-            this.hotkey_edits.Push(p.e)
-            cur_y += 30
-        }
-
-        cur_y += 30
-        this.view.Btn_Revert.Move(, cur_y)
-        this.view.Btn_Revert.Opt("-Hidden")
+        res := this.view.render_detail_panel(AppSettings.GetWbName(info.category), info.cmd)
+        this.alias_edits := res.alias_edits
+        this.hotkey_edits := res.hotkey_edits
 
         this.CheckGlobalDirty()
         this.view.SB.SetText("")
@@ -668,7 +752,7 @@ class SettingsController {
         for e in this.hotkey_edits {
             v := Trim(e.Value)
             if (v != "")
-                cmd["hotkeys"].Push(this.ParseHotkeyFromDisplay(v))
+                cmd["hotkeys"].Push(parse_hotkey_from_display(v))
         }
     }
 
@@ -718,8 +802,8 @@ class SettingsController {
         } else {
             desc_bold := ((info.cmd.Has("desc") ? info.cmd["desc"] : "") != (orig_cmd.Has("desc") ? orig_cmd["desc"] : "")) ? "bold" : "norm"
             cmd_bold := (info.cmd["command"] != orig_cmd["command"]) ? "bold" : "norm"
-            alias_bold := (JSON.stringify(info.cmd.Has("aliases") ? info.cmd["aliases"] : []) != JSON.stringify(orig_cmd.Has("aliases") ? orig_cmd["aliases"] : [])) ? "bold" : "norm"
-            hk_bold := (JSON.stringify(info.cmd.Has("hotkeys") ? info.cmd["hotkeys"] : []) != JSON.stringify(orig_cmd.Has("hotkeys") ? orig_cmd["hotkeys"] : [])) ? "bold" : "norm"
+            alias_bold := !is_array_equal(info.cmd.Has("aliases") ? info.cmd["aliases"] : [], orig_cmd.Has("aliases") ? orig_cmd["aliases"] : []) ? "bold" : "norm"
+            hk_bold := !is_array_equal(info.cmd.Has("hotkeys") ? info.cmd["hotkeys"] : [], orig_cmd.Has("hotkeys") ? orig_cmd["hotkeys"] : []) ? "bold" : "norm"
         }
         try {
             this.view.Txt_Desc.SetFont(desc_bold)
@@ -753,8 +837,8 @@ class SettingsController {
                 } else {
                     item_dirty := (info.cmd["command"] != orig_cmd["command"])
                         || (info.cmd.Has("desc") ? info.cmd["desc"] : "") != (orig_cmd.Has("desc") ? orig_cmd["desc"] : "")
-                        || JSON.stringify(info.cmd.Has("aliases") ? info.cmd["aliases"] : []) != JSON.stringify(orig_cmd.Has("aliases") ? orig_cmd["aliases"] : [])
-                        || JSON.stringify(info.cmd.Has("hotkeys") ? info.cmd["hotkeys"] : []) != JSON.stringify(orig_cmd.Has("hotkeys") ? orig_cmd["hotkeys"] : [])
+                        || !is_array_equal(info.cmd.Has("aliases") ? info.cmd["aliases"] : [], orig_cmd.Has("aliases") ? orig_cmd["aliases"] : [])
+                        || !is_array_equal(info.cmd.Has("hotkeys") ? info.cmd["hotkeys"] : [], orig_cmd.Has("hotkeys") ? orig_cmd["hotkeys"] : [])
                 }
 
                 if (item_dirty) {
@@ -842,44 +926,8 @@ class SettingsController {
         }
     }
 
-    FormatHotkeyForDisplay(hk) {
-        if (hk == "") {
-                return ""
-            }
-        display := ""
-        if InStr(hk, "^")
-            display .= "Ctrl + "
-        if InStr(hk, "!")
-            display .= "Alt + "
-        if InStr(hk, "+")
-            display .= "Shift + "
-        if InStr(hk, "#")
-            display .= "Win + "
-        key := RegExReplace(hk, "[\^!\+#]", "")
-        display .= StrUpper(key)
-        return display
-    }
-
-    ParseHotkeyFromDisplay(display) {
-        if (display == "") {
-            return ""
-        }
-        hk := ""
-        if InStr(display, "Ctrl + ")
-            hk .= "^"
-        if InStr(display, "Alt + ")
-            hk .= "!"
-        if InStr(display, "Shift + ")
-            hk .= "+"
-        if InStr(display, "Win + ")
-            hk .= "#"
-        key := StrReplace(display, "Ctrl + ", "")
-        key := StrReplace(key, "Alt + ", "")
-        key := StrReplace(key, "Shift + ", "")
-        key := StrReplace(key, "Win + ", "")
-        hk .= key
-        return hk
-    }
+    FormatHotkeyForDisplay(hk) => format_hotkey_for_display(hk)
+    ParseHotkeyFromDisplay(display) => parse_hotkey_from_display(display)
 
     on_lbutton_down(wParam, lParam, msg, hwnd) {
         if (this.HasProp("view") && this.view) {
@@ -1227,7 +1275,7 @@ class SettingsController {
         try {
             this.model.parse_import_file(selectedFile)
             this.refresh_import_diff("通过导入文件确定")
-        } catch as e {
+        } catch Error as e {
             MsgBox(e.Message, "解析错误", "Iconx")
         }
     }

@@ -54,12 +54,12 @@ safe_send_enter(hwnd) {
 
 /**
  * 根据输入的用户别名, 执行配置文件中的 COMMAND_ID 以及 函数调用
- * @param alias_strings    用户别名字符串, 不区分大小写
- * @param command_ini      命令配置文件路径
+ * @param input_string    用户别名字符串, 不区分大小写
+ * @param dict_type       区分是 "alias" 还是 "hotkey"
  * @param power_input_hwnd    超级输入框的 hwnd 值
  * 
  */
-cat_command_execution(input_string, command_ini, power_input_hwnd) {
+cat_command_execution(input_string, dict_type, power_input_hwnd) {
     ; 获取当前工作台
     current_workbench := match_current_workbench(AppSettings.workbench_list)
 
@@ -68,7 +68,7 @@ cat_command_execution(input_string, command_ini, power_input_hwnd) {
     }
 
     ; 获取对应的 Command-id 和 回调函数
-    command_id_and_cb_array := read_user_alias(command_ini, current_workbench, StrUpper(input_string))
+    command_id_and_cb_array := read_user_alias(dict_type, current_workbench, StrUpper(input_string))
 
     if !command_id_and_cb_array {
         k_ToolTip(Format("没有找到与 '{1}' 对应的命令", input_string), 1000)

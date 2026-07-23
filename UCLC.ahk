@@ -1,4 +1,4 @@
-﻿#Requires AutoHotKey v2.0
+#Requires AutoHotKey v2.0
 #SingleInstance Force
 ; #MaxThreads 20 ; 已废弃异步轮询，不再需要高并发线程
 SetTitleMatchMode 2
@@ -23,23 +23,22 @@ check_user_config()
 GroupAdd "group_calc", "计算器"
 GroupAdd "group_calc", "Calculator"
 
-read_all_section_from_ini(AppSettings.alias_ini_path, AppSettings.workbench_list)
-read_all_section_from_ini(AppSettings.hotkey_ini_path, AppSettings.workbench_list)
+; 从 JSON Map 补充工作台列表
+for wb, _ in AppSettings.alias_obj {
+    if !AppSettings.workbench_list.Has(wb)
+        AppSettings.workbench_list[wb] := ""
+}
 
 ; 注册热键
 HotIfWinActive "ahk_group GroupCATIA"
 {
-    available_workbench_list := StrSplit(IniRead(AppSettings.hotkey_ini_path), "`n")
     customize_hotkey_list_dict := Map()
 
-    ; 将配置文件内所有热键写入字典
-    for workbench in available_workbench_list {
-        key_value_pair_array := StrSplit(IniRead(AppSettings.hotkey_ini_path, workbench), "`n")
-
-        for each_pair in key_value_pair_array {
-            key := StrSplit(each_pair, "=")[1]
-            if !customize_hotkey_list_dict.Has(key) {
-                customize_hotkey_list_dict.Set(key, "")
+    ; 将内存中所有热键写入字典
+    for workbench, keys_map in AppSettings.hotkey_obj {
+        for hotkey_str, _ in keys_map {
+            if !customize_hotkey_list_dict.Has(hotkey_str) {
+                customize_hotkey_list_dict.Set(hotkey_str, "")
             }
         }
     }
@@ -50,7 +49,7 @@ HotIfWinActive "ahk_group GroupCATIA"
 }
 
 check_user_config() {
-    if (FileExist(AppSettings.alias_ini_path) = "" or FileExist(AppSettings.hotkey_ini_path) = "") {
+    if (FileExist(AppSettings.alias_json_path) = "" or FileExist(AppSettings.hotkey_json_path) = "") {
         result := MsgBox(
             "未找到配置文件`n"
             "是否从 Github/Gitee 下载示例文件？`n"
@@ -68,9 +67,11 @@ check_user_config() {
                 ExitApp
 
             case "Yes":
+                alias_ini := StrReplace(AppSettings.alias_json_path, ".json", ".ini")
+                hotkey_ini := StrReplace(AppSettings.hotkey_json_path, ".json", ".ini")
                 config_and_path := [
-                    ["CAT_Alias.ini", AppSettings.alias_ini_path],
-                    ["CAT_Hotkey.ini", AppSettings.hotkey_ini_path]
+                    ["CAT_Alias.ini", alias_ini],
+                    ["CAT_Hotkey.ini", hotkey_ini]
                 ]
 
                 flag := 1
@@ -86,7 +87,7 @@ check_user_config() {
     }
 }
 
-add_group_by_exe("group_autoime", "AutoIME", AppSettings.config_ini_path)
+add_group_by_exe("group_autoime", "AutoIME")
 
 volume_control := VolumeController.Call()
 
@@ -241,7 +242,7 @@ loop {
             Exit
         }
 
-        cat_command_execution(edit_text, AppSettings.alias_ini_path, power_input_edit_control_hwnd)
+        cat_command_execution(edit_text, "alias", power_input_edit_control_hwnd)
     }
 
     +Tab::

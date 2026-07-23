@@ -18,7 +18,7 @@ ShowSettingsGUI(*) {
     SettingsGui.Add("Checkbox", "x20 y30 vEverythingEnabled", "启用“双击右Ctrl”呼出 Everything").Value := AppSettings.Everything_Enabled
 
     ; 2. 添加路径输入框和浏览按钮
-    current_path := IniRead(AppSettings.config_ini_path, "Everything", "Path", "")
+    current_path := AppSettings.Everything_Path
     SettingsGui.Add("Text", "x20 y60", "路径:")
     SettingsGui.Add("Edit", "x60 y58 w240 vEverythingPath", current_path)
     SettingsGui.Add("Button", "x310 y58 w70", "浏览...").OnEvent("Click", BrowseForEverything)
@@ -42,19 +42,22 @@ ShowSettingsGUI(*) {
     SaveSettings(*) {
         try
         {
-            config_path := AppSettings.config_ini_path
+            config_path := AppSettings.config_json_path
 
-            ; 检查 [Everything] section 是否存在
-            all_sections := IniRead(config_path)
-            if !InStr(all_sections, "Everything")
-            {
-                ; 如果不存在，在写入前先在文件末尾追加一个换行符
-                FileAppend("`r`n", config_path)
-            }
+            ; 更新内存中的配置对象
+            if !AppSettings.config_obj.Has("Everything")
+                AppSettings.config_obj["Everything"] := Map()
+                
+            AppSettings.config_obj["Everything"]["Enabled"] := String(SettingsGui["EverythingEnabled"].Value)
+            AppSettings.config_obj["Everything"]["Path"] := SettingsGui["EverythingPath"].Value
 
-            ; 将 GUI 上的值写入 config.ini
-            IniWrite(SettingsGui["EverythingEnabled"].Value, config_path, "Everything", "Enabled")
-            IniWrite(SettingsGui["EverythingPath"].Value, config_path, "Everything", "Path")
+            ; 将配置对象序列化为 JSON
+            json_str := JSON.stringify(AppSettings.config_obj)
+
+            if FileExist(config_path)
+                FileDelete(config_path)
+
+            FileAppend(json_str, config_path, "UTF-8")
 
             ; 同步更新 AppSettings 中的静态变量，使其立即生效
             AppSettings.Everything_Enabled := SettingsGui["EverythingEnabled"].Value

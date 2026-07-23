@@ -1,19 +1,14 @@
-#Requires AutoHotKey v2.0
+﻿#Requires AutoHotKey v2.0
 #SingleInstance Force
 ; #MaxThreads 20 ; 已废弃异步轮询，不再需要高并发线程
 SetTitleMatchMode 2
 
-#Include Lib\ConfigMigrator.ahk
-#Include Lib\WinEventHook.ahk
-#Include ./Lib/AppSettings.ahk
-#Include ./Lib/CATAlias.ahk
-#Include ./Lib/stdio.ahk
-#Include ./Lib/windows.ahk
-#Include ./Lib/string.ahk
-#Include ./Lib/AHK_LOG.ahk
-#Include ./Lib/CAT_Automatic.ahk
-#Include ./Lib/tray_menu.ahk
-#Include ./Lib/SettingsGUI.ahk
+
+; === UCLC 核心基础库 ===
+#Include Lib\UCLC_System.ahk
+#Include Lib\UCLC_Core.ahk
+#Include Lib\UCLC_UI.ahk
+; === UCLC 核心基础库 ===
 
 AppSettings.Init()
 add_coustom_tray_menu()

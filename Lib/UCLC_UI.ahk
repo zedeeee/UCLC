@@ -1,6 +1,164 @@
-#Requires AutoHotkey v2.0
-#Include AppSettings.ahk
+﻿#Requires AutoHotkey v2.0
 
+#Include "UCLC_Core.ahk"
+#Include "UCLC_System.ahk"
+
+;-==== [ 原模块: tray_menu.ahk ] ====-
+showProjectHomepage_cb(*) {
+    Run "https://github.com/zedeeee/UCLC"
+}
+
+help_Homepage_cb(*) {
+    Run "https://github.com/zedeeee/UCLC-config"
+}
+
+open_script_folder_cb(*)
+{
+    Run A_ScriptDir
+}
+
+about_cb(*)
+{
+    MsgBox Format("一个CATIA快捷键脚本`n使CATIA的操作体验更接近AutoCAD`n版本：{1}", AppSettings.Version), "UCLC", 0x40
+}
+
+update_check_cb(*)
+{
+}
+
+
+reload_cb(*) {
+    Reload
+}
+
+disable_script_cb(ItemName, ItemPos, MyMenu)
+{
+    menu_toggleCheck_cb(ItemName, ItemPos, MyMenu)
+    Suspend(-1)
+}
+
+exit_cb(*) {
+    ExitApp
+}
+
+menu_toggleCheck_cb(ItemName, ItemPos, MyMenu)
+{
+    MyMenu.ToggleCheck(ItemName)
+}
+
+Nothing_cb(*) {
+    ; Do Nothing
+}
+
+NoAction_cb(*) {
+    ; Do Nothing
+    k_ToolTip("功能未开放", 2000)
+}
+
+run_spy_cb(*)
+{
+    SplitPath A_AhkPath, , &ahk_dir
+    spy_paths := [
+        ahk_dir "\..\UX\WindowSpy.ahk",
+        ahk_dir "\..\WindowSpy.ahk",
+        ahk_dir "\WindowSpy.ahk"
+    ]
+    
+    try spy_paths.Push(RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey", "InstallDir") "\UX\WindowSpy.ahk")
+    try spy_paths.Push(RegRead("HKEY_CURRENT_USER\SOFTWARE\AutoHotkey", "InstallDir") "\UX\WindowSpy.ahk")
+    
+    for path in spy_paths {
+        if FileExist(path) {
+            Run('"' path '"')
+            return
+        }
+    }
+    MsgBox("无法找到 WindowSpy.ahk，请确认 AutoHotkey 是否完整安装。", "UCLC", 0x10)
+}
+
+disable_botton_cb(ItemName, ItemPos, MyMenu) {
+    MyMenu.Disable(ItemName)
+}
+
+add_sub_menu(ItemName, ItemPos, MyMenu) {
+
+}
+
+about_and_updates_menu := [
+    ["关于", about_cb, ""],
+    ["项目主页", showProjectHomepage_cb, ""],
+    ["自定义帮助", help_Homepage_cb, ""],
+    ["检查更新", NoAction_cb, ""]
+]
+
+dev_sub_menu := [
+    ["None", Nothing_cb, ""],
+]
+
+/**
+ * ["按钮名称", 回调函数, 子菜单数组]
+ */
+menu_items := [
+    ["UCLC " AppSettings.Version, NoAction_cb, about_and_updates_menu],
+    ["", NoAction_cb, ""],
+    ["打开脚本所在文件夹", open_script_folder_cb, ""],
+    ["开发功能", NoAction_cb, dev_sub_menu],
+    ["", NoAction_cb, ""],
+    ; ["配置", disable_botton_cb, ""],
+    ["Windows Spy", run_spy_cb, ""],
+    ["重新载入", reload_cb, ""],
+    ["禁用脚本", disable_script_cb, ""],
+    ["设置...", ShowSettingsGUI, ""],
+    ["退出", exit_cb, ""]
+]
+
+
+add_coustom_tray_menu()
+{
+    TraySetIcon("./icon/color-icon64.png")
+
+    A_IconTip := "UCLC: 像AutoCAD一样使用CATIA"
+
+    cus_tray_menu := Menu()
+
+    A_TrayMenu.Delete()
+
+    for menu_item in menu_items
+    {
+        button_name := menu_item[1]
+        callback_function := menu_item[2]
+        sub_menu_items := menu_item[3]
+
+        if button_name == ""
+        {
+            A_TrayMenu.Add()
+            continue
+        }
+
+        ; 如果子菜单不为空， 开始注册子菜单
+        if sub_menu_items != ""
+        {
+            parent_button_name := button_name
+            sub_menu_name := [button_name . "_sub_menu"]
+            sub_menu_name[1] := Menu()
+
+            for sub_menu_item in sub_menu_items
+            {
+                sub_button_name := sub_menu_item[1]
+                sub_callback_function := sub_menu_item[2]
+                sub_menu_name[1].Add(sub_button_name, sub_callback_function)
+            }
+            A_TrayMenu.Add(parent_button_name, sub_menu_name[1])
+            continue
+        }
+        A_TrayMenu.Add(button_name, callback_function)
+
+    }
+    A_TrayMenu.Default := "设置..."
+    ; A_TrayMenu.Rename(menu_items[1][1], "UCLC")
+}
+
+;-==== [ 原模块: SettingsGUI.ahk ] ====-
 show_settings_gui(*) {
     static controller := ""
     if (!controller || !controller.is_valid()) {

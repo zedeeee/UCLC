@@ -399,6 +399,11 @@ class SettingsModel {
 
     calculate_import_diff(target_wb) {
         parsed_commands := this.parsed_import_data
+        if (!parsed_commands || parsed_commands.Count == 0) {
+            this.import_items := []
+            return []
+        }
+
         local_array := AppSettings.commands_obj.Has(target_wb) ? AppSettings.commands_obj[target_wb] : []
         
         local_by_id := Map()
@@ -415,7 +420,8 @@ class SettingsModel {
 
         for id, title in parsed_commands {
             if local_by_id.Has(id) {
-                if local_by_id[id]["desc"] == title {
+                local_desc := (local_by_id[id].Has("desc") && local_by_id[id]["desc"] != "") ? local_by_id[id]["desc"] : local_by_id[id]["command"]
+                if (local_desc == title) {
                     import_items.Push({ title: title, local_id: id, action: "=", imported_id: id })
                 } else {
                     import_items.Push({ title: title, local_id: local_by_id[id]["command"], action: "T", imported_id: id })
@@ -448,7 +454,7 @@ class SettingsView extends Gui {
     __New() {
         super.__New("-Resize -MaximizeBox", "UCLC 配置管理")
         
-        this.tabs := this.Add("Tab3", "x10 y10 w780 h580", ["命令映射", "通用设置", "工作台命令库"])
+        this.tabs := this.Add("Tab3", "x10 y10 w780 h580", ["命令映射", "通用设置"])
 
         ; =============== 第一页: 命令映射 ===============
         this.tabs.UseTab(1)
@@ -462,7 +468,7 @@ class SettingsView extends Gui {
         
         this.tv_alias := this.Add("TreeView", "x30 y115 w250 h430")
         
-        this.Btn_AddCmdFromOther := this.Add("Button", "x30 y550 w250 h24 Disabled", "从指定工作台添加命令")
+        this.Btn_OpenCmdLib := this.Add("Button", "x30 y550 w250 h26", "导入命令")
 
         this.Add("GroupBox", "x300 y60 w460 h490", "详细属性与动态编辑")
 
@@ -522,64 +528,7 @@ class SettingsView extends Gui {
 
         this.btn_saveGen := this.Add("Button", "x620 y425 w150 h30 Default", "保存通用设置")
 
-        ; =============== 第三页: 工作台命令库 ===============
-        this.tabs.UseTab(3)
-        this.Add("GroupBox", "x20 y40 w740 h65", "数据源获取")
-        this.Add("Text", "x30 y68 w70", "目标工作台:")
-        this.ddl_import_wb := this.Add("DropDownList", "x100 y64 w250 Choose1", ["通过导入文件确定"])
-        this.Btn_AddWb := this.Add("Button", "x355 y64 w24 h22", "+")
-        this.Btn_ImportCommands := this.Add("Button", "x500 y64 w120 h22", "导入命令")
-        this.Btn_ReadTxt := this.Add("Button", "x630 y64 w120 h22", "从 TXT 导入")
-
-        this.Add("GroupBox", "x20 y115 w740 h410", "同步状态视图")
-        this.Add("Text", "x25 y130 w60 h32 +0x200", "视图筛选:")
-        
-        this.chk_filter_all := this.Add("CheckBox", "x85 y130 w60 h32 Checked", "全部`n(0)")
-        this.SetFont("s9 bold c107C10")
-        this.Add("Text", "x155 y130 w14 h32 +0x200", "+")
-        this.SetFont("s9 norm cDefault")
-        this.chk_filter_new := this.Add("CheckBox", "x169 y130 w60 h32 Checked", "新增`n(0)")
-        
-        this.SetFont("s9 bold c0078D7")
-        this.Add("Text", "x239 y130 w14 h32 +0x200", "T")
-        this.SetFont("s9 norm cDefault")
-        this.chk_filter_update := this.Add("CheckBox", "x253 y130 w85 h32 Checked", "更新标题`n(0)")
-        
-        this.SetFont("s9 bold c0078D7")
-        this.Add("Text", "x348 y130 w14 h32 +0x200", "C")
-        this.SetFont("s9 norm cDefault")
-        this.chk_filter_overwrite := this.Add("CheckBox", "x362 y130 w85 h32 Checked", "更新命令`n(0)")
-        
-        this.SetFont("s9 bold c107C10")
-        this.Add("Text", "x457 y130 w14 h32 +0x200", "=")
-        this.SetFont("s9 norm cDefault")
-        this.chk_filter_same := this.Add("CheckBox", "x471 y130 w60 h32 Checked", "一致`n(0)")
-        
-        this.SetFont("s9 bold cE81123")
-        this.Add("Text", "x541 y130 w14 h32 +0x200", "D")
-        this.SetFont("s9 norm cDefault")
-        this.chk_filter_delete := this.Add("CheckBox", "x555 y130 w75 h32 Checked", "待删除`n(0)")
-        
-        this.SetFont("s9 bold cE81123")
-        this.Add("Text", "x640 y130 w14 h32 +0x200", "i")
-        this.SetFont("s9 norm cDefault")
-        this.chk_filter_ignore := this.Add("CheckBox", "x654 y130 w60 h32 Checked", "忽略`n(0)")
-
-        this.lv_import := this.Add("ListView", "x30 y165 w720 h310 Grid", ["标题", "命令 ID", "导入的命令 ID", "操作"])
-        this.lv_import.ModifyCol(1, 160)
-        this.lv_import.ModifyCol(2, 240)
-        this.lv_import.ModifyCol(3, 253)
-        this.lv_import.ModifyCol(4, 50)
-        this.lv_import.ModifyCol(4, "Center")
-
-        this.txt_empty_lv := this.Add("Text", "x250 y305 w280 h30 Center c808080 BackgroundTrans", "请点击上方按钮获取数据")
-
-        this.btn_mark_delete := this.Add("Button", "x30 y485 w80 h24 Disabled", "删除选中")
-        this.btn_mark_ignore := this.Add("Button", "x120 y485 w80 h24 Disabled", "忽略选中")
-        this.txt_sel_count := this.Add("Text", "x220 y489 w150 h20", "已选中: 0 项")
-
-        this.btn_resetView := this.Add("Button", "x30 y550 w150", "重置视图")
-        this.Btn_ApplyAll := this.Add("Button", "x600 y550 w150", "应用修改")
+        ; =============== (原第三页工作台命令库已重构成弹窗) ===============
     }
 
     clear_detail_pane() {
@@ -715,7 +664,6 @@ class SettingsController {
         this.view.ddl_workbench.OnEvent("Change", ObjBindMethod(this, "OnWorkbenchFilter"))
         this.view.edit_search.OnEvent("Change", ObjBindMethod(this, "OnSearchFilter"))
         this.view.tv_alias.OnEvent("ItemSelect", ObjBindMethod(this, "on_command_tree_select"))
-        this.view.Btn_AddCmdFromOther.OnEvent("Click", ObjBindMethod(this, "on_add_cmd_from_other"))
 
         for idx, p in this.view.alias_pool {
             p.add.OnEvent("Click", ObjBindMethod(this, "OnAddAlias", idx))
@@ -744,28 +692,7 @@ class SettingsController {
         this.view.lv_autoime.OnEvent("DoubleClick", ObjBindMethod(this, "OnEditAutoIME"))
         this.view.link_ime_guide.OnEvent("Click", ObjBindMethod(this, "OnShowImeGuide"))
 
-        this.view.ddl_import_wb.OnEvent("Change", ObjBindMethod(this, "on_target_workbench_changed"))
-        this.view.Btn_AddWb.OnEvent("Click", ObjBindMethod(this, "OnAddTargetWorkbench"))
-        this.view.Btn_ImportCommands.OnEvent("Click", ObjBindMethod(this, "OnImportCommands"))
-        this.view.Btn_ReadTxt.OnEvent("Click", ObjBindMethod(this, "OnReadExportedTxt"))
-
-        this.view.chk_filter_all.OnEvent("Click", ObjBindMethod(this, "on_filter_all"))
-        this.view.chk_filter_new.OnEvent("Click", ObjBindMethod(this, "on_filter_new"))
-        this.view.chk_filter_update.OnEvent("Click", ObjBindMethod(this, "on_filter_update"))
-        this.view.chk_filter_overwrite.OnEvent("Click", ObjBindMethod(this, "on_filter_overwrite"))
-        this.view.chk_filter_same.OnEvent("Click", ObjBindMethod(this, "on_filter_same"))
-        this.view.chk_filter_delete.OnEvent("Click", ObjBindMethod(this, "on_filter_delete"))
-        this.view.chk_filter_ignore.OnEvent("Click", ObjBindMethod(this, "on_filter_ignore"))
-
-        this.view.lv_import.OnEvent("Click", ObjBindMethod(this, "on_import_list_view_click"))
-        this.view.lv_import.OnEvent("ItemSelect", ObjBindMethod(this, "on_import_list_view_item_select"))
-        this.view.lv_import.OnEvent("DoubleClick", ObjBindMethod(this, "on_import_list_view_double_click"))
-        this.view.lv_import.OnEvent("ContextMenu", ObjBindMethod(this, "on_import_list_view_context_menu"))
-
-        this.view.btn_mark_delete.OnEvent("Click", ObjBindMethod(this, "on_mark_items_to_delete"))
-        this.view.btn_mark_ignore.OnEvent("Click", ObjBindMethod(this, "on_mark_items_to_ignore"))
-        this.view.btn_resetView.OnEvent("Click", ObjBindMethod(this, "on_reset_import_view"))
-        this.view.Btn_ApplyAll.OnEvent("Click", ObjBindMethod(this, "on_apply_import_all"))
+        this.view.Btn_OpenCmdLib.OnEvent("Click", ObjBindMethod(this, "OnOpenCmdLibraryModal"))
     }
 
     LoadGeneralSettings() {
@@ -814,9 +741,11 @@ class SettingsController {
         this.view.ddl_workbench.Add(wb_list)
         this.view.ddl_workbench.Choose(1)
         
-        this.view.ddl_import_wb.Delete()
-        this.view.ddl_import_wb.Add(wb_list3)
-        this.view.ddl_import_wb.Choose(1)
+        if (this.view.HasProp("ddl_import_wb") && this.view.ddl_import_wb) {
+            this.view.ddl_import_wb.Delete()
+            this.view.ddl_import_wb.Add(wb_list3)
+            this.view.ddl_import_wb.Choose(1)
+        }
     }
 
     OnClose(*) {
@@ -934,11 +863,6 @@ class SettingsController {
     }
 
     OnWorkbenchFilter(CtrlObj, *) {
-        if (this.view.ddl_workbench.Text != "全部工作台") {
-            this.view.Btn_AddCmdFromOther.Opt("-Disabled")
-        } else {
-            this.view.Btn_AddCmdFromOther.Opt("+Disabled")
-        }
         this.load_command_tree(this.view.edit_search.Value)
     }
 
@@ -1452,6 +1376,121 @@ class SettingsController {
         }
     }
 
+    OnOpenCmdLibraryModal(*) {
+        dlg := Gui("+Owner" this.view.hwnd " -MinimizeBox -MaximizeBox", "工作台命令库管理")
+        this.view.Opt("+Disabled")
+
+        dlg.Add("GroupBox", "x20 y15 w740 h65", "数据源获取")
+        dlg.Add("Text", "x30 y43 w70", "目标工作台:")
+
+        sort_str := ""
+        for k, v in AppSettings.commands_obj {
+            if (k != "_comment") {
+                sort_str .= AppSettings.GetWbName(k) "|||" k "`n"
+            }
+        }
+        sort_str := Sort(Trim(sort_str, "`n"))
+
+        wb_list3 := ["通过导入文件确定"]
+        this.import_wb_ids := [""]
+        loop parse sort_str, "`n", "`r" {
+            if (A_LoopField == "") {
+                continue
+            }
+            parts := StrSplit(A_LoopField, "|||")
+            wb_list3.Push(parts[1])
+            this.import_wb_ids.Push(parts[2])
+        }
+
+        this.view.ddl_import_wb := dlg.Add("DropDownList", "x100 y39 w250 Choose1", wb_list3)
+        this.view.Btn_AddWb := dlg.Add("Button", "x355 y39 w24 h22", "+")
+        this.view.Btn_ImportCommands := dlg.Add("Button", "x500 y39 w120 h22", "导入命令")
+        this.view.Btn_ReadTxt := dlg.Add("Button", "x630 y39 w120 h22", "从 TXT 导入")
+
+        dlg.Add("GroupBox", "x20 y90 w740 h410", "同步状态视图")
+        dlg.Add("Text", "x25 y105 w60 h32 +0x200", "视图筛选:")
+
+        this.view.chk_filter_all := dlg.Add("CheckBox", "x85 y105 w60 h32 Checked", "全部`n(0)")
+        dlg.SetFont("s9 bold c107C10")
+        dlg.Add("Text", "x155 y105 w14 h32 +0x200", "+")
+        dlg.SetFont("s9 norm cDefault")
+        this.view.chk_filter_new := dlg.Add("CheckBox", "x169 y105 w60 h32 Checked", "新增`n(0)")
+
+        dlg.SetFont("s9 bold c0078D7")
+        dlg.Add("Text", "x239 y105 w14 h32 +0x200", "T")
+        dlg.SetFont("s9 norm cDefault")
+        this.view.chk_filter_update := dlg.Add("CheckBox", "x253 y105 w85 h32 Checked", "更新标题`n(0)")
+
+        dlg.SetFont("s9 bold c0078D7")
+        dlg.Add("Text", "x348 y105 w14 h32 +0x200", "C")
+        dlg.SetFont("s9 norm cDefault")
+        this.view.chk_filter_overwrite := dlg.Add("CheckBox", "x362 y105 w85 h32 Checked", "更新命令`n(0)")
+
+        dlg.SetFont("s9 bold c107C10")
+        dlg.Add("Text", "x457 y105 w14 h32 +0x200", "=")
+        dlg.SetFont("s9 norm cDefault")
+        this.view.chk_filter_same := dlg.Add("CheckBox", "x471 y105 w60 h32 Checked", "一致`n(0)")
+
+        dlg.SetFont("s9 bold cE81123")
+        dlg.Add("Text", "x541 y105 w14 h32 +0x200", "D")
+        dlg.SetFont("s9 norm cDefault")
+        this.view.chk_filter_delete := dlg.Add("CheckBox", "x555 y105 w75 h32 Checked", "待删除`n(0)")
+
+        dlg.SetFont("s9 bold cE81123")
+        dlg.Add("Text", "x640 y105 w14 h32 +0x200", "i")
+        dlg.SetFont("s9 norm cDefault")
+        this.view.chk_filter_ignore := dlg.Add("CheckBox", "x654 y105 w60 h32 Checked", "忽略`n(0)")
+
+        this.view.lv_import := dlg.Add("ListView", "x30 y140 w720 h310 Grid", ["标题", "命令 ID", "导入的命令 ID", "操作"])
+        this.view.lv_import.ModifyCol(1, 160)
+        this.view.lv_import.ModifyCol(2, 240)
+        this.view.lv_import.ModifyCol(3, 253)
+        this.view.lv_import.ModifyCol(4, 50)
+        this.view.lv_import.ModifyCol(4, "Center")
+
+        this.view.txt_empty_lv := dlg.Add("Text", "x250 y280 w280 h30 Center c808080 BackgroundTrans", "请点击上方按钮获取数据")
+
+        this.view.btn_mark_delete := dlg.Add("Button", "x30 y460 w80 h24 Disabled", "删除选中")
+        this.view.btn_mark_ignore := dlg.Add("Button", "x120 y460 w80 h24 Disabled", "忽略选中")
+        this.view.txt_sel_count := dlg.Add("Text", "x220 y464 w150 h20", "已选中: 0 项")
+
+        this.view.btn_resetView := dlg.Add("Button", "x30 y510 w150 h28", "重置视图")
+        this.view.Btn_ApplyAll := dlg.Add("Button", "x600 y510 w150 h28 Default", "应用修改")
+
+        this.view.ddl_import_wb.OnEvent("Change", ObjBindMethod(this, "on_target_workbench_changed"))
+        this.view.Btn_AddWb.OnEvent("Click", ObjBindMethod(this, "OnAddTargetWorkbench"))
+        this.view.Btn_ImportCommands.OnEvent("Click", ObjBindMethod(this, "OnImportCommands"))
+        this.view.Btn_ReadTxt.OnEvent("Click", ObjBindMethod(this, "OnReadExportedTxt"))
+
+        this.view.chk_filter_all.OnEvent("Click", ObjBindMethod(this, "on_filter_all"))
+        this.view.chk_filter_new.OnEvent("Click", ObjBindMethod(this, "on_filter_new"))
+        this.view.chk_filter_update.OnEvent("Click", ObjBindMethod(this, "on_filter_update"))
+        this.view.chk_filter_overwrite.OnEvent("Click", ObjBindMethod(this, "on_filter_overwrite"))
+        this.view.chk_filter_same.OnEvent("Click", ObjBindMethod(this, "on_filter_same"))
+        this.view.chk_filter_delete.OnEvent("Click", ObjBindMethod(this, "on_filter_delete"))
+        this.view.chk_filter_ignore.OnEvent("Click", ObjBindMethod(this, "on_filter_ignore"))
+
+        this.view.lv_import.OnEvent("Click", ObjBindMethod(this, "on_import_list_view_click"))
+        this.view.lv_import.OnEvent("ItemSelect", ObjBindMethod(this, "on_import_list_view_item_select"))
+        this.view.lv_import.OnEvent("DoubleClick", ObjBindMethod(this, "on_import_list_view_double_click"))
+        this.view.lv_import.OnEvent("ContextMenu", ObjBindMethod(this, "on_import_list_view_context_menu"))
+
+        this.view.btn_mark_delete.OnEvent("Click", ObjBindMethod(this, "on_mark_items_to_delete"))
+        this.view.btn_mark_ignore.OnEvent("Click", ObjBindMethod(this, "on_mark_items_to_ignore"))
+        this.view.btn_resetView.OnEvent("Click", ObjBindMethod(this, "on_reset_import_view"))
+        this.view.Btn_ApplyAll.OnEvent("Click", ObjBindMethod(this, "on_apply_import_all"))
+
+        close_dlg(*) {
+            this.view.Opt("-Disabled")
+            dlg.Destroy()
+        }
+
+        dlg.OnEvent("Close", close_dlg)
+        dlg.OnEvent("Escape", close_dlg)
+
+        dlg.Show("w780 h550")
+    }
+
     on_target_workbench_changed(ctrl, *) {
         target_wb := (ctrl.Value > 1) ? this.import_wb_ids[ctrl.Value] : ctrl.Text
         this.refresh_import_diff(target_wb)
@@ -1531,6 +1570,9 @@ class SettingsController {
             || (a == "=" && showSame) || (a == "D" && showDelete) || (a == "i" && showIgnore)) {
                 this.view.lv_import.Add("", item.title, item.local_id, item.imported_id, a)
             }
+        }
+        if (this.view.lv_import.GetCount() == 0) {
+            this.view.txt_empty_lv.Visible := true
         }
         this.view.lv_import.Opt("+Redraw")
         this.view.lv_import.ModifyCol(1, "Sort")

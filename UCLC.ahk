@@ -6,6 +6,7 @@ SetTitleMatchMode 2
 #Include Lib\UCLC_System.ahk
 #Include Lib\UCLC_Core.ahk
 #Include Lib\UCLC_UI.ahk
+#Include Lib\UCLC_Updater.ahk
 ; === UCLC 核心基础库 ===
 
 class UCLCApp {
@@ -41,6 +42,10 @@ class UCLCApp {
         KeyboardController.register_anti_sticky_hotkeys()
 
         WinEventHook.Start()
+
+        ; 启动版本更新检查 (延时3秒执行首次检查，之后每 1 小时循环检查一次)
+        SetTimer(() => UCLCUpdater.CheckForUpdate(false), -3000)
+        SetTimer(() => UCLCUpdater.CheckForUpdate(false), 3600000)
     }
 
     start_tips_timer() {

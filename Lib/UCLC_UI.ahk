@@ -2274,3 +2274,16 @@ class SettingsController {
         this.on_reset_import_view()
     }
 }
+
+ShowUpdateGUI(latestVersion, currentVersion, releaseNotes, downloadUrl) {
+    msg := "发现新版本: " . latestVersion . "`n"
+    msg .= "当前版本: " . currentVersion . "`n`n"
+    msg .= "更新内容:`n" . releaseNotes . "`n`n"
+    msg .= "是否立即前往下载更新？`n`n"
+    msg .= "(注: 若点击【否】，暂时不会记录为跳过版本。跳过功能可在未来自定义 GUI 中实现。)"
+    
+    result := MsgBox(msg, "UCLC 更新可用", "YesNo Iconi")
+    if (result == "Yes" && downloadUrl != "") {
+        Run(downloadUrl)
+    }
+}

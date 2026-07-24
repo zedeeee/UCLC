@@ -29,6 +29,11 @@ class AppSettings {
     static Calc_Enabled := 0
     static Calc_Hotkey := ""
     
+    static Updater_Enabled := 1
+    static Updater_Channel := "Preview"
+    static Updater_LastCheckTime := ""
+    static Updater_SkippedVersion := ""
+    
     static workbench_mapping := Map()
 
     static LoadWorkbenchMapping() {
@@ -213,6 +218,15 @@ class AppSettings {
         this.Calc_Hotkey := this.config_obj.Has("Calculator") && this.config_obj["Calculator"].Has("Hotkey") ? 
             this.config_obj["Calculator"]["Hotkey"] : ""
 
+        this.Updater_Enabled := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("Enabled") ? 
+            Integer(this.config_obj["Updater"]["Enabled"]) : 1
+        this.Updater_Channel := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("Channel") ? 
+            this.config_obj["Updater"]["Channel"] : "Preview"
+        this.Updater_LastCheckTime := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("LastCheckTime") ? 
+            this.config_obj["Updater"]["LastCheckTime"] : ""
+        this.Updater_SkippedVersion := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("SkippedVersion") ? 
+            this.config_obj["Updater"]["SkippedVersion"] : ""
+
         ; 初始化工作台列表
         this.workbench_list := Map()
         if (this.hotkey_obj != "") {
@@ -222,6 +236,30 @@ class AppSettings {
         }
 
         this.current_workbench := ""
+    }
+
+    static SaveUpdaterConfig(key, value) {
+        if (!this.config_obj.Has("Updater")) {
+            this.config_obj["Updater"] := Map()
+        }
+        this.config_obj["Updater"][key] := value
+        
+        if (key == "Enabled")
+            this.Updater_Enabled := Integer(value)
+        else if (key == "Channel")
+            this.Updater_Channel := value
+        else if (key == "LastCheckTime")
+            this.Updater_LastCheckTime := value
+        else if (key == "SkippedVersion")
+            this.Updater_SkippedVersion := value
+
+        try {
+            if FileExist(this.config_json_path)
+                FileDelete(this.config_json_path)
+            FileAppend(JSON.stringify(this.config_obj), this.config_json_path, "UTF-8")
+        } catch Error as e {
+            Logger.info("保存 Updater 配置失败: " . e.Message)
+        }
     }
 }
 

@@ -599,8 +599,8 @@ class SettingsView extends Gui {
         SendMessage(0x1501, 1, StrPtr("点击录入热键"), this.Edit_CalcHotkey.Hwnd)
 
         this.Add("GroupBox", "x20 y310 w510 h60", "CATIA 快捷操作")
-        this.Chk_CatiaMButton := this.Add("Checkbox", "x35 y332", "使用中键代替确认")
-        this.Chk_CatiaMButton.ToolTip := "在 CATIA 中，Alt + 中键 = 确认，Shift + 中键 = 预览"
+        this.Chk_CatiaMButton := this.Add("Checkbox", "x35 y332", "使用中键快捷弹窗操作")
+        this.Chk_CatiaMButton.ToolTip := "在 CATIA 弹窗中：中键 = 确认，Alt + 中键 = 预览，Shift + 中键 = 应用"
 
         this.btn_saveAddon := this.Add("Button", "x400 y385 w130 h30 Default", "保存附加功能")
 

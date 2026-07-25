@@ -541,16 +541,22 @@ class CATIAInstance {
     }
 
     safe_send_enter(hwnd) {
-        SendInput "{Blind}{vk07}{Alt Up}{Ctrl Up}{Shift Up}"
+        SendInput "{Blind}{vk07}{LAlt Up}{RAlt Up}{LCtrl Up}{RCtrl Up}{LShift Up}{RShift Up}"
         Sleep 10
         ControlSend "{Blind}{Enter}", , "ahk_id " . hwnd
         Sleep 30
-        if GetKeyState("Ctrl", "P")
-            SendInput "{Blind}{Ctrl Down}"
-        if GetKeyState("Shift", "P")
-            SendInput "{Blind}{Shift Down}"
-        if GetKeyState("Alt", "P")
-            SendInput "{Blind}{Alt Down}"
+        if GetKeyState("LCtrl", "P")
+            SendInput "{Blind}{LCtrl Down}"
+        if GetKeyState("RCtrl", "P")
+            SendInput "{Blind}{RCtrl Down}"
+        if GetKeyState("LShift", "P")
+            SendInput "{Blind}{LShift Down}"
+        if GetKeyState("RShift", "P")
+            SendInput "{Blind}{RShift Down}"
+        if GetKeyState("LAlt", "P")
+            SendInput "{Blind}{LAlt Down}"
+        if GetKeyState("RAlt", "P")
+            SendInput "{Blind}{RAlt Down}"
     }
 
     handle_hdr_error() {

@@ -225,7 +225,25 @@ RAlt & MButton::
     muteStatus := SoundGetMute() ? "静音" : "解除静音：" . Integer(SoundGetVolume())
     Logger.tooltip(muteStatus, 1000)
 }
+
 #HotIf
+
+; 全局兜底防护：修复 RAlt & RButton 等未注册前缀组合导致的粘滞
+; 以及防止修饰键物理抬起时逻辑状态未清空的死锁
+RAlt & RButton::
+{
+    SendInput "{RButton}"
+}
+
+~RAlt Up::
+{
+    SendInput "{Blind}{vk07}{RAlt Up}"
+}
+
+~LAlt Up::
+{
+    SendInput "{Blind}{vk07}{LAlt Up}"
+}
 
 #HotIf WinActive("ahk_group GroupCATIA")
 {

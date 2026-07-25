@@ -216,6 +216,8 @@ parse_hotkey_from_display(display) {
     key := StrReplace(key, "Alt + ", "")
     key := StrReplace(key, "Shift + ", "")
     key := StrReplace(key, "Win + ", "")
+    if (StrLen(key) > 1 && !InStr(key, "{"))
+        key := "{" . key . "}"
     hk .= key
     return hk
 }
@@ -311,55 +313,23 @@ class SettingsModel {
         }
     }
 
-    save_general_settings(everythingEnabled, everythingPath, debugEnabled, autoImeEnabled, autoImeMap, updaterEnabled, updaterChannel, startupEnabled := 0, configDir := "") {
+    save_integration_settings(autoImeEnabled, everythingEnabled, everythingPath, everythingHotkey, volumeEnabled, calcEnabled, calcHotkey, catiaMButtonEnabled) {
         try {
-            StartupManager.SetStartup(startupEnabled)
-            targetDir := Trim(configDir) == "" ? AppSettings.DefaultConfigDir : Trim(configDir)
-            if (targetDir != AppSettings.ConfigDir) {
-                AppSettings.SaveConfigDir(targetDir)
+            if !AppSettings.config_obj.Has("AutoIME") {
+                AppSettings.config_obj["AutoIME"] := Map()
             }
+            AppSettings.config_obj["AutoIME"]["Enabled"] := String(autoImeEnabled)
+            AppSettings.AutoIME_Enabled := autoImeEnabled
+
             if !AppSettings.config_obj.Has("Everything") {
-                AppSettings.config_obj["Everything"] := Map("Enabled", "0", "Path", "")
+                AppSettings.config_obj["Everything"] := Map("Enabled", "0", "Path", "", "Hotkey", "")
             }
             AppSettings.config_obj["Everything"]["Enabled"] := String(everythingEnabled)
             AppSettings.config_obj["Everything"]["Path"] := everythingPath
-
-            if !AppSettings.config_obj.Has("通用") {
-                AppSettings.config_obj["通用"] := Map("DEBUG", "0")
-            }
-            AppSettings.config_obj["通用"]["DEBUG"] := String(debugEnabled)
-
-            autoImeMap["Enabled"] := String(autoImeEnabled)
-            AppSettings.config_obj["AutoIME"] := autoImeMap
-
-            if !AppSettings.config_obj.Has("Updater") {
-                AppSettings.config_obj["Updater"] := Map()
-            }
-            AppSettings.config_obj["Updater"]["Enabled"] := String(updaterEnabled)
-            AppSettings.config_obj["Updater"]["Channel"] := updaterChannel
-
+            AppSettings.config_obj["Everything"]["Hotkey"] := everythingHotkey
             AppSettings.Everything_Enabled := everythingEnabled
             AppSettings.Everything_Path := everythingPath
-            AppSettings.DEBUG_I := debugEnabled
-            AppSettings.AutoIME_Enabled := autoImeEnabled
-            AppSettings.Updater_Enabled := Integer(updaterEnabled)
-            AppSettings.Updater_Channel := updaterChannel
-
-            AppSettings.FlushConfig()
-            return true
-        } catch Error as e {
-            MsgBox("保存失败: " e.Message, "错误", 16)
-            return false
-        }
-    }
-
-    save_addon_settings(everythingEnabled, everythingPath, volumeEnabled, calcEnabled, calcHotkey, catiaMButtonEnabled) {
-        try {
-            if !AppSettings.config_obj.Has("Everything") {
-                AppSettings.config_obj["Everything"] := Map("Enabled", "0", "Path", "")
-            }
-            AppSettings.config_obj["Everything"]["Enabled"] := String(everythingEnabled)
-            AppSettings.config_obj["Everything"]["Path"] := everythingPath
+            AppSettings.Everything_Hotkey := everythingHotkey
 
             if !AppSettings.config_obj.Has("Volume") {
                 AppSettings.config_obj["Volume"] := Map("Enabled", "0")
@@ -377,13 +347,50 @@ class SettingsModel {
             }
             AppSettings.config_obj["CatiaMButton"]["Enabled"] := String(catiaMButtonEnabled)
 
-            AppSettings.Everything_Enabled := everythingEnabled
-            AppSettings.Everything_Path := everythingPath
+            AppSettings.FlushConfig()
+            return true
+        } catch Error as e {
+            MsgBox("保存集成设置失败: " e.Message, "错误", 16)
+            return false
+        }
+    }
+
+    save_general_settings(startupEnabled, updaterEnabled, updaterChannel, configDir := "") {
+        try {
+            StartupManager.SetStartup(startupEnabled)
+            targetDir := Trim(configDir) == "" ? AppSettings.DefaultConfigDir : Trim(configDir)
+            if (targetDir != AppSettings.ConfigDir) {
+                AppSettings.SaveConfigDir(targetDir)
+            }
+
+            if !AppSettings.config_obj.Has("Updater") {
+                AppSettings.config_obj["Updater"] := Map()
+            }
+            AppSettings.config_obj["Updater"]["Enabled"] := String(updaterEnabled)
+            AppSettings.config_obj["Updater"]["Channel"] := updaterChannel
+            AppSettings.Updater_Enabled := Integer(updaterEnabled)
+            AppSettings.Updater_Channel := updaterChannel
 
             AppSettings.FlushConfig()
             return true
         } catch Error as e {
-            MsgBox("保存附加功能失败: " e.Message, "错误", 16)
+            MsgBox("保存常规设置失败: " e.Message, "错误", 16)
+            return false
+        }
+    }
+
+    save_advanced_settings(debugEnabled) {
+        try {
+            if !AppSettings.config_obj.Has("通用") {
+                AppSettings.config_obj["通用"] := Map("DEBUG", "0")
+            }
+            AppSettings.config_obj["通用"]["DEBUG"] := String(debugEnabled)
+            AppSettings.DEBUG_I := debugEnabled
+
+            AppSettings.FlushConfig()
+            return true
+        } catch Error as e {
+            MsgBox("保存高级设置失败: " e.Message, "错误", 16)
             return false
         }
     }
@@ -478,7 +485,7 @@ class SettingsView extends Gui {
     __New() {
         super.__New("-Resize -MaximizeBox", "UCLC 配置管理")
 
-        this.tabs := this.Add("Tab3", "x10 y10 w530 h460", ["命令配置", "系统设置", "附加功能"])
+        this.tabs := this.Add("Tab3", "x10 y10 w530 h460", ["命令", "集成", "常规", "高级"])
 
         ; =============== 第一页: 命令配置 ===============
         this.tabs.UseTab(1)
@@ -554,65 +561,102 @@ class SettingsView extends Gui {
         this.SB.SetParts(part1_width)
         this.SB.SetText(version_str, 2)
 
-        ; =============== 第二页: 系统设置 ===============
+        ; =============== 第二页: 集成 (Integration) ===============
         this.tabs.UseTab(2)
-        this.Add("GroupBox", "x20 y40 w510 h195", "输入法自动切换")
-        this.Chk_AutoIME := this.Add("Checkbox", "x35 y60", "指定程序自动切换为英文")
-        this.Chk_AutoIME.ToolTip := "保持英文状态可避免在使用命令别名时误触中文输入法"
+        
+        ; ====================
+        ; 左侧：集成分类列表
+        ; ====================
+        this.lb_integration := this.Add("ListBox", "x20 y45 w180 h330 Choose1", ["1. CATIA 中键增强", "2. 输入法自动切换", "3. Everything 快速呼出", "4. 系统快捷键"])
+        this.lb_integration.ToolTip := "点击左侧类别，右侧切换显示对应的配置面板"
 
-        this.lv_autoime := this.Add("ListView", "x35 y87 w350 h115 Grid -Multi", ["软件名称", "进程名称 (exe)"])
-        this.lv_autoime.ModifyCol(1, 145)
-        this.lv_autoime.ModifyCol(2, 200)
+        ; ====================
+        ; 右侧上：分类标题与分割线
+        ; ====================
+        this.lbl_intTitle := this.Add("Text", "x220 y45 w300 c0055AA", "■ CATIA 中键增强设置")
+        this.lbl_intTitle.SetFont("w700")
+        this.Add("Text", "x220 y65 w300 h1 0x10")
 
-        this.btn_add_autoime := this.Add("Button", "x395 y87 w120 h26", "➕ 添加规则")
-        this.btn_del_autoime := this.Add("Button", "x395 y131 w120 h26", "➖ 删除规则")
-        this.btn_edit_autoime := this.Add("Button", "x395 y175 w120 h26", "✏️ 修改规则")
-        this.link_ime_guide := this.Add("Link", "x35 y210 w480 cGray", "说明：当匹配的主程序窗口激活时，系统将自动切换至英文输入法（<a id=`"guide`">前提条件</a>）。")
+        ; ====================
+        ; 右侧下：分类动态设置面板
+        ; ====================
+        this.int_panes := [ [], [], [], [] ]
 
-        this.Chk_Startup := this.Add("Checkbox", "x35 y255", "开机自动启动 UCLC")
-        this.Btn_CreateShortcut := this.Add("Button", "x185 y251 w130 h24", "创建桌面快捷方式")
-        this.Chk_Debug := this.Add("Checkbox", "x335 y255", "开启详细 Debug 调试日志")
-        this.Chk_Debug.ToolTip := "仅在排查软件 Bug 时开启，平时请关闭以避免产生大量日志文件"
+        ; [1] CATIA 面板
+        c1_chk := this.Chk_CatiaMButton := this.Add("Checkbox", "x225 y85", "中键功能增强")
+        c1_chk.ToolTip := "在 CATIA 弹窗中：中键 = 确认，Alt + 中键 = 预览，Shift + 中键 = 应用"
+        c1_desc := this.Add("Text", "x225 y120 w290 c666666", "说明：开启后将自动增强 CATIA 绘图与弹窗窗口中的鼠标中键响应，极大地提升日常建模交互效率：`n`n• 单击鼠标中键 ＝ 确认 (OK)`n• Alt ＋ 鼠标中键 ＝ 预览 (Preview)`n• Shift ＋ 鼠标中键 ＝ 应用 (Apply)")
+        this.int_panes[1].Push(c1_chk, c1_desc)
 
-        this.Chk_Updater := this.Add("Checkbox", "x35 y295", "启动时自动检查更新")
-        this.Add("Text", "x220 y296 w65", "更新通道:")
-        this.Ddl_UpdaterChannel := this.Add("DropDownList", "x290 y292 w90 Choose1", ["Stable", "Preview"])
-        this.Btn_CheckUpdate := this.Add("Button", "x395 y291 w65 h24", "检查更新")
+        ; [2] 输入法自动切换面板
+        c2_chk := this.Chk_AutoIME := this.Add("Checkbox", "x225 y85", "输入法自动切换")
+        c2_chk.ToolTip := "保持英文状态可避免在使用命令别名时误触中文输入法"
+        c2_btn := this.Btn_ManageIME := this.Add("Button", "x355 y81 w80 h24", "配置")
+        c2_desc := this.Add("Text", "x225 y125 w290 c666666", "说明：当您从其他应用切换窗口至设定的 CAD 或三维建模软件（如 CATIA、SolidWorks）时，系统将立刻自动将输入法切回英文状态，确保您在键盘输入命令别名时不被中文拼音输入法拦截中断。")
+        this.int_panes[2].Push(c2_chk, c2_btn, c2_desc)
 
-        this.Add("Text", "x35 y338 w65", "配置目录:")
-        this.Edit_ConfigDir := this.Add("Edit", "x105 y335 w330 h24", AppSettings.ConfigDir == AppSettings.DefaultConfigDir ? "" : AppSettings.ConfigDir)
-        this.Btn_BrowseConfigDir := this.Add("Button", "x445 y334 w65 h25", "选择...")
-        this.Edit_ConfigDir.ToolTip := "支持绑定 OneDrive 或网盘同步文件夹实现多端同步（留空为默认 AppData 目录）"
+        ; [3] Everything 快速呼出面板
+        c3_chk := this.Chk_Everything := this.Add("Checkbox", "x225 y85", "Everything 快速呼出")
+        c3_chk.ToolTip := "双击右 Ctrl 键或按下设定快捷键唤起 Everything"
+        c3_lbl := this.Add("Text", "x225 y120 w290", "Everything.exe 可执行文件路径:")
+        c3_edit := this.Edit_EverythingPath := this.Add("Edit", "x225 y140 w255 h24", "")
+        c3_btn := this.Btn_BrowseEverything := this.Add("Button", "x485 y139 w35 h24", "...")
+        c3_btn.ToolTip := "选择 Everything.exe 所在路径"
+        c3_lbl2 := this.Add("Text", "x225 y178 w150", "显示窗口快捷键 (热键):")
+        c3_hkedit := this.Edit_EverythingHotkey := this.Add("Edit", "x380 y175 w140 h24", "")
+        c3_desc := this.Add("Text", "x225 y210 w290 h140 c666666", "说明：支持连续双击【右 Ctrl】或按热键呼出/隐藏 Everything。`n`n💡 配置指南：`n本软件以只读方式安全读取 Everything 关联热键。如需绑定或修改，请前往 Everything「工具」->「选项」->「键盘」->「显示窗口」中进行设置，设置后重新载入 UCLC 即可自动识别。")
+        this.int_panes[3].Push(c3_chk, c3_lbl, c3_edit, c3_btn, c3_lbl2, c3_hkedit, c3_desc)
 
-        this.btn_saveGen := this.Add("Button", "x400 y385 w130 h30 Default", "保存系统设置")
+        ; [4] 系统快捷键面板
+        c4_chk1 := this.Chk_Volume := this.Add("Checkbox", "x225 y85", "音量快速调节")
+        c4_chk1.ToolTip := "按住 右Alt 键并滚动鼠标滚轮调节音量，点击鼠标中键静音"
+        c4_desc1 := this.Add("Text", "x240 y110 w275 c666666", "• 按住【右Alt】＋ 鼠标滚轮：上下调节系统音量`n• 点击【鼠标滚轮（中键）】：一键静音/解除静音")
+        c4_div := this.Add("Text", "x225 y160 w290 h1 0x10")
+        c4_chk2 := this.Chk_Calc := this.Add("Checkbox", "x225 y175", "打开计算器")
+        c4_chk2.ToolTip := "快捷唤起系统自带计算器，多次按下可在前后台间捞起窗口"
+        c4_edit := this.Edit_CalcHotkey := this.Add("Edit", "x315 y172 w140 h24", "")
+        c4_edit.ToolTip := "鼠标点进热键录入框里，直接按下你想绑定的快捷键组合"
+        SendMessage(0x1501, 1, StrPtr("点击录入热键"), c4_edit.Hwnd)
+        c4_desc2 := this.Add("Text", "x225 y215 w290 c666666", "说明：在热键录入框中录入组合快捷键（例如：Win ＋ C）。随时按下该热键，系统计算器立即弹框呈现在面前；再次按下即可隐藏，免去在任务栏来回找计算器的繁琐。")
+        this.int_panes[4].Push(c4_chk1, c4_desc1, c4_div, c4_chk2, c4_edit, c4_desc2)
 
-        ; =============== 第三页: 附加功能 ===============
+        this.SwitchIntegrationPane(1)
+        this.btn_saveIntegration := this.Add("Button", "x385 y385 w145 h30 Default", "保存集成设置")
+
+        ; =============== 第三页: 常规 (General) ===============
         this.tabs.UseTab(3)
-        this.Add("GroupBox", "x20 y40 w510 h90", "Everything 快速呼出")
-        this.Chk_Everything := this.Add("Checkbox", "x35 y62", "启用 Everything 快捷搜索")
-        this.Chk_Everything.ToolTip := "双击右 Ctrl 键唤起 Everything"
-        this.Add("Text", "x35 y93 w85", "安装路径:")
-        this.Edit_EverythingPath := this.Add("Edit", "x125 y89 w320 h24", "")
-        this.Btn_BrowseEverything := this.Add("Button", "x455 y88 w60 h26", "浏览...")
-        this.Btn_BrowseEverything.ToolTip := "选择 Everything.exe 所在路径"
+        this.Add("GroupBox", "x20 y40 w510 h80", "启动管理 (Application Startup)")
+        this.Chk_Startup := this.Add("Checkbox", "x35 y65", "开机自动启动 UCLC")
+        this.Btn_CreateShortcut := this.Add("Button", "x220 y60 w150 h26", "生成桌面快捷方式")
 
-        this.Add("GroupBox", "x20 y145 w510 h60", "音量调节")
-        this.Chk_Volume := this.Add("Checkbox", "x35 y167", "启用音量调节快捷键")
-        this.Chk_Volume.ToolTip := "按住 右Alt 键并滚动鼠标滚轮调节音量，点击鼠标中键静音"
+        this.Add("GroupBox", "x20 y130 w510 h80", "自动更新服务 (Updates)")
+        this.Chk_Updater := this.Add("Checkbox", "x35 y155", "启动时自动检查更新")
+        this.Add("Text", "x220 y156 w65", "更新通道:")
+        this.Ddl_UpdaterChannel := this.Add("DropDownList", "x285 y152 w95 Choose1", ["Stable", "Preview"])
+        this.Btn_CheckUpdate := this.Add("Button", "x395 y151 w90 h25", "检查更新")
 
-        this.Add("GroupBox", "x20 y215 w510 h85", "打开计算器")
-        this.Chk_Calc := this.Add("Checkbox", "x35 y237", "启用计算器快捷键")
-        this.Chk_Calc.ToolTip := "快捷唤起系统自带计算器，多次按下可在前后台间捞起窗口"
-        this.Add("Text", "x35 y268 w60", "绑定热键:")
-        this.Edit_CalcHotkey := this.Add("Edit", "x100 y264 w120 h24", "")
-        this.Edit_CalcHotkey.ToolTip := "鼠标点进框里，直接按下你想绑定的快捷键组合"
-        SendMessage(0x1501, 1, StrPtr("点击录入热键"), this.Edit_CalcHotkey.Hwnd)
+        this.Add("GroupBox", "x20 y220 w510 h140", "数据与同步存储 (Configuration & Data)")
+        this.Add("Text", "x35 y248 w65", "存储路径:")
+        this.Edit_ConfigDir := this.Add("Edit", "x105 y245 w330 h24", AppSettings.ConfigDir == AppSettings.DefaultConfigDir ? "" : AppSettings.ConfigDir)
+        this.Edit_ConfigDir.ToolTip := "支持绑定 OneDrive 或网盘同步文件夹实现多端同步（留空为默认 AppData 目录）"
+        this.Btn_BrowseConfigDir := this.Add("Button", "x445 y244 w65 h25", "选择...")
+        this.Btn_ImportConfig := this.Add("Button", "x35 y290 w140 h28", "📥 导入备份配置")
+        this.Btn_ExportConfig := this.Add("Button", "x190 y290 w140 h28", "📤 导出备份配置")
+        this.Btn_OpenDataDir := this.Add("Button", "x345 y290 w165 h28", "📂 打开配置文件夹")
 
-        this.Add("GroupBox", "x20 y310 w510 h60", "CATIA 快捷操作")
-        this.Chk_CatiaMButton := this.Add("Checkbox", "x35 y332", "使用中键快捷弹窗操作")
-        this.Chk_CatiaMButton.ToolTip := "在 CATIA 弹窗中：中键 = 确认，Alt + 中键 = 预览，Shift + 中键 = 应用"
+        this.btn_saveGeneral := this.Add("Button", "x385 y385 w145 h30 Default", "保存常规设置")
 
-        this.btn_saveAddon := this.Add("Button", "x400 y385 w130 h30 Default", "保存附加功能")
+        ; =============== 第四页: 高级 (Advanced) ===============
+        this.tabs.UseTab(4)
+        this.Add("GroupBox", "x20 y40 w510 h110", "调试与运行诊断 (Diagnostics & Logging)")
+        this.Chk_Debug := this.Add("Checkbox", "x35 y65", "开启详细 Debug 调试日志")
+        this.Chk_Debug.ToolTip := "警告：仅在排查软件 Bug 时开启，日常使用请务必关闭以防产生大量冗余日志文件"
+        this.Btn_OpenLogDir := this.Add("Button", "x35 y100 w220 h28", "🛠️ 打开底层数据与日志目录")
+
+        this.Add("GroupBox", "x20 y165 w510 h110", "实验与系统维护 (Maintenance)")
+        this.Add("Text", "x35 y195 w480 cGray", "说明：当前无开启的实验性模块或预设规则。`n未来版本将在本专区提供“清除系统本地缓存”、“强行重置默认设置”等极客诊断能力。")
+
+        this.btn_saveAdvanced := this.Add("Button", "x385 y385 w145 h30 Default", "保存高级设置")
 
         ; =============== (原第三页工作台命令库已重构成弹窗) ===============
     }
@@ -713,6 +757,17 @@ class SettingsView extends Gui {
 
         return { alias_edits: alias_edits, hotkey_edits: hotkey_edits }
     }
+
+    SwitchIntegrationPane(idx) {
+        titles := ["■ CATIA 中键增强设置", "■ 输入法自动化控制", "■ Everything 快速呼出", "■ 系统级全局快捷键"]
+        if (idx >= 1 && idx <= titles.Length)
+            this.lbl_intTitle.Text := titles[idx]
+        for i, pane in this.int_panes {
+            for ctrl in pane {
+                ctrl.Visible := (i == idx)
+            }
+        }
+    }
 }
 
 
@@ -784,18 +839,22 @@ class SettingsController {
         this.view.Btn_BrowseEverything.OnEvent("Click", ObjBindMethod(this, "BrowseEverything"))
         this.view.Btn_CreateShortcut.OnEvent("Click", ObjBindMethod(this, "CreateShortcut"))
         this.view.Btn_BrowseConfigDir.OnEvent("Click", ObjBindMethod(this, "BrowseConfigDir"))
-        this.view.btn_saveGen.OnEvent("Click", ObjBindMethod(this, "SaveGeneralSettings"))
-        this.view.btn_saveAddon.OnEvent("Click", ObjBindMethod(this, "SaveAddonSettings"))
+        this.view.btn_saveIntegration.OnEvent("Click", ObjBindMethod(this, "SaveIntegrationSettings"))
+        this.view.btn_saveGeneral.OnEvent("Click", ObjBindMethod(this, "SaveGeneralSettings"))
+        this.view.btn_saveAdvanced.OnEvent("Click", ObjBindMethod(this, "SaveAdvancedSettings"))
+        this.view.Btn_ImportConfig.OnEvent("Click", ObjBindMethod(this, "ImportConfigFile"))
+        this.view.Btn_ExportConfig.OnEvent("Click", ObjBindMethod(this, "ExportConfigFile"))
+        this.view.Btn_OpenDataDir.OnEvent("Click", ObjBindMethod(this, "OpenDataDirectory"))
+        this.view.Btn_OpenLogDir.OnEvent("Click", ObjBindMethod(this, "OpenDataDirectory"))
 
         this.view.Edit_CalcHotkey.OnEvent("Focus", ObjBindMethod(this, "OnCalcHotkeyFocus"))
         this.view.Edit_CalcHotkey.OnEvent("LoseFocus", ObjBindMethod(this, "OnCalcHotkeyLoseFocus"))
+        this.view.Edit_EverythingHotkey.OnEvent("Focus", ObjBindMethod(this, "OnEverythingHotkeyFocus"))
+        this.view.Edit_EverythingHotkey.OnEvent("LoseFocus", ObjBindMethod(this, "OnEverythingHotkeyLoseFocus"))
 
+        this.view.lb_integration.OnEvent("Change", ObjBindMethod(this, "OnIntegrationSelect"))
         this.view.Chk_AutoIME.OnEvent("Click", ObjBindMethod(this, "OnToggleAutoIME"))
-        this.view.btn_add_autoime.OnEvent("Click", ObjBindMethod(this, "OnAddAutoIME"))
-        this.view.btn_del_autoime.OnEvent("Click", ObjBindMethod(this, "OnDeleteAutoIME"))
-        this.view.btn_edit_autoime.OnEvent("Click", ObjBindMethod(this, "OnEditAutoIME"))
-        this.view.lv_autoime.OnEvent("DoubleClick", ObjBindMethod(this, "OnEditAutoIME"))
-        this.view.link_ime_guide.OnEvent("Click", ObjBindMethod(this, "OnShowImeGuide"))
+        this.view.Btn_ManageIME.OnEvent("Click", ObjBindMethod(this, "OnOpenImeRulesModal"))
 
         this.view.Btn_OpenCmdLib.OnEvent("Click", ObjBindMethod(this, "OnOpenCmdLibraryModal"))
     }
@@ -803,6 +862,7 @@ class SettingsController {
     LoadGeneralSettings() {
         this.view.Chk_Everything.Value := AppSettings.Everything_Enabled
         this.view.Edit_EverythingPath.Value := AppSettings.Everything_Path
+        this.view.Edit_EverythingHotkey.Value := AppSettings.Everything_Hotkey
 
         this.view.Chk_Debug.Value := AppSettings.DEBUG_I
         this.view.Chk_AutoIME.Value := AppSettings.AutoIME_Enabled
@@ -829,16 +889,6 @@ class SettingsController {
             this.view.Chk_CatiaMButton.Value := Integer(AppSettings.config_obj["CatiaMButton"]["Enabled"])
         }
 
-        this.view.lv_autoime.Opt("-Redraw")
-        this.view.lv_autoime.Delete()
-        if AppSettings.config_obj.Has("AutoIME") {
-            for label, exe in AppSettings.config_obj["AutoIME"] {
-                if (label != "Enabled") {
-                    this.view.lv_autoime.Add("", label, exe)
-                }
-            }
-        }
-        this.view.lv_autoime.Opt("+Redraw")
         this.OnToggleAutoIME()
 
         sort_str := ""
@@ -1276,6 +1326,59 @@ class SettingsController {
         }
     }
 
+    OnEverythingHotkeyFocus(GuiCtrlObj, *) {
+        if this.HasProp("ih") && this.ih {
+            this.ih.Stop()
+            this.ih := ""
+        }
+        ih := InputHook("L1 M")
+        ih.KeyOpt("{All}", "E")
+        ih.KeyOpt("{LCtrl}{RCtrl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}", "-E")
+        ih.OnEnd := ObjBindMethod(this, "OnEverythingInputHookEnd", GuiCtrlObj)
+        this.ih := ih
+        ih.Start()
+    }
+
+    OnEverythingHotkeyLoseFocus(GuiCtrlObj, *) {
+        if this.HasProp("ih") && this.ih {
+            this.ih.Stop()
+            this.ih := ""
+        }
+    }
+
+    OnEverythingInputHookEnd(GuiCtrlObj, ih) {
+        try {
+            _ := GuiCtrlObj.Hwnd
+        } catch {
+            return
+        }
+        if (ih.EndReason = "EndKey") {
+            key := ih.EndKey
+            if (key = "Backspace" || key = "Delete") {
+                GuiCtrlObj.Value := ""
+            } else if (key = "Escape" || key = "Tab" || key = "Enter" || key = "NumpadEnter") {
+                ; pass
+            } else {
+                if (StrLen(key) == 1)
+                    key := StrUpper(key)
+                mods := ""
+                if GetKeyState("Ctrl", "P")
+                    mods .= "^"
+                if GetKeyState("Alt", "P")
+                    mods .= "!"
+                if GetKeyState("Shift", "P")
+                    mods .= "+"
+                if GetKeyState("LWin", "P") or GetKeyState("RWin", "P")
+                    mods .= "#"
+                GuiCtrlObj.Value := this.FormatHotkeyForDisplay(mods . key)
+            }
+        }
+        try {
+            if (this.view.focused_ctrl == GuiCtrlObj)
+                this.OnEverythingHotkeyFocus(GuiCtrlObj)
+        }
+    }
+
     FormatHotkeyForDisplay(hk) => format_hotkey_for_display(hk)
     ParseHotkeyFromDisplay(display) => parse_hotkey_from_display(display)
 
@@ -1395,52 +1498,116 @@ class SettingsController {
         }
     }
 
+    OnIntegrationSelect(*) {
+        idx := this.view.lb_integration.Value
+        if (idx >= 1 && idx <= 4)
+            this.view.SwitchIntegrationPane(idx)
+    }
+
     OnToggleAutoIME(*) {
         enabled := this.view.Chk_AutoIME.Value
-        opt := enabled ? "-Disabled" : "+Disabled"
-        this.view.lv_autoime.Opt(opt)
-        this.view.btn_add_autoime.Opt(opt)
-        this.view.btn_del_autoime.Opt(opt)
-        this.view.btn_edit_autoime.Opt(opt)
-        this.view.link_ime_guide.Opt(opt)
+        this.view.Btn_ManageIME.Opt(enabled ? "-Disabled" : "+Disabled")
     }
 
     OnShowImeGuide(*) {
         msg := "【自动切换英文输入法前提条件】`n`n"
             . "1. 必须在 Windows 系统语言设置中添加并启用英文输入法（例如：英语(美国) - 美式键盘）。`n`n"
             . "提示：如果系统中仅存在单语言中文输入法，无法通过 Shift 键自动切换中英文状态。"
-        MsgBox(msg, "输入法配置说明", "Iconi")
+        MsgBox(msg, "UCLC - 输入法自动化控制", "Iconi")
     }
 
-    OnAddAutoIME(*) => this.show_auto_ime_modal()
-
-    OnEditAutoIME(*) {
-        row := this.view.lv_autoime.GetNext(0)
-        if (row == 0) {
-            MsgBox("请先在表格中选择要修改的规则！", "提示", "Iconi")
-            return
-        }
-        label := this.view.lv_autoime.GetText(row, 1)
-        exe := this.view.lv_autoime.GetText(row, 2)
-        this.show_auto_ime_modal(label, exe, row)
-    }
-
-    OnDeleteAutoIME(*) {
-        row := this.view.lv_autoime.GetNext(0)
-        if (row == 0) {
-            MsgBox("请先在表格中选择要删除的规则！", "提示", "Iconi")
-            return
-        }
-        label := this.view.lv_autoime.GetText(row, 1)
-        if (MsgBox("移除 " label " 输入法自动切换？", "移除规则", "YesNo Icon?") == "Yes") {
-            this.view.lv_autoime.Delete(row)
-        }
-    }
-
-    show_auto_ime_modal(default_label := "", default_exe := "", edit_row := 0) {
-        title := edit_row > 0 ? "修改规则" : "添加规则"
-        dlg := Gui("+Owner" this.view.hwnd " -MinimizeBox -MaximizeBox", title)
+    OnOpenImeRulesModal(*) {
+        dlg := Gui("+Owner" this.view.hwnd " -MinimizeBox -MaximizeBox", "管理输入法自动切换规则")
         this.view.Opt("+Disabled")
+        
+        dlg.Add("Text", "x20 y15 w350 cBlue", "规则列表：当匹配的进程窗口激活时自动切换至英文")
+        lv_rules := dlg.Add("ListView", "x20 y40 w350 h200 Grid -Multi", ["软件名称", "进程名称 (exe)"])
+        lv_rules.ModifyCol(1, 140)
+        lv_rules.ModifyCol(2, 205)
+        
+        if AppSettings.config_obj.Has("AutoIME") {
+            for label, exe in AppSettings.config_obj["AutoIME"] {
+                if (label != "Enabled") {
+                    lv_rules.Add("", label, exe)
+                }
+            }
+        }
+        
+        btn_add := dlg.Add("Button", "x385 y40 w110 h28", "➕ 添加规则")
+        btn_del := dlg.Add("Button", "x385 y80 w110 h28", "➖ 删除规则")
+        btn_edit := dlg.Add("Button", "x385 y120 w110 h28", "✏️ 修改规则")
+        
+        link_guide := dlg.Add("Link", "x20 y255 w350 cGray", "说明：需在 Windows 中已添加英文输入法（<a id=`"guide`">查看前提</a>）。")
+        
+        btn_save_rules := dlg.Add("Button", "x385 y250 w110 h30 Default", "保存并关闭")
+        
+        close_rules_dlg(*) {
+            this.view.Opt("-Disabled")
+            dlg.Destroy()
+        }
+        
+        do_save_rules(*) {
+            auto_ime_map := Map()
+            auto_ime_map["Enabled"] := String(this.view.Chk_AutoIME.Value)
+            loop lv_rules.GetCount() {
+                label := lv_rules.GetText(A_Index, 1)
+                exe := lv_rules.GetText(A_Index, 2)
+                if (label != "" && exe != "" && label != "Enabled") {
+                    auto_ime_map[label] := exe
+                }
+            }
+            AppSettings.config_obj["AutoIME"] := auto_ime_map
+            AppSettings.FlushConfig()
+            this.OnToggleAutoIME()
+            this.view.SB.SetText("输入法自动切换规则已保存并应用！")
+            close_rules_dlg()
+        }
+        
+        do_add(*) => this.show_auto_ime_modal("", "", 0, lv_rules, dlg)
+        
+        do_edit(*) {
+            row := lv_rules.GetNext(0)
+            if (row == 0) {
+                MsgBox("请先在表格中选择要修改的规则！", "提示", "Iconi")
+                return
+            }
+            label := lv_rules.GetText(row, 1)
+            exe := lv_rules.GetText(row, 2)
+            this.show_auto_ime_modal(label, exe, row, lv_rules, dlg)
+        }
+        
+        do_del(*) {
+            row := lv_rules.GetNext(0)
+            if (row == 0) {
+                MsgBox("请先在表格中选择要删除的规则！", "提示", "Iconi")
+                return
+            }
+            label := lv_rules.GetText(row, 1)
+            if (MsgBox("确定移除 " label " 的输入法切换规则？", "移除规则", "YesNo Icon?") == "Yes") {
+                lv_rules.Delete(row)
+            }
+        }
+        
+        btn_add.OnEvent("Click", do_add)
+        btn_edit.OnEvent("Click", do_edit)
+        btn_del.OnEvent("Click", do_del)
+        lv_rules.OnEvent("DoubleClick", do_edit)
+        link_guide.OnEvent("Click", ObjBindMethod(this, "OnShowImeGuide"))
+        btn_save_rules.OnEvent("Click", do_save_rules)
+        dlg.OnEvent("Close", close_rules_dlg)
+        dlg.OnEvent("Escape", close_rules_dlg)
+        
+        dlg.Show("w515 h300")
+    }
+
+    show_auto_ime_modal(default_label := "", default_exe := "", edit_row := 0, target_lv := 0, parent_dlg := 0) {
+        title := edit_row > 0 ? "修改规则" : "添加规则"
+        owner_hwnd := parent_dlg ? parent_dlg.Hwnd : this.view.hwnd
+        dlg := Gui("+Owner" owner_hwnd " -MinimizeBox -MaximizeBox", title)
+        if parent_dlg
+            parent_dlg.Opt("+Disabled")
+        else
+            this.view.Opt("+Disabled")
 
         dlg.Add("Text", "x15 y20 h20 Right", "软件名称:")
         edit_label := dlg.Add("Edit", "x85 y16 w240 h24", default_label)
@@ -1451,7 +1618,10 @@ class SettingsController {
         btn_capture := dlg.Add("Button", "x85 y83 w240 h26", "指定目标程序")
 
         close_dlg(*) {
-            this.view.Opt("-Disabled")
+            if parent_dlg
+                parent_dlg.Opt("-Disabled")
+            else
+                this.view.Opt("-Disabled")
             dlg.Destroy()
         }
 
@@ -1513,10 +1683,10 @@ class SettingsController {
                 return
             }
 
-            if (edit_row > 0) {
-                this.view.lv_autoime.Modify(edit_row, "", label, exe)
-            } else {
-                this.view.lv_autoime.Add("", label, exe)
+            if (edit_row > 0 && target_lv) {
+                target_lv.Modify(edit_row, "", label, exe)
+            } else if target_lv {
+                target_lv.Add("", label, exe)
             }
             close_dlg()
         }
@@ -1537,42 +1707,82 @@ class SettingsController {
             btn_confirm.Focus()
     }
 
-    SaveGeneralSettings(*) {
-        auto_ime_map := Map()
-        loop this.view.lv_autoime.GetCount() {
-            label := this.view.lv_autoime.GetText(A_Index, 1)
-            exe := this.view.lv_autoime.GetText(A_Index, 2)
-            if (label != "" && exe != "" && label != "Enabled") {
-                auto_ime_map[label] := exe
-            }
-        }
-
-        success := this.model.save_general_settings(
-            this.view.Chk_Everything.Value,
-            this.view.Edit_EverythingPath.Value,
-            this.view.Chk_Debug.Value,
+    SaveIntegrationSettings(*) {
+        success := this.model.save_integration_settings(
             this.view.Chk_AutoIME.Value,
-            auto_ime_map,
-            this.view.Chk_Updater.Value,
-            this.view.Ddl_UpdaterChannel.Text,
-            this.view.Chk_Startup.Value,
-            this.view.Edit_ConfigDir.Value
-        )
-        if success
-            this.view.SB.SetText("通用设置保存成功！请手动重新载入 UCLC 脚本以使其生效。")
-    }
-
-    SaveAddonSettings(*) {
-        success := this.model.save_addon_settings(
             this.view.Chk_Everything.Value,
             this.view.Edit_EverythingPath.Value,
+            this.view.Edit_EverythingHotkey.Value,
             this.view.Chk_Volume.Value,
             this.view.Chk_Calc.Value,
             this.view.Edit_CalcHotkey.Value,
             this.view.Chk_CatiaMButton.Value
         )
+        if success {
+            this.view.SB.SetText("集成设置保存成功！请重新载入脚本或重启软件使其生效。")
+            if (this.view.Chk_Everything.Value && this.view.Edit_EverythingHotkey.Value == "") {
+                MsgBox("未检测到 Everything“显示窗口”快捷键。`n`n请前往 Everything「工具」->「选项」->「键盘」->「显示窗口」设置热键，设置后重新载入 UCLC 即可。", "UCLC - Everything 快速呼出", 48)
+            }
+        }
+    }
+
+    SaveGeneralSettings(*) {
+        success := this.model.save_general_settings(
+            this.view.Chk_Startup.Value,
+            this.view.Chk_Updater.Value,
+            this.view.Ddl_UpdaterChannel.Text,
+            this.view.Edit_ConfigDir.Value
+        )
         if success
-            this.view.SB.SetText("附加功能设置保存成功！请手动重新载入 UCLC 脚本以使其生效。")
+            this.view.SB.SetText("常规设置保存成功！请重新载入脚本或重启软件使其生效。")
+    }
+
+    SaveAdvancedSettings(*) {
+        success := this.model.save_advanced_settings(
+            this.view.Chk_Debug.Value
+        )
+        if success
+            this.view.SB.SetText("高级设置保存成功！请重新载入脚本或重启软件使其生效。")
+    }
+
+    ImportConfigFile(*) {
+        source_dir := DirSelect(AppSettings.ConfigDir, 3, "请选择要导入的 UCLC 备份文件夹 (应包含 config.json / commands.json)")
+        if !source_dir
+            return
+        if (MsgBox("导入备份配置将覆盖当前的系统设置与命令库，是否继续？", "导入确认", "YesNo Icon?") != "Yes")
+            return
+        try {
+            if AppSettings.ImportConfig(source_dir) {
+                MsgBox("配置与命令数据导入成功！界面即将重新载入新设置。", "成功", "Iconi")
+                this.LoadGeneralSettings()
+            }
+        } catch Error as e {
+            MsgBox("导入失败: " e.Message, "错误", 16)
+        }
+    }
+
+    ExportConfigFile(*) {
+        target_dir := DirSelect(AppSettings.ConfigDir, 3, "请选择或新建一个文件夹以保存 UCLC 配置备份")
+        if !target_dir
+            return
+        try {
+            if AppSettings.ExportConfig(target_dir) {
+                MsgBox("配置成功备份至：`n" target_dir "`n`n包含 config.json 与 commands.json。", "导出成功", "Iconi")
+            }
+        } catch Error as e {
+            MsgBox("导出失败: " e.Message, "错误", 16)
+        }
+    }
+
+    OpenDataDirectory(*) {
+        dir_to_open := AppSettings.ConfigDir
+        if (dir_to_open == "" || !DirExist(dir_to_open))
+            dir_to_open := AppSettings.DefaultConfigDir
+        if DirExist(dir_to_open) {
+            Run('explorer.exe "' dir_to_open '"')
+        } else {
+            MsgBox("目录不存在：" dir_to_open, "提示", "Iconi")
+        }
     }
 
     on_mouse_move(wParam, lParam, msg, hwnd) {

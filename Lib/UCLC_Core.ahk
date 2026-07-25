@@ -26,16 +26,17 @@ class AppSettings {
     static AutoIME_Enabled := 1
     static Version := UCLC_VERSION
     static Everything_Path := ""
-    
+    static Everything_Hotkey := ""
+
     static Volume_Enabled := 0
     static Calc_Enabled := 0
     static Calc_Hotkey := ""
-    
+
     static Updater_Enabled := 1
     static Updater_Channel := "Preview"
     static Updater_LastCheckTime := ""
     static Updater_SkippedVersion := ""
-    
+
     static workbench_mapping := Map()
 
     static LoadWorkbenchMapping() {
@@ -117,7 +118,7 @@ class AppSettings {
             this.config_obj := Map(
                 "通用", Map("DEBUG", "0"),
                 "UserConf", Map("命令配置", "commands.json", "配置目录", ""),
-                "Everything", Map("Enabled", "0", "Path", ""),
+                "Everything", Map("Enabled", "0", "Path", "", "Hotkey", ""),
                 "AutoIME", Map(
                     "AUTOCAD", "ACAD.exe",
                     "CATIA", "CNEXT.exe"
@@ -196,7 +197,7 @@ class AppSettings {
             alias_ini_path := A_ScriptDir "\user-config\" alias_name
         else if FileExist(A_ScriptDir "\" alias_name)
             alias_ini_path := A_ScriptDir "\" alias_name
-            
+
         if FileExist(A_ScriptDir "\user-config\" hotkey_name)
             hotkey_ini_path := A_ScriptDir "\user-config\" hotkey_name
         else if FileExist(A_ScriptDir "\" hotkey_name)
@@ -206,7 +207,7 @@ class AppSettings {
         this.hotkey_ini_path := hotkey_ini_path
 
         this.LoadWorkbenchMapping()
-        
+
         if (!FileExist(this.commands_json_path) && (alias_ini_path != "" || hotkey_ini_path != "")) {
             if (ConfigMigrator.MigrateV2IniToCommandsJson(alias_ini_path, hotkey_ini_path, this.commands_json_path)) {
                 if (alias_ini_path != "" && FileExist(alias_ini_path))
@@ -222,7 +223,7 @@ class AppSettings {
         } else {
             this.commands_obj := Map()
         }
-        
+
         ; 自动升维（迁移）：将旧版中文名的 Key 替换为 Internal ID
         migrated := false
         new_commands_obj := Map()
@@ -252,7 +253,7 @@ class AppSettings {
         for wb, cmdArray in this.commands_obj {
             this.alias_obj[wb] := Map()
             this.hotkey_obj[wb] := Map()
-            
+
             for cmd in cmdArray {
                 if (cmd.Has("aliases")) {
 
@@ -272,26 +273,39 @@ class AppSettings {
         this.DEBUG_I := this.config_obj.Has("通用") && this.config_obj["通用"].Has("DEBUG") ? this.config_obj["通用"]["DEBUG"
             ] : 0
         this.Everything_Enabled := this.config_obj.Has("Everything") && this.config_obj["Everything"].Has("Enabled") ?
-            this.config_obj["Everything"]["Enabled"] : 0
+            Integer(this.config_obj["Everything"]["Enabled"]) : 0
         this.Everything_Path := this.config_obj.Has("Everything") && this.config_obj["Everything"].Has("Path") ? this.config_obj[
             "Everything"]["Path"] : ""
+        this.Everything_Hotkey := this.config_obj.Has("Everything") && this.config_obj["Everything"].Has("Hotkey") ? this.config_obj[
+            "Everything"]["Hotkey"] : ""
+        if (this.Everything_Path == "" || !FileExist(this.Everything_Path)) {
+            auto_p := this.FindEverythingPath()
+            if (auto_p != "")
+                this.Everything_Path := auto_p
+        }
+        if (this.Everything_Hotkey == "") {
+            ini_hk := this.ReadEverythingHotkeyFromIni(this.Everything_Path)
+            if (ini_hk != "") {
+                this.Everything_Hotkey := ini_hk
+            }
+        }
         this.AutoIME_Enabled := this.config_obj.Has("AutoIME") && this.config_obj["AutoIME"].Has("Enabled") ?
             this.config_obj["AutoIME"]["Enabled"] : 1
 
-        this.Volume_Enabled := this.config_obj.Has("Volume") && this.config_obj["Volume"].Has("Enabled") ? 
+        this.Volume_Enabled := this.config_obj.Has("Volume") && this.config_obj["Volume"].Has("Enabled") ?
             Integer(this.config_obj["Volume"]["Enabled"]) : 0
-        this.Calc_Enabled := this.config_obj.Has("Calculator") && this.config_obj["Calculator"].Has("Enabled") ? 
+        this.Calc_Enabled := this.config_obj.Has("Calculator") && this.config_obj["Calculator"].Has("Enabled") ?
             Integer(this.config_obj["Calculator"]["Enabled"]) : 0
-        this.Calc_Hotkey := this.config_obj.Has("Calculator") && this.config_obj["Calculator"].Has("Hotkey") ? 
+        this.Calc_Hotkey := this.config_obj.Has("Calculator") && this.config_obj["Calculator"].Has("Hotkey") ?
             this.config_obj["Calculator"]["Hotkey"] : ""
 
-        this.Updater_Enabled := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("Enabled") ? 
+        this.Updater_Enabled := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("Enabled") ?
             Integer(this.config_obj["Updater"]["Enabled"]) : 1
-        this.Updater_Channel := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("Channel") ? 
+        this.Updater_Channel := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("Channel") ?
             this.config_obj["Updater"]["Channel"] : "Preview"
-        this.Updater_LastCheckTime := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("LastCheckTime") ? 
+        this.Updater_LastCheckTime := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("LastCheckTime") ?
             this.config_obj["Updater"]["LastCheckTime"] : ""
-        this.Updater_SkippedVersion := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("SkippedVersion") ? 
+        this.Updater_SkippedVersion := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("SkippedVersion") ?
             this.config_obj["Updater"]["SkippedVersion"] : ""
 
         ; 初始化工作台列表
@@ -310,7 +324,7 @@ class AppSettings {
             this.config_obj["Updater"] := Map()
         }
         this.config_obj["Updater"][key] := value
-        
+
         if (key == "Enabled")
             this.Updater_Enabled := Integer(value)
         else if (key == "Channel")
@@ -368,23 +382,143 @@ class AppSettings {
         }
         if !DirExist(new_dir)
             throw Error("无法创建自定义目标目录: " new_dir)
-            
+
         if (!FileExist(new_dir "\config.json") && FileExist(this.config_json_path))
             try FileCopy(this.config_json_path, new_dir "\config.json", false)
         if (!FileExist(new_dir "\commands.json") && FileExist(this.commands_json_path))
             try FileCopy(this.commands_json_path, new_dir "\commands.json", false)
-            
+
         this.ConfigDir := new_dir
         this.config_json_path := new_dir "\config.json"
         this.commands_json_path := new_dir "\commands.json"
-        
+
         if !this.config_obj.Has("UserConf")
             this.config_obj["UserConf"] := Map()
         this.config_obj["UserConf"]["配置目录"] := (new_dir == this.DefaultConfigDir) ? "" : new_dir
-        
+
         this._atomic_write(this.DefaultConfigDir "\config.json", JSON.stringify(this.config_obj))
         if (new_dir != this.DefaultConfigDir)
             this._atomic_write(this.config_json_path, JSON.stringify(this.config_obj))
+    }
+
+    static ExportConfig(target_dir) {
+        target_dir := Trim(target_dir)
+        if (target_dir == "")
+            return false
+        if !DirExist(target_dir) {
+            try DirCreate(target_dir)
+        }
+        if !DirExist(target_dir)
+            throw Error("无法创建或访问目标备份目录: " target_dir)
+
+        this.FlushConfig()
+        this.FlushCommands()
+
+        if FileExist(this.config_json_path)
+            FileCopy(this.config_json_path, target_dir "\config.json", true)
+        if FileExist(this.commands_json_path)
+            FileCopy(this.commands_json_path, target_dir "\commands.json", true)
+        return true
+    }
+
+    static ImportConfig(source_dir) {
+        source_dir := Trim(source_dir)
+        if (source_dir == "" || !DirExist(source_dir))
+            throw Error("指定的备份目录不存在！")
+
+        has_config := FileExist(source_dir "\config.json")
+        has_commands := FileExist(source_dir "\commands.json")
+        if (!has_config && !has_commands)
+            throw Error("在目录 [" source_dir "] 中未发现 config.json 或 commands.json！")
+
+        if (has_config)
+            FileCopy(source_dir "\config.json", this.config_json_path, true)
+        if (has_commands)
+            FileCopy(source_dir "\commands.json", this.commands_json_path, true)
+
+        this.Init()
+        return true
+    }
+
+    static FindEverythingPath() {
+        reg_paths := [
+            "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Everything.exe",
+            "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Everything.exe",
+            "HKLM\SOFTWARE\voidtools\Everything",
+            "HKLM\SOFTWARE\WOW6432Node\voidtools\Everything"
+        ]
+        for reg in reg_paths {
+            try {
+                path := RegRead(reg, "")
+                if (path != "" && FileExist(path))
+                    return path
+            }
+            try {
+                path := RegRead(reg, "InstallLocation")
+                if (path != "") {
+                    path := RTrim(path, "\/") "\Everything.exe"
+                    if FileExist(path)
+                        return path
+                }
+            }
+        }
+        file_paths := [
+            A_ProgramFiles "\Everything\Everything.exe",
+            "C:\Program Files (x86)\Everything\Everything.exe",
+            A_ProgramFiles "\Everything 1.5a\Everything64.exe",
+            A_AppData "\Local\Programs\Everything\Everything.exe",
+            "D:\Program Files\Everything\Everything.exe"
+        ]
+        for fp in file_paths {
+            if FileExist(fp)
+                return fp
+        }
+        return ""
+    }
+
+    static ReadEverythingHotkeyFromIni(everythingPath := "") {
+        ini_paths := [
+            A_AppData "\Everything\Everything.ini",
+            A_AppData "\Everything\Everything-1.5a.ini"
+        ]
+        if (everythingPath != "") {
+            SplitPath(everythingPath, , &exeDir)
+            ini_paths.Push(exeDir "\Everything.ini", exeDir "\Everything-1.5a.ini")
+        }
+        val := 0
+        for path in ini_paths {
+            if FileExist(path) {
+                try val := Integer(IniRead(path, "Everything", "show_window_key", 0))
+                if (val > 0)
+                    break
+            }
+        }
+        if (val <= 0)
+            return ""
+
+        vk := val & 0x00FF
+        mods := val & 0xFF00
+        if (vk == 0)
+            return ""
+
+        key_name := ""
+        try key_name := GetKeyName(Format("vk{:x}", vk))
+        if (key_name == "")
+            return ""
+        if (StrLen(key_name) == 1)
+            key_name := StrUpper(key_name)
+
+        prefix := ""
+        if (mods & 0x0100) ; Ctrl = 0x01
+            prefix .= "Ctrl + "
+        if (mods & 0x0200) ; Alt = 0x02
+            prefix .= "Alt + "
+        if (mods & 0x0400) ; Shift = 0x04
+            prefix .= "Shift + "
+        if (mods & 0x0800) ; Win = 0x08
+            prefix .= "Win + "
+
+        return prefix . key_name
     }
 }
 
@@ -399,10 +533,10 @@ class ConfigMigrator {
     static MigrateIniToJson(ini_path, json_path) {
         if (!FileExist(ini_path))
             return 0
-        
+
         try {
             json_obj := Map()
-            
+
             ; 如果已有 json，先读入内存
             if FileExist(json_path) {
                 try {
@@ -410,49 +544,49 @@ class ConfigMigrator {
                     json_obj := JSON.parse(text)
                 }
             }
-            
+
             sections_str := IniRead(ini_path)
             if (sections_str == "")
                 return 0
-                
+
             loop parse sections_str, "`n", "`r" {
                 section := A_LoopField
                 if !json_obj.Has(section)
                     json_obj[section] := Map()
-                
+
                 keys_str := IniRead(ini_path, section)
                 loop parse keys_str, "`n", "`r" {
                     eq_pos := InStr(A_LoopField, "=")
                     if (eq_pos > 0) {
                         key := Trim(SubStr(A_LoopField, 1, eq_pos - 1))
                         val := Trim(SubStr(A_LoopField, eq_pos + 1))
-                        
+
                         comment := ""
                         semicolon_pos := InStr(val, ";")
                         if (semicolon_pos > 0) {
                             comment := Trim(SubStr(val, semicolon_pos + 1))
                             val := Trim(SubStr(val, 1, semicolon_pos - 1))
                         }
-                        
+
                         json_obj[section][key] := val
                     }
                 }
             }
-            
+
             ; 针对 config.ini 转换出的 config.json，增加新的 commands.json 指向，但保留旧有参数
             if (json_obj.Has("UserConf")) {
                 json_obj["UserConf"]["命令配置"] := "commands.json"
             }
-            
+
             ; 格式化写入 JSON (UTF-8)
             json_str := JSON.stringify(json_obj)
-            
+
             ; 写入前如果有旧的先删除
             if FileExist(json_path)
                 FileDelete(json_path)
-                
+
             FileAppend(json_str, json_path, "UTF-8")
-            
+
             ; 迁移完毕后备份，防止未来启动时不断覆盖用户在 GUI 中的修改
             bak_path := ini_path . ".bak"
             if FileExist(bak_path) {
@@ -462,7 +596,7 @@ class ConfigMigrator {
                 bak_path := bak_path . "." index
             }
             FileMove(ini_path, bak_path, true)
-            
+
             return 1
         }
         catch as e {
@@ -479,41 +613,41 @@ class ConfigMigrator {
     static MigrateV2IniToCommandsJson(alias_ini, hotkey_ini, commands_json) {
         if (!FileExist(alias_ini) && !FileExist(hotkey_ini))
             return 0
-            
+
         try {
             commands_obj := Map()
 
             ParseIniAndMerge(ini_path, is_hotkey) {
                 if (!FileExist(ini_path))
                     return
-                
+
                 sections_str := IniRead(ini_path)
                 if (sections_str == "")
                     return
-                    
+
                 loop parse sections_str, "`n", "`r" {
                     section := A_LoopField
                     section_id := AppSettings.GetWbIdByUI(section)
                     if !commands_obj.Has(section_id)
                         commands_obj[section_id] := []
-                        
+
                     keys_str := IniRead(ini_path, section)
                     loop parse keys_str, "`n", "`r" {
                         eq_pos := InStr(A_LoopField, "=")
                         if (eq_pos > 0) {
                             trigger := Trim(SubStr(A_LoopField, 1, eq_pos - 1))
                             val := Trim(SubStr(A_LoopField, eq_pos + 1))
-                            
+
                             comment := ""
                             semicolon_pos := InStr(val, ";")
                             if (semicolon_pos > 0) {
                                 comment := Trim(SubStr(val, semicolon_pos + 1))
                                 val := Trim(SubStr(val, 1, semicolon_pos - 1))
                             }
-                            
+
                             clean_val := StrReplace(Trim(val), "&", ",")
                             params := StrSplit(clean_val, ",")
-                            
+
                             cmd := Trim(params[1], " `t")
                             cb := params.Length > 1 ? Trim(params[2], " `t") : ""
                             args_arr := []
@@ -522,7 +656,7 @@ class ConfigMigrator {
                                     args_arr.Push(Trim(params[A_Index + 2], " `t"))
                                 }
                             }
-                            
+
                             ; 查找同类动作是否已存在
                             found_idx := 0
                             for idx, item in commands_obj[section_id] {
@@ -530,7 +664,7 @@ class ConfigMigrator {
                                     item_cb := item.Has("callback") ? item["callback"] : ""
                                     if (item_cb != cb)
                                         continue
-                                        
+
                                     item_args := item.Has("args") ? item["args"] : []
                                     if (item_args.Length != args_arr.Length)
                                         continue
@@ -543,12 +677,12 @@ class ConfigMigrator {
                                     }
                                     if (!args_match)
                                         continue
-                                        
+
                                     found_idx := idx
                                     break
                                 }
                             }
-                            
+
                             if (found_idx > 0) {
                                 target := commands_obj[section_id][found_idx]
                             } else {
@@ -559,10 +693,10 @@ class ConfigMigrator {
                                     target["args"] := args_arr
                                 commands_obj[section_id].Push(target)
                             }
-                            
+
                             if (comment != "" && !target.Has("desc"))
                                 target["desc"] := comment
-                                
+
                             if (is_hotkey) {
                                 exists := false
                                 for existing in target["hotkeys"] {
@@ -591,7 +725,7 @@ class ConfigMigrator {
 
             ParseIniAndMerge(alias_ini, false)
             ParseIniAndMerge(hotkey_ini, true)
-            
+
             json_str := JSON.stringify(commands_obj)
             if FileExist(commands_json)
                 FileDelete(commands_json)
@@ -607,7 +741,7 @@ class ConfigMigrator {
                 }
                 FileMove(alias_ini, bak_path, true)
             }
-            
+
             if FileExist(hotkey_ini) {
                 bak_path := hotkey_ini . ".bak"
                 if FileExist(bak_path) {
@@ -618,7 +752,7 @@ class ConfigMigrator {
                 }
                 FileMove(hotkey_ini, bak_path, true)
             }
-                
+
             return 1
         }
         catch as e {
@@ -629,7 +763,6 @@ class ConfigMigrator {
         }
     }
 }
-
 
 
 class CATIAWindow {
@@ -720,7 +853,7 @@ class KeyboardController {
         try {
             ; 修复 RAlt & RButton 未注册组合导致的 RAlt 粘滞问题（>! 代表 Right Alt）
             Hotkey(">!RButton", (*) => SendInput("{RButton}"))
-            
+
             ; 兜底清场：物理抬起时注入逻辑 Up，打断粘滞
             Hotkey("~>!Up", (*) => SendInput("{Blind}{vk07}{RAlt Up}"))
             Hotkey("~<!Up", (*) => SendInput("{Blind}{vk07}{LAlt Up}"))
@@ -742,11 +875,11 @@ class KeyboardController {
                 postSleep := preSleep * 3
             }
         }
-        
+
         this.force_release_all()
         if (preSleep > 0)
             Sleep preSleep
-        
+
         try {
             actionCallback()
         } finally {
@@ -874,7 +1007,7 @@ class CATIAInstance {
 
     static click_dialog_confirm_button(hwnd := 0) => this.click_dialog_button(["确定", "OK", "是", "Yes"], hwnd)
     static click_dialog_preview_button(hwnd := 0) => this.click_dialog_button(["预览", "Preview"], hwnd)
-    static click_dialog_apply_button(hwnd := 0)   => this.click_dialog_button(["应用", "Apply"], hwnd)
+    static click_dialog_apply_button(hwnd := 0) => this.click_dialog_button(["应用", "Apply"], hwnd)
 
     handle_hdr_error() {
         pop_hwnd := WinGetID()
@@ -939,7 +1072,7 @@ class CommandEngine {
         cmd := config.Get("command", "")
         if (cmd == "")
             return []
-        result := [ cmd ]
+        result := [cmd]
         if (cb := config.Get("callback", "")) {
             result.Push(cb)
             if (Type(args := config.Get("args", "")) == "Array") {
@@ -1151,7 +1284,7 @@ class WinEventHook {
             , "UInt", 0
             , "UInt", 0
             , "Ptr")
-            
+
         ; 脚本重载时如果已经在 CATIA 内部，系统不会触发焦点切换事件
         ; 因此挂载后主动检查一次当前的前台窗口，并模拟一次事件推送
         active_hwnd := WinExist("A")
@@ -1193,4 +1326,3 @@ class WinEventHook {
         }
     }
 }
-

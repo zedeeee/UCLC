@@ -1493,7 +1493,7 @@ class SettingsController {
     }
 
     BrowseConfigDir(*) {
-        path := DirSelect(AppSettings.ConfigDir, 3, "请选择自定义同步/备份目录 (支持网盘文件夹)")
+        path := DirSelect("*" . AppSettings.ConfigDir, 3, "请选择自定义同步/备份目录 (支持网盘文件夹)")
         if path {
             this.view.Edit_ConfigDir.Value := path
         }
@@ -1756,7 +1756,7 @@ class SettingsController {
     }
 
     ImportConfigFile(*) {
-        source_dir := DirSelect(AppSettings.ConfigDir, 3, "请选择要导入的 UCLC 备份文件夹 (应包含 config.json / commands.json)")
+        source_dir := DirSelect("*" . AppSettings.ConfigDir, 3, "请选择要导入的 UCLC 备份文件夹 (应包含 config.json / commands.json)")
         if !source_dir
             return
         if (MsgBox("导入备份配置将覆盖当前的系统设置与命令库，是否继续？", "导入确认", "YesNo Icon?") != "Yes")
@@ -1772,7 +1772,7 @@ class SettingsController {
     }
 
     ExportConfigFile(*) {
-        target_dir := DirSelect(AppSettings.ConfigDir, 3, "请选择或新建一个文件夹以保存 UCLC 配置备份")
+        target_dir := DirSelect("*" . AppSettings.ConfigDir, 3, "请选择或新建一个文件夹以保存 UCLC 配置备份")
         if !target_dir
             return
         try {

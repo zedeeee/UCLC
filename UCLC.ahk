@@ -171,7 +171,7 @@ app.Run()
         KeyWait "Control"
         Sleep 30
         if (AppSettings.Everything_Hotkey == "") {
-            MsgBox("未检测到 Everything“显示窗口”快捷键。`n`n请前往 Everything「工具」->「选项」->「快捷键」->「显示窗口快捷键」设置，完成后重新载入 UCLC 即可。", "UCLC - Everything 快速呼出", 48)
+            MsgBox("未配置 Everything 热键。`n`n请在 Everything「选项」->「键盘」->「显示窗口」中设置，完成后重新载入 UCLC 生效。", "UCLC - Everything 快速呼出", 48)
             return
         }
 

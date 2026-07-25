@@ -141,6 +141,8 @@ class AppSettings {
             } catch {
                 this.ConfigDir := this.DefaultConfigDir
             }
+        } else {
+            this.ConfigDir := this.DefaultConfigDir
         }
         this.config_json_path := this.ConfigDir "\config.json"
 
@@ -1045,7 +1047,7 @@ class CommandEngine {
         }
         catch {
             active_hwnd := WinExist("A")
-            MsgBox("无法识别当前工作台，请确保【工作台】工具栏是吸附状态", "UCLC 警告", "Icon! Owner" . active_hwnd)
+            MsgBox("无法识别当前工作台，请确保【工作台】工具栏为吸附状态。", "UCLC - CATIA 增强", "Icon! Owner" . active_hwnd)
             return "ERROR_NOT_DOCKED"
         }
     }
@@ -1177,13 +1179,13 @@ class Utilities {
         hwnd := WinExist("A")
         catia_class := CATIAWindow.identify_window(hwnd)
         if !catia_class {
-            MsgBox("未检测到活动的 CATIA 窗口，请先激活 CATIA", "UCLC 提示", "Icon!")
+            MsgBox("未检测到活动的 CATIA 窗口，请先激活 CATIA。", "UCLC - CATIA 增强", "Icon!")
             return false
         }
 
         power_input_hwnd := CATIAWindow.get_power_input_edit_hwnd()
         if !power_input_hwnd {
-            MsgBox("未找到 CATIA 超级输入框", "UCLC 错误", "Iconx")
+            MsgBox("未找到 CATIA 超级输入框。", "UCLC - CATIA 增强", "Iconx")
             return false
         }
 

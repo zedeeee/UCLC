@@ -168,8 +168,17 @@ app.Run()
             return
         }
 
+        KeyWait "Control"
+        Sleep 30
+        if (AppSettings.Everything_Hotkey == "") {
+            MsgBox("未配置 Everything 热键。`n`n请在 Everything「选项」->「键盘」->「显示窗口」中设置，完成后重新载入 UCLC 生效。", "UCLC - Everything 快速呼出", 48)
+            return
+        }
+
         if ProcessExist("Everything.exe") {
-            Send "#]"
+            hk_send := parse_hotkey_from_display(AppSettings.Everything_Hotkey)
+            if (hk_send != "")
+                SendEvent hk_send
             return
         }
 
@@ -178,10 +187,9 @@ app.Run()
         }
         else {
             result := MsgBox(
-                "“Everything 快速启动”功能已启用，但未找到 Everything.exe。`n`n"
-                "请检查 config.ini 中的路径配置是否正确。`n`n"
-                "要现在打开设置窗口进行配置吗？"
-                , "配置缺失"
+                "已启用 Everything 快速呼出，但未找到 Everything.exe。`n`n"
+                "是否现在打开 UCLC 设置窗口进行配置？"
+                , "UCLC - Everything 快速呼出"
                 , 36
             )
 
@@ -262,10 +270,10 @@ RAlt & MButton::
 }
 
 #HotIf (AppSettings.config_obj.Has("CatiaMButton") && Integer(AppSettings.config_obj["CatiaMButton"]["Enabled"]) && CATIAInstance.is_catia_dialog_context())
-MButton::CATIAInstance.handle_mbutton_smart()
-!MButton::CATIAInstance.click_dialog_preview_button()
-+MButton::CATIAInstance.click_dialog_apply_button()
+MButton:: CATIAInstance.handle_mbutton_smart()
+!MButton:: CATIAInstance.click_dialog_preview_button()
++MButton:: CATIAInstance.click_dialog_apply_button()
 
 #HotIf (AppSettings.config_obj.Has("CatiaMButton") && Integer(AppSettings.config_obj["CatiaMButton"]["Enabled"]) && CATIAInstance.is_catia_dialog_context() && CATIAInstance.mbutton_suppressed)
-*RButton::CATIAInstance.handle_suppressed_aux("RButton")
-*LButton::CATIAInstance.handle_suppressed_aux("LButton")
+*RButton:: CATIAInstance.handle_suppressed_aux("RButton")
+*LButton:: CATIAInstance.handle_suppressed_aux("LButton")

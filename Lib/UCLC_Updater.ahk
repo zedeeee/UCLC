@@ -39,7 +39,7 @@ class UCLCUpdater {
         try {
             req := ComObject("Msxml2.XMLHTTP")
             ; 根据 Channel 决定 API 接口
-            if (AppSettings.Updater_Channel == "Stable") {
+            if (AppSettings.Updater_Channel != "Preview") {
                 url := "https://api.github.com/repos/zedeeee/UCLC/releases/latest"
             } else {
                 url := "https://api.github.com/repos/zedeeee/UCLC/releases"

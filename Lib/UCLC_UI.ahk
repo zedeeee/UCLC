@@ -24,6 +24,7 @@ about_cb(*)
 
 update_check_cb(*)
 {
+    UCLCUpdater.CheckForUpdate(true)
 }
 
 
@@ -88,7 +89,7 @@ about_and_updates_menu := [
     ["关于", about_cb, ""],
     ["项目主页", showProjectHomepage_cb, ""],
     ["自定义帮助", help_Homepage_cb, ""],
-    ["检查更新", NoAction_cb, ""]
+    ["检查更新", update_check_cb, ""]
 ]
 
 dev_sub_menu := [
@@ -580,11 +581,17 @@ class SettingsView extends Gui {
         this.btn_edit_autoime := this.Add("Button", "x395 y175 w120 h26", "✏️ 修改规则")
         this.link_ime_guide := this.Add("Link", "x35 y210 w480 cGray", "说明：当匹配的主程序窗口激活时，系统将自动切换至英文输入法（<a id=`"guide`">前提条件</a>）。")
 
-        this.Add("GroupBox", "x20 y255 w510 h60", "日志与调试")
-        this.Chk_Debug := this.Add("Checkbox", "x35 y278", "开启详细 Debug 调试日志")
+        this.Add("GroupBox", "x20 y245 w245 h60", "日志与调试")
+        this.Chk_Debug := this.Add("Checkbox", "x35 y265", "开启详细 Debug 调试日志")
         this.Chk_Debug.ToolTip := "仅在排查软件 Bug 时开启，平时请关闭以避免产生大量日志文件"
 
-        this.btn_saveGen := this.Add("Button", "x400 y330 w130 h30 Default", "保存系统设置")
+        this.Add("GroupBox", "x285 y245 w245 h85", "软件更新")
+        this.Chk_Updater := this.Add("Checkbox", "x300 y265", "启动时自动检查更新")
+        this.Add("Text", "x300 y295 w60", "更新通道:")
+        this.Ddl_UpdaterChannel := this.Add("DropDownList", "x365 y290 w90 Choose1", ["Stable", "Preview"])
+        this.Btn_CheckUpdate := this.Add("Button", "x465 y289 w55 h24", "检查")
+
+        this.btn_saveGen := this.Add("Button", "x400 y350 w130 h30 Default", "保存系统设置")
 
         ; =============== 第三页: 附加功能 ===============
         this.tabs.UseTab(3)
@@ -782,6 +789,7 @@ class SettingsController {
         this.view.Btn_BrowseEverything.OnEvent("Click", ObjBindMethod(this, "BrowseEverything"))
         this.view.btn_saveGen.OnEvent("Click", ObjBindMethod(this, "SaveGeneralSettings"))
         this.view.btn_saveAddon.OnEvent("Click", ObjBindMethod(this, "SaveAddonSettings"))
+        this.view.Btn_CheckUpdate.OnEvent("Click", (*) => UCLCUpdater.CheckForUpdate(true))
 
         this.view.Edit_CalcHotkey.OnEvent("Focus", ObjBindMethod(this, "OnCalcHotkeyFocus"))
         this.view.Edit_CalcHotkey.OnEvent("LoseFocus", ObjBindMethod(this, "OnCalcHotkeyLoseFocus"))
@@ -802,6 +810,9 @@ class SettingsController {
 
         this.view.Chk_Debug.Value := AppSettings.DEBUG_I
         this.view.Chk_AutoIME.Value := AppSettings.AutoIME_Enabled
+        
+        this.view.Chk_Updater.Value := AppSettings.Updater_Enabled
+        this.view.Ddl_UpdaterChannel.Choose(AppSettings.Updater_Channel == "Preview" ? 2 : 1)
 
         if AppSettings.config_obj.Has("Volume")
             this.view.Chk_Volume.Value := Integer(AppSettings.config_obj["Volume"]["Enabled"])
@@ -1533,6 +1544,8 @@ class SettingsController {
             this.view.Chk_AutoIME.Value,
             auto_ime_map
         )
+        AppSettings.SaveUpdaterConfig("Enabled", String(this.view.Chk_Updater.Value))
+        AppSettings.SaveUpdaterConfig("Channel", this.view.Ddl_UpdaterChannel.Text)
         if success
             this.view.SB.SetText("通用设置保存成功！请手动重新载入 UCLC 脚本以使其生效。")
     }
@@ -2275,15 +2288,59 @@ class SettingsController {
     }
 }
 
-ShowUpdateGUI(latestVersion, currentVersion, releaseNotes, downloadUrl) {
-    msg := "发现新版本: " . latestVersion . "`n"
-    msg .= "当前版本: " . currentVersion . "`n`n"
-    msg .= "更新内容:`n" . releaseNotes . "`n`n"
-    msg .= "是否立即前往下载更新？`n`n"
-    msg .= "(注: 若点击【否】，暂时不会记录为跳过版本。跳过功能可在未来自定义 GUI 中实现。)"
-    
-    result := MsgBox(msg, "UCLC 更新可用", "YesNo Iconi")
-    if (result == "Yes" && downloadUrl != "") {
-        Run(downloadUrl)
+class UpdateGUI extends Gui {
+    __New(latestVersion, currentVersion, releaseNotes, downloadUrl) {
+        super.__New("-MinimizeBox -MaximizeBox", "UCLC 软件更新")
+        
+        this.latestVersion := latestVersion
+        this.downloadUrl := downloadUrl
+
+        this.Add("Text", "x20 y20 w80", "发现新版本: ")
+        this.SetFont("c0055AA bold")
+        this.Add("Text", "x95 y20 w100", latestVersion)
+        this.SetFont("norm")
+        this.Add("Text", "x200 y20 w180", "当前版本: " currentVersion)
+
+        this.Add("Text", "x20 y50 w360", "更新日志:")
+        this.edit_notes := this.Add("Edit", "x20 y70 w360 h180 ReadOnly Multi +VScroll", releaseNotes)
+
+        this.btn_download := this.Add("Button", "x40 y270 w100 h30 Default", "立即前往下载")
+        this.btn_skip := this.Add("Button", "x150 y270 w100 h30", "跳过此版本")
+        this.btn_cancel := this.Add("Button", "x260 y270 w100 h30", "暂不更新")
+
+        this.btn_download.OnEvent("Click", ObjBindMethod(this, "OnDownload"))
+        this.btn_skip.OnEvent("Click", ObjBindMethod(this, "OnSkip"))
+        this.btn_cancel.OnEvent("Click", ObjBindMethod(this, "OnCancel"))
+        this.OnEvent("Close", ObjBindMethod(this, "OnCancel"))
+        this.OnEvent("Escape", ObjBindMethod(this, "OnCancel"))
     }
+
+    OnDownload(*) {
+        if (this.downloadUrl != "")
+            Run(this.downloadUrl)
+        this.Destroy()
+        UpdateGUI.instance := ""
+    }
+
+    OnSkip(*) {
+        AppSettings.SaveUpdaterConfig("SkippedVersion", this.latestVersion)
+        this.Destroy()
+        UpdateGUI.instance := ""
+    }
+
+    OnCancel(*) {
+        this.Destroy()
+        UpdateGUI.instance := ""
+    }
+
+    static instance := ""
+}
+
+ShowUpdateGUI(latestVersion, currentVersion, releaseNotes, downloadUrl) {
+    if (UpdateGUI.instance && WinExist(UpdateGUI.instance.Hwnd)) {
+        UpdateGUI.instance.Show()
+        return
+    }
+    UpdateGUI.instance := UpdateGUI(latestVersion, currentVersion, releaseNotes, downloadUrl)
+    UpdateGUI.instance.Show("w400 h320")
 }

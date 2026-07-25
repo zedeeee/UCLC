@@ -525,8 +525,79 @@ class CATIAWindow {
     }
 }
 
+class KeyboardController {
+    static modifiers := ["LAlt", "RAlt", "LCtrl", "RCtrl", "LShift", "RShift"]
+
+    /**
+     * 强制释放所有修饰键，并注入 {vk07} 阻止系统菜单激活
+     */
+    static force_release_all() {
+        SendInput "{Blind}{vk07}{LAlt Up}{RAlt Up}{LCtrl Up}{RCtrl Up}{LShift Up}{RShift Up}"
+    }
+
+    /**
+     * 探针检测物理按压状态，精准恢复仍被按下的修饰键逻辑状态
+     */
+    static restore_physical_state() {
+        restore_str := ""
+        for key in this.modifiers {
+            if GetKeyState(key, "P") {
+                restore_str .= "{" . key . " Down}"
+            }
+        }
+        if (restore_str != "") {
+            SendInput "{Blind}" . restore_str
+        }
+    }
+
+    /**
+     * 统一注册全局防粘滞与透传热键
+     */
+    static register_anti_sticky_hotkeys() {
+        try {
+            ; 修复 RAlt & RButton 未注册组合导致的 RAlt 粘滞问题（>! 代表 Right Alt）
+            Hotkey(">!RButton", (*) => SendInput("{RButton}"))
+            
+            ; 兜底清场：物理抬起时注入逻辑 Up，打断粘滞
+            Hotkey("~>!Up", (*) => SendInput("{Blind}{vk07}{RAlt Up}"))
+            Hotkey("~<!Up", (*) => SendInput("{Blind}{vk07}{LAlt Up}"))
+        } catch Error as e {
+            Logger.info("注册防粘滞热键失败：" . e.Message)
+        }
+    }
+
+    /**
+     * 高阶执行器：在一个安全的物理按键隔离环境内执行动作。
+     * @param actionCallback 实际要执行的逻辑
+     * @param preSleep 执行前强制隔离缓冲（单位：毫秒）
+     * @param postSleep 恢复前执行缓冲（单位：毫秒）
+     */
+    static RunWithModifiersIsolated(actionCallback, preSleep := 10, postSleep := 30) {
+        try {
+            if (AppSettings.config_obj.Has("通用") && AppSettings.config_obj["通用"].Has("AntiStickyDelay")) {
+                preSleep := Integer(AppSettings.config_obj["通用"]["AntiStickyDelay"])
+                postSleep := preSleep * 3
+            }
+        }
+        
+        this.force_release_all()
+        if (preSleep > 0)
+            Sleep preSleep
+        
+        try {
+            actionCallback()
+        } finally {
+            if (postSleep > 0)
+                Sleep postSleep
+            this.restore_physical_state()
+        }
+    }
+}
+
 class CATIAInstance {
     static instances := Map()
+    pid := 0
+    hdr_cache := Map()
 
     __New(pid) {
         this.pid := pid
@@ -541,22 +612,7 @@ class CATIAInstance {
     }
 
     safe_send_enter(hwnd) {
-        SendInput "{Blind}{vk07}{LAlt Up}{RAlt Up}{LCtrl Up}{RCtrl Up}{LShift Up}{RShift Up}"
-        Sleep 10
-        ControlSend "{Blind}{Enter}", , "ahk_id " . hwnd
-        Sleep 30
-        if GetKeyState("LCtrl", "P")
-            SendInput "{Blind}{LCtrl Down}"
-        if GetKeyState("RCtrl", "P")
-            SendInput "{Blind}{RCtrl Down}"
-        if GetKeyState("LShift", "P")
-            SendInput "{Blind}{LShift Down}"
-        if GetKeyState("RShift", "P")
-            SendInput "{Blind}{RShift Down}"
-        if GetKeyState("LAlt", "P")
-            SendInput "{Blind}{LAlt Down}"
-        if GetKeyState("RAlt", "P")
-            SendInput "{Blind}{RAlt Down}"
+        KeyboardController.RunWithModifiersIsolated(() => ControlSend("{Blind}{Enter}", , "ahk_id " . hwnd))
     }
 
     handle_hdr_error() {
@@ -835,6 +891,13 @@ class WinEventHook {
             , "UInt", 0
             , "UInt", 0
             , "Ptr")
+            
+        ; 脚本重载时如果已经在 CATIA 内部，系统不会触发焦点切换事件
+        ; 因此挂载后主动检查一次当前的前台窗口，并模拟一次事件推送
+        active_hwnd := WinExist("A")
+        if (active_hwnd) {
+            this.OnWinEvent(0, 3, active_hwnd, 0, 0, 0, 0)
+        }
     }
 
     static Stop() {

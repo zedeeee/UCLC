@@ -744,6 +744,8 @@ class SettingsController {
 
     BindEvents() {
         this.view.OnEvent("Close", ObjBindMethod(this, "OnClose"))
+        this.view.Ddl_UpdaterChannel.OnEvent("Change", (*) => AppSettings.SaveUpdaterConfig("Channel", this.view.Ddl_UpdaterChannel.Text))
+        this.view.Btn_CheckUpdate.OnEvent("Click", (*) => UCLCUpdater.CheckForUpdate(true, this.view))
         this.view.OnEvent("Escape", ObjBindMethod(this, "OnClose"))
         this.on_mouse_move_bound := ObjBindMethod(this, "on_mouse_move")
         OnMessage(0x0200, this.on_mouse_move_bound)
@@ -772,7 +774,6 @@ class SettingsController {
         this.view.Btn_BrowseEverything.OnEvent("Click", ObjBindMethod(this, "BrowseEverything"))
         this.view.btn_saveGen.OnEvent("Click", ObjBindMethod(this, "SaveGeneralSettings"))
         this.view.btn_saveAddon.OnEvent("Click", ObjBindMethod(this, "SaveAddonSettings"))
-        this.view.Btn_CheckUpdate.OnEvent("Click", (*) => UCLCUpdater.CheckForUpdate(true))
 
         this.view.Edit_CalcHotkey.OnEvent("Focus", ObjBindMethod(this, "OnCalcHotkeyFocus"))
         this.view.Edit_CalcHotkey.OnEvent("LoseFocus", ObjBindMethod(this, "OnCalcHotkeyLoseFocus"))
@@ -2272,8 +2273,8 @@ class SettingsController {
 }
 
 class UpdateGUI extends Gui {
-    __New(latestVersion, currentVersion, releaseNotes, downloadUrl) {
-        super.__New("-MinimizeBox -MaximizeBox", "UCLC 软件更新")
+    __New(latestVersion, currentVersion, releaseNotes, downloadUrl, parentGui := "") {
+        super.__New("-MinimizeBox -MaximizeBox" . (parentGui ? " +Owner" . parentGui.Hwnd : ""), "UCLC 软件更新")
         
         this.latestVersion := latestVersion
         this.downloadUrl := downloadUrl
@@ -2327,12 +2328,12 @@ class UpdateGUI extends Gui {
     static instance := ""
 }
 
-ShowUpdateGUI(latestVersion, currentVersion, releaseNotes, downloadUrl) {
+ShowUpdateGUI(latestVersion, currentVersion, releaseNotes, downloadUrl, parentGui := "") {
     if (UpdateGUI.instance && WinExist(UpdateGUI.instance.Hwnd)) {
         UpdateGUI.instance.UpdateData(latestVersion, currentVersion, releaseNotes, downloadUrl)
         UpdateGUI.instance.Show()
         return
     }
-    UpdateGUI.instance := UpdateGUI(latestVersion, currentVersion, releaseNotes, downloadUrl)
+    UpdateGUI.instance := UpdateGUI(latestVersion, currentVersion, releaseNotes, downloadUrl, parentGui)
     UpdateGUI.instance.Show("w400 h320")
 }

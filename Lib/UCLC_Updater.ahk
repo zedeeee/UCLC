@@ -3,7 +3,11 @@
 #Include "UCLC_UI.ahk"
 
 class UCLCUpdater {
-    static CheckForUpdate(isManual := false) {
+    static isChecking := false
+
+    static CheckForUpdate(isManual := false, parentGui := "") {
+        if (this.isChecking)
+            return
         if (!AppSettings.Updater_Enabled && !isManual)
             return
 
@@ -24,10 +28,11 @@ class UCLCUpdater {
             AppSettings.SaveUpdaterConfig("LastCheckTime", FormatTime(A_Now, "yyyyMMddHHmmss"))
         }
 
-        this.SendAsyncRequest(isManual)
+        this.SendAsyncRequest(isManual, parentGui)
     }
 
-    static SendAsyncRequest(isManual) {
+    static SendAsyncRequest(isManual, parentGui) {
+        this.isChecking := true
         if (isManual) {
             try Logger.tooltip("正在检查新版本...", 1500)
         }
@@ -43,17 +48,23 @@ class UCLCUpdater {
             req.open("GET", url, true) 
             req.setRequestHeader("User-Agent", "UCLC-Updater/" . UCLC_VERSION)
             req.setRequestHeader("Cache-Control", "no-cache")
-            req.onreadystatechange := ObjBindMethod(this, "OnResponse", req, isManual)
+            req.onreadystatechange := ObjBindMethod(this, "OnResponse", req, isManual, parentGui)
             req.send()
         } catch Error as e {
-            if (isManual)
+            this.isChecking := false
+            if (isManual) {
+                if (parentGui)
+                    parentGui.Opt("+OwnDialogs")
                 MsgBox("创建网络请求失败: " . e.Message, "检查更新", "IconX")
+            }
         }
     }
 
-    static OnResponse(req, isManual) {
+    static OnResponse(req, isManual, parentGui) {
         if (req.readyState != 4)
             return
+
+        this.isChecking := false
 
         ; 清理 COM 对象回调引用，防止内存泄漏
         try req.onreadystatechange := ""
@@ -89,16 +100,23 @@ class UCLCUpdater {
 
                 if (this.CompareVersion(latestVersion, UCLC_VERSION) > 0) {
                     ; 调用 UI
-                    ShowUpdateGUI(latestVersion, UCLC_VERSION, releaseNotes, downloadUrl)
+                    ShowUpdateGUI(latestVersion, UCLC_VERSION, releaseNotes, downloadUrl, parentGui)
                 } else if (isManual) {
+                    if (parentGui)
+                        parentGui.Opt("+OwnDialogs")
                     MsgBox("当前已经是最新版本。", "检查更新", "Iconi")
                 }
             } catch Error as e {
-                if (isManual)
+                if (isManual) {
+                    if (parentGui)
+                        parentGui.Opt("+OwnDialogs")
                     MsgBox("解析更新数据失败: " . e.Message, "检查更新", "IconX")
+                }
             }
         } else if (isManual) {
-             MsgBox("网络请求失败，无法连接到 GitHub。状态码: " . req.status, "检查更新", "IconX")
+            if (parentGui)
+                parentGui.Opt("+OwnDialogs")
+            MsgBox("网络请求失败，无法连接到 GitHub。状态码: " . req.status, "检查更新", "IconX")
         }
     }
 

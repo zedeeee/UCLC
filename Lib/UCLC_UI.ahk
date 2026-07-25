@@ -172,31 +172,6 @@ show_settings_gui(*) {
 
 ShowSettingsGUI(*) => show_settings_gui()
 
-safe_atomic_write(filepath, content) {
-    tmp_path := filepath . ".tmp"
-    bak_path := filepath . ".bak"
-
-    if FileExist(tmp_path)
-        FileDelete(tmp_path)
-
-    f := FileOpen(tmp_path, "w", "UTF-8")
-    f.Write(content)
-    f.Close()
-
-    has_orig := FileExist(filepath)
-    if (has_orig) {
-        FileCopy(filepath, bak_path, 1)
-    }
-
-    try {
-        FileMove(tmp_path, filepath, 1)
-        return true
-    } catch Error as err {
-        if (has_orig && FileExist(bak_path))
-            FileCopy(bak_path, filepath, 1)
-        throw Error("文件原子写入失败: " err.Message)
-    }
-}
 
 is_array_equal(arr1, arr2) {
     if (arr1.Length != arr2.Length)
@@ -330,7 +305,7 @@ class SettingsModel {
     flush_commands_json(curr_obj) {
         AppSettings.commands_obj := curr_obj
         try {
-            safe_atomic_write(AppSettings.commands_json_path, JSON.stringify(AppSettings.commands_obj))
+            AppSettings.FlushCommands()
         } catch Error as e {
             MsgBox("写入 JSON 文件失败: " e.Message, "错误", 16)
         }
@@ -365,7 +340,7 @@ class SettingsModel {
             AppSettings.Updater_Enabled := Integer(updaterEnabled)
             AppSettings.Updater_Channel := updaterChannel
 
-            safe_atomic_write(AppSettings.config_json_path, JSON.stringify(AppSettings.config_obj))
+            AppSettings.FlushConfig()
             return true
         } catch Error as e {
             MsgBox("保存失败: " e.Message, "错误", 16)
@@ -400,7 +375,7 @@ class SettingsModel {
             AppSettings.Everything_Enabled := everythingEnabled
             AppSettings.Everything_Path := everythingPath
 
-            safe_atomic_write(AppSettings.config_json_path, JSON.stringify(AppSettings.config_obj))
+            AppSettings.FlushConfig()
             return true
         } catch Error as e {
             MsgBox("保存附加功能失败: " e.Message, "错误", 16)

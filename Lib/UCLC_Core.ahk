@@ -172,9 +172,7 @@ class AppSettings {
         if (migrated) {
             this.commands_obj := new_commands_obj
             try {
-                if FileExist(this.commands_json_path)
-                    FileDelete(this.commands_json_path)
-                FileAppend(JSON.stringify(this.commands_obj), this.commands_json_path, "UTF-8")
+                this.FlushCommands()
             }
         }
 
@@ -254,12 +252,39 @@ class AppSettings {
             this.Updater_SkippedVersion := value
 
         try {
-            if FileExist(this.config_json_path)
-                FileDelete(this.config_json_path)
-            FileAppend(JSON.stringify(this.config_obj), this.config_json_path, "UTF-8")
+            this.FlushConfig()
         } catch Error as e {
             Logger.info("保存 Updater 配置失败: " . e.Message)
         }
+    }
+
+    static _atomic_write(filepath, content) {
+        tmp_path := filepath . ".tmp"
+        bak_path := filepath . ".bak"
+        if FileExist(tmp_path)
+            FileDelete(tmp_path)
+        f := FileOpen(tmp_path, "w", "UTF-8")
+        f.Write(content)
+        f.Close()
+        has_orig := FileExist(filepath)
+        if (has_orig)
+            FileCopy(filepath, bak_path, 1)
+        try {
+            FileMove(tmp_path, filepath, 1)
+            return true
+        } catch Error as err {
+            if (has_orig && FileExist(bak_path))
+                FileCopy(bak_path, filepath, 1)
+            throw Error("文件原子写入失败: " err.Message)
+        }
+    }
+
+    static FlushConfig() {
+        this._atomic_write(this.config_json_path, JSON.stringify(this.config_obj))
+    }
+
+    static FlushCommands() {
+        this._atomic_write(this.commands_json_path, JSON.stringify(this.commands_obj))
     }
 }
 

@@ -29,6 +29,11 @@ class AppSettings {
     static Calc_Enabled := 0
     static Calc_Hotkey := ""
     
+    static Updater_Enabled := 1
+    static Updater_Channel := "Preview"
+    static Updater_LastCheckTime := ""
+    static Updater_SkippedVersion := ""
+    
     static workbench_mapping := Map()
 
     static LoadWorkbenchMapping() {
@@ -167,9 +172,7 @@ class AppSettings {
         if (migrated) {
             this.commands_obj := new_commands_obj
             try {
-                if FileExist(this.commands_json_path)
-                    FileDelete(this.commands_json_path)
-                FileAppend(JSON.stringify(this.commands_obj), this.commands_json_path, "UTF-8")
+                this.FlushCommands()
             }
         }
 
@@ -213,6 +216,15 @@ class AppSettings {
         this.Calc_Hotkey := this.config_obj.Has("Calculator") && this.config_obj["Calculator"].Has("Hotkey") ? 
             this.config_obj["Calculator"]["Hotkey"] : ""
 
+        this.Updater_Enabled := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("Enabled") ? 
+            Integer(this.config_obj["Updater"]["Enabled"]) : 1
+        this.Updater_Channel := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("Channel") ? 
+            this.config_obj["Updater"]["Channel"] : "Preview"
+        this.Updater_LastCheckTime := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("LastCheckTime") ? 
+            this.config_obj["Updater"]["LastCheckTime"] : ""
+        this.Updater_SkippedVersion := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("SkippedVersion") ? 
+            this.config_obj["Updater"]["SkippedVersion"] : ""
+
         ; 初始化工作台列表
         this.workbench_list := Map()
         if (this.hotkey_obj != "") {
@@ -222,6 +234,57 @@ class AppSettings {
         }
 
         this.current_workbench := ""
+    }
+
+    static SaveUpdaterConfig(key, value) {
+        if (!this.config_obj.Has("Updater")) {
+            this.config_obj["Updater"] := Map()
+        }
+        this.config_obj["Updater"][key] := value
+        
+        if (key == "Enabled")
+            this.Updater_Enabled := Integer(value)
+        else if (key == "Channel")
+            this.Updater_Channel := value
+        else if (key == "LastCheckTime")
+            this.Updater_LastCheckTime := value
+        else if (key == "SkippedVersion")
+            this.Updater_SkippedVersion := value
+
+        try {
+            this.FlushConfig()
+        } catch Error as e {
+            Logger.info("保存 Updater 配置失败: " . e.Message)
+        }
+    }
+
+    static _atomic_write(filepath, content) {
+        tmp_path := filepath . ".tmp"
+        bak_path := filepath . ".bak"
+        if FileExist(tmp_path)
+            FileDelete(tmp_path)
+        f := FileOpen(tmp_path, "w", "UTF-8")
+        f.Write(content)
+        f.Close()
+        has_orig := FileExist(filepath)
+        if (has_orig)
+            FileCopy(filepath, bak_path, 1)
+        try {
+            FileMove(tmp_path, filepath, 1)
+            return true
+        } catch Error as err {
+            if (has_orig && FileExist(bak_path))
+                FileCopy(bak_path, filepath, 1)
+            throw Error("文件原子写入失败: " err.Message)
+        }
+    }
+
+    static FlushConfig() {
+        this._atomic_write(this.config_json_path, JSON.stringify(this.config_obj))
+    }
+
+    static FlushCommands() {
+        this._atomic_write(this.commands_json_path, JSON.stringify(this.commands_obj))
     }
 }
 

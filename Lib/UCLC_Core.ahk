@@ -678,6 +678,104 @@ class CATIAInstance {
         KeyboardController.RunWithModifiersIsolated(() => ControlSend("{Blind}{Enter}", , "ahk_id " . hwnd))
     }
 
+    static safe_send_enter_static(hwnd) {
+        KeyboardController.RunWithModifiersIsolated(() => ControlSend("{Blind}{Enter}", , "ahk_id " . hwnd))
+    }
+
+    static is_catia_bindable_context() {
+        if WinActive("ahk_group GroupCATIA")
+            return true
+        if WinActive("ahk_class #32770 ahk_exe CNEXT.exe")
+            return true
+        return false
+    }
+
+    static is_catia_dialog_context() {
+        if !this.is_catia_bindable_context()
+            return false
+        try {
+            catia_pid := WinGetPID("A")
+            return WinExist("ahk_class #32770 ahk_pid " . catia_pid)
+        }
+        return false
+    }
+
+    static mbutton_suppressed := false
+
+    static handle_suppressed_aux(btn) {
+        this.mbutton_suppressed := false
+        SendInput "{Blind}{MButton Down}{" . btn . " Down}"
+        KeyWait btn
+        SendInput "{Blind}{" . btn . " Up}"
+    }
+
+    static handle_mbutton_smart() {
+        MouseGetPos(&startX, &startY)
+        startTime := A_TickCount
+        is_native := false
+        this.mbutton_suppressed := true
+
+        try {
+            while GetKeyState("MButton", "P") {
+                Sleep 10
+                if !this.mbutton_suppressed
+                    break
+                MouseGetPos(&currX, &currY)
+                if (abs(currX - startX) > 5 || abs(currY - startY) > 5 || (A_TickCount - startTime) >= 200 || GetKeyState("Ctrl", "P") || GetKeyState("Shift", "P") || GetKeyState("Alt", "P") || GetKeyState("RButton", "P") || GetKeyState("LButton", "P")) {
+                    is_native := true
+                    break
+                }
+            }
+
+            if !this.mbutton_suppressed {
+                KeyWait "MButton"
+                SendInput "{Blind}{MButton Up}"
+                return
+            }
+
+            this.mbutton_suppressed := false
+
+            if is_native {
+                SendInput "{Blind}{MButton Down}"
+                KeyWait "MButton"
+                SendInput "{Blind}{MButton Up}"
+            } else {
+                this.click_dialog_confirm_button()
+            }
+        } finally {
+            this.mbutton_suppressed := false
+        }
+    }
+
+    static click_dialog_button(keywords, target_hwnd := 0) {
+        if !target_hwnd {
+            try {
+                catia_pid := WinGetPID("A")
+                target_hwnd := WinExist("ahk_class #32770 ahk_pid " . catia_pid)
+            }
+        }
+        if !target_hwnd
+            return false
+        try {
+            for ctrl in WinGetControls(target_hwnd) {
+                if !ControlGetVisible(ctrl, target_hwnd)
+                    continue
+                clean_text := Trim(RegExReplace(StrReplace(ControlGetText(ctrl, target_hwnd), "&", ""), "\([a-zA-Z]\)", ""))
+                for kw in keywords {
+                    if (clean_text == kw) {
+                        SendMessage(0xF5, 0, 0, ctrl, target_hwnd)
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+
+    static click_dialog_confirm_button(hwnd := 0) => this.click_dialog_button(["确定", "OK", "是", "Yes"], hwnd)
+    static click_dialog_preview_button(hwnd := 0) => this.click_dialog_button(["预览", "Preview"], hwnd)
+    static click_dialog_apply_button(hwnd := 0)   => this.click_dialog_button(["应用", "Apply"], hwnd)
+
     handle_hdr_error() {
         pop_hwnd := WinGetID()
         str := WindowManager.get_window_text_fast(false)
@@ -787,19 +885,17 @@ class CommandEngine {
             return
         }
 
-        instance := CATIAInstance.get_instance(power_input_hwnd)
         original_id := command_id_and_cb_array[1]
-        command_id := instance.hdr_cache.Has(original_id) ? instance.hdr_cache[original_id] : original_id
 
-        ControlSetText("c:" . command_id, power_input_hwnd)
-        instance.safe_send_enter(power_input_hwnd)
+        if (current_workbench == "创成式外形设计") {
+            instance := CATIAInstance.get_instance(power_input_hwnd)
+            command_id := instance.hdr_cache.Has(original_id) ? instance.hdr_cache[original_id] : original_id
 
-        if (current_workbench == "创成式外形设计" && !instance.hdr_cache.Has(original_id)) {
-            loop 50 {
-                if (ControlGetText(power_input_hwnd) == "") {
-                    break
-                }
-                if WinExist("超级输入消息 ahk_pid " . instance.pid) {
+            ControlSetText("c:" . command_id, power_input_hwnd)
+            instance.safe_send_enter(power_input_hwnd)
+
+            if !instance.hdr_cache.Has(original_id) {
+                if WinWait("超级输入消息 ahk_pid " . instance.pid, , 0.5) {
                     corrected_id := instance.handle_hdr_error()
                     if corrected_id {
                         instance.hdr_cache[original_id] := corrected_id
@@ -807,10 +903,11 @@ class CommandEngine {
                         ControlSetText("c:" . corrected_id, power_input_hwnd)
                         instance.safe_send_enter(power_input_hwnd)
                     }
-                    break
                 }
-                Sleep 10
             }
+        } else {
+            ControlSetText("c:" . original_id, power_input_hwnd)
+            CATIAInstance.safe_send_enter_static(power_input_hwnd)
         }
 
         if command_id_and_cb_array.Length >= 2 {

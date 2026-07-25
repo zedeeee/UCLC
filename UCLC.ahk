@@ -260,3 +260,12 @@ RAlt & MButton::
         ControlSetText("", CATIAWindow.get_power_input_edit_hwnd())
     }
 }
+
+#HotIf (AppSettings.config_obj.Has("CatiaMButton") && Integer(AppSettings.config_obj["CatiaMButton"]["Enabled"]) && CATIAInstance.is_catia_dialog_context())
+MButton::CATIAInstance.handle_mbutton_smart()
+!MButton::CATIAInstance.click_dialog_preview_button()
++MButton::CATIAInstance.click_dialog_apply_button()
+
+#HotIf (AppSettings.config_obj.Has("CatiaMButton") && Integer(AppSettings.config_obj["CatiaMButton"]["Enabled"]) && CATIAInstance.is_catia_dialog_context() && CATIAInstance.mbutton_suppressed)
+*RButton::CATIAInstance.handle_suppressed_aux("RButton")
+*LButton::CATIAInstance.handle_suppressed_aux("LButton")

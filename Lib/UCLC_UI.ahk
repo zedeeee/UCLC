@@ -311,8 +311,13 @@ class SettingsModel {
         }
     }
 
-    save_general_settings(everythingEnabled, everythingPath, debugEnabled, autoImeEnabled, autoImeMap, updaterEnabled, updaterChannel) {
+    save_general_settings(everythingEnabled, everythingPath, debugEnabled, autoImeEnabled, autoImeMap, updaterEnabled, updaterChannel, startupEnabled := 0, configDir := "") {
         try {
+            StartupManager.SetStartup(startupEnabled)
+            targetDir := Trim(configDir) == "" ? AppSettings.DefaultConfigDir : Trim(configDir)
+            if (targetDir != AppSettings.ConfigDir) {
+                AppSettings.SaveConfigDir(targetDir)
+            }
             if !AppSettings.config_obj.Has("Everything") {
                 AppSettings.config_obj["Everything"] := Map("Enabled", "0", "Path", "")
             }
@@ -551,7 +556,7 @@ class SettingsView extends Gui {
 
         ; =============== 第二页: 系统设置 ===============
         this.tabs.UseTab(2)
-        this.Add("GroupBox", "x20 y40 w510 h200", "输入法自动切换")
+        this.Add("GroupBox", "x20 y40 w510 h195", "输入法自动切换")
         this.Chk_AutoIME := this.Add("Checkbox", "x35 y60", "指定程序自动切换为英文")
         this.Chk_AutoIME.ToolTip := "保持英文状态可避免在使用命令别名时误触中文输入法"
 
@@ -564,17 +569,22 @@ class SettingsView extends Gui {
         this.btn_edit_autoime := this.Add("Button", "x395 y175 w120 h26", "✏️ 修改规则")
         this.link_ime_guide := this.Add("Link", "x35 y210 w480 cGray", "说明：当匹配的主程序窗口激活时，系统将自动切换至英文输入法（<a id=`"guide`">前提条件</a>）。")
 
-        this.Add("GroupBox", "x20 y245 w245 h60", "日志与调试")
-        this.Chk_Debug := this.Add("Checkbox", "x35 y265", "开启详细 Debug 调试日志")
+        this.Chk_Startup := this.Add("Checkbox", "x35 y255", "开机自动启动 UCLC")
+        this.Btn_CreateShortcut := this.Add("Button", "x185 y251 w130 h24", "创建桌面快捷方式")
+        this.Chk_Debug := this.Add("Checkbox", "x335 y255", "开启详细 Debug 调试日志")
         this.Chk_Debug.ToolTip := "仅在排查软件 Bug 时开启，平时请关闭以避免产生大量日志文件"
 
-        this.Add("GroupBox", "x285 y245 w245 h85", "软件更新")
-        this.Chk_Updater := this.Add("Checkbox", "x300 y265", "启动时自动检查更新")
-        this.Add("Text", "x300 y295 w60", "更新通道:")
-        this.Ddl_UpdaterChannel := this.Add("DropDownList", "x365 y290 w90 Choose1", ["Stable", "Preview"])
-        this.Btn_CheckUpdate := this.Add("Button", "x465 y289 w55 h24", "检查")
+        this.Chk_Updater := this.Add("Checkbox", "x35 y295", "启动时自动检查更新")
+        this.Add("Text", "x220 y296 w65", "更新通道:")
+        this.Ddl_UpdaterChannel := this.Add("DropDownList", "x290 y292 w90 Choose1", ["Stable", "Preview"])
+        this.Btn_CheckUpdate := this.Add("Button", "x395 y291 w65 h24", "检查更新")
 
-        this.btn_saveGen := this.Add("Button", "x400 y350 w130 h30 Default", "保存系统设置")
+        this.Add("Text", "x35 y338 w65", "配置目录:")
+        this.Edit_ConfigDir := this.Add("Edit", "x105 y335 w330 h24", AppSettings.ConfigDir == AppSettings.DefaultConfigDir ? "" : AppSettings.ConfigDir)
+        this.Btn_BrowseConfigDir := this.Add("Button", "x445 y334 w65 h25", "选择...")
+        this.Edit_ConfigDir.ToolTip := "支持绑定 OneDrive 或网盘同步文件夹实现多端同步（留空为默认 AppData 目录）"
+
+        this.btn_saveGen := this.Add("Button", "x400 y385 w130 h30 Default", "保存系统设置")
 
         ; =============== 第三页: 附加功能 ===============
         this.tabs.UseTab(3)
@@ -772,6 +782,8 @@ class SettingsController {
         this.view.btn_save.OnEvent("Click", ObjBindMethod(this, "SaveCurrentItem"))
 
         this.view.Btn_BrowseEverything.OnEvent("Click", ObjBindMethod(this, "BrowseEverything"))
+        this.view.Btn_CreateShortcut.OnEvent("Click", ObjBindMethod(this, "CreateShortcut"))
+        this.view.Btn_BrowseConfigDir.OnEvent("Click", ObjBindMethod(this, "BrowseConfigDir"))
         this.view.btn_saveGen.OnEvent("Click", ObjBindMethod(this, "SaveGeneralSettings"))
         this.view.btn_saveAddon.OnEvent("Click", ObjBindMethod(this, "SaveAddonSettings"))
 
@@ -797,6 +809,9 @@ class SettingsController {
         
         this.view.Chk_Updater.Value := AppSettings.Updater_Enabled
         this.view.Ddl_UpdaterChannel.Choose(AppSettings.Updater_Channel == "Preview" ? 2 : 1)
+
+        this.view.Chk_Startup.Value := StartupManager.IsEnabled()
+        this.view.Edit_ConfigDir.Value := AppSettings.ConfigDir == AppSettings.DefaultConfigDir ? "" : AppSettings.ConfigDir
 
         if AppSettings.config_obj.Has("Volume")
             this.view.Chk_Volume.Value := Integer(AppSettings.config_obj["Volume"]["Enabled"])
@@ -1369,6 +1384,17 @@ class SettingsController {
             this.view.Edit_EverythingPath.Value := path
     }
 
+    CreateShortcut(*) {
+        ShortcutManager.CreateDesktopShortcut()
+    }
+
+    BrowseConfigDir(*) {
+        path := DirSelect(AppSettings.ConfigDir, 3, "请选择自定义同步/备份目录 (支持网盘文件夹)")
+        if path {
+            this.view.Edit_ConfigDir.Value := path
+        }
+    }
+
     OnToggleAutoIME(*) {
         enabled := this.view.Chk_AutoIME.Value
         opt := enabled ? "-Disabled" : "+Disabled"
@@ -1528,7 +1554,9 @@ class SettingsController {
             this.view.Chk_AutoIME.Value,
             auto_ime_map,
             this.view.Chk_Updater.Value,
-            this.view.Ddl_UpdaterChannel.Text
+            this.view.Ddl_UpdaterChannel.Text,
+            this.view.Chk_Startup.Value,
+            this.view.Edit_ConfigDir.Value
         )
         if success
             this.view.SB.SetText("通用设置保存成功！请手动重新载入 UCLC 脚本以使其生效。")

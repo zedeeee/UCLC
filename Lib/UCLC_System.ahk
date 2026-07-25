@@ -143,3 +143,54 @@ class VolumeController {
         Logger.tooltip(Format("当前音量：{} {}", Integer(current_volume), mute_status), 1000)
     }
 }
+
+class ShortcutManager {
+    static GetIconPath() {
+        icon_file := A_ScriptDir "\icon\UCLC.ico"
+        if !FileExist(icon_file)
+            icon_file := A_IsCompiled ? A_ScriptFullPath : A_AhkPath
+        return icon_file
+    }
+
+    static Create(dest_path, success_msg := "") {
+        try {
+            FileCreateShortcut(A_ScriptFullPath, dest_path, A_ScriptDir, "", "UCLC - 像 AutoCAD 一样使用 CATIA", this.GetIconPath())
+            if (success_msg != "")
+                Logger.tooltip(success_msg, 2000)
+            return true
+        } catch Error as e {
+            Logger.tooltip("创建快捷方式失败：" . e.Message, 3000)
+            return false
+        }
+    }
+
+    static CreateDesktopShortcut() {
+        return this.Create(A_Desktop "\UCLC.lnk", "桌面快捷方式创建成功！")
+    }
+}
+
+class StartupManager {
+    static lnkPath := A_Startup "\UCLC.lnk"
+
+    static IsEnabled() {
+        return FileExist(this.lnkPath) != "" ? 1 : 0
+    }
+
+    static SetStartup(enable := true) {
+        if (enable) {
+            return ShortcutManager.Create(this.lnkPath, "已开启开机自动启动")
+        } else {
+            if FileExist(this.lnkPath) {
+                try {
+                    FileDelete(this.lnkPath)
+                    Logger.tooltip("已取消开机自动启动", 2000)
+                    return true
+                } catch Error as e {
+                    Logger.tooltip("取消开机自启失败：" . e.Message, 3000)
+                    return false
+                }
+            }
+            return true
+        }
+    }
+}

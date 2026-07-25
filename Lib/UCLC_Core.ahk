@@ -6,6 +6,8 @@
 
 ;-==== [ 原模块: AppSettings.ahk ] ====-
 class AppSettings {
+    static DefaultConfigDir := A_AppData "\UCLC"
+    static ConfigDir := ""
     static config_json_path := ""
     static commands_json_path := ""
 
@@ -86,65 +88,132 @@ class AppSettings {
     }
 
     static Init() {
-        this.config_json_path := A_ScriptDir "\config.json"
+        if !DirExist(this.DefaultConfigDir)
+            try DirCreate(this.DefaultConfigDir)
 
-        ; 只要发现 config.ini 就将其值合并更新到 config.json
+        this.ConfigDir := this.DefaultConfigDir
+        default_config_path := this.DefaultConfigDir "\config.json"
+
+        ; 只要在根目录下发现 config.ini 就将其迁移到 AppData 目录下的 config.json
         if (FileExist(A_ScriptDir "\config.ini")) {
-            ConfigMigrator.MigrateIniToJson(A_ScriptDir "\config.ini", this.config_json_path)
+            ConfigMigrator.MigrateIniToJson(A_ScriptDir "\config.ini", default_config_path)
         }
 
-        ; 读取全局配置
-        if (FileExist(this.config_json_path)) {
-            text := FileRead(this.config_json_path, "UTF-8")
+        ; 场景 3：旧版 v3 JSON 继承（从项目根目录迁移到 AppData 目录，完成无感继承）
+        old_config_path := A_ScriptDir "\config.json"
+        if (FileExist(old_config_path) && old_config_path != default_config_path) {
+            try {
+                if (!FileExist(default_config_path))
+                    FileCopy(old_config_path, default_config_path, true)
+                FileMove(old_config_path, old_config_path ".bak", true)
+            }
+        }
+
+        ; 读取默认目录的全局配置
+        if (FileExist(default_config_path)) {
+            text := FileRead(default_config_path, "UTF-8")
             this.config_obj := JSON.parse(text)
         } else {
             this.config_obj := Map(
                 "通用", Map("DEBUG", "0"),
-                "UserConf", Map("命令配置", "commands.json"),
+                "UserConf", Map("命令配置", "commands.json", "配置目录", ""),
                 "Everything", Map("Enabled", "0", "Path", ""),
                 "AutoIME", Map(
                     "AUTOCAD", "ACAD.exe",
                     "CATIA", "CNEXT.exe"
                 )
             )
-            FileAppend(JSON.stringify(this.config_obj), this.config_json_path, "UTF-8")
+            FileAppend(JSON.stringify(this.config_obj), default_config_path, "UTF-8")
+        }
+
+        ; 检查用户是否自定义了配置存储/网盘同步目录
+        custom_dir := ""
+        if (this.config_obj.Has("UserConf") && this.config_obj["UserConf"].Has("配置目录")) {
+            custom_dir := Trim(this.config_obj["UserConf"]["配置目录"])
+        }
+        if (custom_dir != "" && DirExist(custom_dir)) {
+            this.ConfigDir := custom_dir
+        } else if (custom_dir != "") {
+            try {
+                DirCreate(custom_dir)
+                this.ConfigDir := custom_dir
+            } catch {
+                this.ConfigDir := this.DefaultConfigDir
+            }
+        }
+        this.config_json_path := this.ConfigDir "\config.json"
+
+        ; 若启用外部自定义目录且存在独立 config.json，载入该同步配置
+        if (this.ConfigDir != this.DefaultConfigDir && FileExist(this.config_json_path)) {
+            try {
+                text := FileRead(this.config_json_path, "UTF-8")
+                this.config_obj := JSON.parse(text)
+            }
         }
 
         commands_file := "commands.json"
-
         if (this.config_obj.Has("UserConf") && this.config_obj["UserConf"].Has("命令配置")) {
             commands_file := this.config_obj["UserConf"]["命令配置"]
         }
+        this.commands_json_path := this.ConfigDir "\" commands_file
 
-        this.commands_json_path := A_ScriptDir "\user-config\" commands_file
+        ; 场景 3：旧版 v3 user-config/commands.json 或旧根目录下文件继承到新目录
+        old_cmd_path1 := A_ScriptDir "\user-config\" commands_file
+        old_cmd_path2 := A_ScriptDir "\" commands_file
+        if (!FileExist(this.commands_json_path)) {
+            if (FileExist(old_cmd_path1)) {
+                try {
+                    FileCopy(old_cmd_path1, this.commands_json_path, true)
+                    FileMove(old_cmd_path1, old_cmd_path1 ".bak", true)
+                }
+            } else if (FileExist(old_cmd_path2)) {
+                try {
+                    FileCopy(old_cmd_path2, this.commands_json_path, true)
+                    FileMove(old_cmd_path2, old_cmd_path2 ".bak", true)
+                }
+            }
+        }
 
-        ; 检查并迁移 V2 INI
+        ; 场景 2：参照 v2.4.2 逻辑，根据字段动态解析旧 INI 并转译至 commands.json（保留原文件追加 .bak）
         alias_name := "alias.ini"
         hotkey_name := "hotkey.ini"
-        
         if (this.config_obj.Has("UserConf")) {
             if (this.config_obj["UserConf"].Has("用户别名"))
                 alias_name := this.config_obj["UserConf"]["用户别名"]
             if (this.config_obj["UserConf"].Has("快捷键"))
                 hotkey_name := this.config_obj["UserConf"]["快捷键"]
         }
-
-        if (alias_name = "alias.ini" && FileExist(A_ScriptDir "\config.ini")) {
-            try alias_name := IniRead(A_ScriptDir "\config.ini", "UserConf", "用户别名", "alias.ini")
-            try hotkey_name := IniRead(A_ScriptDir "\config.ini", "UserConf", "快捷键", "hotkey.ini")
+        if (alias_name = "alias.ini" && FileExist(A_ScriptDir "\config.ini.bak")) {
+            try alias_name := IniRead(A_ScriptDir "\config.ini.bak", "UserConf", "用户别名", "alias.ini")
+            try hotkey_name := IniRead(A_ScriptDir "\config.ini.bak", "UserConf", "快捷键", "hotkey.ini")
         }
-        
-        ; 剥离可能带有的 .json 后缀，因为这里是为了找原始 ini
         alias_name := StrReplace(alias_name, ".json", ".ini")
         hotkey_name := StrReplace(hotkey_name, ".json", ".ini")
 
-        this.alias_ini_path := A_ScriptDir "\user-config\" alias_name
-        this.hotkey_ini_path := A_ScriptDir "\user-config\" hotkey_name
-        
+        alias_ini_path := ""
+        hotkey_ini_path := ""
+        if FileExist(A_ScriptDir "\user-config\" alias_name)
+            alias_ini_path := A_ScriptDir "\user-config\" alias_name
+        else if FileExist(A_ScriptDir "\" alias_name)
+            alias_ini_path := A_ScriptDir "\" alias_name
+            
+        if FileExist(A_ScriptDir "\user-config\" hotkey_name)
+            hotkey_ini_path := A_ScriptDir "\user-config\" hotkey_name
+        else if FileExist(A_ScriptDir "\" hotkey_name)
+            hotkey_ini_path := A_ScriptDir "\" hotkey_name
+
+        this.alias_ini_path := alias_ini_path
+        this.hotkey_ini_path := hotkey_ini_path
+
         this.LoadWorkbenchMapping()
         
-        if (!FileExist(this.commands_json_path) && (FileExist(this.alias_ini_path) || FileExist(this.hotkey_ini_path))) {
-            ConfigMigrator.MigrateV2IniToCommandsJson(this.alias_ini_path, this.hotkey_ini_path, this.commands_json_path)
+        if (!FileExist(this.commands_json_path) && (alias_ini_path != "" || hotkey_ini_path != "")) {
+            if (ConfigMigrator.MigrateV2IniToCommandsJson(alias_ini_path, hotkey_ini_path, this.commands_json_path)) {
+                if (alias_ini_path != "" && FileExist(alias_ini_path))
+                    try FileMove(alias_ini_path, alias_ini_path ".bak", true)
+                if (hotkey_ini_path != "" && FileExist(hotkey_ini_path))
+                    try FileMove(hotkey_ini_path, hotkey_ini_path ".bak", true)
+            }
         }
 
         ; 载入 JSON 到内存树
@@ -281,10 +350,41 @@ class AppSettings {
 
     static FlushConfig() {
         this._atomic_write(this.config_json_path, JSON.stringify(this.config_obj))
+        if (this.ConfigDir != "" && this.ConfigDir != this.DefaultConfigDir && DirExist(this.DefaultConfigDir)) {
+            try this._atomic_write(this.DefaultConfigDir "\config.json", JSON.stringify(this.config_obj))
+        }
     }
 
     static FlushCommands() {
         this._atomic_write(this.commands_json_path, JSON.stringify(this.commands_obj))
+    }
+
+    static SaveConfigDir(new_dir) {
+        new_dir := Trim(new_dir)
+        if (new_dir == "")
+            new_dir := this.DefaultConfigDir
+        if !DirExist(new_dir) {
+            try DirCreate(new_dir)
+        }
+        if !DirExist(new_dir)
+            throw Error("无法创建自定义目标目录: " new_dir)
+            
+        if (!FileExist(new_dir "\config.json") && FileExist(this.config_json_path))
+            try FileCopy(this.config_json_path, new_dir "\config.json", false)
+        if (!FileExist(new_dir "\commands.json") && FileExist(this.commands_json_path))
+            try FileCopy(this.commands_json_path, new_dir "\commands.json", false)
+            
+        this.ConfigDir := new_dir
+        this.config_json_path := new_dir "\config.json"
+        this.commands_json_path := new_dir "\commands.json"
+        
+        if !this.config_obj.Has("UserConf")
+            this.config_obj["UserConf"] := Map()
+        this.config_obj["UserConf"]["配置目录"] := (new_dir == this.DefaultConfigDir) ? "" : new_dir
+        
+        this._atomic_write(this.DefaultConfigDir "\config.json", JSON.stringify(this.config_obj))
+        if (new_dir != this.DefaultConfigDir)
+            this._atomic_write(this.config_json_path, JSON.stringify(this.config_obj))
     }
 }
 

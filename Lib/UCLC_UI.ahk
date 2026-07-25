@@ -336,7 +336,7 @@ class SettingsModel {
         }
     }
 
-    save_general_settings(everythingEnabled, everythingPath, debugEnabled, autoImeEnabled, autoImeMap) {
+    save_general_settings(everythingEnabled, everythingPath, debugEnabled, autoImeEnabled, autoImeMap, updaterEnabled, updaterChannel) {
         try {
             if !AppSettings.config_obj.Has("Everything") {
                 AppSettings.config_obj["Everything"] := Map("Enabled", "0", "Path", "")
@@ -352,10 +352,18 @@ class SettingsModel {
             autoImeMap["Enabled"] := String(autoImeEnabled)
             AppSettings.config_obj["AutoIME"] := autoImeMap
 
+            if !AppSettings.config_obj.Has("Updater") {
+                AppSettings.config_obj["Updater"] := Map()
+            }
+            AppSettings.config_obj["Updater"]["Enabled"] := String(updaterEnabled)
+            AppSettings.config_obj["Updater"]["Channel"] := updaterChannel
+
             AppSettings.Everything_Enabled := everythingEnabled
             AppSettings.Everything_Path := everythingPath
             AppSettings.DEBUG_I := debugEnabled
             AppSettings.AutoIME_Enabled := autoImeEnabled
+            AppSettings.Updater_Enabled := Integer(updaterEnabled)
+            AppSettings.Updater_Channel := updaterChannel
 
             safe_atomic_write(AppSettings.config_json_path, JSON.stringify(AppSettings.config_obj))
             return true
@@ -1542,10 +1550,10 @@ class SettingsController {
             this.view.Edit_EverythingPath.Value,
             this.view.Chk_Debug.Value,
             this.view.Chk_AutoIME.Value,
-            auto_ime_map
+            auto_ime_map,
+            this.view.Chk_Updater.Value,
+            this.view.Ddl_UpdaterChannel.Text
         )
-        AppSettings.SaveUpdaterConfig("Enabled", String(this.view.Chk_Updater.Value))
-        AppSettings.SaveUpdaterConfig("Channel", this.view.Ddl_UpdaterChannel.Text)
         if success
             this.view.SB.SetText("通用设置保存成功！请手动重新载入 UCLC 脚本以使其生效。")
     }
@@ -2297,9 +2305,9 @@ class UpdateGUI extends Gui {
 
         this.Add("Text", "x20 y20 w80", "发现新版本: ")
         this.SetFont("c0055AA bold")
-        this.Add("Text", "x95 y20 w100", latestVersion)
-        this.SetFont("norm")
-        this.Add("Text", "x200 y20 w180", "当前版本: " currentVersion)
+        this.txt_latest := this.Add("Text", "x95 y20 w100", latestVersion)
+        this.SetFont("cDefault norm")
+        this.txt_current := this.Add("Text", "x200 y20 w180", "当前版本: " currentVersion)
 
         this.Add("Text", "x20 y50 w360", "更新日志:")
         this.edit_notes := this.Add("Edit", "x20 y70 w360 h180 ReadOnly Multi +VScroll", releaseNotes)
@@ -2313,6 +2321,14 @@ class UpdateGUI extends Gui {
         this.btn_cancel.OnEvent("Click", ObjBindMethod(this, "OnCancel"))
         this.OnEvent("Close", ObjBindMethod(this, "OnCancel"))
         this.OnEvent("Escape", ObjBindMethod(this, "OnCancel"))
+    }
+
+    UpdateData(latestVersion, currentVersion, releaseNotes, downloadUrl) {
+        this.latestVersion := latestVersion
+        this.downloadUrl := downloadUrl
+        this.txt_latest.Value := latestVersion
+        this.txt_current.Value := "当前版本: " . currentVersion
+        this.edit_notes.Value := releaseNotes
     }
 
     OnDownload(*) {
@@ -2338,6 +2354,7 @@ class UpdateGUI extends Gui {
 
 ShowUpdateGUI(latestVersion, currentVersion, releaseNotes, downloadUrl) {
     if (UpdateGUI.instance && WinExist(UpdateGUI.instance.Hwnd)) {
+        UpdateGUI.instance.UpdateData(latestVersion, currentVersion, releaseNotes, downloadUrl)
         UpdateGUI.instance.Show()
         return
     }

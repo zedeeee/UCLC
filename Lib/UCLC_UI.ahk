@@ -63,10 +63,10 @@ run_spy_cb(*)
         ahk_dir "\..\WindowSpy.ahk",
         ahk_dir "\WindowSpy.ahk"
     ]
-    
+
     try spy_paths.Push(RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey", "InstallDir") "\UX\WindowSpy.ahk")
     try spy_paths.Push(RegRead("HKEY_CURRENT_USER\SOFTWARE\AutoHotkey", "InstallDir") "\UX\WindowSpy.ahk")
-    
+
     for path in spy_paths {
         if FileExist(path) {
             Run('"' path '"')
@@ -174,19 +174,19 @@ ShowSettingsGUI(*) => show_settings_gui()
 safe_atomic_write(filepath, content) {
     tmp_path := filepath . ".tmp"
     bak_path := filepath . ".bak"
-    
+
     if FileExist(tmp_path)
         FileDelete(tmp_path)
-    
+
     f := FileOpen(tmp_path, "w", "UTF-8")
     f.Write(content)
     f.Close()
-    
+
     has_orig := FileExist(filepath)
     if (has_orig) {
         FileCopy(filepath, bak_path, 1)
     }
-    
+
     try {
         FileMove(tmp_path, filepath, 1)
         return true
@@ -270,13 +270,13 @@ class SettingsModel {
         } catch {
             return "无法解析数据以生成变更列表。"
         }
-        
+
         diffs := []
         for wb, cmds in curr_obj {
             wb_name := AppSettings.GetWbName(wb)
             wb_diffs := []
             orig_cmds := orig_obj.Has(wb) ? orig_obj[wb] : []
-            
+
             for i, cmd in cmds {
                 if (i > orig_cmds.Length) {
                     title := cmd.Has("desc") && cmd["desc"] != "" ? cmd["desc"] : cmd["command"]
@@ -301,7 +301,7 @@ class SettingsModel {
                 diffs.Push(wb_diffs*)
             }
         }
-        
+
         for wb, cmds in orig_obj {
             if !curr_obj.Has(wb) {
                 wb_name := AppSettings.GetWbName(wb)
@@ -309,10 +309,10 @@ class SettingsModel {
                 diffs.Push("  - 整个工作台被移除")
             }
         }
-        
+
         if (diffs.Length == 0)
             return "检测到深层属性变更，无命令级差异。"
-            
+
         summary := ""
         count := 0
         for item in diffs {
@@ -335,7 +335,7 @@ class SettingsModel {
         }
     }
 
-    save_general_settings(everythingEnabled, everythingPath) {
+    save_general_settings(everythingEnabled, everythingPath, debugEnabled, autoImeEnabled, autoImeMap) {
         try {
             if !AppSettings.config_obj.Has("Everything") {
                 AppSettings.config_obj["Everything"] := Map("Enabled", "0", "Path", "")
@@ -343,13 +343,58 @@ class SettingsModel {
             AppSettings.config_obj["Everything"]["Enabled"] := String(everythingEnabled)
             AppSettings.config_obj["Everything"]["Path"] := everythingPath
 
+            if !AppSettings.config_obj.Has("通用") {
+                AppSettings.config_obj["通用"] := Map("DEBUG", "0")
+            }
+            AppSettings.config_obj["通用"]["DEBUG"] := String(debugEnabled)
+
+            autoImeMap["Enabled"] := String(autoImeEnabled)
+            AppSettings.config_obj["AutoIME"] := autoImeMap
+
+            AppSettings.Everything_Enabled := everythingEnabled
+            AppSettings.Everything_Path := everythingPath
+            AppSettings.DEBUG_I := debugEnabled
+            AppSettings.AutoIME_Enabled := autoImeEnabled
+
+            safe_atomic_write(AppSettings.config_json_path, JSON.stringify(AppSettings.config_obj))
+            return true
+        } catch Error as e {
+            MsgBox("保存失败: " e.Message, "错误", 16)
+            return false
+        }
+    }
+
+    save_addon_settings(everythingEnabled, everythingPath, volumeEnabled, calcEnabled, calcHotkey, catiaMButtonEnabled) {
+        try {
+            if !AppSettings.config_obj.Has("Everything") {
+                AppSettings.config_obj["Everything"] := Map("Enabled", "0", "Path", "")
+            }
+            AppSettings.config_obj["Everything"]["Enabled"] := String(everythingEnabled)
+            AppSettings.config_obj["Everything"]["Path"] := everythingPath
+
+            if !AppSettings.config_obj.Has("Volume") {
+                AppSettings.config_obj["Volume"] := Map("Enabled", "0")
+            }
+            AppSettings.config_obj["Volume"]["Enabled"] := String(volumeEnabled)
+
+            if !AppSettings.config_obj.Has("Calculator") {
+                AppSettings.config_obj["Calculator"] := Map("Enabled", "0", "Hotkey", "")
+            }
+            AppSettings.config_obj["Calculator"]["Enabled"] := String(calcEnabled)
+            AppSettings.config_obj["Calculator"]["Hotkey"] := calcHotkey
+
+            if !AppSettings.config_obj.Has("CatiaMButton") {
+                AppSettings.config_obj["CatiaMButton"] := Map("Enabled", "0")
+            }
+            AppSettings.config_obj["CatiaMButton"]["Enabled"] := String(catiaMButtonEnabled)
+
             AppSettings.Everything_Enabled := everythingEnabled
             AppSettings.Everything_Path := everythingPath
 
             safe_atomic_write(AppSettings.config_json_path, JSON.stringify(AppSettings.config_obj))
             return true
         } catch Error as e {
-            MsgBox("保存失败: " e.Message, "错误", 16)
+            MsgBox("保存附加功能失败: " e.Message, "错误", 16)
             return false
         }
     }
@@ -389,8 +434,13 @@ class SettingsModel {
 
     calculate_import_diff(target_wb) {
         parsed_commands := this.parsed_import_data
+        if (!parsed_commands || parsed_commands.Count == 0) {
+            this.import_items := []
+            return []
+        }
+
         local_array := AppSettings.commands_obj.Has(target_wb) ? AppSettings.commands_obj[target_wb] : []
-        
+
         local_by_id := Map()
         local_by_title := Map()
         for cmd in local_array {
@@ -405,7 +455,8 @@ class SettingsModel {
 
         for id, title in parsed_commands {
             if local_by_id.Has(id) {
-                if local_by_id[id]["desc"] == title {
+                local_desc := (local_by_id[id].Has("desc") && local_by_id[id]["desc"] != "") ? local_by_id[id]["desc"] : local_by_id[id]["command"]
+                if (local_desc == title) {
                     import_items.Push({ title: title, local_id: id, action: "=", imported_id: id })
                 } else {
                     import_items.Push({ title: title, local_id: local_by_id[id]["command"], action: "T", imported_id: id })
@@ -427,7 +478,7 @@ class SettingsModel {
                 import_items.Push({ title: desc, local_id: id, action: "D", imported_id: "" })
             }
         }
-        
+
         this.import_items := import_items
         return import_items
     }
@@ -436,124 +487,134 @@ class SettingsModel {
 
 class SettingsView extends Gui {
     __New() {
-        super.__New("-Resize -MaximizeBox", "UCLC 配置管理控制台 (CUI)")
-        
-        this.tabs := this.Add("Tab3", "x10 y10 w780 h580", ["命令映射", "通用设置", "工作台命令库"])
+        super.__New("-Resize -MaximizeBox", "UCLC 配置管理")
 
-        ; =============== 第一页: 命令映射 ===============
+        this.tabs := this.Add("Tab3", "x10 y10 w530 h460", ["命令配置", "系统设置", "附加功能"])
+
+        ; =============== 第一页: 命令配置 ===============
         this.tabs.UseTab(1)
-        this.Add("Text", "x30 y40 w200", "命令列表树 (工作台 -> 功能):")
-        this.Add("Text", "x30 y65 w45", "工作台:")
 
-        this.ddl_workbench := this.Add("DropDownList", "x75 y61 w205 Choose1", ["全部工作台"])
-        
-        this.Add("Text", "x30 y90 w40", "搜索:")
-        this.edit_search := this.Add("Edit", "x70 y86 w210")
-        
-        this.tv_alias := this.Add("TreeView", "x30 y115 w250 h430")
-        
-        this.Btn_AddCmdFromOther := this.Add("Button", "x30 y550 w250 h24 Disabled", "从指定工作台添加命令")
+        ; ====================
+        ; 左侧：命令树与导入
+        ; ====================
+        this.tv_alias := this.Add("TreeView", "x20 y45 w190 h330")
+        this.Btn_OpenCmdLib := this.Add("Button", "x20 y380 w190 h28", "导入命令ID")
+        this.Btn_OpenCmdLib.ToolTip := "从本地文件批量导入新的命令"
 
-        this.Add("GroupBox", "x300 y60 w460 h490", "详细属性与动态编辑")
+        ; ====================
+        ; 右侧上：全局检索区
+        ; ====================
+        this.Add("Text", "x235 y45 w60", "工作台:")
+        this.ddl_workbench := this.Add("DropDownList", "x295 y40 w195 Choose1", ["全部工作台"])
+        this.ddl_workbench.ToolTip := "按所属工作台过滤左侧命令列表"
+
+        this.Add("Text", "x235 y75 w60", "搜　索:")
+        this.edit_search := this.Add("Edit", "x295 y72 w195")
+        this.edit_search.ToolTip := "支持拼音首字母模糊匹配"
+
+        ; 分割线
+        this.Add("Text", "x230 y100 w270 h1 0x10")
+
+        ; ====================
+        ; 右侧下：详情编辑区
+        ; ====================
+        this.Add("Text", "x230 y115 w270 c0055AA", "■ 命令详细属性")
 
         this.tabs.UseTab(1)
-        this.Txt_Cat := this.Add("Text", "x320 y80 w80 Hidden", "所属工作台:")
-        this.Txt_CatVal := this.Add("Text", "x400 y80 w340 cBlue Hidden", "")
-        this.Txt_Desc := this.Add("Text", "x320 y110 w80 Hidden", "功能描述:")
-        this.edit_desc := this.Add("Edit", "x400 y106 w340 Hidden ReadOnly", "")
-        this.Txt_Cmd := this.Add("Text", "x320 y140 w80 Hidden", "执行命令:")
-        this.Edit_Cmd := this.Add("Edit", "x400 y136 w340 Hidden ReadOnly", "")
-        this.Txt_Alias := this.Add("Text", "x320 y180 w80 Hidden", "用户别名:")
+        this.Txt_Cat := this.Add("Text", "x235 y141 w60 Hidden", "所属模块:")
+        this.Txt_CatVal := this.Add("Text", "x295 y141 w195 cBlue Hidden", "")
+
+        this.Txt_Desc := this.Add("Text", "x235 y171 w60 Hidden", "功能描述:")
+        this.Txt_Desc.ToolTip := "显示该命令的具体功能说明"
+        this.edit_desc := this.Add("Edit", "x295 y168 w195 Hidden ReadOnly", "")
+        this.edit_desc.ToolTip := "显示该命令的具体功能说明"
+
+        this.Txt_Cmd := this.Add("Text", "x235 y201 w60 Hidden", "执行指令:")
+        this.Txt_Cmd.ToolTip := "底层 CATIA 命令标识符，通常自动导入生成，无需手动修改"
+        this.Edit_Cmd := this.Add("Edit", "x295 y198 w195 Hidden ReadOnly", "")
+        this.Edit_Cmd.ToolTip := "底层 CATIA 命令标识符，通常自动导入生成，无需手动修改"
+
+        this.Txt_Alias := this.Add("Text", "x235 y231 w60 Hidden", "触发别名:")
+        this.Txt_Alias.ToolTip := "在 CATIA 绘图区内直接输入这些字母即可快速触发该命令"
 
         this.alias_pool := []
         loop 10 {
-            e := this.Add("Edit", "x400 y0 w280 Hidden Uppercase", "")
-            btn_add := this.Add("Button", "x685 y0 w25 h24 Hidden", "➕")
-            btn_del := this.Add("Button", "x715 y0 w25 h24 Hidden", "➖")
+            e := this.Add("Edit", "x295 y0 w135 Hidden Uppercase", "")
+            btn_add := this.Add("Button", "x440 y0 w24 h24 Hidden", "➕")
+            btn_del := this.Add("Button", "x466 y0 w24 h24 Hidden", "➖")
             this.alias_pool.Push({ e: e, add: btn_add, del: btn_del })
         }
 
-        this.Txt_Hotkey := this.Add("Text", "x320 y0 w80 Hidden", "快捷键:")
+        this.Txt_Hotkey := this.Add("Text", "x235 y0 w60 Hidden", "绑定热键:")
+        this.Txt_Hotkey.ToolTip := "绑定全局键盘快捷键（例如：Ctrl+Shift+A），按下即触发"
         this.hotkey_pool := []
         loop 10 {
-            e := this.Add("Edit", "x400 y0 w280 Hidden", "")
+            e := this.Add("Edit", "x295 y0 w135 Hidden", "")
             SendMessage(0x1501, 1, StrPtr("直接按键录入"), e.Hwnd)
-            btn_add := this.Add("Button", "x685 y0 w25 h24 Hidden", "➕")
-            btn_del := this.Add("Button", "x715 y0 w25 h24 Hidden", "➖")
+            btn_add := this.Add("Button", "x440 y0 w24 h24 Hidden", "➕")
+            btn_del := this.Add("Button", "x466 y0 w24 h24 Hidden", "➖")
             this.hotkey_pool.Push({ e: e, add: btn_add, del: btn_del })
         }
 
-        this.Btn_Revert := this.Add("Button", "x400 y0 w120 h35 Hidden Disabled", "撤销当前修改")
-        this.btn_save := this.Add("Button", "x620 y550 w140 h26 Disabled", "应用修改")
+        this.Btn_Revert := this.Add("Button", "x250 y285 w105 h28 Hidden Disabled", "撤销修改")
+        this.btn_save := this.Add("Button", "x385 y285 w105 h28 Disabled", "保存修改")
         this.SB := this.Add("StatusBar")
+        version_str := AppSettings.Version
+        ; 动态计算分段位置（收紧字宽：英文约 6.5px，加上 15px 边距）
+        part1_width := 550 - (StrLen(RegExReplace(version_str, "[^\x00-\xff]", "xx")) * 6.5 + 15)
+        this.SB.SetParts(part1_width)
+        this.SB.SetText(version_str, 2)
 
-        ; =============== 第二页: 通用设置 ===============
+        ; =============== 第二页: 系统设置 ===============
         this.tabs.UseTab(2)
-        this.Add("GroupBox", "x30 y50 w740 h150", "Everything 快速启动集成")
-        this.Chk_Everything := this.Add("Checkbox", "x50 y80", "启用“双击右Ctrl”呼出 Everything")
-        this.Add("Text", "x50 y120 w80", "主程序路径:")
-        this.Edit_EverythingPath := this.Add("Edit", "x130 y116 w450", "")
-        this.Btn_BrowseEverything := this.Add("Button", "x600 y115 w80", "浏览...")
-        this.btn_saveGen := this.Add("Button", "x600 y160 w150 Default", "保存通用设置")
+        this.Add("GroupBox", "x20 y40 w510 h200", "输入法自动切换")
+        this.Chk_AutoIME := this.Add("Checkbox", "x35 y60", "指定程序自动切换为英文")
+        this.Chk_AutoIME.ToolTip := "保持英文状态可避免在使用命令别名时误触中文输入法"
 
-        ; =============== 第三页: 工作台命令库 ===============
+        this.lv_autoime := this.Add("ListView", "x35 y87 w350 h115 Grid -Multi", ["软件名称", "进程名称 (exe)"])
+        this.lv_autoime.ModifyCol(1, 145)
+        this.lv_autoime.ModifyCol(2, 200)
+
+        this.btn_add_autoime := this.Add("Button", "x395 y87 w120 h26", "➕ 添加规则")
+        this.btn_del_autoime := this.Add("Button", "x395 y131 w120 h26", "➖ 删除规则")
+        this.btn_edit_autoime := this.Add("Button", "x395 y175 w120 h26", "✏️ 修改规则")
+        this.link_ime_guide := this.Add("Link", "x35 y210 w480 cGray", "说明：当匹配的主程序窗口激活时，系统将自动切换至英文输入法（<a id=`"guide`">前提条件</a>）。")
+
+        this.Add("GroupBox", "x20 y255 w510 h60", "日志与调试")
+        this.Chk_Debug := this.Add("Checkbox", "x35 y278", "开启详细 Debug 调试日志")
+        this.Chk_Debug.ToolTip := "仅在排查软件 Bug 时开启，平时请关闭以避免产生大量日志文件"
+
+        this.btn_saveGen := this.Add("Button", "x400 y330 w130 h30 Default", "保存系统设置")
+
+        ; =============== 第三页: 附加功能 ===============
         this.tabs.UseTab(3)
-        this.Add("GroupBox", "x20 y40 w740 h65", "数据源获取")
-        this.Add("Text", "x30 y68 w70", "目标工作台:")
-        this.ddl_import_wb := this.Add("DropDownList", "x100 y64 w250 Choose1", ["通过导入文件确定"])
-        this.Btn_AddWb := this.Add("Button", "x355 y64 w24 h22", "+")
-        this.Btn_ImportCommands := this.Add("Button", "x500 y64 w120 h22", "导入命令")
-        this.Btn_ReadTxt := this.Add("Button", "x630 y64 w120 h22", "从 TXT 导入")
+        this.Add("GroupBox", "x20 y40 w510 h90", "Everything 快速呼出")
+        this.Chk_Everything := this.Add("Checkbox", "x35 y62", "启用 Everything 快捷搜索")
+        this.Chk_Everything.ToolTip := "双击右 Ctrl 键唤起 Everything"
+        this.Add("Text", "x35 y93 w85", "安装路径:")
+        this.Edit_EverythingPath := this.Add("Edit", "x125 y89 w320 h24", "")
+        this.Btn_BrowseEverything := this.Add("Button", "x455 y88 w60 h26", "浏览...")
+        this.Btn_BrowseEverything.ToolTip := "选择 Everything.exe 所在路径"
 
-        this.Add("GroupBox", "x20 y115 w740 h410", "同步状态视图")
-        this.Add("Text", "x25 y130 w60 h32 +0x200", "视图筛选:")
-        
-        this.chk_filter_all := this.Add("CheckBox", "x85 y130 w60 h32 Checked", "全部`n(0)")
-        this.SetFont("s9 bold c107C10")
-        this.Add("Text", "x155 y130 w14 h32 +0x200", "+")
-        this.SetFont("s9 norm cDefault")
-        this.chk_filter_new := this.Add("CheckBox", "x169 y130 w60 h32 Checked", "新增`n(0)")
-        
-        this.SetFont("s9 bold c0078D7")
-        this.Add("Text", "x239 y130 w14 h32 +0x200", "T")
-        this.SetFont("s9 norm cDefault")
-        this.chk_filter_update := this.Add("CheckBox", "x253 y130 w85 h32 Checked", "更新标题`n(0)")
-        
-        this.SetFont("s9 bold c0078D7")
-        this.Add("Text", "x348 y130 w14 h32 +0x200", "C")
-        this.SetFont("s9 norm cDefault")
-        this.chk_filter_overwrite := this.Add("CheckBox", "x362 y130 w85 h32 Checked", "更新命令`n(0)")
-        
-        this.SetFont("s9 bold c107C10")
-        this.Add("Text", "x457 y130 w14 h32 +0x200", "=")
-        this.SetFont("s9 norm cDefault")
-        this.chk_filter_same := this.Add("CheckBox", "x471 y130 w60 h32 Checked", "一致`n(0)")
-        
-        this.SetFont("s9 bold cE81123")
-        this.Add("Text", "x541 y130 w14 h32 +0x200", "D")
-        this.SetFont("s9 norm cDefault")
-        this.chk_filter_delete := this.Add("CheckBox", "x555 y130 w75 h32 Checked", "待删除`n(0)")
-        
-        this.SetFont("s9 bold cE81123")
-        this.Add("Text", "x640 y130 w14 h32 +0x200", "i")
-        this.SetFont("s9 norm cDefault")
-        this.chk_filter_ignore := this.Add("CheckBox", "x654 y130 w60 h32 Checked", "忽略`n(0)")
+        this.Add("GroupBox", "x20 y145 w510 h60", "音量调节")
+        this.Chk_Volume := this.Add("Checkbox", "x35 y167", "启用音量调节快捷键")
+        this.Chk_Volume.ToolTip := "按住 右Alt 键并滚动鼠标滚轮调节音量，点击鼠标中键静音"
 
-        this.lv_import := this.Add("ListView", "x30 y165 w720 h310 Grid", ["标题", "命令 ID", "导入的命令 ID", "操作"])
-        this.lv_import.ModifyCol(1, 160)
-        this.lv_import.ModifyCol(2, 240)
-        this.lv_import.ModifyCol(3, 253)
-        this.lv_import.ModifyCol(4, 50)
-        this.lv_import.ModifyCol(4, "Center")
+        this.Add("GroupBox", "x20 y215 w510 h85", "打开计算器")
+        this.Chk_Calc := this.Add("Checkbox", "x35 y237", "启用计算器快捷键")
+        this.Chk_Calc.ToolTip := "快捷唤起系统自带计算器，多次按下可在前后台间捞起窗口"
+        this.Add("Text", "x35 y268 w60", "绑定热键:")
+        this.Edit_CalcHotkey := this.Add("Edit", "x100 y264 w120 h24", "")
+        this.Edit_CalcHotkey.ToolTip := "鼠标点进框里，直接按下你想绑定的快捷键组合"
+        SendMessage(0x1501, 1, StrPtr("点击录入热键"), this.Edit_CalcHotkey.Hwnd)
 
-        this.txt_empty_lv := this.Add("Text", "x250 y305 w280 h30 Center c808080 BackgroundTrans", "请点击上方按钮获取数据")
+        this.Add("GroupBox", "x20 y310 w510 h60", "CATIA 快捷操作")
+        this.Chk_CatiaMButton := this.Add("Checkbox", "x35 y332", "使用中键代替确认")
+        this.Chk_CatiaMButton.ToolTip := "在 CATIA 中，Alt + 中键 = 确认，Shift + 中键 = 预览"
 
-        this.btn_mark_delete := this.Add("Button", "x30 y485 w80 h24 Disabled", "删除选中")
-        this.btn_mark_ignore := this.Add("Button", "x120 y485 w80 h24 Disabled", "忽略选中")
-        this.txt_sel_count := this.Add("Text", "x220 y489 w150 h20", "已选中: 0 项")
+        this.btn_saveAddon := this.Add("Button", "x400 y385 w130 h30 Default", "保存附加功能")
 
-        this.btn_resetView := this.Add("Button", "x30 y550 w150", "重置视图")
-        this.Btn_ApplyAll := this.Add("Button", "x600 y550 w150", "应用修改")
+        ; =============== (原第三页工作台命令库已重构成弹窗) ===============
     }
 
     clear_detail_pane() {
@@ -594,7 +655,7 @@ class SettingsView extends Gui {
         this.Edit_Cmd.Opt("-Hidden")
         this.Txt_Alias.Opt("-Hidden")
 
-        cur_y := 180
+        cur_y := 228
         aliases := (cmd.Has("aliases") && cmd["aliases"].Length > 0) ? cmd["aliases"] : [""]
         alias_edits := []
 
@@ -603,9 +664,9 @@ class SettingsView extends Gui {
                 break
             p := this.alias_pool[idx]
             p.e.Value := al
-            p.e.Move(, cur_y - 4)
-            p.add.Move(, cur_y - 5)
-            p.del.Move(, cur_y - 5)
+            p.e.Move(, cur_y)
+            p.add.Move(, cur_y)
+            p.del.Move(, cur_y)
 
             p.e.Opt("-Hidden")
             p.add.Opt("-Hidden")
@@ -614,11 +675,11 @@ class SettingsView extends Gui {
             p.add.Opt((Trim(al) != "") ? "-Disabled" : "+Disabled")
             p.del.Opt((aliases.Length > 1) ? "-Disabled" : "+Disabled")
             alias_edits.Push(p.e)
-            cur_y += 30
+            cur_y += 28
         }
 
-        cur_y += 10
-        this.Txt_Hotkey.Move(, cur_y)
+        cur_y += 6
+        this.Txt_Hotkey.Move(, cur_y + 3)
         this.Txt_Hotkey.Opt("-Hidden")
 
         hotkeys := (cmd.Has("hotkeys") && cmd["hotkeys"].Length > 0) ? cmd["hotkeys"] : [""]
@@ -631,9 +692,9 @@ class SettingsView extends Gui {
             try p.e.Value := format_hotkey_for_display(hk)
             catch
                 p.e.Value := ""
-            p.e.Move(, cur_y - 4)
-            p.add.Move(, cur_y - 5)
-            p.del.Move(, cur_y - 5)
+            p.e.Move(, cur_y)
+            p.add.Move(, cur_y)
+            p.del.Move(, cur_y)
 
             p.e.Opt("-Hidden")
             p.add.Opt("-Hidden")
@@ -642,11 +703,12 @@ class SettingsView extends Gui {
             p.add.Opt((Trim(hk) != "") ? "-Disabled" : "+Disabled")
             p.del.Opt((hotkeys.Length > 1) ? "-Disabled" : "+Disabled")
             hotkey_edits.Push(p.e)
-            cur_y += 30
+            cur_y += 28
         }
 
-        cur_y += 30
-        this.Btn_Revert.Move(, cur_y)
+        cur_y += 12
+        this.Btn_Revert.Move(250, cur_y)
+        this.btn_save.Move(385, cur_y)
         this.Btn_Revert.Opt("-Hidden")
 
         return { alias_edits: alias_edits, hotkey_edits: hotkey_edits }
@@ -659,7 +721,7 @@ class SettingsController {
         this.model := model
         this.view := view
         this.BindEvents()
-        
+
         this.tv_map := Map()
         this.alias_edits := []
         this.hotkey_edits := []
@@ -677,7 +739,17 @@ class SettingsController {
         this.load_command_tree()
         this.OnLButtonDownBound := ObjBindMethod(this, "on_lbutton_down")
         OnMessage(0x0201, this.OnLButtonDownBound)
-        this.view.Show("w800 h600")
+
+        tips_file := A_ScriptDir "\data\tips.json"
+        if FileExist(tips_file) {
+            try {
+                tips_array := JSON.parse(FileRead(tips_file, "UTF-8"))
+                if (tips_array.Length > 0)
+                    this.view.SB.SetText(" " . tips_array[Random(1, tips_array.Length)])
+            }
+        }
+
+        this.view.Show("w550 h440")
     }
 
     BindEvents() {
@@ -689,7 +761,6 @@ class SettingsController {
         this.view.ddl_workbench.OnEvent("Change", ObjBindMethod(this, "OnWorkbenchFilter"))
         this.view.edit_search.OnEvent("Change", ObjBindMethod(this, "OnSearchFilter"))
         this.view.tv_alias.OnEvent("ItemSelect", ObjBindMethod(this, "on_command_tree_select"))
-        this.view.Btn_AddCmdFromOther.OnEvent("Click", ObjBindMethod(this, "on_add_cmd_from_other"))
 
         for idx, p in this.view.alias_pool {
             p.add.OnEvent("Click", ObjBindMethod(this, "OnAddAlias", idx))
@@ -710,35 +781,56 @@ class SettingsController {
 
         this.view.Btn_BrowseEverything.OnEvent("Click", ObjBindMethod(this, "BrowseEverything"))
         this.view.btn_saveGen.OnEvent("Click", ObjBindMethod(this, "SaveGeneralSettings"))
+        this.view.btn_saveAddon.OnEvent("Click", ObjBindMethod(this, "SaveAddonSettings"))
 
-        this.view.ddl_import_wb.OnEvent("Change", ObjBindMethod(this, "on_target_workbench_changed"))
-        this.view.Btn_AddWb.OnEvent("Click", ObjBindMethod(this, "OnAddTargetWorkbench"))
-        this.view.Btn_ImportCommands.OnEvent("Click", ObjBindMethod(this, "OnImportCommands"))
-        this.view.Btn_ReadTxt.OnEvent("Click", ObjBindMethod(this, "OnReadExportedTxt"))
+        this.view.Edit_CalcHotkey.OnEvent("Focus", ObjBindMethod(this, "OnCalcHotkeyFocus"))
+        this.view.Edit_CalcHotkey.OnEvent("LoseFocus", ObjBindMethod(this, "OnCalcHotkeyLoseFocus"))
 
-        this.view.chk_filter_all.OnEvent("Click", ObjBindMethod(this, "on_filter_all"))
-        this.view.chk_filter_new.OnEvent("Click", ObjBindMethod(this, "on_filter_new"))
-        this.view.chk_filter_update.OnEvent("Click", ObjBindMethod(this, "on_filter_update"))
-        this.view.chk_filter_overwrite.OnEvent("Click", ObjBindMethod(this, "on_filter_overwrite"))
-        this.view.chk_filter_same.OnEvent("Click", ObjBindMethod(this, "on_filter_same"))
-        this.view.chk_filter_delete.OnEvent("Click", ObjBindMethod(this, "on_filter_delete"))
-        this.view.chk_filter_ignore.OnEvent("Click", ObjBindMethod(this, "on_filter_ignore"))
+        this.view.Chk_AutoIME.OnEvent("Click", ObjBindMethod(this, "OnToggleAutoIME"))
+        this.view.btn_add_autoime.OnEvent("Click", ObjBindMethod(this, "OnAddAutoIME"))
+        this.view.btn_del_autoime.OnEvent("Click", ObjBindMethod(this, "OnDeleteAutoIME"))
+        this.view.btn_edit_autoime.OnEvent("Click", ObjBindMethod(this, "OnEditAutoIME"))
+        this.view.lv_autoime.OnEvent("DoubleClick", ObjBindMethod(this, "OnEditAutoIME"))
+        this.view.link_ime_guide.OnEvent("Click", ObjBindMethod(this, "OnShowImeGuide"))
 
-        this.view.lv_import.OnEvent("Click", ObjBindMethod(this, "on_import_list_view_click"))
-        this.view.lv_import.OnEvent("ItemSelect", ObjBindMethod(this, "on_import_list_view_item_select"))
-        this.view.lv_import.OnEvent("DoubleClick", ObjBindMethod(this, "on_import_list_view_double_click"))
-        this.view.lv_import.OnEvent("ContextMenu", ObjBindMethod(this, "on_import_list_view_context_menu"))
-
-        this.view.btn_mark_delete.OnEvent("Click", ObjBindMethod(this, "on_mark_items_to_delete"))
-        this.view.btn_mark_ignore.OnEvent("Click", ObjBindMethod(this, "on_mark_items_to_ignore"))
-        this.view.btn_resetView.OnEvent("Click", ObjBindMethod(this, "on_reset_import_view"))
-        this.view.Btn_ApplyAll.OnEvent("Click", ObjBindMethod(this, "on_apply_import_all"))
+        this.view.Btn_OpenCmdLib.OnEvent("Click", ObjBindMethod(this, "OnOpenCmdLibraryModal"))
     }
 
     LoadGeneralSettings() {
         this.view.Chk_Everything.Value := AppSettings.Everything_Enabled
         this.view.Edit_EverythingPath.Value := AppSettings.Everything_Path
-        
+
+        this.view.Chk_Debug.Value := AppSettings.DEBUG_I
+        this.view.Chk_AutoIME.Value := AppSettings.AutoIME_Enabled
+
+        if AppSettings.config_obj.Has("Volume")
+            this.view.Chk_Volume.Value := Integer(AppSettings.config_obj["Volume"]["Enabled"])
+        if AppSettings.config_obj.Has("Calculator") {
+            this.view.Chk_Calc.Value := Integer(AppSettings.config_obj["Calculator"]["Enabled"])
+            this.view.Edit_CalcHotkey.Value := AppSettings.config_obj["Calculator"]["Hotkey"]
+            if (this.view.Edit_CalcHotkey.Value == "") {
+                this.view.Chk_Calc.Opt("+Disabled")
+                this.view.Chk_Calc.Value := 0
+            } else {
+                this.view.Chk_Calc.Opt("-Disabled")
+            }
+        }
+        if AppSettings.config_obj.Has("CatiaMButton") {
+            this.view.Chk_CatiaMButton.Value := Integer(AppSettings.config_obj["CatiaMButton"]["Enabled"])
+        }
+
+        this.view.lv_autoime.Opt("-Redraw")
+        this.view.lv_autoime.Delete()
+        if AppSettings.config_obj.Has("AutoIME") {
+            for label, exe in AppSettings.config_obj["AutoIME"] {
+                if (label != "Enabled") {
+                    this.view.lv_autoime.Add("", label, exe)
+                }
+            }
+        }
+        this.view.lv_autoime.Opt("+Redraw")
+        this.OnToggleAutoIME()
+
         sort_str := ""
         for k, v in AppSettings.commands_obj {
             if (k != "_comment") {
@@ -761,19 +853,21 @@ class SettingsController {
             wb_list3.Push(parts[1])
             this.import_wb_ids.Push(parts[2])
         }
-        
+
         this.view.ddl_workbench.Delete()
         this.view.ddl_workbench.Add(wb_list)
         this.view.ddl_workbench.Choose(1)
-        
-        this.view.ddl_import_wb.Delete()
-        this.view.ddl_import_wb.Add(wb_list3)
-        this.view.ddl_import_wb.Choose(1)
+
+        if (this.view.HasProp("ddl_import_wb") && this.view.ddl_import_wb) {
+            this.view.ddl_import_wb.Delete()
+            this.view.ddl_import_wb.Add(wb_list3)
+            this.view.ddl_import_wb.Choose(1)
+        }
     }
 
     OnClose(*) {
         if (this.HasProp("model") && this.model && this.model.original_json_str != "") {
-            this.save_inputs_to_current_cmd()
+            this.SaveInputsToCurrentCmd()
             if (this.model.check_dirty(AppSettings.commands_obj)) {
                 summary := this.model.get_unsaved_changes_summary(AppSettings.commands_obj)
                 this.view.Opt("+OwnDialogs")
@@ -809,7 +903,7 @@ class SettingsController {
         if this.HasProp("view") && this.view {
             this.view.Destroy()
         }
-        
+
         this.view := ""
         this.model := ""
         this.alias_edits := ""
@@ -886,11 +980,6 @@ class SettingsController {
     }
 
     OnWorkbenchFilter(CtrlObj, *) {
-        if (this.view.ddl_workbench.Text != "全部工作台") {
-            this.view.Btn_AddCmdFromOther.Opt("-Disabled")
-        } else {
-            this.view.Btn_AddCmdFromOther.Opt("+Disabled")
-        }
         this.load_command_tree(this.view.edit_search.Value)
     }
 
@@ -916,7 +1005,7 @@ class SettingsController {
         this.view.SB.SetText("")
     }
 
-    save_inputs_to_current_cmd() {
+    SaveInputsToCurrentCmd() {
         itemId := this.view.tv_alias.GetSelection()
         if (!itemId || !this.tv_map.Has(itemId) || this.tv_map[itemId].type != "Item") {
             return
@@ -941,8 +1030,8 @@ class SettingsController {
         }
     }
 
-    on_add_alias(idx, *) {
-        this.save_inputs_to_current_cmd()
+    OnAddAlias(idx, *) {
+        this.SaveInputsToCurrentCmd()
         itemId := this.view.tv_alias.GetSelection()
         cmd := this.tv_map[itemId].cmd
         if (!cmd.Has("aliases")) {
@@ -952,8 +1041,8 @@ class SettingsController {
         this.on_command_tree_select(this.view.tv_alias, itemId)
     }
 
-    on_del_alias(idx, *) {
-        this.save_inputs_to_current_cmd()
+    OnDelAlias(idx, *) {
+        this.SaveInputsToCurrentCmd()
         itemId := this.view.tv_alias.GetSelection()
         cmd := this.tv_map[itemId].cmd
         if (cmd.Has("aliases") && cmd["aliases"].Length >= idx)
@@ -961,8 +1050,8 @@ class SettingsController {
         this.on_command_tree_select(this.view.tv_alias, itemId)
     }
 
-    on_add_hotkey(idx, *) {
-        this.save_inputs_to_current_cmd()
+    OnAddHotkey(idx, *) {
+        this.SaveInputsToCurrentCmd()
         itemId := this.view.tv_alias.GetSelection()
         cmd := this.tv_map[itemId].cmd
         if (!cmd.Has("hotkeys")) {
@@ -972,8 +1061,8 @@ class SettingsController {
         this.on_command_tree_select(this.view.tv_alias, itemId)
     }
 
-    on_del_hotkey(idx, *) {
-        this.save_inputs_to_current_cmd()
+    OnDelHotkey(idx, *) {
+        this.SaveInputsToCurrentCmd()
         itemId := this.view.tv_alias.GetSelection()
         cmd := this.tv_map[itemId].cmd
         if (cmd.Has("hotkeys") && cmd["hotkeys"].Length >= idx)
@@ -1007,7 +1096,7 @@ class SettingsController {
     CheckGlobalDirty() {
         is_dirty := this.model.check_dirty(AppSettings.commands_obj)
         this.view.btn_save.Opt(is_dirty ? "-Disabled" : "+Disabled")
-        
+
         for id, info in this.tv_map {
             if (info.type == "Item") {
                 orig_cmd := ""
@@ -1044,21 +1133,21 @@ class SettingsController {
     }
 
     OnDetailChange(*) {
-        this.save_inputs_to_current_cmd()
+        this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
     }
 
     OnAliasChange(idx, GuiCtrlObj, *) {
         p := this.view.alias_pool[idx]
         p.add.Opt((Trim(GuiCtrlObj.Value) != "") ? "-Disabled" : "+Disabled")
-        this.save_inputs_to_current_cmd()
+        this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
     }
 
     OnHotkeyChange(idx, GuiCtrlObj, *) {
         p := this.view.hotkey_pool[idx]
         p.add.Opt((Trim(GuiCtrlObj.Value) != "") ? "-Disabled" : "+Disabled")
-        this.save_inputs_to_current_cmd()
+        this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
     }
 
@@ -1083,6 +1172,11 @@ class SettingsController {
     }
 
     OnInputHookEnd(idx, GuiCtrlObj, ih) {
+        try {
+            _ := GuiCtrlObj.Hwnd
+        } catch {
+            return
+        }
         if (ih.EndReason = "EndKey") {
             key := ih.EndKey
             if (key = "Backspace" || key = "Delete") {
@@ -1108,6 +1202,67 @@ class SettingsController {
         try {
             if (this.view.focused_ctrl == GuiCtrlObj)
                 this.OnHotkeyFocus(idx, GuiCtrlObj)
+        }
+    }
+
+    OnCalcHotkeyFocus(GuiCtrlObj, *) {
+        if this.HasProp("ih") && this.ih {
+            this.ih.Stop()
+            this.ih := ""
+        }
+        ih := InputHook("L1 M")
+        ih.KeyOpt("{All}", "E")
+        ih.KeyOpt("{LCtrl}{RCtrl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}", "-E")
+        ih.OnEnd := ObjBindMethod(this, "OnCalcInputHookEnd", GuiCtrlObj)
+        this.ih := ih
+        ih.Start()
+    }
+
+    OnCalcHotkeyLoseFocus(GuiCtrlObj, *) {
+        if this.HasProp("ih") && this.ih {
+            this.ih.Stop()
+            this.ih := ""
+        }
+    }
+
+    OnCalcInputHookEnd(GuiCtrlObj, ih) {
+        try {
+            _ := GuiCtrlObj.Hwnd
+        } catch {
+            return
+        }
+        if (ih.EndReason = "EndKey") {
+            key := ih.EndKey
+            if (key = "Backspace" || key = "Delete") {
+                GuiCtrlObj.Value := ""
+            } else if (key = "Escape" || key = "Tab" || key = "Enter" || key = "NumpadEnter") {
+                ; pass
+            } else {
+                if (StrLen(key) == 1)
+                    key := StrUpper(key)
+                mods := ""
+                if GetKeyState("Ctrl", "P")
+                    mods .= "^"
+                if GetKeyState("Alt", "P")
+                    mods .= "!"
+                if GetKeyState("Shift", "P")
+                    mods .= "+"
+                if GetKeyState("LWin", "P") or GetKeyState("RWin", "P")
+                    mods .= "#"
+                GuiCtrlObj.Value := this.FormatHotkeyForDisplay(mods . key)
+            }
+        }
+        
+        if (GuiCtrlObj.Value == "") {
+            this.view.Chk_Calc.Opt("+Disabled")
+            this.view.Chk_Calc.Value := 0
+        } else {
+            this.view.Chk_Calc.Opt("-Disabled")
+        }
+
+        try {
+            if (this.view.focused_ctrl == GuiCtrlObj)
+                this.OnCalcHotkeyFocus(GuiCtrlObj)
         }
     }
 
@@ -1165,7 +1320,7 @@ class SettingsController {
     }
 
     SaveCurrentItem(*) {
-        this.save_inputs_to_current_cmd()
+        this.SaveInputsToCurrentCmd()
         itemId := this.view.tv_alias.GetSelection()
         saved_cmd_id := ""
         saved_cat := ""
@@ -1214,39 +1369,324 @@ class SettingsController {
     }
 
     BrowseEverything(*) {
-        this.view.Opt("+Disabled")
         path := FileSelect(, , "请选择 Everything.exe", "程序 (*.exe)")
-        this.view.Opt("-Disabled")
         if path
             this.view.Edit_EverythingPath.Value := path
     }
 
+    OnToggleAutoIME(*) {
+        enabled := this.view.Chk_AutoIME.Value
+        opt := enabled ? "-Disabled" : "+Disabled"
+        this.view.lv_autoime.Opt(opt)
+        this.view.btn_add_autoime.Opt(opt)
+        this.view.btn_del_autoime.Opt(opt)
+        this.view.btn_edit_autoime.Opt(opt)
+        this.view.link_ime_guide.Opt(opt)
+    }
+
+    OnShowImeGuide(*) {
+        msg := "【自动切换英文输入法前提条件】`n`n"
+            . "1. 必须在 Windows 系统语言设置中添加并启用英文输入法（例如：英语(美国) - 美式键盘）。`n`n"
+            . "提示：如果系统中仅存在单语言中文输入法，无法通过 Shift 键自动切换中英文状态。"
+        MsgBox(msg, "输入法配置说明", "Iconi")
+    }
+
+    OnAddAutoIME(*) => this.show_auto_ime_modal()
+
+    OnEditAutoIME(*) {
+        row := this.view.lv_autoime.GetNext(0)
+        if (row == 0) {
+            MsgBox("请先在表格中选择要修改的规则！", "提示", "Iconi")
+            return
+        }
+        label := this.view.lv_autoime.GetText(row, 1)
+        exe := this.view.lv_autoime.GetText(row, 2)
+        this.show_auto_ime_modal(label, exe, row)
+    }
+
+    OnDeleteAutoIME(*) {
+        row := this.view.lv_autoime.GetNext(0)
+        if (row == 0) {
+            MsgBox("请先在表格中选择要删除的规则！", "提示", "Iconi")
+            return
+        }
+        label := this.view.lv_autoime.GetText(row, 1)
+        if (MsgBox("移除 " label " 输入法自动切换？", "移除规则", "YesNo Icon?") == "Yes") {
+            this.view.lv_autoime.Delete(row)
+        }
+    }
+
+    show_auto_ime_modal(default_label := "", default_exe := "", edit_row := 0) {
+        title := edit_row > 0 ? "修改规则" : "添加规则"
+        dlg := Gui("+Owner" this.view.hwnd " -MinimizeBox -MaximizeBox", title)
+        this.view.Opt("+Disabled")
+
+        dlg.Add("Text", "x15 y20 h20 Right", "软件名称:")
+        edit_label := dlg.Add("Edit", "x85 y16 w240 h24", default_label)
+
+        dlg.Add("Text", "x15 y55 h20 Right", "进程名称:")
+        edit_exe := dlg.Add("Edit", "x85 y51 w240 h24 ReadOnly", default_exe)
+
+        btn_capture := dlg.Add("Button", "x85 y83 w240 h26", "指定目标程序")
+
+        close_dlg(*) {
+            this.view.Opt("-Disabled")
+            dlg.Destroy()
+        }
+
+        do_capture(*) {
+            dlg.Hide()
+            ToolTip("请左键点击目标软件窗口以获取进程名称 (按 Esc 取消)...")
+
+            cancelled := false
+            loop {
+                if GetKeyState("Escape", "P") {
+                    cancelled := true
+                    break
+                }
+                if GetKeyState("LButton", "P") {
+                    break
+                }
+                Sleep 20
+            }
+            ToolTip()
+
+            if (cancelled) {
+                dlg.Show()
+                WinActivate(dlg.Hwnd)
+                return
+            }
+
+            KeyWait("LButton")
+            MouseGetPos , , &target_hwnd
+            if (target_hwnd) {
+                try {
+                    exe_name := WinGetProcessName(target_hwnd)
+                    if (exe_name != "") {
+                        if (StrLower(exe_name) == "explorer.exe") {
+                            MsgBox("不能选择桌面或系统资源管理器！", "提示", "Iconi")
+                        } else {
+                            edit_exe.Value := exe_name
+                            if (edit_label.Value == "") {
+                                edit_label.Value := RegExReplace(exe_name, "(?i)\.exe$", "")
+                            }
+                        }
+                    }
+                }
+            }
+            dlg.Show()
+            WinActivate(dlg.Hwnd)
+            btn_confirm.Focus()
+        }
+
+        do_confirm(*) {
+            label := Trim(edit_label.Value)
+            exe := Trim(edit_exe.Value)
+            if (label == "") {
+                MsgBox("请输入软件名称！", "提示", "Iconi")
+                edit_label.Focus()
+                return
+            }
+            if (exe == "") {
+                MsgBox("请点击【获取目标窗口】以获取进程名称！", "提示", "Iconi")
+                return
+            }
+
+            if (edit_row > 0) {
+                this.view.lv_autoime.Modify(edit_row, "", label, exe)
+            } else {
+                this.view.lv_autoime.Add("", label, exe)
+            }
+            close_dlg()
+        }
+
+        btn_capture.OnEvent("Click", do_capture)
+        btn_confirm := dlg.Add("Button", "x85 y118 w110 h28 Default", "确认")
+        btn_cancel := dlg.Add("Button", "x215 y118 w110 h28", "取消")
+
+        btn_confirm.OnEvent("Click", do_confirm)
+        btn_cancel.OnEvent("Click", close_dlg)
+        dlg.OnEvent("Close", close_dlg)
+        dlg.OnEvent("Escape", close_dlg)
+
+        dlg.Show("w345 h158")
+        if (default_label == "")
+            edit_label.Focus()
+        else
+            btn_confirm.Focus()
+    }
+
     SaveGeneralSettings(*) {
-        success := this.model.save_general_settings(this.view.Chk_Everything.Value, this.view.Edit_EverythingPath.Value)
+        auto_ime_map := Map()
+        loop this.view.lv_autoime.GetCount() {
+            label := this.view.lv_autoime.GetText(A_Index, 1)
+            exe := this.view.lv_autoime.GetText(A_Index, 2)
+            if (label != "" && exe != "" && label != "Enabled") {
+                auto_ime_map[label] := exe
+            }
+        }
+
+        success := this.model.save_general_settings(
+            this.view.Chk_Everything.Value,
+            this.view.Edit_EverythingPath.Value,
+            this.view.Chk_Debug.Value,
+            this.view.Chk_AutoIME.Value,
+            auto_ime_map
+        )
         if success
             this.view.SB.SetText("通用设置保存成功！请手动重新载入 UCLC 脚本以使其生效。")
     }
 
+    SaveAddonSettings(*) {
+        success := this.model.save_addon_settings(
+            this.view.Chk_Everything.Value,
+            this.view.Edit_EverythingPath.Value,
+            this.view.Chk_Volume.Value,
+            this.view.Chk_Calc.Value,
+            this.view.Edit_CalcHotkey.Value,
+            this.view.Chk_CatiaMButton.Value
+        )
+        if success
+            this.view.SB.SetText("附加功能设置保存成功！请手动重新载入 UCLC 脚本以使其生效。")
+    }
+
     on_mouse_move(wParam, lParam, msg, hwnd) {
         static prev_hwnd := 0
-        static hover_timer := 0
+        static last_tip := ""
         if (hwnd == prev_hwnd) {
             return
         }
         prev_hwnd := hwnd
-        if (hover_timer) {
-            SetTimer(hover_timer, 0)
-            hover_timer := 0
-        }
-        ToolTip()
         try {
             guiCtrl := GuiCtrlFromHwnd(hwnd)
             if (guiCtrl && guiCtrl.HasProp("ToolTip") && guiCtrl.ToolTip != "") {
-                tipText := guiCtrl.ToolTip
-                hover_timer := () => ToolTip(tipText)
-                SetTimer(hover_timer, -600)
+                this.view.SB.SetText(guiCtrl.ToolTip)
+                last_tip := guiCtrl.ToolTip
+            } else if (last_tip != "") {
+                this.view.SB.SetText("")
+                last_tip := ""
+            }
+        } catch {
+            if (last_tip != "") {
+                this.view.SB.SetText("")
+                last_tip := ""
             }
         }
+    }
+
+    OnOpenCmdLibraryModal(*) {
+        dlg := Gui("+Owner" this.view.hwnd " -MinimizeBox -MaximizeBox", "工作台命令库管理")
+        this.view.Opt("+Disabled")
+
+        dlg.Add("GroupBox", "x20 y15 w740 h65", "数据源获取")
+        dlg.Add("Text", "x30 y43 w70", "目标工作台:")
+
+        sort_str := ""
+        for k, v in AppSettings.commands_obj {
+            if (k != "_comment") {
+                sort_str .= AppSettings.GetWbName(k) "|||" k "`n"
+            }
+        }
+        sort_str := Sort(Trim(sort_str, "`n"))
+
+        wb_list3 := ["通过导入文件确定"]
+        this.import_wb_ids := [""]
+        loop parse sort_str, "`n", "`r" {
+            if (A_LoopField == "") {
+                continue
+            }
+            parts := StrSplit(A_LoopField, "|||")
+            wb_list3.Push(parts[1])
+            this.import_wb_ids.Push(parts[2])
+        }
+
+        this.view.ddl_import_wb := dlg.Add("DropDownList", "x100 y39 w250 Choose1", wb_list3)
+        this.view.Btn_AddWb := dlg.Add("Button", "x355 y39 w24 h22", "+")
+        this.view.Btn_ImportCommands := dlg.Add("Button", "x500 y39 w120 h22", "导入命令")
+        this.view.Btn_ReadTxt := dlg.Add("Button", "x630 y39 w120 h22", "从 TXT 导入")
+
+        dlg.Add("GroupBox", "x20 y90 w740 h410", "同步状态视图")
+        dlg.Add("Text", "x25 y105 w60 h32 +0x200", "视图筛选:")
+
+        this.view.chk_filter_all := dlg.Add("CheckBox", "x85 y105 w60 h32 Checked", "全部`n(0)")
+        dlg.SetFont("s9 bold c107C10")
+        dlg.Add("Text", "x155 y105 w14 h32 +0x200", "+")
+        dlg.SetFont("s9 norm cDefault")
+        this.view.chk_filter_new := dlg.Add("CheckBox", "x169 y105 w60 h32 Checked", "新增`n(0)")
+
+        dlg.SetFont("s9 bold c0078D7")
+        dlg.Add("Text", "x239 y105 w14 h32 +0x200", "T")
+        dlg.SetFont("s9 norm cDefault")
+        this.view.chk_filter_update := dlg.Add("CheckBox", "x253 y105 w85 h32 Checked", "更新标题`n(0)")
+
+        dlg.SetFont("s9 bold c0078D7")
+        dlg.Add("Text", "x348 y105 w14 h32 +0x200", "C")
+        dlg.SetFont("s9 norm cDefault")
+        this.view.chk_filter_overwrite := dlg.Add("CheckBox", "x362 y105 w85 h32 Checked", "更新命令`n(0)")
+
+        dlg.SetFont("s9 bold c107C10")
+        dlg.Add("Text", "x457 y105 w14 h32 +0x200", "=")
+        dlg.SetFont("s9 norm cDefault")
+        this.view.chk_filter_same := dlg.Add("CheckBox", "x471 y105 w60 h32 Checked", "一致`n(0)")
+
+        dlg.SetFont("s9 bold cE81123")
+        dlg.Add("Text", "x541 y105 w14 h32 +0x200", "D")
+        dlg.SetFont("s9 norm cDefault")
+        this.view.chk_filter_delete := dlg.Add("CheckBox", "x555 y105 w75 h32 Checked", "待删除`n(0)")
+
+        dlg.SetFont("s9 bold cE81123")
+        dlg.Add("Text", "x640 y105 w14 h32 +0x200", "i")
+        dlg.SetFont("s9 norm cDefault")
+        this.view.chk_filter_ignore := dlg.Add("CheckBox", "x654 y105 w60 h32 Checked", "忽略`n(0)")
+
+        this.view.lv_import := dlg.Add("ListView", "x30 y140 w720 h310 Grid", ["标题", "命令 ID", "导入的命令 ID", "操作"])
+        this.view.lv_import.ModifyCol(1, 160)
+        this.view.lv_import.ModifyCol(2, 240)
+        this.view.lv_import.ModifyCol(3, 253)
+        this.view.lv_import.ModifyCol(4, 50)
+        this.view.lv_import.ModifyCol(4, "Center")
+
+        this.view.txt_empty_lv := dlg.Add("Text", "x250 y280 w280 h30 Center c808080 BackgroundTrans", "请点击上方按钮获取数据")
+
+        this.view.btn_mark_delete := dlg.Add("Button", "x30 y460 w80 h24 Disabled", "删除选中")
+        this.view.btn_mark_ignore := dlg.Add("Button", "x120 y460 w80 h24 Disabled", "忽略选中")
+        this.view.txt_sel_count := dlg.Add("Text", "x220 y464 w150 h20", "已选中: 0 项")
+
+        this.view.btn_resetView := dlg.Add("Button", "x30 y510 w150 h28", "重置视图")
+        this.view.Btn_ApplyAll := dlg.Add("Button", "x600 y510 w150 h28 Default", "应用修改")
+
+        this.view.ddl_import_wb.OnEvent("Change", ObjBindMethod(this, "on_target_workbench_changed"))
+        this.view.Btn_AddWb.OnEvent("Click", ObjBindMethod(this, "OnAddTargetWorkbench"))
+        this.view.Btn_ImportCommands.OnEvent("Click", ObjBindMethod(this, "OnImportCommands"))
+        this.view.Btn_ReadTxt.OnEvent("Click", ObjBindMethod(this, "OnReadExportedTxt"))
+
+        this.view.chk_filter_all.OnEvent("Click", ObjBindMethod(this, "on_filter_all"))
+        this.view.chk_filter_new.OnEvent("Click", ObjBindMethod(this, "on_filter_new"))
+        this.view.chk_filter_update.OnEvent("Click", ObjBindMethod(this, "on_filter_update"))
+        this.view.chk_filter_overwrite.OnEvent("Click", ObjBindMethod(this, "on_filter_overwrite"))
+        this.view.chk_filter_same.OnEvent("Click", ObjBindMethod(this, "on_filter_same"))
+        this.view.chk_filter_delete.OnEvent("Click", ObjBindMethod(this, "on_filter_delete"))
+        this.view.chk_filter_ignore.OnEvent("Click", ObjBindMethod(this, "on_filter_ignore"))
+
+        this.view.lv_import.OnEvent("Click", ObjBindMethod(this, "on_import_list_view_click"))
+        this.view.lv_import.OnEvent("ItemSelect", ObjBindMethod(this, "on_import_list_view_item_select"))
+        this.view.lv_import.OnEvent("DoubleClick", ObjBindMethod(this, "on_import_list_view_double_click"))
+        this.view.lv_import.OnEvent("ContextMenu", ObjBindMethod(this, "on_import_list_view_context_menu"))
+
+        this.view.btn_mark_delete.OnEvent("Click", ObjBindMethod(this, "on_mark_items_to_delete"))
+        this.view.btn_mark_ignore.OnEvent("Click", ObjBindMethod(this, "on_mark_items_to_ignore"))
+        this.view.btn_resetView.OnEvent("Click", ObjBindMethod(this, "on_reset_import_view"))
+        this.view.Btn_ApplyAll.OnEvent("Click", ObjBindMethod(this, "on_apply_import_all"))
+
+        close_dlg(*) {
+            this.view.Opt("-Disabled")
+            dlg.Destroy()
+        }
+
+        dlg.OnEvent("Close", close_dlg)
+        dlg.OnEvent("Escape", close_dlg)
+
+        dlg.Show("w780 h550")
     }
 
     on_target_workbench_changed(ctrl, *) {
@@ -1277,7 +1717,7 @@ class SettingsController {
                 return
             }
         }
-        
+
         this.model.calculate_import_diff(target_wb)
         this.render_import_lv()
     }
@@ -1302,7 +1742,7 @@ class SettingsController {
             }
         }
         c_all := c_new + c_upd + c_ovr + c_sam + c_del + c_ign
-        
+
         this.view.chk_filter_all.Text := "全部`n(" c_all ")"
         this.view.chk_filter_new.Text := "新增`n(" c_new ")"
         this.view.chk_filter_update.Text := "更新标题`n(" c_upd ")"
@@ -1325,9 +1765,12 @@ class SettingsController {
         for item in items {
             a := item.action
             if ((a == "+" && showNew) || (a == "T" && showUpdate) || (a == "C" && showOverwrite)
-            || (a == "=" && showSame) || (a == "D" && showDelete) || (a == "i" && showIgnore)) {
+                || (a == "=" && showSame) || (a == "D" && showDelete) || (a == "i" && showIgnore)) {
                 this.view.lv_import.Add("", item.title, item.local_id, item.imported_id, a)
             }
+        }
+        if (this.view.lv_import.GetCount() == 0) {
+            this.view.txt_empty_lv.Visible := true
         }
         this.view.lv_import.Opt("+Redraw")
         this.view.lv_import.ModifyCol(1, "Sort")
@@ -1379,7 +1822,7 @@ class SettingsController {
     }
 
     on_import_list_view_click(*) {
-        
+
     }
     on_import_list_view_item_select(*) {
         sel_count := this.view.lv_import.GetCount("S")
@@ -1388,10 +1831,10 @@ class SettingsController {
         this.view.txt_sel_count.Value := "已选中: " sel_count " 项"
     }
     on_import_list_view_double_click(*) {
-        
+
     }
     on_import_list_view_context_menu(*) {
-        
+
     }
 
     on_mark_items_to_delete(*) {
@@ -1448,7 +1891,7 @@ class SettingsController {
     }
 
     OnAddTargetWorkbench(*) {
-        
+
     }
 
     OnReadExportedTxt(*) {
@@ -1552,7 +1995,7 @@ class SettingsController {
         }
 
         dlg := Gui("+Resize +Owner" this.view.hwnd " +MinSize350x300", "从指定工作台添加命令 - 目标: " target_wb)
-        
+
         on_dlg_size(GuiObj, MinMax, Width, Height) {
             if (MinMax == -1)
                 return
@@ -1699,8 +2142,8 @@ class SettingsController {
             }
         }
 
-        this.dlg_btn_add.OnEvent("Click", do_add)
-        this.dlg_btn_cancel.OnEvent("Click", (*) => dlg.Destroy())
+        dlg_btn_add.OnEvent("Click", do_add)
+        dlg_btn_cancel.OnEvent("Click", (*) => dlg.Destroy())
         load_dlg_cmds()
         dlg.Show("w450 h500")
     }
@@ -1831,4 +2274,3 @@ class SettingsController {
         this.on_reset_import_view()
     }
 }
-

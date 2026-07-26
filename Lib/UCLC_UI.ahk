@@ -17,17 +17,6 @@ open_script_folder_cb(*)
     Run A_ScriptDir
 }
 
-about_cb(*)
-{
-    MsgBox Format("一个CATIA快捷键脚本`n使CATIA的操作体验更接近AutoCAD`n版本：{1}", AppSettings.Version), "UCLC", 0x40
-}
-
-update_check_cb(*)
-{
-    UCLCUpdater.CheckForUpdate(true)
-}
-
-
 reload_cb(*) {
     Reload
 }
@@ -47,12 +36,7 @@ menu_toggleCheck_cb(ItemName, ItemPos, MyMenu)
     MyMenu.ToggleCheck(ItemName)
 }
 
-Nothing_cb(*) {
-    ; Do Nothing
-}
-
 NoAction_cb(*) {
-    ; Do Nothing
     Logger.tooltip("功能未开放", 2000)
 }
 
@@ -77,24 +61,60 @@ run_spy_cb(*)
     MsgBox("无法找到 WindowSpy.ahk，请确认 AutoHotkey 是否完整安装。", "UCLC", 0x10)
 }
 
-disable_botton_cb(ItemName, ItemPos, MyMenu) {
-    MyMenu.Disable(ItemName)
-}
+about_cb(*) => ShowAboutGUI()
 
-add_sub_menu(ItemName, ItemPos, MyMenu) {
-
-}
-
-about_and_updates_menu := [
-    ["关于", about_cb, ""],
-    ["项目主页", showProjectHomepage_cb, ""],
-    ["自定义帮助", help_Homepage_cb, ""],
-    ["检查更新", update_check_cb, ""]
+tools_sub_menu := [
+    ["打开脚本所在文件夹", open_script_folder_cb, ""],
+    ["Windows Spy", run_spy_cb, ""]
 ]
 
-dev_sub_menu := [
-    ["None", Nothing_cb, ""],
-]
+class AboutGUI extends Gui {
+    __New() {
+        super.__New("-Resize -MaximizeBox +AlwaysOnTop", "关于 UCLC")
+        this.SetFont("s9", "Microsoft YaHei UI")
+
+        ; 图标与标题
+        if FileExist("./icon/color-icon64.png")
+            this.Add("Picture", "x20 y20 w48 h48", "./icon/color-icon64.png")
+
+        this.SetFont("s14 bold", "Microsoft YaHei UI")
+        this.Add("Text", "x80 y18 w320 h28", "UCLC")
+
+        this.SetFont("s9 norm c888888", "Microsoft YaHei UI")
+        ver_str := "版本: " . (IsSet(AppSettings) && AppSettings.HasProp("Version") ? AppSettings.Version : "v3.0.0")
+        this.Add("Text", "x80 y46 w320 h20", ver_str)
+
+        ; 分割线
+        this.Add("Text", "x20 y75 w380 h1 0x10")
+
+        ; 描述说明（优化后的版本）
+        this.SetFont("s9 norm c333333", "Microsoft YaHei UI")
+        descText := "提供简单直观的命令别名与快捷确认执行方式，`n同时全面支持自定义键盘快捷键与防呆兼容，`n显著提升 CATIA 绘图与建模效率。"
+        this.Add("Text", "x20 y88 w380 h55", descText)
+
+        ; 运行环境与许可信息 GroupBox
+        this.Add("GroupBox", "x20 y148 w380 h65", "运行环境与许可")
+        this.SetFont("s8 c666666", "Microsoft YaHei UI")
+        this.Add("Text", "x32 y168 w350 h18", "AHK 内核: AutoHotkey " . A_AhkVersion . " (" . (A_PtrSize * 8) . "位)")
+        this.Add("Text", "x32 y188 w350 h18", "开源协议: MIT License  |  © 2026 zedeeee")
+
+        ; 底部操作按钮
+        this.SetFont("s9 norm", "Microsoft YaHei UI")
+        btnRepo := this.Add("Button", "x170 y228 w110 h28", "🌐 项目主页")
+        btnRepo.OnEvent("Click", (*) => Run("https://github.com/zedeeee/UCLC"))
+
+        btnClose := this.Add("Button", "x290 y228 w110 h28 Default", "确定")
+        btnClose.OnEvent("Click", (*) => this.Destroy())
+    }
+}
+
+show_about_gui(*) {
+    static about_dlg := ""
+    if (!about_dlg)
+        about_dlg := AboutGUI()
+    about_dlg.Show()
+}
+ShowAboutGUI(*) => show_about_gui()
 
 add_coustom_tray_menu()
 {
@@ -102,30 +122,16 @@ add_coustom_tray_menu()
 
     A_IconTip := "UCLC: 像AutoCAD一样使用CATIA"
 
-    avail_ver := ""
-    try avail_ver := StateManager.Get("AvailableUpdateVersion", "")
-    has_update := (AppSettings.Updater_Enabled && avail_ver != "")
-    top_title := "UCLC " AppSettings.Version . (has_update ? "  ✨ (新版本 " avail_ver ")" : "")
-    chk_title := "检查更新" . (has_update ? "  ✨ (新版本 " avail_ver ")" : "")
-
-    dyn_about_menu := [
-        ["关于", about_cb, ""],
-        ["项目主页", showProjectHomepage_cb, ""],
-        ["自定义帮助", help_Homepage_cb, ""],
-        [chk_title, update_check_cb, ""]
-    ]
-
     dyn_menu_items := [
-        [top_title, NoAction_cb, dyn_about_menu],
-        ["", NoAction_cb, ""],
-        ["打开脚本所在文件夹", open_script_folder_cb, ""],
-        ["开发功能", NoAction_cb, dev_sub_menu],
-        ["", NoAction_cb, ""],
-        ; ["配置", disable_botton_cb, ""],
-        ["Windows Spy", run_spy_cb, ""],
-        ["重新载入", reload_cb, ""],
-        ["禁用脚本", disable_script_cb, ""],
         ["设置...", ShowSettingsGUI, ""],
+        ["", NoAction_cb, ""],
+        ["挂起快捷键", disable_script_cb, ""],
+        ["重新载入", reload_cb, ""],
+        ["", NoAction_cb, ""],
+        ["工具", NoAction_cb, tools_sub_menu],
+        ["", NoAction_cb, ""],
+        ["关于 UCLC", ShowAboutGUI, ""],
+        ["", NoAction_cb, ""],
         ["退出", exit_cb, ""]
     ]
 
@@ -144,7 +150,7 @@ add_coustom_tray_menu()
             continue
         }
 
-        ; 如果子菜单不为空， 开始注册子菜单
+        ; 如果子菜单不为空，开始注册子菜单
         if sub_menu_items != ""
         {
             parent_button_name := button_name
@@ -164,7 +170,6 @@ add_coustom_tray_menu()
 
     }
     A_TrayMenu.Default := "设置..."
-    ; A_TrayMenu.Rename(menu_items[1][1], "UCLC")
 }
 
 ;-==== [ 原模块: SettingsGUI.ahk ] ====-

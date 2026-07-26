@@ -729,7 +729,7 @@ class SettingsView extends Gui {
         this.Add("GroupBox", "x20 y125 w510 h115", "个人配置")
         this.Add("Text", "x40 y153 w65", "存储路径:")
         this.Edit_ConfigDir := this.Add("Edit", "x105 y150 w320 h24", AppSettings.ConfigDir)
-        this.Edit_ConfigDir.ToolTip := "配置文件的实际存放路径，点击【选择...】可自定义目标目录"
+        this.Edit_ConfigDir.ToolTip := "  配置文件的存放路径，点击【选择...】可自定义目标目录"
         this.Btn_BrowseConfigDir := this.Add("Button", "x435 y149 w65 h25", "选择...")
         this.Btn_ImportConfig := this.Add("Button", "x40 y192 w140 h26 +Disabled", "📥 导入备份配置")
         this.Btn_ExportConfig := this.Add("Button", "x190 y192 w140 h26 +Disabled", "📤 导出备份配置")
@@ -1035,9 +1035,11 @@ class SettingsController {
         this.view.ddl_workbench.Choose(1)
 
         if (this.view.HasProp("ddl_import_wb") && this.view.ddl_import_wb) {
-            this.view.ddl_import_wb.Delete()
-            this.view.ddl_import_wb.Add(wb_list3)
-            this.view.ddl_import_wb.Choose(1)
+            try {
+                this.view.ddl_import_wb.Delete()
+                this.view.ddl_import_wb.Add(wb_list3)
+                this.view.ddl_import_wb.Choose(1)
+            }
         }
     }
 
@@ -2136,9 +2138,9 @@ class SettingsController {
             }
         }
         if (new_channel == "Preview")
-            this.view.SB.SetText("更新分支：【预览版 (Preview)】— 适合尝鲜用户，优先体验最新功能与修复。")
+            this.view.SB.SetText("  预览版 — 适合尝鲜，优先体验最新功能与修复。")
         else
-            this.view.SB.SetText("更新分支：【稳定版 (Release)】— 推荐日常使用，版本平稳可靠。")
+            this.view.SB.SetText("  稳定版 — 推荐日常使用。")
     }
 
     OnViewUpdateClick(*) {
@@ -2259,8 +2261,13 @@ class SettingsController {
         }
     }
 
+    GetActiveModalOwner() {
+        return (this.HasProp("cmd_lib_dlg") && this.cmd_lib_dlg) ? this.cmd_lib_dlg : this.view
+    }
+
     OnOpenCmdLibraryModal(*) {
-        dlg := Gui("+Owner" this.view.hwnd " -MinimizeBox -MaximizeBox", "工作台命令库管理")
+        dlg := Gui("+Owner" this.view.hwnd " -MinimizeBox -MaximizeBox", "导入命令ID")
+        this.cmd_lib_dlg := dlg
         this.view.Opt("+Disabled")
 
         dlg.Add("GroupBox", "x20 y15 w740 h65", "数据源获取")
@@ -2286,12 +2293,12 @@ class SettingsController {
         }
 
         this.view.ddl_import_wb := dlg.Add("DropDownList", "x100 y39 w250 Choose1", wb_list3)
-        this.view.Btn_AddWb := dlg.Add("Button", "x355 y39 w24 h22", "+")
-        this.view.Btn_ImportCommands := dlg.Add("Button", "x500 y39 w120 h22", "导入命令")
+        this.view.Btn_AddWb := dlg.Add("Button", "x355 y39 w24 h22 +Disabled", "+")
+        this.view.Btn_ImportCommands := dlg.Add("Button", "x480 y39 w140 h22", "从预设导入命令")
         this.view.Btn_ReadTxt := dlg.Add("Button", "x630 y39 w120 h22", "从 TXT 导入")
 
         dlg.Add("GroupBox", "x20 y90 w740 h410", "同步状态视图")
-        dlg.Add("Text", "x25 y105 w60 h32 +0x200", "视图筛选:")
+        dlg.Add("Text", "x25 y105 w60 h32 +0x200", "  筛选:")
 
         this.view.chk_filter_all := dlg.Add("CheckBox", "x85 y105 w60 h32 Checked", "全部`n(0)")
         dlg.SetFont("s9 bold c107C10")
@@ -2312,12 +2319,12 @@ class SettingsController {
         dlg.SetFont("s9 bold c107C10")
         dlg.Add("Text", "x457 y105 w14 h32 +0x200", "=")
         dlg.SetFont("s9 norm cDefault")
-        this.view.chk_filter_same := dlg.Add("CheckBox", "x471 y105 w60 h32 Checked", "一致`n(0)")
+        this.view.chk_filter_same := dlg.Add("CheckBox", "x471 y105 w60 h32 Checked", "已有`n(0)")
 
         dlg.SetFont("s9 bold cE81123")
         dlg.Add("Text", "x541 y105 w14 h32 +0x200", "D")
         dlg.SetFont("s9 norm cDefault")
-        this.view.chk_filter_delete := dlg.Add("CheckBox", "x555 y105 w75 h32 Checked", "待删除`n(0)")
+        this.view.chk_filter_delete := dlg.Add("CheckBox", "x555 y105 w75 h32 Checked", "删除`n(0)")
 
         dlg.SetFont("s9 bold cE81123")
         dlg.Add("Text", "x640 y105 w14 h32 +0x200", "i")
@@ -2364,8 +2371,13 @@ class SettingsController {
         this.view.Btn_ApplyAll.OnEvent("Click", ObjBindMethod(this, "on_apply_import_all"))
 
         close_dlg(*) {
-            this.view.Opt("-Disabled")
-            dlg.Destroy()
+            this.cmd_lib_dlg := ""
+            try this.view.Opt("-Disabled")
+            try dlg.Destroy()
+            for prop in ["ddl_import_wb", "Btn_AddWb", "Btn_ImportCommands", "Btn_ReadTxt", "chk_filter_all", "chk_filter_new", "chk_filter_update", "chk_filter_overwrite", "chk_filter_same", "chk_filter_delete", "chk_filter_ignore", "lv_import", "txt_empty_lv", "btn_mark_delete", "btn_mark_ignore", "txt_sel_count", "btn_resetView", "Btn_ApplyAll"] {
+                if this.view.HasProp(prop)
+                    try this.view.DeleteProp(prop)
+            }
         }
 
         dlg.OnEvent("Close", close_dlg)
@@ -2432,8 +2444,8 @@ class SettingsController {
         this.view.chk_filter_new.Text := "新增`n(" c_new ")"
         this.view.chk_filter_update.Text := "更新标题`n(" c_upd ")"
         this.view.chk_filter_overwrite.Text := "更新命令`n(" c_ovr ")"
-        this.view.chk_filter_same.Text := "一致`n(" c_sam ")"
-        this.view.chk_filter_delete.Text := "待删除`n(" c_del ")"
+        this.view.chk_filter_same.Text := "已有`n(" c_sam ")"
+        this.view.chk_filter_delete.Text := "删除`n(" c_del ")"
         this.view.chk_filter_ignore.Text := "忽略`n(" c_ign ")"
 
         showNew := this.view.chk_filter_new.Value
@@ -2511,8 +2523,8 @@ class SettingsController {
     }
     on_import_list_view_item_select(*) {
         sel_count := this.view.lv_import.GetCount("S")
-        this.view.btn_mark_delete.Opt(sel_count > 0 ? "-Disabled" : "+Disabled")
-        this.view.btn_mark_ignore.Opt(sel_count > 0 ? "-Disabled" : "+Disabled")
+        ; this.view.btn_mark_delete.Opt(sel_count > 0 ? "-Disabled" : "+Disabled")
+        ; this.view.btn_mark_ignore.Opt(sel_count > 0 ? "-Disabled" : "+Disabled")
         this.view.txt_sel_count.Value := "已选中: " sel_count " 项"
     }
     on_import_list_view_double_click(*) {
@@ -2580,6 +2592,8 @@ class SettingsController {
     }
 
     OnReadExportedTxt(*) {
+        owner_win := this.GetActiveModalOwner()
+        try owner_win.Opt("+OwnDialogs")
         selectedFile := FileSelect(3, , "选择 CATIA 导出的 Workshop Exposition 文件", "Text Documents (*.txt)")
         if (selectedFile = "") {
             return
@@ -2589,19 +2603,22 @@ class SettingsController {
             this.model.parse_import_file(selectedFile)
             this.refresh_import_diff("通过导入文件确定")
         } catch Error as e {
+            try owner_win.Opt("+OwnDialogs")
             MsgBox(e.Message, "解析错误", "Iconx")
         }
     }
 
     OnImportCommands(*) {
+        owner_win := this.GetActiveModalOwner()
         cmd_id_dir := A_ScriptDir "\data\command-id"
         if !DirExist(cmd_id_dir) {
+            try owner_win.Opt("+OwnDialogs")
             MsgBox("未找到工作台命令库目录：" cmd_id_dir, "错误", "Iconx")
             return
         }
 
-        dlg := Gui("+Owner" this.view.hwnd " -MinimizeBox -MaximizeBox", "导入内置工作台命令")
-        this.view.Opt("+Disabled")
+        dlg := Gui("+Owner" owner_win.hwnd " -MinimizeBox -MaximizeBox", "导入内置工作台命令")
+        owner_win.Opt("+Disabled")
         dlg.Add("Text", "x15 y15 w80 h20", "搜索工作台:")
         edit_search := dlg.Add("Edit", "x100 y11 w325 h24")
         lv := dlg.Add("ListView", "x15 y45 w410 h340 +Grid -Multi", ["工作台名称", "ID"])
@@ -2651,7 +2668,7 @@ class SettingsController {
                 return
             }
             sel_id := lv.GetText(row, 2)
-            this.view.Opt("-Disabled")
+            try owner_win.Opt("-Disabled")
             dlg.Destroy()
             this.model.parse_import_file(cmd_id_dir "\" sel_id ".txt")
             this.view.ddl_import_wb.Choose(1)
@@ -2659,7 +2676,7 @@ class SettingsController {
         }
 
         close_dlg(*) {
-            this.view.Opt("-Disabled")
+            try owner_win.Opt("-Disabled")
             dlg.Destroy()
         }
 
@@ -2679,7 +2696,9 @@ class SettingsController {
             return
         }
 
-        dlg := Gui("+Resize +Owner" this.view.hwnd " +MinSize350x300", "从指定工作台添加命令 - 目标: " target_wb)
+        owner_win := this.GetActiveModalOwner()
+        dlg := Gui("+Resize +Owner" owner_win.hwnd " +MinSize350x300", "从指定工作台添加命令 - 目标: " target_wb)
+        owner_win.Opt("+Disabled")
 
         on_dlg_size(GuiObj, MinMax, Width, Height) {
             if (MinMax == -1)
@@ -2693,9 +2712,13 @@ class SettingsController {
                 dlg_btn_cancel.Move(20 + btn_w + 20, Height - 45, btn_w)
             }
         }
+        close_other_dlg(*) {
+            try owner_win.Opt("-Disabled")
+            try dlg.Destroy()
+        }
         dlg.OnEvent("Size", on_dlg_size)
-        dlg.OnEvent("Close", (*) => dlg.Destroy())
-        dlg.OnEvent("Escape", (*) => dlg.Destroy())
+        dlg.OnEvent("Close", close_other_dlg)
+        dlg.OnEvent("Escape", close_other_dlg)
         dlg.Add("Text", "x20 y20 w80 h20", "源工作台:")
 
         src_wbs := []
@@ -2705,8 +2728,9 @@ class SettingsController {
             }
         }
         if (src_wbs.Length == 0) {
+            try owner_win.Opt("+OwnDialogs")
             MsgBox("没有其他工作台可供选择！", "提示", "Iconi")
-            dlg.Destroy()
+            close_other_dlg()
             return
         }
 
@@ -2822,15 +2846,17 @@ class SettingsController {
                 msg := "成功添加 " added_count " 个命令到 [" target_wb "]"
                 if (skipped_count > 0)
                     msg .= "`n已自动忽略 " skipped_count " 个重复命令"
+                try owner_win.Opt("+OwnDialogs")
                 MsgBox(msg, "成功", "Iconi T2")
-                dlg.Destroy()
+                close_other_dlg()
             } else {
+                try owner_win.Opt("+OwnDialogs")
                 MsgBox("未添加任何命令（所选命令在目标工作台均已存在）。", "提示", "Iconi")
             }
         }
 
         dlg_btn_add.OnEvent("Click", do_add)
-        dlg_btn_cancel.OnEvent("Click", (*) => dlg.Destroy())
+        dlg_btn_cancel.OnEvent("Click", close_other_dlg)
         load_dlg_cmds()
         dlg.Show("w450 h500")
     }
@@ -2881,7 +2907,9 @@ class SettingsController {
             }
         }
 
+        owner_win := this.GetActiveModalOwner()
         if (c_new == 0 && c_upd == 0 && c_ovr == 0 && c_del == 0) {
+            try owner_win.Opt("+OwnDialogs")
             MsgBox("没有实质性的修改需要应用。", "提示", "Iconi")
             return
         }
@@ -2894,18 +2922,18 @@ class SettingsController {
         if c_ovr > 0
             full_msg .= "【更新命令】(数量: " c_ovr ")`r`n" strOvr "`r`n"
         if c_del > 0
-            full_msg .= "【待删除】(数量: " c_del ")`r`n" strDel "`r`n"
+            full_msg .= "【删除】(数量: " c_del ")`r`n" strDel "`r`n"
 
-        confirm_gui := Gui("+Owner" this.view.hwnd " +ToolWindow -MinimizeBox -MaximizeBox", "确认执行以下操作")
+        confirm_gui := Gui("+Owner" owner_win.hwnd " +ToolWindow -MinimizeBox -MaximizeBox", "确认执行以下操作")
         confirm_gui.Add("Text", "x15 y15 w450 h20", "应用到 [" AppSettings.GetWbName(target_wb) "] 工作台:")
         confirm_gui.Add("Edit", "x15 y40 w450 h300 ReadOnly Multi VScroll", full_msg)
 
         user_confirmed := false
-        close_dialog := (confirmed, *) => (
-            user_confirmed := confirmed,
-            this.view.Opt("-Disabled"),
+        close_dialog(confirmed, *) {
+            user_confirmed := confirmed
+            try owner_win.Opt("-Disabled")
             confirm_gui.Destroy()
-        )
+        }
 
         btn_ok := confirm_gui.Add("Button", "x250 y350 w100 h30 Default", "确认")
         btn_ok.OnEvent("Click", close_dialog.Bind(true))
@@ -2914,7 +2942,7 @@ class SettingsController {
         confirm_gui.OnEvent("Close", close_dialog.Bind(false))
         confirm_gui.OnEvent("Escape", close_dialog.Bind(false))
 
-        this.view.Opt("+Disabled")
+        owner_win.Opt("+Disabled")
         confirm_gui.Show("AutoSize Center")
         btn_cancel.Focus()
         WinWaitClose(confirm_gui.hwnd)
@@ -2959,6 +2987,7 @@ class SettingsController {
         if (!this.model.flush_commands_json(AppSettings.commands_obj)) {
             return
         }
+        try owner_win.Opt("+OwnDialogs")
         MsgBox("成功！请重新载入UCLC使修改生效。", "成功", "Iconi")
         this.on_reset_import_view()
     }

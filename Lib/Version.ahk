@@ -1,2 +1,2 @@
 ; 由自动化构建脚本自动生成，请勿手动编辑
-global UCLC_VERSION := "v3.0.0-dev.0-62-cee4c80"
+global UCLC_VERSION := "v3.0.0-dev.0-63-1c91ffb"

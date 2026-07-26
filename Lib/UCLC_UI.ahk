@@ -78,6 +78,7 @@ tools_sub_menu := [
 class AboutGUI extends Gui {
     __New() {
         super.__New("-Resize -MaximizeBox", "关于 UCLC")
+        this.OnEvent("Escape", (*) => this.Destroy())
         this.SetFont("s9", "Microsoft YaHei UI")
 
         ; 图标与标题
@@ -184,7 +185,7 @@ add_coustom_tray_menu()
         A_TrayMenu.Add(button_name, callback_function)
     }
 
-    A_TrayMenu.Default := "设置..."
+    A_TrayMenu.Default := "关于 UCLC"
 
     ; 为重点菜单项配置原生图标
     try {

@@ -25,6 +25,13 @@ disable_script_cb(ItemName, ItemPos, MyMenu)
 {
     menu_toggleCheck_cb(ItemName, ItemPos, MyMenu)
     Suspend(-1)
+    if A_IsSuspended {
+        if FileExist(A_ScriptDir "\icon\UCLC_gray.ico")
+            TraySetIcon(A_ScriptDir "\icon\UCLC_gray.ico", , true)
+    } else {
+        if FileExist(A_ScriptDir "\icon\UCLC.ico")
+            TraySetIcon(A_ScriptDir "\icon\UCLC.ico", , true)
+    }
 }
 
 exit_cb(*) {
@@ -70,12 +77,12 @@ tools_sub_menu := [
 
 class AboutGUI extends Gui {
     __New() {
-        super.__New("-Resize -MaximizeBox +AlwaysOnTop", "关于 UCLC")
+        super.__New("-Resize -MaximizeBox", "关于 UCLC")
         this.SetFont("s9", "Microsoft YaHei UI")
 
         ; 图标与标题
-        if FileExist("./icon/color-icon64.png")
-            this.Add("Picture", "x20 y20 w48 h48", "./icon/color-icon64.png")
+        if FileExist(A_ScriptDir "\icon\UCLC.ico")
+            this.Add("Picture", "x20 y20 w48 h48", A_ScriptDir "\icon\UCLC.ico")
 
         this.SetFont("s14 bold", "Microsoft YaHei UI")
         this.Add("Text", "x80 y18 w320 h28", "UCLC")
@@ -110,15 +117,23 @@ class AboutGUI extends Gui {
 
 show_about_gui(*) {
     static about_dlg := ""
-    if (!about_dlg)
-        about_dlg := AboutGUI()
+    try {
+        if (about_dlg && WinExist(about_dlg.Hwnd)) {
+            about_dlg.Show()
+            return
+        }
+    }
+    about_dlg := AboutGUI()
     about_dlg.Show()
 }
 ShowAboutGUI(*) => show_about_gui()
 
 add_coustom_tray_menu()
 {
-    TraySetIcon("./icon/color-icon64.png")
+    if A_IsSuspended && FileExist(A_ScriptDir "\icon\UCLC_gray.ico")
+        TraySetIcon(A_ScriptDir "\icon\UCLC_gray.ico", , true)
+    else if FileExist(A_ScriptDir "\icon\UCLC.ico")
+        TraySetIcon(A_ScriptDir "\icon\UCLC.ico", , true)
 
     A_IconTip := "UCLC: 像AutoCAD一样使用CATIA"
 
@@ -167,9 +182,15 @@ add_coustom_tray_menu()
             continue
         }
         A_TrayMenu.Add(button_name, callback_function)
-
     }
+
     A_TrayMenu.Default := "设置..."
+
+    ; 为重点菜单项配置原生图标
+    try {
+        if FileExist(A_ScriptDir "\icon\UCLC.ico")
+            A_TrayMenu.SetIcon("关于 UCLC", A_ScriptDir "\icon\UCLC.ico")
+    }
 }
 
 ;-==== [ 原模块: SettingsGUI.ahk ] ====-
@@ -2300,7 +2321,7 @@ class SettingsController {
         this.view.ddl_import_wb := dlg.Add("DropDownList", "x100 y39 w250 Choose1", wb_list3)
         this.view.Btn_AddWb := dlg.Add("Button", "x355 y39 w24 h22 +Disabled", "+")
         this.view.Btn_ImportCommands := dlg.Add("Button", "x480 y39 w140 h22", "从预设导入命令")
-        this.view.Btn_ReadTxt := dlg.Add("Button", "x630 y39 w120 h22", "从 TXT 导入")
+        this.view.Btn_ReadTxt := dlg.Add("Button", "x630 y39 w120 h22 +Disabled", "从 TXT 导入")
 
         dlg.Add("GroupBox", "x20 y90 w740 h410", "同步状态视图")
         dlg.Add("Text", "x25 y105 w60 h32 +0x200", "  筛选:")

@@ -74,43 +74,12 @@ class UCLCApp {
     }
 
     check_user_config() {
-        alias_ini := AppSettings.alias_ini_path
-        hotkey_ini := AppSettings.hotkey_ini_path
-
-        if (FileExist(AppSettings.commands_json_path) = "" && FileExist(alias_ini) = "" && FileExist(hotkey_ini) = "") {
-            result := MsgBox(
-                "未找到配置文件`n"
-                "是否从 Github/Gitee 下载示例文件？`n"
-                , "配置文件缺失"
-                , 51
+        if (!FileExist(AppSettings.commands_json_path)) {
+            MsgBox(
+                "未找到主配置文件 (commands.json)，且默认配置模板 (data\commands.example.json) 也缺失！`n"
+                "请检查程序包完整性后重试。", "UCLC - 配置文件缺失", 16
             )
-
-            switch result {
-                case "No":
-                    MsgBox "
-                    (
-                        示例配置文件下载地址：
-                        https://github.com/zedeeee/UCLC-config
-                    )"
-                    ExitApp
-
-                case "Yes":
-                    config_and_path := [
-                        ["CAT_Alias.ini", alias_ini],
-                        ["CAT_Hotkey.ini", hotkey_ini]
-                    ]
-
-                    flag := 1
-                    for config_info in config_and_path {
-                        if not Downloader.download_configurations(config_info[1], config_info[2])
-                            flag := 0
-                    }
-
-                    MsgBox("获取配置文件成功，请重新载入脚本")
-                    Reload()
-
-                default: ExitApp
-            }
+            ExitApp
         }
     }
 

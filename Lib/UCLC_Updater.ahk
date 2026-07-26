@@ -13,7 +13,9 @@ class UCLCUpdater {
 
         ; 判断是否满足24小时检查间隔
         if (!isManual) {
-            last_time := AppSettings.Updater_LastCheckTime
+            last_time := StateManager.Get("LastCheckTime", "")
+            if (last_time == "" && AppSettings.Updater_LastCheckTime != "")
+                last_time := AppSettings.Updater_LastCheckTime
             if (last_time != "") {
                 try {
                     diff := DateDiff(A_Now, last_time, "Hours")
@@ -54,7 +56,7 @@ class UCLCUpdater {
             this.isChecking := false
             if (isManual) {
                 if (parentGui)
-                    parentGui.Opt("+OwnDialogs")
+                    try parentGui.Opt("+OwnDialogs")
                 MsgBox("创建网络请求失败: " . e.Message, "检查更新", "IconX")
             }
         }
@@ -99,23 +101,47 @@ class UCLCUpdater {
                     return
 
                 if (this.CompareVersion(latestVersion, UCLC_VERSION) > 0) {
-                    ; 调用 UI
-                    ShowUpdateGUI(latestVersion, UCLC_VERSION, releaseNotes, downloadUrl, parentGui)
-                } else if (isManual) {
-                    if (parentGui)
-                        parentGui.Opt("+OwnDialogs")
-                    MsgBox("当前已经是最新版本。", "检查更新", "Iconi")
+                    StateManager.Set("AvailableUpdateVersion", latestVersion)
+                    StateManager.Set("LatestReleaseNotes", releaseNotes)
+                    StateManager.Set("LatestDownloadUrl", downloadUrl)
+                    if IsSet(add_coustom_tray_menu)
+                        try add_coustom_tray_menu()
+                    if IsSet(SettingsController)
+                        try SettingsController.RefreshUpdateNotice()
+                    if (!isManual) {
+                        lastVer := StateManager.Get("LastPromptVersion", "")
+                        lastDate := StateManager.Get("LastPromptDate", "")
+                        today := FormatTime(A_Now, "yyyyMMdd")
+                        if (latestVersion == lastVer && today == lastDate)
+                            return
+                        StateManager.Set("LastPromptVersion", latestVersion)
+                        StateManager.Set("LastPromptDate", today)
+                        is_preview := (InStr(latestVersion, "-") || InStr(latestVersion, "dev") || InStr(latestVersion, "beta") || InStr(latestVersion, "alpha") || InStr(latestVersion, "rc") || InStr(latestVersion, "preview"))
+                        ver_tag := is_preview ? " [预览版]" : " [稳定版]"
+                        try TrayTip("✨ 发现新版本 " latestVersion ver_tag, "【UCLC】更新提醒", "Iconi")
+                    }
+                } else {
+                    StateManager.Set("AvailableUpdateVersion", "")
+                    if IsSet(add_coustom_tray_menu)
+                        try add_coustom_tray_menu()
+                    if IsSet(SettingsController)
+                        try SettingsController.RefreshUpdateNotice()
+                    if (isManual) {
+                        if (parentGui)
+                            try parentGui.Opt("+OwnDialogs")
+                        MsgBox("当前已经是最新版本。", "检查更新", "Iconi")
+                    }
                 }
             } catch Error as e {
                 if (isManual) {
                     if (parentGui)
-                        parentGui.Opt("+OwnDialogs")
+                        try parentGui.Opt("+OwnDialogs")
                     MsgBox("解析更新数据失败: " . e.Message, "检查更新", "IconX")
                 }
             }
         } else if (isManual) {
             if (parentGui)
-                parentGui.Opt("+OwnDialogs")
+                try parentGui.Opt("+OwnDialogs")
             MsgBox("网络请求失败，无法连接到 GitHub。状态码: " . req.status, "检查更新", "IconX")
         }
     }

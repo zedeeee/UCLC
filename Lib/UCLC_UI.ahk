@@ -96,35 +96,43 @@ dev_sub_menu := [
     ["None", Nothing_cb, ""],
 ]
 
-/**
- * ["按钮名称", 回调函数, 子菜单数组]
- */
-menu_items := [
-    ["UCLC " AppSettings.Version, NoAction_cb, about_and_updates_menu],
-    ["", NoAction_cb, ""],
-    ["打开脚本所在文件夹", open_script_folder_cb, ""],
-    ["开发功能", NoAction_cb, dev_sub_menu],
-    ["", NoAction_cb, ""],
-    ; ["配置", disable_botton_cb, ""],
-    ["Windows Spy", run_spy_cb, ""],
-    ["重新载入", reload_cb, ""],
-    ["禁用脚本", disable_script_cb, ""],
-    ["设置...", ShowSettingsGUI, ""],
-    ["退出", exit_cb, ""]
-]
-
-
 add_coustom_tray_menu()
 {
     TraySetIcon("./icon/color-icon64.png")
 
     A_IconTip := "UCLC: 像AutoCAD一样使用CATIA"
 
-    cus_tray_menu := Menu()
+    avail_ver := ""
+    try avail_ver := StateManager.Get("AvailableUpdateVersion", "")
+    has_update := (AppSettings.Updater_Enabled && avail_ver != "")
+    top_title := "UCLC " AppSettings.Version . (has_update ? "  ✨ (新版本 " avail_ver ")" : "")
+    chk_title := "检查更新" . (has_update ? "  ✨ (新版本 " avail_ver ")" : "")
 
+    dyn_about_menu := [
+        ["关于", about_cb, ""],
+        ["项目主页", showProjectHomepage_cb, ""],
+        ["自定义帮助", help_Homepage_cb, ""],
+        [chk_title, update_check_cb, ""]
+    ]
+
+    dyn_menu_items := [
+        [top_title, NoAction_cb, dyn_about_menu],
+        ["", NoAction_cb, ""],
+        ["打开脚本所在文件夹", open_script_folder_cb, ""],
+        ["开发功能", NoAction_cb, dev_sub_menu],
+        ["", NoAction_cb, ""],
+        ; ["配置", disable_botton_cb, ""],
+        ["Windows Spy", run_spy_cb, ""],
+        ["重新载入", reload_cb, ""],
+        ["禁用脚本", disable_script_cb, ""],
+        ["设置...", ShowSettingsGUI, ""],
+        ["退出", exit_cb, ""]
+    ]
+
+    cus_tray_menu := Menu()
     A_TrayMenu.Delete()
 
-    for menu_item in menu_items
+    for menu_item in dyn_menu_items
     {
         button_name := menu_item[1]
         callback_function := menu_item[2]
@@ -161,13 +169,12 @@ add_coustom_tray_menu()
 
 ;-==== [ 原模块: SettingsGUI.ahk ] ====-
 show_settings_gui(*) {
-    static controller := ""
-    if (!controller || !controller.is_valid()) {
+    if (!SettingsController.instance || !SettingsController.instance.is_valid()) {
         model := SettingsModel()
         view := SettingsView()
-        controller := SettingsController(model, view)
+        SettingsController.instance := SettingsController(model, view)
     }
-    controller.show()
+    SettingsController.instance.show()
 }
 
 ShowSettingsGUI(*) => show_settings_gui()
@@ -643,12 +650,19 @@ class SettingsView extends Gui {
         this.Btn_ImportConfig := this.Add("Button", "x40 y192 w140 h26 +Disabled", "📥 导入备份配置")
         this.Btn_ExportConfig := this.Add("Button", "x190 y192 w140 h26 +Disabled", "📤 导出备份配置")
 
-        this.Add("GroupBox", "x20 y255 w510 h70", "软件更新")
+        this.Add("GroupBox", "x20 y255 w510 h85", "软件更新")
         this.Chk_Updater := this.Add("Checkbox", "x40 y282", "启用自动检查更新")
         this.Add("Text", "x220 y283 w65", "更新分支:")
         choose_idx := (AppSettings.Updater_Channel == "Preview") ? 2 : 1
-        this.Ddl_UpdaterChannel := this.Add("DropDownList", "x285 y279 w150 Choose" . choose_idx, ["正式稳定版 (Release)", "公测预览版 (Preview)"])
+        this.Ddl_UpdaterChannel := this.Add("DropDownList", "x285 y279 w150 Choose" . choose_idx, ["稳定版", "预览版"])
         this.Btn_CheckUpdate := this.Add("Button", "x440 y278 w65 h25", "检查更新")
+        avail_ver := ""
+        try avail_ver := StateManager.Get("AvailableUpdateVersion", "")
+        has_notice := (AppSettings.Updater_Enabled && avail_ver != "")
+        is_preview := (InStr(avail_ver, "-") || InStr(avail_ver, "dev") || InStr(avail_ver, "beta") || InStr(avail_ver, "alpha") || InStr(avail_ver, "rc") || InStr(avail_ver, "preview"))
+        ver_tag := is_preview ? " [预览版]" : " [稳定版]"
+        this.Lbl_UpdateNotice := this.Add("Text", "x40 y312 w340 cRed w700" . (has_notice ? "" : " Hidden"), has_notice ? "✨ 发现新版本 " avail_ver ver_tag "！" : "")
+        this.Link_ViewUpdate := this.Add("Link", "x390 y312 w130" . (has_notice ? "" : " Hidden"), '<a id="view_update">查看更新内容</a>')
 
         this.btn_saveGeneral := this.Add("Button", "x385 y385 w145 h30 Default", "保存常规设置")
 
@@ -774,6 +788,8 @@ class SettingsView extends Gui {
 
 
 class SettingsController {
+    static instance := ""
+
     __New(model, view) {
         this.model := model
         this.view := view
@@ -811,8 +827,9 @@ class SettingsController {
 
     BindEvents() {
         this.view.OnEvent("Close", ObjBindMethod(this, "OnClose"))
-        this.view.Ddl_UpdaterChannel.OnEvent("Change", (*) => AppSettings.SaveUpdaterConfig("Channel", InStr(this.view.Ddl_UpdaterChannel.Text, "Preview") ? "Preview" : "Release"))
+        this.view.Ddl_UpdaterChannel.OnEvent("Change", ObjBindMethod(this, "OnUpdaterChannelChange"))
         this.view.Btn_CheckUpdate.OnEvent("Click", (*) => UCLCUpdater.CheckForUpdate(true, this.view))
+        this.view.Link_ViewUpdate.OnEvent("Click", ObjBindMethod(this, "OnViewUpdateClick"))
         this.view.OnEvent("Escape", ObjBindMethod(this, "OnClose"))
         this.on_mouse_move_bound := ObjBindMethod(this, "on_mouse_move")
         OnMessage(0x0200, this.on_mouse_move_bound)
@@ -1728,14 +1745,69 @@ class SettingsController {
     }
 
     OnUpdaterChannelChange(*) {
-        if InStr(this.view.Ddl_UpdaterChannel.Text, "Preview")
-            this.view.SB.SetText("更新分支：【公测预览版 (Preview)】— 适合尝鲜用户，优先体验最新功能与修复。")
+        new_channel := InStr(this.view.Ddl_UpdaterChannel.Text, "预览") ? "Preview" : "Release"
+        if (new_channel != AppSettings.Updater_Channel) {
+            AppSettings.SaveUpdaterConfig("Channel", new_channel)
+            try StateManager.Set("AvailableUpdateVersion", "")
+            try StateManager.Set("LastPromptVersion", "")
+            try StateManager.Set("LastPromptDate", "")
+            try StateManager.Set("LastCheckTime", "")
+            SettingsController.RefreshUpdateNotice()
+            if (this.view.Chk_Updater.Value) {
+                SetTimer(() => UCLCUpdater.CheckForUpdate(false), -100)
+            }
+        }
+        if (new_channel == "Preview")
+            this.view.SB.SetText("更新分支：【预览版 (Preview)】— 适合尝鲜用户，优先体验最新功能与修复。")
         else
-            this.view.SB.SetText("更新分支：【正式稳定版 (Release)】— 推荐日常使用，版本平稳可靠。")
+            this.view.SB.SetText("更新分支：【稳定版 (Release)】— 推荐日常使用，版本平稳可靠。")
+    }
+
+    OnViewUpdateClick(*) {
+        avail_ver := StateManager.Get("AvailableUpdateVersion", "")
+        if (avail_ver != "") {
+            ShowUpdateGUI(avail_ver, UCLC_VERSION, StateManager.Get("LatestReleaseNotes", "暂无更新说明。"), StateManager.Get("LatestDownloadUrl", ""), this.view)
+        } else {
+            UCLCUpdater.CheckForUpdate(true, this.view)
+        }
+    }
+
+    static RefreshUpdateNotice() {
+        if (this.instance && this.instance.is_valid() && this.instance.view) {
+            avail_ver := ""
+            try avail_ver := StateManager.Get("AvailableUpdateVersion", "")
+            has_notice := (AppSettings.Updater_Enabled && avail_ver != "")
+            try {
+                is_preview := (InStr(avail_ver, "-") || InStr(avail_ver, "dev") || InStr(avail_ver, "beta") || InStr(avail_ver, "alpha") || InStr(avail_ver, "rc") || InStr(avail_ver, "preview"))
+                ver_tag := is_preview ? " [预览版]" : " [稳定版]"
+                this.instance.view.Lbl_UpdateNotice.Text := has_notice ? "✨ 发现新版本 " avail_ver ver_tag "！" : ""
+                this.instance.view.Lbl_UpdateNotice.Opt(has_notice ? "-Hidden" : "+Hidden")
+                if (this.instance.view.HasProp("Link_ViewUpdate")) {
+                    this.instance.view.Link_ViewUpdate.Opt(has_notice ? "-Hidden" : "+Hidden")
+                    if (has_notice) {
+                        try this.instance.view.Link_ViewUpdate.Text := '<a id="view_update">查看更新内容</a>'
+                        try this.instance.view.Link_ViewUpdate.Redraw()
+                    }
+                }
+            }
+        }
     }
 
     SaveGeneralSettings(*) {
-        channel := InStr(this.view.Ddl_UpdaterChannel.Text, "Preview") ? "Preview" : "Release"
+        old_channel := AppSettings.Updater_Channel
+        channel := InStr(this.view.Ddl_UpdaterChannel.Text, "预览") ? "Preview" : "Release"
+        if (!this.view.Chk_Updater.Value || channel != old_channel) {
+            try StateManager.Set("AvailableUpdateVersion", "")
+            try StateManager.Set("LastPromptVersion", "")
+            try StateManager.Set("LastPromptDate", "")
+            try StateManager.Set("LastCheckTime", "")
+            SettingsController.RefreshUpdateNotice()
+            if IsSet(add_coustom_tray_menu)
+                try add_coustom_tray_menu()
+            if (this.view.Chk_Updater.Value && channel != old_channel) {
+                SetTimer(() => UCLCUpdater.CheckForUpdate(false), -100)
+            }
+        }
         success := this.model.save_general_settings(
             this.view.Chk_Startup.Value,
             this.view.Chk_DesktopShortcut.Value,
@@ -2512,55 +2584,85 @@ class SettingsController {
 
 class UpdateGUI extends Gui {
     __New(latestVersion, currentVersion, releaseNotes, downloadUrl, parentGui := "") {
-        super.__New("-MinimizeBox -MaximizeBox" . (parentGui ? " +Owner" . parentGui.Hwnd : ""), "UCLC 软件更新")
+        super.__New("-MinimizeBox +MaximizeBox +Resize" . (parentGui ? " +Owner" . parentGui.Hwnd : ""), "UCLC 软件更新")
+        this.Opt("+MinSize500x380")
 
+        this.parentGui := parentGui
         this.latestVersion := latestVersion
         this.downloadUrl := downloadUrl
 
-        this.Add("Text", "x20 y20 w80", "发现新版本: ")
-        this.SetFont("c0055AA bold")
-        this.txt_latest := this.Add("Text", "x95 y20 w100", latestVersion)
-        this.SetFont("cDefault norm")
-        this.txt_current := this.Add("Text", "x200 y20 w180", "当前版本: " currentVersion)
+        is_preview := (InStr(latestVersion, "-") || InStr(latestVersion, "dev") || InStr(latestVersion, "beta") || InStr(latestVersion, "alpha") || InStr(latestVersion, "rc") || InStr(latestVersion, "preview"))
+        ver_tag := is_preview ? " [预览版]" : " [稳定版]"
+        this.SetFont("s13 bold c0078D7", "Segoe UI Emoji")
+        this.txt_latest := this.Add("Text", "x25 y20 w470 h25", "✨ 发现新版本 " latestVersion ver_tag)
+        this.SetFont("s9.5 norm c666666", "Segoe UI Emoji")
+        this.txt_current := this.Add("Text", "x25 y48 w470 h20", "当前版本: " currentVersion)
+        this.SetFont("s9 norm cDefault", "Segoe UI Emoji")
 
-        this.Add("Text", "x20 y50 w360", "更新日志:")
-        this.edit_notes := this.Add("Edit", "x20 y70 w360 h180 ReadOnly Multi +VScroll", releaseNotes)
+        this.gb_notes := this.Add("GroupBox", "x20 y78 w480 h245", " 📋 版本更新说明与日志 ")
+        this.edit_notes := this.Add("Edit", "x32 y102 w456 h208 ReadOnly Multi +VScroll -E0x200 -Tabstop", releaseNotes)
 
-        this.btn_download := this.Add("Button", "x40 y270 w100 h30 Default", "立即前往下载")
-        this.btn_skip := this.Add("Button", "x150 y270 w100 h30", "跳过此版本")
-        this.btn_cancel := this.Add("Button", "x260 y270 w100 h30", "暂不更新")
+        this.btn_skip := this.Add("Button", "x20 y338 w100 h34", "跳过此版本")
+        this.btn_cancel := this.Add("Button", "x245 y338 w100 h34", "暂不更新")
+        this.SetFont("bold", "Segoe UI Emoji")
+        this.btn_download := this.Add("Button", "x355 y338 w145 h34 Default", "🚀 前往下载更新")
+        this.SetFont("norm", "Default")
 
         this.btn_download.OnEvent("Click", ObjBindMethod(this, "OnDownload"))
         this.btn_skip.OnEvent("Click", ObjBindMethod(this, "OnSkip"))
         this.btn_cancel.OnEvent("Click", ObjBindMethod(this, "OnCancel"))
         this.OnEvent("Close", ObjBindMethod(this, "OnCancel"))
         this.OnEvent("Escape", ObjBindMethod(this, "OnCancel"))
+        this.OnEvent("Size", ObjBindMethod(this, "OnSize"))
     }
 
     UpdateData(latestVersion, currentVersion, releaseNotes, downloadUrl) {
         this.latestVersion := latestVersion
         this.downloadUrl := downloadUrl
-        this.txt_latest.Value := latestVersion
-        this.txt_current.Value := "当前版本: " . currentVersion
+        is_preview := (InStr(latestVersion, "-") || InStr(latestVersion, "dev") || InStr(latestVersion, "beta") || InStr(latestVersion, "alpha") || InStr(latestVersion, "rc") || InStr(latestVersion, "preview"))
+        ver_tag := is_preview ? " [预览版]" : " [稳定版]"
+        this.txt_latest.Value := "✨ 发现新版本 " latestVersion ver_tag
+        this.txt_current.Value := "当前版本: " currentVersion
         this.edit_notes.Value := releaseNotes
+    }
+
+    OnSize(guiObj, minMax, width, height, *) {
+        if (minMax == -1)
+            return
+        try {
+            this.txt_latest.Move(,, width - 50)
+            this.txt_current.Move(,, width - 50)
+            this.gb_notes.Move(,, width - 40, height - 145)
+            this.edit_notes.Move(,, width - 64, height - 182)
+            btnY := height - 52
+            this.btn_skip.Move(, btnY)
+            this.btn_cancel.Move(width - 275, btnY)
+            this.btn_download.Move(width - 165, btnY)
+        }
+    }
+
+    CloseModal() {
+        if (this.HasProp("parentGui") && this.parentGui) {
+            try this.parentGui.Opt("-Disabled")
+            try WinActivate(this.parentGui.Hwnd)
+        }
+        this.Destroy()
+        UpdateGUI.instance := ""
     }
 
     OnDownload(*) {
         if (this.downloadUrl != "")
             Run(this.downloadUrl)
-        this.Destroy()
-        UpdateGUI.instance := ""
+        this.CloseModal()
     }
 
     OnSkip(*) {
         AppSettings.SaveUpdaterConfig("SkippedVersion", this.latestVersion)
-        this.Destroy()
-        UpdateGUI.instance := ""
+        this.CloseModal()
     }
 
     OnCancel(*) {
-        this.Destroy()
-        UpdateGUI.instance := ""
+        this.CloseModal()
     }
 
     static instance := ""
@@ -2569,9 +2671,17 @@ class UpdateGUI extends Gui {
 ShowUpdateGUI(latestVersion, currentVersion, releaseNotes, downloadUrl, parentGui := "") {
     if (UpdateGUI.instance && WinExist(UpdateGUI.instance.Hwnd)) {
         UpdateGUI.instance.UpdateData(latestVersion, currentVersion, releaseNotes, downloadUrl)
+        if (UpdateGUI.instance.HasProp("parentGui") && UpdateGUI.instance.parentGui)
+            try UpdateGUI.instance.parentGui.Opt("+Disabled")
         UpdateGUI.instance.Show()
+        try UpdateGUI.instance.btn_download.Focus()
+        try SendMessage(0x00B1, 0, 0, UpdateGUI.instance.edit_notes.Hwnd)
         return
     }
+    if (parentGui)
+        try parentGui.Opt("+Disabled")
     UpdateGUI.instance := UpdateGUI(latestVersion, currentVersion, releaseNotes, downloadUrl, parentGui)
-    UpdateGUI.instance.Show("w400 h320")
+    UpdateGUI.instance.Show("w660 h500 Center")
+    try UpdateGUI.instance.btn_download.Focus()
+    try SendMessage(0x00B1, 0, 0, UpdateGUI.instance.edit_notes.Hwnd)
 }

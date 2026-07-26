@@ -4,6 +4,56 @@
 #Include "Version.ahk"
 #Include "UCLC_System.ahk"
 
+;-==== [ 状态管理模块: StateManager (.state) ] ====-
+class StateManager {
+    static StateFile => (AppSettings.ConfigDir != "" ? AppSettings.ConfigDir : AppSettings.DefaultConfigDir) "\.state"
+    static _state_obj := Map()
+    static _loaded := false
+
+    static Init() {
+        if (this._loaded)
+            return
+        this._loaded := true
+        if FileExist(this.StateFile) {
+            try {
+                text := FileRead(this.StateFile, "UTF-8")
+                this._state_obj := JSON.parse(text)
+                if (!IsObject(this._state_obj))
+                    this._state_obj := Map()
+            } catch {
+                this._state_obj := Map()
+            }
+        }
+    }
+
+    static Get(key, defaultVal := "") {
+        this.Init()
+        return (this._state_obj.Has(key) && this._state_obj[key] != "") ? this._state_obj[key] : defaultVal
+    }
+
+    static Set(key, value) {
+        this.Init()
+        if (value == "") {
+            if this._state_obj.Has(key)
+                this._state_obj.Delete(key)
+        } else {
+            this._state_obj[key] := value
+        }
+        try {
+            dir := (AppSettings.ConfigDir != "" ? AppSettings.ConfigDir : AppSettings.DefaultConfigDir)
+            if (!DirExist(dir))
+                DirCreate(dir)
+            if FileExist(this.StateFile . ".bak")
+                try FileDelete(this.StateFile . ".bak")
+            if FileExist(this.StateFile)
+                FileDelete(this.StateFile)
+            FileAppend(JSON.stringify(this._state_obj), this.StateFile, "UTF-8")
+        } catch Error as e {
+            Logger.info("保存 .state 状态文件失败: " . e.Message)
+        }
+    }
+}
+
 ;-==== [ 原模块: AppSettings.ahk ] ====-
 class AppSettings {
     static DefaultConfigDir := A_AppData "\UCLC"
@@ -219,6 +269,15 @@ class AppSettings {
             }
         }
 
+        ; 场景 4：开箱即用兜底 —— 若此时尚未生成 commands.json，自动自 data/ 目录复制示例模板
+        if (!FileExist(this.commands_json_path) && FileExist(A_ScriptDir "\data\commands.example.json")) {
+            try {
+                if (!DirExist(this.ConfigDir))
+                    DirCreate(this.ConfigDir)
+                FileCopy(A_ScriptDir "\data\commands.example.json", this.commands_json_path, false)
+            }
+        }
+
         ; 载入 JSON 到内存树
         if (FileExist(this.commands_json_path)) {
             this.commands_obj := JSON.parse(FileRead(this.commands_json_path, "UTF-8"))
@@ -305,8 +364,10 @@ class AppSettings {
             Integer(this.config_obj["Updater"]["Enabled"]) : 1
         this.Updater_Channel := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("Channel") ?
             this.config_obj["Updater"]["Channel"] : "Preview"
-        this.Updater_LastCheckTime := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("LastCheckTime") ?
-            this.config_obj["Updater"]["LastCheckTime"] : ""
+        this.Updater_LastCheckTime := StateManager.Get("LastCheckTime", "")
+        if (this.Updater_LastCheckTime == "" && this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("LastCheckTime")) {
+            this.Updater_LastCheckTime := this.config_obj["Updater"]["LastCheckTime"]
+        }
         this.Updater_SkippedVersion := this.config_obj.Has("Updater") && this.config_obj["Updater"].Has("SkippedVersion") ?
             this.config_obj["Updater"]["SkippedVersion"] : ""
 
@@ -322,6 +383,11 @@ class AppSettings {
     }
 
     static SaveUpdaterConfig(key, value) {
+        if (key == "LastCheckTime") {
+            this.Updater_LastCheckTime := value
+            StateManager.Set("LastCheckTime", value)
+            return
+        }
         if (!this.config_obj.Has("Updater")) {
             this.config_obj["Updater"] := Map()
         }
@@ -365,13 +431,38 @@ class AppSettings {
     }
 
     static FlushConfig() {
+        if (this.config_obj.Has("Updater") && IsObject(this.config_obj["Updater"]) && this.config_obj["Updater"].Has("LastCheckTime")) {
+            this.config_obj["Updater"].Delete("LastCheckTime")
+        }
         this._atomic_write(this.config_json_path, JSON.stringify(this.config_obj))
         if (this.ConfigDir != "" && this.ConfigDir != this.DefaultConfigDir && DirExist(this.DefaultConfigDir)) {
             try this._atomic_write(this.DefaultConfigDir "\config.json", JSON.stringify(this.config_obj))
         }
     }
 
+    static StripEmptyCommandKeys(obj) {
+        if (!IsObject(obj))
+            return
+        for wb, cmdArray in obj {
+            if (wb == "_comment" || !IsObject(cmdArray))
+                continue
+            for cmd in cmdArray {
+                if (IsObject(cmd)) {
+                    if (cmd.Has("hotkeys") && IsObject(cmd["hotkeys"]) && cmd["hotkeys"].Length == 0)
+                        cmd.Delete("hotkeys")
+                    if (cmd.Has("aliases") && IsObject(cmd["aliases"]) && cmd["aliases"].Length == 0)
+                        cmd.Delete("aliases")
+                    if (cmd.Has("args") && IsObject(cmd["args"]) && cmd["args"].Length == 0)
+                        cmd.Delete("args")
+                    if (cmd.Has("desc") && Trim(cmd["desc"]) == "")
+                        cmd.Delete("desc")
+                }
+            }
+        }
+    }
+
     static FlushCommands() {
+        this.StripEmptyCommandKeys(this.commands_obj)
         this._atomic_write(this.commands_json_path, JSON.stringify(this.commands_obj))
     }
 
@@ -728,6 +819,7 @@ class ConfigMigrator {
             ParseIniAndMerge(alias_ini, false)
             ParseIniAndMerge(hotkey_ini, true)
 
+            AppSettings.StripEmptyCommandKeys(commands_obj)
             json_str := JSON.stringify(commands_obj)
             if FileExist(commands_json)
                 FileDelete(commands_json)

@@ -1,0 +1,323 @@
+{
+  "通用": [
+    {
+      "aliases": [
+        "SAA"
+      ],
+      "command": "CATAfrFileSaveAllHdr",
+      "desc": "全部保存"
+    },
+    {
+      "aliases": [
+        "ZE"
+      ],
+      "command": "CATAfrReframeHdr",
+      "desc": "全部适应"
+    },
+    {
+      "aliases": [
+        "A"
+      ],
+      "command": "ViewAlignment",
+      "desc": "对齐视点"
+    },
+    {
+      "aliases": [
+        "Z"
+      ],
+      "command": "CATAfrZoomAreaHdr",
+      "desc": "缩放区域"
+    },
+    {
+      "aliases": [
+        "M"
+      ],
+      "command": "测量间距",
+      "desc": "测量间距"
+    },
+    {
+      "aliases": [
+        "MM"
+      ],
+      "command": "CATAifAsmSpaceMeasureEdgeHdr",
+      "desc": "测量项"
+    }
+  ],
+  "CATAifAssemblyWkb": [
+    {
+      "aliases": [
+        "Q"
+      ],
+      "command": "ProductSelectCH",
+      "desc": "产品选择"
+    },
+    {
+      "aliases": [
+        "S"
+      ],
+      "command": "CATAifSnapHdr",
+      "desc": "捕捉"
+    },
+    {
+      "aliases": [
+        "SS"
+      ],
+      "command": "SmartMove",
+      "desc": "智能移动"
+    },
+    {
+      "aliases": [
+        "FIX"
+      ],
+      "command": "CATAifCreateFixHdr",
+      "desc": "固定"
+    },
+    {
+      "aliases": [
+        "AGR"
+      ],
+      "callback": "cat_auto_graph_tree_reorder",
+      "command": "CATPstReorderHdr",
+      "desc": "图形树自动排序"
+    },
+    {
+      "aliases": [
+        "F"
+      ],
+      "args": [
+        "TransAxis"
+      ],
+      "callback": "quick_manipulation",
+      "command": "CATAifDirectManipulationHdr",
+      "desc": "沿 指定 轴移动"
+    },
+    {
+      "aliases": [
+        "FX"
+      ],
+      "args": [
+        "TransX"
+      ],
+      "callback": "quick_manipulation",
+      "command": "CATAifDirectManipulationHdr",
+      "desc": "沿 X 轴移动"
+    },
+    {
+      "aliases": [
+        "FY"
+      ],
+      "args": [
+        "TransY"
+      ],
+      "callback": "quick_manipulation",
+      "command": "CATAifDirectManipulationHdr",
+      "desc": "沿 Y 轴移动"
+    },
+    {
+      "aliases": [
+        "FZ"
+      ],
+      "args": [
+        "TransZ"
+      ],
+      "callback": "quick_manipulation",
+      "command": "CATAifDirectManipulationHdr",
+      "desc": "沿 Z 轴移动"
+    },
+    {
+      "aliases": [
+        "FXY"
+      ],
+      "args": [
+        "TransXY"
+      ],
+      "callback": "quick_manipulation",
+      "command": "CATAifDirectManipulationHdr",
+      "desc": "沿 XY 平面移动"
+    },
+    {
+      "aliases": [
+        "FYZ"
+      ],
+      "args": [
+        "TransYZ"
+      ],
+      "callback": "quick_manipulation",
+      "command": "CATAifDirectManipulationHdr",
+      "desc": "沿 YZ 平面移动"
+    },
+    {
+      "aliases": [
+        "FZX"
+      ],
+      "args": [
+        "TransZX"
+      ],
+      "callback": "quick_manipulation",
+      "command": "CATAifDirectManipulationHdr",
+      "desc": "沿 ZX 平面移动"
+    },
+    {
+      "aliases": [
+        "R"
+      ],
+      "args": [
+        "RotAxis"
+      ],
+      "callback": "quick_manipulation",
+      "command": "CATAifDirectManipulationHdr",
+      "desc": "绕 指定 轴旋转"
+    },
+    {
+      "aliases": [
+        "RX"
+      ],
+      "args": [
+        "RotX"
+      ],
+      "callback": "quick_manipulation",
+      "command": "CATAifDirectManipulationHdr",
+      "desc": "绕 X 轴旋转"
+    },
+    {
+      "aliases": [
+        "RY"
+      ],
+      "args": [
+        "RotY"
+      ],
+      "callback": "quick_manipulation",
+      "command": "CATAifDirectManipulationHdr",
+      "desc": "绕 Y 轴旋转"
+    },
+    {
+      "aliases": [
+        "RZ"
+      ],
+      "args": [
+        "RotZ"
+      ],
+      "callback": "quick_manipulation",
+      "command": "CATAifDirectManipulationHdr",
+      "desc": "绕 Z 轴旋转"
+    }
+  ],
+  "CATPcfPartWkb": [
+    {
+      "aliases": [
+        "P"
+      ],
+      "command": "Pad",
+      "desc": "凸台"
+    },
+    {
+      "aliases": [
+        "PO"
+      ],
+      "command": "Pocket",
+      "desc": "凹槽"
+    },
+    {
+      "aliases": [
+        "FI"
+      ],
+      "command": "Edge Fillet",
+      "desc": "倒圆角"
+    },
+    {
+      "aliases": [
+        "CH"
+      ],
+      "command": "Chamfer",
+      "desc": "倒角"
+    },
+    {
+      "aliases": [
+        "SH"
+      ],
+      "command": "Shell",
+      "desc": "抽壳"
+    }
+  ],
+  "CATSKUCS0WKSWks": [
+    {
+      "aliases": [
+        "P"
+      ],
+      "command": "Profile",
+      "desc": "轮廓"
+    },
+    {
+      "aliases": [
+        "L"
+      ],
+      "command": "Line",
+      "desc": "直线"
+    },
+    {
+      "aliases": [
+        "R"
+      ],
+      "command": "Rectangle",
+      "desc": "矩形"
+    },
+    {
+      "aliases": [
+        "C"
+      ],
+      "command": "Circle",
+      "desc": "圆"
+    },
+    {
+      "aliases": [
+        "D"
+      ],
+      "command": "Constraint",
+      "desc": "约束"
+    },
+    {
+      "aliases": [
+        "TR"
+      ],
+      "command": "Trim",
+      "desc": "修剪"
+    }
+  ],
+  "CATShapeDesignWorkbench": [
+    {
+      "aliases": [
+        "EX"
+      ],
+      "command": "Extrude",
+      "desc": "拉伸"
+    },
+    {
+      "aliases": [
+        "RE"
+      ],
+      "command": "Revolve",
+      "desc": "旋转"
+    },
+    {
+      "aliases": [
+        "J"
+      ],
+      "command": "Join",
+      "desc": "接合"
+    },
+    {
+      "aliases": [
+        "SP"
+      ],
+      "command": "Split",
+      "desc": "分割"
+    },
+    {
+      "aliases": [
+        "SYM"
+      ],
+      "command": "Symmetry",
+      "desc": "对称"
+    }
+  ]
+}

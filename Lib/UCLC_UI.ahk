@@ -229,6 +229,14 @@ parse_hotkey_from_display(display) {
     return hk
 }
 
+normalize_hotkey_for_cmp(hk) {
+    if (hk == "")
+        return ""
+    if (InStr(hk, " + ") || InStr(hk, "Ctrl") || InStr(hk, "Alt") || InStr(hk, "Shift") || InStr(hk, "Win"))
+        hk := parse_hotkey_from_display(hk)
+    return StrLower(parse_hotkey_from_display(format_hotkey_for_display(hk)))
+}
+
 class SettingsModel {
     __New() {
         this.original_json_str := ""
@@ -245,11 +253,13 @@ class SettingsModel {
     }
 
     check_dirty(current_obj) {
+        AppSettings.StripEmptyCommandKeys(current_obj)
         current_json := JSON.stringify(current_obj)
         return current_json !== this.original_json_str
     }
 
     get_unsaved_changes_summary(curr_obj) {
+        AppSettings.StripEmptyCommandKeys(curr_obj)
         try {
             orig_obj := JSON.parse(this.original_json_str)
         } catch {
@@ -262,25 +272,53 @@ class SettingsModel {
             wb_diffs := []
             orig_cmds := orig_obj.Has(wb) ? orig_obj[wb] : []
 
-            for i, cmd in cmds {
-                if (i > orig_cmds.Length) {
-                    title := cmd.Has("desc") && cmd["desc"] != "" ? cmd["desc"] : cmd["command"]
+            matched_orig := Map()
+
+            for cmd in cmds {
+                cmd_id := cmd.Has("command") ? cmd["command"] : ""
+                cmd_desc := cmd.Has("desc") ? cmd["desc"] : ""
+                title := (cmd_desc != "") ? cmd_desc : cmd_id
+
+                matched_idx := 0
+                ; 优先按 command + desc 精确匹配未使用的原始项
+                for i, orig in orig_cmds {
+                    if (matched_orig.Has(i))
+                        continue
+                    if (orig.Has("command") && orig["command"] == cmd_id && (orig.Has("desc") ? orig["desc"] : "") == cmd_desc) {
+                        matched_idx := i
+                        break
+                    }
+                }
+                ; 若没有，退而按 command 匹配未使用的原始项
+                if (matched_idx == 0 && cmd_id != "") {
+                    for i, orig in orig_cmds {
+                        if (matched_orig.Has(i))
+                            continue
+                        if (orig.Has("command") && orig["command"] == cmd_id) {
+                            matched_idx := i
+                            break
+                        }
+                    }
+                }
+
+                if (matched_idx == 0) {
                     wb_diffs.Push("  + 新增: " title)
                 } else {
-                    orig_cmd := orig_cmds[i]
+                    matched_orig[matched_idx] := true
+                    orig_cmd := orig_cmds[matched_idx]
                     if (JSON.stringify(cmd) != JSON.stringify(orig_cmd)) {
-                        title := cmd.Has("desc") && cmd["desc"] != "" ? cmd["desc"] : cmd["command"]
                         wb_diffs.Push("  * 修改: " title)
                     }
                 }
             }
-            if (orig_cmds.Length > cmds.Length) {
-                loop (orig_cmds.Length - cmds.Length) {
-                    orig_cmd := orig_cmds[cmds.Length + A_Index]
-                    title := orig_cmd.Has("desc") && orig_cmd["desc"] != "" ? orig_cmd["desc"] : orig_cmd["command"]
+
+            for i, orig in orig_cmds {
+                if (!matched_orig.Has(i)) {
+                    title := orig.Has("desc") && orig["desc"] != "" ? orig["desc"] : (orig.Has("command") ? orig["command"] : "未知")
                     wb_diffs.Push("  - 删除: " title)
                 }
             }
+
             if (wb_diffs.Length > 0) {
                 diffs.Push("【工作台: " wb_name "】")
                 diffs.Push(wb_diffs*)
@@ -311,12 +349,58 @@ class SettingsModel {
         return Trim(summary, "`n")
     }
 
+    validate_no_duplicates(curr_obj) {
+        owner_opt := "Icon! 16" . (SettingsController.instance && SettingsController.instance.is_valid() ? " Owner" . SettingsController.instance.view.Hwnd : "")
+        for wb, cmdArray in curr_obj {
+            wb_name := AppSettings.GetWbName(wb)
+            used_aliases := Map()
+            used_hotkeys := Map()
+            for idx, cmd in cmdArray {
+                title := (cmd.Has("desc") && cmd["desc"] != "") ? cmd["desc"] : (cmd.Has("command") ? cmd["command"] : "未知命令")
+                if (cmd.Has("aliases")) {
+                    for al in cmd["aliases"] {
+                        al_clean := Trim(al)
+                        if (al_clean == "")
+                            continue
+                        al_lower := StrLower(al_clean)
+                        if (used_aliases.Has(al_lower)) {
+                            prev_title := used_aliases[al_lower]
+                            MsgBox("在工作台「" . wb_name . "」内发现重复别名！`n`n别名：「" . al_clean . "」`n冲突命令 1：「" . prev_title . "」`n冲突命令 2：「" . title . "」`n`n同一个工作台内的别名不允许重复，请修改为唯一别名后再保存。", "用户别名已存在", owner_opt)
+                            return false
+                        }
+                        used_aliases[al_lower] := title
+                    }
+                }
+                if (cmd.Has("hotkeys")) {
+                    for hk in cmd["hotkeys"] {
+                        hk_clean := Trim(hk)
+                        if (hk_clean == "")
+                            continue
+                        hk_norm := normalize_hotkey_for_cmp(hk_clean)
+                        if (used_hotkeys.Has(hk_norm)) {
+                            prev_title := used_hotkeys[hk_norm]
+                            MsgBox("在工作台「" . wb_name . "」内发现重复快捷键！`n`n快捷键：「" . format_hotkey_for_display(hk_clean) . "」`n冲突命令 1：「" . prev_title . "」`n冲突命令 2：「" . title . "」`n`n同一个工作台内的快捷键不允许重复，请修改为唯一快捷键后再保存。", "快捷键已存在", owner_opt)
+                            return false
+                        }
+                        used_hotkeys[hk_norm] := title
+                    }
+                }
+            }
+        }
+        return true
+    }
+
     flush_commands_json(curr_obj) {
+        if (!this.validate_no_duplicates(curr_obj)) {
+            return false
+        }
         AppSettings.commands_obj := curr_obj
         try {
             AppSettings.FlushCommands()
+            return true
         } catch Error as e {
             MsgBox("写入 JSON 文件失败: " e.Message, "错误", 16)
+            return false
         }
     }
 
@@ -812,6 +896,8 @@ class SettingsController {
         this.load_command_tree()
         this.OnLButtonDownBound := ObjBindMethod(this, "on_lbutton_down")
         OnMessage(0x0201, this.OnLButtonDownBound)
+        this.OnKeyDownBound := ObjBindMethod(this, "OnKeyDown")
+        OnMessage(0x0100, this.OnKeyDownBound)
 
         tips_file := A_ScriptDir "\data\tips.json"
         if FileExist(tips_file) {
@@ -823,6 +909,16 @@ class SettingsController {
         }
 
         this.view.Show("w550 h440")
+    }
+
+    OnKeyDown(wParam, lParam, msg, hwnd) {
+        if (wParam == 0x2E && this.HasProp("view") && this.view && this.view.tv_alias && hwnd == this.view.tv_alias.Hwnd) {
+            selected_item := this.view.tv_alias.GetSelection()
+            if (selected_item && this.tv_map.Has(selected_item) && this.tv_map[selected_item].type == "Item") {
+                this.delete_command_item(selected_item)
+                return 0
+            }
+        }
     }
 
     BindEvents() {
@@ -837,11 +933,13 @@ class SettingsController {
         this.view.ddl_workbench.OnEvent("Change", ObjBindMethod(this, "OnWorkbenchFilter"))
         this.view.edit_search.OnEvent("Change", ObjBindMethod(this, "OnSearchFilter"))
         this.view.tv_alias.OnEvent("ItemSelect", ObjBindMethod(this, "on_command_tree_select"))
+        this.view.tv_alias.OnEvent("ContextMenu", ObjBindMethod(this, "on_command_tree_context_menu"))
 
         for idx, p in this.view.alias_pool {
             p.add.OnEvent("Click", ObjBindMethod(this, "OnAddAlias", idx))
             p.del.OnEvent("Click", ObjBindMethod(this, "OnDelAlias", idx))
             p.e.OnEvent("Change", ObjBindMethod(this, "OnAliasChange", idx))
+            p.e.OnEvent("LoseFocus", ObjBindMethod(this, "OnAliasLoseFocus", idx))
         }
 
         for idx, p in this.view.hotkey_pool {
@@ -970,6 +1068,10 @@ class SettingsController {
             OnMessage(0x0200, this.on_mouse_move_bound, 0)
             this.on_mouse_move_bound := ""
         }
+        if this.HasProp("OnKeyDownBound") && this.OnKeyDownBound {
+            OnMessage(0x0100, this.OnKeyDownBound, 0)
+            this.OnKeyDownBound := ""
+        }
 
         ; --- 2. 停止 InputHook ---
         if this.HasProp("ih") && this.ih {
@@ -995,7 +1097,23 @@ class SettingsController {
         this.hotkey_edits := []
     }
 
-    load_command_tree(filter := "") {
+    GetTreeViewScrollState() {
+        if (!this.view || !this.view.tv_alias)
+            return { top_cmd: "", hpos: 0 }
+        tv_hwnd := this.view.tv_alias.Hwnd
+        ; 0x110A = TVM_GETNEXTITEM, 0x0005 = TVGN_FIRSTVISIBLE
+        top_hItem := SendMessage(0x110A, 0x0005, 0, tv_hwnd)
+        top_cmd := ""
+        if (top_hItem && this.tv_map.Has(top_hItem)) {
+            info := this.tv_map[top_hItem]
+            if (info.type == "Item")
+                top_cmd := info.cmd
+        }
+        hpos := DllCall("GetScrollPos", "ptr", tv_hwnd, "int", 0, "int") ; SB_HORZ
+        return { top_cmd: top_cmd, hpos: hpos }
+    }
+
+    load_command_tree(filter := "", select_cmd := "", top_cmd := "", hpos := 0) {
         this.ClearRightPane()
         this.view.tv_alias.Delete()
         this.tv_map.Clear()
@@ -1054,7 +1172,51 @@ class SettingsController {
             if (catId != 0)
                 this.view.tv_alias.Modify(catId, "Expand")
         }
+
         this.CheckGlobalDirty()
+
+        ; 1. 优先还原视口最顶部的第一行可见项目 (Top Visible Item)
+        top_item_id := 0
+        if (top_cmd != "") {
+            for id, info in this.tv_map {
+                if (info.type == "Item" && info.cmd == top_cmd) {
+                    top_item_id := id
+                    break
+                }
+            }
+        }
+
+        if (top_item_id != 0) {
+            this.view.tv_alias.Modify(top_item_id, "VisFirst")
+        } else {
+            first_cat := this.view.tv_alias.GetNext()
+            if (first_cat) {
+                this.view.tv_alias.Modify(first_cat, "VisFirst")
+            }
+        }
+
+        ; 2. 选中目标命令项 (Select Target Item)
+        target_item_id := 0
+        if (select_cmd != "") {
+            for id, info in this.tv_map {
+                if (info.type == "Item" && info.cmd == select_cmd) {
+                    target_item_id := id
+                    break
+                }
+            }
+        }
+
+        if (target_item_id != 0) {
+            this.view.tv_alias.Modify(target_item_id, "Select")
+            this.on_command_tree_select(this.view.tv_alias, target_item_id)
+        }
+
+        ; 3. 还原水平滚动条位置
+        if (hpos > 0) {
+            tv_hwnd := this.view.tv_alias.Hwnd
+            DllCall("SetScrollPos", "ptr", tv_hwnd, "int", 0, "int", hpos, "int", 1)
+            SendMessage(0x0114, 4 | (hpos << 16), 0, tv_hwnd) ; WM_HSCROLL (SB_THUMBPOSITION)
+        }
     }
 
     OnWorkbenchFilter(CtrlObj, *) {
@@ -1075,15 +1237,93 @@ class SettingsController {
             return
         }
 
+        this.is_rendering := true
         res := this.view.render_detail_panel(AppSettings.GetWbName(info.category), info.cmd)
         this.alias_edits := res.alias_edits
         this.hotkey_edits := res.hotkey_edits
+        this.is_rendering := false
 
         this.CheckGlobalDirty()
         this.view.SB.SetText("")
     }
 
+    on_command_tree_context_menu(GuiCtrlObj, Item, IsRightClick, X, Y) {
+        if (!Item || !this.tv_map.Has(Item)) {
+            return
+        }
+        info := this.tv_map[Item]
+        if (info.type != "Item") {
+            return
+        }
+
+        if (GuiCtrlObj.GetSelection() != Item) {
+            GuiCtrlObj.Modify(Item, "Select")
+            this.on_command_tree_select(GuiCtrlObj, Item)
+        }
+
+        title := (info.cmd.Has("desc") && info.cmd["desc"] != "") ? info.cmd["desc"] : (info.cmd.Has("command") ? info.cmd["command"] : "该命令")
+        m := Menu()
+        m.Add("删除命令 (" . title . ")", ObjBindMethod(this, "delete_command_item", Item))
+        m.Show()
+    }
+
+    delete_command_item(Item, *) {
+        if (!Item || !this.tv_map.Has(Item)) {
+            return
+        }
+        info := this.tv_map[Item]
+        if (info.type != "Item") {
+            return
+        }
+
+        cmd := info.cmd
+        wb := info.category
+        del_idx := info.index
+        title := (cmd.Has("desc") && cmd["desc"] != "") ? cmd["desc"] : (cmd.Has("command") ? cmd["command"] : "该命令")
+
+        this.view.Opt("+OwnDialogs")
+        res := MsgBox("确定删除命令「" . title . "」？", "确认删除命令", "OKCancel Icon?")
+        if (res != "OK") {
+            return
+        }
+
+        scroll_state := this.GetTreeViewScrollState()
+        top_cmd := scroll_state.top_cmd
+        hpos := scroll_state.hpos
+
+        select_cmd := ""
+        if (AppSettings.commands_obj.Has(wb)) {
+            cmdArray := AppSettings.commands_obj[wb]
+            removed_idx := 0
+            for idx, c in cmdArray {
+                if (c == cmd) {
+                    cmdArray.RemoveAt(idx)
+                    removed_idx := idx
+                    break
+                }
+            }
+            if (removed_idx == 0 && del_idx <= cmdArray.Length) {
+                cmdArray.RemoveAt(del_idx)
+                removed_idx := del_idx
+            }
+
+            if (cmdArray.Length > 0 && removed_idx > 0) {
+                next_idx := (removed_idx <= cmdArray.Length) ? removed_idx : cmdArray.Length
+                select_cmd := cmdArray[next_idx]
+            }
+
+            if (top_cmd == cmd) {
+                top_cmd := select_cmd
+            }
+        }
+
+        this.load_command_tree(this.view.edit_search.Value, select_cmd, top_cmd, hpos)
+        this.view.SB.SetText("已删除命令：" . title)
+    }
+
     SaveInputsToCurrentCmd() {
+        if (this.HasProp("is_rendering") && this.is_rendering)
+            return
         itemId := this.view.tv_alias.GetSelection()
         if (!itemId || !this.tv_map.Has(itemId) || this.tv_map[itemId].type != "Item") {
             return
@@ -1091,21 +1331,34 @@ class SettingsController {
 
         cmd := this.tv_map[itemId].cmd
         cmd["command"] := Trim(this.view.Edit_Cmd.Value)
-        cmd["desc"] := Trim(this.view.edit_desc.Value)
 
-        cmd["aliases"] := []
+        desc_val := Trim(this.view.edit_desc.Value)
+        if (desc_val != "")
+            cmd["desc"] := desc_val
+        else if (cmd.Has("desc"))
+            cmd.Delete("desc")
+
+        new_aliases := []
         for e in this.alias_edits {
             v := Trim(e.Value)
             if (v != "")
-                cmd["aliases"].Push(v)
+                new_aliases.Push(v)
         }
+        if (new_aliases.Length > 0)
+            cmd["aliases"] := new_aliases
+        else if (cmd.Has("aliases"))
+            cmd.Delete("aliases")
 
-        cmd["hotkeys"] := []
+        new_hotkeys := []
         for e in this.hotkey_edits {
             v := Trim(e.Value)
             if (v != "")
-                cmd["hotkeys"].Push(parse_hotkey_from_display(v))
+                new_hotkeys.Push(parse_hotkey_from_display(v))
         }
+        if (new_hotkeys.Length > 0)
+            cmd["hotkeys"] := new_hotkeys
+        else if (cmd.Has("hotkeys"))
+            cmd.Delete("hotkeys")
     }
 
     OnAddAlias(idx, *) {
@@ -1171,17 +1424,63 @@ class SettingsController {
         }
     }
 
+    GetOriginalCmd(wb, cmd, index := 0) {
+        if (!this.model.original_commands_obj || !this.model.original_commands_obj.Has(wb))
+            return ""
+        orig_list := this.model.original_commands_obj[wb]
+        if (orig_list.Length == 0)
+            return ""
+
+        cmd_name := cmd.Has("command") ? cmd["command"] : ""
+        cmd_desc := cmd.Has("desc") ? cmd["desc"] : ""
+
+        ; 1. 优先按原索引位置精确比对 (command + desc 完全一致)
+        if (index >= 1 && index <= orig_list.Length) {
+            cand := orig_list[index]
+            cand_name := cand.Has("command") ? cand["command"] : ""
+            cand_desc := cand.Has("desc") ? cand["desc"] : ""
+            if (cand_name == cmd_name && cand_desc == cmd_desc) {
+                return cand
+            }
+        }
+
+        ; 2. 全局按 (command + desc) 精确查找
+        for cand in orig_list {
+            cand_name := cand.Has("command") ? cand["command"] : ""
+            cand_desc := cand.Has("desc") ? cand["desc"] : ""
+            if (cand_name == cmd_name && cand_desc == cmd_desc) {
+                return cand
+            }
+        }
+
+        ; 3. 按 command 在原索引位置比对
+        if (index >= 1 && index <= orig_list.Length) {
+            cand := orig_list[index]
+            cand_name := cand.Has("command") ? cand["command"] : ""
+            if (cand_name == cmd_name) {
+                return cand
+            }
+        }
+
+        ; 4. 退而按 command 全局查找
+        for cand in orig_list {
+            cand_name := cand.Has("command") ? cand["command"] : ""
+            if (cand_name == cmd_name) {
+                return cand
+            }
+        }
+
+        return ""
+    }
+
     CheckGlobalDirty() {
         is_dirty := this.model.check_dirty(AppSettings.commands_obj)
         this.view.btn_save.Opt(is_dirty ? "-Disabled" : "+Disabled")
 
         for id, info in this.tv_map {
             if (info.type == "Item") {
-                orig_cmd := ""
                 wb := info.category
-                if (this.model.original_commands_obj.Has(wb) && this.model.original_commands_obj[wb].Length >= info.index) {
-                    orig_cmd := this.model.original_commands_obj[wb][info.index]
-                }
+                orig_cmd := this.GetOriginalCmd(wb, info.cmd, info.index)
 
                 item_dirty := false
                 if (orig_cmd == "") {
@@ -1211,18 +1510,28 @@ class SettingsController {
     }
 
     OnDetailChange(*) {
+        if (this.HasProp("is_rendering") && this.is_rendering)
+            return
         this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
     }
 
     OnAliasChange(idx, GuiCtrlObj, *) {
+        if (this.HasProp("is_rendering") && this.is_rendering)
+            return
         p := this.view.alias_pool[idx]
         p.add.Opt((Trim(GuiCtrlObj.Value) != "") ? "-Disabled" : "+Disabled")
         this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
     }
 
+    OnAliasLoseFocus(idx, GuiCtrlObj, *) {
+        this.ValidateFieldLoseFocus("alias", idx, GuiCtrlObj)
+    }
+
     OnHotkeyChange(idx, GuiCtrlObj, *) {
+        if (this.HasProp("is_rendering") && this.is_rendering)
+            return
         p := this.view.hotkey_pool[idx]
         p.add.Opt((Trim(GuiCtrlObj.Value) != "") ? "-Disabled" : "+Disabled")
         this.SaveInputsToCurrentCmd()
@@ -1247,6 +1556,7 @@ class SettingsController {
             this.ih.Stop()
             this.ih := ""
         }
+        this.ValidateFieldLoseFocus("hotkey", idx, GuiCtrlObj)
     }
 
     OnInputHookEnd(idx, GuiCtrlObj, ih) {
@@ -1282,6 +1592,76 @@ class SettingsController {
                 this.OnHotkeyFocus(idx, GuiCtrlObj)
         }
     }
+
+    ValidateFieldLoseFocus(type, idx, GuiCtrlObj) {
+        if (this.HasProp("is_rendering") && this.is_rendering)
+            return
+        if (this.HasProp("is_validating") && this.is_validating)
+            return
+        val := Trim(GuiCtrlObj.Value)
+        if (val == "")
+            return
+
+        itemId := this.view.tv_alias.GetSelection()
+        if (!itemId || !this.tv_map.Has(itemId) || this.tv_map[itemId].type != "Item")
+            return
+        info := this.tv_map[itemId]
+        wb := info.category
+        wb_name := AppSettings.GetWbName(wb)
+        curr_title := (info.cmd.Has("desc") && info.cmd["desc"] != "") ? info.cmd["desc"] : (info.cmd.Has("command") ? info.cmd["command"] : "当前命令")
+
+        is_alias := (type == "alias")
+        typeName := is_alias ? "别名" : "快捷键"
+        dlgTitle := is_alias ? "用户别名已存在" : "快捷键已存在"
+        edits := is_alias ? this.alias_edits : this.hotkey_edits
+        propKey := is_alias ? "aliases" : "hotkeys"
+        val_display := is_alias ? val : format_hotkey_for_display(val)
+
+        norm_func := (v) => is_alias ? StrLower(Trim(v)) : normalize_hotkey_for_cmp(v)
+        target_norm := norm_func(val)
+        if (target_norm == "")
+            return
+
+        for i, e in edits {
+            if (i != idx && norm_func(e.Value) == target_norm) {
+                this.is_validating := true
+                GuiCtrlObj.Value := ""
+                this.SaveInputsToCurrentCmd()
+                this.CheckGlobalDirty()
+                this.ShowDuplicateMsgBox(wb_name, typeName, val_display, curr_title, curr_title, dlgTitle, is_alias)
+                this.is_validating := false
+                return
+            }
+        }
+
+        if (AppSettings.commands_obj.Has(wb)) {
+            for c in AppSettings.commands_obj[wb] {
+                if (c == info.cmd)
+                    continue
+                if (c.Has(propKey)) {
+                    for item_val in c[propKey] {
+                        if (norm_func(item_val) == target_norm) {
+                            title := (c.Has("desc") && c["desc"] != "") ? c["desc"] : (c.Has("command") ? c["command"] : "未知命令")
+                            this.is_validating := true
+                            GuiCtrlObj.Value := ""
+                            this.SaveInputsToCurrentCmd()
+                            this.CheckGlobalDirty()
+                            this.ShowDuplicateMsgBox(wb_name, typeName, val_display, title, curr_title, dlgTitle, is_alias)
+                            this.is_validating := false
+                            return
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ShowDuplicateMsgBox(wb_name, typeName, val, t1, t2, dlgTitle, is_alias) {
+        tail_tip := is_alias ? "请重新输入。" : "请选择其他快捷键。"
+        owner_opt := "Icon! 16 Owner" . this.view.Hwnd
+        MsgBox("在工作台「" . wb_name . "」内发现重复" . typeName . "！`n`n" . typeName . "：「" . val . "」`n冲突命令 1：「" . t1 . "」`n冲突命令 2：「" . t2 . "」`n`n同一个工作台内的" . typeName . "不允许重复，" . tail_tip, dlgTitle, owner_opt)
+    }
+
 
     OnCalcHotkeyFocus(GuiCtrlObj, *) {
         if this.HasProp("ih") && this.ih {
@@ -1433,17 +1813,15 @@ class SettingsController {
             return
         }
         wb := this.tv_map[itemId].category
-        index := this.tv_map[itemId].index
+        info := this.tv_map[itemId]
 
-        orig_cmd := ""
-        if (this.model.original_commands_obj.Has(wb) && this.model.original_commands_obj[wb].Length >= index) {
-            orig_cmd := this.model.original_commands_obj[wb][index]
-        }
+        orig_cmd := this.GetOriginalCmd(wb, info.cmd, info.index)
         if (orig_cmd != "") {
             restored_cmd := JSON.parse(JSON.stringify(orig_cmd))
             this.tv_map[itemId].cmd := restored_cmd
-            if (AppSettings.commands_obj.Has(wb) && AppSettings.commands_obj[wb].Length >= index)
-                AppSettings.commands_obj[wb][index] := restored_cmd
+            if (AppSettings.commands_obj.Has(wb) && info.index <= AppSettings.commands_obj[wb].Length) {
+                AppSettings.commands_obj[wb][info.index] := restored_cmd
+            }
             this.on_command_tree_select(this.view.tv_alias, itemId)
             this.CheckGlobalDirty()
             this.view.SB.SetText("当前命令已恢复到初始状态。")
@@ -1464,10 +1842,8 @@ class SettingsController {
         hotkey_changed := false
         for id, info in this.tv_map {
             if (info.type == "Item") {
-                orig_cmd := ""
                 wb := info.category
-                if (this.model.original_commands_obj.Has(wb) && this.model.original_commands_obj[wb].Length >= info.index)
-                    orig_cmd := this.model.original_commands_obj[wb][info.index]
+                orig_cmd := this.GetOriginalCmd(wb, info.cmd, info.index)
                 if (orig_cmd == "") {
                     hotkey_changed := true
                     break
@@ -1482,7 +1858,9 @@ class SettingsController {
             }
         }
 
-        this.model.flush_commands_json(AppSettings.commands_obj)
+        if (!this.model.flush_commands_json(AppSettings.commands_obj)) {
+            return false
+        }
         this.model.init()
         this.load_command_tree(this.view.edit_search.Value)
 
@@ -2435,7 +2813,9 @@ class SettingsController {
             }
 
             if (added_count > 0) {
-                this.model.flush_commands_json(AppSettings.commands_obj)
+                if (!this.model.flush_commands_json(AppSettings.commands_obj)) {
+                    return
+                }
                 this.model.init()
                 this.load_command_tree(this.view.edit_search.Value)
 
@@ -2576,7 +2956,9 @@ class SettingsController {
         }
 
         AppSettings.commands_obj[target_wb] := new_array
-        this.model.flush_commands_json(AppSettings.commands_obj)
+        if (!this.model.flush_commands_json(AppSettings.commands_obj)) {
+            return
+        }
         MsgBox("成功！请重新载入UCLC使修改生效。", "成功", "Iconi")
         this.on_reset_import_view()
     }
@@ -2630,10 +3012,10 @@ class UpdateGUI extends Gui {
         if (minMax == -1)
             return
         try {
-            this.txt_latest.Move(,, width - 50)
-            this.txt_current.Move(,, width - 50)
-            this.gb_notes.Move(,, width - 40, height - 145)
-            this.edit_notes.Move(,, width - 64, height - 182)
+            this.txt_latest.Move(, , width - 50)
+            this.txt_current.Move(, , width - 50)
+            this.gb_notes.Move(, , width - 40, height - 145)
+            this.edit_notes.Move(, , width - 64, height - 182)
             btnY := height - 52
             this.btn_skip.Move(, btnY)
             this.btn_cancel.Move(width - 275, btnY)

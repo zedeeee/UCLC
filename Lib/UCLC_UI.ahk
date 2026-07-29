@@ -707,8 +707,8 @@ class SettingsView extends Gui {
 
         ; [1] CATIA 面板
         c1_chk := this.Chk_CatiaMButton := this.Add("Checkbox", "x225 y85", "中键功能增强")
-        c1_chk.ToolTip := "在 CATIA 弹窗中：中键 = 确认，Alt + 中键 = 预览，Shift + 中键 = 应用"
-        c1_desc := this.Add("Text", "x225 y120 w290 c666666", "说明：增强 CATIA 弹窗与绘图区的鼠标中键功能：`n`n• 单击中键 ＝ 确认 (OK)`n• Alt ＋ 中键 ＝ 预览 (Preview)`n• Shift ＋ 中键 ＝ 应用 (Apply)")
+        c1_chk.ToolTip := "在 CATIA 弹窗中：Alt + 中键 = 确认，Shift + 中键 = 预览"
+        c1_desc := this.Add("Text", "x225 y120 w290 c666666", "说明：增强 CATIA 弹窗中的鼠标中键组合快捷键：`n`n• Alt ＋ 中键 ＝ 确认 (OK)`n• Shift ＋ 中键 ＝ 预览 (Preview)")
         this.int_panes[1].Push(c1_chk, c1_desc)
 
         ; [2] 输入法自动切换面板

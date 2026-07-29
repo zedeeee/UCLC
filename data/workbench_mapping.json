@@ -780,15 +780,6 @@
             "Russian": "Деталь (легкая)",
             "Simplified_Chinese": "零件（轻型）"
         },
-        "CATShapeDesignWorkbench": {
-            "English": "Generative Shape Design",
-            "French": "Generative Shape Design",
-            "German": "Generative Shape Design",
-            "Italian": "Generative Shape Design",
-            "Japanese": "ｼﾞｪﾈﾚｰﾃｨﾌﾞ･ｼｪｲﾌﾟ･ﾃﾞｻﾞｲﾝ",
-            "Russian": "Поверхностное моделирование машиностроительных деталей",
-            "Simplified_Chinese": "创成式外形设计"
-        },
         "CATSpdFunctionalPartWkb": {
             "Japanese": "ﾌｧﾝｸｼｮﾅﾙ ﾊﾟｰﾄ ﾃﾞｻﾞｲﾝ"
         },

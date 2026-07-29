@@ -1214,7 +1214,7 @@ class CommandEngine {
 
         original_id := command_id_and_cb_array[1]
 
-        if (current_workbench == "创成式外形设计") {
+        if (current_workbench == "CATShapeDesignWorkbenchWkb" || current_workbench == "CATLogicalShapeDesignWorkbench") {
             instance := CATIAInstance.get_instance(power_input_hwnd)
             command_id := instance.hdr_cache.Has(original_id) ? instance.hdr_cache[original_id] : original_id
 

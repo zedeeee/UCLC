@@ -2446,11 +2446,21 @@ class SettingsController {
         this.render_import_lv()
     }
 
+    get_item_attr(item, attr_name, default_val := "") {
+        if !IsObject(item)
+            return default_val
+        if HasProp(item, attr_name)
+            return item.%attr_name%
+        if (Type(item) == "Map" && item.Has(attr_name))
+            return item[attr_name]
+        return default_val
+    }
+
     render_import_lv() {
         items := this.model.import_items
         c_new := 0, c_upd := 0, c_ovr := 0, c_sam := 0, c_del := 0, c_ign := 0
         for item in items {
-            a := item.action
+            a := this.get_item_attr(item, "action")
             if (a == "+") {
                 c_new++
             } else if (a == "T") {
@@ -2487,10 +2497,13 @@ class SettingsController {
         this.view.txt_empty_lv.Visible := false
 
         for item in items {
-            a := item.action
+            a := this.get_item_attr(item, "action")
             if ((a == "+" && showNew) || (a == "T" && showUpdate) || (a == "C" && showOverwrite)
                 || (a == "=" && showSame) || (a == "D" && showDelete) || (a == "i" && showIgnore)) {
-                this.view.lv_import.Add("", item.title, item.local_id, item.imported_id, a)
+                title := this.get_item_attr(item, "title")
+                local_id := this.get_item_attr(item, "local_id")
+                imported_id := this.get_item_attr(item, "imported_id")
+                this.view.lv_import.Add("", title, local_id, imported_id, a)
             }
         }
         if (this.view.lv_import.GetCount() == 0) {
@@ -2576,8 +2589,11 @@ class SettingsController {
             old_id := this.view.lv_import.GetText(r, 2)
             new_id := this.view.lv_import.GetText(r, 3)
             for item in this.model.import_items {
-                if (item.title == title && item.local_id == old_id && item.imported_id == new_id) {
-                    item.action := "D"
+                if (this.get_item_attr(item, "title") == title && this.get_item_attr(item, "local_id") == old_id && this.get_item_attr(item, "imported_id") == new_id) {
+                    if HasProp(item, "action")
+                        item.action := "D"
+                    else if (Type(item) == "Map")
+                        item["action"] := "D"
                     break
                 }
             }
@@ -2600,8 +2616,11 @@ class SettingsController {
             old_id := this.view.lv_import.GetText(r, 2)
             new_id := this.view.lv_import.GetText(r, 3)
             for item in this.model.import_items {
-                if (item.title == title && item.local_id == old_id && item.imported_id == new_id) {
-                    item.action := "i"
+                if (this.get_item_attr(item, "title") == title && this.get_item_attr(item, "local_id") == old_id && this.get_item_attr(item, "imported_id") == new_id) {
+                    if HasProp(item, "action")
+                        item.action := "i"
+                    else if (Type(item) == "Map")
+                        item["action"] := "i"
                     break
                 }
             }
@@ -2916,21 +2935,24 @@ class SettingsController {
         strNew := "", strUpd := "", strOvr := "", strDel := ""
 
         for item in this.model.import_items {
-            if !selected_keys.Has(item.title "_" item.local_id "_" item.imported_id)
+            item_title := this.get_item_attr(item, "title")
+            item_local := this.get_item_attr(item, "local_id")
+            item_imported := this.get_item_attr(item, "imported_id")
+            if !selected_keys.Has(item_title "_" item_local "_" item_imported)
                 continue
-            a := item.action
+            a := this.get_item_attr(item, "action")
             if (a == "+") {
                 c_new++
-                strNew .= "- " item.title " (" item.imported_id ")`r`n"
+                strNew .= "- " item_title " (" item_imported ")`r`n"
             } else if (a == "T") {
                 c_upd++
-                strUpd .= "- " item.title " (" item.imported_id ")`r`n"
+                strUpd .= "- " item_title " (" item_imported ")`r`n"
             } else if (a == "C") {
                 c_ovr++
-                strOvr .= "- " item.title " (" item.imported_id ")`r`n"
+                strOvr .= "- " item_title " (" item_imported ")`r`n"
             } else if (a == "D") {
                 c_del++
-                strDel .= "- " item.title " (" item.local_id ")`r`n"
+                strDel .= "- " item_title " (" item_local ")`r`n"
             }
         }
 
@@ -2979,34 +3001,58 @@ class SettingsController {
         }
 
         new_array := []
+        added_command_ids := Map()
+        replaced_old_ids := Map()
+
         for item in this.model.import_items {
-            title := item.title
-            old_id := item.local_id
-            action := item.action
-            new_id := item.imported_id
+            title := this.get_item_attr(item, "title")
+            old_id := this.get_item_attr(item, "local_id")
+            action := this.get_item_attr(item, "action")
+            new_id := this.get_item_attr(item, "imported_id")
+
+            if selected_keys.Has(title "_" old_id "_" new_id) && action == "C" {
+                if (old_id != "" && old_id != new_id)
+                    replaced_old_ids[old_id] := true
+            }
+        }
+
+        for item in this.model.import_items {
+            title := this.get_item_attr(item, "title")
+            old_id := this.get_item_attr(item, "local_id")
+            action := this.get_item_attr(item, "action")
+            new_id := this.get_item_attr(item, "imported_id")
 
             if !selected_keys.Has(title "_" old_id "_" new_id)
                 action := "i"
 
+            cmd_to_push := ""
             if (action == "i" || action == "=") {
-                if (old_id != "" && local_by_id.Has(old_id))
-                    new_array.Push(local_by_id[old_id])
+                if (old_id != "" && !replaced_old_ids.Has(old_id) && local_by_id.Has(old_id))
+                    cmd_to_push := local_by_id[old_id]
             } else if (action == "+") {
-                new_array.Push(Map("desc", title, "command", new_id, "aliases", [], "hotkeys", []))
+                if (new_id != "")
+                    cmd_to_push := Map("desc", title, "command", new_id, "aliases", [], "hotkeys", [])
             } else if (action == "T") {
-                if local_by_id.Has(old_id) {
-                    cmd := local_by_id[old_id].Clone()
-                    cmd["desc"] := title
-                    new_array.Push(cmd)
+                if (old_id != "" && local_by_id.Has(old_id)) {
+                    cmd_to_push := local_by_id[old_id].Clone()
+                    cmd_to_push["desc"] := title
                 }
             } else if (action == "C") {
-                if local_by_id.Has(old_id) {
-                    cmd := local_by_id[old_id].Clone()
-                    cmd["command"] := new_id
-                    new_array.Push(cmd)
+                if (old_id != "" && local_by_id.Has(old_id)) {
+                    cmd_to_push := local_by_id[old_id].Clone()
+                    cmd_to_push["command"] := new_id
+                    cmd_to_push["desc"] := title
                 }
             } else if (action == "D") {
                 ; drop
+            }
+
+            if IsObject(cmd_to_push) {
+                cmd_id := (Type(cmd_to_push) == "Map") ? (cmd_to_push.Has("command") ? cmd_to_push["command"] : "") : (HasProp(cmd_to_push, "command") ? cmd_to_push.command : "")
+                if (cmd_id != "" && !added_command_ids.Has(cmd_id)) {
+                    added_command_ids[cmd_id] := true
+                    new_array.Push(cmd_to_push)
+                }
             }
         }
 

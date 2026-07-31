@@ -1,3 +1,18 @@
+# ==============================================================================
+# 【脚本作用】
+# 本脚本为 UCLC 项目的静态多语言字典批量生成器。脱离 CATIA 运行时，通过直接扫描
+# CATIA 安装目录下的 resources\msgcatalog 资源库，逆向解析 .CATRsc 与 .CATNls 文件，
+# 提取 Workbench / Workshop 的底层内部 ID (Access 属性) 及其在 8 种主要语言下的
+# UI 显示名称 (Title 属性)，最终生成全语种映射字典保存至 data\workbench_mapping.json。
+#
+# 【使用方法】
+# 1. 直接运行脚本：python generate_workbench_mapping.py
+# 2. 脚本会自动侦测当前系统中 CATIA 的 msgcatalog 物理目录；若未侦测到或需指定特定版本，
+#    可根据提示手动输入 msgcatalog 的绝对路径。
+# 3. 脚本自动处理各语言包的特殊字符编码 (如 Shift-JIS / GBK / CP1252 等)，并在 UCLC 
+#    根目录下的 data 文件夹中生成完整映射字典。
+# ==============================================================================
+
 import os
 import glob
 import re

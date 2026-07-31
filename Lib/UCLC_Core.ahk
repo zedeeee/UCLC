@@ -1027,52 +1027,7 @@ class CATIAInstance {
         return false
     }
 
-    static mbutton_suppressed := false
 
-    static handle_suppressed_aux(btn) {
-        this.mbutton_suppressed := false
-        SendInput "{Blind}{MButton Down}{" . btn . " Down}"
-        KeyWait btn
-        SendInput "{Blind}{" . btn . " Up}"
-    }
-
-    static handle_mbutton_smart() {
-        MouseGetPos(&startX, &startY)
-        startTime := A_TickCount
-        is_native := false
-        this.mbutton_suppressed := true
-
-        try {
-            while GetKeyState("MButton", "P") {
-                Sleep 10
-                if !this.mbutton_suppressed
-                    break
-                MouseGetPos(&currX, &currY)
-                if (abs(currX - startX) > 5 || abs(currY - startY) > 5 || (A_TickCount - startTime) >= 200 || GetKeyState("Ctrl", "P") || GetKeyState("Shift", "P") || GetKeyState("Alt", "P") || GetKeyState("RButton", "P") || GetKeyState("LButton", "P")) {
-                    is_native := true
-                    break
-                }
-            }
-
-            if !this.mbutton_suppressed {
-                KeyWait "MButton"
-                SendInput "{Blind}{MButton Up}"
-                return
-            }
-
-            this.mbutton_suppressed := false
-
-            if is_native {
-                SendInput "{Blind}{MButton Down}"
-                KeyWait "MButton"
-                SendInput "{Blind}{MButton Up}"
-            } else {
-                this.click_dialog_confirm_button()
-            }
-        } finally {
-            this.mbutton_suppressed := false
-        }
-    }
 
     static click_dialog_button(keywords, target_hwnd := 0) {
         if !target_hwnd {
@@ -1214,7 +1169,7 @@ class CommandEngine {
 
         original_id := command_id_and_cb_array[1]
 
-        if (current_workbench == "创成式外形设计") {
+        if (current_workbench == "CATShapeDesignWorkbenchWkb" || current_workbench == "CATLogicalShapeDesignWorkbench") {
             instance := CATIAInstance.get_instance(power_input_hwnd)
             command_id := instance.hdr_cache.Has(original_id) ? instance.hdr_cache[original_id] : original_id
 

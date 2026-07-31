@@ -78,6 +78,7 @@ class UCLCUpdater {
                 latestVersion := ""
                 releaseNotes := ""
                 downloadUrl := ""
+                is_preview := false
 
                 if (AppSettings.Updater_Channel == "Preview") {
                     ; 取返回数组的第一个元素
@@ -86,6 +87,7 @@ class UCLCUpdater {
                         latestVersion := target.Has("tag_name") ? target["tag_name"] : ""
                         releaseNotes := (target.Has("body") && target["body"] != "") ? target["body"] : "暂无更新说明。"
                         downloadUrl := target.Has("html_url") ? target["html_url"] : ""
+                        is_preview := target.Has("prerelease") ? target["prerelease"] : false
                     } else {
                         throw(Error("无法解析 Releases 数组"))
                     }
@@ -94,6 +96,7 @@ class UCLCUpdater {
                     latestVersion := response.Has("tag_name") ? response["tag_name"] : ""
                     releaseNotes := (response.Has("body") && response["body"] != "") ? response["body"] : "暂无更新说明。"
                     downloadUrl := response.Has("html_url") ? response["html_url"] : ""
+                    is_preview := response.Has("prerelease") ? response["prerelease"] : false
                 }
                 
                 ; 判断是否跳过该版本
@@ -104,10 +107,12 @@ class UCLCUpdater {
                     StateManager.Set("AvailableUpdateVersion", latestVersion)
                     StateManager.Set("LatestReleaseNotes", releaseNotes)
                     StateManager.Set("LatestDownloadUrl", downloadUrl)
+                    StateManager.Set("LatestIsPreview", is_preview ? "1" : "0")
                     if IsSet(add_coustom_tray_menu)
                         try add_coustom_tray_menu()
                     if IsSet(SettingsController)
                         try SettingsController.RefreshUpdateNotice()
+                    
                     if (!isManual) {
                         lastVer := StateManager.Get("LastPromptVersion", "")
                         lastDate := StateManager.Get("LastPromptDate", "")
@@ -116,9 +121,11 @@ class UCLCUpdater {
                             return
                         StateManager.Set("LastPromptVersion", latestVersion)
                         StateManager.Set("LastPromptDate", today)
-                        is_preview := (InStr(latestVersion, "-") || InStr(latestVersion, "dev") || InStr(latestVersion, "beta") || InStr(latestVersion, "alpha") || InStr(latestVersion, "rc") || InStr(latestVersion, "preview"))
                         ver_tag := is_preview ? " [预览版]" : " [稳定版]"
                         try TrayTip("✨ 发现新版本 " latestVersion ver_tag, "【UCLC】更新提醒", "Iconi")
+                    } else {
+                        if IsSet(ShowUpdateGUI)
+                            try ShowUpdateGUI(latestVersion, UCLC_VERSION, releaseNotes, downloadUrl, parentGui)
                     }
                 } else {
                     StateManager.Set("AvailableUpdateVersion", "")
@@ -151,16 +158,16 @@ class UCLCUpdater {
         v1 := RegExReplace(v1, "^v", "")
         v2 := RegExReplace(v2, "^v", "")
         
-        ; 使用正则分割: 提取 major.minor.patch 和 后缀 pre-release
-        RegExMatch(v1, "^(\d+)\.(\d+)\.(\d+)(?:-(.+))?$", &m1)
-        RegExMatch(v2, "^(\d+)\.(\d+)\.(\d+)(?:-(.+))?$", &m2)
+        ; 匹配主、次、修订号，并可选提取 -[数字]-g[hash] 形式的 commit count
+        RegExMatch(v1, "^(\d+)\.(\d+)\.(\d+)(?:-(\d+)-g[a-f0-9]+)?", &m1)
+        RegExMatch(v2, "^(\d+)\.(\d+)\.(\d+)(?:-(\d+)-g[a-f0-9]+)?", &m2)
         
         if (!m1 || !m2) {
             ; 格式不符合则直接比对字符串
             return StrCompare(v1, v2, true)
         }
 
-        ; 比较主、次、修订号
+        ; 1. 比较主、次、修订号
         loop 3 {
             val1 := Integer(m1[A_Index])
             val2 := Integer(m2[A_Index])
@@ -170,20 +177,15 @@ class UCLCUpdater {
                 return -1
         }
         
-        ; 数字部分相同，比较 pre-release
-        pre1 := m1[4]
-        pre2 := m2[4]
+        ; 2. 比较 commit_count (m[4])
+        count1 := m1[4] == "" ? 0 : Integer(m1[4])
+        count2 := m2[4] == "" ? 0 : Integer(m2[4])
         
-        ; 正式版 (无pre-release) 永远比 预览版 大
-        if (pre1 == "" && pre2 != "")
+        if (count1 > count2)
             return 1
-        if (pre1 != "" && pre2 == "")
+        if (count1 < count2)
             return -1
-        if (pre1 == pre2)
-            return 0
             
-        ; 都带预发布后缀，提取后缀中的数字部分进行比对
-        ; 为了简化，直接按照 ASCII 排序进行比对
-        return StrCompare(pre1, pre2, true) > 0 ? 1 : -1
+        return 0
     }
 }

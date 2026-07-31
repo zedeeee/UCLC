@@ -772,7 +772,7 @@ class SettingsView extends Gui {
         avail_ver := ""
         try avail_ver := StateManager.Get("AvailableUpdateVersion", "")
         has_notice := (AppSettings.Updater_Enabled && avail_ver != "")
-        is_preview := (InStr(avail_ver, "-") || InStr(avail_ver, "dev") || InStr(avail_ver, "beta") || InStr(avail_ver, "alpha") || InStr(avail_ver, "rc") || InStr(avail_ver, "preview"))
+        is_preview := (StateManager.Get("LatestIsPreview", "0") == "1")
         ver_tag := is_preview ? " [预览版]" : " [稳定版]"
         this.Lbl_UpdateNotice := this.Add("Text", "x40 y312 w340 cRed w700" . (has_notice ? "" : " Hidden"), has_notice ? "✨ 发现新版本 " avail_ver ver_tag "！" : "")
         this.Link_ViewUpdate := this.Add("Link", "x390 y312 w130" . (has_notice ? "" : " Hidden"), '<a id="view_update">查看更新内容</a>')
@@ -2603,7 +2603,7 @@ class SettingsController {
             try avail_ver := StateManager.Get("AvailableUpdateVersion", "")
             has_notice := (AppSettings.Updater_Enabled && avail_ver != "")
             try {
-                is_preview := (InStr(avail_ver, "-") || InStr(avail_ver, "dev") || InStr(avail_ver, "beta") || InStr(avail_ver, "alpha") || InStr(avail_ver, "rc") || InStr(avail_ver, "preview"))
+                is_preview := (StateManager.Get("LatestIsPreview", "0") == "1")
                 ver_tag := is_preview ? " [预览版]" : " [稳定版]"
                 this.instance.view.Lbl_UpdateNotice.Text := has_notice ? "✨ 发现新版本 " avail_ver ver_tag "！" : ""
                 this.instance.view.Lbl_UpdateNotice.Opt(has_notice ? "-Hidden" : "+Hidden")
@@ -3494,7 +3494,7 @@ class UpdateGUI extends Gui {
         this.latestVersion := latestVersion
         this.downloadUrl := downloadUrl
 
-        is_preview := (InStr(latestVersion, "-") || InStr(latestVersion, "dev") || InStr(latestVersion, "beta") || InStr(latestVersion, "alpha") || InStr(latestVersion, "rc") || InStr(latestVersion, "preview"))
+        is_preview := (StateManager.Get("LatestIsPreview", "0") == "1")
         ver_tag := is_preview ? " [预览版]" : " [稳定版]"
         this.SetFont("s13 bold c0078D7", "Segoe UI Emoji")
         this.txt_latest := this.Add("Text", "x25 y20 w470 h25", "✨ 发现新版本 " latestVersion ver_tag)
@@ -3522,7 +3522,7 @@ class UpdateGUI extends Gui {
     UpdateData(latestVersion, currentVersion, releaseNotes, downloadUrl) {
         this.latestVersion := latestVersion
         this.downloadUrl := downloadUrl
-        is_preview := (InStr(latestVersion, "-") || InStr(latestVersion, "dev") || InStr(latestVersion, "beta") || InStr(latestVersion, "alpha") || InStr(latestVersion, "rc") || InStr(latestVersion, "preview"))
+        is_preview := (StateManager.Get("LatestIsPreview", "0") == "1")
         ver_tag := is_preview ? " [预览版]" : " [稳定版]"
         this.txt_latest.Value := "✨ 发现新版本 " latestVersion ver_tag
         this.txt_current.Value := "当前版本: " currentVersion

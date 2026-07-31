@@ -627,7 +627,7 @@ class SettingsView extends Gui {
         this.ddl_workbench := this.Add("DropDownList", "x295 y40 w195 Choose1", ["全部工作台"])
         this.ddl_workbench.ToolTip := "按所属工作台过滤左侧命令列表"
 
-        this.Add("Text", "x235 y75 w60", "搜　索:")
+        this.Txt_Search := this.Add("Text", "x235 y75 w60", "搜　索:")
         this.edit_search := this.Add("Edit", "x295 y72 w195")
         this.edit_search.ToolTip := "支持拼音首字母模糊匹配"
 
@@ -675,8 +675,10 @@ class SettingsView extends Gui {
             this.hotkey_pool.Push({ e: e, add: btn_add, del: btn_del })
         }
 
-        this.Btn_Revert := this.Add("Button", "x250 y285 w105 h28 Hidden Disabled", "撤销修改")
-        this.btn_save := this.Add("Button", "x385 y285 w105 h28 Disabled", "保存修改")
+        this.Btn_Revert := this.Add("Button", "x250 y380 w105 h28 Hidden Disabled", "撤销")
+        this.Btn_Revert.ToolTip := "撤销当前命令修改"
+        this.btn_save := this.Add("Button", "x385 y380 w105 h28 Disabled", "保存")
+        this.btn_save.ToolTip := "保存全局所有修改"
         this.SB := this.Add("StatusBar")
         version_str := AppSettings.Version
         ; 动态计算分段位置（收紧字宽：英文约 6.5px，加上 15px 边距）
@@ -721,11 +723,11 @@ class SettingsView extends Gui {
         ; [3] Everything 快速呼出面板
         c3_chk := this.Chk_Everything := this.Add("Checkbox", "x225 y85", "Everything 快速呼出")
         c3_chk.ToolTip := "双击右 Ctrl 键或按下设定快捷键唤起 Everything"
-        c3_lbl := this.Add("Text", "x225 y120 w290", "Everything.exe 可执行文件路径:")
+        c3_lbl := this.Txt_EverythingPath := this.Add("Text", "x225 y120 w290", "Everything.exe 可执行文件路径:")
         c3_edit := this.Edit_EverythingPath := this.Add("Edit", "x225 y140 w255 h24", "")
         c3_btn := this.Btn_BrowseEverything := this.Add("Button", "x485 y139 w35 h24", "...")
         c3_btn.ToolTip := "选择 Everything.exe 所在路径"
-        c3_lbl2 := this.Add("Text", "x225 y178 w150", "显示窗口快捷键 (热键):")
+        c3_lbl2 := this.Txt_EverythingHotkey := this.Add("Text", "x225 y178 w150", "显示窗口快捷键 (热键):")
         c3_hkedit := this.Edit_EverythingHotkey := this.Add("Edit", "x380 y175 w140 h24", "")
         c3_desc := this.Add("Text", "x225 y210 w290 h140 c666666", "说明：支持双击【右 Ctrl】或按设定的热键唤起 Everything。`n`n💡 提示：本软件仅读取热键配置。如需修改，请在 Everything「选项」->「键盘」->「显示窗口」中设置，完成后重新载入本脚本生效。")
         this.int_panes[3].Push(c3_chk, c3_lbl, c3_edit, c3_btn, c3_lbl2, c3_hkedit, c3_desc)
@@ -830,56 +832,60 @@ class SettingsView extends Gui {
         aliases := (cmd.Has("aliases") && cmd["aliases"].Length > 0) ? cmd["aliases"] : [""]
         alias_edits := []
 
+        ; 限制别名最多 3 个
         for idx, al in aliases {
-            if (idx > 10)
+            if (idx > 3)
                 break
             p := this.alias_pool[idx]
             p.e.Value := al
-            p.e.Move(, cur_y)
-            p.add.Move(, cur_y)
-            p.del.Move(, cur_y)
+            p.e.Move(295, cur_y, 135, 22)
+            p.add.Move(440, cur_y, 24, 22)
+            p.del.Move(466, cur_y, 24, 22)
 
             p.e.Opt("-Hidden")
             p.add.Opt("-Hidden")
             p.del.Opt("-Hidden")
 
-            p.add.Opt((Trim(al) != "") ? "-Disabled" : "+Disabled")
+            ; 达到 3 个别名上限时禁用 ➕ 按钮
+            p.add.Opt((Trim(al) != "" && aliases.Length < 3) ? "-Disabled" : "+Disabled")
             p.del.Opt((aliases.Length > 1) ? "-Disabled" : "+Disabled")
             alias_edits.Push(p.e)
-            cur_y += 28
+            cur_y += 26
         }
 
-        cur_y += 6
-        this.Txt_Hotkey.Move(, cur_y + 3)
+        cur_y += 2
+        this.Txt_Hotkey.Move(, cur_y + 2)
         this.Txt_Hotkey.Opt("-Hidden")
 
         hotkeys := (cmd.Has("hotkeys") && cmd["hotkeys"].Length > 0) ? cmd["hotkeys"] : [""]
         hotkey_edits := []
 
+        ; 限制快捷键最多 2 个
         for idx, hk in hotkeys {
-            if (idx > 10)
+            if (idx > 2)
                 break
             p := this.hotkey_pool[idx]
             try p.e.Value := format_hotkey_for_display(hk)
             catch
                 p.e.Value := ""
-            p.e.Move(, cur_y)
-            p.add.Move(, cur_y)
-            p.del.Move(, cur_y)
+            p.e.Move(295, cur_y, 135, 22)
+            p.add.Move(440, cur_y, 24, 22)
+            p.del.Move(466, cur_y, 24, 22)
 
             p.e.Opt("-Hidden")
             p.add.Opt("-Hidden")
             p.del.Opt("-Hidden")
 
-            p.add.Opt((Trim(hk) != "") ? "-Disabled" : "+Disabled")
+            ; 达到 2 个快捷键上限时禁用 ➕ 按钮
+            p.add.Opt((Trim(hk) != "" && hotkeys.Length < 2) ? "-Disabled" : "+Disabled")
             p.del.Opt((hotkeys.Length > 1) ? "-Disabled" : "+Disabled")
             hotkey_edits.Push(p.e)
-            cur_y += 28
+            cur_y += 26
         }
 
-        cur_y += 12
-        this.Btn_Revert.Move(250, cur_y)
-        this.btn_save.Move(385, cur_y)
+        ; 像素级绝对水平对齐左侧【导入命令ID】按钮 (y=380, h28)
+        this.Btn_Revert.Move(250, 380)
+        this.btn_save.Move(385, 380)
         this.Btn_Revert.Opt("-Hidden")
 
         return { alias_edits: alias_edits, hotkey_edits: hotkey_edits }
@@ -999,6 +1005,14 @@ class SettingsController {
         this.view.Btn_ManageIME.OnEvent("Click", ObjBindMethod(this, "OnOpenImeRulesModal"))
 
         this.view.Btn_OpenCmdLib.OnEvent("Click", ObjBindMethod(this, "OnOpenCmdLibraryModal"))
+
+        ; 双击标题快速清空输入框 (Issue #43)
+        this.view.Txt_Search.OnEvent("DoubleClick", (*) => (this.view.edit_search.Value := "", this.OnSearchFilter(this.view.edit_search), this.view.edit_search.Focus(), this.view.SB.SetText("已快速清空搜索框")))
+        this.view.Txt_Alias.OnEvent("DoubleClick", (*) => this.ClearAllAliases())
+        this.view.Txt_Hotkey.OnEvent("DoubleClick", (*) => this.ClearAllHotkeys())
+        this.view.Txt_EverythingPath.OnEvent("DoubleClick", (*) => (this.view.Edit_EverythingPath.Value := "", this.view.Edit_EverythingPath.Focus(), this.view.SB.SetText("已清空 Everything 可执行文件路径")))
+        this.view.Txt_EverythingHotkey.OnEvent("DoubleClick", (*) => (this.view.Edit_EverythingHotkey.Value := "", this.view.Edit_EverythingHotkey.Focus(), this.view.SB.SetText("已清空 Everything 呼出热键")))
+        this.view.Chk_Calc.OnEvent("DoubleClick", (*) => (this.view.Edit_CalcHotkey.Value := "", this.view.Edit_CalcHotkey.Focus(), this.view.SB.SetText("已清空计算器热键")))
     }
 
     LoadGeneralSettings() {
@@ -1610,6 +1624,8 @@ class SettingsController {
         if (!cmd.Has("aliases")) {
             cmd["aliases"] := []
         }
+        if (cmd["aliases"].Length >= 3)
+            return
         cmd["aliases"].InsertAt(idx + 1, "")
         this.on_command_tree_select(this.view.tv_alias, itemId)
     }
@@ -1630,6 +1646,8 @@ class SettingsController {
         if (!cmd.Has("hotkeys")) {
             cmd["hotkeys"] := []
         }
+        if (cmd["hotkeys"].Length >= 2)
+            return
         cmd["hotkeys"].InsertAt(idx + 1, "")
         this.on_command_tree_select(this.view.tv_alias, itemId)
     }
@@ -1885,20 +1903,74 @@ class SettingsController {
             this.view.ddl_workbench.ToolTip := this.view.ddl_workbench.Text
     }
 
+    RefreshAliasHotkeyBtnStates() {
+        alias_cnt := this.alias_edits ? this.alias_edits.Length : 0
+        for i, edit_ctrl in (this.alias_edits ? this.alias_edits : []) {
+            p := this.view.alias_pool[i]
+            val := Trim(edit_ctrl.Value)
+            p.add.Opt((val != "" && alias_cnt < 3) ? "-Disabled" : "+Disabled")
+            p.del.Opt((alias_cnt > 1) ? "-Disabled" : "+Disabled")
+        }
+
+        hk_cnt := this.hotkey_edits ? this.hotkey_edits.Length : 0
+        for i, edit_ctrl in (this.hotkey_edits ? this.hotkey_edits : []) {
+            p := this.view.hotkey_pool[i]
+            val := Trim(edit_ctrl.Value)
+            p.add.Opt((val != "" && hk_cnt < 2) ? "-Disabled" : "+Disabled")
+            p.del.Opt((hk_cnt > 1) ? "-Disabled" : "+Disabled")
+        }
+    }
+
+    ClearAllAliases(*) {
+        if (!this.alias_edits || this.alias_edits.Length == 0)
+            return
+        cleared := false
+        for edit_ctrl in this.alias_edits {
+            if (edit_ctrl.Value != "") {
+                edit_ctrl.Value := ""
+                cleared := true
+            }
+        }
+        if (cleared) {
+            this.OnDetailChange()
+            if (this.alias_edits.Length > 0)
+                this.alias_edits[1].Focus()
+            this.view.SB.SetText("已清空当前命令的别名")
+        }
+    }
+
+    ClearAllHotkeys(*) {
+        if (!this.hotkey_edits || this.hotkey_edits.Length == 0)
+            return
+        cleared := false
+        for edit_ctrl in this.hotkey_edits {
+            if (edit_ctrl.Value != "") {
+                edit_ctrl.Value := ""
+                cleared := true
+            }
+        }
+        if (cleared) {
+            this.OnDetailChange()
+            if (this.hotkey_edits.Length > 0)
+                this.hotkey_edits[1].Focus()
+            this.view.SB.SetText("已清空当前命令的热键")
+        }
+    }
+
     OnDetailChange(*) {
         if (this.HasProp("is_rendering") && this.is_rendering)
             return
         this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
+        this.RefreshAliasHotkeyBtnStates()
     }
 
     OnAliasChange(idx, GuiCtrlObj, *) {
         if (this.HasProp("is_rendering") && this.is_rendering)
             return
-        p := this.view.alias_pool[idx]
-        p.add.Opt((Trim(GuiCtrlObj.Value) != "") ? "-Disabled" : "+Disabled")
         this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
+        this.RefreshAliasHotkeyBtnStates()
     }
 
     OnAliasLoseFocus(idx, GuiCtrlObj, *) {
@@ -1908,10 +1980,9 @@ class SettingsController {
     OnHotkeyChange(idx, GuiCtrlObj, *) {
         if (this.HasProp("is_rendering") && this.is_rendering)
             return
-        p := this.view.hotkey_pool[idx]
-        p.add.Opt((Trim(GuiCtrlObj.Value) != "") ? "-Disabled" : "+Disabled")
         this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
+        this.RefreshAliasHotkeyBtnStates()
     }
 
     OnHotkeyFocus(idx, GuiCtrlObj, *) {
@@ -2200,7 +2271,7 @@ class SettingsController {
             }
             this.on_command_tree_select(this.view.tv_alias, itemId)
             this.CheckGlobalDirty()
-            this.view.SB.SetText("当前命令已恢复到初始状态。")
+            this.view.SB.SetText("已撤销对当前选中命令的修改。")
         }
     }
 
@@ -2250,7 +2321,7 @@ class SettingsController {
             }
         }
         this.CheckGlobalDirty()
-        this.view.SB.SetText(hotkey_changed ? "修改成功！请手动重新载入 UCLC 以应用最新配置。" : "修改成功。")
+        this.view.SB.SetText(hotkey_changed ? "修改已保存！请手动重新载入 UCLC 以应用最新热键配置。" : "已保存对当前选中命令的修改。")
     }
 
     BrowseEverything(*) {

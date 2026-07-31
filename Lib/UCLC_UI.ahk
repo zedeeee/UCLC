@@ -1249,6 +1249,8 @@ class SettingsController {
     }
 
     OnWorkbenchFilter(CtrlObj, *) {
+        if (CtrlObj.Text != "")
+            CtrlObj.ToolTip := CtrlObj.Text
         this.load_command_tree(this.view.edit_search.Value)
     }
 
@@ -1293,7 +1295,218 @@ class SettingsController {
         title := (info.cmd.Has("desc") && info.cmd["desc"] != "") ? info.cmd["desc"] : (info.cmd.Has("command") ? info.cmd["command"] : "该命令")
         m := Menu()
         m.Add("删除命令 (" . title . ")", ObjBindMethod(this, "delete_command_item", Item))
+        
+        if (AppSettings.commands_obj.Count > 1) {
+            menu_copy := Menu()
+            menu_move := Menu()
+            has_other := false
+            for wb_id, _ in AppSettings.commands_obj {
+                if (wb_id == info.category)
+                    continue
+                wb_name := AppSettings.GetWbName(wb_id)
+                menu_copy.Add(wb_name, ObjBindMethod(this, "copy_command_item", Item, wb_id))
+                menu_move.Add(wb_name, ObjBindMethod(this, "move_command_item", Item, wb_id))
+                has_other := true
+            }
+            if (has_other) {
+                m.Add()
+                m.Add("复制到", menu_copy)
+                m.Add("移动到", menu_move)
+            }
+        }
+        
         m.Show()
+    }
+
+    resolve_move_collision(new_cmd, target_wb) {
+        if (!AppSettings.commands_obj.Has(target_wb))
+            return true
+            
+        target_cmds := AppSettings.commands_obj[target_wb]
+        cmd_id := new_cmd.Has("command") ? Trim(new_cmd["command"]) : ""
+        
+        ; 1. 检查命令ID重复：极简排版提示并停止
+        for t_cmd in target_cmds {
+            if (cmd_id != "" && t_cmd.Has("command") && Trim(t_cmd["command"]) == cmd_id) {
+                t_title := (t_cmd.Has("desc") && t_cmd["desc"] != "") ? t_cmd["desc"] : (t_cmd.Has("command") ? t_cmd["command"] : "未知")
+                wb_name := AppSettings.GetWbName(target_wb)
+                
+                msg := "目标工作台已存在相同命令，无需重复添加。`n`n"
+                    . "• 目标工作台：" . wb_name . "`n"
+                    . "• 命令 ID：" . cmd_id . "`n"
+                    . "• 现有命令：" . t_title
+                
+                this.view.Opt("+OwnDialogs")
+                MsgBox(msg, "命令已存在", "Iconi")
+                return false
+            }
+        }
+        
+        removed_aliases := []
+        removed_hotkeys := []
+        
+        ; 2. 检查并过滤别名重复：清空/剔除冲突项
+        if (new_cmd.Has("aliases") && Type(new_cmd["aliases"]) == "Array") {
+            safe_aliases := []
+            for al in new_cmd["aliases"] {
+                al_clean := Trim(al)
+                if (al_clean == "")
+                    continue
+                conflict := false
+                for t_cmd in target_cmds {
+                    if (t_cmd.Has("aliases") && Type(t_cmd["aliases"]) == "Array") {
+                        for t_al in t_cmd["aliases"] {
+                            if (StrLower(al_clean) == StrLower(Trim(t_al))) {
+                                conflict := true
+                                break
+                            }
+                        }
+                    }
+                    if (conflict)
+                        break
+                }
+                if (conflict) {
+                    removed_aliases.Push(al_clean)
+                } else {
+                    safe_aliases.Push(al_clean)
+                }
+            }
+            new_cmd["aliases"] := safe_aliases
+        }
+        
+        ; 3. 检查并过滤热键重复：清空/剔除冲突项
+        if (new_cmd.Has("hotkeys") && Type(new_cmd["hotkeys"]) == "Array") {
+            safe_hotkeys := []
+            for hk in new_cmd["hotkeys"] {
+                hk_clean := Trim(hk)
+                if (hk_clean == "")
+                    continue
+                conflict := false
+                for t_cmd in target_cmds {
+                    if (t_cmd.Has("hotkeys") && Type(t_cmd["hotkeys"]) == "Array") {
+                        for t_hk in t_cmd["hotkeys"] {
+                            if (StrLower(hk_clean) == StrLower(Trim(t_hk))) {
+                                conflict := true
+                                break
+                            }
+                        }
+                    }
+                    if (conflict)
+                        break
+                }
+                if (conflict) {
+                    removed_hotkeys.Push(hk_clean)
+                } else {
+                    safe_hotkeys.Push(hk_clean)
+                }
+            }
+            new_cmd["hotkeys"] := safe_hotkeys
+        }
+        
+        ; 如果有别名或热键被剔除，给予结构化排版的轻量提示
+        if (removed_aliases.Length > 0 || removed_hotkeys.Length > 0) {
+            msg := "已完成跨工作台操作，部分冲突配置项已自动重置：`n"
+            if (removed_aliases.Length > 0) {
+                al_str := ""
+                for item in removed_aliases
+                    al_str .= (al_str == "" ? "" : "、") . item
+                msg .= "`n• 清空的重复别名：" . al_str
+            }
+            if (removed_hotkeys.Length > 0) {
+                hk_str := ""
+                for item in removed_hotkeys
+                    hk_str .= (hk_str == "" ? "" : "、") . item
+                msg .= "`n• 清空的重复热键：" . hk_str
+            }
+            msg .= "`n`n如有需要，请前往目标工作台重新配置。"
+            this.view.Opt("+OwnDialogs")
+            MsgBox(msg, "配置项自动重置提示", "Iconi")
+        }
+        
+        return true
+    }
+
+    copy_command_item(Item, target_wb, ItemName, ItemPos, MyMenu) {
+        if (!Item || !this.tv_map.Has(Item))
+            return
+        info := this.tv_map[Item]
+        cmd := info.cmd
+        
+        new_cmd := Map()
+        for k, v in cmd {
+            if (Type(v) == "Array") {
+                new_arr := []
+                for e in v
+                    new_arr.Push(e)
+                new_cmd[k] := new_arr
+            } else {
+                new_cmd[k] := v
+            }
+        }
+        
+        if (!this.resolve_move_collision(new_cmd, target_wb))
+            return
+        
+        if (!AppSettings.commands_obj.Has(target_wb))
+            AppSettings.commands_obj[target_wb] := []
+        AppSettings.commands_obj[target_wb].Push(new_cmd)
+        AppSettings.FlushCommands()
+        
+        title := (new_cmd.Has("desc") && new_cmd["desc"] != "") ? new_cmd["desc"] : (new_cmd.Has("command") ? new_cmd["command"] : "该命令")
+        wb_name := AppSettings.GetWbName(target_wb)
+        
+        scroll_state := this.GetTreeViewScrollState()
+        this.load_command_tree(this.view.edit_search.Value, info.cmd, scroll_state.top_cmd, scroll_state.hpos)
+        this.view.SB.SetText("已复制命令「" title "」到工作台「" wb_name "」")
+    }
+
+    move_command_item(Item, target_wb, ItemName, ItemPos, MyMenu) {
+        if (!Item || !this.tv_map.Has(Item))
+            return
+        info := this.tv_map[Item]
+        cmd := info.cmd
+        src_wb := info.category
+        
+        if (src_wb == target_wb)
+            return
+            
+        new_cmd := Map()
+        for k, v in cmd {
+            if (Type(v) == "Array") {
+                new_arr := []
+                for e in v
+                    new_arr.Push(e)
+                new_cmd[k] := new_arr
+            } else {
+                new_cmd[k] := v
+            }
+        }
+        
+        if (!this.resolve_move_collision(new_cmd, target_wb))
+            return
+            
+        if (!AppSettings.commands_obj.Has(target_wb))
+            AppSettings.commands_obj[target_wb] := []
+        AppSettings.commands_obj[target_wb].Push(new_cmd)
+        
+        if (AppSettings.commands_obj.Has(src_wb)) {
+            cmdArray := AppSettings.commands_obj[src_wb]
+            for idx, c in cmdArray {
+                if (c == cmd) {
+                    cmdArray.RemoveAt(idx)
+                    break
+                }
+            }
+        }
+        
+        AppSettings.FlushCommands()
+        
+        title := (new_cmd.Has("desc") && new_cmd["desc"] != "") ? new_cmd["desc"] : (new_cmd.Has("command") ? new_cmd["command"] : "该命令")
+        wb_name := AppSettings.GetWbName(target_wb)
+        
+        scroll_state := this.GetTreeViewScrollState()
+        this.load_command_tree(this.view.edit_search.Value, new_cmd, scroll_state.top_cmd, scroll_state.hpos)
+        this.view.SB.SetText("已移动命令「" title "」到工作台「" wb_name "」")
     }
 
     delete_command_item(Item, *) {
@@ -1536,6 +1749,140 @@ class SettingsController {
                 }
             }
         }
+        this.update_workbench_ddl()
+    }
+
+    get_workbench_diff_stats() {
+        stats_map := Map()
+        try {
+            if (!this.HasProp("model") || !this.model || this.model.original_json_str == "")
+                return stats_map
+            orig_obj := JSON.parse(this.model.original_json_str)
+        } catch {
+            return stats_map
+        }
+
+        curr_obj := AppSettings.commands_obj
+
+        for wb, cmds in curr_obj {
+            added := 0
+            modified := 0
+            deleted := 0
+            
+            orig_cmds := orig_obj.Has(wb) ? orig_obj[wb] : []
+            matched_orig := Map()
+
+            for cmd in cmds {
+                cmd_id := cmd.Has("command") ? cmd["command"] : ""
+                cmd_desc := cmd.Has("desc") ? cmd["desc"] : ""
+
+                matched_idx := 0
+                for i, orig in orig_cmds {
+                    if (matched_orig.Has(i))
+                        continue
+                    if (orig.Has("command") && orig["command"] == cmd_id && (orig.Has("desc") ? orig["desc"] : "") == cmd_desc) {
+                        matched_idx := i
+                        break
+                    }
+                }
+                if (matched_idx == 0 && cmd_id != "") {
+                    for i, orig in orig_cmds {
+                        if (matched_orig.Has(i))
+                            continue
+                        if (orig.Has("command") && orig["command"] == cmd_id) {
+                            matched_idx := i
+                            break
+                        }
+                    }
+                }
+
+                if (matched_idx == 0) {
+                    added++
+                } else {
+                    matched_orig[matched_idx] := true
+                    orig_cmd := orig_cmds[matched_idx]
+                    if (JSON.stringify(cmd) != JSON.stringify(orig_cmd)) {
+                        modified++
+                    }
+                }
+            }
+
+            for i, orig in orig_cmds {
+                if (!matched_orig.Has(i)) {
+                    deleted++
+                }
+            }
+
+            if (added > 0 || modified > 0 || deleted > 0) {
+                stats_map[wb] := { added: added, modified: modified, deleted: deleted }
+            }
+        }
+
+        for wb, orig_cmds in orig_obj {
+            if (!curr_obj.Has(wb) && orig_cmds.Length > 0) {
+                stats_map[wb] := { added: 0, modified: 0, deleted: orig_cmds.Length }
+            }
+        }
+
+        return stats_map
+    }
+
+    update_workbench_ddl() {
+        if (!this.HasProp("workbench_ids") || !this.workbench_ids || !this.view.HasProp("ddl_workbench"))
+            return
+
+        stats_map := this.get_workbench_diff_stats()
+
+        wb_list := ["全部工作台"]
+        for idx, wb_id in this.workbench_ids {
+            if (idx == 1)
+                continue
+            wb_name := AppSettings.GetWbName(wb_id)
+            if (stats_map.Has(wb_id)) {
+                st := stats_map[wb_id]
+                tags := []
+                if (st.added > 0)
+                    tags.Push("+" . st.added)
+                if (st.modified > 0)
+                    tags.Push("*" . st.modified)
+                if (st.deleted > 0)
+                    tags.Push("-" . st.deleted)
+                
+                tag_str := ""
+                for t in tags
+                    tag_str .= (tag_str == "" ? "" : " ") . t
+                
+                wb_list.Push("* " . wb_name . " (" . tag_str . ")")
+            } else {
+                wb_list.Push(wb_name)
+            }
+        }
+
+        curr_choice := this.view.ddl_workbench.Value
+        curr_items_str := ""
+        max_len := 0
+        for item in wb_list {
+            curr_items_str .= item . "`n"
+            if (StrLen(item) > max_len)
+                max_len := StrLen(item)
+        }
+
+        if (!this.HasProp("last_ddl_items_str") || this.last_ddl_items_str !== curr_items_str) {
+            this.last_ddl_items_str := curr_items_str
+            this.view.ddl_workbench.Delete()
+            this.view.ddl_workbench.Add(wb_list)
+            if (curr_choice > 0 && curr_choice <= wb_list.Length)
+                this.view.ddl_workbench.Choose(curr_choice)
+            else
+                this.view.ddl_workbench.Choose(1)
+        }
+
+        ; 紧凑自适应计算展开列表的像素宽度（CB_SETDROPPEDWIDTH = 0x0160）
+        dropped_width := Max(195, Integer(max_len * 7.2 + 30))
+        SendMessage(0x0160, dropped_width, 0, this.view.ddl_workbench.Hwnd)
+
+        if (this.view.ddl_workbench.Text != "")
+            this.view.ddl_workbench.ToolTip := this.view.ddl_workbench.Text
     }
 
     OnDetailChange(*) {
@@ -2737,8 +3084,9 @@ class SettingsController {
     }
 
     on_add_cmd_from_other(*) {
-        target_wb := this.view.ddl_workbench.Text
-        if (target_wb == "全部工作台" || target_wb == "") {
+        wb_idx := this.view.ddl_workbench.Value
+        target_wb := (wb_idx > 1 && wb_idx <= this.workbench_ids.Length) ? AppSettings.GetWbName(this.workbench_ids[wb_idx]) : ""
+        if (target_wb == "") {
             return
         }
 

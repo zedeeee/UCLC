@@ -627,7 +627,7 @@ class SettingsView extends Gui {
         this.ddl_workbench := this.Add("DropDownList", "x295 y40 w195 Choose1", ["全部工作台"])
         this.ddl_workbench.ToolTip := "按所属工作台过滤左侧命令列表"
 
-        this.Add("Text", "x235 y75 w60", "搜　索:")
+        this.Txt_Search := this.Add("Text", "x235 y75 w60", "搜　索:")
         this.edit_search := this.Add("Edit", "x295 y72 w195")
         this.edit_search.ToolTip := "支持拼音首字母模糊匹配"
 
@@ -721,11 +721,11 @@ class SettingsView extends Gui {
         ; [3] Everything 快速呼出面板
         c3_chk := this.Chk_Everything := this.Add("Checkbox", "x225 y85", "Everything 快速呼出")
         c3_chk.ToolTip := "双击右 Ctrl 键或按下设定快捷键唤起 Everything"
-        c3_lbl := this.Add("Text", "x225 y120 w290", "Everything.exe 可执行文件路径:")
+        c3_lbl := this.Txt_EverythingPath := this.Add("Text", "x225 y120 w290", "Everything.exe 可执行文件路径:")
         c3_edit := this.Edit_EverythingPath := this.Add("Edit", "x225 y140 w255 h24", "")
         c3_btn := this.Btn_BrowseEverything := this.Add("Button", "x485 y139 w35 h24", "...")
         c3_btn.ToolTip := "选择 Everything.exe 所在路径"
-        c3_lbl2 := this.Add("Text", "x225 y178 w150", "显示窗口快捷键 (热键):")
+        c3_lbl2 := this.Txt_EverythingHotkey := this.Add("Text", "x225 y178 w150", "显示窗口快捷键 (热键):")
         c3_hkedit := this.Edit_EverythingHotkey := this.Add("Edit", "x380 y175 w140 h24", "")
         c3_desc := this.Add("Text", "x225 y210 w290 h140 c666666", "说明：支持双击【右 Ctrl】或按设定的热键唤起 Everything。`n`n💡 提示：本软件仅读取热键配置。如需修改，请在 Everything「选项」->「键盘」->「显示窗口」中设置，完成后重新载入本脚本生效。")
         this.int_panes[3].Push(c3_chk, c3_lbl, c3_edit, c3_btn, c3_lbl2, c3_hkedit, c3_desc)
@@ -999,6 +999,14 @@ class SettingsController {
         this.view.Btn_ManageIME.OnEvent("Click", ObjBindMethod(this, "OnOpenImeRulesModal"))
 
         this.view.Btn_OpenCmdLib.OnEvent("Click", ObjBindMethod(this, "OnOpenCmdLibraryModal"))
+
+        ; 双击标题快速清空输入框 (Issue #43)
+        this.view.Txt_Search.OnEvent("DoubleClick", (*) => (this.view.edit_search.Value := "", this.OnSearchFilter(this.view.edit_search), this.view.edit_search.Focus(), this.view.SB.SetText("已快速清空搜索框")))
+        this.view.Txt_Alias.OnEvent("DoubleClick", (*) => this.ClearAllAliases())
+        this.view.Txt_Hotkey.OnEvent("DoubleClick", (*) => this.ClearAllHotkeys())
+        this.view.Txt_EverythingPath.OnEvent("DoubleClick", (*) => (this.view.Edit_EverythingPath.Value := "", this.view.Edit_EverythingPath.Focus(), this.view.SB.SetText("已清空 Everything 可执行文件路径")))
+        this.view.Txt_EverythingHotkey.OnEvent("DoubleClick", (*) => (this.view.Edit_EverythingHotkey.Value := "", this.view.Edit_EverythingHotkey.Focus(), this.view.SB.SetText("已清空 Everything 呼出热键")))
+        this.view.Chk_Calc.OnEvent("DoubleClick", (*) => (this.view.Edit_CalcHotkey.Value := "", this.view.Edit_CalcHotkey.Focus(), this.view.SB.SetText("已清空计算器热键")))
     }
 
     LoadGeneralSettings() {
@@ -1883,6 +1891,42 @@ class SettingsController {
 
         if (this.view.ddl_workbench.Text != "")
             this.view.ddl_workbench.ToolTip := this.view.ddl_workbench.Text
+    }
+
+    ClearAllAliases(*) {
+        if (!this.alias_edits || this.alias_edits.Length == 0)
+            return
+        cleared := false
+        for edit_ctrl in this.alias_edits {
+            if (edit_ctrl.Value != "") {
+                edit_ctrl.Value := ""
+                cleared := true
+            }
+        }
+        if (cleared) {
+            this.OnDetailChange()
+            if (this.alias_edits.Length > 0)
+                this.alias_edits[1].Focus()
+            this.view.SB.SetText("已清空当前命令的别名")
+        }
+    }
+
+    ClearAllHotkeys(*) {
+        if (!this.hotkey_edits || this.hotkey_edits.Length == 0)
+            return
+        cleared := false
+        for edit_ctrl in this.hotkey_edits {
+            if (edit_ctrl.Value != "") {
+                edit_ctrl.Value := ""
+                cleared := true
+            }
+        }
+        if (cleared) {
+            this.OnDetailChange()
+            if (this.hotkey_edits.Length > 0)
+                this.hotkey_edits[1].Focus()
+            this.view.SB.SetText("已清空当前命令的热键")
+        }
     }
 
     OnDetailChange(*) {

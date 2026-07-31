@@ -675,8 +675,10 @@ class SettingsView extends Gui {
             this.hotkey_pool.Push({ e: e, add: btn_add, del: btn_del })
         }
 
-        this.Btn_Revert := this.Add("Button", "x250 y285 w105 h28 Hidden Disabled", "撤销修改")
-        this.btn_save := this.Add("Button", "x385 y285 w105 h28 Disabled", "保存修改")
+        this.Btn_Revert := this.Add("Button", "x250 y380 w105 h28 Hidden Disabled", "撤销")
+        this.Btn_Revert.ToolTip := "撤销当前命令修改"
+        this.btn_save := this.Add("Button", "x385 y380 w105 h28 Disabled", "保存")
+        this.btn_save.ToolTip := "保存全局所有修改"
         this.SB := this.Add("StatusBar")
         version_str := AppSettings.Version
         ; 动态计算分段位置（收紧字宽：英文约 6.5px，加上 15px 边距）
@@ -830,56 +832,60 @@ class SettingsView extends Gui {
         aliases := (cmd.Has("aliases") && cmd["aliases"].Length > 0) ? cmd["aliases"] : [""]
         alias_edits := []
 
+        ; 限制别名最多 3 个
         for idx, al in aliases {
-            if (idx > 10)
+            if (idx > 3)
                 break
             p := this.alias_pool[idx]
             p.e.Value := al
-            p.e.Move(, cur_y)
-            p.add.Move(, cur_y)
-            p.del.Move(, cur_y)
+            p.e.Move(295, cur_y, 135, 22)
+            p.add.Move(440, cur_y, 24, 22)
+            p.del.Move(466, cur_y, 24, 22)
 
             p.e.Opt("-Hidden")
             p.add.Opt("-Hidden")
             p.del.Opt("-Hidden")
 
-            p.add.Opt((Trim(al) != "") ? "-Disabled" : "+Disabled")
+            ; 达到 3 个别名上限时禁用 ➕ 按钮
+            p.add.Opt((Trim(al) != "" && aliases.Length < 3) ? "-Disabled" : "+Disabled")
             p.del.Opt((aliases.Length > 1) ? "-Disabled" : "+Disabled")
             alias_edits.Push(p.e)
-            cur_y += 28
+            cur_y += 26
         }
 
-        cur_y += 6
-        this.Txt_Hotkey.Move(, cur_y + 3)
+        cur_y += 2
+        this.Txt_Hotkey.Move(, cur_y + 2)
         this.Txt_Hotkey.Opt("-Hidden")
 
         hotkeys := (cmd.Has("hotkeys") && cmd["hotkeys"].Length > 0) ? cmd["hotkeys"] : [""]
         hotkey_edits := []
 
+        ; 限制快捷键最多 2 个
         for idx, hk in hotkeys {
-            if (idx > 10)
+            if (idx > 2)
                 break
             p := this.hotkey_pool[idx]
             try p.e.Value := format_hotkey_for_display(hk)
             catch
                 p.e.Value := ""
-            p.e.Move(, cur_y)
-            p.add.Move(, cur_y)
-            p.del.Move(, cur_y)
+            p.e.Move(295, cur_y, 135, 22)
+            p.add.Move(440, cur_y, 24, 22)
+            p.del.Move(466, cur_y, 24, 22)
 
             p.e.Opt("-Hidden")
             p.add.Opt("-Hidden")
             p.del.Opt("-Hidden")
 
-            p.add.Opt((Trim(hk) != "") ? "-Disabled" : "+Disabled")
+            ; 达到 2 个快捷键上限时禁用 ➕ 按钮
+            p.add.Opt((Trim(hk) != "" && hotkeys.Length < 2) ? "-Disabled" : "+Disabled")
             p.del.Opt((hotkeys.Length > 1) ? "-Disabled" : "+Disabled")
             hotkey_edits.Push(p.e)
-            cur_y += 28
+            cur_y += 26
         }
 
-        cur_y += 12
-        this.Btn_Revert.Move(250, cur_y)
-        this.btn_save.Move(385, cur_y)
+        ; 像素级绝对水平对齐左侧【导入命令ID】按钮 (y=380, h28)
+        this.Btn_Revert.Move(250, 380)
+        this.btn_save.Move(385, 380)
         this.Btn_Revert.Opt("-Hidden")
 
         return { alias_edits: alias_edits, hotkey_edits: hotkey_edits }
@@ -1618,6 +1624,8 @@ class SettingsController {
         if (!cmd.Has("aliases")) {
             cmd["aliases"] := []
         }
+        if (cmd["aliases"].Length >= 3)
+            return
         cmd["aliases"].InsertAt(idx + 1, "")
         this.on_command_tree_select(this.view.tv_alias, itemId)
     }
@@ -1638,6 +1646,8 @@ class SettingsController {
         if (!cmd.Has("hotkeys")) {
             cmd["hotkeys"] := []
         }
+        if (cmd["hotkeys"].Length >= 2)
+            return
         cmd["hotkeys"].InsertAt(idx + 1, "")
         this.on_command_tree_select(this.view.tv_alias, itemId)
     }
@@ -1893,6 +1903,24 @@ class SettingsController {
             this.view.ddl_workbench.ToolTip := this.view.ddl_workbench.Text
     }
 
+    RefreshAliasHotkeyBtnStates() {
+        alias_cnt := this.alias_edits ? this.alias_edits.Length : 0
+        for i, edit_ctrl in (this.alias_edits ? this.alias_edits : []) {
+            p := this.view.alias_pool[i]
+            val := Trim(edit_ctrl.Value)
+            p.add.Opt((val != "" && alias_cnt < 3) ? "-Disabled" : "+Disabled")
+            p.del.Opt((alias_cnt > 1) ? "-Disabled" : "+Disabled")
+        }
+
+        hk_cnt := this.hotkey_edits ? this.hotkey_edits.Length : 0
+        for i, edit_ctrl in (this.hotkey_edits ? this.hotkey_edits : []) {
+            p := this.view.hotkey_pool[i]
+            val := Trim(edit_ctrl.Value)
+            p.add.Opt((val != "" && hk_cnt < 2) ? "-Disabled" : "+Disabled")
+            p.del.Opt((hk_cnt > 1) ? "-Disabled" : "+Disabled")
+        }
+    }
+
     ClearAllAliases(*) {
         if (!this.alias_edits || this.alias_edits.Length == 0)
             return
@@ -1934,15 +1962,15 @@ class SettingsController {
             return
         this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
+        this.RefreshAliasHotkeyBtnStates()
     }
 
     OnAliasChange(idx, GuiCtrlObj, *) {
         if (this.HasProp("is_rendering") && this.is_rendering)
             return
-        p := this.view.alias_pool[idx]
-        p.add.Opt((Trim(GuiCtrlObj.Value) != "") ? "-Disabled" : "+Disabled")
         this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
+        this.RefreshAliasHotkeyBtnStates()
     }
 
     OnAliasLoseFocus(idx, GuiCtrlObj, *) {
@@ -1952,10 +1980,9 @@ class SettingsController {
     OnHotkeyChange(idx, GuiCtrlObj, *) {
         if (this.HasProp("is_rendering") && this.is_rendering)
             return
-        p := this.view.hotkey_pool[idx]
-        p.add.Opt((Trim(GuiCtrlObj.Value) != "") ? "-Disabled" : "+Disabled")
         this.SaveInputsToCurrentCmd()
         this.CheckGlobalDirty()
+        this.RefreshAliasHotkeyBtnStates()
     }
 
     OnHotkeyFocus(idx, GuiCtrlObj, *) {
@@ -2244,7 +2271,7 @@ class SettingsController {
             }
             this.on_command_tree_select(this.view.tv_alias, itemId)
             this.CheckGlobalDirty()
-            this.view.SB.SetText("当前命令已恢复到初始状态。")
+            this.view.SB.SetText("已撤销对当前选中命令的修改。")
         }
     }
 
@@ -2294,7 +2321,7 @@ class SettingsController {
             }
         }
         this.CheckGlobalDirty()
-        this.view.SB.SetText(hotkey_changed ? "修改成功！请手动重新载入 UCLC 以应用最新配置。" : "修改成功。")
+        this.view.SB.SetText(hotkey_changed ? "修改已保存！请手动重新载入 UCLC 以应用最新热键配置。" : "已保存对当前选中命令的修改。")
     }
 
     BrowseEverything(*) {

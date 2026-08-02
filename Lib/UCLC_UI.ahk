@@ -590,13 +590,6 @@ class SettingsModel {
             }
         }
 
-        for cmd in local_array {
-            id := cmd["command"]
-            if !matched_local_ids.Has(id) {
-                desc := (cmd.Has("desc") && cmd["desc"] != "") ? cmd["desc"] : cmd["command"]
-                import_items.Push({ title: desc, local_id: id, action: "D", imported_id: "" })
-            }
-        }
 
         this.import_items := import_items
         return import_items

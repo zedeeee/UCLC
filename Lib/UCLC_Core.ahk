@@ -1167,7 +1167,7 @@ class CommandEngine {
                     return id
                 }
             }
-            return "通用"
+            return "CATAfrGeneralWks"
         }
         catch {
             active_hwnd := WinExist("A")
@@ -1211,14 +1211,14 @@ class CommandEngine {
     static read_user_alias(dict_type, section, key) {
         target_obj := (dict_type == "alias") ? AppSettings.alias_obj : AppSettings.hotkey_obj
         try {
-            Logger.info("调用 " section)
+            Logger.info("调用 " AppSettings.GetWbName(section))
             if this.get_map_value_case_insensitive(target_obj, section, &section_map) {
                 if this.get_map_value_case_insensitive(section_map, key, &config_val) {
                     return this.process_config(config_val)
                 }
             }
-            Logger.info("调用 通用")
-            if this.get_map_value_case_insensitive(target_obj, "通用", &general_map) {
+            Logger.info("调用 " AppSettings.GetWbName("CATAfrGeneralWks"))
+            if this.get_map_value_case_insensitive(target_obj, "CATAfrGeneralWks", &general_map) {
                 if this.get_map_value_case_insensitive(general_map, key, &config_val) {
                     return this.process_config(config_val)
                 }

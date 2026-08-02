@@ -235,7 +235,9 @@ RAlt & MButton::
 
     ~Esc::
     {
-        ControlSetText("", CATIAWindow.get_power_input_edit_hwnd())
+        if (hwnd := CATIAWindow.get_power_input_edit_hwnd()) {
+            ControlSetText("", hwnd)
+        }
     }
 }
 

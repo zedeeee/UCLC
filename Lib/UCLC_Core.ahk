@@ -893,6 +893,13 @@ class CATIAWindow {
     static identify_window(hwnd := "A") {
         ; 极速缓存验证：如果此 hwnd 已经被归类为 CATIA，直接返回其 class，跳过向量预测
         if WinExist("ahk_group GroupCATIA ahk_id " hwnd) {
+            if AppSettings.DEBUG_I {
+                try {
+                    cached_win := {title: WinGetTitle(hwnd), class: WinGetClass(hwnd), exe: WinGetProcessName(hwnd)}
+                    pred := FeatureMatcher.predict(cached_win)
+                    Logger.info("已缓存CATIA窗口 命中，得分：" . Round(pred.score, 2) . " 标签：" . pred.label)
+                }
+            }
             return WinGetClass(hwnd)
         }
 
@@ -907,24 +914,33 @@ class CATIAWindow {
             return false
         }
 
-        prediction := VectorEngine.predict(current_window)
+        prediction := FeatureMatcher.predict(current_window)
         
-        if (prediction.label != "Not_CATIA") {
-            Logger.info("CATIA窗口(向量引擎) 命中，标签：" . prediction.label . " 得分：" . prediction.score)
+        if (prediction.label == "Main_Interface") {
+            Logger.info("CATIA主窗口(特征匹配库) 命中，得分：" . Round(prediction.score, 2))
             return current_window.class
         }
         
-        Logger.info("CATIA窗口(向量引擎) 未命中")
+        if (prediction.label != "Not_CATIA") {
+            Logger.info("CATIA弹窗(特征匹配库) 命中：" . prediction.label . " (跳过主界面绑定)")
+            return false
+        }
+        
+        Logger.info("非CATIA窗口 未命中: " . current_window.exe)
         return false
     }
 
     static get_power_input_edit_hwnd() {
-        status_bar_hwnd := ControlGetHwnd("msctls_statusbar321")
-        for ctrl in WinGetControls(status_bar_hwnd) {
-            if InStr(StrLower(ctrl), "edit") {
-                edit_hwnd := ControlGetHwnd(ctrl, status_bar_hwnd)
-                return edit_hwnd
+        try {
+            status_bar_hwnd := ControlGetHwnd("msctls_statusbar321", "A")
+            for ctrl in WinGetControls(status_bar_hwnd) {
+                if InStr(StrLower(ctrl), "edit") {
+                    edit_hwnd := ControlGetHwnd(ctrl, status_bar_hwnd)
+                    return edit_hwnd
+                }
             }
+        } catch {
+            return false
         }
         return false
     }
@@ -1027,8 +1043,25 @@ class CATIAInstance {
     static is_catia_bindable_context() {
         if WinActive("ahk_group GroupCATIA")
             return true
-        if WinActive("ahk_class #32770 ahk_exe CNEXT.exe")
-            return true
+        
+        ; --- 旧版硬编码实现 (保留注释) ---
+        ; if WinActive("ahk_class #32770 ahk_exe CNEXT.exe")
+        ;     return true
+        
+        hwnd := WinExist("A")
+        if (hwnd) {
+            win_info := {
+                hwnd: hwnd,
+                title: WinGetTitle(hwnd),
+                class: WinGetClass(hwnd),
+                exe: WinGetProcessName(hwnd)
+            }
+            pred := FeatureMatcher.predict(win_info)
+            if (pred.label != "Not_CATIA") {
+                return true
+            }
+        }
+        
         return false
     }
 
@@ -1036,8 +1069,22 @@ class CATIAInstance {
         if !this.is_catia_bindable_context()
             return false
         try {
-            catia_pid := WinGetPID("A")
-            return WinExist("ahk_class #32770 ahk_pid " . catia_pid)
+            ; --- 旧版硬编码实现 (保留注释) ---
+            ; catia_pid := WinGetPID("A")
+            ; return WinExist("ahk_class #32770 ahk_pid " . catia_pid)
+
+            hwnd := WinExist("A")
+            if (hwnd) {
+                win_info := {
+                    hwnd: hwnd,
+                    title: WinGetTitle(hwnd),
+                    class: WinGetClass(hwnd),
+                    exe: WinGetProcessName(hwnd)
+                }
+                pred := FeatureMatcher.predict(win_info)
+                if (pred.label == "Popup_Dialog")
+                    return hwnd
+            }
         }
         return false
     }
@@ -1047,8 +1094,23 @@ class CATIAInstance {
     static click_dialog_button(keywords, target_hwnd := 0) {
         if !target_hwnd {
             try {
-                catia_pid := WinGetPID("A")
-                target_hwnd := WinExist("ahk_class #32770 ahk_pid " . catia_pid)
+                ; --- 旧版硬编码实现 (保留注释) ---
+                ; catia_pid := WinGetPID("A")
+                ; target_hwnd := WinExist("ahk_class #32770 ahk_pid " . catia_pid)
+
+                hwnd := WinExist("A")
+                if (hwnd) {
+                    win_info := {
+                        hwnd: hwnd,
+                        title: WinGetTitle(hwnd),
+                        class: WinGetClass(hwnd),
+                        exe: WinGetProcessName(hwnd)
+                    }
+                    pred := FeatureMatcher.predict(win_info)
+                    if (pred.label == "Popup_Dialog") {
+                        target_hwnd := hwnd
+                    }
+                }
             }
         }
         if !target_hwnd
@@ -1396,16 +1458,16 @@ class WinEventHook {
 ; VectorSpaceMatcher & ImageCapture
 ; =========================================
 
-class VectorSpaceMatcher {
-    learned_vectors := []
-    json_path := ""
+class FeatureMatcher {
+    static learned_vectors := []
+    static json_path := ""
 
-    __New(storage_path) {
+    static Init(storage_path) {
         this.json_path := storage_path
         this.load_knowledge()
     }
 
-    load_knowledge() {
+    static load_knowledge() {
         if !FileExist(this.json_path) {
             this.learned_vectors := []
             return
@@ -1440,7 +1502,7 @@ class VectorSpaceMatcher {
         }
     }
 
-    save_knowledge() {
+    static save_knowledge() {
         try {
             ; 剔除预计算的复杂对象以保证 JSON 纯净
             export_list := []
@@ -1469,13 +1531,12 @@ class VectorSpaceMatcher {
         }
     }
 
-    learn_sample(window_info, label) {
+    static learn_sample(window_info, label) {
         ; 重复数据过滤
         for existing in this.learned_vectors {
             if (existing["class_raw"] = window_info.class && existing["title_raw"] = window_info.title) {
                 if (existing["label"] != label) {
                     existing["label"] := label
-                    this.save_knowledge()
                 }
                 return existing["id"]
             }
@@ -1503,11 +1564,10 @@ class VectorSpaceMatcher {
         new_record["title_mag"] := Sqrt(sum_t)
 
         this.learned_vectors.Push(new_record)
-        this.save_knowledge()
         return new_record["id"]
     }
 
-    predict(window_info) {
+    static predict(window_info) {
         if (this.learned_vectors.Length == 0) {
             return {label: "Not_CATIA", score: 0}
         }
@@ -1554,7 +1614,7 @@ class VectorSpaceMatcher {
         return {label: "Not_CATIA", score: best_score}
     }
 
-    get_ngrams(text, n:=3) {
+    static get_ngrams(text, n:=3) {
         grams := Map()
         len := StrLen(text)
         if (len < n) {
@@ -1573,7 +1633,7 @@ class VectorSpaceMatcher {
         return grams
     }
 
-    fast_cosine(vec1, mag1, vec2, mag2) {
+    static fast_cosine(vec1, mag1, vec2, mag2) {
         if (mag1 == 0 or mag2 == 0) {
             return 0.0
         }
@@ -1588,50 +1648,3 @@ class VectorSpaceMatcher {
     }
 }
 
-class ImageCapture {
-    static CaptureWindow(hwnd, filepath) {
-        try {
-            hGdiplus := DllCall("LoadLibrary", "Str", "gdiplus.dll", "Ptr")
-            
-            si := Buffer(16, 0)
-            NumPut("UInt", 1, si, 0)
-            DllCall("gdiplus\GdiplusStartup", "UPtr*", &pToken:=0, "Ptr", si, "Ptr", 0)
-            
-            rect := Buffer(16, 0)
-            DllCall("GetWindowRect", "Ptr", hwnd, "Ptr", rect)
-            w := NumGet(rect, 8, "Int") - NumGet(rect, 0, "Int")
-            h := NumGet(rect, 12, "Int") - NumGet(rect, 4, "Int")
-            
-            if (w <= 0 or h <= 0) {
-                return false
-            }
-
-            hDC := DllCall("GetDC", "Ptr", 0, "Ptr")
-            mDC := DllCall("CreateCompatibleDC", "Ptr", hDC, "Ptr")
-            hBM := DllCall("CreateCompatibleBitmap", "Ptr", hDC, "Int", w, "Int", h, "Ptr")
-            oBM := DllCall("SelectObject", "Ptr", mDC, "Ptr", hBM, "Ptr")
-            
-            DllCall("PrintWindow", "Ptr", hwnd, "Ptr", mDC, "UInt", 3)
-            
-            DllCall("gdiplus\GdipCreateBitmapFromHBITMAP", "Ptr", hBM, "Ptr", 0, "UPtr*", &pBitmap:=0)
-            
-            clsid := Buffer(16, 0)
-            DllCall("ole32\CLSIDFromString", "WStr", "{557CF406-1A04-11D3-9A73-0000F81EF32E}", "Ptr", clsid)
-            
-            DllCall("gdiplus\GdipSaveImageToFile", "Ptr", pBitmap, "WStr", filepath, "Ptr", clsid, "Ptr", 0)
-            
-            DllCall("gdiplus\GdipDisposeImage", "Ptr", pBitmap)
-            DllCall("SelectObject", "Ptr", mDC, "Ptr", oBM)
-            DllCall("DeleteObject", "Ptr", hBM)
-            DllCall("DeleteDC", "Ptr", mDC)
-            DllCall("ReleaseDC", "Ptr", 0, "Ptr", hDC)
-            DllCall("gdiplus\GdiplusShutdown", "UPtr", pToken)
-            DllCall("FreeLibrary", "Ptr", hGdiplus)
-
-            return true
-        } catch Error as e {
-            Logger.info("截图失败: " e.Message)
-            return false
-        }
-    }
-}

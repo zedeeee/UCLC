@@ -113,7 +113,7 @@ class UCLCApp {
     }
 }
 
-global VectorEngine := VectorSpaceMatcher(A_AppData "\UCLC\vector_nodes.json")
+FeatureMatcher.Init(A_AppData "\UCLC\vector_nodes.json")
 app := UCLCApp()
 app.Run()
 

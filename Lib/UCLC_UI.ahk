@@ -2656,8 +2656,12 @@ class SettingsController {
         success := this.model.save_advanced_settings(
             this.view.Chk_Debug.Value
         )
+        
+        ; 响应要求：最终通过高级标签页的保存才能写入硬盘
+        FeatureMatcher.save_knowledge()
+
         if success
-            this.view.SB.SetText("高级设置保存成功！请重新载入脚本或重启软件使其生效。")
+            this.view.SB.SetText("高级设置及特征锚点保存成功！请重新载入脚本使其生效。")
     }
 
     ImportConfigFile(*) {
@@ -3664,7 +3668,7 @@ class ManualMarkGUI extends Gui {
 
         label := this.radio_main.Value ? "Main_Interface" : "Popup_Dialog"
 
-        new_id := VectorEngine.learn_sample(this.captured_window, label)
+        new_id := FeatureMatcher.learn_sample(this.captured_window, label)
 
         Logger.tooltip("窗口录入成功！", 1500)
         this.OnClose()
@@ -3733,7 +3737,7 @@ class KnowledgeManagerGUI extends Gui {
     LoadData() {
         this.lv.Delete()
 
-        for idx, base in VectorEngine.learned_vectors {
+        for idx, base in FeatureMatcher.learned_vectors {
             this.lv.Add("", base["id"], base["label"], base["exe"], base["class_raw"], base["title_raw"])
         }
     }
@@ -3755,14 +3759,13 @@ class KnowledgeManagerGUI extends Gui {
             return
 
         new_vectors := []
-        for base in VectorEngine.learned_vectors {
+        for base in FeatureMatcher.learned_vectors {
             if (base["id"] != id_to_delete) {
                 new_vectors.Push(base)
             }
         }
 
-        VectorEngine.learned_vectors := new_vectors
-        VectorEngine.save_knowledge()
+        FeatureMatcher.learned_vectors := new_vectors
         this.LoadData()
         Logger.tooltip("窗口记录已删除", 1000)
     }

@@ -141,8 +141,6 @@ add_coustom_tray_menu()
     dyn_menu_items := [
         ["设置...", ShowSettingsGUI, ""],
         ["", NoAction_cb, ""],
-        ["[特征锚点] 录入当前窗口为 CATIA 锚点", LearnCurrentWindowAsCATIA, ""],
-        ["", NoAction_cb, ""],
         ["挂起快捷键", disable_script_cb, ""],
         ["重新载入", reload_cb, ""],
         ["", NoAction_cb, ""],
@@ -783,13 +781,18 @@ class SettingsView extends Gui {
 
         ; =============== 第四页: 高级 (Advanced) ===============
         this.tabs.UseTab(4)
-        this.Add("GroupBox", "x20 y40 w510 h110", "调试与运行诊断")
-        this.Chk_Debug := this.Add("Checkbox", "x35 y65 +Disabled", "开启详细 Debug 调试日志")
+
+        this.Add("GroupBox", "x20 y40 w510 h70", "CATIA 窗口识别管理")
+        this.Btn_ManageVector := this.Add("Button", "x35 y65 w160 h30", "管理已标记的窗口...")
+        this.Btn_ManageVector.OnEvent("Click", (*) => ShowKnowledgeManagerGUI(this))
+
+        this.Btn_ManualMark := this.Add("Button", "x215 y65 w160 h30", "手动标记窗口...")
+        this.Btn_ManualMark.OnEvent("Click", (*) => ShowManualMarkGUI(this))
+
+        this.Add("GroupBox", "x20 y120 w510 h110", "调试与运行诊断")
+        this.Chk_Debug := this.Add("Checkbox", "x35 y145 +Disabled", "开启详细 Debug 调试日志")
         this.Chk_Debug.ToolTip := "警告：仅在排查软件 Bug 时开启，日常使用请务必关闭以防产生大量冗余日志文件"
 
-        this.Btn_ManageVector := this.Add("Button", "x35 y160 w160 h30", "特征锚点库管理...")
-        this.Btn_ManageVector.OnEvent("Click", (*) => ShowKnowledgeManagerGUI(this))
-        
         this.btn_saveAdvanced := this.Add("Button", "x385 y385 w145 h30 Default", "保存高级设置")
 
         ; =============== (原第三页工作台命令库已重构成弹窗) ===============
@@ -1314,7 +1317,7 @@ class SettingsController {
         title := (info.cmd.Has("desc") && info.cmd["desc"] != "") ? info.cmd["desc"] : (info.cmd.Has("command") ? info.cmd["command"] : "该命令")
         m := Menu()
         m.Add("删除命令 (" . title . ")", ObjBindMethod(this, "delete_command_item", Item))
-        
+
         if (AppSettings.commands_obj.Count > 1) {
             menu_copy := Menu()
             menu_move := Menu()
@@ -1333,37 +1336,37 @@ class SettingsController {
                 m.Add("移动到", menu_move)
             }
         }
-        
+
         m.Show()
     }
 
     resolve_move_collision(new_cmd, target_wb) {
         if (!AppSettings.commands_obj.Has(target_wb))
             return true
-            
+
         target_cmds := AppSettings.commands_obj[target_wb]
         cmd_id := new_cmd.Has("command") ? Trim(new_cmd["command"]) : ""
-        
+
         ; 1. 检查命令ID重复：极简排版提示并停止
         for t_cmd in target_cmds {
             if (cmd_id != "" && t_cmd.Has("command") && Trim(t_cmd["command"]) == cmd_id) {
                 t_title := (t_cmd.Has("desc") && t_cmd["desc"] != "") ? t_cmd["desc"] : (t_cmd.Has("command") ? t_cmd["command"] : "未知")
                 wb_name := AppSettings.GetWbName(target_wb)
-                
+
                 msg := "目标工作台已存在相同命令，无需重复添加。`n`n"
                     . "• 目标工作台：" . wb_name . "`n"
                     . "• 命令 ID：" . cmd_id . "`n"
                     . "• 现有命令：" . t_title
-                
+
                 this.view.Opt("+OwnDialogs")
                 MsgBox(msg, "命令已存在", "Iconi")
                 return false
             }
         }
-        
+
         removed_aliases := []
         removed_hotkeys := []
-        
+
         ; 2. 检查并过滤别名重复：清空/剔除冲突项
         if (new_cmd.Has("aliases") && Type(new_cmd["aliases"]) == "Array") {
             safe_aliases := []
@@ -1392,7 +1395,7 @@ class SettingsController {
             }
             new_cmd["aliases"] := safe_aliases
         }
-        
+
         ; 3. 检查并过滤热键重复：清空/剔除冲突项
         if (new_cmd.Has("hotkeys") && Type(new_cmd["hotkeys"]) == "Array") {
             safe_hotkeys := []
@@ -1421,7 +1424,7 @@ class SettingsController {
             }
             new_cmd["hotkeys"] := safe_hotkeys
         }
-        
+
         ; 如果有别名或热键被剔除，给予结构化排版的轻量提示
         if (removed_aliases.Length > 0 || removed_hotkeys.Length > 0) {
             msg := "已完成跨工作台操作，部分冲突配置项已自动重置：`n"
@@ -1441,7 +1444,7 @@ class SettingsController {
             this.view.Opt("+OwnDialogs")
             MsgBox(msg, "配置项自动重置提示", "Iconi")
         }
-        
+
         return true
     }
 
@@ -1450,7 +1453,7 @@ class SettingsController {
             return
         info := this.tv_map[Item]
         cmd := info.cmd
-        
+
         new_cmd := Map()
         for k, v in cmd {
             if (Type(v) == "Array") {
@@ -1462,18 +1465,18 @@ class SettingsController {
                 new_cmd[k] := v
             }
         }
-        
+
         if (!this.resolve_move_collision(new_cmd, target_wb))
             return
-        
+
         if (!AppSettings.commands_obj.Has(target_wb))
             AppSettings.commands_obj[target_wb] := []
         AppSettings.commands_obj[target_wb].Push(new_cmd)
         AppSettings.FlushCommands()
-        
+
         title := (new_cmd.Has("desc") && new_cmd["desc"] != "") ? new_cmd["desc"] : (new_cmd.Has("command") ? new_cmd["command"] : "该命令")
         wb_name := AppSettings.GetWbName(target_wb)
-        
+
         scroll_state := this.GetTreeViewScrollState()
         this.load_command_tree(this.view.edit_search.Value, info.cmd, scroll_state.top_cmd, scroll_state.hpos)
         this.view.SB.SetText("已复制命令「" title "」到工作台「" wb_name "」")
@@ -1485,10 +1488,10 @@ class SettingsController {
         info := this.tv_map[Item]
         cmd := info.cmd
         src_wb := info.category
-        
+
         if (src_wb == target_wb)
             return
-            
+
         new_cmd := Map()
         for k, v in cmd {
             if (Type(v) == "Array") {
@@ -1500,14 +1503,14 @@ class SettingsController {
                 new_cmd[k] := v
             }
         }
-        
+
         if (!this.resolve_move_collision(new_cmd, target_wb))
             return
-            
+
         if (!AppSettings.commands_obj.Has(target_wb))
             AppSettings.commands_obj[target_wb] := []
         AppSettings.commands_obj[target_wb].Push(new_cmd)
-        
+
         if (AppSettings.commands_obj.Has(src_wb)) {
             cmdArray := AppSettings.commands_obj[src_wb]
             for idx, c in cmdArray {
@@ -1517,12 +1520,12 @@ class SettingsController {
                 }
             }
         }
-        
+
         AppSettings.FlushCommands()
-        
+
         title := (new_cmd.Has("desc") && new_cmd["desc"] != "") ? new_cmd["desc"] : (new_cmd.Has("command") ? new_cmd["command"] : "该命令")
         wb_name := AppSettings.GetWbName(target_wb)
-        
+
         scroll_state := this.GetTreeViewScrollState()
         this.load_command_tree(this.view.edit_search.Value, new_cmd, scroll_state.top_cmd, scroll_state.hpos)
         this.view.SB.SetText("已移动命令「" title "」到工作台「" wb_name "」")
@@ -1791,7 +1794,7 @@ class SettingsController {
             added := 0
             modified := 0
             deleted := 0
-            
+
             orig_cmds := orig_obj.Has(wb) ? orig_obj[wb] : []
             matched_orig := Map()
 
@@ -1870,11 +1873,11 @@ class SettingsController {
                     tags.Push("*" . st.modified)
                 if (st.deleted > 0)
                     tags.Push("-" . st.deleted)
-                
+
                 tag_str := ""
                 for t in tags
                     tag_str .= (tag_str == "" ? "" : " ") . t
-                
+
                 wb_list.Push("* " . wb_name . " (" . tag_str . ")")
             } else {
                 wb_list.Push(wb_name)
@@ -3594,94 +3597,144 @@ ShowUpdateGUI(latestVersion, currentVersion, releaseNotes, downloadUrl, parentGu
     try SendMessage(0x00B1, 0, 0, UpdateGUI.instance.edit_notes.Hwnd)
 }
 
-LearnCurrentWindowAsCATIA(*) {
-    hwnd := WinGetID("A")
-    if !hwnd {
-        MsgBox("未能获取当前激活窗口。", "UCLC - 特征匹配引擎", 16)
-        return
-    }
-    
-    current_window := Object()
-    try {
-        current_window.title := WinGetTitle(hwnd)
-        current_window.class := WinGetClass(hwnd)
-        current_window.exe := WinGetProcessName(hwnd)
-    } catch Error {
-        MsgBox("获取窗口信息失败。", "UCLC - 特征匹配引擎", 16)
-        return
-    }
-
-    result := MsgBox(
-        "即将把当前窗口录入为 CATIA 窗口特征锚点：`n`n"
-        "进程: " current_window.exe "`n"
-        "类名: " current_window.class "`n"
-        "标题: " current_window.title "`n`n"
-        "确认录入吗？", "UCLC - 特征锚点录入", 36
-    )
-
-    if (result == "Yes") {
-        label_res := InputBox("请输入该锚点的自定义标签（如 Main_Interface、Assembly 等）：", "输入标签", "w300 h130", "Main_Interface")
-        if (label_res.Result == "Cancel" || label_res.Value == "")
-            return
-            
-        new_id := VectorEngine.learn_sample(current_window, label_res.Value)
-        
-        snapshot_dir := A_AppData "\UCLC\snapshots"
-        if !DirExist(snapshot_dir)
-            DirCreate(snapshot_dir)
-        
-        snapshot_path := snapshot_dir "\" new_id ".png"
-        ImageCapture.CaptureWindow(hwnd, snapshot_path)
-        
-        Logger.tooltip("已成功录入为 CATIA 窗口特征！", 1500)
-    }
-}
-
-class KnowledgeManagerGUI extends Gui {
+class ManualMarkGUI extends Gui {
     __New(parentGui := "") {
-        super.__New("-MinimizeBox -MaximizeBox +Owner" (parentGui ? parentGui.Hwnd : ""), "向量特征引擎 - 锚点管理器")
+        super.__New("-MinimizeBox -MaximizeBox +AlwaysOnTop +Owner" (parentGui ? parentGui.Hwnd : ""), "手动标记 CATIA 窗口")
         this.parentGui := parentGui
         this.OnEvent("Close", ObjBindMethod(this, "OnClose"))
         this.OnEvent("Escape", ObjBindMethod(this, "OnClose"))
 
-        this.Add("Text", "x20 y20", "以下是目前大脑中已经学习到的特征锚点。你可以右键点击某项进行删除。")
-        this.lv := this.Add("ListView", "x20 y50 w560 h280 +Grid +FullRowSelect", ["Snapshot", "ID", "标签 (Label)", "进程 (Exe)", "类名 (Class)", "标题 (Title)"])
-        
-        this.il := IL_Create(10, 10, 1) 
-        this.lv.SetImageList(this.il, 1)
-        
-        this.lv.ModifyCol(1, 60)
+        this.Add("Text", "x20 y15 w360", "先选择窗口类型，再点击对应的 CATIA 窗口：")
+
+        this.radio_main := this.Add("Radio", "x20 y45 w100 Checked", "绘图窗口")
+        this.radio_popup := this.Add("Radio", "x140 y45 w150", "弹窗")
+
+        this.Add("GroupBox", "x20 y80 w340 h130", "获取到的窗口信息")
+
+        this.Add("Text", "x35 y105 w40", "程序:")
+        this.edit_exe := this.Add("Edit", "x80 y102 w260 ReadOnly", "")
+
+        this.Add("Text", "x35 y135 w40", "类名:")
+        this.edit_class := this.Add("Edit", "x80 y132 w260 ReadOnly", "")
+
+        this.Add("Text", "x35 y165 w40", "标题:")
+        this.edit_title := this.Add("Edit", "x80 y162 w260 ReadOnly", "")
+
+        this.btn_confirm := this.Add("Button", "x200 y225 w80 h30 +Disabled", "确认添加")
+        this.btn_confirm.OnEvent("Click", ObjBindMethod(this, "OnConfirm"))
+
+        this.btn_cancel := this.Add("Button", "x285 y225 w75 h30", "取消")
+        this.btn_cancel.OnEvent("Click", ObjBindMethod(this, "OnClose"))
+
+        this.captured_window := ""
+
+        this.update_func := ObjBindMethod(this, "OnUpdate")
+        SetTimer(this.update_func, 200)
+    }
+
+    OnUpdate() {
+        try {
+            hwnd := WinGetID("A")
+            if (!hwnd || hwnd == this.Hwnd) {
+                return
+            }
+
+            process_name := WinGetProcessName(hwnd)
+            if (StrLower(process_name) == "cnext.exe") {
+                win_info := Object()
+                win_info.title := WinGetTitle(hwnd)
+                win_info.class := WinGetClass(hwnd)
+                win_info.exe := process_name
+                win_info.hwnd := hwnd
+
+                if (!this.captured_window || this.captured_window.hwnd != hwnd) {
+                    this.captured_window := win_info
+                    this.edit_exe.Value := win_info.exe
+                    this.edit_class.Value := win_info.class
+                    this.edit_title.Value := win_info.title
+                    this.btn_confirm.Opt("-Disabled")
+                }
+            }
+        }
+    }
+
+    OnConfirm(*) {
+        if (!this.captured_window)
+            return
+
+        label := this.radio_main.Value ? "Main_Interface" : "Popup_Dialog"
+
+        new_id := VectorEngine.learn_sample(this.captured_window, label)
+
+        Logger.tooltip("窗口录入成功！", 1500)
+        this.OnClose()
+    }
+
+    OnClose(*) {
+        if (this.HasProp("update_func")) {
+            SetTimer(this.update_func, 0)
+        }
+        if (this.HasProp("parentGui") && this.parentGui) {
+            try WinShow(this.parentGui.Hwnd)
+        }
+        this.Destroy()
+        ManualMarkGUI.instance := ""
+    }
+
+    static instance := ""
+}
+
+ShowManualMarkGUI(parentGui := "") {
+    if (ManualMarkGUI.instance && WinExist(ManualMarkGUI.instance.Hwnd)) {
+        ManualMarkGUI.instance.Show()
+        return
+    }
+    if (parentGui)
+        try WinHide(parentGui.Hwnd)
+
+    ManualMarkGUI.instance := ManualMarkGUI(parentGui)
+    ManualMarkGUI.instance.Show("w380 h280 Center")
+}
+
+class KnowledgeManagerGUI extends Gui {
+    __New(parentGui := "") {
+        super.__New("+Resize +MaximizeBox -MinimizeBox +MinSize400x200 +Owner" (parentGui ? parentGui.Hwnd : ""), "管理已标记的窗口")
+        this.parentGui := parentGui
+        this.OnEvent("Close", ObjBindMethod(this, "OnClose"))
+        this.OnEvent("Escape", ObjBindMethod(this, "OnClose"))
+        this.OnEvent("Size", ObjBindMethod(this, "OnSize"))
+
+        this.Add("Text", "x20 y20", "以下是 UCLC 已经认识的 CATIA 窗口。如果标记错误，您可以右键点击某项进行删除。")
+        this.lv := this.Add("ListView", "x20 y50 w560 h280 +Grid", ["内部ID", "窗口类型", "程序", "类名", "标题"])
+
+        this.lv.ModifyCol(1, 100)
         this.lv.ModifyCol(2, 100)
-        this.lv.ModifyCol(3, 100)
-        this.lv.ModifyCol(4, 80)
-        this.lv.ModifyCol(5, 120)
-        this.lv.ModifyCol(6, 120)
+        this.lv.ModifyCol(3, 80)
+        this.lv.ModifyCol(4, 120)
+        this.lv.ModifyCol(5, 160)
 
         this.context_menu := Menu()
-        this.context_menu.Add("删除选中的特征锚点", ObjBindMethod(this, "DeleteSelected"))
+        this.context_menu.Add("删除选中的窗口记录", ObjBindMethod(this, "DeleteSelected"))
 
         this.lv.OnEvent("ContextMenu", ObjBindMethod(this, "ShowContextMenu"))
-        
+
         this.LoadData()
+    }
+
+    OnSize(guiObj, minMax, width, height) {
+        if (minMax == -1)
+            return
+
+        try {
+            this.lv.Move(, , width - 40, height - 70)
+        }
     }
 
     LoadData() {
         this.lv.Delete()
-        IL_Destroy(this.il)
-        
-        len := VectorEngine.learned_vectors.Length
-        this.il := IL_Create(len > 0 ? len : 1, 10, 1)
-        this.lv.SetImageList(this.il, 1)
-        
-        snapshot_dir := A_AppData "\UCLC\snapshots"
-        
+
         for idx, base in VectorEngine.learned_vectors {
-            icon_idx := ""
-            img_path := snapshot_dir "\" base["id"] ".png"
-            if FileExist(img_path) {
-                icon_idx := IL_Add(this.il, img_path)
-            }
-            this.lv.Add(icon_idx ? "Icon" icon_idx : "", "", base["id"], base["label"], base["exe"], base["class_raw"], base["title_raw"])
+            this.lv.Add("", base["id"], base["label"], base["exe"], base["class_raw"], base["title_raw"])
         }
     }
 
@@ -3695,33 +3748,30 @@ class KnowledgeManagerGUI extends Gui {
         selected_row := this.lv.GetNext(0, "F")
         if (!selected_row)
             return
-            
-        id_to_delete := this.lv.GetText(selected_row, 2)
+
+        id_to_delete := this.lv.GetText(selected_row, 1)
         result := MsgBox("确定要删除 ID 为 " id_to_delete " 的特征锚点吗？`n删除后立即生效，且不可恢复。", "确认删除", 36)
         if (result != "Yes")
             return
-            
+
         new_vectors := []
         for base in VectorEngine.learned_vectors {
             if (base["id"] != id_to_delete) {
                 new_vectors.Push(base)
             }
         }
-        
-        snapshot_path := A_AppData "\UCLC\snapshots\" id_to_delete ".png"
-        if FileExist(snapshot_path)
-            try FileDelete(snapshot_path)
-            
+
         VectorEngine.learned_vectors := new_vectors
         VectorEngine.save_knowledge()
         this.LoadData()
-        Logger.tooltip("特征锚点已删除", 1000)
+        Logger.tooltip("窗口记录已删除", 1000)
     }
 
     OnClose(*) {
         if (this.parentGui)
             try this.parentGui.Opt("-Disabled")
         this.Destroy()
+        KnowledgeManagerGUI.instance := ""
     }
 
     static instance := ""

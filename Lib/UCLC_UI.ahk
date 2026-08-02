@@ -141,6 +141,8 @@ add_coustom_tray_menu()
     dyn_menu_items := [
         ["设置...", ShowSettingsGUI, ""],
         ["", NoAction_cb, ""],
+        ["[特征锚点] 录入当前窗口为 CATIA 锚点", LearnCurrentWindowAsCATIA, ""],
+        ["", NoAction_cb, ""],
         ["挂起快捷键", disable_script_cb, ""],
         ["重新载入", reload_cb, ""],
         ["", NoAction_cb, ""],
@@ -785,6 +787,9 @@ class SettingsView extends Gui {
         this.Chk_Debug := this.Add("Checkbox", "x35 y65 +Disabled", "开启详细 Debug 调试日志")
         this.Chk_Debug.ToolTip := "警告：仅在排查软件 Bug 时开启，日常使用请务必关闭以防产生大量冗余日志文件"
 
+        this.Btn_ManageVector := this.Add("Button", "x35 y160 w160 h30", "特征锚点库管理...")
+        this.Btn_ManageVector.OnEvent("Click", (*) => ShowKnowledgeManagerGUI(this))
+        
         this.btn_saveAdvanced := this.Add("Button", "x385 y385 w145 h30 Default", "保存高级设置")
 
         ; =============== (原第三页工作台命令库已重构成弹窗) ===============
@@ -3587,4 +3592,151 @@ ShowUpdateGUI(latestVersion, currentVersion, releaseNotes, downloadUrl, parentGu
     UpdateGUI.instance.Show("w660 h500 Center")
     try UpdateGUI.instance.btn_download.Focus()
     try SendMessage(0x00B1, 0, 0, UpdateGUI.instance.edit_notes.Hwnd)
+}
+
+LearnCurrentWindowAsCATIA(*) {
+    hwnd := WinGetID("A")
+    if !hwnd {
+        MsgBox("未能获取当前激活窗口。", "UCLC - 特征匹配引擎", 16)
+        return
+    }
+    
+    current_window := Object()
+    try {
+        current_window.title := WinGetTitle(hwnd)
+        current_window.class := WinGetClass(hwnd)
+        current_window.exe := WinGetProcessName(hwnd)
+    } catch Error {
+        MsgBox("获取窗口信息失败。", "UCLC - 特征匹配引擎", 16)
+        return
+    }
+
+    result := MsgBox(
+        "即将把当前窗口录入为 CATIA 窗口特征锚点：`n`n"
+        "进程: " current_window.exe "`n"
+        "类名: " current_window.class "`n"
+        "标题: " current_window.title "`n`n"
+        "确认录入吗？", "UCLC - 特征锚点录入", 36
+    )
+
+    if (result == "Yes") {
+        label_res := InputBox("请输入该锚点的自定义标签（如 Main_Interface、Assembly 等）：", "输入标签", "w300 h130", "Main_Interface")
+        if (label_res.Result == "Cancel" || label_res.Value == "")
+            return
+            
+        new_id := VectorEngine.learn_sample(current_window, label_res.Value)
+        
+        snapshot_dir := A_AppData "\UCLC\snapshots"
+        if !DirExist(snapshot_dir)
+            DirCreate(snapshot_dir)
+        
+        snapshot_path := snapshot_dir "\" new_id ".png"
+        ImageCapture.CaptureWindow(hwnd, snapshot_path)
+        
+        Logger.tooltip("已成功录入为 CATIA 窗口特征！", 1500)
+    }
+}
+
+class KnowledgeManagerGUI extends Gui {
+    __New(parentGui := "") {
+        super.__New("-MinimizeBox -MaximizeBox +Owner" (parentGui ? parentGui.Hwnd : ""), "向量特征引擎 - 锚点管理器")
+        this.parentGui := parentGui
+        this.OnEvent("Close", ObjBindMethod(this, "OnClose"))
+        this.OnEvent("Escape", ObjBindMethod(this, "OnClose"))
+
+        this.Add("Text", "x20 y20", "以下是目前大脑中已经学习到的特征锚点。你可以右键点击某项进行删除。")
+        this.lv := this.Add("ListView", "x20 y50 w560 h280 +Grid +FullRowSelect", ["Snapshot", "ID", "标签 (Label)", "进程 (Exe)", "类名 (Class)", "标题 (Title)"])
+        
+        this.il := IL_Create(10, 10, 1) 
+        this.lv.SetImageList(this.il, 1)
+        
+        this.lv.ModifyCol(1, 60)
+        this.lv.ModifyCol(2, 100)
+        this.lv.ModifyCol(3, 100)
+        this.lv.ModifyCol(4, 80)
+        this.lv.ModifyCol(5, 120)
+        this.lv.ModifyCol(6, 120)
+
+        this.context_menu := Menu()
+        this.context_menu.Add("删除选中的特征锚点", ObjBindMethod(this, "DeleteSelected"))
+
+        this.lv.OnEvent("ContextMenu", ObjBindMethod(this, "ShowContextMenu"))
+        
+        this.LoadData()
+    }
+
+    LoadData() {
+        this.lv.Delete()
+        IL_Destroy(this.il)
+        
+        len := VectorEngine.learned_vectors.Length
+        this.il := IL_Create(len > 0 ? len : 1, 10, 1)
+        this.lv.SetImageList(this.il, 1)
+        
+        snapshot_dir := A_AppData "\UCLC\snapshots"
+        
+        for idx, base in VectorEngine.learned_vectors {
+            icon_idx := ""
+            img_path := snapshot_dir "\" base["id"] ".png"
+            if FileExist(img_path) {
+                icon_idx := IL_Add(this.il, img_path)
+            }
+            this.lv.Add(icon_idx ? "Icon" icon_idx : "", "", base["id"], base["label"], base["exe"], base["class_raw"], base["title_raw"])
+        }
+    }
+
+    ShowContextMenu(GuiCtrlObj, Item, IsRightClick, X, Y) {
+        if (Item = 0)
+            return
+        this.context_menu.Show(X, Y)
+    }
+
+    DeleteSelected(*) {
+        selected_row := this.lv.GetNext(0, "F")
+        if (!selected_row)
+            return
+            
+        id_to_delete := this.lv.GetText(selected_row, 2)
+        result := MsgBox("确定要删除 ID 为 " id_to_delete " 的特征锚点吗？`n删除后立即生效，且不可恢复。", "确认删除", 36)
+        if (result != "Yes")
+            return
+            
+        new_vectors := []
+        for base in VectorEngine.learned_vectors {
+            if (base["id"] != id_to_delete) {
+                new_vectors.Push(base)
+            }
+        }
+        
+        snapshot_path := A_AppData "\UCLC\snapshots\" id_to_delete ".png"
+        if FileExist(snapshot_path)
+            try FileDelete(snapshot_path)
+            
+        VectorEngine.learned_vectors := new_vectors
+        VectorEngine.save_knowledge()
+        this.LoadData()
+        Logger.tooltip("特征锚点已删除", 1000)
+    }
+
+    OnClose(*) {
+        if (this.parentGui)
+            try this.parentGui.Opt("-Disabled")
+        this.Destroy()
+    }
+
+    static instance := ""
+}
+
+ShowKnowledgeManagerGUI(parentGui := "") {
+    if (KnowledgeManagerGUI.instance && WinExist(KnowledgeManagerGUI.instance.Hwnd)) {
+        KnowledgeManagerGUI.instance.LoadData()
+        if (parentGui)
+            try parentGui.Opt("+Disabled")
+        KnowledgeManagerGUI.instance.Show()
+        return
+    }
+    if (parentGui)
+        try parentGui.Opt("+Disabled")
+    KnowledgeManagerGUI.instance := KnowledgeManagerGUI(parentGui)
+    KnowledgeManagerGUI.instance.Show("w600 h350 Center")
 }

@@ -860,6 +860,11 @@ class ConfigMigrator {
 
 
 class CATIAWindow {
+    /* 
+    ===================================================================
+    [Legacy] 硬编码识别逻辑 (主要针对 R27 环境)
+    说明：目前的识别已经重构为基于特征向量匹配，但保留此处供参考。
+    ===================================================================
     static catia_window_classnn_map := Map(
         "R21", "Afx:",
         "R27", "Afx:",
@@ -882,8 +887,15 @@ class CATIAWindow {
         }
         return false
     }
+    ===================================================================
+    */
 
     static identify_window(hwnd := "A") {
+        ; 极速缓存验证：如果此 hwnd 已经被归类为 CATIA，直接返回其 class，跳过向量预测
+        if WinExist("ahk_group GroupCATIA ahk_id " hwnd) {
+            return WinGetClass(hwnd)
+        }
+
         current_window := Object()
         try {
             current_window.title := WinGetTitle(hwnd)
@@ -895,11 +907,14 @@ class CATIAWindow {
             return false
         }
 
-        if (this.is_catia_exe_and_title(current_window) and this.is_included_catia_class(current_window)) {
-            Logger.info("CATIA窗口 获取成功")
+        prediction := VectorEngine.predict(current_window)
+        
+        if (prediction.label != "Not_CATIA") {
+            Logger.info("CATIA窗口(向量引擎) 命中，标签：" . prediction.label . " 得分：" . prediction.score)
             return current_window.class
         }
-        Logger.info("未获取到CATIA窗口")
+        
+        Logger.info("CATIA窗口(向量引擎) 未命中")
         return false
     }
 
@@ -1359,10 +1374,11 @@ class WinEventHook {
 
         try {
             global CATIAWindow
-            catia_window_hwnd := CATIAWindow.identify_window(hwnd)
+            catia_window_class := CATIAWindow.identify_window(hwnd)
 
-            if catia_window_hwnd {
-                GroupAdd("GroupCATIA", "ahk_class " catia_window_hwnd)
+            if catia_window_class {
+                exe_name := WinGetProcessName(hwnd)
+                GroupAdd("GroupCATIA", "ahk_class " catia_window_class " ahk_exe " exe_name)
             }
 
             if (AppSettings.AutoIME_Enabled && WinActive("ahk_group group_autoime")) {

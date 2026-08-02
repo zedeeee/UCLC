@@ -4,6 +4,7 @@ SetTitleMatchMode 2
 
 ; === UCLC 核心基础库 ===
 #Include Lib\UCLC_System.ahk
+#Include Lib\UCLC_VectorMatcher.ahk
 #Include Lib\UCLC_Core.ahk
 #Include Lib\UCLC_UI.ahk
 #Include Lib\UCLC_Updater.ahk
@@ -113,6 +114,7 @@ class UCLCApp {
     }
 }
 
+global VectorEngine := VectorSpaceMatcher(A_AppData "\UCLC\vector_nodes.json")
 app := UCLCApp()
 app.Run()
 

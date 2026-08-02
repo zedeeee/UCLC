@@ -1,6 +1,10 @@
 {
     "_version": "B27",
     "mapping": {
+        "CATAfrGeneralWks": {
+            "English": "General",
+            "Simplified_Chinese": "通用"
+        },
         "CATAifAssemblyWkb": {
             "English": "Assembly Design",
             "French": "Assembly Design",

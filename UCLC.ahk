@@ -113,6 +113,7 @@ class UCLCApp {
     }
 }
 
+FeatureMatcher.Init(A_AppData "\UCLC\vector_nodes.json")
 app := UCLCApp()
 app.Run()
 
@@ -234,7 +235,9 @@ RAlt & MButton::
 
     ~Esc::
     {
-        ControlSetText("", CATIAWindow.get_power_input_edit_hwnd())
+        if (hwnd := CATIAWindow.get_power_input_edit_hwnd()) {
+            ControlSetText("", hwnd)
+        }
     }
 }
 

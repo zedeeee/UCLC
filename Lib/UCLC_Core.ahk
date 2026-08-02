@@ -860,6 +860,11 @@ class ConfigMigrator {
 
 
 class CATIAWindow {
+    /* 
+    ===================================================================
+    [Legacy] 硬编码识别逻辑 (主要针对 R27 环境)
+    说明：目前的识别已经重构为基于特征向量匹配，但保留此处供参考。
+    ===================================================================
     static catia_window_classnn_map := Map(
         "R21", "Afx:",
         "R27", "Afx:",
@@ -882,8 +887,22 @@ class CATIAWindow {
         }
         return false
     }
+    ===================================================================
+    */
 
     static identify_window(hwnd := "A") {
+        ; 极速缓存验证：如果此 hwnd 已经被归类为 CATIA，直接返回其 class，跳过向量预测
+        if WinExist("ahk_group GroupCATIA ahk_id " hwnd) {
+            if AppSettings.DEBUG_I {
+                try {
+                    cached_win := {title: WinGetTitle(hwnd), class: WinGetClass(hwnd), exe: WinGetProcessName(hwnd)}
+                    pred := FeatureMatcher.predict(cached_win)
+                    Logger.info("已缓存CATIA窗口 命中，得分：" . Round(pred.score, 2) . " 标签：" . pred.label)
+                }
+            }
+            return WinGetClass(hwnd)
+        }
+
         current_window := Object()
         try {
             current_window.title := WinGetTitle(hwnd)
@@ -895,21 +914,33 @@ class CATIAWindow {
             return false
         }
 
-        if (this.is_catia_exe_and_title(current_window) and this.is_included_catia_class(current_window)) {
-            Logger.info("CATIA窗口 获取成功")
+        prediction := FeatureMatcher.predict(current_window)
+        
+        if (prediction.label == "Main_Interface") {
+            Logger.info("CATIA主窗口(特征匹配库) 命中，得分：" . Round(prediction.score, 2))
             return current_window.class
         }
-        Logger.info("未获取到CATIA窗口")
+        
+        if (prediction.label != "Not_CATIA") {
+            Logger.info("CATIA弹窗(特征匹配库) 命中：" . prediction.label . " (跳过主界面绑定)")
+            return false
+        }
+        
+        Logger.info("非CATIA窗口 未命中: " . current_window.exe)
         return false
     }
 
     static get_power_input_edit_hwnd() {
-        status_bar_hwnd := ControlGetHwnd("msctls_statusbar321")
-        for ctrl in WinGetControls(status_bar_hwnd) {
-            if InStr(StrLower(ctrl), "edit") {
-                edit_hwnd := ControlGetHwnd(ctrl, status_bar_hwnd)
-                return edit_hwnd
+        try {
+            status_bar_hwnd := ControlGetHwnd("msctls_statusbar321", "A")
+            for ctrl in WinGetControls(status_bar_hwnd) {
+                if InStr(StrLower(ctrl), "edit") {
+                    edit_hwnd := ControlGetHwnd(ctrl, status_bar_hwnd)
+                    return edit_hwnd
+                }
             }
+        } catch {
+            return false
         }
         return false
     }
@@ -1012,8 +1043,25 @@ class CATIAInstance {
     static is_catia_bindable_context() {
         if WinActive("ahk_group GroupCATIA")
             return true
-        if WinActive("ahk_class #32770 ahk_exe CNEXT.exe")
-            return true
+        
+        ; --- 旧版硬编码实现 (保留注释) ---
+        ; if WinActive("ahk_class #32770 ahk_exe CNEXT.exe")
+        ;     return true
+        
+        hwnd := WinExist("A")
+        if (hwnd) {
+            win_info := {
+                hwnd: hwnd,
+                title: WinGetTitle(hwnd),
+                class: WinGetClass(hwnd),
+                exe: WinGetProcessName(hwnd)
+            }
+            pred := FeatureMatcher.predict(win_info)
+            if (pred.label != "Not_CATIA") {
+                return true
+            }
+        }
+        
         return false
     }
 
@@ -1021,8 +1069,22 @@ class CATIAInstance {
         if !this.is_catia_bindable_context()
             return false
         try {
-            catia_pid := WinGetPID("A")
-            return WinExist("ahk_class #32770 ahk_pid " . catia_pid)
+            ; --- 旧版硬编码实现 (保留注释) ---
+            ; catia_pid := WinGetPID("A")
+            ; return WinExist("ahk_class #32770 ahk_pid " . catia_pid)
+
+            hwnd := WinExist("A")
+            if (hwnd) {
+                win_info := {
+                    hwnd: hwnd,
+                    title: WinGetTitle(hwnd),
+                    class: WinGetClass(hwnd),
+                    exe: WinGetProcessName(hwnd)
+                }
+                pred := FeatureMatcher.predict(win_info)
+                if (pred.label == "Popup_Dialog")
+                    return hwnd
+            }
         }
         return false
     }
@@ -1032,8 +1094,23 @@ class CATIAInstance {
     static click_dialog_button(keywords, target_hwnd := 0) {
         if !target_hwnd {
             try {
-                catia_pid := WinGetPID("A")
-                target_hwnd := WinExist("ahk_class #32770 ahk_pid " . catia_pid)
+                ; --- 旧版硬编码实现 (保留注释) ---
+                ; catia_pid := WinGetPID("A")
+                ; target_hwnd := WinExist("ahk_class #32770 ahk_pid " . catia_pid)
+
+                hwnd := WinExist("A")
+                if (hwnd) {
+                    win_info := {
+                        hwnd: hwnd,
+                        title: WinGetTitle(hwnd),
+                        class: WinGetClass(hwnd),
+                        exe: WinGetProcessName(hwnd)
+                    }
+                    pred := FeatureMatcher.predict(win_info)
+                    if (pred.label == "Popup_Dialog") {
+                        target_hwnd := hwnd
+                    }
+                }
             }
         }
         if !target_hwnd
@@ -1090,7 +1167,7 @@ class CommandEngine {
                     return id
                 }
             }
-            return "通用"
+            return "CATAfrGeneralWks"
         }
         catch {
             active_hwnd := WinExist("A")
@@ -1134,14 +1211,14 @@ class CommandEngine {
     static read_user_alias(dict_type, section, key) {
         target_obj := (dict_type == "alias") ? AppSettings.alias_obj : AppSettings.hotkey_obj
         try {
-            Logger.info("调用 " section)
+            Logger.info("调用 " AppSettings.GetWbName(section))
             if this.get_map_value_case_insensitive(target_obj, section, &section_map) {
                 if this.get_map_value_case_insensitive(section_map, key, &config_val) {
                     return this.process_config(config_val)
                 }
             }
-            Logger.info("调用 通用")
-            if this.get_map_value_case_insensitive(target_obj, "通用", &general_map) {
+            Logger.info("调用 " AppSettings.GetWbName("CATAfrGeneralWks"))
+            if this.get_map_value_case_insensitive(target_obj, "CATAfrGeneralWks", &general_map) {
                 if this.get_map_value_case_insensitive(general_map, key, &config_val) {
                     return this.process_config(config_val)
                 }
@@ -1359,10 +1436,11 @@ class WinEventHook {
 
         try {
             global CATIAWindow
-            catia_window_hwnd := CATIAWindow.identify_window(hwnd)
+            catia_window_class := CATIAWindow.identify_window(hwnd)
 
-            if catia_window_hwnd {
-                GroupAdd("GroupCATIA", "ahk_class " catia_window_hwnd)
+            if catia_window_class {
+                exe_name := WinGetProcessName(hwnd)
+                GroupAdd("GroupCATIA", "ahk_class " catia_window_class " ahk_exe " exe_name)
             }
 
             if (AppSettings.AutoIME_Enabled && WinActive("ahk_group group_autoime")) {
@@ -1375,3 +1453,198 @@ class WinEventHook {
         }
     }
 }
+
+; =========================================
+; VectorSpaceMatcher & ImageCapture
+; =========================================
+
+class FeatureMatcher {
+    static learned_vectors := []
+    static json_path := ""
+
+    static Init(storage_path) {
+        this.json_path := storage_path
+        this.load_knowledge()
+    }
+
+    static load_knowledge() {
+        if !FileExist(this.json_path) {
+            this.learned_vectors := []
+            return
+        }
+        try {
+            json_str := FileRead(this.json_path, "UTF-8")
+            if (json_str != "") {
+                raw_list := JSON.parse(json_str)
+                this.learned_vectors := []
+                ; 启动时直接预计算向量空间 (Pre-compute vectors at load time)
+                for item in raw_list {
+                    item["class_vec"] := this.get_ngrams(item["class_raw"])
+                    item["title_vec"] := this.get_ngrams(item["title_raw"])
+                    
+                    ; 预计算分母 (Magnitude squared sum) 避免每次 predict 重复计算
+                    sum_c := 0.0
+                    for k, v in item["class_vec"]
+                        sum_c += v ** 2
+                    item["class_mag"] := Sqrt(sum_c)
+                    
+                    sum_t := 0.0
+                    for k, v in item["title_vec"]
+                        sum_t += v ** 2
+                    item["title_mag"] := Sqrt(sum_t)
+                    
+                    this.learned_vectors.Push(item)
+                }
+            }
+        } catch Error as e {
+            Logger.info("解析向量知识库失败：" . e.Message)
+            this.learned_vectors := []
+        }
+    }
+
+    static save_knowledge() {
+        try {
+            ; 剔除预计算的复杂对象以保证 JSON 纯净
+            export_list := []
+            for item in this.learned_vectors {
+                clean_item := Map(
+                    "id", item["id"],
+                    "label", item["label"],
+                    "exe", item["exe"],
+                    "class_raw", item["class_raw"],
+                    "title_raw", item["title_raw"]
+                )
+                export_list.Push(clean_item)
+            }
+            json_str := JSON.stringify(export_list)
+            
+            SplitPath this.json_path, &name, &dir
+            if !DirExist(dir) {
+                DirCreate dir
+            }
+
+            file_obj := FileOpen(this.json_path, "w", "UTF-8")
+            file_obj.Write(json_str)
+            file_obj.Close()
+        } catch Error as e {
+            Logger.info("保存向量知识库失败：" . e.Message)
+        }
+    }
+
+    static learn_sample(window_info, label) {
+        ; 重复数据过滤
+        for existing in this.learned_vectors {
+            if (existing["class_raw"] = window_info.class && existing["title_raw"] = window_info.title) {
+                if (existing["label"] != label) {
+                    existing["label"] := label
+                }
+                return existing["id"]
+            }
+        }
+
+        new_record := Map(
+            "id", A_Now,
+            "label", label,
+            "exe", StrLower(window_info.exe),
+            "class_raw", window_info.class,
+            "title_raw", window_info.title
+        )
+        ; 手动预计算放入内存
+        new_record["class_vec"] := this.get_ngrams(new_record["class_raw"])
+        new_record["title_vec"] := this.get_ngrams(new_record["title_raw"])
+        
+        sum_c := 0.0
+        for k, v in new_record["class_vec"]
+            sum_c += v ** 2
+        new_record["class_mag"] := Sqrt(sum_c)
+        
+        sum_t := 0.0
+        for k, v in new_record["title_vec"]
+            sum_t += v ** 2
+        new_record["title_mag"] := Sqrt(sum_t)
+
+        this.learned_vectors.Push(new_record)
+        return new_record["id"]
+    }
+
+    static predict(window_info) {
+        if (this.learned_vectors.Length == 0) {
+            return {label: "Not_CATIA", score: 0}
+        }
+
+        exe := StrLower(window_info.exe)
+        
+        ; 目标窗口只计算一次向量
+        target_class_vec := this.get_ngrams(window_info.class)
+        target_title_vec := this.get_ngrams(window_info.title)
+        
+        target_class_mag := 0.0
+        for k, v in target_class_vec
+            target_class_mag += v ** 2
+        target_class_mag := Sqrt(target_class_mag)
+        
+        target_title_mag := 0.0
+        for k, v in target_title_vec
+            target_title_mag += v ** 2
+        target_title_mag := Sqrt(target_title_mag)
+
+        best_score := 0.0
+        best_label := "Not_CATIA"
+
+        for base in this.learned_vectors {
+            if (exe != base["exe"]) {
+                continue
+            }
+
+            score_class := this.fast_cosine(base["class_vec"], base["class_mag"], target_class_vec, target_class_mag)
+            score_title := this.fast_cosine(base["title_vec"], base["title_mag"], target_title_vec, target_title_mag)
+
+            total_score := (score_class * 0.7) + (score_title * 0.3)
+
+            if (total_score > best_score) {
+                best_score := total_score
+                best_label := base["label"]
+            }
+        }
+
+        if (best_score > 0.60) {
+            return {label: best_label, score: best_score}
+        }
+        
+        return {label: "Not_CATIA", score: best_score}
+    }
+
+    static get_ngrams(text, n:=3) {
+        grams := Map()
+        len := StrLen(text)
+        if (len < n) {
+            grams[text] := 1
+            return grams
+        }
+        
+        Loop (len - n + 1) {
+            frag := SubStr(text, A_Index, n)
+            if (grams.Has(frag)) {
+                grams[frag] += 1
+            } else {
+                grams[frag] := 1
+            }
+        }
+        return grams
+    }
+
+    static fast_cosine(vec1, mag1, vec2, mag2) {
+        if (mag1 == 0 or mag2 == 0) {
+            return 0.0
+        }
+        
+        numerator := 0.0
+        for k, v1 in vec1 {
+            if (vec2.Has(k)) {
+                numerator += v1 * vec2[k]
+            }
+        }
+        return numerator / (mag1 * mag2)
+    }
+}
+

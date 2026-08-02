@@ -1,5 +1,12 @@
 {
-  "通用": [
+  "CATAfrGeneralWks": [
+    {
+      "aliases": [
+        "GZ"
+      ],
+      "command": "CATAfrIsoViewHdr",
+      "desc": "等轴测视图"
+    },
     {
       "aliases": [
         "SAA"
@@ -126,7 +133,8 @@
     },
     {
       "aliases": [
-        "FXY"
+        "FXY",
+        "FYX"
       ],
       "args": [
         "TransXY"
@@ -137,7 +145,8 @@
     },
     {
       "aliases": [
-        "FYZ"
+        "FYZ",
+        "FZY"
       ],
       "args": [
         "TransYZ"
@@ -148,10 +157,11 @@
     },
     {
       "aliases": [
-        "FZX"
+        "FZX",
+        "FXZ"
       ],
       "args": [
-        "TransZX"
+        "TransXZ"
       ],
       "callback": "quick_manipulation",
       "command": "CATAifDirectManipulationHdr",
@@ -205,74 +215,95 @@
   "CATPcfPartWkb": [
     {
       "aliases": [
+        "S"
+      ],
+      "command": "CATMmrSketchHeaderHdr",
+      "desc": "草图"
+    },
+    {
+      "aliases": [
+        "SS"
+      ],
+      "command": "CATMmrSketchPositioningHeaderHdr",
+      "desc": "定位草图"
+    },
+    {
+      "aliases": [
         "P"
       ],
-      "command": "Pad",
+      "command": "CATPcfPadHdr",
       "desc": "凸台"
     },
     {
       "aliases": [
         "PO"
       ],
-      "command": "Pocket",
+      "command": "CATPcfPocketHdr",
       "desc": "凹槽"
     },
     {
       "aliases": [
         "FI"
       ],
-      "command": "Edge Fillet",
+      "command": "CATPcfFilletHdr",
       "desc": "倒圆角"
     },
     {
       "aliases": [
         "CH"
       ],
-      "command": "Chamfer",
+      "command": "CATPcfChamferHdr",
       "desc": "倒角"
     },
     {
       "aliases": [
         "SH"
       ],
-      "command": "Shell",
+      "command": "CATPcfShellHdr",
       "desc": "抽壳"
     }
   ],
   "CATSKUCS0WKSWks": [
     {
       "aliases": [
+        "BAC"
+      ],
+      "command": "CATAfrUnstackWorkbenchHdr",
+      "desc": "退出草图工作台"
+    },
+    {
+      "aliases": [
         "P"
       ],
-      "command": "Profile",
+      "command": "CAT2DProfileHdr",
       "desc": "轮廓"
     },
     {
       "aliases": [
         "L"
       ],
-      "command": "Line",
+      "command": "CAT2DLineHdr",
       "desc": "直线"
     },
     {
       "aliases": [
         "R"
       ],
-      "command": "Rectangle",
+      "command": "CAT2DRectangleHdr",
       "desc": "矩形"
     },
     {
       "aliases": [
-        "C"
+        "CC"
       ],
-      "command": "Circle",
+      "command": "CAT2DCircleRadiusHdr",
       "desc": "圆"
     },
     {
       "aliases": [
         "D"
       ],
-      "command": "Constraint",
+      "command": "CATSKU2DConstraintHdr",
       "desc": "约束"
     },
     {
@@ -288,35 +319,35 @@
       "aliases": [
         "EX"
       ],
-      "command": "Extrude",
+      "command": "CATShapeDesignExtrudeHdr",
       "desc": "拉伸"
     },
     {
       "aliases": [
         "RE"
       ],
-      "command": "Revolve",
+      "command": "CATShapeDesignRevolveHdr",
       "desc": "旋转"
     },
     {
       "aliases": [
         "J"
       ],
-      "command": "Join",
+      "command": "CATShapeDesignJoinHdr",
       "desc": "接合"
     },
     {
       "aliases": [
         "SP"
       ],
-      "command": "Split",
+      "command": "CATShapeDesignSplitHdr",
       "desc": "分割"
     },
     {
       "aliases": [
         "SYM"
       ],
-      "command": "Symmetry",
+      "command": "CATHybridPartSymmetryHdr",
       "desc": "对称"
     }
   ]

@@ -964,7 +964,7 @@ class KeyboardController {
             ; 修复 RAlt & RButton 未注册组合导致的 RAlt 粘滞
             Hotkey(">!RButton", (*) => SendInput("{RButton}"))
 
-            ; 1. 全量修饰键物理抬起监听：带通配符 * 与严格空格 Up，物理释放时立刻强制逻辑复位
+            ; 1. 全量 8 组修饰键物理抬起监听：带通配符 * 与严格空格 Up，物理释放时立刻强制逻辑复位
             Hotkey("~*LAlt Up", (*) => this.safe_release_key("LAlt", true))
             Hotkey("~*RAlt Up", (*) => this.safe_release_key("RAlt", true))
             Hotkey("~*LCtrl Up", (*) => this.safe_release_key("LCtrl"))

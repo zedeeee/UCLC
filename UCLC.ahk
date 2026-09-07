@@ -133,10 +133,14 @@ app.Run()
             return
         }
 
-        if (A_PriorHotkey != "~RControl" or A_TimeSincePriorHotkey > 400) {
+        static last_press := 0
+        now := A_TickCount
+        if (now - last_press > 400) {
+            last_press := now
             KeyWait "Control"
             return
         }
+        last_press := 0
 
         KeyWait "Control"
         Sleep 30

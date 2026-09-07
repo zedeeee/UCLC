@@ -1065,16 +1065,11 @@ class CATIAInstance {
         return false
     }
 
-    static is_catia_dialog_context() {
-        if !this.is_catia_bindable_context()
-            return false
+    static get_active_catia_dialog_hwnd() {
         try {
-            ; --- 旧版硬编码实现 (保留注释) ---
-            ; catia_pid := WinGetPID("A")
-            ; return WinExist("ahk_class #32770 ahk_pid " . catia_pid)
-
             hwnd := WinExist("A")
             if (hwnd) {
+                active_pid := WinGetPID(hwnd)
                 win_info := {
                     hwnd: hwnd,
                     title: WinGetTitle(hwnd),
@@ -1082,39 +1077,53 @@ class CATIAInstance {
                     exe: WinGetProcessName(hwnd)
                 }
                 pred := FeatureMatcher.predict(win_info)
-                if (pred.label == "Popup_Dialog")
+                if (pred.label == "Popup_Dialog") {
                     return hwnd
-            }
-        }
-        return false
-    }
-
-
-
-    static click_dialog_button(keywords, target_hwnd := 0) {
-        if !target_hwnd {
-            try {
-                ; --- 旧版硬编码实现 (保留注释) ---
-                ; catia_pid := WinGetPID("A")
-                ; target_hwnd := WinExist("ahk_class #32770 ahk_pid " . catia_pid)
-
-                hwnd := WinExist("A")
-                if (hwnd) {
-                    win_info := {
-                        hwnd: hwnd,
-                        title: WinGetTitle(hwnd),
-                        class: WinGetClass(hwnd),
-                        exe: WinGetProcessName(hwnd)
-                    }
-                    pred := FeatureMatcher.predict(win_info)
-                    if (pred.label == "Popup_Dialog") {
-                        target_hwnd := hwnd
+                }
+                
+                ; 如果前台窗口不是弹窗，按 Z-Order 遍历当前进程的所有可见 #32770 窗口
+                if (active_pid) {
+                    hwnd_list := WinGetList("ahk_class #32770 ahk_pid " active_pid)
+                    for h in hwnd_list {
+                        if !WinGetTitle(h)
+                            continue
+                        if !DllCall("IsWindowVisible", "Ptr", h)
+                            continue
+                            
+                        win_info_bg := {
+                            hwnd: h,
+                            title: WinGetTitle(h),
+                            class: WinGetClass(h),
+                            exe: win_info.exe
+                        }
+                        pred_bg := FeatureMatcher.predict(win_info_bg)
+                        if (pred_bg.label == "Popup_Dialog") {
+                            return h
+                        }
                     }
                 }
             }
         }
+        return 0
+    }
+
+    static is_catia_dialog_context() {
+        if !this.is_catia_bindable_context()
+            return false
+        return (this.get_active_catia_dialog_hwnd() != 0)
+    }
+
+    static click_dialog_button(keywords, target_hwnd := 0) {
+        if !target_hwnd {
+            target_hwnd := this.get_active_catia_dialog_hwnd()
+        }
         if !target_hwnd
             return false
+
+        if (WinExist("A") != target_hwnd) {
+            WinActivate(target_hwnd)
+        }
+
         try {
             for ctrl in WinGetControls(target_hwnd) {
                 if !ControlGetVisible(ctrl, target_hwnd)
@@ -1122,7 +1131,7 @@ class CATIAInstance {
                 clean_text := Trim(RegExReplace(StrReplace(ControlGetText(ctrl, target_hwnd), "&", ""), "\([a-zA-Z]\)", ""))
                 for kw in keywords {
                     if (clean_text == kw) {
-                        SendMessage(0xF5, 0, 0, ctrl, target_hwnd)
+                        PostMessage(0x00F5, 0, 0, ctrl, target_hwnd)  ; BM_CLICK — 不走鼠标消息管道，绕过 MA_ACTIVATEANDEAT
                         return true
                     }
                 }

@@ -244,3 +244,4 @@ RAlt & MButton::
 #HotIf (AppSettings.config_obj.Has("CatiaMButton") && Integer(AppSettings.config_obj["CatiaMButton"]["Enabled"]) && CATIAInstance.is_catia_dialog_context())
 !MButton:: CATIAInstance.click_dialog_confirm_button()
 +MButton:: CATIAInstance.click_dialog_preview_button()
+#HotIf

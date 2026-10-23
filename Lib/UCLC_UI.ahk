@@ -273,6 +273,31 @@ class SettingsModel {
         this.import_items := []
     }
 
+    static GetCommandSignature(cmd) {
+        if !IsObject(cmd)
+            return ""
+        cmd_id := (Type(cmd) == "Map") ? (cmd.Has("command") ? cmd["command"] : "") : (HasProp(cmd, "command") ? cmd.command : "")
+        if (cmd_id == "")
+            return ""
+        sig := cmd_id
+        has_args := (Type(cmd) == "Map") ? cmd.Has("args") : HasProp(cmd, "args")
+        if (has_args) {
+            args := (Type(cmd) == "Map") ? cmd["args"] : cmd.args
+            if IsObject(args) && (args.Length > 0) {
+                sig .= "|"
+                for arg in args
+                    sig .= arg . ","
+            }
+        }
+        has_cb := (Type(cmd) == "Map") ? cmd.Has("callback") : HasProp(cmd, "callback")
+        if (has_cb) {
+            cb := (Type(cmd) == "Map") ? cmd["callback"] : cmd.callback
+            if (cb != "")
+                sig .= "|cb:" . cb
+        }
+        return sig
+    }
+
     init() {
         AppSettings.init()
         this.original_json_str := JSON.stringify(AppSettings.commands_obj)
@@ -563,10 +588,21 @@ class SettingsModel {
         local_by_id := Map()
         local_by_title := Map()
         for cmd in local_array {
-            local_by_id[cmd["command"]] := cmd
-            desc := (cmd.Has("desc") && cmd["desc"] != "") ? cmd["desc"] : cmd["command"]
-            if desc != ""
-                local_by_title[desc] := cmd
+            is_composite := ((Type(cmd) == "Map" ? cmd.Has("args") : HasProp(cmd, "args")) && (Type(cmd) == "Map" ? cmd["args"] : cmd.args).Length > 0)
+                         || ((Type(cmd) == "Map" ? cmd.Has("callback") : HasProp(cmd, "callback")) && (Type(cmd) == "Map" ? cmd["callback"] : cmd.callback) != "")
+
+            cmd_id := (Type(cmd) == "Map") ? (cmd.Has("command") ? cmd["command"] : "") : (HasProp(cmd, "command") ? cmd.command : "")
+            desc := (Type(cmd) == "Map") ? (cmd.Has("desc") ? cmd["desc"] : "") : (HasProp(cmd, "desc") ? cmd.desc : "")
+
+            ; 只有纯原生命令（无 args 且无 callback）才作为导入 ID 比较映射的目标，防止复合命令被标准 ID 导入逻辑误覆盖
+            if (cmd_id != "" && !is_composite) {
+                if !local_by_id.Has(cmd_id)
+                    local_by_id[cmd_id] := cmd
+            }
+            if (desc != "" && !is_composite) {
+                if !local_by_title.Has(desc)
+                    local_by_title[desc] := cmd
+            }
         }
 
         import_items := []
@@ -3448,7 +3484,7 @@ class SettingsController {
         }
 
         new_array := []
-        added_command_ids := Map()
+        added_signatures := Map()
 
         ; 按照本地原本的顺序重构，保证不改乱顺序
         for cmd in local_array {
@@ -3456,7 +3492,11 @@ class SettingsController {
             if (cmd_id == "")
                 continue
 
-            if (selected_modifications.Has(cmd_id)) {
+            cmd_sig := SettingsModel.GetCommandSignature(cmd)
+            is_composite := (cmd.Has("args") && IsObject(cmd["args"]) && cmd["args"].Length > 0) || (cmd.Has("callback") && cmd["callback"] != "")
+
+            ; 只有纯原生命令才会被导入修改表影响；复合命令坚决保留其参数与回调
+            if (!is_composite && selected_modifications.Has(cmd_id)) {
                 mod := selected_modifications[cmd_id]
                 if (mod["type"] == "D") {
                     continue
@@ -3464,30 +3504,32 @@ class SettingsController {
                     new_cmd := cmd.Clone()
                     new_cmd["command"] := mod["new_id"]
                     new_cmd["desc"] := mod["title"]
-                    if (!added_command_ids.Has(new_cmd["command"])) {
-                        added_command_ids[new_cmd["command"]] := true
+                    new_sig := SettingsModel.GetCommandSignature(new_cmd)
+                    if (!added_signatures.Has(new_sig)) {
+                        added_signatures[new_sig] := true
                         new_array.Push(new_cmd)
                     }
                 } else if (mod["type"] == "T") {
                     new_cmd := cmd.Clone()
                     new_cmd["desc"] := mod["title"]
-                    if (!added_command_ids.Has(cmd_id)) {
-                        added_command_ids[cmd_id] := true
+                    if (!added_signatures.Has(cmd_sig)) {
+                        added_signatures[cmd_sig] := true
                         new_array.Push(new_cmd)
                     }
                 }
             } else {
-                if (!added_command_ids.Has(cmd_id)) {
-                    added_command_ids[cmd_id] := true
+                ; 原有命令（包括所有带参/回调的复合命令）按复合唯一签名排重保留
+                if (!added_signatures.Has(cmd_sig)) {
+                    added_signatures[cmd_sig] := true
                     new_array.Push(cmd)
                 }
             }
         }
 
         for add_cmd in selected_additions {
-            cmd_id := add_cmd["command"]
-            if (cmd_id != "" && !added_command_ids.Has(cmd_id)) {
-                added_command_ids[cmd_id] := true
+            add_sig := SettingsModel.GetCommandSignature(add_cmd)
+            if (add_sig != "" && !added_signatures.Has(add_sig)) {
+                added_signatures[add_sig] := true
                 new_array.Push(add_cmd)
             }
         }

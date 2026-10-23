@@ -947,43 +947,91 @@ class CATIAWindow {
 }
 
 class KeyboardController {
-    static modifiers := ["LAlt", "RAlt", "LCtrl", "RCtrl", "LShift", "RShift"]
+    static modifiers := ["LAlt", "RAlt", "LCtrl", "RCtrl", "LShift", "RShift", "LWin", "RWin"]
 
     /**
-     * 强制释放所有修饰键，并注入 {vk07} 阻止系统菜单激活
+     * 强制释放所有修饰键（Alt/Ctrl/Shift/Win），带 vk07 掩码阻断系统菜单与开始菜单激活
      */
     static force_release_all() {
-        SendInput "{Blind}{vk07}{LAlt Up}{RAlt Up}{LCtrl Up}{RCtrl Up}{LShift Up}{RShift Up}"
+        SendInput "{Blind}{vk07}{LAlt Up}{RAlt Up}{LCtrl Up}{RCtrl Up}{LShift Up}{RShift Up}{LWin Up}{RWin Up}"
     }
 
     /**
-     * 探针检测物理按压状态，精准恢复仍被按下的修饰键逻辑状态
-     */
-    static restore_physical_state() {
-        restore_str := ""
-        for key in this.modifiers {
-            if GetKeyState(key, "P") {
-                restore_str .= "{" . key . " Down}"
-            }
-        }
-        if (restore_str != "") {
-            SendInput "{Blind}" . restore_str
-        }
-    }
-
-    /**
-     * 统一注册全局防粘滞与透传热键
+     * 统一注册全局防粘滞与透传热键（全套修饰键覆盖）
      */
     static register_anti_sticky_hotkeys() {
         try {
-            ; 修复 RAlt & RButton 未注册组合导致的 RAlt 粘滞问题（>! 代表 Right Alt）
+            ; 修复 RAlt & RButton 未注册组合导致的 RAlt 粘滞
             Hotkey(">!RButton", (*) => SendInput("{RButton}"))
 
-            ; 兜底清场：物理抬起时注入逻辑 Up，打断粘滞
-            Hotkey("~>!Up", (*) => SendInput("{Blind}{vk07}{RAlt Up}"))
-            Hotkey("~<!Up", (*) => SendInput("{Blind}{vk07}{LAlt Up}"))
+            ; 1. 全量 8 组修饰键物理抬起监听：带通配符 * 与严格空格 Up，物理释放时立刻强制逻辑复位
+            Hotkey("~*LAlt Up", (*) => this.safe_release_key("LAlt", true))
+            Hotkey("~*RAlt Up", (*) => this.safe_release_key("RAlt", true))
+            Hotkey("~*LCtrl Up", (*) => this.safe_release_key("LCtrl"))
+            Hotkey("~*RCtrl Up", (*) => this.safe_release_key("RCtrl"))
+            Hotkey("~*LShift Up", (*) => this.safe_release_key("LShift"))
+            Hotkey("~*RShift Up", (*) => this.safe_release_key("RShift"))
+            Hotkey("~*LWin Up", (*) => this.safe_release_key("LWin", true))
+            Hotkey("~*RWin Up", (*) => this.safe_release_key("RWin", true))
+
+            ; 2. 全局状态自愈探针：在用户点击鼠标时，全盘扫描所有修饰键，物理未按但逻辑卡死在 Down 的瞬间清场
+            Hotkey("~*LButton", (*) => this.heal_sticky_state())
+            Hotkey("~*RButton", (*) => this.heal_sticky_state())
         } catch Error as e {
             Logger.info("注册防粘滞热键失败：" . e.Message)
+        }
+    }
+
+    /**
+     * 安全释放单个修饰键，对 Alt 和 Win 注入 vk07 掩码防止误激活菜单/开始菜单
+     */
+    static safe_release_key(key, mask_menu := false) {
+        if !GetKeyState(key, "P") {
+            mask := mask_menu ? "{vk07}" : ""
+            SendInput "{Blind}" mask "{" key " Up}"
+        }
+    }
+
+    /**
+     * 全局状态自愈探针：全量检测物理与逻辑状态的不一致性
+     */
+    static heal_sticky_state() {
+        release_str := ""
+        need_mask := false
+        for k in this.modifiers {
+            ; 物理上已经没有按，但 Windows 逻辑状态依然处于 Down
+            if (!GetKeyState(k, "P") && GetKeyState(k)) {
+                release_str .= "{" k " Up}"
+                if (InStr(k, "Alt") || InStr(k, "Win"))
+                    need_mask := true
+            }
+        }
+        if (release_str != "") {
+            mask := need_mask ? "{vk07}" : ""
+            SendInput "{Blind}" mask release_str
+        }
+    }
+
+    /**
+     * 按真实物理按压状态精准同步：
+     * 1. 物理仍按住的修饰键恢复 Down（支持 Alt+Q, Q, Q 连续击发）
+     * 2. 物理已松开的修饰键确保 Up（杜绝幽灵粘滞）
+     */
+    static restore_physical_state() {
+        restore_str := ""
+        need_mask := false
+        for key in this.modifiers {
+            if GetKeyState(key, "P") {
+                restore_str .= "{" key " Down}"
+            } else if GetKeyState(key) {
+                restore_str .= "{" key " Up}"
+                if (InStr(key, "Alt") || InStr(key, "Win"))
+                    need_mask := true
+            }
+        }
+        if (restore_str != "") {
+            mask := need_mask ? "{vk07}" : ""
+            SendInput "{Blind}" mask restore_str
         }
     }
 
@@ -1010,6 +1058,7 @@ class KeyboardController {
         } finally {
             if (postSleep > 0)
                 Sleep postSleep
+            ; 执行完毕后根据手指真实物理按压状态精准同步
             this.restore_physical_state()
         }
     }
@@ -1065,16 +1114,11 @@ class CATIAInstance {
         return false
     }
 
-    static is_catia_dialog_context() {
-        if !this.is_catia_bindable_context()
-            return false
+    static get_active_catia_dialog_hwnd() {
         try {
-            ; --- 旧版硬编码实现 (保留注释) ---
-            ; catia_pid := WinGetPID("A")
-            ; return WinExist("ahk_class #32770 ahk_pid " . catia_pid)
-
             hwnd := WinExist("A")
             if (hwnd) {
+                active_pid := WinGetPID(hwnd)
                 win_info := {
                     hwnd: hwnd,
                     title: WinGetTitle(hwnd),
@@ -1082,39 +1126,53 @@ class CATIAInstance {
                     exe: WinGetProcessName(hwnd)
                 }
                 pred := FeatureMatcher.predict(win_info)
-                if (pred.label == "Popup_Dialog")
+                if (pred.label == "Popup_Dialog") {
                     return hwnd
-            }
-        }
-        return false
-    }
-
-
-
-    static click_dialog_button(keywords, target_hwnd := 0) {
-        if !target_hwnd {
-            try {
-                ; --- 旧版硬编码实现 (保留注释) ---
-                ; catia_pid := WinGetPID("A")
-                ; target_hwnd := WinExist("ahk_class #32770 ahk_pid " . catia_pid)
-
-                hwnd := WinExist("A")
-                if (hwnd) {
-                    win_info := {
-                        hwnd: hwnd,
-                        title: WinGetTitle(hwnd),
-                        class: WinGetClass(hwnd),
-                        exe: WinGetProcessName(hwnd)
-                    }
-                    pred := FeatureMatcher.predict(win_info)
-                    if (pred.label == "Popup_Dialog") {
-                        target_hwnd := hwnd
+                }
+                
+                ; 如果前台窗口不是弹窗，按 Z-Order 遍历当前进程的所有可见 #32770 窗口
+                if (active_pid) {
+                    hwnd_list := WinGetList("ahk_class #32770 ahk_pid " active_pid)
+                    for h in hwnd_list {
+                        if !WinGetTitle(h)
+                            continue
+                        if !DllCall("IsWindowVisible", "Ptr", h)
+                            continue
+                            
+                        win_info_bg := {
+                            hwnd: h,
+                            title: WinGetTitle(h),
+                            class: WinGetClass(h),
+                            exe: win_info.exe
+                        }
+                        pred_bg := FeatureMatcher.predict(win_info_bg)
+                        if (pred_bg.label == "Popup_Dialog") {
+                            return h
+                        }
                     }
                 }
             }
         }
+        return 0
+    }
+
+    static is_catia_dialog_context() {
+        if !this.is_catia_bindable_context()
+            return false
+        return (this.get_active_catia_dialog_hwnd() != 0)
+    }
+
+    static click_dialog_button(keywords, target_hwnd := 0) {
+        if !target_hwnd {
+            target_hwnd := this.get_active_catia_dialog_hwnd()
+        }
         if !target_hwnd
             return false
+
+        if (WinExist("A") != target_hwnd) {
+            WinActivate(target_hwnd)
+        }
+
         try {
             for ctrl in WinGetControls(target_hwnd) {
                 if !ControlGetVisible(ctrl, target_hwnd)
@@ -1122,7 +1180,8 @@ class CATIAInstance {
                 clean_text := Trim(RegExReplace(StrReplace(ControlGetText(ctrl, target_hwnd), "&", ""), "\([a-zA-Z]\)", ""))
                 for kw in keywords {
                     if (clean_text == kw) {
-                        SendMessage(0xF5, 0, 0, ctrl, target_hwnd)
+                        PostMessage(0x00F5, 0, 0, ctrl, target_hwnd)  ; BM_CLICK — 不走鼠标消息管道，绕过 MA_ACTIVATEANDEAT
+                        SetTimer(() => KeyboardController.heal_sticky_state(), -50)
                         return true
                     }
                 }

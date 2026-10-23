@@ -133,10 +133,14 @@ app.Run()
             return
         }
 
-        if (A_PriorHotkey != "~RControl" or A_TimeSincePriorHotkey > 400) {
+        static last_press := 0
+        now := A_TickCount
+        if (now - last_press > 400) {
+            last_press := now
             KeyWait "Control"
             return
         }
+        last_press := 0
 
         KeyWait "Control"
         Sleep 30
@@ -244,3 +248,4 @@ RAlt & MButton::
 #HotIf (AppSettings.config_obj.Has("CatiaMButton") && Integer(AppSettings.config_obj["CatiaMButton"]["Enabled"]) && CATIAInstance.is_catia_dialog_context())
 !MButton:: CATIAInstance.click_dialog_confirm_button()
 +MButton:: CATIAInstance.click_dialog_preview_button()
+#HotIf

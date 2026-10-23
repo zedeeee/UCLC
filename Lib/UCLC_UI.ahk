@@ -3424,21 +3424,8 @@ class SettingsController {
             return
         }
 
-        new_array := []
-        added_command_ids := Map()
-        replaced_old_ids := Map()
-
-        for item in this.model.import_items {
-            title := this.get_item_attr(item, "title")
-            old_id := this.get_item_attr(item, "local_id")
-            action := this.get_item_attr(item, "action")
-            new_id := this.get_item_attr(item, "imported_id")
-
-            if selected_keys.Has(title "_" old_id "_" new_id) && action == "C" {
-                if (old_id != "" && old_id != new_id)
-                    replaced_old_ids[old_id] := true
-            }
-        }
+        selected_modifications := Map()
+        selected_additions := []
 
         for item in this.model.import_items {
             title := this.get_item_attr(item, "title")
@@ -3447,45 +3434,70 @@ class SettingsController {
             new_id := this.get_item_attr(item, "imported_id")
 
             if !selected_keys.Has(title "_" old_id "_" new_id)
-                action := "i"
+                continue
 
-            cmd_to_push := ""
-            if (action == "i" || action == "=") {
-                if (old_id != "" && !replaced_old_ids.Has(old_id) && local_by_id.Has(old_id))
-                    cmd_to_push := local_by_id[old_id]
-            } else if (action == "+") {
-                if (new_id != "")
-                    cmd_to_push := Map("desc", title, "command", new_id, "aliases", [], "hotkeys", [])
+            if (action == "C") {
+                selected_modifications[old_id] := Map("type", "C", "new_id", new_id, "title", title)
             } else if (action == "T") {
-                if (old_id != "" && local_by_id.Has(old_id)) {
-                    cmd_to_push := local_by_id[old_id].Clone()
-                    cmd_to_push["desc"] := title
-                }
-            } else if (action == "C") {
-                if (old_id != "" && local_by_id.Has(old_id)) {
-                    cmd_to_push := local_by_id[old_id].Clone()
-                    cmd_to_push["command"] := new_id
-                    cmd_to_push["desc"] := title
-                }
+                selected_modifications[old_id] := Map("type", "T", "title", title)
             } else if (action == "D") {
-                ; drop
+                selected_modifications[old_id] := Map("type", "D")
+            } else if (action == "+") {
+                selected_additions.Push(Map("desc", title, "command", new_id, "aliases", [], "hotkeys", []))
             }
+        }
 
-            if IsObject(cmd_to_push) {
-                cmd_id := (Type(cmd_to_push) == "Map") ? (cmd_to_push.Has("command") ? cmd_to_push["command"] : "") : (HasProp(cmd_to_push, "command") ? cmd_to_push.command : "")
-                if (cmd_id != "" && !added_command_ids.Has(cmd_id)) {
+        new_array := []
+        added_command_ids := Map()
+
+        ; 按照本地原本的顺序重构，保证不改乱顺序
+        for cmd in local_array {
+            cmd_id := cmd.Has("command") ? cmd["command"] : ""
+            if (cmd_id == "")
+                continue
+
+            if (selected_modifications.Has(cmd_id)) {
+                mod := selected_modifications[cmd_id]
+                if (mod["type"] == "D") {
+                    continue
+                } else if (mod["type"] == "C") {
+                    new_cmd := cmd.Clone()
+                    new_cmd["command"] := mod["new_id"]
+                    new_cmd["desc"] := mod["title"]
+                    if (!added_command_ids.Has(new_cmd["command"])) {
+                        added_command_ids[new_cmd["command"]] := true
+                        new_array.Push(new_cmd)
+                    }
+                } else if (mod["type"] == "T") {
+                    new_cmd := cmd.Clone()
+                    new_cmd["desc"] := mod["title"]
+                    if (!added_command_ids.Has(cmd_id)) {
+                        added_command_ids[cmd_id] := true
+                        new_array.Push(new_cmd)
+                    }
+                }
+            } else {
+                if (!added_command_ids.Has(cmd_id)) {
                     added_command_ids[cmd_id] := true
-                    new_array.Push(cmd_to_push)
+                    new_array.Push(cmd)
                 }
             }
         }
 
-        AppSettings.commands_obj[target_wb] := new_array
-        if (!this.model.flush_commands_json(AppSettings.commands_obj)) {
-            return
+        for add_cmd in selected_additions {
+            cmd_id := add_cmd["command"]
+            if (cmd_id != "" && !added_command_ids.Has(cmd_id)) {
+                added_command_ids[cmd_id] := true
+                new_array.Push(add_cmd)
+            }
         }
+
+        ; 只更新内存，不直接落盘；由主界面「保存」按钮统一写入硬盘
+        AppSettings.commands_obj[target_wb] := new_array
+        this.load_command_tree(this.view.edit_search.Value)
+        this.CheckGlobalDirty()
         try owner_win.Opt("+OwnDialogs")
-        MsgBox("成功！请重新载入UCLC使修改生效。", "成功", "Iconi")
+        MsgBox("修改已应用！请点击主界面【保存】按钮写入配置文件。", "成功", "Iconi T3")
         this.on_reset_import_view()
     }
 }
